@@ -1,0 +1,13 @@
+{
+  "name": "Fei",
+  "short_name": "Fei",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [{
+    "src": "assets/icon/logo.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "background_color": "#387ef5",
+  "theme_color": "#387ef5"
+}

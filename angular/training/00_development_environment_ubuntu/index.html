@@ -93,20 +93,38 @@
 
 
 
-<meta name="description" content="[Windows 版] [Ubuntu 版] [Mac 版]  安裝步驟:Node.js 6.9.x &amp;amp; npm 3.x.x 以上版本可以至 Node.js 官方網站下載安裝並安裝    (目前最新版本為8.4.0)">
+<meta name="description" content="[Windows 版] [Ubuntu 版] [Mac 版]  安裝步驟: 安裝前建議先更新 Ubuntu，可以透過 sudo apt-get update 下載套件清單與 sudo apt-get dist-upgrade 執行更新  Node.js 6.9.x &amp;amp; npm 3.x.x 以上版本開啟 Node.js 官方網站說明可以看到安裝指令，開啟終端機執行指令：curl -sL ht">
 <meta name="keywords" content="Angular">
 <meta property="og:type" content="article">
 <meta property="og:title" content="開發環境(Ubuntu 版)？">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/00_development_environment_ubuntu/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="[Windows 版] [Ubuntu 版] [Mac 版]  安裝步驟:Node.js 6.9.x &amp;amp; npm 3.x.x 以上版本可以至 Node.js 官方網站下載安裝並安裝    (目前最新版本為8.4.0)">
+<meta property="og:description" content="[Windows 版] [Ubuntu 版] [Mac 版]  安裝步驟: 安裝前建議先更新 Ubuntu，可以透過 sudo apt-get update 下載套件清單與 sudo apt-get dist-upgrade 執行更新  Node.js 6.9.x &amp;amp; npm 3.x.x 以上版本開啟 Node.js 官方網站說明可以看到安裝指令，開啟終端機執行指令：curl -sL ht">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:image" content="https://jonny-huang.github.io/images/angular_windows_nodejs_01.png">
-<meta property="og:updated_time" content="2017-08-28T08:09:13.418Z">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular_ubuntu_nodejs_01.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular_ubuntu_nodejs_02.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular_ubuntu_nodejs_03.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular_ubuntu_nodejs_04.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular_ubuntu_nodejs_05.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular_ubuntu_nodejs_06.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular_ubuntu_nodejs_07.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular_ubuntu_nodejs_08.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular_ubuntu_nodejs_09.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular_ubuntu_angular-cli_01.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular_ubuntu_angular-cli_02.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular_windows_vscode_11.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular_ubuntu_vscode_01.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular_ubuntu_vscode_02.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular_ubuntu_vscode_03.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular_ubuntu_vscode_04.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular_ubuntu_vscode_05.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular_ubuntu_vscode_06.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular_ubuntu_vscode_07.png">
+<meta property="og:updated_time" content="2017-08-29T02:25:33.568Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="開發環境(Ubuntu 版)？">
-<meta name="twitter:description" content="[Windows 版] [Ubuntu 版] [Mac 版]  安裝步驟:Node.js 6.9.x &amp;amp; npm 3.x.x 以上版本可以至 Node.js 官方網站下載安裝並安裝    (目前最新版本為8.4.0)">
-<meta name="twitter:image" content="https://jonny-huang.github.io/images/angular_windows_nodejs_01.png">
+<meta name="twitter:description" content="[Windows 版] [Ubuntu 版] [Mac 版]  安裝步驟: 安裝前建議先更新 Ubuntu，可以透過 sudo apt-get update 下載套件清單與 sudo apt-get dist-upgrade 執行更新  Node.js 6.9.x &amp;amp; npm 3.x.x 以上版本開啟 Node.js 官方網站說明可以看到安裝指令，開啟終端機執行指令：curl -sL ht">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/angular_ubuntu_nodejs_01.png">
 
 
 
@@ -323,8 +341,26 @@
       
 
       
-        <h2 id="Windows-版-Ubuntu-版-Mac-版"><a href="#Windows-版-Ubuntu-版-Mac-版" class="headerlink" title="[Windows 版] [Ubuntu 版] [Mac 版]  "></a>[<a href="/angular/training/00_development_environment_windows/">Windows 版</a>] [Ubuntu 版] [Mac 版]  </h2><h1 id="安裝步驟"><a href="#安裝步驟" class="headerlink" title="安裝步驟:"></a>安裝步驟:</h1><h2 id="Node-js-6-9-x-amp-npm-3-x-x-以上版本"><a href="#Node-js-6-9-x-amp-npm-3-x-x-以上版本" class="headerlink" title="Node.js 6.9.x &amp; npm 3.x.x 以上版本"></a>Node.js 6.9.x &amp; npm 3.x.x 以上版本</h2><p>可以至 <a href="https://nodejs.org/" target="_blank" rel="external">Node.js 官方網站</a>下載安裝並安裝<br> <img src="/images/angular_windows_nodejs_01.png" alt="Node.js 版本">  </p>
-<h6 id="目前最新版本為8-4-0"><a href="#目前最新版本為8-4-0" class="headerlink" title="(目前最新版本為8.4.0)"></a>(目前最新版本為8.4.0)</h6>
+        <h2 id="Windows-版-Ubuntu-版-Mac-版"><a href="#Windows-版-Ubuntu-版-Mac-版" class="headerlink" title="[Windows 版] [Ubuntu 版] [Mac 版]  "></a>[<a href="/angular/training/00_development_environment_windows/">Windows 版</a>] [Ubuntu 版] [Mac 版]  </h2><h1 id="安裝步驟"><a href="#安裝步驟" class="headerlink" title="安裝步驟:"></a>安裝步驟:</h1><blockquote>
+<p>安裝前建議先更新 Ubuntu，可以透過 <code>sudo apt-get update</code> 下載套件清單與 <code>sudo apt-get dist-upgrade</code> 執行更新<br><img src="/images/angular_ubuntu_nodejs_01.png" alt=""><br><img src="/images/angular_ubuntu_nodejs_02.png" alt=""></p>
+</blockquote>
+<h2 id="Node-js-6-9-x-amp-npm-3-x-x-以上版本"><a href="#Node-js-6-9-x-amp-npm-3-x-x-以上版本" class="headerlink" title="Node.js 6.9.x &amp; npm 3.x.x 以上版本"></a>Node.js 6.9.x &amp; npm 3.x.x 以上版本</h2><p>開啟 <a href="https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions" target="_blank" rel="external">Node.js 官方網站</a>說明可以看到安裝指令，開啟<strong>終端機</strong>執行指令：<br><img src="/images/angular_ubuntu_nodejs_03.png" alt=""><br><code>curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -</code>  </p>
+<blockquote>
+<p><code>setup_8.x</code>：表示8.x版本，<br>若未安裝 curl 可透過 <code>sudo apt-get install curl</code> 安裝。<br><img src="/images/angular_ubuntu_nodejs_04.png" alt=""></p>
+</blockquote>
+<p><img src="/images/angular_ubuntu_nodejs_05.png" alt=""><br><img src="/images/angular_ubuntu_nodejs_06.png" alt=""><br>最後特別說明要以 root 身分執行安裝，透過 <code>su</code> 指令切換成 root，並透過安裝指令安裝 Node.js。<br><code>sudo apt-get install -y nodejs</code><br><img src="/images/angular_ubuntu_nodejs_07.png" alt="">  </p>
+<blockquote>
+<p>若未設定過 root 的密碼，可透過 <code>sudo passwd</code> 設定。<br><img src="/images/angular_ubuntu_nodejs_08.png" alt=""></p>
+</blockquote>
+<p>可以透過 <code>node -v</code> 及 <code>npm -v</code> 指令確認是 Node.js 與 npm 否安裝成功以及目前安裝版本(目前 Node.js 使用版本為8.4.0，npm 為5.3.0版)<br><img src="/images/angular_ubuntu_nodejs_09.png" alt="">  </p>
+<h2 id="安裝-Angular-CLI"><a href="#安裝-Angular-CLI" class="headerlink" title="安裝 Angular CLI"></a>安裝 Angular CLI</h2><p>以 <strong>root 身分</strong>安裝<strong>Angular CLI</strong>，指令如下：<br><code>npm install -g @angular/cli</code>  </p>
+<blockquote>
+<p><code>insatll</code> 為安裝參數，可以縮寫為 <code>i</code>，<br>反安裝時可以改用 <code>uninstall</code> 參數。<br><code>-g</code> 表示所安裝的套件(package)會安裝在全域(global)內。</p>
+</blockquote>
+<p><img src="/images/angular_ubuntu_angular-cli_01.png" alt=""><br>透過 <code>ng -v</code> 指令確認是否安裝成功以及目前安裝版本(目前cli使用版本為1.3.2)<br><img src="/images/angular_ubuntu_angular-cli_02.png" alt="">  </p>
+<h2 id="安裝IDE工具-簡稱：VS-Code"><a href="#安裝IDE工具-簡稱：VS-Code" class="headerlink" title="安裝IDE工具 (簡稱：VS Code)"></a>安裝IDE工具 (簡稱：VS Code)</h2><p>下列是官方所推薦的IDE工具：<a href="https://angular.io/resources" target="_blank" rel="external">https://angular.io/resources</a><br><img src="/images/angular_windows_vscode_11.png" alt=""><br>至 <a href="https://code.visualstudio.com/" target="_blank" rel="external">VS Code 官方網站</a>下載安裝檔<br><img src="/images/angular_ubuntu_vscode_01.png" alt=""><br>至透過<strong>軟體安裝</strong>執行安裝。<br><img src="/images/angular_ubuntu_vscode_02.png" alt=""><br><img src="/images/angular_ubuntu_vscode_03.png" alt=""><br>輸入使用者密碼再點選核對身分。<br><img src="/images/angular_ubuntu_vscode_04.png" alt=""><br>安裝完成後原本的安裝按鈕會變成移除安紐。<br><img src="/images/angular_ubuntu_vscode_05.png" alt=""><br>點選功能選單的<strong>搜尋你的電腦</strong>，輸入關鍵字即可看到 Visual Studio Code，點選圖示即可開啟。<br><img src="/images/angular_ubuntu_vscode_06.png" alt=""><br>可以開啟 VS Code 圖示的功能選單，將其<strong>鎖定至啟動欄</strong>方便日後執行。<br><img src="/images/angular_ubuntu_vscode_07.png" alt="">  </p>
+<h2 id="安裝擴充功能"><a href="#安裝擴充功能" class="headerlink" title="安裝擴充功能"></a>安裝擴充功能</h2><p>請參閱 <a href="/angular/training/00_development_environment_windows/">Windows 版本</a>  </p>
+
       
     </div>
 
@@ -510,7 +546,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-版-Ubuntu-版-Mac-版"><span class="nav-number">1.</span> <span class="nav-text">[Windows 版] [Ubuntu 版] [Mac 版]  </span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝步驟"><span class="nav-number"></span> <span class="nav-text">安裝步驟:</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js-6-9-x-amp-npm-3-x-x-以上版本"><span class="nav-number">1.</span> <span class="nav-text">Node.js 6.9.x & npm 3.x.x 以上版本</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#目前最新版本為8-4-0"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">(目前最新版本為8.4.0)</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-版-Ubuntu-版-Mac-版"><span class="nav-number">1.</span> <span class="nav-text">[Windows 版] [Ubuntu 版] [Mac 版]  </span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝步驟"><span class="nav-number"></span> <span class="nav-text">安裝步驟:</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js-6-9-x-amp-npm-3-x-x-以上版本"><span class="nav-number">1.</span> <span class="nav-text">Node.js 6.9.x & npm 3.x.x 以上版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Angular-CLI"><span class="nav-number">2.</span> <span class="nav-text">安裝 Angular CLI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝IDE工具-簡稱：VS-Code"><span class="nav-number">3.</span> <span class="nav-text">安裝IDE工具 (簡稱：VS Code)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝擴充功能"><span class="nav-number">4.</span> <span class="nav-text">安裝擴充功能</span></a></li></ol></div>
             
 
           </div>

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Noto Sans TC:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="angular, Jonny" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Jonny Huang 的學習筆記">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jonny Huang 的學習筆記">
+<meta property="og:url" content="https://jonny-huang.github.io/page/2/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="Jonny Huang 的學習筆記">
+<meta property="og:locale" content="zh-tw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jonny Huang 的學習筆記">
+<meta name="twitter:description" content="Jonny Huang 的學習筆記">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Jonny'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jonny-huang.github.io/page/2/"/>
+
+
+
+
+
+  <title>Jonny Huang 的學習筆記</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jonny Huang 的學習筆記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Angular</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/03_angular_component/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/angular/training/03_angular_component/" itemprop="url">Angular 元件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-08-29T00:00:00+08:00">
+                2017/08/29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Training/" itemprop="url" rel="index">
+                    <span itemprop="name">Training</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="元件-Component"><a href="#元件-Component" class="headerlink" title="元件 (Component)"></a>元件 (Component)</h1><p>在 <a href="/angular/training/02_angular_operation/">Angular 基本運作流程</a> 我們概略說明了 Angular 的元件(Component)主要是透過將類別(class)加上 <code>@Component</code> 裝飾器的宣告來組成。<br>從<a href="https://angular.io/api/core/Component" target="_blank" rel="external">官方文件</a>可以看到 <code>@Component</code> 還包含其他屬性，例如：動畫。<br><img src="/images/angular/training/component/angular_component_01.png" alt="">  </p>
+<h2 id="如何新增元件"><a href="#如何新增元件" class="headerlink" title="如何新增元件"></a>如何新增元件</h2><p>要建立新的元件可以<strong>手動建立相關檔案並修改相關設定</strong>，但是另一個更好的方法就是透過 CLI 幫我們產生相關檔案，語法如下：<br><code>ng generate component [name]</code>  </p>
+<blockquote>
+<p><code>generate</code>：可以縮寫成 <code>g</code><br><code>component</code>：可以縮寫成 <code>c</code></p>
+</blockquote>
+<h3 id="練習新增一個-page1-component"><a href="#練習新增一個-page1-component" class="headerlink" title="練習新增一個 page1 component"></a>練習新增一個 page1 component</h3><p>透過指令 <code>ng g c page1</code> 可以發現 CLI 幫我們建議一個與元件同名(page1)的資料夾，並在資料夾內產生4個檔案，最後再更新 <strong>AppModule</strong>。<br><img src="/images/angular/training/component/angular_component_02.png" alt="">  </p>
+<ul>
+<li><strong>page1.component.ts：</strong>CLI會建立一個已宣告<code>@Component</code> 裝飾器的類別(Page1Component)，此類別也是主要程式撰寫的地方。<figure class="highlight ts"><figcaption><span>page1.component.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; Component, OnInit &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"></div><div class="line"><span class="meta">@Component</span>(&#123;</div><div class="line">  selector: <span class="string">'app-page1'</span>,</div><div class="line">  templateUrl: <span class="string">'./page1.component.html'</span>,</div><div class="line">  styleUrls: [<span class="string">'./page1.component.scss'</span>]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> Page1Component <span class="keyword">implements</span> OnInit &#123;</div><div class="line"></div><div class="line">  <span class="keyword">constructor</span>(<span class="params"></span>) &#123; &#125;</div><div class="line"></div><div class="line">  ngOnInit() &#123;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+<li><strong>page1.component.html：</strong>Page1Component 所對應的樣板。<figure class="highlight html"><figcaption><span>page1.component.html</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></div><div class="line">  page1 works!</div><div class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div></pre></td></tr></table></figure></li>
+<li><strong>page1.component.scss：</strong>Page1Component 樣板所對應的樣式。<figure class="highlight scss"><figcaption><span>page1.component.scss</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure></li>
+<li><strong>page1.component.spec.ts：</strong>Page1Component 的單元測試檔。  <figure class="highlight ts"><figcaption><span>page1.component.spec.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; <span class="keyword">async</span>, ComponentFixture, TestBed &#125; <span class="keyword">from</span> <span class="string">'@angular/core/testing'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; Page1Component &#125; <span class="keyword">from</span> <span class="string">'./page1.component'</span>;</div><div class="line"></div><div class="line">describe(<span class="string">'Page1Component'</span>, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">let</span> component: Page1Component;</div><div class="line">  <span class="keyword">let</span> fixture: ComponentFixture&lt;Page1Component&gt;;</div><div class="line"></div><div class="line">  beforeEach(<span class="keyword">async</span>(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    TestBed.configureTestingModule(&#123;</div><div class="line">      declarations: [ Page1Component ]</div><div class="line">    &#125;)</div><div class="line">    .compileComponents();</div><div class="line">  &#125;));</div><div class="line"></div><div class="line">  beforeEach(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    fixture = TestBed.createComponent(Page1Component);</div><div class="line">    component = fixture.componentInstance;</div><div class="line">    fixture.detectChanges();</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  it(<span class="string">'should be created'</span>, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    expect(component).toBeTruthy();</div><div class="line">  &#125;);</div><div class="line">&#125;);</div><div class="line"></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>若不想要建立資料夾，可以加上 <code>--flat</code> 參數。<br>若是不想建立 style 檔，可以加上 <code>-is</code> 參數。<br>若是不想建立 template 檔，可以加上 <code>-it</code> 參數。<br>相關參數請參考 <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/generate/component.md" target="_blank" rel="external">GitHub</a>。<br>若是不想建立 unit testing 檔，可以在 <code>.angular-cli.json</code> 內的 <strong>defaults</strong> 區段加上 <strong>component</strong> 參數，並給予 <code>&quot;spec&quot;: false</code> 的屬性。<br><img src="/images/angular/training/component/angular_component_04.png" alt=""></p>
+</blockquote>
+<p>開啟 <code>app.module.ts</code> 可以發現 CLI 自動幫我們將 Page1Component 註冊到 AppModule 內。<br><figure class="highlight ts"><figcaption><span>app.module.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</div><div class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; AppRoutingModule &#125; <span class="keyword">from</span> <span class="string">'./app-routing.module'</span>;</div><div class="line"><span class="keyword">import</span> &#123; AppComponent &#125; <span class="keyword">from</span> <span class="string">'./app.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page1Component &#125; <span class="keyword">from</span> <span class="string">'./page1/page1.component'</span>;</div><div class="line"></div><div class="line"><span class="meta">@NgModule</span>(&#123;</div><div class="line">  declarations: [</div><div class="line">    AppComponent,</div><div class="line">    Page1Component</div><div class="line">  ],</div><div class="line">  imports: [</div><div class="line">    BrowserModule,</div><div class="line">    AppRoutingModule</div><div class="line">  ],</div><div class="line">  providers: [],</div><div class="line">  bootstrap: [AppComponent]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule &#123; &#125;</div><div class="line"></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Component 無法獨立存在，必須依附在 NgModule 內，依附方式就是將 Component 註冊到 NgModule 的 <strong>declarations</strong> 屬性內。</p>
+</blockquote>
+<h3 id="練習新增一個最陽春的-page2-component"><a href="#練習新增一個最陽春的-page2-component" class="headerlink" title="練習新增一個最陽春的 page2 component"></a>練習新增一個最陽春的 page2 component</h3><p>透過指令 <code>ng g c page2 --flat -is -it</code>，CLI 並不會建立元件的資料夾，只幫我們建立 page2.component.ts 檔，並將 Page2Component 註冊到 AppModule 內。<br>因為 <code>.angular-cli.json</code> 也取消 component 的單元測試，所以 <code>page2.component.spec.ts</code> 也不會被建立。<br><img src="/images/angular/training/component/angular_component_06.png" alt=""><br><figure class="highlight ts"><figcaption><span>page2.component.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; Component, OnInit &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"></div><div class="line"><span class="meta">@Component</span>(&#123;</div><div class="line">  selector: <span class="string">'app-page2'</span>,</div><div class="line">  template: <span class="string">`</span></div><div class="line">    &lt;p&gt;</div><div class="line">      page2 Works!</div><div class="line">    &lt;/p&gt;</div><div class="line">  `,</div><div class="line">  styles: []</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> Page2Component <span class="keyword">implements</span> OnInit &#123;</div><div class="line"></div><div class="line">  <span class="keyword">constructor</span>(<span class="params"></span>) &#123; &#125;</div><div class="line"></div><div class="line">  ngOnInit() &#123;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div></pre></td></tr></table></figure><br><figure class="highlight ts"><figcaption><span>app.module.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</div><div class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; AppRoutingModule &#125; <span class="keyword">from</span> <span class="string">'./app-routing.module'</span>;</div><div class="line"><span class="keyword">import</span> &#123; AppComponent &#125; <span class="keyword">from</span> <span class="string">'./app.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page1Component &#125; <span class="keyword">from</span> <span class="string">'./page1/page1.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page2Component &#125; <span class="keyword">from</span> <span class="string">'./page2.component'</span>;</div><div class="line"></div><div class="line"><span class="meta">@NgModule</span>(&#123;</div><div class="line">  declarations: [</div><div class="line">    AppComponent,</div><div class="line">    Page1Component,</div><div class="line">    Page2Component</div><div class="line">  ],</div><div class="line">  imports: [</div><div class="line">    BrowserModule,</div><div class="line">    AppRoutingModule</div><div class="line">  ],</div><div class="line">  providers: [],</div><div class="line">  bootstrap: [AppComponent]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule &#123; &#125;</div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>比較特別的是 <code>@Component</code> 內 <code>templateUrl</code> 被 <code>template</code> 替代，<code>styleUrls</code> 被 <code>styles</code> 替代，我們可以把樣板內容直接填寫在 <code>template</code> 屬性，把樣式內容填寫在 styles 屬性。<br>也就是說當我們希望樣板及樣式是獨立檔案時可使用 <code>templateUrl</code> 與 <code>styleUrls</code> 來連結檔案，如果是希望能夠合併成一個檔案時則改用 <code>template</code> 與 <code>styles</code> 屬性。<br><blockquote><p>模板源文本使用 (``) (重音符號，又稱反引號) 圍著，而非字串常用的、英文中的單引號或雙引號。模板源文本中可以包涵由錢字符($)與大括號({ })所構成的佔位符(即：${expression})，佔位符與其附近的文字會一併傳給函數，預設函數將把這些部分組合成一個單一的字串。如果模板源文本由一個表達式開頭（即下方範例中使用的 myTag），我們稱之為「帶標籤模板源文本」(tagged template literal)。在這種情況下，該標籤表達式（通常是函數）會在模板源文本處理後被呼叫，因此我們可以在輸出文字之前，做進一步的操作。若要在模板源文本中使用反引號，要使用轉義字元的形式，在前面加上反斜線「\」。</p>
+<footer><strong>Mozilla</strong><cite><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Template_literals" target="_blank" rel="external">模板源文本</a></cite></footer></blockquote></p>
+<h3 id="半-純手工打造-page3-component"><a href="#半-純手工打造-page3-component" class="headerlink" title="(半)純手工打造 page3 component"></a>(半)純手工打造 page3 component</h3><p>點選 <strong>app</strong> 資料夾再點選<strong>新增檔案</strong>按鈕(或者再 <strong>app</strong> 資料夾按滑鼠右鍵選擇<strong>新增檔案</strong>)，將檔案命名為 <code>page3.component.ts</code>。<br><img src="/images/angular/training/component/angular_component_09.png" alt=""><br>開啟 <code>page3.component.ts</code>，輸入 <code>a-</code> 則會列出 <a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.Angular2" target="_blank" rel="external">Angular v4 TypeScript Snippets</a> 所提供的代碼片段，選擇 <code>a-component</code> 即可產生基本的程式框架。<br><img src="/images/angular/training/component/angular_component_10.png" alt=""><br><img src="/images/angular/training/component/angular_component_11.png" alt=""><br>最後再手動修該部分代碼以及將 Page3Component 註冊到 AppModule 即可完成。<br><figure class="highlight ts"><figcaption><span>page3.component.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; Component, OnInit &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"></div><div class="line"><span class="meta">@Component</span>(&#123;</div><div class="line">  selector: <span class="string">'app-page3'</span>,</div><div class="line">  template: <span class="string">`</span></div><div class="line">    &lt;p&gt;</div><div class="line">      page3 works!</div><div class="line">    &lt;/p&gt;</div><div class="line">  `</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> Page3Component <span class="keyword">implements</span> OnInit &#123;</div><div class="line">  <span class="keyword">constructor</span>(<span class="params"></span>) &#123; &#125;</div><div class="line"></div><div class="line">  ngOnInit() &#123; &#125;</div><div class="line">&#125;</div><div class="line"></div></pre></td></tr></table></figure><br><figure class="highlight ts"><figcaption><span>app.module.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</div><div class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; AppRoutingModule &#125; <span class="keyword">from</span> <span class="string">'./app-routing.module'</span>;</div><div class="line"><span class="keyword">import</span> &#123; AppComponent &#125; <span class="keyword">from</span> <span class="string">'./app.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page1Component &#125; <span class="keyword">from</span> <span class="string">'./page1/page1.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page2Component &#125; <span class="keyword">from</span> <span class="string">'./page2.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page3Component &#125; <span class="keyword">from</span> <span class="string">'./page3.component'</span>;</div><div class="line"></div><div class="line"><span class="meta">@NgModule</span>(&#123;</div><div class="line">  declarations: [</div><div class="line">    AppComponent,</div><div class="line">    Page1Component,</div><div class="line">    Page2Component,</div><div class="line">    Page3Component</div><div class="line">  ],</div><div class="line">  imports: [</div><div class="line">    BrowserModule,</div><div class="line">    AppRoutingModule</div><div class="line">  ],</div><div class="line">  providers: [],</div><div class="line">  bootstrap: [AppComponent]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule &#123; &#125;</div><div class="line"></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=doggy8088.angular-extension-pack" target="_blank" rel="external">Angular Extension Pack</a> 擴充功能已經包含 <a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.Angular2" target="_blank" rel="external">Angular v4 TypeScript Snippets</a>，所以可以直接使用代碼片段。  </p>
+</blockquote>
+<h3 id="套用-Component"><a href="#套用-Component" class="headerlink" title="套用 Component"></a>套用 Component</h3><p>開啟 <code>app.component.html</code>，並將 <code>Page1Component</code>、<code>Page2Component</code>、<code>Page3Component</code> 內 selector 所設定的 tag 加入至 <code>app.component.html</code>。<br><figure class="highlight html"><figcaption><span>app.component.htm</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">app-page1</span>&gt;</span><span class="tag">&lt;/<span class="name">app-page1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">app-page2</span>&gt;</span><span class="tag">&lt;/<span class="name">app-page2</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">app-page3</span>&gt;</span><span class="tag">&lt;/<span class="name">app-page3</span>&gt;</span></div></pre></td></tr></table></figure><br>執行 <code>ng serve</code>，並透過瀏覽器察看結果。<br><img src="/images/angular/training/component/angular_component_15.png" alt="">  </p>
+<p>比較上述幾個方法後，透過 CLI 指令應該是最方便的，也可讓命名規則符合 Angular 所建議的模式。<br><img src="/images/download.png" width="36">[<strong>first-app_2017-08-29.zip</strong>]<br>(/uploads/first-app_2017-08-29.zip)  </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Jonny Huang" />
+          <p class="site-author-name" itemprop="name">Jonny Huang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Jonny Huang 的學習筆記</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分類</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-Jonny Huang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

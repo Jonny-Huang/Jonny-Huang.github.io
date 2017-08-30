@@ -257,6 +257,168 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/04_angular_router/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/angular/training/04_angular_router/" itemprop="url">Angular 路由器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-08-30T00:00:00+08:00">
+                2017/08/30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Training/" itemprop="url" rel="index">
+                    <span itemprop="name">Training</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="路由-Routing"><a href="#路由-Routing" class="headerlink" title="路由 (Routing)"></a>路由 (Routing)</h1><p>在 <a href="/angular/training/03_angular_component/">Angular 元件</a> 最後面我們練習了直接透過 tag 來嵌入 Component，但是這只是在頁面一開始呈現的效果，而正常情況下還需要依照使用者的操作適當的改變內容，例如切換不同功能時需要整個頁面替換掉，做查詢時可能要在介面上的某個區塊將結果顯示出來。<br>Angular 提供了一個路由機制，讓我們可以很方便的抽<strong>部分換區塊</strong>，說是<strong>部分換區塊</strong>是因為正常情況下，Angular 的<strong>根元件</strong>(<strong>起始模組</strong>內所指定的<strong>起始元件</strong>)在一開始載入後便無法被抽換掉，我們只能替換<strong>根元件</strong>內的內容。  </p>
+<p>在 <a href="/angular/training/01_creating_first_project/">建立 Angular 專案</a> 我們在建立專案時透過指令 <code>ng new first-app --routing --style scss</code> 來建立專案，其中帶了一個參數 <code>--routing</code>，此參數讓 CLI 在建立專案同時幫我們新增一個具有路由功能的模組― <strong>AppRoutingModule</strong>，並將該模組註冊到 <strong>AppModule</strong> 內。<br>開啟 <code>scr\app\app-routing.module.ts</code> 可以發現裡面宣告一個 <code>routes</code> 的陣列變數讓我們可以加入多個路由規則，最後 <code>RouterModule.forRoot(routes)</code> 則是將此路由變數宣告為根路由。<br><figure class="highlight ts"><figcaption><span>app-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">'@angular/router'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> routes: Routes = [</div><div class="line">  &#123;</div><div class="line">    path: <span class="string">''</span>,</div><div class="line">    children: []</div><div class="line">  &#125;</div><div class="line">];</div><div class="line"></div><div class="line"><span class="meta">@NgModule</span>(&#123;</div><div class="line">  imports: [RouterModule.forRoot(routes)],</div><div class="line">  exports: [RouterModule]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppRoutingModule &#123; &#125;</div><div class="line"></div></pre></td></tr></table></figure><br>之前將 <strong>Component</strong> 註冊到模組時是加在 <strong>NgModule</strong> 的 <strong>declarations</strong> 屬性內，但是由程式碼可知 <strong>NgModule</strong> 要註冊到另一個 <strong>NgModule</strong> 時，則必須加到 <strong>imports</strong> 屬性內。<br><figure class="highlight ts"><figcaption><span>app.module.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</div><div class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; AppRoutingModule &#125; <span class="keyword">from</span> <span class="string">'./app-routing.module'</span>;</div><div class="line"><span class="keyword">import</span> &#123; AppComponent &#125; <span class="keyword">from</span> <span class="string">'./app.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page1Component &#125; <span class="keyword">from</span> <span class="string">'./page1/page1.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page2Component &#125; <span class="keyword">from</span> <span class="string">'./page2.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page3Component &#125; <span class="keyword">from</span> <span class="string">'./page3.component'</span>;</div><div class="line"></div><div class="line"><span class="meta">@NgModule</span>(&#123;</div><div class="line">  declarations: [</div><div class="line">    AppComponent,</div><div class="line">    Page1Component,</div><div class="line">    Page2Component,</div><div class="line">    Page3Component</div><div class="line">  ],</div><div class="line">  imports: [</div><div class="line">    BrowserModule,</div><div class="line">    AppRoutingModule</div><div class="line">  ],</div><div class="line">  providers: [],</div><div class="line">  bootstrap: [AppComponent]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule &#123; &#125;</div><div class="line"></div></pre></td></tr></table></figure></p>
+<h2 id="路由插座-router-outlet"><a href="#路由插座-router-outlet" class="headerlink" title="路由插座 (router-outlet)"></a>路由插座 (router-outlet)</h2><p>大家之前若有注意到 CLI 所建立的專案內的 <code>app.component.html</code>，網頁內的最後一行是一個奇怪的 tag- <code>&lt;router-outlet&gt;&lt;/router-outlet&gt;</code>，如果大家跟我一樣健忘，但是電腦內有剛好有安裝 <strong>git</strong>，那麼就可以直接利用 VS Code 的<strong>原始檔控制</strong>來回溯內容。  </p>
+<blockquote>
+<p>git 工具可以至 <a href="https://git-scm.com/" target="_blank" rel="external">https://git-scm.com/</a> 網站下載安裝。</p>
+</blockquote>
+<p>點選<strong>原始檔控制</strong>然後選擇 <code>app.component.html</code> 及可看到目前內容與先前的內容。<br><img src="/images/angular/training/router/angular_router_01.png" alt=""><br>或者可以參考下面的原始程式碼第21行。<br><figure class="highlight html"><figcaption><span>app.component.html</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--The content below is only a placeholder and can be replaced.--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"text-align:center"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span></div><div class="line">    Welcome to &#123; &#123;title&#125; &#125;!</div><div class="line">  <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">width</span>=<span class="string">"300"</span> <span class="attr">src</span>=<span class="string">"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNTAgMjUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTAgMjUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojREQwMDMxO30NCgkuc3Qxe2ZpbGw6I0MzMDAyRjt9DQoJLnN0MntmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTI1LDMwIDEyNSwzMCAxMjUsMzAgMzEuOSw2My4yIDQ2LjEsMTg2LjMgMTI1LDIzMCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAJIi8+DQoJPHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSIxMjUsMzAgMTI1LDUyLjIgMTI1LDUyLjEgMTI1LDE1My40IDEyNSwxNTMuNCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAxMjUsMzAgCSIvPg0KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMjUsNTIuMUw2Ni44LDE4Mi42aDBoMjEuN2gwbDExLjctMjkuMmg0OS40bDExLjcsMjkuMmgwaDIxLjdoMEwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMQ0KCQlMMTI1LDUyLjF6IE0xNDIsMTM1LjRIMTA4bDE3LTQwLjlMMTQyLDEzNS40eiIvPg0KPC9nPg0KPC9zdmc+DQo="</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Here are some links to help you start: <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">href</span>=<span class="string">"https://angular.io/tutorial"</span>&gt;</span>Tour of Heroes<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">href</span>=<span class="string">"https://github.com/angular/angular-cli/wiki"</span>&gt;</span>CLI Documentation<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">href</span>=<span class="string">"https://blog.angular.io//"</span>&gt;</span>Angular blog<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">router-outlet</span>&gt;</span><span class="tag">&lt;/<span class="name">router-outlet</span>&gt;</span></div><div class="line"></div></pre></td></tr></table></figure><br>我們可以把 <code>router-outle</code> 看成 Component 的 tag，因為 Angular 的路由機制運作結果會如同 Component 的 tag，會以這個 tag 當作標記去插入指定的 Component。  </p>
+<h2 id="練習編寫路由規則"><a href="#練習編寫路由規則" class="headerlink" title="練習編寫路由規則"></a>練習編寫路由規則</h2><p>移除 <code>app.component.html</code> 所有內容，只添加一個 <code>&lt;router-outlet&gt;&lt;/router-outlet&gt;</code>，這樣執行起來畫面會完全空白，如果畫面上出現東西就表示路由機制運作成功。<br><figure class="highlight html"><figcaption><span>app.component.html</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">router-outlet</span>&gt;</span><span class="tag">&lt;/<span class="name">router-outlet</span>&gt;</span></div><div class="line"></div></pre></td></tr></table></figure><br>開啟 <code>app-routing.module.ts</code> ，加入3個<strong>路由規則</strong>分別對應到 Page1Component、Page2Component、Page3Component。  </p>
+<ul>
+<li><code>path</code>：設定導覽的相對路徑</li>
+<li><code>component</code>：設定要載入的 Component</li>
+</ul>
+<p>當導覽路徑變化時 Angular Router 會將導覽路徑拿來跟路由規則逐一比對，如果路徑與 <code>path</code> 條件符合就會執行該路由條件，因為目前我們設定了 <code>component</code> 屬性，所以符合條件時就會將 <code>component</code> 屬性所指定的 Component 插入目前 Component 的 <code>router-outlet</code> tag 內。<br><figure class="highlight ts"><figcaption><span>app-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">'@angular/router'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page1Component &#125; <span class="keyword">from</span> <span class="string">'./page1/page1.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page2Component &#125; <span class="keyword">from</span> <span class="string">'./page2.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page3Component &#125; <span class="keyword">from</span> <span class="string">'./page3.component'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> routes: Routes = [</div><div class="line">  &#123; path: <span class="string">''</span>, children: [] &#125;,</div><div class="line">  &#123; path: <span class="string">'p1'</span>, component: Page1Component &#125;,</div><div class="line">  &#123; path: <span class="string">'p2'</span>, component: Page2Component &#125;,</div><div class="line">  &#123; path: <span class="string">'p3'</span>, component: Page3Component &#125;</div><div class="line">];</div><div class="line"></div><div class="line"><span class="meta">@NgModule</span>(&#123;</div><div class="line">  imports: [RouterModule.forRoot(routes)],</div><div class="line">  exports: [RouterModule]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppRoutingModule &#123; &#125;</div><div class="line"></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>路由規則比對時，一旦比對到符合條件的規則後續就不會再做比對，所以<strong>路由規則是有順序性</strong>。</p>
+</blockquote>
+<p>透過 <code>ng serve</code> 啟動，並分別連結至 <strong><a href="http://localhost:4200/p1" target="_blank" rel="external">http://localhost:4200/p1</a></strong>、<strong><a href="http://localhost:4200/p2" target="_blank" rel="external">http://localhost:4200/p2</a></strong>、<strong><a href="http://localhost:4200/p3" target="_blank" rel="external">http://localhost:4200/p3</a></strong>，可以看到每個網址都顯示出對應的 Component 內容。<br><img src="/images/angular/training/router/angular_router_02.png" alt=""><br>嘗試輸入不存在的路由規則，例如：<strong><a href="http://localhost:4200/p4" target="_blank" rel="external">http://localhost:4200/p4</a></strong>，可以看到 Angular 好像自動幫我們導回到<strong><a href="http://localhost:4200/" target="_blank" rel="external">http://localhost:4200/</a></strong>，可是開啟瀏覽器開發者工具就會發現系統發出錯誤的訊息。<br><img src="/images/angular/training/router/angular_router_03.png" alt="">  </p>
+<h2 id="萬用路由"><a href="#萬用路由" class="headerlink" title="萬用路由 (**)"></a>萬用路由 (**)</h2><p>Angular Router 提供一個萬用路由規則，當 <code>path</code> 屬性設定為 <code>&#39;**&#39;</code> 時表示條件為任意值，路由比對到這一個規則時一定會符合，所以設置在此規則後面的路由規則基本上是無效的，因為任何導覽路徑到了萬用路由就會被攔截調，所以正常會<strong>將萬用路由放置在路由規則的最後面</strong>。  </p>
+<h3 id="練習加入萬用路由"><a href="#練習加入萬用路由" class="headerlink" title="練習加入萬用路由"></a>練習加入萬用路由</h3><p>嘗試加入一個萬用路由，並改用 <code>redirectTo</code> 屬性， 將其設定為 ‘p1’。</p>
+<ul>
+<li><code>redirectTo</code>：表示當路由規則符合時會重新導覽到 <strong>redirectTo</strong> 所指定的路由路徑。</li>
+</ul>
+<figure class="highlight ts"><figcaption><span>app-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">'@angular/router'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page1Component &#125; <span class="keyword">from</span> <span class="string">'./page1/page1.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page2Component &#125; <span class="keyword">from</span> <span class="string">'./page2.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page3Component &#125; <span class="keyword">from</span> <span class="string">'./page3.component'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> routes: Routes = [</div><div class="line">  &#123; path: <span class="string">''</span>, children: [] &#125;,</div><div class="line">  &#123; path: <span class="string">'p1'</span>, component: Page1Component &#125;,</div><div class="line">  &#123; path: <span class="string">'p2'</span>, component: Page2Component &#125;,</div><div class="line">  &#123; path: <span class="string">'p3'</span>, component: Page3Component &#125;,</div><div class="line">  &#123; path: <span class="string">'**'</span>, redirectTo: <span class="string">''</span>&#125;</div><div class="line">];</div><div class="line"></div><div class="line"><span class="meta">@NgModule</span>(&#123;</div><div class="line">  imports: [RouterModule.forRoot(routes)],</div><div class="line">  exports: [RouterModule]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppRoutingModule &#123; &#125;</div><div class="line"></div></pre></td></tr></table></figure>
+<p>開啟瀏覽器在 <code>http://localhost:4200/</code> 網址後面輸入任何非 <code>p1</code>、<code>p2</code>、<code>p3</code>，例如：<code>http://localhost:4200/p4</code>、<code>http://localhost:4200/abc</code>，會發現不論輸入任何值都會被重新導引到首頁(<code>http://localhost:4200/</code>)，從瀏覽器開發者工具並不會看到任何錯誤訊息。<br>一般而言萬用路由不應該被執行到，因為這表示目前導覽路徑是一個非預期的路徑，所以萬用路由會比較像是為了避免系統出錯的預防機制，比較常見的情境是</p>
+<ul>
+<li><strong>導覽至首頁</strong>：此種情境適合在發生錯誤時使用者可以捨棄目前資訊，大部分來說這種非預期狀況是一般使用者無法排除的，因此導引至首頁可以讓使用者繼續操作，在 PWA(Progressive Web App) 網站應該是不錯的選擇。</li>
+<li><strong>Page Not Found</strong>：目前網站比較普遍的作法是建立一個 HTTP 404 頁面，對於比較需要立即修正的網站會比較適合，除了可以藉由 404 頁面蒐集當時狀態讓後續可以分析了解原因，這種中斷式頁面也較容易讓使用者立即反應回饋給維護人員。</li>
+</ul>
+<h3 id="練習製作-HTTP-404-頁面"><a href="#練習製作-HTTP-404-頁面" class="headerlink" title="練習製作 HTTP 404 頁面"></a>練習製作 HTTP 404 頁面</h3><p>透過指令 <code>ng g c page404</code> 建立一個，並修改 <code>src\app\page404\page404.component.html</code> 內容如下：<br><figure class="highlight html"><figcaption><span>page404.component.html</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></div><div class="line">  404 Page Not Found</div><div class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div></pre></td></tr></table></figure><br>修改 <code>app-routing.module.ts</code> 將萬用路由指向 <strong>Page404Component</strong>。<br><figure class="highlight ts"><figcaption><span>app-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">'@angular/router'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page1Component &#125; <span class="keyword">from</span> <span class="string">'./page1/page1.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page2Component &#125; <span class="keyword">from</span> <span class="string">'./page2.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page3Component &#125; <span class="keyword">from</span> <span class="string">'./page3.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page404Component &#125; <span class="keyword">from</span> <span class="string">'./page404/page404.component'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> routes: Routes = [</div><div class="line">  &#123; path: <span class="string">''</span>, children: [] &#125;,</div><div class="line">  &#123; path: <span class="string">'p1'</span>, component: Page1Component &#125;,</div><div class="line">  &#123; path: <span class="string">'p2'</span>, component: Page2Component &#125;,</div><div class="line">  &#123; path: <span class="string">'p3'</span>, component: Page3Component &#125;,</div><div class="line">  <span class="comment">// &#123; path: '**', redirectTo: ''&#125;</span></div><div class="line">  &#123; path: <span class="string">'**'</span>, component: Page404Component &#125;</div><div class="line">];</div><div class="line"></div><div class="line"><span class="meta">@NgModule</span>(&#123;</div><div class="line">  imports: [RouterModule.forRoot(routes)],</div><div class="line">  exports: [RouterModule]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppRoutingModule &#123; &#125;</div><div class="line"></div></pre></td></tr></table></figure><br>重新瀏覽任意不存在的路徑，如 <code>http://localhost:4200/abc</code> ，發現會一律顯示 Page404Component 的內容，但是導覽路徑不會改變。<br><img src="/images/angular/training/router/angular_router_04.png" alt=""><br>如果希望導覽路徑跟著改變可以調整路由規則如下:<br><figure class="highlight ts"><figcaption><span>app-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">'@angular/router'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page1Component &#125; <span class="keyword">from</span> <span class="string">'./page1/page1.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page2Component &#125; <span class="keyword">from</span> <span class="string">'./page2.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page3Component &#125; <span class="keyword">from</span> <span class="string">'./page3.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page404Component &#125; <span class="keyword">from</span> <span class="string">'./page404/page404.component'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> routes: Routes = [</div><div class="line">  &#123; path: <span class="string">''</span>, children: [] &#125;,</div><div class="line">  &#123; path: <span class="string">'p1'</span>, component: Page1Component &#125;,</div><div class="line">  &#123; path: <span class="string">'p2'</span>, component: Page2Component &#125;,</div><div class="line">  &#123; path: <span class="string">'p3'</span>, component: Page3Component &#125;,</div><div class="line">  &#123; path: <span class="string">'404'</span>, component: Page404Component &#125;,</div><div class="line">  &#123; path: <span class="string">'**'</span>, redirectTo: <span class="string">'404'</span> &#125;</div><div class="line">  <span class="comment">// &#123; path: '**', redirectTo: ''&#125;</span></div><div class="line">  <span class="comment">// &#123; path: '**', component: Page404Component &#125;</span></div><div class="line">];</div><div class="line"></div><div class="line"><span class="meta">@NgModule</span>(&#123;</div><div class="line">  imports: [RouterModule.forRoot(routes)],</div><div class="line">  exports: [RouterModule]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppRoutingModule &#123; &#125;</div><div class="line"></div></pre></td></tr></table></figure><br>任何錯誤路徑都會被重新導覽到<code>http://localhost:4200/404</code>。<br><img src="/images/angular/training/router/angular_router_05.png" alt="">  </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/03_angular_component/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -410,161 +572,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/02_angular_operation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jonny Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jonny Huang 的學習筆記">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/angular/training/02_angular_operation/" itemprop="url">Angular 基本運作流程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">發表於</span>
-              
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-08-28T00:00:00+08:00">
-                2017/08/28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Training/" itemprop="url" rel="index">
-                    <span itemprop="name">Training</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="運作流程"><a href="#運作流程" class="headerlink" title="運作流程"></a>運作流程</h1><p>從 <strong>.angular-cli.json</strong>檔內可以看到 index 屬性設定為 index.html，此為起始頁面，同時也是唯一頁面，因為 Angular 就是一個 SAP(Single Page Application)網站，所有頁面的切換與介面內容的改變都是透過 JavaScript 做即時的動態切換，另一個 main 屬性則設定 main.ts 為 JavaScript 起始的執行檔。<br><img src="/images/angular/training/operation/angular_operation_01.png" alt="">  </p>
-<blockquote>
-<p>ts 檔為 <a href="https://www.typescriptlang.org/" target="_blank" rel="external">TypeScript</a> 程式語言的編輯檔，編譯後會轉換成標準的 JavaScript 並產生對應的 js 檔，其屬於 JavaScript 的超集合，也就是說在 ts 檔內也可以直接撰寫 JavaScript，最大的差別在於 TypeScript 多了型別的宣告與判斷，也因此讓我們可以在開發時期就能避免型別誤判造成的bug。<br>若不習慣使用的人可以將所有變數宣告成 <code>any</code>，然後以習慣的 JavaScript 來撰寫，只是這樣就失去了 TypeScript 最強大的功能-型別檢查。</p>
-</blockquote>
-<p>由此可知道正常運作下，我們對網站發出請求後網站會回傳 index.html，而在 index.html 內會包含 main.ts 的 JavaScript。<br><strong>流程：</strong><code>index.html</code> &gt; <code>main.ts</code><br>由之前 <code>ng build</code> 編譯所產生的 index.html 可以看到網頁載入了 main.bundle.js 網頁載入了。<br><img src="/images/angular/training/operation/angular_operation_02.png" alt=""><br>開啟專案目錄下 <code>src\main.ts</code> 檔可以發現 Angular 將 <strong>AppModule</strong> 當作<strong>起始模組</strong>載入。<br><img src="/images/angular/training/operation/angular_operation_03.png" alt=""><br><strong>流程：</strong><code>index.html</code> &gt; <code>main.ts</code> &gt; <code>app.module.ts</code>  </p>
-<blockquote>
-<p>Angular 是模組(NgModule)為基礎的高度元件化框架，可在模組內可以再包含模組，因此我們可以依功能將模組再分拆成數個小模組，以方便維護，只是Angular 在執行時只會有一個<strong>起始模組</strong>。<br>由此也可知道<strong>起始模組</strong>不一定是 <strong>AppModule</strong> ，只是一般而言除非有特殊需求，否則不會去變更它。</p>
-</blockquote>
-<p>由 <strong>AppModule</strong>(<code>src\app\app.module.ts</code>) 可看到在 @NgModule 內設定 bootstrap 屬性為 <strong>AppComponent</strong>，也就表示將 <strong>AppComponent</strong> 指定為<strong>起始元件</strong>。<br><img src="/images/angular/training/operation/angular_operation_04.png" alt=""><br><strong>流程：</strong><code>index.html</code> &gt; <code>main.ts</code> &gt; <code>app.module.ts</code> &gt; <code>app.component.ts</code>  </p>
-<blockquote>
-<p>Angular 的介面呈現主要是透過元件(Component)來處理，而元件需依附於模組(NgModule)，因此正常會在<strong>起始模組</strong>去指定<strong>起始元件</strong>。<br><code>@expression</code> 是 TypeScript 的裝飾器，此種聲明可以將其附加到宣告的對象內，Angular 常用的裝飾器有 <code>@NgModule</code>、<code>@Component</code>、<code>@Injectable</code>、<code>@Directive</code>。</p>
-</blockquote>
-<p>開啟專案目錄下 <code>src\app\app.component.ts</code> 檔可以發現 <strong>AppComponent</strong> 這個類別宣告了一個 <code>@Component</code> 的裝飾器，所以 <strong>AppComponent</strong> 被視為一個 Angular Component。<br>在這個裝飾器內設定了一個 templateUrl 屬性值為 <code>&#39;./app.component.html&#39;</code>，表示此元件會以  <code>./app.component.html</code> 當作樣板輸出至介面上，另一個屬性 styleUrls 屬性值為 <code>[&#39;./app.component.scss&#39;]</code>，表示元件輸入的樣板會套用 <code>./app.component.scss</code> 樣式(中括號表示可以同時指定多個樣式)，最後一個屬性 selector 被指定為 <code>&#39;app-root&#39;</code> ，此屬性類似 CSS 的選擇器，會將網頁內的有包含 app-root 的 tag 都替換成 <code>./app.component.html</code>。<br><img src="/images/angular/training/operation/angular_operation_05.png" alt="">  </p>
-<blockquote>
-<p>簡單的說就是 styleUrls 宣告的樣式會套用到 templateUrl 的樣板，而網頁內所有包含 selector 所指定的 tag 都會被替換成 templateUrl 樣板。<br>Angular 的路由機制(Router)也是類似此種抽換原理，這種單純在前端靠 JavaScript 不斷在做介面抽換的模式讓使用者在操作體驗上比起以往模式更加良好。</p>
-</blockquote>
-<p>開啟專案目錄下 <code>src\index.html</code> 檔可以發現內含一個 <code>app-root</code> tag，所以正常來說 Angular 在運作時就會被替換成 <code>app.component.html</code>。<br><img src="/images/angular/training/operation/angular_operation_06.png" alt=""><br><img src="/images/angular/training/operation/angular_operation_07.png" alt=""><br>透過 <code>ng serve</code> 來啟動專案，並透過瀏覽器開啟 <a href="http://localhost:4200/" target="_blank" rel="external">http://localhost:4200/</a><br><img src="/images/angular/training/operation/angular_operation_08.png" alt=""><br>從瀏覽器開發工具檢視，<code>app-root</code> tag 被插入了 <code>app.component.html</code>。<br><img src="/images/angular/training/operation/angular_operation_09.png" alt="">  </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -610,7 +622,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>

@@ -209,22 +209,22 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            目錄
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            標籤
           </a>
         </li>
       
@@ -257,7 +257,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/02_angular_operation/">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/01_creating_first_project/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jonny Huang">
@@ -276,7 +276,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/angular/training/02_angular_operation/" itemprop="url">Angular 基本運作流程</a></h1>
+                <a class="post-title-link" href="/angular/training/01_creating_first_project/" itemprop="url">建立 Angular 專案</a></h1>
         
 
         <div class="post-meta">
@@ -288,8 +288,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-08-28T00:00:00+08:00">
-                2017/08/28
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-08-27T00:00:00+08:00">
+                2017/08/27
               </time>
             
 
@@ -347,23 +347,198 @@
       
         
           
-            <h1 id="運作流程"><a href="#運作流程" class="headerlink" title="運作流程"></a>運作流程</h1><p>從 <strong>.angular-cli.json</strong>檔內可以看到 index 屬性設定為 index.html，此為起始頁面，同時也是唯一頁面，因為 Angular 就是一個 SAP(Single Page Application)網站，所有頁面的切換與介面內容的改變都是透過 JavaScript 做即時的動態切換，另一個 main 屬性則設定 main.ts 為 JavaScript 起始的執行檔。<br><img src="/images/angular/training/operation/angular_operation_01.png" alt="">  </p>
+            <h2 id="建立專案"><a href="#建立專案" class="headerlink" title="建立專案"></a>建立專案</h2><p>透過 Angular-CLI 指令 <code>ng new [name]</code> 來建立新專案，例如建立一個<strong>first-app</strong>專案，透過<br><code>ng new first-app --routing --style scss</code>  </p>
 <blockquote>
-<p>ts 檔為 <a href="https://www.typescriptlang.org/" target="_blank" rel="external">TypeScript</a> 程式語言的編輯檔，編譯後會轉換成標準的 JavaScript 並產生對應的 js 檔，其屬於 JavaScript 的超集合，也就是說在 ts 檔內也可以直接撰寫 JavaScript，最大的差別在於 TypeScript 多了型別的宣告與判斷，也因此讓我們可以在開發時期就能避免型別誤判造成的bug。<br>若不習慣使用的人可以將所有變數宣告成 <code>any</code>，然後以習慣的 JavaScript 來撰寫，只是這樣就失去了 TypeScript 最強大的功能-型別檢查。</p>
+<p>筆者使用 <a href="http://cmder.net/" target="_blank" rel="external">cmder</a> 替代<strong>命令提示字元</strong>，指令會在獨立的一行，會比較容易觀看。  </p>
 </blockquote>
-<p>由此可知道正常運作下，我們對網站發出請求後網站會回傳 index.html，而在 index.html 內會包含 main.ts 的 JavaScript。<br><strong>流程：</strong><code>index.html</code> &gt; <code>main.ts</code><br>由之前 <code>ng build</code> 編譯所產生的 index.html 可以看到網頁載入了 main.bundle.js 網頁載入了。<br><img src="/images/angular/training/operation/angular_operation_02.png" alt=""><br>開啟專案目錄下 <code>src\main.ts</code> 檔可以發現 Angular 將 <strong>AppModule</strong> 當作<strong>起始模組</strong>載入。<br><img src="/images/angular/training/operation/angular_operation_03.png" alt=""><br><strong>流程：</strong><code>index.html</code> &gt; <code>main.ts</code> &gt; <code>app.module.ts</code>  </p>
+<p><img src="/images/angular/training/first_app/angular_first_app_01.png" alt=""><br><code>--routing</code>：參數表示同步建立路由模組，後續再另行說明。<br><code>--style scss</code>：預設樣式是採用css格式，此處改為scss。  </p>
 <blockquote>
-<p>Angular 是模組(NgModule)為基礎的高度元件化框架，可在模組內可以再包含模組，因此我們可以依功能將模組再分拆成數個小模組，以方便維護，只是Angular 在執行時只會有一個<strong>起始模組</strong>。<br>由此也可知道<strong>起始模組</strong>不一定是 <strong>AppModule</strong> ，只是一般而言除非有特殊需求，否則不會去變更它。</p>
+<p>我們可以透過 <code>ng --help</code> 指令查詢 Angular-CLI 提供的功能及相關參數。<br><code>ng new [name]</code> 相關參數也可參考 <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/new.md" target="_blank" rel="external">GitHub</a>。  </p>
 </blockquote>
-<p>由 <strong>AppModule</strong>(<code>src\app\app.module.ts</code>) 可看到在 @NgModule 內設定 bootstrap 屬性為 <strong>AppComponent</strong>，也就表示將 <strong>AppComponent</strong> 指定為<strong>起始元件</strong>。<br><img src="/images/angular/training/operation/angular_operation_04.png" alt=""><br><strong>流程：</strong><code>index.html</code> &gt; <code>main.ts</code> &gt; <code>app.module.ts</code> &gt; <code>app.component.ts</code>  </p>
+<h2 id="開啟專案"><a href="#開啟專案" class="headerlink" title="開啟專案"></a>開啟專案</h2><p>專案建立好後，可切換至專案目錄下，再透過 <code>code .</code> 使用 VS Code 開始專案。  </p>
 <blockquote>
-<p>Angular 的介面呈現主要是透過元件(Component)來處理，而元件需依附於模組(NgModule)，因此正常會在<strong>起始模組</strong>去指定<strong>起始元件</strong>。<br><code>@expression</code> 是 TypeScript 的裝飾器，此種聲明可以將其附加到宣告的對象內，Angular 常用的裝飾器有 <code>@NgModule</code>、<code>@Component</code>、<code>@Injectable</code>、<code>@Directive</code>。</p>
+<p><code>.</code> ：表示當前目錄</p>
 </blockquote>
-<p>開啟專案目錄下 <code>src\app\app.component.ts</code> 檔可以發現 <strong>AppComponent</strong> 這個類別宣告了一個 <code>@Component</code> 的裝飾器，所以 <strong>AppComponent</strong> 被視為一個 Angular Component。<br>在這個裝飾器內設定了一個 templateUrl 屬性值為 <code>&#39;./app.component.html&#39;</code>，表示此元件會以  <code>./app.component.html</code> 當作樣板輸出至介面上，另一個屬性 styleUrls 屬性值為 <code>[&#39;./app.component.scss&#39;]</code>，表示元件輸入的樣板會套用 <code>./app.component.scss</code> 樣式(中括號表示可以同時指定多個樣式)，最後一個屬性 selector 被指定為 <code>&#39;app-root&#39;</code> ，此屬性類似 CSS 的選擇器，會將網頁內的有包含 app-root 的 tag 都替換成 <code>./app.component.html</code>。<br><img src="/images/angular/training/operation/angular_operation_05.png" alt="">  </p>
+<p><img src="/images/angular/training/first_app/angular_first_app_02.png" alt=""><br>或者透過檔案總管的功能選單開啟<br><img src="/images/angular/training/first_app/angular_first_app_03.png" alt=""><br>透過 VS Code 可以發現 CLI 自動幫我們建立好整了開發過程所需要用到的檔案。<br><img src="/images/angular/training/first_app/angular_first_app_04.png" alt="">  </p>
+<h3 id="node-modules"><a href="#node-modules" class="headerlink" title="node_modules"></a>node_modules</h3><p>資料夾內存放專案會用到的node package，詳細 package 可以開啟 <strong>package.json</strong> 檔來查看。  </p>
+<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><p>scripts 表示客製化的參數與對應的指令，可以透過 <code>npm run [parameter]</code> 來執行，例如：<code>npm run start</code><br><img src="/images/angular/training/first_app/angular_first_app_05.png" alt=""><br>dependencies 表示執行環境所需的 package。<br><img src="/images/angular/training/first_app/angular_first_app_06.png" alt="">  </p>
 <blockquote>
-<p>簡單的說就是 styleUrls 宣告的樣式會套用到 templateUrl 的樣板，而網頁內所有包含 selector 所指定的 tag 都會被替換成 templateUrl 樣板。<br>Angular 的路由機制(Router)也是類似此種抽換原理，這種單純在前端靠 JavaScript 不斷在做介面抽換的模式讓使用者在操作體驗上比起以往模式更加良好。</p>
+<p>package 可能會隨功能強化或是bug修正而發布新版本，尤其是 Angular 有這大量的開發人員，因此更新速度特別快，但是新版本與舊有版本是否相容就有待查證，因此若要使用新版本，建議在剛建立完專案時就先升級，既有專案若要升級，建議做好版控或是備份。</p>
 </blockquote>
-<p>開啟專案目錄下 <code>src\index.html</code> 檔可以發現內含一個 <code>app-root</code> tag，所以正常來說 Angular 在運作時就會被替換成 <code>app.component.html</code>。<br><img src="/images/angular/training/operation/angular_operation_06.png" alt=""><br><img src="/images/angular/training/operation/angular_operation_07.png" alt=""><br>透過 <code>ng serve</code> 來啟動專案，並透過瀏覽器開啟 <a href="http://localhost:4200/" target="_blank" rel="external">http://localhost:4200/</a><br><img src="/images/angular/training/operation/angular_operation_08.png" alt=""><br>從瀏覽器開發工具檢視，<code>app-root</code> tag 被插入了 <code>app.component.html</code>。<br><img src="/images/angular/training/operation/angular_operation_09.png" alt="">  </p>
+<p>升級示範：<br>透過<strong>命令提示字元</strong>使用 <code>npm i [package name]</code> 重新安裝 package。</p>
+<blockquote>
+<p>VS Code 內也可以直些透過 <code>Ctrl + `(反引號)</code> 來開啟及關閉<strong>命令提示字元</strong>。<br><img src="/images/angular/training/first_app/angular_first_app_07.png" alt=""></p>
+</blockquote>
+<p><code>npm i @angular/animations @angular/common @angular/compiler @angular/core @angular/forms @angular/http @angular/platform-browser @angular/platform-browser-dynamic @angular/router core-js rxjs zone.js</code><br><img src="/images/angular/training/first_app/angular_first_app_08.png" alt="">  </p>
+<blockquote>
+<p><code>i</code> ：install 縮寫 ，表示安裝指令。<br><code>-save</code>、<code>-s</code> ：npm 5.x 以後預設package就會標示在dependencies，可以省略。<br><code>-save-dev</code>、<code>-d</code> ：所安裝的package就會標示在devDependencies。<br>因為正常開發時會使引用其他package，筆者習慣將 Angular 用到的 package 的安裝指令儲存到記事本，後續可以直接複製貼上。</p>
+</blockquote>
+<p>可以發現 Angular 由4.2.4版升級至4.3.6版。<br><img src="/images/angular/training/first_app/angular_first_app_09.png" alt=""><br>devDependencies 表示開發環境所需的 package。<br><img src="/images/angular/training/first_app/angular_first_app_10.png" alt=""><br>同理透過指令升級<br><code>npm i @angular/animations @angular/common @angular/compiler @angular/core @angular/forms @angular/http @angular/platform-browser @angular/platform-browser-dynamic @angular/router core-js rxjs zone.js</code><br><img src="/images/angular/training/first_app/angular_first_app_11.png" alt=""><br><img src="/images/angular/training/first_app/angular_first_app_12.png" alt="">  </p>
+<h3 id="angular-cli-json"><a href="#angular-cli-json" class="headerlink" title=".angular-cli.json"></a>.angular-cli.json</h3><p><strong>.angular-cli.json</strong> 為 Angular-CLI 的設定檔，例如建置專案時所帶的 <code>--style scss</code> 參數，也可以透過修改 styleExt 值方式手動變更。<br><img src="/images/angular/training/first_app/angular_first_app_13.png" alt="">  </p>
+<h3 id="src"><a href="#src" class="headerlink" title="src"></a>src</h3><p>src 為專案程式碼根目錄。</p>
+<blockquote>
+<p>可以透過 <strong>.angular-cli.json</strong> 修改路徑，但是不建議。<br><img src="/images/angular/training/first_app/angular_first_app_20.png" alt=""></p>
+</blockquote>
+<h3 id="README-md"><a href="#README-md" class="headerlink" title="README.md"></a>README.md</h3><p>說明檔已經內附基本操作，如：  </p>
+<h4 id="Development-server"><a href="#Development-server" class="headerlink" title="Development server"></a>Development server</h4><p>透過 <code>ng serve</code> 指令可以執行開發用的測試服務器，並可透過 <a href="http://localhost:4200/" target="_blank" rel="external">http://localhost:4200/</a> 網址來測試，並透過 <code>Ctrl + c</code> 來終止服務。<br><img src="/images/angular/training/first_app/angular_first_app_14.png" alt=""><br><img src="/images/angular/training/first_app/angular_first_app_15.png" alt=""><br><img src="/images/angular/training/first_app/angular_first_app_16.png" alt="">  </p>
+<h4 id="Code-scaffolding"><a href="#Code-scaffolding" class="headerlink" title="Code scaffolding"></a>Code scaffolding</h4><p>我們可以透過 <code>ng generate</code> 指令來建立開發所需的檔案，CLI 會在建立檔案同時也會包含基本的程式框架。  </p>
+<h4 id="Build"><a href="#Build" class="headerlink" title="Build"></a>Build</h4><p>透過 <code>ng build</code> 指令 CLI 會在專案目錄下建立 dist 資料夾，並將編譯後的網站放置於此，若要將專案佈署至正式環境時，記得改用 <code>ng build -prod</code> 編譯。<br><img src="/images/angular/training/first_app/angular_first_app_17.png" alt=""><br><img src="/images/angular/training/first_app/angular_first_app_18.png" alt=""><br><img src="/images/angular/training/first_app/angular_first_app_19.png" alt="">  </p>
+<blockquote>
+<p>可以透過 <strong>.angular-cli.json</strong> 修改路徑。<br><img src="/images/angular/training/first_app/angular_first_app_21.png" alt=""></p>
+</blockquote>
+<p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-08-28.zip"><strong>first-app_2017-08-28.zip</strong></a>  </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/00_development_environment_ubuntu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/angular/training/00_development_environment_ubuntu/" itemprop="url">開發環境(Ubuntu 版)？</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-08-26T00:00:00+08:00">
+                2017/08/26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Training/" itemprop="url" rel="index">
+                    <span itemprop="name">Training</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Windows-版-Ubuntu-版-Mac-版"><a href="#Windows-版-Ubuntu-版-Mac-版" class="headerlink" title="[Windows 版] [Ubuntu 版] [Mac 版]  "></a>[<a href="/angular/training/00_development_environment_windows/">Windows 版</a>] [Ubuntu 版] [Mac 版]  </h2><h1 id="安裝步驟"><a href="#安裝步驟" class="headerlink" title="安裝步驟:"></a>安裝步驟:</h1><blockquote>
+<p>安裝前建議先更新 Ubuntu，可以透過 <code>sudo apt-get update</code> 下載套件清單與 <code>sudo apt-get dist-upgrade</code> 執行更新<br><img src="/images/angular/training/ubuntu/angular_ubuntu_nodejs_01.png" alt=""><br><img src="/images/angular/training/ubuntu/angular_ubuntu_nodejs_02.png" alt=""></p>
+</blockquote>
+<h2 id="Node-js-6-9-x-amp-npm-3-x-x-以上版本"><a href="#Node-js-6-9-x-amp-npm-3-x-x-以上版本" class="headerlink" title="Node.js 6.9.x &amp; npm 3.x.x 以上版本"></a>Node.js 6.9.x &amp; npm 3.x.x 以上版本</h2><p>開啟 <a href="https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions" target="_blank" rel="external">Node.js 官方網站</a>說明可以看到安裝指令，開啟<strong>終端機</strong>執行指令：<br><img src="/images/angular/training/ubuntu/angular_ubuntu_nodejs_03.png" alt=""><br><code>curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -</code>  </p>
+<blockquote>
+<p><code>setup_8.x</code>：表示8.x版本，<br>若未安裝 curl 可透過 <code>sudo apt-get install curl</code> 安裝。<br><img src="/images/angular/training/ubuntu/angular_ubuntu_nodejs_04.png" alt=""></p>
+</blockquote>
+<p><img src="/images/angular/training/ubuntu/angular_ubuntu_nodejs_05.png" alt=""><br><img src="/images/angular/training/ubuntu/angular_ubuntu_nodejs_06.png" alt=""><br>最後特別說明要以 root 身分執行安裝，透過 <code>su</code> 指令切換成 root，並透過安裝指令安裝 Node.js。<br><code>sudo apt-get install -y nodejs</code><br><img src="/images/angular/training/ubuntu/angular_ubuntu_nodejs_07.png" alt="">  </p>
+<blockquote>
+<p>若未設定過 root 的密碼，可透過 <code>sudo passwd</code> 設定。<br><img src="/images/angular/training/ubuntu/angular_ubuntu_nodejs_08.png" alt=""></p>
+</blockquote>
+<p>可以透過 <code>node -v</code> 及 <code>npm -v</code> 指令確認是 Node.js 與 npm 否安裝成功以及目前安裝版本(目前 Node.js 使用版本為8.4.0，npm 為5.3.0版)<br><img src="/images/angular/training/ubuntu/angular_ubuntu_nodejs_09.png" alt="">  </p>
+<h2 id="安裝-Angular-CLI"><a href="#安裝-Angular-CLI" class="headerlink" title="安裝 Angular CLI"></a>安裝 Angular CLI</h2><p>以 <strong>root 身分</strong>安裝<strong>Angular CLI</strong>，指令如下：<br><code>npm install -g @angular/cli</code>  </p>
+<blockquote>
+<p><code>insatll</code> 為安裝參數，可以縮寫為 <code>i</code>，<br>反安裝時可以改用 <code>uninstall</code> 參數。<br><code>-g</code> 表示所安裝的套件(package)會安裝在全域(global)內。</p>
+</blockquote>
+<p><img src="/images/angular/training/ubuntu/angular_ubuntu_angular-cli_01.png" alt=""><br>透過 <code>ng -v</code> 指令確認是否安裝成功以及目前安裝版本(目前cli使用版本為1.3.2)<br><img src="/images/angular/training/ubuntu/angular_ubuntu_angular-cli_02.png" alt="">  </p>
+<h2 id="安裝IDE工具-簡稱：VS-Code"><a href="#安裝IDE工具-簡稱：VS-Code" class="headerlink" title="安裝IDE工具 (簡稱：VS Code)"></a>安裝IDE工具 (簡稱：VS Code)</h2><p>下列是官方所推薦的IDE工具：<a href="https://angular.io/resources" target="_blank" rel="external">https://angular.io/resources</a><br><img src="/images/angular/training/windows/angular_windows_vscode_11.png" alt=""><br>至 <a href="https://code.visualstudio.com/" target="_blank" rel="external">VS Code 官方網站</a>下載安裝檔<br><img src="/images/angular/training/ubuntu/angular_ubuntu_vscode_01.png" alt=""><br>至透過<strong>軟體安裝</strong>執行安裝。<br><img src="/images/angular/training/ubuntu/angular_ubuntu_vscode_02.png" alt=""><br><img src="/images/angular/training/ubuntu/angular_ubuntu_vscode_03.png" alt=""><br>輸入使用者密碼再點選核對身分。<br><img src="/images/angular/training/ubuntu/angular_ubuntu_vscode_04.png" alt=""><br>安裝完成後原本的安裝按鈕會變成移除安紐。<br><img src="/images/angular/training/ubuntu/angular_ubuntu_vscode_05.png" alt=""><br>點選功能選單的<strong>搜尋你的電腦</strong>，輸入關鍵字即可看到 Visual Studio Code，點選圖示即可開啟。<br><img src="/images/angular/training/ubuntu/angular_ubuntu_vscode_06.png" alt=""><br>可以開啟 VS Code 圖示的功能選單，將其<strong>鎖定至啟動欄</strong>方便日後執行。<br><img src="/images/angular/training/ubuntu/angular_ubuntu_vscode_07.png" alt="">  </p>
+<h2 id="安裝擴充功能"><a href="#安裝擴充功能" class="headerlink" title="安裝擴充功能"></a>安裝擴充功能</h2><p>請參閱 <a href="/angular/training/00_development_environment_windows/">Windows 版本</a>  </p>
 
           
         
@@ -402,7 +577,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -448,7 +623,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>

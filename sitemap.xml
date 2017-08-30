@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jonny-huang.github.io/categories/</loc>
+    
+    <lastmod>2017-08-30T16:40:18.502Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jonny-huang.github.io/angular/training/01_creating_first_project/</loc>
     
     <lastmod>2017-08-30T15:24:12.225Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>https://jonny-huang.github.io/angular/training/04_angular_router/</loc>
     
     <lastmod>2017-08-30T15:23:36.072Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/categories/</loc>
-    
-    <lastmod>2017-08-30T10:22:45.274Z</lastmod>
     
   </url>
   

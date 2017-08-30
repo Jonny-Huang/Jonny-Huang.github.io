@@ -1,12 +1,14 @@
 # hexo robots.txt
-User-agent: * Allow: /
+User-agent: * 
+Allow: /
 Allow: /angular/
 Allow: /archives/
-Disallow: /vendors/
+Allow: /categories/
+Allow: /tags/
 Disallow: /js/
 Disallow: /css/
 Disallow: /fonts/
-Disallow: /vendors/
+Disallow: /lib/
 Disallow: /fancybox/
 
 Sitemap: http://https://jonny-huang.github.io/sitemap.xml

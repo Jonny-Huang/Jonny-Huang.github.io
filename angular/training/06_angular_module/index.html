@@ -90,18 +90,31 @@
 
 
 
-<meta name="description" content="模組 (NgModule)">
+<meta name="description" content="模組 (NgModule)過去我們將所有實作的 元件(Component) 都塞到 AppModule 內，但是實務上的專案可能會有幾十個甚至上百個元件，如果全部都放置在 AppModule 內，會造成專案難以維護也難以分工的問題，所以比較合理的做法就是將元件分拆到不同的 模組(NgModule) 內，再將模組聚合起來。開啟 src\app\app.module.ts 可以看到目前所建立的元件。">
 <meta name="keywords" content="Angular,Navigation">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular 模組">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/06_angular_module/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="模組 (NgModule)">
+<meta property="og:description" content="模組 (NgModule)過去我們將所有實作的 元件(Component) 都塞到 AppModule 內，但是實務上的專案可能會有幾十個甚至上百個元件，如果全部都放置在 AppModule 內，會造成專案難以維護也難以分工的問題，所以比較合理的做法就是將元件分拆到不同的 模組(NgModule) 內，再將模組聚合起來。開啟 src\app\app.module.ts 可以看到目前所建立的元件。">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-08-31T07:47:58.851Z">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/module/angular_module_01.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/module/angular_module_02.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/module/angular_module_03.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/module/angular_module_04.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/module/angular_module_07.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/module/angular_module_08.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/module/angular_module_09.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/module/angular_module_05.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/module/angular_module_06.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/module/angular_module_10.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/module/angular_module_11.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
+<meta property="og:updated_time" content="2017-08-31T11:19:19.252Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular 模組">
-<meta name="twitter:description" content="模組 (NgModule)">
+<meta name="twitter:description" content="模組 (NgModule)過去我們將所有實作的 元件(Component) 都塞到 AppModule 內，但是實務上的專案可能會有幾十個甚至上百個元件，如果全部都放置在 AppModule 內，會造成專案難以維護也難以分工的問題，所以比較合理的做法就是將元件分拆到不同的 模組(NgModule) 內，再將模組聚合起來。開啟 src\app\app.module.ts 可以看到目前所建立的元件。">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/module/angular_module_01.png">
 
 
 
@@ -305,7 +318,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-08-31T15:47:58+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-08-31T19:19:19+08:00">
                 2017/08/31
               </time>
             
@@ -358,7 +371,186 @@
       
 
       
-        <h1 id="模組-NgModule"><a href="#模組-NgModule" class="headerlink" title="模組 (NgModule)"></a>模組 (NgModule)</h1>
+        <h1 id="模組-NgModule"><a href="#模組-NgModule" class="headerlink" title="模組 (NgModule)"></a>模組 (NgModule)</h1><p>過去我們將所有實作的 元件(Component) 都塞到 <strong>AppModule</strong> 內，但是實務上的專案可能會有幾十個甚至上百個元件，如果全部都放置在 <strong>AppModule</strong> 內，會造成專案難以維護也難以分工的問題，所以比較合理的做法就是將元件分拆到不同的 模組(NgModule) 內，再將模組聚合起來。<br>開啟 <code>src\app\app.module.ts</code> 可以看到目前所建立的元件。</p>
+<pre><code>import { BrowserModule } from &#39;@angular&#x2F;platform-browser&#39;;
+import { NgModule } from &#39;@angular&#x2F;core&#39;;
+
+import { AppRoutingModule } from &#39;.&#x2F;app-routing.module&#39;;
+import { AppComponent } from &#39;.&#x2F;app.component&#39;;
+import { Page1Component } from &#39;.&#x2F;page1&#x2F;page1.component&#39;;
+import { Page2Component } from &#39;.&#x2F;page2.component&#39;;
+import { Page3Component } from &#39;.&#x2F;page3.component&#39;;
+import { Page404Component } from &#39;.&#x2F;page404&#x2F;page404.component&#39;;
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    Page1Component,
+    Page2Component,
+    Page3Component,
+    Page404Component
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</code></pre>
+<p>我們可以把 <strong>模組</strong> 假想成 <strong>資料夾</strong>，把 <strong>元件</strong> 想成是 <strong>檔案</strong>，對應下來的專案結構就會變成如下圖所示：<br><img src="/images/angular/training/module/angular_module_01.png" alt=""><br>檔案必須存在於某個資料夾之內，而資料夾裡面除了可以放置檔案外還可以再放置其他的資料夾，整個專案就像樹狀結構一樣可以不斷的建立分支。  </p>
+<h2 id="建立新模組"><a href="#建立新模組" class="headerlink" title="建立新模組"></a>建立新模組</h2><p>透過 Angular-CLI 指令 <code>ng g m [name]</code> 來建立新模組，例如建立一個<strong>OperationModule</strong>，透過<br><code>ng g m operation</code>  </p>
+<blockquote>
+<p><code>g</code>為 <code>generate</code> 縮寫，<code>m</code> 為 <code>module</code> 縮寫。<br>相關參數請參閱 <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/generate/module.md" target="_blank" rel="external">GitHub</a></p>
+</blockquote>
+<p><img src="/images/angular/training/module/angular_module_02.png" alt=""><br>CLI 產生一個位於 <code>src\app\operation\operation.module.ts</code> 的模組，下一行出現警告，提醒我們這個模組沒有被註冊所以無法使用，如果某個元件要使用到這個模組就必須將它註冊到該元件所屬的模組內，這樣才能使用。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { CommonModule } from &#39;@angular&#x2F;common&#39;;
+
+@NgModule({
+  imports: [
+    CommonModule
+  ],
+  declarations: []
+})
+export class OperationModule { }
+</code></pre>
+<p>我們在 <strong>OperationModule</strong> 模組位置(<code>src\app\operation\</code>)下面再建立3個元件 <strong>Opt1Component</strong>、<strong>Opt2Component</strong>、<strong>Opt3Component</strong>。<br><img src="/images/angular/training/module/angular_module_03.png" alt=""><br>神奇的事情發生了，元件都註冊到 <strong>OperationModule</strong> 而不是 <strong>AppModule</strong>，也就是說 CLI 在建立元件時會將元件註冊到最近的模組內。<br><img src="/images/angular/training/module/angular_module_04.png" alt=""><br>開啟 <code>src\app\operation\operation.module.ts</code> 可以看到3個元件確實都被註冊到 <strong>OperationModule</strong>。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { CommonModule } from &#39;@angular&#x2F;common&#39;;
+import { Opt1Component } from &#39;.&#x2F;opt1&#x2F;opt1.component&#39;;
+import { Opt2Component } from &#39;.&#x2F;opt2&#x2F;opt2.component&#39;;
+import { Opt3Component } from &#39;.&#x2F;opt3&#x2F;opt3.component&#39;;
+
+@NgModule({
+  imports: [
+    CommonModule
+  ],
+  declarations: [
+    Opt1Component,
+    Opt2Component,
+    Opt3Component
+  ]
+})
+export class OperationModule { }
+</code></pre>
+<p>但是別忘了 <strong>OperationModule</strong> 目前還是居無定所，沒有被註冊到任何模組內。  </p>
+<h3 id="情境A"><a href="#情境A" class="headerlink" title="情境A"></a>情境A</h3><p>假設我們希望 <strong>app.component.html</strong> 能夠加入 <strong>Opt1Component</strong> 的功能，正常流程先在 <code>app-routing.module.ts</code> 增加 <strong>Opt1Component</strong> 的路由規則， <code>path</code> 屬性設定為 <code>opt1</code>。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { Routes, RouterModule } from &#39;@angular&#x2F;router&#39;;
+import { Page1Component } from &#39;.&#x2F;page1&#x2F;page1.component&#39;;
+import { Page2Component } from &#39;.&#x2F;page2.component&#39;;
+import { Page3Component } from &#39;.&#x2F;page3.component&#39;;
+import { Page404Component } from &#39;.&#x2F;page404&#x2F;page404.component&#39;;
+import { Opt1Component } from &#39;.&#x2F;operation&#x2F;opt1&#x2F;opt1.component&#39;;
+
+const routes: Routes = [
+  { path: &#39;&#39;, children: [] },
+  { path: &#39;p1&#39;, component: Page1Component },
+  { path: &#39;p2&#39;, component: Page2Component },
+  { path: &#39;p3&#39;, component: Page3Component },
+  { path: &#39;opt1&#39;, component: Opt1Component },
+  { path: &#39;404&#39;, component: Page404Component },
+  { path: &#39;**&#39;, redirectTo: &#39;404&#39; }
+  &#x2F;&#x2F; { path: &#39;**&#39;, redirectTo: &#39;&#39;}
+  &#x2F;&#x2F; { path: &#39;**&#39;, component: Page404Component }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+</code></pre>
+<blockquote>
+<p>如果 VS Code 有安裝 <a href="https://marketplace.visualstudio.com/items?itemName=DSKWRK.vscode-generate-getter-setter" target="_blank" rel="external">TypeScript Toolbox</a> ，直接在路由規則輸入 Opt1Component 後會出現找不到名稱的警示，點選 Opt1Component 再行號旁會出現燈泡的圖示，點選後會出現 add import 的功能，它會自動幫我們在上面加入 import 宣告，TypeScript Toolbox 已經被包含在 <a href="https://marketplace.visualstudio.com/items?itemName=doggy8088.angular-extension-pack" target="_blank" rel="external">Angular Extension Pack</a> 內。<br><img src="/images/angular/training/module/angular_module_07.png" alt="">  </p>
+</blockquote>
+<p>再將 <code>app.component.html</code> 樣板插入一個 <strong>Opt1Component</strong> 的連結。  </p>
+<pre><code>&lt;a routerLink=&quot;&#x2F;p1&quot;&gt;Page 1&lt;&#x2F;a&gt;
+&lt;button routerLink=&quot;&#x2F;p2&quot;&gt;Page 2&lt;&#x2F;button&gt;
+&lt;span routerLink=&quot;&#x2F;p3&quot;&gt;Page 3&lt;&#x2F;span&gt;
+&lt;a routerLink=&quot;&#x2F;opt1&quot;&gt;Option 1&lt;&#x2F;a&gt;
+&lt;hr&gt;
+&lt;router-outlet&gt;&lt;&#x2F;router-outlet&gt;
+</code></pre>
+<p>執行後會出現 Angular 不認得 <strong>Opt1Component</strong> 的警告。<br><img src="/images/angular/training/module/angular_module_08.png" alt=""><br>再來我們將 <strong>Opt1Component</strong> 所屬的模組(<strong>OperationModule</strong>) 給註冊到 <strong>AppModule</strong> 內，重新執行就正常了。  </p>
+<pre><code>import { BrowserModule } from &#39;@angular&#x2F;platform-browser&#39;;
+import { NgModule } from &#39;@angular&#x2F;core&#39;;
+
+import { AppRoutingModule } from &#39;.&#x2F;app-routing.module&#39;;
+import { AppComponent } from &#39;.&#x2F;app.component&#39;;
+import { Page1Component } from &#39;.&#x2F;page1&#x2F;page1.component&#39;;
+import { Page2Component } from &#39;.&#x2F;page2.component&#39;;
+import { Page3Component } from &#39;.&#x2F;page3.component&#39;;
+import { Page404Component } from &#39;.&#x2F;page404&#x2F;page404.component&#39;;
+import { OperationModule } from &#39;.&#x2F;operation&#x2F;operation.module&#39;;
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    Page1Component,
+    Page2Component,
+    Page3Component,
+    Page404Component
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    OperationModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</code></pre>
+<p><img src="/images/angular/training/module/angular_module_09.png" alt="">  </p>
+<h3 id="情境B"><a href="#情境B" class="headerlink" title="情境B"></a>情境B</h3><p>假設 <strong>Page1Component</strong> 需要使用到 <strong>Opt1Component</strong>，所以正常方式是將 Opt1Component 的 tag (<code>app-opt1</code>) 加到 ‘src\app\page1\page1.component.html’ 內，執行看看結果，會發現 Angular 不認得 <code>app-opt1</code> 這個 tag。  </p>
+<pre><code>&lt;p&gt;
+  page1 works!
+  &lt;app-opt1&gt;&lt;&#x2F;app-opt1&gt;
+&lt;&#x2F;p&gt;
+</code></pre>
+<p><img src="/images/angular/training/module/angular_module_05.png" alt="">  </p>
+<blockquote>
+<p>如果 VS Code 有安裝 <a href="https://marketplace.visualstudio.com/items?itemName=Angular.ng-template" target="_blank" rel="external">Angular Language Service</a> 在開發時期 VS Code 就會出現警告，Angular Language Service 已經被包含在 <a href="https://marketplace.visualstudio.com/items?itemName=doggy8088.angular-extension-pack" target="_blank" rel="external">Angular Extension Pack</a> 內。<br><img src="/images/angular/training/module/angular_module_06.png" alt="">  </p>
+</blockquote>
+<p>雖然 <strong>OperationModule</strong> 已經註冊到 <strong>AppModule</strong> 內，但是透過 Component tag 方式來引用時仍然會出現錯誤。<br>現在我們需要使用到 <strong>NgModule</strong> 的另一個屬性 <strong>exports</strong>，開啟 <code>src\app\operation\operation.module.ts</code> 將 <strong>Opt1Component</strong> 設定到 <strong>OperationModule</strong> 的 <strong>exports</strong> 內。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { CommonModule } from &#39;@angular&#x2F;common&#39;;
+import { Opt1Component } from &#39;.&#x2F;opt1&#x2F;opt1.component&#39;;
+import { Opt2Component } from &#39;.&#x2F;opt2&#x2F;opt2.component&#39;;
+import { Opt3Component } from &#39;.&#x2F;opt3&#x2F;opt3.component&#39;;
+
+@NgModule({
+  imports: [
+    CommonModule
+  ],
+  declarations: [
+    Opt1Component,
+    Opt2Component,
+    Opt3Component
+  ],
+  exports: [
+    Opt1Component
+  ]
+})
+export class OperationModule { }
+</code></pre>
+<p>重新再執行就正常了，切換到 Page 1 後下方出現 <strong>Page1Component</strong> 及 <strong>Opt1Component</strong> 的樣板。<br><img src="/images/angular/training/module/angular_module_10.png" alt="">  </p>
+<blockquote>
+<p><strong>NgModule</strong> 的 <code>imports</code> 提供了匯入功能，讓我們將要使用的元件匯入到此模組內，而 <code>exports</code> 則提供匯出功能，讓別的模組可以知道此模組提供什麼元件，所以正常要 <code>exports</code> 的元件也一定要先 <code>imports</code> 近來。</p>
+</blockquote>
+<p>再將 <code>src\styles.scss</code> 加入 <code>P</code> tag 的樣式，重新瀏覽網頁時可以看到 <strong>Opt1Component</strong> 的樣板確實被包覆在 <strong>Page1Component</strong> 樣板內。</p>
+<pre><code>&#x2F;* You can add global styles to this file, and also import other style files *&#x2F;
+P {
+  border: 1px dashed red;
+  margin: 8px;
+}
+</code></pre>
+<p><img src="/images/angular/training/module/angular_module_11.png" alt=""> </p>
+<p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-08-31_2.zip"><strong>first-app_2017-08-31_2.zip</strong></a>  </p>
+
       
     </div>
 
@@ -607,7 +799,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#模組-NgModule"><span class="nav-number">1.</span> <span class="nav-text">模組 (NgModule)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#模組-NgModule"><span class="nav-number">1.</span> <span class="nav-text">模組 (NgModule)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立新模組"><span class="nav-number">1.1.</span> <span class="nav-text">建立新模組</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#情境A"><span class="nav-number">1.1.1.</span> <span class="nav-text">情境A</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#情境B"><span class="nav-number">1.1.2.</span> <span class="nav-text">情境B</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

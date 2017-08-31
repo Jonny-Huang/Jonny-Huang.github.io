@@ -90,18 +90,20 @@
 
 
 
-<meta name="description" content="導覽 (Navigation)">
+<meta name="description" content="導覽 (Navigation)在 Angular 路由器 我們學會透過改變導覽路徑來切換內容，但是一般使用者不會透過修改網址來切換功能，正常情況下應該透過點選操作來切換內容。   RouterLinkAngular 提供一個很便利的功能-RouterLink，讓我個不需再撰寫程式碼可以直接在樣板內直接設定連結對象。 練習加入 RouterLink修改 src\app\app.component.h">
 <meta name="keywords" content="Angular,Navigation">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular 導航">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/05_angular_navigation/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="導覽 (Navigation)">
+<meta property="og:description" content="導覽 (Navigation)在 Angular 路由器 我們學會透過改變導覽路徑來切換內容，但是一般使用者不會透過修改網址來切換功能，正常情況下應該透過點選操作來切換內容。   RouterLinkAngular 提供一個很便利的功能-RouterLink，讓我個不需再撰寫程式碼可以直接在樣板內直接設定連結對象。 練習加入 RouterLink修改 src\app\app.component.h">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-08-30T17:27:53.955Z">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/navigation/angular_navigation_01.gif">
+<meta property="og:updated_time" content="2017-08-31T07:06:58.872Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular 導航">
-<meta name="twitter:description" content="導覽 (Navigation)">
+<meta name="twitter:description" content="導覽 (Navigation)在 Angular 路由器 我們學會透過改變導覽路徑來切換內容，但是一般使用者不會透過修改網址來切換功能，正常情況下應該透過點選操作來切換內容。   RouterLinkAngular 提供一個很便利的功能-RouterLink，讓我個不需再撰寫程式碼可以直接在樣板內直接設定連結對象。 練習加入 RouterLink修改 src\app\app.component.h">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/navigation/angular_navigation_01.gif">
 
 
 
@@ -305,7 +307,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-08-31T01:27:53+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-08-31T15:06:58+08:00">
                 2017/08/31
               </time>
             
@@ -358,7 +360,23 @@
       
 
       
-        <h1 id="導覽-Navigation"><a href="#導覽-Navigation" class="headerlink" title="導覽 (Navigation)"></a>導覽 (Navigation)</h1>
+        <h1 id="導覽-Navigation"><a href="#導覽-Navigation" class="headerlink" title="導覽 (Navigation)"></a>導覽 (Navigation)</h1><p>在 <a href="/angular/training/04_angular_router/">Angular 路由器</a> 我們學會透過改變導覽路徑來切換內容，但是一般使用者不會透過修改網址來切換功能，正常情況下應該透過點選操作來切換內容。  </p>
+<h2 id="RouterLink"><a href="#RouterLink" class="headerlink" title="RouterLink"></a>RouterLink</h2><p>Angular 提供一個很便利的功能-<strong>RouterLink</strong>，讓我個不需再撰寫程式碼可以直接在樣板內直接設定連結對象。</p>
+<h3 id="練習加入-RouterLink"><a href="#練習加入-RouterLink" class="headerlink" title="練習加入 RouterLink"></a>練習加入 RouterLink</h3><p>修改 <code>src\app\app.component.html</code>，分別加入超連結 <code>a</code>、按鈕 <code>button</code>、標籤 <code>span</code>，並分別設定 <code>routerLink</code> 屬性對應到路由規則的 <code>p1</code>、<code>p2</code>、<code>p3</code>。  </p>
+<blockquote>
+<p>routerLink 屬性加入 <code>/</code> 來表示相對路徑。</p>
+</blockquote>
+<pre><code>&lt;a routerLink=&quot;&#x2F;p1&quot;&gt;Page 1&lt;&#x2F;a&gt;
+&lt;button routerLink=&quot;&#x2F;p2&quot;&gt;Page 2&lt;&#x2F;button&gt;
+&lt;span routerLink=&quot;&#x2F;p3&quot;&gt;Page 3&lt;&#x2F;span&gt;
+&lt;hr&gt;
+&lt;router-outlet&gt;&lt;&#x2F;router-outlet&gt;
+</code></pre>
+<p>啟動服務來測試會發現 Angular 會很智能依不同的 html tag 做出適當的執行模式，所以連 <code>span</code> 都可以透過滑鼠點擊的方式來觸發路由導覽。<br><img src="/images/angular/training/navigation/angular_navigation_01.gif" alt="">  </p>
+<blockquote>
+<p>Angular Router 其實還有非常多強大而實用的功能，後續再思考一些適合的使用情境來練習。</p>
+</blockquote>
+
       
     </div>
 
@@ -607,7 +625,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#導覽-Navigation"><span class="nav-number">1.</span> <span class="nav-text">導覽 (Navigation)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#導覽-Navigation"><span class="nav-number">1.</span> <span class="nav-text">導覽 (Navigation)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RouterLink"><span class="nav-number">1.1.</span> <span class="nav-text">RouterLink</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#練習加入-RouterLink"><span class="nav-number">1.1.1.</span> <span class="nav-text">練習加入 RouterLink</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

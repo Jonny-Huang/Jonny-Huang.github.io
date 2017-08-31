@@ -307,7 +307,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-08-31T13:51:37+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-08-31T14:11:06+08:00">
                 2017/08/31
               </time>
             
@@ -410,7 +410,7 @@ export class AppModule { }
 <blockquote>
 <p>git 工具可以至 <a href="https://git-scm.com/" target="_blank" rel="external">https://git-scm.com/</a> 網站下載安裝。</p>
 </blockquote>
-<p>點選<strong>原始檔控制</strong>然後選擇 <code>app.component.html</code> 及可看到目前內容與先前的內容。<br><img src="/images/angular/training/router/angular_router_01.png" alt=""><br>或者可以參考下面的原始程式碼第21行。</p>
+<p>點選<strong>原始檔控制</strong>然後選擇 <code>app.component.html</code> 及可看到目前內容與先前的內容。<br><img src="/images/angular/training/router/angular_router_01.png" alt=""><br>或者可以參考下面的原始程式碼第21行。(<code>src\app\app.component.html</code>)</p>
 <pre><code>&lt;!--The content below is only a placeholder and can be replaced.--&gt;
 &lt;div style=&quot;text-align:center&quot;&gt;
   &lt;h1&gt;
@@ -633,7 +633,7 @@ export class AppRoutingModule { }
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-08-31T11:00:19+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-08-31T14:06:35+08:00">
                 2017/08/31
               </time>
             
@@ -695,7 +695,7 @@ export class AppRoutingModule { }
 </blockquote>
 <h3 id="練習新增一個-page1-component"><a href="#練習新增一個-page1-component" class="headerlink" title="練習新增一個 page1 component"></a>練習新增一個 page1 component</h3><p>透過指令 <code>ng g c page1</code> 可以發現 CLI 幫我們建議一個與元件同名(page1)的資料夾，並在資料夾內產生4個檔案，最後再更新 <strong>AppModule</strong>。<br><img src="/images/angular/training/component/angular_component_02.png" alt="">  </p>
 <ul>
-<li><strong>page1.component.ts：</strong>CLI會建立一個已宣告<code>@Component</code> 裝飾器的類別(Page1Component)，此類別也是主要程式撰寫的地方。</li>
+<li><code>src\app\page1\</code><strong><code>page1.component.ts</code>：</strong>CLI會建立一個已宣告<code>@Component</code> 裝飾器的類別(Page1Component)，此類別也是主要程式撰寫的地方。</li>
 </ul>
 <pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
 
@@ -713,18 +713,18 @@ export class Page1Component implements OnInit {
 
 }</code></pre>
 <ul>
-<li><strong>page1.component.html：</strong>Page1Component 所對應的樣板。</li>
+<li><code>src\app\page1\</code><strong><code>page1.component.html</code>：</strong>Page1Component 所對應的樣板。</li>
 </ul>
 <pre><code>&lt;p&gt;
   page1 works!
 &lt;&#x2F;p&gt;
 </code></pre>
 <ul>
-<li><strong>page1.component.scss：</strong>Page1Component 樣板所對應的樣式。</li>
+<li><code>src\app\page1\</code><strong><code>page1.component.scss：</code>：</strong>Page1Component 樣板所對應的樣式，目前空白。</li>
 </ul>
 <pre><code> </code></pre>
 <ul>
-<li><strong>page1.component.spec.ts：</strong>Page1Component 的單元測試檔。</li>
+<li><code>src\app\page1\</code><strong><code>page1.component.spec.ts</code>：</strong>Page1Component 的單元測試檔。</li>
 </ul>
 <pre><code>import { async, ComponentFixture, TestBed } from &#39;@angular&#x2F;core&#x2F;testing&#39;;
 
@@ -755,7 +755,7 @@ describe(&#39;Page1Component&#39;, () =&gt; {
 <blockquote>
 <p>若不想要建立資料夾，可以加上 <code>--flat</code> 參數。<br>若是不想建立 style 檔，可以加上 <code>-is</code> 參數。<br>若是不想建立 template 檔，可以加上 <code>-it</code> 參數。<br>相關參數請參考 <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/generate/component.md" target="_blank" rel="external">GitHub</a>。<br>若是不想建立 unit testing 檔，可以在 <code>.angular-cli.json</code> 內的 <strong>defaults</strong> 區段加上 <strong>component</strong> 參數，並給予 <code>&quot;spec&quot;: false</code> 的屬性。<br><img src="/images/angular/training/component/angular_component_04.png" alt=""></p>
 </blockquote>
-<p>開啟 <code>app.module.ts</code> 可以發現 CLI 自動幫我們將 Page1Component 註冊到 AppModule 內。</p>
+<p>開啟 <code>src\app\app.module.ts</code> 可以發現 CLI 自動幫我們將 Page1Component 註冊到 AppModule 內。</p>
 <pre><code>import { BrowserModule } from &#39;@angular&#x2F;platform-browser&#39;;
 import { NgModule } from &#39;@angular&#x2F;core&#39;;
 
@@ -780,7 +780,7 @@ export class AppModule { }
 <blockquote>
 <p>Component 無法獨立存在，必須依附在 NgModule 內，依附方式就是將 Component 註冊到 NgModule 的 <strong>declarations</strong> 屬性內。</p>
 </blockquote>
-<h3 id="練習新增一個最陽春的-page2-component"><a href="#練習新增一個最陽春的-page2-component" class="headerlink" title="練習新增一個最陽春的 page2 component"></a>練習新增一個最陽春的 page2 component</h3><p>透過指令 <code>ng g c page2 --flat -is -it</code>，CLI 並不會建立元件的資料夾，只幫我們建立 page2.component.ts 檔，並將 Page2Component 註冊到 AppModule 內。<br>因為 <code>.angular-cli.json</code> 也取消 component 的單元測試，所以 <code>page2.component.spec.ts</code> 也不會被建立。<br><img src="/images/angular/training/component/angular_component_06.png" alt=""></p>
+<h3 id="練習新增一個最陽春的-page2-component"><a href="#練習新增一個最陽春的-page2-component" class="headerlink" title="練習新增一個最陽春的 page2 component"></a>練習新增一個最陽春的 page2 component</h3><p>透過指令 <code>ng g c page2 --flat -is -it</code>，CLI 並不會建立元件的資料夾，只幫我們建立 page2.component.ts 檔，並將 Page2Component 註冊到 AppModule 內。<br>因為 <code>.angular-cli.json</code> 也取消 component 的單元測試，所以 <code>page2.component.spec.ts</code> 也不會被建立。<br><img src="/images/angular/training/component/angular_component_06.png" alt=""><br><code>src\app\page2.component.ts</code> 內容如下：  </p>
 <pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
 
 @Component({
@@ -801,6 +801,7 @@ export class Page2Component implements OnInit {
 
 }
 </code></pre>
+<p><code>src\app\app.module.ts</code> 變動如下：  </p>
 <pre><code>import { BrowserModule } from &#39;@angular&#x2F;platform-browser&#39;;
 import { NgModule } from &#39;@angular&#x2F;core&#39;;
 

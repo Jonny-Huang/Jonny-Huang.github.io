@@ -2,14 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/04_angular_router/</loc>
+    <loc>https://jonny-huang.github.io/categories/</loc>
+    
+    <lastmod>2017-08-31T07:33:18.349Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/angular/training/03_angular_component/</loc>
     
     <lastmod>2017-08-31T07:25:14.143Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/03_angular_component/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/04_angular_router/</loc>
     
     <lastmod>2017-08-31T07:25:14.143Z</lastmod>
     
@@ -30,16 +37,30 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/categories/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/01_creating_first_project/</loc>
     
-    <lastmod>2017-08-31T07:16:25.425Z</lastmod>
+    <lastmod>2017-08-31T05:51:37.251Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://jonny-huang.github.io/angular/training/02_angular_operation/</loc>
     
-    <lastmod>2017-08-30T17:27:53.965Z</lastmod>
+    <lastmod>2017-08-31T05:51:37.251Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_ubuntu/</loc>
+    
+    <lastmod>2017-08-31T05:51:37.242Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_windows/</loc>
+    
+    <lastmod>2017-08-31T05:51:37.242Z</lastmod>
     
   </url>
   
@@ -47,27 +68,6 @@
     <loc>https://jonny-huang.github.io/angular/00_What-is-Angular%EF%BC%9F/</loc>
     
     <lastmod>2017-08-30T17:27:53.950Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/angular/training/01_creating_first_project/</loc>
-    
-    <lastmod>2017-08-30T17:27:53.937Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_ubuntu/</loc>
-    
-    <lastmod>2017-08-30T17:27:53.937Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_windows/</loc>
-    
-    <lastmod>2017-08-30T17:27:53.937Z</lastmod>
     
   </url>
   

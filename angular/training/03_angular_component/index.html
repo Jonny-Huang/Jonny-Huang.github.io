@@ -111,7 +111,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/component/angular_component_11.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/component/angular_component_15.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-08-30T17:27:53.944Z">
+<meta property="og:updated_time" content="2017-08-31T03:00:19.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular 元件">
 <meta name="twitter:description" content="元件 (Component)在 Angular 基本運作流程 我們概略說明了 Angular 的元件(Component)主要是透過將類別(class)加上 @Component 裝飾器的宣告來組成。從官方文件可以看到 @Component 還包含其他屬性，例如：動畫。   如何新增元件要建立新的元件可以手動建立相關檔案並修改相關設定，但是另一個更好的方法就是透過 CLI 幫我們產生相關檔案，語法">
@@ -301,7 +301,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-08-31T01:27:53+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-08-31T11:00:19+08:00">
                 2017/08/31
               </time>
             
@@ -361,27 +361,186 @@
 </blockquote>
 <h3 id="練習新增一個-page1-component"><a href="#練習新增一個-page1-component" class="headerlink" title="練習新增一個 page1 component"></a>練習新增一個 page1 component</h3><p>透過指令 <code>ng g c page1</code> 可以發現 CLI 幫我們建議一個與元件同名(page1)的資料夾，並在資料夾內產生4個檔案，最後再更新 <strong>AppModule</strong>。<br><img src="/images/angular/training/component/angular_component_02.png" alt="">  </p>
 <ul>
-<li><strong>page1.component.ts：</strong>CLI會建立一個已宣告<code>@Component</code> 裝飾器的類別(Page1Component)，此類別也是主要程式撰寫的地方。<figure class="highlight ts"><figcaption><span>page1.component.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; Component, OnInit &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"></div><div class="line"><span class="meta">@Component</span>(&#123;</div><div class="line">  selector: <span class="string">'app-page1'</span>,</div><div class="line">  templateUrl: <span class="string">'./page1.component.html'</span>,</div><div class="line">  styleUrls: [<span class="string">'./page1.component.scss'</span>]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> Page1Component <span class="keyword">implements</span> OnInit &#123;</div><div class="line"></div><div class="line">  <span class="keyword">constructor</span>(<span class="params"></span>) &#123; &#125;</div><div class="line"></div><div class="line">  ngOnInit() &#123;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
-<li><strong>page1.component.html：</strong>Page1Component 所對應的樣板。<figure class="highlight html"><figcaption><span>page1.component.html</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></div><div class="line">  page1 works!</div><div class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div></pre></td></tr></table></figure></li>
-<li><strong>page1.component.scss：</strong>Page1Component 樣板所對應的樣式。<figure class="highlight scss"><figcaption><span>page1.component.scss</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure></li>
-<li><strong>page1.component.spec.ts：</strong>Page1Component 的單元測試檔。  <figure class="highlight ts"><figcaption><span>page1.component.spec.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; <span class="keyword">async</span>, ComponentFixture, TestBed &#125; <span class="keyword">from</span> <span class="string">'@angular/core/testing'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; Page1Component &#125; <span class="keyword">from</span> <span class="string">'./page1.component'</span>;</div><div class="line"></div><div class="line">describe(<span class="string">'Page1Component'</span>, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">let</span> component: Page1Component;</div><div class="line">  <span class="keyword">let</span> fixture: ComponentFixture&lt;Page1Component&gt;;</div><div class="line"></div><div class="line">  beforeEach(<span class="keyword">async</span>(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    TestBed.configureTestingModule(&#123;</div><div class="line">      declarations: [ Page1Component ]</div><div class="line">    &#125;)</div><div class="line">    .compileComponents();</div><div class="line">  &#125;));</div><div class="line"></div><div class="line">  beforeEach(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    fixture = TestBed.createComponent(Page1Component);</div><div class="line">    component = fixture.componentInstance;</div><div class="line">    fixture.detectChanges();</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  it(<span class="string">'should be created'</span>, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    expect(component).toBeTruthy();</div><div class="line">  &#125;);</div><div class="line">&#125;);</div><div class="line"></div></pre></td></tr></table></figure>
-</li>
+<li><strong>page1.component.ts：</strong>CLI會建立一個已宣告<code>@Component</code> 裝飾器的類別(Page1Component)，此類別也是主要程式撰寫的地方。</li>
 </ul>
+<pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
+
+@Component({
+  selector: &#39;app-page1&#39;,
+  templateUrl: &#39;.&#x2F;page1.component.html&#39;,
+  styleUrls: [&#39;.&#x2F;page1.component.scss&#39;]
+})
+export class Page1Component implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}</code></pre>
+<ul>
+<li><strong>page1.component.html：</strong>Page1Component 所對應的樣板。</li>
+</ul>
+<pre><code>&lt;p&gt;
+  page1 works!
+&lt;&#x2F;p&gt;
+</code></pre>
+<ul>
+<li><strong>page1.component.scss：</strong>Page1Component 樣板所對應的樣式。</li>
+</ul>
+<pre><code> </code></pre>
+<ul>
+<li><strong>page1.component.spec.ts：</strong>Page1Component 的單元測試檔。</li>
+</ul>
+<pre><code>import { async, ComponentFixture, TestBed } from &#39;@angular&#x2F;core&#x2F;testing&#39;;
+
+import { Page1Component } from &#39;.&#x2F;page1.component&#39;;
+
+describe(&#39;Page1Component&#39;, () =&gt; {
+  let component: Page1Component;
+  let fixture: ComponentFixture&lt;Page1Component&gt;;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      declarations: [ Page1Component ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(Page1Component);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it(&#39;should be created&#39;, () =&gt; {
+    expect(component).toBeTruthy();
+  });
+});
+</code></pre>
 <blockquote>
 <p>若不想要建立資料夾，可以加上 <code>--flat</code> 參數。<br>若是不想建立 style 檔，可以加上 <code>-is</code> 參數。<br>若是不想建立 template 檔，可以加上 <code>-it</code> 參數。<br>相關參數請參考 <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/generate/component.md" target="_blank" rel="external">GitHub</a>。<br>若是不想建立 unit testing 檔，可以在 <code>.angular-cli.json</code> 內的 <strong>defaults</strong> 區段加上 <strong>component</strong> 參數，並給予 <code>&quot;spec&quot;: false</code> 的屬性。<br><img src="/images/angular/training/component/angular_component_04.png" alt=""></p>
 </blockquote>
-<p>開啟 <code>app.module.ts</code> 可以發現 CLI 自動幫我們將 Page1Component 註冊到 AppModule 內。<br><figure class="highlight ts"><figcaption><span>app.module.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</div><div class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; AppRoutingModule &#125; <span class="keyword">from</span> <span class="string">'./app-routing.module'</span>;</div><div class="line"><span class="keyword">import</span> &#123; AppComponent &#125; <span class="keyword">from</span> <span class="string">'./app.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page1Component &#125; <span class="keyword">from</span> <span class="string">'./page1/page1.component'</span>;</div><div class="line"></div><div class="line"><span class="meta">@NgModule</span>(&#123;</div><div class="line">  declarations: [</div><div class="line">    AppComponent,</div><div class="line">    Page1Component</div><div class="line">  ],</div><div class="line">  imports: [</div><div class="line">    BrowserModule,</div><div class="line">    AppRoutingModule</div><div class="line">  ],</div><div class="line">  providers: [],</div><div class="line">  bootstrap: [AppComponent]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule &#123; &#125;</div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>開啟 <code>app.module.ts</code> 可以發現 CLI 自動幫我們將 Page1Component 註冊到 AppModule 內。</p>
+<pre><code>import { BrowserModule } from &#39;@angular&#x2F;platform-browser&#39;;
+import { NgModule } from &#39;@angular&#x2F;core&#39;;
+
+import { AppRoutingModule } from &#39;.&#x2F;app-routing.module&#39;;
+import { AppComponent } from &#39;.&#x2F;app.component&#39;;
+import { Page1Component } from &#39;.&#x2F;page1&#x2F;page1.component&#39;;
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    Page1Component
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</code></pre>
 <blockquote>
 <p>Component 無法獨立存在，必須依附在 NgModule 內，依附方式就是將 Component 註冊到 NgModule 的 <strong>declarations</strong> 屬性內。</p>
 </blockquote>
-<h3 id="練習新增一個最陽春的-page2-component"><a href="#練習新增一個最陽春的-page2-component" class="headerlink" title="練習新增一個最陽春的 page2 component"></a>練習新增一個最陽春的 page2 component</h3><p>透過指令 <code>ng g c page2 --flat -is -it</code>，CLI 並不會建立元件的資料夾，只幫我們建立 page2.component.ts 檔，並將 Page2Component 註冊到 AppModule 內。<br>因為 <code>.angular-cli.json</code> 也取消 component 的單元測試，所以 <code>page2.component.spec.ts</code> 也不會被建立。<br><img src="/images/angular/training/component/angular_component_06.png" alt=""><br><figure class="highlight ts"><figcaption><span>page2.component.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; Component, OnInit &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"></div><div class="line"><span class="meta">@Component</span>(&#123;</div><div class="line">  selector: <span class="string">'app-page2'</span>,</div><div class="line">  template: <span class="string">`</span></div><div class="line">    &lt;p&gt;</div><div class="line">      page2 Works!</div><div class="line">    &lt;/p&gt;</div><div class="line">  `,</div><div class="line">  styles: []</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> Page2Component <span class="keyword">implements</span> OnInit &#123;</div><div class="line"></div><div class="line">  <span class="keyword">constructor</span>(<span class="params"></span>) &#123; &#125;</div><div class="line"></div><div class="line">  ngOnInit() &#123;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div></pre></td></tr></table></figure><br><figure class="highlight ts"><figcaption><span>app.module.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</div><div class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; AppRoutingModule &#125; <span class="keyword">from</span> <span class="string">'./app-routing.module'</span>;</div><div class="line"><span class="keyword">import</span> &#123; AppComponent &#125; <span class="keyword">from</span> <span class="string">'./app.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page1Component &#125; <span class="keyword">from</span> <span class="string">'./page1/page1.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page2Component &#125; <span class="keyword">from</span> <span class="string">'./page2.component'</span>;</div><div class="line"></div><div class="line"><span class="meta">@NgModule</span>(&#123;</div><div class="line">  declarations: [</div><div class="line">    AppComponent,</div><div class="line">    Page1Component,</div><div class="line">    Page2Component</div><div class="line">  ],</div><div class="line">  imports: [</div><div class="line">    BrowserModule,</div><div class="line">    AppRoutingModule</div><div class="line">  ],</div><div class="line">  providers: [],</div><div class="line">  bootstrap: [AppComponent]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule &#123; &#125;</div><div class="line"></div></pre></td></tr></table></figure></p>
+<h3 id="練習新增一個最陽春的-page2-component"><a href="#練習新增一個最陽春的-page2-component" class="headerlink" title="練習新增一個最陽春的 page2 component"></a>練習新增一個最陽春的 page2 component</h3><p>透過指令 <code>ng g c page2 --flat -is -it</code>，CLI 並不會建立元件的資料夾，只幫我們建立 page2.component.ts 檔，並將 Page2Component 註冊到 AppModule 內。<br>因為 <code>.angular-cli.json</code> 也取消 component 的單元測試，所以 <code>page2.component.spec.ts</code> 也不會被建立。<br><img src="/images/angular/training/component/angular_component_06.png" alt=""></p>
+<pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
+
+@Component({
+  selector: &#39;app-page2&#39;,
+  template: `
+    &lt;p&gt;
+      page2 Works!
+    &lt;&#x2F;p&gt;
+  `,
+  styles: []
+})
+export class Page2Component implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+</code></pre>
+<pre><code>import { BrowserModule } from &#39;@angular&#x2F;platform-browser&#39;;
+import { NgModule } from &#39;@angular&#x2F;core&#39;;
+
+import { AppRoutingModule } from &#39;.&#x2F;app-routing.module&#39;;
+import { AppComponent } from &#39;.&#x2F;app.component&#39;;
+import { Page1Component } from &#39;.&#x2F;page1&#x2F;page1.component&#39;;
+import { Page2Component } from &#39;.&#x2F;page2.component&#39;;
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    Page1Component,
+    Page2Component
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</code></pre>
 <p>比較特別的是 <code>@Component</code> 內 <code>templateUrl</code> 被 <code>template</code> 替代，<code>styleUrls</code> 被 <code>styles</code> 替代，我們可以把樣板內容直接填寫在 <code>template</code> 屬性，把樣式內容填寫在 styles 屬性。<br>也就是說當我們希望樣板及樣式是獨立檔案時可使用 <code>templateUrl</code> 與 <code>styleUrls</code> 來連結檔案，如果是希望能夠合併成一個檔案時則改用 <code>template</code> 與 <code>styles</code> 屬性。<br><blockquote><p>模板源文本使用 (``) (重音符號，又稱反引號) 圍著，而非字串常用的、英文中的單引號或雙引號。模板源文本中可以包涵由錢字符($)與大括號({ })所構成的佔位符(即：${expression})，佔位符與其附近的文字會一併傳給函數，預設函數將把這些部分組合成一個單一的字串。如果模板源文本由一個表達式開頭（即下方範例中使用的 myTag），我們稱之為「帶標籤模板源文本」(tagged template literal)。在這種情況下，該標籤表達式（通常是函數）會在模板源文本處理後被呼叫，因此我們可以在輸出文字之前，做進一步的操作。若要在模板源文本中使用反引號，要使用轉義字元的形式，在前面加上反斜線「\」。</p>
 <footer><strong>Mozilla</strong><cite><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Template_literals" target="_blank" rel="external">模板源文本</a></cite></footer></blockquote></p>
-<h3 id="半-純手工打造-page3-component"><a href="#半-純手工打造-page3-component" class="headerlink" title="(半)純手工打造 page3 component"></a>(半)純手工打造 page3 component</h3><p>點選 <strong>app</strong> 資料夾再點選<strong>新增檔案</strong>按鈕(或者再 <strong>app</strong> 資料夾按滑鼠右鍵選擇<strong>新增檔案</strong>)，將檔案命名為 <code>page3.component.ts</code>。<br><img src="/images/angular/training/component/angular_component_09.png" alt=""><br>開啟 <code>page3.component.ts</code>，輸入 <code>a-</code> 則會列出 <a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.Angular2" target="_blank" rel="external">Angular v4 TypeScript Snippets</a> 所提供的代碼片段，選擇 <code>a-component</code> 即可產生基本的程式框架。<br><img src="/images/angular/training/component/angular_component_10.png" alt=""><br><img src="/images/angular/training/component/angular_component_11.png" alt=""><br>最後再手動修該部分代碼以及將 Page3Component 註冊到 AppModule 即可完成。<br><figure class="highlight ts"><figcaption><span>page3.component.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; Component, OnInit &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"></div><div class="line"><span class="meta">@Component</span>(&#123;</div><div class="line">  selector: <span class="string">'app-page3'</span>,</div><div class="line">  template: <span class="string">`</span></div><div class="line">    &lt;p&gt;</div><div class="line">      page3 works!</div><div class="line">    &lt;/p&gt;</div><div class="line">  `</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> Page3Component <span class="keyword">implements</span> OnInit &#123;</div><div class="line">  <span class="keyword">constructor</span>(<span class="params"></span>) &#123; &#125;</div><div class="line"></div><div class="line">  ngOnInit() &#123; &#125;</div><div class="line">&#125;</div><div class="line"></div></pre></td></tr></table></figure><br><figure class="highlight ts"><figcaption><span>app.module.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</div><div class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; AppRoutingModule &#125; <span class="keyword">from</span> <span class="string">'./app-routing.module'</span>;</div><div class="line"><span class="keyword">import</span> &#123; AppComponent &#125; <span class="keyword">from</span> <span class="string">'./app.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page1Component &#125; <span class="keyword">from</span> <span class="string">'./page1/page1.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page2Component &#125; <span class="keyword">from</span> <span class="string">'./page2.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Page3Component &#125; <span class="keyword">from</span> <span class="string">'./page3.component'</span>;</div><div class="line"></div><div class="line"><span class="meta">@NgModule</span>(&#123;</div><div class="line">  declarations: [</div><div class="line">    AppComponent,</div><div class="line">    Page1Component,</div><div class="line">    Page2Component,</div><div class="line">    Page3Component</div><div class="line">  ],</div><div class="line">  imports: [</div><div class="line">    BrowserModule,</div><div class="line">    AppRoutingModule</div><div class="line">  ],</div><div class="line">  providers: [],</div><div class="line">  bootstrap: [AppComponent]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule &#123; &#125;</div><div class="line"></div></pre></td></tr></table></figure></p>
+<h3 id="半-純手工打造-page3-component"><a href="#半-純手工打造-page3-component" class="headerlink" title="(半)純手工打造 page3 component"></a>(半)純手工打造 page3 component</h3><p>點選 <strong>app</strong> 資料夾再點選<strong>新增檔案</strong>按鈕(或者再 <strong>app</strong> 資料夾按滑鼠右鍵選擇<strong>新增檔案</strong>)，將檔案命名為 <code>page3.component.ts</code>。<br><img src="/images/angular/training/component/angular_component_09.png" alt=""><br>開啟 <code>page3.component.ts</code>，輸入 <code>a-</code> 則會列出 <a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.Angular2" target="_blank" rel="external">Angular v4 TypeScript Snippets</a> 所提供的代碼片段，選擇 <code>a-component</code> 即可產生基本的程式框架。<br><img src="/images/angular/training/component/angular_component_10.png" alt=""><br><img src="/images/angular/training/component/angular_component_11.png" alt=""><br>最後再手動修該部分代碼以及將 Page3Component 註冊到 AppModule 即可完成。</p>
+<pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
+
+@Component({
+  selector: &#39;app-page3&#39;,
+  template: `
+    &lt;p&gt;
+      page3 works!
+    &lt;&#x2F;p&gt;
+  `
+})
+
+export class Page3Component implements OnInit {
+  constructor() { }
+
+  ngOnInit() { }
+}
+</code></pre>
+<pre><code>import { BrowserModule } from &#39;@angular&#x2F;platform-browser&#39;;
+import { NgModule } from &#39;@angular&#x2F;core&#39;;
+
+import { AppRoutingModule } from &#39;.&#x2F;app-routing.module&#39;;
+import { AppComponent } from &#39;.&#x2F;app.component&#39;;
+import { Page1Component } from &#39;.&#x2F;page1&#x2F;page1.component&#39;;
+import { Page2Component } from &#39;.&#x2F;page2.component&#39;;
+import { Page3Component } from &#39;.&#x2F;page3.component&#39;;
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    Page1Component,
+    Page2Component,
+    Page3Component
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</code></pre>
 <blockquote>
 <p><a href="https://marketplace.visualstudio.com/items?itemName=doggy8088.angular-extension-pack" target="_blank" rel="external">Angular Extension Pack</a> 擴充功能已經包含 <a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.Angular2" target="_blank" rel="external">Angular v4 TypeScript Snippets</a>，所以可以直接使用代碼片段。  </p>
 </blockquote>
-<h3 id="套用-Component"><a href="#套用-Component" class="headerlink" title="套用 Component"></a>套用 Component</h3><p>開啟 <code>app.component.html</code>，並將 <code>Page1Component</code>、<code>Page2Component</code>、<code>Page3Component</code> 內 selector 所設定的 tag 加入至 <code>app.component.html</code>。<br><figure class="highlight html"><figcaption><span>app.component.htm</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">app-page1</span>&gt;</span><span class="tag">&lt;/<span class="name">app-page1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">app-page2</span>&gt;</span><span class="tag">&lt;/<span class="name">app-page2</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">app-page3</span>&gt;</span><span class="tag">&lt;/<span class="name">app-page3</span>&gt;</span></div></pre></td></tr></table></figure><br>執行 <code>ng serve</code>，並透過瀏覽器察看結果。<br><img src="/images/angular/training/component/angular_component_15.png" alt="">  </p>
+<h3 id="套用-Component"><a href="#套用-Component" class="headerlink" title="套用 Component"></a>套用 Component</h3><p>開啟 <code>app.component.html</code>，並將 <code>Page1Component</code>、<code>Page2Component</code>、<code>Page3Component</code> 內 selector 所設定的 tag 加入至 <code>app.component.html</code>。<br><pre><code>&lt;app-page1&gt;&lt;&#x2F;app-page1&gt;
+&lt;app-page2&gt;&lt;&#x2F;app-page2&gt;
+&lt;app-page3&gt;&lt;&#x2F;app-page3&gt;</code></pre><br>執行 <code>ng serve</code>，並透過瀏覽器察看結果。<br><img src="/images/angular/training/component/angular_component_15.png" alt="">  </p>
 <p>比較上述幾個方法後，透過 CLI 指令應該是最方便的，也可讓命名規則符合 Angular 所建議的模式。<br><img src="/images/download.png" width="36">[<strong>first-app_2017-08-29.zip</strong>]<br>(/uploads/first-app_2017-08-29.zip)  </p>
 
       
@@ -795,6 +954,15 @@
   
 
   
+
+  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
+<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+      prettyPrint();
+  });
+</script>
 
 </body>
 </html>

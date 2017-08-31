@@ -85,6 +85,9 @@
 
 
 
+  <meta property="fb:admins" content="fb267234890438499" />
+  <meta property="fb:app_id" content="267234890438499" />
+
 
 
 <meta name="description" content="建立專案透過 Angular-CLI 指令 ng new [name] 來建立新專案，例如建立一個first-app專案，透過ng new first-app --routing --style scss    筆者使用 cmder 替代命令提示字元，指令會在獨立的一行，會比較容易觀看。    --routing：參數表示同步建立路由模組，後續再另行說明。--style scss：預設樣式是採用c">
@@ -157,6 +160,24 @@
 
   <title>建立 Angular 專案 | Jonny Huang 的學習筆記</title>
   
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '267234890438499',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_tw/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
 
 
 
@@ -435,6 +456,22 @@
       
 
       
+      
+        <div class="post-widgets">
+        
+
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+        </div>
       
       
 

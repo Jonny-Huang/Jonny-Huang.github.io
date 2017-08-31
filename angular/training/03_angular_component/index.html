@@ -85,6 +85,9 @@
 
 
 
+  <meta property="fb:admins" content="fb267234890438499" />
+  <meta property="fb:app_id" content="267234890438499" />
+
 
 
 <meta name="description" content="元件 (Component)在 Angular 基本運作流程 我們概略說明了 Angular 的元件(Component)主要是透過將類別(class)加上 @Component 裝飾器的宣告來組成。從官方文件可以看到 @Component 還包含其他屬性，例如：動畫。   如何新增元件要建立新的元件可以手動建立相關檔案並修改相關設定，但是另一個更好的方法就是透過 CLI 幫我們產生相關檔案，語法">
@@ -144,6 +147,24 @@
 
   <title>Angular 元件 | Jonny Huang 的學習筆記</title>
   
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '267234890438499',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_tw/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
 
 
 
@@ -572,6 +593,22 @@ export class AppModule { }
       
 
       
+      
+        <div class="post-widgets">
+        
+
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+        </div>
       
       
 

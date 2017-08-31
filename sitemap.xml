@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jonny-huang.github.io/angular/training/04_angular_router/</loc>
+    
+    <lastmod>2017-08-31T07:25:14.143Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/angular/training/03_angular_component/</loc>
+    
+    <lastmod>2017-08-31T07:25:14.143Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jonny-huang.github.io/angular/training/05_angular_navigation/</loc>
     
-    <lastmod>2017-08-31T07:23:38.234Z</lastmod>
+    <lastmod>2017-08-31T07:25:14.142Z</lastmod>
     
   </url>
   
@@ -19,20 +33,6 @@
     <loc>https://jonny-huang.github.io/categories/</loc>
     
     <lastmod>2017-08-31T07:16:25.425Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/angular/training/04_angular_router/</loc>
-    
-    <lastmod>2017-08-31T06:11:06.538Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/angular/training/03_angular_component/</loc>
-    
-    <lastmod>2017-08-31T06:06:35.975Z</lastmod>
     
   </url>
   

@@ -90,18 +90,27 @@
 
 
 
-<meta name="description" content="Angular Flex-Layout">
+<meta name="description" content="Angular Flex-LayoutAngular Flex-Layout 原本是依附在 Angular Material2 內的模組，它主要實作了 CSS3 的 Flexbox 排版，因此要注意使用者瀏覽器是否支援此語法。    可以到 Can I use 網站查詢。為了支援 Angular v4.1 AOT，所以 2.0.0-beta.7 以後版本不支援 Angular 2.4.x 版，因此">
 <meta name="keywords" content="Angular,Layout,Flexbox,Flex">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular Layout：Angular Flex-Layout">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/08_angular_ui-flex_layout/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="Angular Flex-Layout">
+<meta property="og:description" content="Angular Flex-LayoutAngular Flex-Layout 原本是依附在 Angular Material2 內的模組，它主要實作了 CSS3 的 Flexbox 排版，因此要注意使用者瀏覽器是否支援此語法。    可以到 Can I use 網站查詢。為了支援 Angular v4.1 AOT，所以 2.0.0-beta.7 以後版本不支援 Angular 2.4.x 版，因此">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-09-01T06:50:05.377Z">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_21.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_22.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_23.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_24.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_25.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_26.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_27.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_28.png">
+<meta property="og:updated_time" content="2017-09-01T09:45:38.154Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular Layout：Angular Flex-Layout">
-<meta name="twitter:description" content="Angular Flex-Layout">
+<meta name="twitter:description" content="Angular Flex-LayoutAngular Flex-Layout 原本是依附在 Angular Material2 內的模組，它主要實作了 CSS3 的 Flexbox 排版，因此要注意使用者瀏覽器是否支援此語法。    可以到 Can I use 網站查詢。為了支援 Angular v4.1 AOT，所以 2.0.0-beta.7 以後版本不支援 Angular 2.4.x 版，因此">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_21.png">
 
 
 
@@ -305,7 +314,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-01T14:50:05+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-01T17:45:38+08:00">
                 2017/09/01
               </time>
             
@@ -358,7 +367,175 @@
       
 
       
-        <h1 id="Angular-Flex-Layout"><a href="#Angular-Flex-Layout" class="headerlink" title="Angular Flex-Layout"></a>Angular Flex-Layout</h1>
+        <h1 id="Angular-Flex-Layout"><a href="#Angular-Flex-Layout" class="headerlink" title="Angular Flex-Layout"></a>Angular Flex-Layout</h1><p><strong>Angular Flex-Layout</strong> 原本是依附在 <a href="/angular/training/07_angular_ui-material2/"><strong>Angular Material2</strong></a> 內的模組，它主要實作了 CSS3 的 Flexbox 排版，因此要注意使用者瀏覽器是否支援此語法。  </p>
+<blockquote>
+<p>可以到 <a href="http://caniuse.com/#feat=flexbox" target="_blank" rel="external">Can I use</a> 網站查詢。<br>為了支援 Angular v4.1 AOT，所以 2.0.0-beta.7 以後版本不支援 Angular 2.4.x 版，因此如果有需要可能就必須將專案版本升級到 4.1 以上。<br>理論上 Angular 2 與 Angular 4 是 100% 相容，但是升級前還是做好版控或備份。<br>官方提供了範例網站可以觀看排版效果 <a href="https://tburleson-layouts-demos.firebaseapp.com/" target="_blank" rel="external">https://tburleson-layouts-demos.firebaseapp.com/</a></p>
+</blockquote>
+<p>透過下列指令安裝，可以得到目前最新版本為 2.0.0-beta.9。<br><code>npm install --save @angular/flex-layout@latest</code>  </p>
+<p><img src="/images/angular/training/ui/angular_ui_21.png" alt=""><br>將 <strong>FlexLayoutModule</strong> 加到 <code>src\app\custom-material.module.ts</code>，要使用時只到將 <strong>CustomMaterialModule</strong> 對應的模組內就可以直接使用。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { FlexLayoutModule } from &#39;@angular&#x2F;flex-layout&#39;;
+import { MdIconModule } from &#39;@angular&#x2F;material&#39;;
+
+@NgModule({
+  imports: [
+    FlexLayoutModule,
+    MdIconModule
+  ],
+  exports: [
+    FlexLayoutModule,
+    MdIconModule
+  ]
+})
+export class CustomMaterialModule { }
+</code></pre>
+<h2 id="建立網站框架"><a href="#建立網站框架" class="headerlink" title="建立網站框架"></a>建立網站框架</h2><p>我們可以看到大部分功能性網站都會如下圖一般，上方會有 <strong>header</strong> 區塊，側邊會有 <strong>aside</strong> 區塊，剩下最大區域就是呈現內容的 <strong>content</strong>。<br><img src="/images/angular/training/ui/angular_ui_22.png" alt="">  </p>
+<h3 id="重置"><a href="#重置" class="headerlink" title="重置"></a>重置</h3><p>將 <code>md-icon</code> 的圖示改回透過 <a href="https://fonts.googleapis.com/" target="_blank" rel="external">https://fonts.googleapis.com/</a> 連結，開啟 <code>src\index.html</code> 修改成最初做法。</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;FirstApp&lt;&#x2F;title&gt;
+  &lt;base href=&quot;&#x2F;&quot;&gt;
+
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+  &lt;link rel=&quot;icon&quot; type=&quot;image&#x2F;x-icon&quot; href=&quot;favicon.ico&quot;&gt;
+  &lt;link href=&quot;https:&#x2F;&#x2F;fonts.googleapis.com&#x2F;icon?family=Material+Icons&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;!-- &lt;link href=&quot;.&#x2F;assets&#x2F;iconfont&#x2F;material-icons.css&quot; rel=&quot;stylesheet&quot;&gt; --&gt;
+&lt;&#x2F;head&gt;
+
+&lt;body&gt;
+  &lt;app-root&gt;&lt;&#x2F;app-root&gt;
+&lt;&#x2F;body&gt;
+
+&lt;&#x2F;html&gt;
+</code></pre>
+<p>移除 <strong>material-design-icons</strong> 套件，執行下面指令：<br><code>npm uninstall --save material-design-icons</code><br><img src="/images/angular/training/ui/angular_ui_23.png" alt=""><br>刪除 <code>src\assets\iconfont</code> 資料夾。<br><img src="/images/angular/training/ui/angular_ui_24.png" alt=""><br>修改 <code>src\styles.scss</code>，將 <code>P</code> 的樣式拿掉，避免影響。  </p>
+<pre><code>&#x2F;* You can add global styles to this file, and also import other style files *&#x2F;
+
+&#x2F;* Angular Material2 Themes *&#x2F;
+&#x2F;&#x2F; @import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;deeppurple-amber.css&quot;;
+&#x2F;&#x2F; @import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;indigo-pink.css&quot;;
+@import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;pink-bluegrey.css&quot;;
+&#x2F;&#x2F; @import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;purple-green.css&quot;;
+
+&#x2F;* Material Design Icon *&#x2F;
+&#x2F;&#x2F; @import &#39;~material-design-icons&#x2F;iconfont&#x2F;material-icons.css&#39;;
+
+&#x2F;&#x2F; P {
+&#x2F;&#x2F;   border: 1px dashed red;
+&#x2F;&#x2F;   margin: 8px;
+&#x2F;&#x2F; }
+</code></pre>
+<h3 id="建立獨立模組與元件"><a href="#建立獨立模組與元件" class="headerlink" title="建立獨立模組與元件"></a>建立獨立模組與元件</h3><p>建立一個 <strong>HomeModule</strong> 模組，指令如下：<br><code>ng g m home --routing</code> </p>
+<blockquote>
+<p><code>--routing</code>：跟 <code>ng new</code> 一樣，此參數會建立一個路由模組-<strong>HomeRoutingModule</strong>，後續會在說明。</p>
+</blockquote>
+<p><img src="/images/angular/training/ui/angular_ui_25.png" alt=""><br>在 <strong>HomeModule</strong> 下分別建立 <strong>HomeComponent</strong>、<strong>HeaderComponent</strong>、<strong>AsideComponent</strong>，其中 <strong>HomeComponent</strong> 不要建立資料夾，指令如下：<br><code>ng g c home\home --flat</code><br><code>ng g c home\header</code><br><code>ng g c home\aside</code>  </p>
+<p><img src="/images/angular/training/ui/angular_ui_26.png" alt=""><br><img src="/images/angular/training/ui/angular_ui_27.png" alt=""><br>將 <strong>HomeModule</strong> 註冊到 <strong>AppModule</strong>。</p>
+<pre><code>import { BrowserAnimationsModule } from &#39;@angular&#x2F;platform-browser&#x2F;animations&#39;;
+import { BrowserModule } from &#39;@angular&#x2F;platform-browser&#39;;
+import { NgModule } from &#39;@angular&#x2F;core&#39;;
+
+import { AppRoutingModule } from &#39;.&#x2F;app-routing.module&#39;;
+import { AppComponent } from &#39;.&#x2F;app.component&#39;;
+import { Page1Component } from &#39;.&#x2F;page1&#x2F;page1.component&#39;;
+import { Page2Component } from &#39;.&#x2F;page2.component&#39;;
+import { Page3Component } from &#39;.&#x2F;page3.component&#39;;
+import { Page404Component } from &#39;.&#x2F;page404&#x2F;page404.component&#39;;
+import { OperationModule } from &#39;.&#x2F;operation&#x2F;operation.module&#39;;
+import { CustomMaterialModule } from &#39;.&#x2F;custom-material.module&#39;;
+import { HomeModule } from &#39;.&#x2F;home&#x2F;home.module&#39;;
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    Page1Component,
+    Page2Component,
+    Page3Component,
+    Page404Component
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    CustomMaterialModule,
+    OperationModule,
+    HomeModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</code></pre>
+<p>修改 <code>src\app\app-routing.module.ts</code>，加入路由規則 <code>home</code> 對應到 <strong>HomeComponent</strong>，並將 空白的路由規則導引到 <code>home</code> 路徑。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { Routes, RouterModule } from &#39;@angular&#x2F;router&#39;;
+import { Page1Component } from &#39;.&#x2F;page1&#x2F;page1.component&#39;;
+import { Page2Component } from &#39;.&#x2F;page2.component&#39;;
+import { Page3Component } from &#39;.&#x2F;page3.component&#39;;
+import { Page404Component } from &#39;.&#x2F;page404&#x2F;page404.component&#39;;
+import { Opt1Component } from &#39;.&#x2F;operation&#x2F;opt1&#x2F;opt1.component&#39;;
+import { HomeComponent } from &#39;.&#x2F;home&#x2F;home.component&#39;;
+
+const routes: Routes = [
+  &#x2F;&#x2F; { path: &#39;&#39;, children: [] },
+  { path: &#39;&#39;, redirectTo: &#39;home&#39;, pathMatch: &#39;full&#39; },
+  { path: &#39;home&#39;, component: HomeComponent },
+  { path: &#39;p1&#39;, component: Page1Component },
+  { path: &#39;p2&#39;, component: Page2Component },
+  { path: &#39;p3&#39;, component: Page3Component },
+  { path: &#39;opt1&#39;, component: Opt1Component },
+  { path: &#39;404&#39;, component: Page404Component },
+  { path: &#39;**&#39;, redirectTo: &#39;404&#39; }
+  &#x2F;&#x2F; { path: &#39;**&#39;, redirectTo: &#39;&#39;}
+  &#x2F;&#x2F; { path: &#39;**&#39;, component: Page404Component }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+</code></pre>
+<blockquote>
+<p><code>pathMatch</code>：表示路由規則比對模式，<code>full</code> 表示須完全相同。<br>正常情況下如果路由規則是重新導向 (<strong>redirectTo</strong>)，都會加上 <code>pathMatch: &#39;full&#39;</code> 的參數，萬用路由因為無法明確比對，所以可以不加，最簡單的方式就是一律加上去。</p>
+</blockquote>
+<p>修改 <code>src\app\app.component.html</code>，只保留路由插座 (<strong>router-outlet</strong>)。  </p>
+<pre><code>&lt;!-- &lt;a routerLink=&quot;&#x2F;p1&quot;&gt;Page 1&lt;&#x2F;a&gt;
+&lt;button routerLink=&quot;&#x2F;p2&quot;&gt;Page 2&lt;&#x2F;button&gt;
+&lt;span routerLink=&quot;&#x2F;p3&quot;&gt;Page 3&lt;&#x2F;span&gt;
+&lt;a routerLink=&quot;&#x2F;opt1&quot;&gt;Option 1&lt;&#x2F;a&gt;
+&lt;hr&gt; --&gt;
+&lt;router-outlet&gt;&lt;&#x2F;router-outlet&gt;
+</code></pre>
+<p>執行測試，會發現 <strong><a href="http://localhost:4200/" target="_blank" rel="external">http://localhost:4200/</a></strong> 會被自動引導到 <strong><a href="http://localhost:4200/home" target="_blank" rel="external">http://localhost:4200/home</a></strong>，整個頁面只會出現 <strong>HeaderComponent</strong> 的樣板。<br><img src="/images/angular/training/ui/angular_ui_28.png" alt="">  </p>
+<h3 id="切版"><a href="#切版" class="headerlink" title="切版"></a>切版</h3><p>因為會使用到 <strong>Angular Flex-Layout</strong> 所以將 <strong>CustomMaterialModule</strong> 註冊到 <strong>HomeModule</strong> (<code>src\app\home\home.module.ts</code>) 內。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { CommonModule } from &#39;@angular&#x2F;common&#39;;
+
+import { HomeRoutingModule } from &#39;.&#x2F;home-routing.module&#39;;
+import { HomeComponent } from &#39;.&#x2F;home.component&#39;;
+import { HeaderComponent } from &#39;.&#x2F;header&#x2F;header.component&#39;;
+import { AsideComponent } from &#39;.&#x2F;aside&#x2F;aside.component&#39;;
+import { CustomMaterialModule } from &#39;..&#x2F;custom-material.module&#39;;
+
+@NgModule({
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    CustomMaterialModule
+  ],
+  declarations: [
+    HomeComponent,
+    HeaderComponent,
+    AsideComponent
+  ]
+})
+export class HomeModule { }
+</code></pre>
+
       
     </div>
 
@@ -607,7 +784,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Angular-Flex-Layout"><span class="nav-number">1.</span> <span class="nav-text">Angular Flex-Layout</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Angular-Flex-Layout"><span class="nav-number">1.</span> <span class="nav-text">Angular Flex-Layout</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立網站框架"><span class="nav-number">1.1.</span> <span class="nav-text">建立網站框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重置"><span class="nav-number">1.1.1.</span> <span class="nav-text">重置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立獨立模組與元件"><span class="nav-number">1.1.2.</span> <span class="nav-text">建立獨立模組與元件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切版"><span class="nav-number">1.1.3.</span> <span class="nav-text">切版</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

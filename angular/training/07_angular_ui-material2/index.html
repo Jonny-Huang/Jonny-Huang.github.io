@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Angular,UI,Material Design" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+  <meta property="fb:admins" content="fb267234890438499" />
+  <meta property="fb:app_id" content="267234890438499" />
+
+
+
+<meta name="description" content="Material Design for Angular在 Angular 模組 最後我們只加了幾行 CSS 樣式，由一開始練習至此感覺起來這種網頁效果十幾年前用記事本就可以做到了，那花時間學這個幹嘛？我們過去會的技術能不能繼續沿用下來？首當其衝的就是 jQuery for Angular 的問題。    其實筆者並沒用過 jQuery、Ajax，對於 JavaScript、CSS 也都是上網查詢別">
+<meta name="keywords" content="Angular,UI,Material Design">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular UI：Angular Material2">
+<meta property="og:url" content="https://jonny-huang.github.io/angular/training/07_angular_ui-material2/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="Material Design for Angular在 Angular 模組 最後我們只加了幾行 CSS 樣式，由一開始練習至此感覺起來這種網頁效果十幾年前用記事本就可以做到了，那花時間學這個幹嘛？我們過去會的技術能不能繼續沿用下來？首當其衝的就是 jQuery for Angular 的問題。    其實筆者並沒用過 jQuery、Ajax，對於 JavaScript、CSS 也都是上網查詢別">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_01.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_02.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_03.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_04.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_05.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_06.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_08.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_09.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_10.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_11.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_08.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_12.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_13.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_08.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
+<meta property="og:updated_time" content="2017-09-01T06:03:52.158Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular UI：Angular Material2">
+<meta name="twitter:description" content="Material Design for Angular在 Angular 模組 最後我們只加了幾行 CSS 樣式，由一開始練習至此感覺起來這種網頁效果十幾年前用記事本就可以做到了，那花時間學這個幹嘛？我們過去會的技術能不能繼續沿用下來？首當其衝的就是 jQuery for Angular 的問題。    其實筆者並沒用過 jQuery、Ajax，對於 JavaScript、CSS 也都是上網查詢別">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Jonny'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jonny-huang.github.io/angular/training/07_angular_ui-material2/"/>
+
+
+
+
+
+  <title>Angular UI：Angular Material2 | Jonny Huang 的學習筆記</title>
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '267234890438499',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_tw/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jonny Huang 的學習筆記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Angular</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            目錄
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/07_angular_ui-material2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Angular UI：Angular Material2</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新於</span>
+              
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-01T14:03:52+08:00">
+                2017/09/01
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Training/" itemprop="url" rel="index">
+                    <span itemprop="name">Training</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Material-Design-for-Angular"><a href="#Material-Design-for-Angular" class="headerlink" title="Material Design for Angular"></a>Material Design for Angular</h1><p>在 <a href="/angular/training/06_angular_module/">Angular 模組</a> 最後我們只加了幾行 CSS 樣式，由一開始練習至此感覺起來這種網頁效果十幾年前用記事本就可以做到了，那花時間學這個幹嘛？我們過去會的技術能不能繼續沿用下來？首當其衝的就是 <a href="https://jquery.com/" target="_blank" rel="external">jQuery</a> for Angular 的問題。  </p>
+<blockquote>
+<p>其實筆者並沒用過 jQuery、Ajax，對於 JavaScript、CSS 也都是上網查詢別人寫好的範例來改，過去都是在開發 Windows From、WPF、Windows Phone、Android 這類的視窗程式，網頁也就直接用 Silverlight 處理，真的有寫網頁的經驗是停留在 ASP.NET 2.0 時代，利用 Visual Studio .NET，透過滑鼠拖拉產生千篇一律的畫面，再加上 C# 撰寫邏輯來產生網站。<br>說了這個多只是想告訴大家筆者是一個網路開發的初學者，站在這個角度來分享，身為後追者的我如何利用 Angular 來快速追趕上那些有多年開發經驗的人，至少能看到前方的車尾燈，畢竟在職場上客戶不會因為不同的資歷而有不同的評分標準，只會考慮誰能解決他的問題，老闆也不會讓你花幾年的時間慢慢磨練。</p>
+</blockquote>
+<p>我們開啟官方網站的資源頁面 <a href="https://angular.io/resources" target="_blank" rel="external">https://angular.io/resources</a> 一開始提到過上面有推薦一些開發工具，今天我們要來看的是官方所推薦的模組化元件-<a href="https://github.com/angular/material2" target="_blank" rel="external">Angular Material2</a>。<br><img src="/images/angular/training/ui/angular_ui_01.png" alt=""><br>我們依照 <a href="https://material.angular.io/guide/getting-started" target="_blank" rel="external">官方安裝教學步驟</a> 來安裝。</p>
+<h2 id="安裝-Angular-Material-與-Angular-CDK"><a href="#安裝-Angular-Material-與-Angular-CDK" class="headerlink" title="安裝 Angular Material 與 Angular CDK"></a>安裝 Angular Material 與 Angular CDK</h2><p>透過下列指令來安裝<br><code>npm install --save @angular/material @angular/cdk</code><br><img src="/images/angular/training/ui/angular_ui_02.png" alt="">  </p>
+<blockquote>
+<p>如果大家安裝有遇到權限不足的錯誤訊息，甚至出現要求以系統管理員身分重新安裝時，可以嘗試把專案內的 <code>package-lock.json</code> 檔刪除後再重新安裝試試，npm 5.0 增加了 lock 機制。<br><img src="/images/angular/training/ui/angular_ui_03.png" alt=""></p>
+</blockquote>
+<h2 id="安裝-Angular-Animations-動畫模組"><a href="#安裝-Angular-Animations-動畫模組" class="headerlink" title="安裝 Angular Animations 動畫模組"></a>安裝 Angular Animations 動畫模組</h2><p>安裝指令<br><code>npm install --save @angular/animations</code>  </p>
+<blockquote>
+<p>目前筆者使用的 CLI 版本為 1.3.2，專案建置時便會同時安裝動畫模組，但是預設並沒有將模組註冊。</p>
+</blockquote>
+<p>將 動畫模組(<strong>BrowserAnimationsModule</strong>) 註冊到專案的 啟動模組(<strong>AppModule</strong>) 內。  </p>
+<pre><code>import { BrowserAnimationsModule } from &#39;@angular&#x2F;platform-browser&#x2F;animations&#39;;
+import { BrowserModule } from &#39;@angular&#x2F;platform-browser&#39;;
+import { NgModule } from &#39;@angular&#x2F;core&#39;;
+
+import { AppRoutingModule } from &#39;.&#x2F;app-routing.module&#39;;
+import { AppComponent } from &#39;.&#x2F;app.component&#39;;
+import { Page1Component } from &#39;.&#x2F;page1&#x2F;page1.component&#39;;
+import { Page2Component } from &#39;.&#x2F;page2.component&#39;;
+import { Page3Component } from &#39;.&#x2F;page3.component&#39;;
+import { Page404Component } from &#39;.&#x2F;page404&#x2F;page404.component&#39;;
+import { OperationModule } from &#39;.&#x2F;operation&#x2F;operation.module&#39;;
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    Page1Component,
+    Page2Component,
+    Page3Component,
+    Page404Component
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    OperationModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</code></pre>
+<h2 id="匯入要使用的元件模組"><a href="#匯入要使用的元件模組" class="headerlink" title="匯入要使用的元件模組"></a>匯入要使用的<strong>元件模組</strong></h2><p>說成 <strong>元件模組</strong> 是因為 <strong>Angular Material2</strong> 特別將每個元件(Component)都用一個獨立的模組(NgModule)包覆起來，這樣就不會連沒使用到的元件都一起打包到專案內，造成編譯後的檔案太大。<br>因為目前還沒決定要使用那些元件，所以暫時不先加入，後面有使用時再說明，但是官方文件提出一個很好的元件管理方式-建立一個模組來集中管理有用到的元件，有元件需要使用時再將它加入到該元件所依附的模組內。<br>執行下面安裝指令建立一個 <strong>CustomMaterialModule</strong>，帶上 <code>--flat</code> 參數讓不要建立資料夾，因為不確定那些模組會使用，所以我們將檔案放置在最外層 <code>src\app</code> 底下。<br><code>ng g m customMaterial --flat</code><br><img src="/images/angular/training/ui/angular_ui_04.png" alt=""></p>
+<blockquote>
+<p>文件下方特別提到元件模組需加入在 <strong>BrowserModule</strong> 之後，也就是使用時除了要註冊到模組的 <code>imports</code> 屬性，如果 <code>imports</code> 屬性包含 <strong>BrowserModule</strong> 時需要將 <strong>CustomMaterialModule</strong> 放置在它的後面。<br>由此也可說明 <code>imports</code> 屬性具有<strong>順序性</strong>，它會依序處理。</p>
+</blockquote>
+<h2 id="匯入樣式"><a href="#匯入樣式" class="headerlink" title="匯入樣式"></a>匯入樣式</h2><p>依官方文件將下列語法加到 <code>src\styles.scss</code> 內。<br><code>@import &quot;~@angular/material/prebuilt-themes/indigo-pink.css&quot;;</code><br>不過我們從此路徑去搜尋就會發現，<strong>Angular Material2</strong> 總共提供了下列幾種配色的樣式：<br><strong>deeppurple-amber.css</strong><br><strong>indigo-pink.css</strong><br><strong>pink-bluegrey.css</strong><br><strong>purple-green.css</strong><br><img src="/images/angular/training/ui/angular_ui_05.png" alt=""><br>開啟 <code>src\styles.scss</code>，將所有樣式都先加入，並選擇一個，剩餘的都先註解起來。</p>
+<pre><code>&#x2F;* You can add global styles to this file, and also import other style files *&#x2F;
+
+&#x2F;* Angular Material2 Themes *&#x2F;
+&#x2F;&#x2F; @import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;deeppurple-amber.css&quot;;
+&#x2F;&#x2F; @import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;indigo-pink.css&quot;;
+@import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;pink-bluegrey.css&quot;;
+&#x2F;&#x2F; @import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;purple-green.css&quot;;
+
+
+P {
+  border: 1px dashed red;
+  margin: 8px;
+}
+</code></pre>
+<h2 id="安裝手勢操作的套件-HammerJS"><a href="#安裝手勢操作的套件-HammerJS" class="headerlink" title="安裝手勢操作的套件 HammerJS"></a>安裝手勢操作的套件 <a href="http://hammerjs.github.io/" target="_blank" rel="external">HammerJS</a></h2><p>安裝指令如下：<br><code>npm install --save hammerjs</code><br><img src="/images/angular/training/ui/angular_ui_06.png" alt=""><br>將 <code>hammerjs</code> import 到程式的<strong>進入點</strong>(entry point)，我們將下列語法加入至 <code>src\main.ts</code>。<br><code>import &#39;hammerjs&#39;;</code>  </p>
+<pre><code>import { enableProdMode } from &#39;@angular&#x2F;core&#39;;
+import { platformBrowserDynamic } from &#39;@angular&#x2F;platform-browser-dynamic&#39;;
+
+import { AppModule } from &#39;.&#x2F;app&#x2F;app.module&#39;;
+import { environment } from &#39;.&#x2F;environments&#x2F;environment&#39;;
+import &#39;hammerjs&#39;;
+
+if (environment.production) {
+  enableProdMode();
+}
+
+platformBrowserDynamic().bootstrapModule(AppModule);
+</code></pre>
+<h2 id="選擇性-安裝圖示套件-Material-Icons"><a href="#選擇性-安裝圖示套件-Material-Icons" class="headerlink" title="(選擇性) 安裝圖示套件 Material Icons"></a>(選擇性) 安裝圖示套件 Material Icons</h2><p><strong>Angular Material2</strong> 的圖示元件為 <code>md-icon</code>，我們在 首頁(<code>src\index.html</code>) 加入下面連結。<br><code>&lt;link href=&quot;https://fonts.googleapis.com/icon?family=Material+Icons&quot; rel=&quot;stylesheet&quot;&gt;</code>  </p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;FirstApp&lt;&#x2F;title&gt;
+  &lt;base href=&quot;&#x2F;&quot;&gt;
+
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+  &lt;link rel=&quot;icon&quot; type=&quot;image&#x2F;x-icon&quot; href=&quot;favicon.ico&quot;&gt;
+  &lt;link href=&quot;https:&#x2F;&#x2F;fonts.googleapis.com&#x2F;icon?family=Material+Icons&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;&#x2F;head&gt;
+
+&lt;body&gt;
+  &lt;app-root&gt;&lt;&#x2F;app-root&gt;
+&lt;&#x2F;body&gt;
+
+&lt;&#x2F;html&gt;
+</code></pre>
+<h2 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h2><p>開啟 <a href="https://material.angular.io/components" target="_blank" rel="external">https://material.angular.io/components</a> 頁面可以看到網頁展示了 <strong>Angular Material2</strong> 元件效果，同時也提供設定與使用說明。<br>以 <code>md-icon</code> 為例，選擇 <strong>Icon</strong> 元件頁籤，點選內容的 <strong>API</strong> 內容，可以看到該模組名稱為 <strong>MdIconModule</strong>，開起 <code>src\app\custom-material.module.ts</code> 並將 <strong>MdIconModule</strong> 加到  <code>imports</code> 以及 <code>exports</code> 屬性內。</p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { MdIconModule } from &#39;@angular&#x2F;material&#39;;
+
+@NgModule({
+  imports: [MdIconModule],
+  exports: [MdIconModule]
+})
+export class CustomMaterialModule { }
+</code></pre>
+<p><strong>嘗試在 Page1Component 放入一些圖示：</strong><br>因為 <strong>Page1Component</strong> 使用 <strong>CustomMaterialModule</strong> 內的 <strong>MdIconModule</strong>，所以必須將 <strong>CustomMaterialModule</strong> 註冊到 <strong>Page1Component</strong> 所屬的模組(<strong>AppModule</strong>)內，開啟並編輯 <code>src\app\app.module.ts</code>。  </p>
+<pre><code>import { BrowserAnimationsModule } from &#39;@angular&#x2F;platform-browser&#x2F;animations&#39;;
+import { BrowserModule } from &#39;@angular&#x2F;platform-browser&#39;;
+import { NgModule } from &#39;@angular&#x2F;core&#39;;
+
+import { AppRoutingModule } from &#39;.&#x2F;app-routing.module&#39;;
+import { AppComponent } from &#39;.&#x2F;app.component&#39;;
+import { Page1Component } from &#39;.&#x2F;page1&#x2F;page1.component&#39;;
+import { Page2Component } from &#39;.&#x2F;page2.component&#39;;
+import { Page3Component } from &#39;.&#x2F;page3.component&#39;;
+import { Page404Component } from &#39;.&#x2F;page404&#x2F;page404.component&#39;;
+import { OperationModule } from &#39;.&#x2F;operation&#x2F;operation.module&#39;;
+import { CustomMaterialModule } from &#39;.&#x2F;custom-material.module&#39;;
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    Page1Component,
+    Page2Component,
+    Page3Component,
+    Page404Component
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    CustomMaterialModule,
+    OperationModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</code></pre>
+<p>在 <code>src\app\page1\page1.component.html</code> 內加入一些圖示，如下面範例：  </p>
+<pre><code>&lt;p&gt;
+  page1 works!
+  &lt;app-opt1&gt;&lt;&#x2F;app-opt1&gt;
+  &lt;br&gt;
+  &lt;md-icon&gt;home&lt;&#x2F;md-icon&gt;
+  &lt;md-icon&gt;done&lt;&#x2F;md-icon&gt;
+  &lt;md-icon&gt;delete&lt;&#x2F;md-icon&gt;
+  &lt;md-icon&gt;email&lt;&#x2F;md-icon&gt;
+&lt;&#x2F;p&gt;
+</code></pre>
+<p>執行並切到 Page1 頁籤時可以看到畫面上確實出現了圖示。<br><img src="/images/angular/training/ui/angular_ui_08.png" alt="">  </p>
+<blockquote>
+<p>圖示及其名稱可參閱 <a href="https://material.io/icons/" target="_blank" rel="external">https://material.io/icons/</a> 查詢</p>
+</blockquote>
+<h2 id="區域網路"><a href="#區域網路" class="headerlink" title="區域網路"></a>區域網路</h2><p>其實圖示是連結到 <strong><a href="https://fonts.googleapis.com/" target="_blank" rel="external">https://fonts.googleapis.com/</a></strong> 網站來下載圖示檔，對於開放外部使用的網站來說可以減省傳輸流量，但是如果是在企業內部使用，有可能就不見得可以連結到外部網站，因此也我們需要能夠將圖示字型放置到所部屬的伺服器，以免網頁無法呈現圖示。  </p>
+<h3 id="方法1：下載圖示字型"><a href="#方法1：下載圖示字型" class="headerlink" title="方法1：下載圖示字型"></a>方法1：下載圖示字型</h3><p>開啟 <a href="https://google.github.io/material-design-icons/" target="_blank" rel="external">https://google.github.io/material-design-icons/</a>，在網頁上提到官方提供圖示字型下載連結 <a href="https://github.com/google/material-design-icons/archive/master.zip" target="_blank" rel="external"><strong>material-design-icons-master.zip</strong></a>。<br><img src="/images/angular/training/ui/angular_ui_09.png" alt=""><br><img src="/images/angular/training/ui/angular_ui_10.png" alt=""><br>解壓縮後將 <strong>iconfont</strong> 資料夾複製到 <code>src\assets</code> 資料夾下。<br><img src="/images/angular/training/ui/angular_ui_11.png" alt=""><br>修改 <code>src\index.html</code> 內的連結路徑，重新執行圖示應該也可以正常顯示，但是圖示來源已經改成專案目錄。</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;FirstApp&lt;&#x2F;title&gt;
+  &lt;base href=&quot;&#x2F;&quot;&gt;
+
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+  &lt;link rel=&quot;icon&quot; type=&quot;image&#x2F;x-icon&quot; href=&quot;favicon.ico&quot;&gt;
+  &lt;!-- &lt;link href=&quot;https:&#x2F;&#x2F;fonts.googleapis.com&#x2F;icon?family=Material+Icons&quot; rel=&quot;stylesheet&quot;&gt; --&gt;
+  &lt;link href=&quot;.&#x2F;assets&#x2F;iconfont&#x2F;material-icons.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;&#x2F;head&gt;
+
+&lt;body&gt;
+  &lt;app-root&gt;&lt;&#x2F;app-root&gt;
+&lt;&#x2F;body&gt;
+
+&lt;&#x2F;html&gt;
+</code></pre>
+<p><img src="/images/angular/training/ui/angular_ui_08.png" alt="">  </p>
+<blockquote>
+<p>開啟 <code>.angular-cli.json</code> 可以從 apps 區塊內看到一個<code>assets</code> 的設定值，預設指定了 <strong>assets</strong> 資料夾與 <strong>favicon.ico</strong> 網站圖示，Angular CLI 在編譯時會將 <code>assets</code> 內所指定的檔案或資料夾全部複製到輸出路徑(<code>&quot;outDir&quot;: &quot;dist&quot;</code>)，因此我們可以將要連同網站一起佈署的檔案加進去，編譯時就會一起複製過去。<br><img src="/images/angular/training/ui/angular_ui_12.png" alt="">  </p>
+</blockquote>
+<h3 id="方法2：透過-npm-安裝"><a href="#方法2：透過-npm-安裝" class="headerlink" title="方法2：透過 npm 安裝"></a>方法2：透過 npm 安裝</h3><p>透過下列指令安裝，安裝時等待時間會比較久<br><code>npm install --save material-design-icons</code><br><img src="/images/angular/training/ui/angular_ui_13.png" alt=""><br>開啟 <code>src\styles.scss</code> 加入下列語法：<br><code>@import &#39;~material-design-icons/iconfont/material-icons.css&#39;;</code>  </p>
+<pre><code>&#x2F;* You can add global styles to this file, and also import other style files *&#x2F;
+
+&#x2F;* Angular Material2 Themes *&#x2F;
+&#x2F;&#x2F; @import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;deeppurple-amber.css&quot;;
+&#x2F;&#x2F; @import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;indigo-pink.css&quot;;
+@import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;pink-bluegrey.css&quot;;
+&#x2F;&#x2F; @import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;purple-green.css&quot;;
+
+&#x2F;* Material Design Icon *&#x2F;
+@import &#39;~material-design-icons&#x2F;iconfont&#x2F;material-icons.css&#39;;
+
+P {
+  border: 1px dashed red;
+  margin: 8px;
+}
+</code></pre>
+<p>將 <code>src\index.html</code> 的連結拿掉後重新執行，正常應該圖示也會顯示。</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;FirstApp&lt;&#x2F;title&gt;
+  &lt;base href=&quot;&#x2F;&quot;&gt;
+
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+  &lt;link rel=&quot;icon&quot; type=&quot;image&#x2F;x-icon&quot; href=&quot;favicon.ico&quot;&gt;
+  &lt;!-- &lt;link href=&quot;https:&#x2F;&#x2F;fonts.googleapis.com&#x2F;icon?family=Material+Icons&quot; rel=&quot;stylesheet&quot;&gt; --&gt;
+  &lt;link href=&quot;.&#x2F;assets&#x2F;iconfont&#x2F;material-icons.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;&#x2F;head&gt;
+
+&lt;body&gt;
+  &lt;app-root&gt;&lt;&#x2F;app-root&gt;
+&lt;&#x2F;body&gt;
+
+&lt;&#x2F;html&gt;
+</code></pre>
+<p><img src="/images/angular/training/ui/angular_ui_08.png" alt="">  </p>
+<p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2018-09-01.zip"><strong>first-app_2018-09-01.zip</strong></a>  </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Angular/" rel="tag"># Angular</a>
+          
+            <a href="/tags/UI/" rel="tag"># UI</a>
+          
+            <a href="/tags/Material-Design/" rel="tag"># Material Design</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/angular/training/06_angular_module/" rel="next" title="Angular 模組">
+                <i class="fa fa-chevron-left"></i> Angular 模組
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Jonny Huang" />
+          <p class="site-author-name" itemprop="name">Jonny Huang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分類</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Material-Design-for-Angular"><span class="nav-number">1.</span> <span class="nav-text">Material Design for Angular</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Angular-Material-與-Angular-CDK"><span class="nav-number">1.1.</span> <span class="nav-text">安裝 Angular Material 與 Angular CDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Angular-Animations-動畫模組"><span class="nav-number">1.2.</span> <span class="nav-text">安裝 Angular Animations 動畫模組</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匯入要使用的元件模組"><span class="nav-number">1.3.</span> <span class="nav-text">匯入要使用的元件模組</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匯入樣式"><span class="nav-number">1.4.</span> <span class="nav-text">匯入樣式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝手勢操作的套件-HammerJS"><span class="nav-number">1.5.</span> <span class="nav-text">安裝手勢操作的套件 HammerJS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#選擇性-安裝圖示套件-Material-Icons"><span class="nav-number">1.6.</span> <span class="nav-text">(選擇性) 安裝圖示套件 Material Icons</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#測試"><span class="nav-number">1.7.</span> <span class="nav-text">測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#區域網路"><span class="nav-number">1.8.</span> <span class="nav-text">區域網路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法1：下載圖示字型"><span class="nav-number">1.8.1.</span> <span class="nav-text">方法1：下載圖示字型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法2：透過-npm-安裝"><span class="nav-number">1.8.2.</span> <span class="nav-text">方法2：透過 npm 安裝</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-Jonny Huang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
+<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+      prettyPrint();
+  });
+</script>
+
+</body>
+</html>

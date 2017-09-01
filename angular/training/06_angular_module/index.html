@@ -111,7 +111,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/module/angular_module_11.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/module/angular_module_12.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-01T00:31:16.649Z">
+<meta property="og:updated_time" content="2017-09-01T03:29:28.510Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular 模組">
 <meta name="twitter:description" content="模組 (NgModule)過去我們將所有實作的 元件(Component) 都塞到 AppModule 內，但是實務上的專案可能會有幾十個甚至上百個元件，如果全部都放置在 AppModule 內，會造成專案難以維護也難以分工的問題，所以比較合理的做法就是將元件分拆到不同的 模組(NgModule) 內，再將模組聚合起來。開啟 src\app\app.module.ts 可以看到目前所建立的元件。">
@@ -319,7 +319,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-01T08:31:16+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-01T11:29:28+08:00">
                 2017/09/01
               </time>
             
@@ -540,7 +540,7 @@ export class OperationModule { }
 </code></pre>
 <p>重新再執行就正常了，切換到 Page 1 後下方出現 <strong>Page1Component</strong> 及 <strong>Opt1Component</strong> 的樣板。<br><img src="/images/angular/training/module/angular_module_10.png" alt="">  </p>
 <blockquote>
-<p><strong>NgModule</strong> 的 <code>imports</code> 提供了匯入功能，讓我們將要使用的元件匯入到此模組內，而 <code>exports</code> 則提供匯出功能，讓別的模組可以知道此模組提供什麼元件，所以正常要 <code>exports</code> 的元件也一定要先 <code>imports</code> 進來。</p>
+<p><strong>NgModule</strong> 的 <code>imports</code> 提供了匯入功能，讓我們將要使用的元件匯入到此模組內，而 <code>exports</code> 則提供匯出功能，讓別的模組可以知道此模組提供什麼元件，所以正常要 <code>exports</code> 的元件也一定要先匯入進來，因為是元件所以匯入是加到 <code>declarations</code> 屬性內。</p>
 </blockquote>
 <p>再將 <code>src\styles.scss</code> 加入 <code>P</code> tag 的樣式，重新瀏覽網頁時可以看到 <strong>Opt1Component</strong> 的樣板確實被包覆在 <strong>Page1Component</strong> 樣板內。</p>
 <pre><code>&#x2F;* You can add global styles to this file, and also import other style files *&#x2F;
@@ -624,6 +624,10 @@ P {
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/angular/training/07_angular_ui-material2/" rel="prev" title="Angular UI：Angular Material2">
+                Angular UI：Angular Material2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -695,7 +699,7 @@ P {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -717,7 +721,7 @@ P {
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>

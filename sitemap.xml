@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jonny-huang.github.io/angular/training/07_angular_ui-material2/</loc>
+    
+    <lastmod>2017-09-01T06:03:52.158Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jonny-huang.github.io/angular/training/06_angular_module/</loc>
     
-    <lastmod>2017-09-01T00:31:16.649Z</lastmod>
+    <lastmod>2017-09-01T03:29:28.510Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/categories/</loc>
+    
+    <lastmod>2017-09-01T02:29:07.950Z</lastmod>
     
   </url>
   
@@ -16,21 +30,14 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/categories/</loc>
-    
-    <lastmod>2017-08-31T07:33:18.349Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/angular/training/03_angular_component/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/04_angular_router/</loc>
     
     <lastmod>2017-08-31T07:25:14.143Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/04_angular_router/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/03_angular_component/</loc>
     
     <lastmod>2017-08-31T07:25:14.143Z</lastmod>
     
@@ -51,14 +58,14 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_ubuntu/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_windows/</loc>
     
     <lastmod>2017-08-31T05:51:37.242Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_windows/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_ubuntu/</loc>
     
     <lastmod>2017-08-31T05:51:37.242Z</lastmod>
     

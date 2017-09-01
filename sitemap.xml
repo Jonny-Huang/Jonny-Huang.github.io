@@ -2,37 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/07_angular_ui-material2/</loc>
+    <loc>https://jonny-huang.github.io/categories/</loc>
     
-    <lastmod>2017-09-01T06:03:52.158Z</lastmod>
+    <lastmod>2017-09-01T06:52:04.489Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://jonny-huang.github.io/angular/training/06_angular_module/</loc>
     
-    <lastmod>2017-09-01T03:29:28.510Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/categories/</loc>
-    
-    <lastmod>2017-09-01T02:29:07.950Z</lastmod>
+    <lastmod>2017-09-01T06:51:44.768Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://jonny-huang.github.io/angular/training/05_angular_navigation/</loc>
     
-    <lastmod>2017-08-31T07:47:58.853Z</lastmod>
+    <lastmod>2017-09-01T06:51:44.768Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://jonny-huang.github.io/angular/training/04_angular_router/</loc>
     
-    <lastmod>2017-08-31T07:25:14.143Z</lastmod>
+    <lastmod>2017-09-01T06:51:44.765Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/angular/training/07_angular_ui-material2/</loc>
+    
+    <lastmod>2017-09-01T06:50:05.382Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/angular/training/08_angular_ui-flex_layout/</loc>
+    
+    <lastmod>2017-09-01T06:50:05.377Z</lastmod>
     
   </url>
   
@@ -44,14 +51,14 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/01_creating_first_project/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/02_angular_operation/</loc>
     
     <lastmod>2017-08-31T05:51:37.251Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/02_angular_operation/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/01_creating_first_project/</loc>
     
     <lastmod>2017-08-31T05:51:37.251Z</lastmod>
     

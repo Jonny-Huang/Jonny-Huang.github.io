@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Angular,Layout,Flexbox,Flex" />
+  <meta name="keywords" content="Angular,UI,Layout,Flexbox,Flex" />
 
 
 
@@ -91,9 +91,9 @@
 
 
 <meta name="description" content="Angular Flex-LayoutAngular Flex-Layout 原本是依附在 Angular Material2 內的模組，它主要實作了 CSS3 的 Flexbox 排版，因此要注意使用者瀏覽器是否支援此語法。    可以到 Can I use 網站查詢。為了支援 Angular v4.1 AOT，所以 2.0.0-beta.7 以後版本不支援 Angular 2.4.x 版，因此">
-<meta name="keywords" content="Angular,Layout,Flexbox,Flex">
+<meta name="keywords" content="Angular,UI,Layout,Flexbox,Flex">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Angular Layout：Angular Flex-Layout">
+<meta property="og:title" content="Angular UI：Angular Flex-Layout">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/08_angular_ui-flex_layout/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
 <meta property="og:description" content="Angular Flex-LayoutAngular Flex-Layout 原本是依附在 Angular Material2 內的模組，它主要實作了 CSS3 的 Flexbox 排版，因此要注意使用者瀏覽器是否支援此語法。    可以到 Can I use 網站查詢。為了支援 Angular v4.1 AOT，所以 2.0.0-beta.7 以後版本不支援 Angular 2.4.x 版，因此">
@@ -106,9 +106,12 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_26.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_27.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_28.png">
-<meta property="og:updated_time" content="2017-09-01T09:45:38.154Z">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_29.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_30.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
+<meta property="og:updated_time" content="2017-09-03T08:07:34.240Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Angular Layout：Angular Flex-Layout">
+<meta name="twitter:title" content="Angular UI：Angular Flex-Layout">
 <meta name="twitter:description" content="Angular Flex-LayoutAngular Flex-Layout 原本是依附在 Angular Material2 內的模組，它主要實作了 CSS3 的 Flexbox 排版，因此要注意使用者瀏覽器是否支援此語法。    可以到 Can I use 網站查詢。為了支援 Angular v4.1 AOT，所以 2.0.0-beta.7 以後版本不支援 Angular 2.4.x 版，因此">
 <meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_21.png">
 
@@ -144,7 +147,7 @@
 
 
 
-  <title>Angular Layout：Angular Flex-Layout | Jonny Huang 的學習筆記</title>
+  <title>Angular UI：Angular Flex-Layout | Jonny Huang 的學習筆記</title>
   
 <script>
   window.fbAsyncInit = function() {
@@ -298,7 +301,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Angular Layout：Angular Flex-Layout</h2>
+          <h2 class="post-title" itemprop="name headline">Angular UI：Angular Flex-Layout</h2>
         
 
         <div class="post-meta">
@@ -314,8 +317,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-01T17:45:38+08:00">
-                2017/09/01
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-03T16:07:34+08:00">
+                2017/09/03
               </time>
             
           </span>
@@ -535,6 +538,60 @@ import { CustomMaterialModule } from &#39;..&#x2F;custom-material.module&#39;;
 })
 export class HomeModule { }
 </code></pre>
+<p>修改 <code>src\styles.scss</code>，將 <code>html</code>、<code>body</code> tag 高度設為 100%，並取消邊界。</p>
+<pre><code>html,
+body {
+  height: 100%;
+  margin: 0px;
+}
+
+&#x2F;* Angular Material2 Themes *&#x2F;
+&#x2F;&#x2F; @import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;deeppurple-amber.css&quot;;
+&#x2F;&#x2F; @import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;indigo-pink.css&quot;;
+@import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;pink-bluegrey.css&quot;;
+&#x2F;&#x2F; @import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;purple-green.css&quot;;
+</code></pre>
+<p>修改 <code>src\app\home\home.component.html</code>，將其切成3個區塊，並在樣式檔 <code>src\app\home\home.component.scss</code> 內加入背景顏色以檢視版面是否正常。</p>
+<pre><code>.layout {
+  background: black;
+  .header {
+    background: blue;
+  }
+  .main {
+    background: grey;
+    .aside {
+      background: green;
+    }
+    .content {
+      background: orange;
+    }
+  }
+}
+</code></pre>
+<pre><code>&lt;div fxFill fxLayout=&quot;column&quot; class=&quot;layout&quot;&gt;
+  &lt;div fxFlex=&quot;68px&quot; class=&quot;header&quot;&gt;Header&lt;&#x2F;div&gt;
+  &lt;div fxFlex fxLayout=&quot;row&quot; class=&quot;main&quot;&gt;
+    &lt;div fxFlex=&quot;140px&quot; class=&quot;aside&quot;&gt;Aside&lt;&#x2F;div&gt;
+    &lt;div fxFlex class=&quot;content&quot;&gt;Content&lt;&#x2F;div&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;</code></pre>
+<blockquote>
+<p><code>fxFill</code>：<code>fxFlexFill</code> 的縮寫，表示填滿區域。<br><code>fxLayout</code>：內容項目排列方式，<code>row</code> 表示優先以水平排列；<code>colunm</code> 表示優先以垂直排列。<br><code>fxFlex</code>：有值時會以該值作為設定，無值時表示會佔用剩餘空間，其值會受到父元素的 <code>fxLayout</code> 屬性影響，當父元素為水平優先排列時(<code>fxLayout=&#39;row&#39;</code>)，<code>fxFlex</code> 會影響目前元素的寬度(width)；當父元素為垂直優先排列時(<code>fxLayout=&#39;colunm&#39;</code>)，<code>fxFlex</code> 會影響目前元素的高度(height)。</p>
+</blockquote>
+<p>檢視執行結果。<br><img src="/images/angular/training/ui/angular_ui_29.png" alt=""><br>最後再將 <strong>HeaderComponent</strong> 的 tag-<code>app-header</code> 與 <strong>AsideComponent</strong> 的 tag-<code>app-aside</code> 加入到 <code>home.component.html</code>。</p>
+<pre><code>&lt;div fxFill fxLayout=&quot;column&quot; class=&quot;layout&quot;&gt;
+  &lt;div fxFlex=&quot;68px&quot; class=&quot;header&quot;&gt;
+    &lt;app-header&gt;&lt;&#x2F;app-header&gt;
+  &lt;&#x2F;div&gt;
+  &lt;div fxFlex fxLayout=&quot;row&quot; class=&quot;main&quot;&gt;
+    &lt;div fxFlex=&quot;140px&quot; class=&quot;aside&quot;&gt;
+      &lt;app-aside&gt;&lt;&#x2F;app-aside&gt;
+    &lt;&#x2F;div&gt;
+    &lt;div fxFlex class=&quot;content&quot;&gt;Content&lt;&#x2F;div&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;</code></pre>
+<p>再觀察結果應該就會發現2個元件的樣板已經套用進來了。<br><img src="/images/angular/training/ui/angular_ui_30.png" alt="">  </p>
+<p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-01_2.zip"><strong>first-app_2017-09-01_2.zip</strong></a>  </p>
 
       
     </div>

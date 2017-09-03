@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jonny-huang.github.io/angular/training/09_angular_router2/</loc>
+    
+    <lastmod>2017-09-03T12:24:39.663Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/categories/</loc>
+    
+    <lastmod>2017-09-03T12:09:22.914Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/angular/</loc>
+    
+    <lastmod>2017-09-03T12:07:48.746Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jonny-huang.github.io/angular/training/07_angular_ui-material2/</loc>
     
     <lastmod>2017-09-03T08:08:18.103Z</lastmod>
@@ -12,13 +33,6 @@
     <loc>https://jonny-huang.github.io/angular/training/08_angular_ui-flex_layout/</loc>
     
     <lastmod>2017-09-03T08:07:34.240Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/categories/</loc>
-    
-    <lastmod>2017-09-03T05:24:07.115Z</lastmod>
     
   </url>
   
@@ -51,14 +65,14 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/01_creating_first_project/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/02_angular_operation/</loc>
     
     <lastmod>2017-08-31T05:51:37.251Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/02_angular_operation/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/01_creating_first_project/</loc>
     
     <lastmod>2017-08-31T05:51:37.251Z</lastmod>
     

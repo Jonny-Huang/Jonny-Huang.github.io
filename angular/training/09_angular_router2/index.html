@@ -104,8 +104,10 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/router/angular_router_08.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/router/angular_router_09.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/router/angular_router_10.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/router/angular_router_11.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/router/angular_router_12.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-04T17:54:47.005Z">
+<meta property="og:updated_time" content="2017-09-05T03:16:12.433Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular 子路由">
 <meta name="twitter:description" content="子路由 (Child Routing)在 Angular UI：Angular Flex-Layout 我們透過 ng g m home --routing 建立 HomeModule，因為多加了 --routing 參數，所以 CLI 多幫我們建立一個路由模組 home-routing.module.ts。   import { NgModule } from &amp;#39;@angular&amp;#x2">
@@ -313,7 +315,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-05T01:54:47+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-05T11:16:12+08:00">
                 2017/09/05
               </time>
             
@@ -619,7 +621,7 @@ const routes: Routes = [
 export class HomeRoutingModule { }
 </code></pre>
 <blockquote>
-<p>符合現在所設的路由規則的導覽路徑前面必包含 <code>home</code> 路徑，因為必須先滿足 <code>path:home</code> 這條路由規則才有機會繼續比對 <code>children</code> 內的路由規則。<br><code>children</code> 內的路由規則也是可以再加上子路由規則(<code>children</code>)，如此可以一層一層的延伸下去。  </p>
+<p>符合現在所設的路由規則的導覽路徑前面必包含 <code>home</code> 路徑，因為必須先滿足 <code>path:&#39;home&#39;</code> 這條路由規則才有機會繼續比對 <code>children</code> 內的路由規則。<br><code>children</code> 內的路由規則也是可以再加上子路由規則(<code>children</code>)，如此可以一層一層的延伸下去。  </p>
 </blockquote>
 <p>開啟 <code>src\app\home\aside\aside.component.html</code> 並在各功能選單加入 <code>routerLink</code>。  </p>
 <pre><code>&lt;md-list&gt;
@@ -690,7 +692,7 @@ const routes: Routes = [
       { path: &#39;leave&#39;, component: LeaveComponent },
       { path: &#39;logbook&#39;, component: LogbookComponent },
       { path: &#39;reimburse&#39;, component: ReimburseComponent },
-      { path: &#39;to-do-list&#39;, component: ToDoListComponent },
+      { path: &#39;to-do-list&#39;, component: ToDoListComponent }
     ]
   }
 ];
@@ -701,7 +703,15 @@ const routes: Routes = [
 })
 export class HomeRoutingModule { }
 </code></pre>
-<p>重新執行應該可以發現預設會被導引到 <code>\home\to-do-list\</code>。  </p>
+<p>重新執行應該可以發現預設會被導引到 <code>\home\to-do-list\</code>。<br>最後我們可以看到輕 <strong>請假</strong> 功能選單的選取效果明顯寬度比較窄，所以可以直接修改 <code>src\app\home\aside\aside.component.scss</code>，將寬度放大。<br><img src="/images/angular/training/router/angular_router_11.png" alt="">  </p>
+<pre><code>button {
+  width: 200px;
+}
+</code></pre>
+<p><img src="/images/angular/training/router/angular_router_12.gif" alt="">  </p>
+<blockquote>
+<p>Angular 的 Component 除了會幫我們把 JavaScript 隔離好避免元件之間互相汙染外，每個元件也可以透過獨立的樣式檔各式調整，但是要注意 CSS 的特性，如果元件內還有其他元件也會同時受影響，比較好的做法是透過 CSS class 來套版。</p>
+</blockquote>
 <p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-03.zip"><strong>first-app_2017-09-03.zip</strong></a>  </p>
 
       
@@ -772,6 +782,10 @@ export class HomeRoutingModule { }
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/angular/training/10_angular_module2/" rel="prev" title="Angular 模組化">
+                Angular 模組化 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -844,7 +858,7 @@ export class HomeRoutingModule { }
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -866,7 +880,7 @@ export class HomeRoutingModule { }
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>

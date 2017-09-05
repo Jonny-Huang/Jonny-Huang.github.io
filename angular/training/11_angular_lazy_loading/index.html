@@ -90,18 +90,30 @@
 
 
 
-<meta name="description" content="延遲載入 (Lazy loading)">
+<meta name="description" content="延遲載入 (Lazy loading)一般來說我們會將 JavaScript 直接撰寫在網頁內或是另外儲存成 js 檔再透過連結方式引用，但是隨著功能的增加檔案也會逐漸變大，因而導致使用者需要等待載入的時間也逐漸變長。延遲載入 便是透過將 JavaScript 切割成多個檔案再逐一下載方式來縮短等待時間，看似簡單但是實作上卻很有難度，若單存只是將 JavaScript 切割成數個檔案然後都在主頁面">
 <meta name="keywords" content="Angular,Lazy,Lazy loading">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular 延遲載入">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/11_angular_lazy_loading/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="延遲載入 (Lazy loading)">
+<meta property="og:description" content="延遲載入 (Lazy loading)一般來說我們會將 JavaScript 直接撰寫在網頁內或是另外儲存成 js 檔再透過連結方式引用，但是隨著功能的增加檔案也會逐漸變大，因而導致使用者需要等待載入的時間也逐漸變長。延遲載入 便是透過將 JavaScript 切割成多個檔案再逐一下載方式來縮短等待時間，看似簡單但是實作上卻很有難度，若單存只是將 JavaScript 切割成數個檔案然後都在主頁面">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-09-05T03:43:11.694Z">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/lazy_loading/angular_lazy_loading_01.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/lazy_loading/angular_lazy_loading_02.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/lazy_loading/angular_lazy_loading_03.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/lazy_loading/angular_lazy_loading_04.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/lazy_loading/angular_lazy_loading_05.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/lazy_loading/angular_lazy_loading_06.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/lazy_loading/angular_lazy_loading_07.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/lazy_loading/angular_lazy_loading_08.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/lazy_loading/angular_lazy_loading_09.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/lazy_loading/angular_lazy_loading_10.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
+<meta property="og:updated_time" content="2017-09-05T07:27:30.539Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular 延遲載入">
-<meta name="twitter:description" content="延遲載入 (Lazy loading)">
+<meta name="twitter:description" content="延遲載入 (Lazy loading)一般來說我們會將 JavaScript 直接撰寫在網頁內或是另外儲存成 js 檔再透過連結方式引用，但是隨著功能的增加檔案也會逐漸變大，因而導致使用者需要等待載入的時間也逐漸變長。延遲載入 便是透過將 JavaScript 切割成多個檔案再逐一下載方式來縮短等待時間，看似簡單但是實作上卻很有難度，若單存只是將 JavaScript 切割成數個檔案然後都在主頁面">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/lazy_loading/angular_lazy_loading_01.png">
 
 
 
@@ -305,7 +317,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-05T11:43:11+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-05T15:27:30+08:00">
                 2017/09/05
               </time>
             
@@ -358,7 +370,199 @@
       
 
       
-        <h1 id="延遲載入-Lazy-loading"><a href="#延遲載入-Lazy-loading" class="headerlink" title="延遲載入 (Lazy loading)"></a>延遲載入 (Lazy loading)</h1>
+        <h1 id="延遲載入-Lazy-loading"><a href="#延遲載入-Lazy-loading" class="headerlink" title="延遲載入 (Lazy loading)"></a>延遲載入 (Lazy loading)</h1><p>一般來說我們會將 JavaScript 直接撰寫在網頁內或是另外儲存成 js 檔再透過連結方式引用，但是隨著功能的增加檔案也會逐漸變大，因而導致使用者需要等待載入的時間也逐漸變長。<br><strong>延遲載入</strong> 便是透過將 JavaScript 切割成多個檔案再逐一下載方式來縮短等待時間，看似簡單但是實作上卻很有難度，若單存只是將 JavaScript 切割成數個檔案然後都在主頁面連結，這樣其實總檔案大小並沒有改變，我們需要的應該是在下載完前面的 js 檔後網頁畫面應該就要呈現，而且使用者也可以開始操作，後續 js 檔下在後再動態載入目前的網頁程式內，因此出現一些問題需要克服：  </p>
+<ul>
+<li><strong>如何切割</strong>：如果目前執行的 JavaScript 需要用到的方法或是參數還沒載入進來網頁可能就會當掉。</li>
+<li><strong>下載時機</strong>：是要一個接著一個的自動下載，還是等到需要用到時再下載。</li>
+<li><strong>動態載入</strong>：當 js 檔下載完成時目前的狀態可能因為使用者的操作而跟初始狀態不同了，這時該如何匯入。</li>
+</ul>
+<p>在 <a href="/angular/training/10_angular_module2/">Angular 模組化</a> 我們發現 <strong>元件</strong>(Component) 可以很容易的移動到任意的 <strong>模組</strong>(NgModule) 內，不論是一開始的先規劃好或是事後的調整，其實沒有很困難，因此如果我們可以以 <strong>模組</strong> 當作切割單位，每個模組可以單獨為一個檔案，當使用者有需要用到該功能時再下載，這應該對開發人員來說應該會是很容易規劃的 <strong>延遲載入</strong> 方式，接下來我們就來看看如何利用 Angular 來實作 <strong>延遲載入</strong> 。  </p>
+<h2 id="安裝-Angular-Augury"><a href="#安裝-Angular-Augury" class="headerlink" title="安裝 Angular Augury"></a>安裝 <a href="https://augury.angular.io/" target="_blank" rel="external">Angular Augury</a></h2><p>利用 Chrome 瀏覽器安裝 <a href="https://chrome.google.com/webstore/detail/augury/elgalmkoelokbchhkhacckoklkejnhcd" target="_blank" rel="external">Augury</a> 擴充功能。<br><img src="/images/angular/training/lazy_loading/angular_lazy_loading_01.png" alt=""><br>執行專案，並透過 Chrome 的開發者工具查看，可以發現 <strong>Augury</strong> 下面的 <strong>RouterTree</strong> 完整的呈現專案的路由樹狀圖。<br><img src="/images/angular/training/lazy_loading/angular_lazy_loading_02.png" alt="">  </p>
+<h2 id="建立-employee-的路由模組"><a href="#建立-employee-的路由模組" class="headerlink" title="建立 employee 的路由模組"></a>建立 employee 的路由模組</h2><p>比較一下自己手動建立的路由規則的定義檔(<code>src\app\employee\employee.routing.ts</code>)與透過 <code>--routing</code> 參數建立的路由模組(<code>src\app\home\home-routing.module.ts</code>)，可以發現最大差別就是 <code>--routing</code> 參數所建立的檔案會將路由規則再包覆到一個模組內。  </p>
+<pre><code>import { Routes } from &#39;@angular&#x2F;router&#39;;
+import { AddressBookComponent } from &#39;.&#x2F;address-book&#x2F;address-book.component&#39;;
+import { CalendarComponent } from &#39;.&#x2F;calendar&#x2F;calendar.component&#39;;
+import { FileComponent } from &#39;.&#x2F;file&#x2F;file.component&#39;;
+import { LeaveComponent } from &#39;.&#x2F;leave&#x2F;leave.component&#39;;
+import { LogbookComponent } from &#39;.&#x2F;logbook&#x2F;logbook.component&#39;;
+import { ReimburseComponent } from &#39;.&#x2F;reimburse&#x2F;reimburse.component&#39;;
+import { ToDoListComponent } from &#39;.&#x2F;to-do-list&#x2F;to-do-list.component&#39;;
+
+const routes: Routes = [
+  { path: &#39;&#39;, redirectTo: &#39;to-do-list&#39;, pathMatch: &#39;full&#39; },
+  { path: &#39;address-book&#39;, component: AddressBookComponent },
+  { path: &#39;calendar&#39;, component: CalendarComponent },
+  { path: &#39;file&#39;, component: FileComponent },
+  { path: &#39;leave&#39;, component: LeaveComponent },
+  { path: &#39;logbook&#39;, component: LogbookComponent },
+  { path: &#39;reimburse&#39;, component: ReimburseComponent },
+  { path: &#39;to-do-list&#39;, component: ToDoListComponent }
+];
+
+export const employeeRouter = routes;
+</code></pre>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { Routes, RouterModule } from &#39;@angular&#x2F;router&#39;;
+import { HomeComponent } from &#39;.&#x2F;home.component&#39;;
+import { employeeRouter } from &#39;..&#x2F;employee&#x2F;employee.routing&#39;;
+
+const routes: Routes = [
+  {
+    path: &#39;home&#39;, component: HomeComponent, children: employeeRouter
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class HomeRoutingModule { }
+</code></pre>
+<p>建立路由模組檔 <code>src\app\employee\employee-routing.module.ts</code>，輸入 <code>a-m</code> 就會列出相關指令清單，選擇 <code>a-module-routing</code> 系統就會產生路由模組的程式框架。<br><img src="/images/angular/training/lazy_loading/angular_lazy_loading_03.png" alt=""><br><img src="/images/angular/training/lazy_loading/angular_lazy_loading_04.png" alt=""><br>將 <code>src\app\employee\employee.routing.ts</code> 的路由規則加進來。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { Routes, RouterModule } from &#39;@angular&#x2F;router&#39;;
+
+import { AddressBookComponent } from &#39;.&#x2F;address-book&#x2F;address-book.component&#39;;
+import { CalendarComponent } from &#39;.&#x2F;calendar&#x2F;calendar.component&#39;;
+import { FileComponent } from &#39;.&#x2F;file&#x2F;file.component&#39;;
+import { LeaveComponent } from &#39;.&#x2F;leave&#x2F;leave.component&#39;;
+import { LogbookComponent } from &#39;.&#x2F;logbook&#x2F;logbook.component&#39;;
+import { ReimburseComponent } from &#39;.&#x2F;reimburse&#x2F;reimburse.component&#39;;
+import { ToDoListComponent } from &#39;.&#x2F;to-do-list&#x2F;to-do-list.component&#39;;
+
+const routes: Routes = [
+  { path: &#39;&#39;, redirectTo: &#39;to-do-list&#39;, pathMatch: &#39;full&#39; },
+  { path: &#39;address-book&#39;, component: AddressBookComponent },
+  { path: &#39;calendar&#39;, component: CalendarComponent },
+  { path: &#39;file&#39;, component: FileComponent },
+  { path: &#39;leave&#39;, component: LeaveComponent },
+  { path: &#39;logbook&#39;, component: LogbookComponent },
+  { path: &#39;reimburse&#39;, component: ReimburseComponent },
+  { path: &#39;to-do-list&#39;, component: ToDoListComponent }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class EmployeeRoutingModule { }
+</code></pre>
+<p>再將 <strong>EmployeeRoutingModule</strong> 註冊到 <code>src\app\employee\employee.module.ts</code> 內。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { CommonModule } from &#39;@angular&#x2F;common&#39;;
+import { CalendarComponent } from &#39;.&#x2F;calendar&#x2F;calendar.component&#39;;
+import { AddressBookComponent } from &#39;.&#x2F;address-book&#x2F;address-book.component&#39;;
+import { LogbookComponent } from &#39;.&#x2F;logbook&#x2F;logbook.component&#39;;
+import { ToDoListComponent } from &#39;.&#x2F;to-do-list&#x2F;to-do-list.component&#39;;
+import { FileComponent } from &#39;.&#x2F;file&#x2F;file.component&#39;;
+import { LeaveComponent } from &#39;.&#x2F;leave&#x2F;leave.component&#39;;
+import { ReimburseComponent } from &#39;.&#x2F;reimburse&#x2F;reimburse.component&#39;;
+import { EmployeeRoutingModule } from &#39;.&#x2F;employee-routing.module&#39;;
+
+@NgModule({
+  imports: [
+    CommonModule,
+    EmployeeRoutingModule
+  ],
+  declarations: [
+    CalendarComponent,
+    AddressBookComponent,
+    LogbookComponent,
+    ToDoListComponent,
+    FileComponent,
+    LeaveComponent,
+    ReimburseComponent
+  ]
+})
+export class EmployeeModule { }
+</code></pre>
+<h2 id="loadChildren"><a href="#loadChildren" class="headerlink" title="loadChildren"></a>loadChildren</h2><p>上面的步驟只是將路由規則以 CLI 預設模式重新封裝，其實我們可以在建立模組時都先帶入 <code>--routing</code> 參數，最後確定不需要時在移除就好，接下來回到正題，將 <strong>EmployeeModule</strong> 改成以延遲載入方式啟動。<br>開啟 <code>src\app\home\home-routing.module.ts</code> 將 <code>children</code> 屬性替換成 <code>loadChildren</code> 屬性，屬性質的規則是 <strong>模組路徑</strong> + <code>#</code> + <strong>模組名稱</strong>。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { Routes, RouterModule } from &#39;@angular&#x2F;router&#39;;
+import { HomeComponent } from &#39;.&#x2F;home.component&#39;;
+import { employeeRouter } from &#39;..&#x2F;employee&#x2F;employee.routing&#39;;
+
+const routes: Routes = [
+  {
+    path: &#39;home&#39;, component: HomeComponent,
+    loadChildren: &#39;.&#x2F;..&#x2F;employee&#x2F;employee.module#EmployeeModule&#39;
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class HomeRoutingModule { }
+</code></pre>
+<p>開啟專案，並透過開發工具檢視路由樹，可以發現 <strong>EmployeeModule</strong> 內的元件好像被載入2次。<br><img src="/images/angular/training/lazy_loading/angular_lazy_loading_05.png" alt=""><br>這是因為 <strong>HomeModule</strong>(<code>src\app\home\home.module.ts</code>) 內有註冊 <strong>EmployeeModule</strong>，因此我們將它移除在重新測試。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { CommonModule } from &#39;@angular&#x2F;common&#39;;
+
+import { HomeRoutingModule } from &#39;.&#x2F;home-routing.module&#39;;
+import { HomeComponent } from &#39;.&#x2F;home.component&#39;;
+import { HeaderComponent } from &#39;.&#x2F;header&#x2F;header.component&#39;;
+import { AsideComponent } from &#39;.&#x2F;aside&#x2F;aside.component&#39;;
+import { CustomMaterialModule } from &#39;..&#x2F;custom-material.module&#39;;
+&#x2F;&#x2F; import { EmployeeModule } from &#39;..&#x2F;employee&#x2F;employee.module&#39;;
+
+@NgModule({
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    CustomMaterialModule,
+    &#x2F;&#x2F; EmployeeModule
+  ],
+  declarations: [
+    HomeComponent,
+    HeaderComponent,
+    AsideComponent
+  ]
+})
+export class HomeModule { }
+</code></pre>
+<p><img src="/images/angular/training/lazy_loading/angular_lazy_loading_06.png" alt=""><br>看起來似乎是正常的，但是到底有沒有<strong>延遲載入</strong>卻很難看出來。<br>嘗試將 <code>home-routing.module.ts</code> 的 <code>component: HomeComponent</code> 移除看看。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { Routes, RouterModule } from &#39;@angular&#x2F;router&#39;;
+import { HomeComponent } from &#39;.&#x2F;home.component&#39;;
+import { employeeRouter } from &#39;..&#x2F;employee&#x2F;employee.routing&#39;;
+
+const routes: Routes = [
+  {
+    path: &#39;home&#39;,
+    loadChildren: &#39;.&#x2F;..&#x2F;employee&#x2F;employee.module#EmployeeModule&#39;
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class HomeRoutingModule { }
+</code></pre>
+<p><img src="/images/angular/training/lazy_loading/angular_lazy_loading_07.png" alt=""><br>可想而知畫面就會少掉 <strong>HomeComponent</strong>，但是有趣的是路由樹內卻出現 <code>[lazy]</code> 的字樣，這樣就表示在 home 後面分支都是透過延遲載入方式加進來的。<br><img src="/images/angular/training/lazy_loading/angular_lazy_loading_08.png" alt=""><br>看起來似乎當有使用 <code>component</code> 屬性時就不會啟用延遲載入，變通的方式是將在延遲載入的模組拉到 <code>children</code> 屬性內，等於在往下延伸一層路由。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { Routes, RouterModule } from &#39;@angular&#x2F;router&#39;;
+import { HomeComponent } from &#39;.&#x2F;home.component&#39;;
+import { employeeRouter } from &#39;..&#x2F;employee&#x2F;employee.routing&#39;;
+
+const routes: Routes = [
+  {
+    path: &#39;home&#39;, component: HomeComponent, children: [
+      { path: &#39;&#39;, loadChildren: &#39;.&#x2F;..&#x2F;employee&#x2F;employee.module#EmployeeModule&#39; }
+    ]
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class HomeRoutingModule { }
+</code></pre>
+<p>啟動專案後可以看到畫面變正常，路由樹也有標註 <code>[lazy]</code>。<br><img src="/images/angular/training/lazy_loading/angular_lazy_loading_09.png" alt=""><br><img src="/images/angular/training/lazy_loading/angular_lazy_loading_10.png" alt="">  </p>
+<p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-05.zip"><strong>first-app_2017-09-05.zip</strong></a>  </p>
+
       
     </div>
 
@@ -607,7 +811,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#延遲載入-Lazy-loading"><span class="nav-number">1.</span> <span class="nav-text">延遲載入 (Lazy loading)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#延遲載入-Lazy-loading"><span class="nav-number">1.</span> <span class="nav-text">延遲載入 (Lazy loading)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Angular-Augury"><span class="nav-number">1.1.</span> <span class="nav-text">安裝 Angular Augury</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立-employee-的路由模組"><span class="nav-number">1.2.</span> <span class="nav-text">建立 employee 的路由模組</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#loadChildren"><span class="nav-number">1.3.</span> <span class="nav-text">loadChildren</span></a></li></ol></li></ol></div>
             
 
           </div>

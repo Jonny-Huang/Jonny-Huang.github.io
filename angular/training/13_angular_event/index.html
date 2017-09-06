@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Angular," />
+  <meta name="keywords" content="Angular,Event,Output" />
 
 
 
@@ -90,18 +90,18 @@
 
 
 
-<meta name="description" content="Angular is a platform that makes it easy to build applications with the web. Angular combines declarative templates, dependency injection, end to end tooling, and integrated best practices to solve d">
-<meta name="keywords" content="Angular">
+<meta name="description" content="事件 (Output)">
+<meta name="keywords" content="Angular,Event,Output">
 <meta property="og:type" content="article">
-<meta property="og:title" content="什麼是 Angular？">
-<meta property="og:url" content="https://jonny-huang.github.io/angular/00_What-is-Angular？/index.html">
+<meta property="og:title" content="Angular 事件">
+<meta property="og:url" content="https://jonny-huang.github.io/angular/training/13_angular_event/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="Angular is a platform that makes it easy to build applications with the web. Angular combines declarative templates, dependency injection, end to end tooling, and integrated best practices to solve d">
+<meta property="og:description" content="事件 (Output)">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-08-30T17:27:53.950Z">
+<meta property="og:updated_time" content="2017-09-06T11:46:41.122Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="什麼是 Angular？">
-<meta name="twitter:description" content="Angular is a platform that makes it easy to build applications with the web. Angular combines declarative templates, dependency injection, end to end tooling, and integrated best practices to solve d">
+<meta name="twitter:title" content="Angular 事件">
+<meta name="twitter:description" content="事件 (Output)">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="https://jonny-huang.github.io/angular/00_What-is-Angular？/"/>
+  <link rel="canonical" href="https://jonny-huang.github.io/angular/training/13_angular_event/"/>
 
 
 
 
 
-  <title>什麼是 Angular？ | Jonny Huang 的學習筆記</title>
+  <title>Angular 事件 | Jonny Huang 的學習筆記</title>
   
 <script>
   window.fbAsyncInit = function() {
@@ -272,7 +272,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/00_What-is-Angular？/">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/13_angular_event/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jonny Huang">
@@ -289,7 +289,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">什麼是 Angular？</h2>
+          <h2 class="post-title" itemprop="name headline">Angular 事件</h2>
         
 
         <div class="post-meta">
@@ -305,12 +305,34 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-08-31T01:27:53+08:00">
-                2017/08/31
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-06T19:46:41+08:00">
+                2017/09/06
               </time>
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Training/" itemprop="url" rel="index">
+                    <span itemprop="name">Training</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -336,10 +358,7 @@
       
 
       
-        <blockquote>
-<p><em>Angular is a platform</em> that makes it easy to build applications with the web. Angular combines declarative templates, dependency injection, end to end tooling, and integrated best practices to solve development challenges. Angular empowers developers to build applications that live on the web, mobile, or the desktop</p>
-</blockquote>
-
+        <h1 id="事件-Output"><a href="#事件-Output" class="headerlink" title="事件 (Output)"></a>事件 (Output)</h1>
       
     </div>
 
@@ -370,6 +389,8 @@
           
             <a href="/tags/Angular/" rel="tag"># Angular</a>
           
+            <a href="/tags/Event/" rel="tag"># Event</a>
+          
         </div>
       
 
@@ -397,15 +418,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/angular/training/12_angular_ui_header/" rel="next" title="Angular UI：標題列">
+                <i class="fa fa-chevron-left"></i> Angular UI：標題列
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/categories/" rel="prev" title="目錄">
-                目錄 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -453,8 +474,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -567,6 +597,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#事件-Output"><span class="nav-number">1.</span> <span class="nav-text">事件 (Output)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

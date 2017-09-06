@@ -105,7 +105,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_35.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_36.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-06T11:44:28.935Z">
+<meta property="og:updated_time" content="2017-09-06T12:34:54.709Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular UI：標題列">
 <meta name="twitter:description" content="標題列 (Header)接續之前的進度，開始將網頁上方的 Header 區塊加入一些內容，瀏覽 Angular Material2 網站可看已經有一個現成的元件-Toolbar，我們在 src\app\custom-material.module.ts 加入2個元件-MdToolbarModule、MdTooltipModule。   import { NgModule } from &amp;#39;@">
@@ -313,7 +313,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-06T19:44:28+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-06T20:34:54+08:00">
                 2017/09/06
               </time>
             
@@ -527,7 +527,7 @@ export class CustomMaterialModule { }
   &lt;&#x2F;div&gt;
 &lt;&#x2F;div&gt;
 </code></pre>
-<p>可以看到當用手機尺寸瀏覽時側邊列預設會隱藏起來。<br><img src="/images/angular/training/ui/angular_ui_36.gif" alt=""><br>但是目前還有一些問題需要調整：<br><strong>menu</strong> 按鈕應該值些包含在 <strong>app-header</strong> 內比較恰當。<br>當用手機尺寸瀏覽時，點選功能選單後雖然內容有切換，但是選單列卻沒有自動縮回去。<br>也就是說我們需要一個機制讓子元件狀態改變時能夠通知外層的元件。  </p>
+<p>可以看到當用手機尺寸瀏覽時側邊列預設會隱藏起來。<br><img src="/images/angular/training/ui/angular_ui_36.gif" alt=""><br>但是目前還有一些問題需要調整：<br><strong>menu</strong> 按鈕應該直接包含在 <strong>app-header</strong> 內比較恰當。<br>當用手機尺寸瀏覽時，點選功能選單後雖然內容有切換，但是選單列卻沒有自動縮回去。<br>也就是說我們需要一個機制讓子元件狀態改變時能夠通知外層的元件。  </p>
 <p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-06.zip"><strong>first-app_2017-09-06.zip</strong></a>  </p>
 
       

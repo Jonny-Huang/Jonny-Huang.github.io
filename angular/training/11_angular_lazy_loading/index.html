@@ -109,7 +109,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/lazy_loading/angular_lazy_loading_09.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/lazy_loading/angular_lazy_loading_10.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-05T07:27:30.539Z">
+<meta property="og:updated_time" content="2017-09-06T01:15:21.972Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular 延遲載入">
 <meta name="twitter:description" content="延遲載入 (Lazy loading)一般來說我們會將 JavaScript 直接撰寫在網頁內或是另外儲存成 js 檔再透過連結方式引用，但是隨著功能的增加檔案也會逐漸變大，因而導致使用者需要等待載入的時間也逐漸變長。延遲載入 便是透過將 JavaScript 切割成多個檔案再逐一下載方式來縮短等待時間，看似簡單但是實作上卻很有難度，若單存只是將 JavaScript 切割成數個檔案然後都在主頁面">
@@ -317,8 +317,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-05T15:27:30+08:00">
-                2017/09/05
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-06T09:15:21+08:00">
+                2017/09/06
               </time>
             
           </span>
@@ -561,6 +561,27 @@ const routes: Routes = [
 export class HomeRoutingModule { }
 </code></pre>
 <p>啟動專案後可以看到畫面變正常，路由樹也有標註 <code>[lazy]</code>。<br><img src="/images/angular/training/lazy_loading/angular_lazy_loading_09.png" alt=""><br><img src="/images/angular/training/lazy_loading/angular_lazy_loading_10.png" alt="">  </p>
+<h2 id="PreloadAllModules"><a href="#PreloadAllModules" class="headerlink" title="PreloadAllModules"></a>PreloadAllModules</h2><p>目前的 <strong>延遲載入</strong> 模式是當使用者點選時才會載入相關元件，但是 Angular 提供另一個更自動化的參數-<strong>PreloadAllModules</strong>，透過它的設定下載載入模式會變成自動下載，也就是說使用者在瀏覽器操作同時它會在背景繼續下載剩餘的檔案，當使用者點選到相關功能時就可以直接切換，不必再等待下載，開啟 <code>src\app\app-routing.module.ts</code> 在 <code>RouterModule.forRoot(routes)</code> 加入 <code>preloadingStrategy: PreloadAllModules</code> 參數。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { PreloadAllModules, Routes,  RouterModule } from &#39;@angular&#x2F;router&#39;;
+import { Page404Component } from &#39;.&#x2F;page404&#x2F;page404.component&#39;;
+
+const routes: Routes = [
+  { path: &#39;&#39;, redirectTo: &#39;home&#39;, pathMatch: &#39;full&#39; },
+  { path: &#39;404&#39;, component: Page404Component }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes, {
+    preloadingStrategy: PreloadAllModules
+  })],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+</code></pre>
+<blockquote>
+<p><code>preloadingStrategy</code>：預設值為 <code>NoPreloading</code>，也就是需要時再下載，當然我們可以以自己客製下載規則，讓常用功能自動下載，其他功能需要時再下載。</p>
+</blockquote>
 <p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-05.zip"><strong>first-app_2017-09-05.zip</strong></a>  </p>
 
       
@@ -631,6 +652,10 @@ export class HomeRoutingModule { }
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/angular/training/12_angular_ui_header/" rel="prev" title="Angular UI：標題列">
+                Angular UI：標題列 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -703,7 +728,7 @@ export class HomeRoutingModule { }
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -725,7 +750,7 @@ export class HomeRoutingModule { }
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -811,7 +836,7 @@ export class HomeRoutingModule { }
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#延遲載入-Lazy-loading"><span class="nav-number">1.</span> <span class="nav-text">延遲載入 (Lazy loading)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Angular-Augury"><span class="nav-number">1.1.</span> <span class="nav-text">安裝 Angular Augury</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立-employee-的路由模組"><span class="nav-number">1.2.</span> <span class="nav-text">建立 employee 的路由模組</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#loadChildren"><span class="nav-number">1.3.</span> <span class="nav-text">loadChildren</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#延遲載入-Lazy-loading"><span class="nav-number">1.</span> <span class="nav-text">延遲載入 (Lazy loading)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Angular-Augury"><span class="nav-number">1.1.</span> <span class="nav-text">安裝 Angular Augury</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立-employee-的路由模組"><span class="nav-number">1.2.</span> <span class="nav-text">建立 employee 的路由模組</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#loadChildren"><span class="nav-number">1.3.</span> <span class="nav-text">loadChildren</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PreloadAllModules"><span class="nav-number">1.4.</span> <span class="nav-text">PreloadAllModules</span></a></li></ol></li></ol></div>
             
 
           </div>

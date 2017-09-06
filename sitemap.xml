@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jonny-huang.github.io/angular/training/12_angular_ui_header/</loc>
+    
+    <lastmod>2017-09-06T11:44:28.935Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/categories/</loc>
+    
+    <lastmod>2017-09-06T02:06:03.759Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jonny-huang.github.io/angular/training/07_angular_ui-material2/</loc>
     
     <lastmod>2017-09-06T01:19:36.641Z</lastmod>
@@ -12,20 +26,6 @@
     <loc>https://jonny-huang.github.io/angular/training/11_angular_lazy_loading/</loc>
     
     <lastmod>2017-09-06T01:15:21.972Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/angular/training/12_angular_ui_header/</loc>
-    
-    <lastmod>2017-09-05T15:47:25.554Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/categories/</loc>
-    
-    <lastmod>2017-09-05T13:21:20.743Z</lastmod>
     
   </url>
   
@@ -58,14 +58,14 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/05_angular_navigation/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/06_angular_module/</loc>
     
     <lastmod>2017-09-01T06:51:44.768Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/06_angular_module/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/05_angular_navigation/</loc>
     
     <lastmod>2017-09-01T06:51:44.768Z</lastmod>
     
@@ -86,14 +86,14 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/02_angular_operation/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/01_creating_first_project/</loc>
     
     <lastmod>2017-08-31T05:51:37.251Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/01_creating_first_project/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/02_angular_operation/</loc>
     
     <lastmod>2017-08-31T05:51:37.251Z</lastmod>
     

@@ -90,18 +90,26 @@
 
 
 
-<meta name="description" content="標題列 (Header)Angular Flex-Layout 原本是依附在 Angular Material2 內的模組，它主要實作了 CSS3 的 Flexbox 排版，因此要注意使用者瀏覽器是否支援此語法。">
+<meta name="description" content="標題列 (Header)接續之前的進度，開始將網頁上方的 Header 區塊加入一些內容，瀏覽 Angular Material2 網站可看已經有一個現成的元件-Toolbar，我們在 src\app\custom-material.module.ts 加入2個元件-MdToolbarModule、MdTooltipModule。   import { NgModule } from &amp;#39;@">
 <meta name="keywords" content="Angular,UI,Header">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular UI：標題列">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/12_angular_ui_header/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="標題列 (Header)Angular Flex-Layout 原本是依附在 Angular Material2 內的模組，它主要實作了 CSS3 的 Flexbox 排版，因此要注意使用者瀏覽器是否支援此語法。">
+<meta property="og:description" content="標題列 (Header)接續之前的進度，開始將網頁上方的 Header 區塊加入一些內容，瀏覽 Angular Material2 網站可看已經有一個現成的元件-Toolbar，我們在 src\app\custom-material.module.ts 加入2個元件-MdToolbarModule、MdTooltipModule。   import { NgModule } from &amp;#39;@">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-09-05T15:47:25.554Z">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_31.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_32.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_33.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_34.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_35.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_36.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
+<meta property="og:updated_time" content="2017-09-06T11:44:28.935Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular UI：標題列">
-<meta name="twitter:description" content="標題列 (Header)Angular Flex-Layout 原本是依附在 Angular Material2 內的模組，它主要實作了 CSS3 的 Flexbox 排版，因此要注意使用者瀏覽器是否支援此語法。">
+<meta name="twitter:description" content="標題列 (Header)接續之前的進度，開始將網頁上方的 Header 區塊加入一些內容，瀏覽 Angular Material2 網站可看已經有一個現成的元件-Toolbar，我們在 src\app\custom-material.module.ts 加入2個元件-MdToolbarModule、MdTooltipModule。   import { NgModule } from &amp;#39;@">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_31.png">
 
 
 
@@ -305,8 +313,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-05T23:47:25+08:00">
-                2017/09/05
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-06T19:44:28+08:00">
+                2017/09/06
               </time>
             
           </span>
@@ -358,7 +366,169 @@
       
 
       
-        <h1 id="標題列-Header"><a href="#標題列-Header" class="headerlink" title="標題列 (Header)"></a>標題列 (Header)</h1><p><strong>Angular Flex-Layout</strong> 原本是依附在 <a href="/angular/training/07_angular_ui-material2/"><strong>Angular Material2</strong></a> 內的模組，它主要實作了 CSS3 的 Flexbox 排版，因此要注意使用者瀏覽器是否支援此語法。</p>
+        <h1 id="標題列-Header"><a href="#標題列-Header" class="headerlink" title="標題列 (Header)"></a>標題列 (Header)</h1><p>接續之前的進度，開始將網頁上方的 Header 區塊加入一些內容，瀏覽 Angular Material2 網站可看已經有一個現成的元件-<a href="https://material.angular.io/components/toolbar/examples" target="_blank" rel="external"><strong>Toolbar</strong></a>，我們在 <code>src\app\custom-material.module.ts</code> 加入2個元件-<strong>MdToolbarModule</strong>、<strong>MdTooltipModule</strong>。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { FlexLayoutModule } from &#39;@angular&#x2F;flex-layout&#39;;
+import {
+  MdIconModule,
+  MdButtonModule,
+  MdListModule,
+  MdToolbarModule,
+  MdTooltipModule
+} from &#39;@angular&#x2F;material&#39;;
+
+@NgModule({
+  imports: [
+    FlexLayoutModule,
+    MdIconModule,
+    MdButtonModule,
+    MdListModule,
+    MdToolbarModule,
+    MdTooltipModule
+  ],
+  exports: [
+    FlexLayoutModule,
+    MdIconModule,
+    MdButtonModule,
+    MdListModule,
+    MdToolbarModule,
+    MdTooltipModule
+  ]
+})
+export class CustomMaterialModule { }
+</code></pre>
+<p>開啟 <code>src\app\home\header\header.component.html</code>，加入 Toolbar 以及圖示按鈕。  </p>
+<pre><code>&lt;md-toolbar color=&quot;primary&quot;&gt;
+  &lt;span&gt;Angular demo&lt;&#x2F;span&gt;
+  &lt;span fxFlex&gt;&lt;&#x2F;span&gt;
+  &lt;button md-icon-button mdTooltip=&quot;首頁&quot; routerLink=&quot;&#x2F;home&quot;&gt;
+    &lt;md-icon&gt;home&lt;&#x2F;md-icon&gt;
+  &lt;&#x2F;button&gt;
+  &lt;button md-icon-button mdTooltip=&quot;設定&quot;&gt;
+    &lt;md-icon&gt;settings_input_component&lt;&#x2F;md-icon&gt;
+  &lt;&#x2F;button&gt;
+  &lt;button md-icon-button mdTooltip=&quot;關於&quot;&gt;
+    &lt;md-icon&gt;info&lt;&#x2F;md-icon&gt;
+  &lt;&#x2F;button&gt;
+&lt;&#x2F;md-toolbar&gt;
+</code></pre>
+<p>查看結果，畫面看似正常，但是 Header 區塊下方多出一條藍色區域，顯然跟之前在 <code>src\app\home\home.component.html</code> 所設定高度不同，所以直接拿到高度值。<br><img src="/images/angular/training/ui/angular_ui_31.png" alt="">  </p>
+<pre><code>&lt;div fxFill fxLayout=&quot;column&quot; class=&quot;layout&quot;&gt;
+  &lt;div class=&quot;header&quot;&gt;
+    &lt;app-header&gt;&lt;&#x2F;app-header&gt;
+  &lt;&#x2F;div&gt;
+  &lt;div fxFlex fxLayout=&quot;row&quot; class=&quot;main&quot;&gt;
+    &lt;div fxFlex=&quot;200px&quot; class=&quot;aside scrollbar&quot;&gt;
+      &lt;app-aside&gt;&lt;&#x2F;app-aside&gt;
+    &lt;&#x2F;div&gt;
+    &lt;div fxFlex class=&quot;content&quot;&gt;
+      &lt;router-outlet&gt;&lt;&#x2F;router-outlet&gt;
+    &lt;&#x2F;div&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+</code></pre>
+<p><img src="/images/angular/training/ui/angular_ui_32.png" alt=""><br>開啟 <code>src\app\home\home.component.scss</code> 加入陰影效果。  </p>
+<pre><code>.layout {
+  background: black;
+  .header {
+    background: blue;
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+    z-index: 20;
+  }
+  .main {
+    background: grey;
+    .aside {
+      background: green;
+      box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
+      z-index: 10;
+    }
+    .content {
+      background: orange;
+    }
+  }
+}
+</code></pre>
+<p><img src="/images/angular/training/ui/angular_ui_33.png" alt="">  </p>
+<h2 id="Sidenav"><a href="#Sidenav" class="headerlink" title="Sidenav"></a>Sidenav</h2><p>參考官網 <a href="https://material.angular.io/components/sidenav/overview" target="_blank" rel="external">Sidenav</a> 範例。  <code>src\app\custom-material.module.ts</code> 加入 <strong>MdSidenavModule</strong>。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { FlexLayoutModule } from &#39;@angular&#x2F;flex-layout&#39;;
+import {
+  MdIconModule,
+  MdButtonModule,
+  MdListModule,
+  MdToolbarModule,
+  MdTooltipModule,
+  MdSidenavModule
+} from &#39;@angular&#x2F;material&#39;;
+
+@NgModule({
+  imports: [
+    FlexLayoutModule,
+    MdIconModule,
+    MdButtonModule,
+    MdListModule,
+    MdToolbarModule,
+    MdTooltipModule,
+    MdSidenavModule
+  ],
+  exports: [
+    FlexLayoutModule,
+    MdIconModule,
+    MdButtonModule,
+    MdListModule,
+    MdToolbarModule,
+    MdTooltipModule,
+    MdSidenavModule
+  ]
+})
+export class CustomMaterialModule { }
+</code></pre>
+<p>將 <strong>Sidenav</strong> 加到 <code>src\app\home\home.component.html</code>，並在 Header 區塊加入一個開啟按鈕。  </p>
+<pre><code>&lt;div fxFill fxLayout=&quot;column&quot; class=&quot;layout&quot;&gt;
+  &lt;div class=&quot;header&quot; fxLayout=&quot;row&quot;&gt;
+    &lt;button md-icon-button (click)=&quot;sidenav.open()&quot;&gt;
+      &lt;md-icon&gt;menu&lt;&#x2F;md-icon&gt;
+    &lt;&#x2F;button&gt;
+    &lt;app-header fxFlex&gt;&lt;&#x2F;app-header&gt;
+  &lt;&#x2F;div&gt;
+  &lt;div fxFlex fxLayout=&quot;row&quot; class=&quot;main&quot;&gt;
+    &lt;md-sidenav-container fxFill&gt;
+      &lt;md-sidenav #sidenav mode=&quot;over&quot; class=&quot;aside&quot;&gt;
+        &lt;app-aside fxFlex=&quot;200px&quot;&gt;&lt;&#x2F;app-aside&gt;
+      &lt;&#x2F;md-sidenav&gt;
+      &lt;div fxFlex class=&quot;content&quot;&gt;
+        &lt;router-outlet&gt;&lt;&#x2F;router-outlet&gt;
+      &lt;&#x2F;div&gt;
+    &lt;&#x2F;md-sidenav-container&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+</code></pre>
+<p><img src="/images/angular/training/ui/angular_ui_34.gif" alt="">  </p>
+<h2 id="Flex-Layout：fxHide-amp-fxShow"><a href="#Flex-Layout：fxHide-amp-fxShow" class="headerlink" title="Flex-Layout：fxHide &amp; fxShow"></a>Flex-Layout：fxHide &amp; fxShow</h2><p><strong>Angular Flex-Layout</strong> 提供了 <code>fxHide</code> 來隱藏目前的元素，以及 <code>fxShow</code> 來顯示目前的元素，後面可以再加上分段點來決定要在什麼尺寸觸發。<br><img src="/images/angular/training/ui/angular_ui_35.png" alt=""><br>利用這個效果我們可以模擬出類似響應式網站的效果，依照需要調整的尺寸建立一種樣板，再搭配 <code>fxHide</code> 與 <code>fxShow</code> 讓不同尺寸顯示對應的樣板，開啟 <code>src\app\home\home.component.html</code> 並修改如下：  </p>
+<pre><code>&lt;div fxFill fxLayout=&quot;column&quot; class=&quot;layout&quot;&gt;
+  &lt;div class=&quot;header&quot; fxLayout=&quot;row&quot;&gt;
+    &lt;button md-icon-button (click)=&quot;sidenav.open()&quot; fxHide fxShow.xs&gt;
+      &lt;md-icon&gt;menu&lt;&#x2F;md-icon&gt;
+    &lt;&#x2F;button&gt;
+    &lt;app-header fxFlex&gt;&lt;&#x2F;app-header&gt;
+  &lt;&#x2F;div&gt;
+  &lt;div fxFlex fxLayout=&quot;row&quot; class=&quot;main&quot;&gt;
+    &lt;div fxFlex=&quot;200px&quot; class=&quot;aside&quot; fxHide.xs&gt;
+      &lt;app-aside&gt;&lt;&#x2F;app-aside&gt;
+    &lt;&#x2F;div&gt;
+    &lt;md-sidenav-container fxFlex&gt;
+      &lt;md-sidenav #sidenav mode=&quot;over&quot; class=&quot;aside&quot; fxHide fxShow.xs&gt;
+        &lt;app-aside fxFlex=&quot;200px&quot;&gt;&lt;&#x2F;app-aside&gt;
+      &lt;&#x2F;md-sidenav&gt;
+      &lt;div fxFlex class=&quot;content&quot;&gt;
+        &lt;router-outlet&gt;&lt;&#x2F;router-outlet&gt;
+      &lt;&#x2F;div&gt;
+    &lt;&#x2F;md-sidenav-container&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+</code></pre>
+<p>可以看到當用手機尺寸瀏覽時側邊列預設會隱藏起來。<br><img src="/images/angular/training/ui/angular_ui_36.gif" alt=""><br>但是目前還有一些問題需要調整：<br><strong>menu</strong> 按鈕應該值些包含在 <strong>app-header</strong> 內比較恰當。<br>當用手機尺寸瀏覽時，點選功能選單後雖然內容有切換，但是選單列卻沒有自動縮回去。<br>也就是說我們需要一個機制讓子元件狀態改變時能夠通知外層的元件。  </p>
+<p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-06.zip"><strong>first-app_2017-09-06.zip</strong></a>  </p>
 
       
     </div>
@@ -608,7 +778,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#標題列-Header"><span class="nav-number">1.</span> <span class="nav-text">標題列 (Header)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#標題列-Header"><span class="nav-number">1.</span> <span class="nav-text">標題列 (Header)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sidenav"><span class="nav-number">1.1.</span> <span class="nav-text">Sidenav</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flex-Layout：fxHide-amp-fxShow"><span class="nav-number">1.2.</span> <span class="nav-text">Flex-Layout：fxHide & fxShow</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Angular,Event,Output" />
+  <meta name="keywords" content="Angular,Output,EventEmitter,Event" />
 
 
 
@@ -90,18 +90,23 @@
 
 
 
-<meta name="description" content="事件 (Output)">
-<meta name="keywords" content="Angular,Event,Output">
+<meta name="description" content="事件 (EventEmitter)事件(Event) 可以說是一種狀態的描述，它提供一個主動通知的機制，讓我們可以在發生的當下去做一些額外的處理，例如：按下按鈕，這應該是我們最常用了事件，在點擊按鈕後我們可能儲存目前資訊、切換目前頁面、顯示額外訊息…等等。在 Angular UI：標題列 我們從官方範例一起複製了一段代碼-(click)=&amp;quot;sidenav.open()&amp;quot;，看起來">
+<meta name="keywords" content="Angular,Output,EventEmitter,Event">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular 事件">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/13_angular_event/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="事件 (Output)">
+<meta property="og:description" content="事件 (EventEmitter)事件(Event) 可以說是一種狀態的描述，它提供一個主動通知的機制，讓我們可以在發生的當下去做一些額外的處理，例如：按下按鈕，這應該是我們最常用了事件，在點擊按鈕後我們可能儲存目前資訊、切換目前頁面、顯示額外訊息…等等。在 Angular UI：標題列 我們從官方範例一起複製了一段代碼-(click)=&amp;quot;sidenav.open()&amp;quot;，看起來">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-09-06T11:46:41.122Z">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/event/angular_event_01.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/event/angular_event_02.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/event/angular_event_03.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
+<meta property="og:updated_time" content="2017-09-07T03:39:50.274Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular 事件">
-<meta name="twitter:description" content="事件 (Output)">
+<meta name="twitter:description" content="事件 (EventEmitter)事件(Event) 可以說是一種狀態的描述，它提供一個主動通知的機制，讓我們可以在發生的當下去做一些額外的處理，例如：按下按鈕，這應該是我們最常用了事件，在點擊按鈕後我們可能儲存目前資訊、切換目前頁面、顯示額外訊息…等等。在 Angular UI：標題列 我們從官方範例一起複製了一段代碼-(click)=&amp;quot;sidenav.open()&amp;quot;，看起來">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/event/angular_event_01.png">
 
 
 
@@ -305,8 +310,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-06T19:46:41+08:00">
-                2017/09/06
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-07T11:39:50+08:00">
+                2017/09/07
               </time>
             
           </span>
@@ -358,7 +363,167 @@
       
 
       
-        <h1 id="事件-Output"><a href="#事件-Output" class="headerlink" title="事件 (Output)"></a>事件 (Output)</h1>
+        <h1 id="事件-EventEmitter"><a href="#事件-EventEmitter" class="headerlink" title="事件 (EventEmitter)"></a>事件 (EventEmitter)</h1><p><strong>事件(Event)</strong> 可以說是一種<strong>狀態</strong>的描述，它提供一個主動通知的機制，讓我們可以在發生的當下去做一些額外的處理，例如：<strong>按下按鈕</strong>，這應該是我們最常用了事件，在點擊按鈕後我們可能儲存目前資訊、切換目前頁面、顯示額外訊息…等等。<br>在 <a href="/angular/training/12_angular_ui_header/">Angular UI：標題列</a> 我們從<a href="https://material.angular.io/components/sidenav/overview" target="_blank" rel="external"><strong>官方範例</strong></a>一起複製了一段代碼-<code>(click)=&quot;sidenav.open()&quot;</code>，看起來就像是點擊事件，但是又跟 DOM 的點擊事件(<code>onclick</code>)比起來少了最前面的 <code>on</code> 多了小括弧。  </p>
+<blockquote>
+<p>Angular 內建透過指令(Directive)方式產生了相對應 DOM 事件的 <strong>偽事件</strong> (不是正確觀念，但是這樣說好像比較好理解)， 它本身會去監控 DOM 的事件，當 DOM 事件觸發時在去觸發對應的 <strong>偽事件</strong>，初期我們可以直接把它當作 DOM 事件來看待，只是寫法上稍做調整。<br><strong>小括號</strong> 其實是 Angular <strong>單向繫結</strong>(<strong>事件繫結</strong>)的語法，透過繫結方式讓 <strong>前端樣板</strong>(xxx<strong>.component.html</strong>) 的變化( <strong>偽事件</strong>的觸發) 可以反應回 <strong>後端元件</strong>(xxx<strong>.component.ts</strong>)。</p>
+</blockquote>
+<p><img src="/images/angular/training/event/angular_event_01.png" alt="">  </p>
+<h2 id="建立自訂事件"><a href="#建立自訂事件" class="headerlink" title="建立自訂事件"></a>建立自訂事件</h2><p>我們在 <code>src\app\home\header\header.component.ts</code> 內宣告一個<strong>事件觸發器</strong>(<strong>EventEmitter</strong>)，並透過 <code>@Output()</code> 這個裝飾器將它提供給外部引用，並建立一個 sidenav_click 方法來觸發 <strong>EventEmitter</strong>。  </p>
+<pre><code>import { Component, OnInit, Output, EventEmitter} from &#39;@angular&#x2F;core&#39;;
+
+@Component({
+  selector: &#39;app-header&#39;,
+  templateUrl: &#39;.&#x2F;header.component.html&#39;,
+  styleUrls: [&#39;.&#x2F;header.component.scss&#39;]
+})
+export class HeaderComponent implements OnInit {
+  @Output() sidenavClick = new EventEmitter();
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  sidenav_click() {
+    this.sidenavClick.emit(null);
+  }
+}
+</code></pre>
+<p>開啟 <code>src\app\home\header\header.component.html</code> 將 menu 按鈕複製過來，將 <code>click</code> 改連結到 <code>sidenav_click</code> 方法，這樣 <strong>HeaderComponent</strong> 就多了一個 <strong>sidenavClick</strong> 的事件。  </p>
+<pre><code>&lt;md-toolbar color=&quot;primary&quot;&gt;
+  &lt;button md-icon-button (click)=&quot;sidenav_click()&quot; fxHide fxShow.xs&gt;
+    &lt;md-icon&gt;menu&lt;&#x2F;md-icon&gt;
+  &lt;&#x2F;button&gt;
+  &lt;span&gt;Angular demo&lt;&#x2F;span&gt;
+  &lt;span fxFlex&gt;&lt;&#x2F;span&gt;
+  &lt;button md-icon-button mdTooltip=&quot;首頁&quot; routerLink=&quot;&#x2F;home&quot;&gt;
+    &lt;md-icon&gt;home&lt;&#x2F;md-icon&gt;
+  &lt;&#x2F;button&gt;
+  &lt;button md-icon-button mdTooltip=&quot;設定&quot;&gt;
+    &lt;md-icon&gt;settings_input_component&lt;&#x2F;md-icon&gt;
+  &lt;&#x2F;button&gt;
+  &lt;button md-icon-button mdTooltip=&quot;關於&quot;&gt;
+    &lt;md-icon&gt;info&lt;&#x2F;md-icon&gt;
+  &lt;&#x2F;button&gt;
+&lt;&#x2F;md-toolbar&gt;
+</code></pre>
+<p>開啟 <code>src\app\home\home.component.html</code>，移除 menu 按鈕，並將 <code>sidenav.open()</code> 繫結至 <strong>HeaderComponent</strong> 的 <strong>sidenavClick</strong>。  </p>
+<pre><code>&lt;div fxFill fxLayout=&quot;column&quot; class=&quot;layout&quot;&gt;
+  &lt;div class=&quot;header&quot; fxLayout=&quot;row&quot;&gt;
+    &lt;!-- &lt;button md-icon-button (click)=&quot;sidenav.open()&quot; fxHide fxShow.xs&gt;
+      &lt;md-icon&gt;menu&lt;&#x2F;md-icon&gt;
+    &lt;&#x2F;button&gt; --&gt;
+    &lt;app-header fxFlex (sidenavClick)=&quot;sidenav.open()&quot;&gt;&lt;&#x2F;app-header&gt;
+  &lt;&#x2F;div&gt;
+  &lt;div fxFlex fxLayout=&quot;row&quot; class=&quot;main&quot;&gt;
+    &lt;div fxFlex=&quot;200px&quot; class=&quot;aside&quot; fxHide.xs&gt;
+      &lt;app-aside&gt;&lt;&#x2F;app-aside&gt;
+    &lt;&#x2F;div&gt;
+    &lt;md-sidenav-container fxFlex&gt;
+      &lt;md-sidenav #sidenav mode=&quot;over&quot; class=&quot;aside&quot; fxHide fxShow.xs&gt;
+        &lt;app-aside fxFlex=&quot;200px&quot;&gt;&lt;&#x2F;app-aside&gt;
+      &lt;&#x2F;md-sidenav&gt;
+      &lt;div fxFlex class=&quot;content&quot;&gt;
+        &lt;router-outlet&gt;&lt;&#x2F;router-outlet&gt;
+      &lt;&#x2F;div&gt;
+    &lt;&#x2F;md-sidenav-container&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+</code></pre>
+<p>以手機尺寸執行瀏覽器查看結果。<br><img src="/images/angular/training/event/angular_event_02.gif" alt="">  </p>
+<p>同樣方式我們在 <strong>AsideComponent</strong> 元件內建立一個 <strong>menuClick</strong> 事件，並讓它在點選功能選單時觸發。  </p>
+<pre><code>import { Component, OnInit, Output, EventEmitter } from &#39;@angular&#x2F;core&#39;;
+
+@Component({
+  selector: &#39;app-aside&#39;,
+  templateUrl: &#39;.&#x2F;aside.component.html&#39;,
+  styleUrls: [&#39;.&#x2F;aside.component.scss&#39;]
+})
+export class AsideComponent implements OnInit {
+  @Output() menuClick = new EventEmitter();
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  menu_click() {
+    this.menuClick.emit(null);
+  }
+}
+</code></pre>
+<pre><code>&lt;md-list&gt;
+  &lt;h3 md-subheader&gt;員工專區&lt;&#x2F;h3&gt;
+  &lt;button md-button routerLink=&quot;.&#x2F;calendar&quot; (click)=&quot;menu_click()&quot;&gt;
+    &lt;md-list-item&gt;
+      &lt;md-icon md-list-icon&gt;today&lt;&#x2F;md-icon&gt;
+      &lt;h4 md-line&gt;行 事 曆&lt;&#x2F;h4&gt;
+    &lt;&#x2F;md-list-item&gt;
+  &lt;&#x2F;button&gt;
+  &lt;button md-button routerLink=&quot;.&#x2F;address-book&quot; (click)=&quot;menu_click()&quot;&gt;
+    &lt;md-list-item&gt;
+      &lt;md-icon md-list-icon&gt;contact_phone&lt;&#x2F;md-icon&gt;
+      &lt;h4 md-line&gt;通 訊 錄&lt;&#x2F;h4&gt;
+    &lt;&#x2F;md-list-item&gt;
+  &lt;&#x2F;button&gt;
+  &lt;button md-button routerLink=&quot;.&#x2F;logbook&quot; (click)=&quot;menu_click()&quot;&gt;
+    &lt;md-list-item&gt;
+      &lt;md-icon md-list-icon&gt;border_color&lt;&#x2F;md-icon&gt;
+      &lt;h4 md-line&gt;工作日誌&lt;&#x2F;h4&gt;
+    &lt;&#x2F;md-list-item&gt;
+  &lt;&#x2F;button&gt;
+  &lt;button md-button routerLink=&quot;.&#x2F;to-do-list&quot; (click)=&quot;menu_click()&quot;&gt;
+    &lt;md-list-item&gt;
+      &lt;md-icon md-list-icon&gt;playlist_add_check&lt;&#x2F;md-icon&gt;
+      &lt;h4 md-line&gt;待辦事項&lt;&#x2F;h4&gt;
+    &lt;&#x2F;md-list-item&gt;
+  &lt;&#x2F;button&gt;
+  &lt;button md-button routerLink=&quot;.&#x2F;file&quot; (click)=&quot;menu_click()&quot;&gt;
+    &lt;md-list-item&gt;
+      &lt;md-icon md-list-icon&gt;cloud_download&lt;&#x2F;md-icon&gt;
+      &lt;h4 md-line&gt;檔案下載&lt;&#x2F;h4&gt;
+    &lt;&#x2F;md-list-item&gt;
+  &lt;&#x2F;button&gt;
+  &lt;button md-button routerLink=&quot;.&#x2F;leave&quot; (click)=&quot;menu_click()&quot;&gt;
+    &lt;md-list-item&gt;
+      &lt;md-icon md-list-icon&gt;weekend&lt;&#x2F;md-icon&gt;
+      &lt;h4 md-line&gt;請  假&lt;&#x2F;h4&gt;
+    &lt;&#x2F;md-list-item&gt;
+  &lt;&#x2F;button&gt;
+  &lt;button md-button routerLink=&quot;.&#x2F;reimburse&quot; (click)=&quot;menu_click()&quot;&gt;
+    &lt;md-list-item&gt;
+      &lt;md-icon md-list-icon&gt;attach_money&lt;&#x2F;md-icon&gt;
+      &lt;h4 md-line&gt;差旅報支&lt;&#x2F;h4&gt;
+    &lt;&#x2F;md-list-item&gt;
+  &lt;&#x2F;button&gt;
+&lt;&#x2F;md-list&gt;
+</code></pre>
+<p>開啟 <code>src\app\home\home.component.html</code>，將 <code>sidenav.close()</code> 繫結至 <strong>AsideComponent</strong> 的 <strong>menuClick</strong>。  </p>
+<pre><code>&lt;div fxFill fxLayout=&quot;column&quot; class=&quot;layout&quot;&gt;
+  &lt;div class=&quot;header&quot; fxLayout=&quot;row&quot;&gt;
+    &lt;!-- &lt;button md-icon-button (click)=&quot;sidenav.open()&quot; fxHide fxShow.xs&gt;
+      &lt;md-icon&gt;menu&lt;&#x2F;md-icon&gt;
+    &lt;&#x2F;button&gt; --&gt;
+    &lt;app-header fxFlex (sidenavClick)=&quot;sidenav.open()&quot;&gt;&lt;&#x2F;app-header&gt;
+  &lt;&#x2F;div&gt;
+  &lt;div fxFlex fxLayout=&quot;row&quot; class=&quot;main&quot;&gt;
+    &lt;div fxFlex=&quot;200px&quot; class=&quot;aside&quot; fxHide.xs&gt;
+      &lt;app-aside (menuClick)=&quot;sidenav.close()&quot;&gt;&lt;&#x2F;app-aside&gt;
+    &lt;&#x2F;div&gt;
+    &lt;md-sidenav-container fxFlex&gt;
+      &lt;md-sidenav #sidenav mode=&quot;over&quot; class=&quot;aside&quot; fxHide fxShow.xs&gt;
+        &lt;app-aside fxFlex=&quot;200px&quot; (menuClick)=&quot;sidenav.close()&quot;&gt;&lt;&#x2F;app-aside&gt;
+      &lt;&#x2F;md-sidenav&gt;
+      &lt;div fxFlex class=&quot;content&quot;&gt;
+        &lt;router-outlet&gt;&lt;&#x2F;router-outlet&gt;
+      &lt;&#x2F;div&gt;
+    &lt;&#x2F;md-sidenav-container&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+</code></pre>
+<p>重新執行瀏覽器查看結果，整體效果應該跟一般手機APP操作差不多了。<br><img src="/images/angular/training/event/angular_event_03.gif" alt="">  </p>
+<p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-07.zip"><strong>first-app_2017-09-07.zip</strong></a>  </p>
+
       
     </div>
 
@@ -389,7 +554,9 @@
           
             <a href="/tags/Angular/" rel="tag"># Angular</a>
           
-            <a href="/tags/Event/" rel="tag"># Event</a>
+            <a href="/tags/Output/" rel="tag"># Output</a>
+          
+            <a href="/tags/EventEmitter/" rel="tag"># EventEmitter</a>
           
         </div>
       
@@ -521,7 +688,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -607,7 +774,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#事件-Output"><span class="nav-number">1.</span> <span class="nav-text">事件 (Output)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#事件-EventEmitter"><span class="nav-number">1.</span> <span class="nav-text">事件 (EventEmitter)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立自訂事件"><span class="nav-number">1.1.</span> <span class="nav-text">建立自訂事件</span></a></li></ol></li></ol></div>
             
 
           </div>

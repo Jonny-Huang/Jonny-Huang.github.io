@@ -102,7 +102,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/event/angular_event_02.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/event/angular_event_03.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-07T03:44:04.202Z">
+<meta property="og:updated_time" content="2017-09-08T08:27:20.153Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular 事件">
 <meta name="twitter:description" content="事件 (EventEmitter)事件(Event) 可以說是一種狀態的描述，它提供一個主動通知的機制，讓我們可以在發生的當下去做一些額外的處理，例如：按下按鈕，這應該是我們最常用了事件，在點擊按鈕後我們可能儲存目前資訊、切換目前頁面、顯示額外訊息…等等。在 Angular UI：標題列 我們從官方範例一起複製了一段代碼-(click)=&amp;quot;sidenav.open()&amp;quot;，看起來">
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-07T11:44:04+08:00">
-                2017/09/07
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-08T16:27:20+08:00">
+                2017/09/08
               </time>
             
           </span>
@@ -369,6 +369,9 @@
 </blockquote>
 <p><img src="/images/angular/training/event/angular_event_01.png" alt="">  </p>
 <h2 id="建立自訂事件"><a href="#建立自訂事件" class="headerlink" title="建立自訂事件"></a>建立自訂事件</h2><p>我們在 <code>src\app\home\header\header.component.ts</code> 內宣告一個<strong>事件觸發器</strong>(<strong>EventEmitter</strong>)，並透過 <code>@Output()</code> 這個裝飾器將它提供給外部引用，並建立一個 sidenav_click 方法來觸發 <strong>EventEmitter</strong>。  </p>
+<blockquote>
+<p><code>@Output()</code> 可以加入別名參數，外部會引用到此別名，它會直接對應到原本的參數，預設別名與參數相同，一般除非是特別規畫過，否則直接使用預設值在維護上會比較方便。</p>
+</blockquote>
 <pre><code>import { Component, OnInit, Output, EventEmitter} from &#39;@angular&#x2F;core&#39;;
 
 @Component({
@@ -556,8 +559,6 @@ export class AsideComponent implements OnInit {
           
             <a href="/tags/Output/" rel="tag"># Output</a>
           
-            <a href="/tags/EventEmitter/" rel="tag"># EventEmitter</a>
-          
         </div>
       
 
@@ -594,6 +595,10 @@ export class AsideComponent implements OnInit {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/angular/training/14_angular_ui_clarity_design_system/" rel="prev" title="Angular UI：Clarity Design System">
+                Angular UI：Clarity Design System <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -666,7 +671,7 @@ export class AsideComponent implements OnInit {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>

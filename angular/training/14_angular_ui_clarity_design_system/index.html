@@ -107,7 +107,24 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/clarity/angular_ui_clarity_07.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/clarity/angular_ui_clarity_08.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/clarity/angular_ui_clarity_09.png">
-<meta property="og:updated_time" content="2017-09-08T09:23:41.463Z">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/clarity/angular_ui_clarity_10.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/clarity/angular_ui_clarity_11.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/clarity/angular_ui_clarity_12.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/clarity/angular_ui_clarity_13.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/clarity/angular_ui_clarity_14.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/clarity/angular_ui_clarity_15.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/clarity/angular_ui_clarity_16.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/clarity/angular_ui_clarity_17.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/clarity/angular_ui_clarity_18.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/clarity/angular_ui_clarity_19.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/clarity/angular_ui_clarity_20.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/clarity/angular_ui_clarity_21.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/clarity/angular_ui_clarity_22.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/clarity/angular_ui_clarity_24.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/clarity/angular_ui_clarity_23.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/clarity/angular_ui_clarity_25.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
+<meta property="og:updated_time" content="2017-09-11T03:12:16.737Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular UI：Clarity Design System">
 <meta name="twitter:description" content="Clarity Design System因為多個一個新案子，所以就順便試試 VMware 所開發的 Clarity Design System 建立 Angular 專案不知道怎麼建立的可以參考 建立 Angular 專案。目前環境：    Node.js：8.4.0 Angular CLI：1.4.0 Angular：4.4.0-RC.0  安裝教學可參閱 https://vmware.git">
@@ -315,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-08T17:23:41+08:00">
-                2017/09/08
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-11T11:12:16+08:00">
+                2017/09/11
               </time>
             
           </span>
@@ -446,7 +463,7 @@ const routes: Routes = [
 })
 export class HomeRoutingModule { }
 </code></pre>
-<p>查看網站可以發現官方已經提供一個版面-<a href="https://vmware.github.io/clarity/documentation/app-layout" target="_blank" rel="external">Application Layout</a>。<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_08.png" alt=""><br>將範例程式碼複製到 <code>src\app\home\index\index.component.html</code>，並在每個 <code>div</code> 區段內加入文字註解。  </p>
+<p>查看網站可以發現官方已經提供一個版面-<a href="https://vmware.github.io/clarity/documentation/app-layout" target="_blank" rel="external">Application Layout</a>。<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_08.png" alt=""><br>將範例程式碼複製到 <code>src\app\home\index\index.component.html</code>，並在每個 <code>div</code> 區段內加入文字註解。</p>
 <pre><code>&lt;div class=&quot;main-container&quot;&gt;
   &lt;div class=&quot;alert alert-app-level&quot;&gt;
     Alert
@@ -476,6 +493,203 @@ export class HomeRoutingModule { }
 </ul>
 <p>所以如果不能忍受 bug 的人，建議晚幾個禮拜確定沒有災情發生後再更新。</p>
 </blockquote>
+<h2 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h2><p>建立 <strong>Header元件</strong> 指令如下：<br><code>ng g c home\header</code><br>複製官方 <a href="https://vmware.github.io/clarity/documentation/header" target="_blank" rel="external">Header</a> 範例：<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_10.png" alt="">  </p>
+<pre><code>&lt;header class=&quot;header header-6&quot;&gt;
+  &lt;div class=&quot;branding&quot;&gt;
+    &lt;a href=&quot;...&quot; class=&quot;nav-link&quot;&gt;
+      &lt;clr-icon shape=&quot;vm-bug&quot;&gt;&lt;&#x2F;clr-icon&gt;
+      &lt;span class=&quot;title&quot;&gt;Project Clarity&lt;&#x2F;span&gt;
+    &lt;&#x2F;a&gt;
+  &lt;&#x2F;div&gt;
+  &lt;div class=&quot;header-nav&quot;&gt;
+    &lt;a href=&quot;...&quot; class=&quot;nav-link nav-icon&quot;&gt;
+      &lt;clr-icon shape=&quot;cloud&quot;&gt;&lt;&#x2F;clr-icon&gt;
+    &lt;&#x2F;a&gt;
+    &lt;a href=&quot;...&quot; class=&quot;active nav-link nav-icon&quot;&gt;
+      &lt;clr-icon shape=&quot;folder&quot;&gt;&lt;&#x2F;clr-icon&gt;
+    &lt;&#x2F;a&gt;
+  &lt;&#x2F;div&gt;
+  &lt;form class=&quot;search&quot;&gt;
+    &lt;label for=&quot;search_input&quot;&gt;
+      &lt;input id=&quot;search_input&quot; type=&quot;text&quot; placeholder=&quot;Search for keywords...&quot;&gt;
+  &lt;&#x2F;label&gt;
+  &lt;&#x2F;form&gt;
+  &lt;div class=&quot;header-actions&quot;&gt;
+    &lt;clr-dropdown&gt;
+      &lt;button class=&quot;nav-icon&quot; clrDropdownTrigger&gt;
+          &lt;clr-icon shape=&quot;user&quot;&gt;&lt;&#x2F;clr-icon&gt;
+          &lt;clr-icon shape=&quot;caret down&quot;&gt;&lt;&#x2F;clr-icon&gt;
+      &lt;&#x2F;button&gt;
+      &lt;clr-dropdown-menu *clrIfOpen clrPosition=&quot;bottom-right&quot;&gt;
+        &lt;a href=&quot;...&quot; clrDropdownItem&gt;About&lt;&#x2F;a&gt;
+        &lt;a href=&quot;...&quot; clrDropdownItem&gt;Preferences&lt;&#x2F;a&gt;
+        &lt;a href=&quot;...&quot; clrDropdownItem&gt;Log out&lt;&#x2F;a&gt;
+      &lt;&#x2F;clr-dropdown-menu&gt;
+    &lt;&#x2F;clr-dropdown&gt;
+  &lt;&#x2F;div&gt;
+
+&lt;&#x2F;header&gt;
+</code></pre>
+<h2 id="修改-component-selector"><a href="#修改-component-selector" class="headerlink" title="修改 component-selector"></a>修改 component-selector</h2><p>在專案內預設元件的 <code>selector</code> 屬性都是 <code>app-</code> 開頭，如果整個專案元件很多時，會變得有點多餘。<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_11.png" alt=""><br>修改名稱時會發現必須加入關閉 <strong>tslint</strong> 的 <code>component-selector</code> 檢查機制才能修改。<br><code>// tslint:disable-next-line:component-selector</code><br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_12.png" alt=""><br>但是如果每個元件都要加上註解又會很麻煩，所以我們直接開啟專案下 <strong>tslint</strong> 的設定檔-<code>tslint.json</code>，用關鍵字 <code>component-selector</code> 搜尋，可以發現如下的設定：<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_13.png" alt=""><br>比較正規的做法應該是將想的要前綴詞加進去，但是筆者比較偷懶，將最前面的布林參數由 <code>true</code> 改成 <code>false</code>，這樣就會忽略檢查。<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_14.png" alt=""><br>可以看到拿掉 <code>header.component.ts</code> 拿掉註解也不會出現錯誤。<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_15.png" alt=""><br>開啟 <code>src\app\home\index\index.component.html</code>，插入 <strong>HeaderComponent</strong>。</p>
+<pre><code>&lt;div class=&quot;main-container&quot;&gt;
+  &lt;div class=&quot;alert alert-app-level&quot;&gt;
+    Alert
+  &lt;&#x2F;div&gt;
+  &lt;home-header&gt;&lt;&#x2F;home-header&gt;
+  &lt;nav class=&quot;subnav&quot;&gt;
+    Subnav
+  &lt;&#x2F;nav&gt;
+  &lt;div class=&quot;content-container&quot;&gt;
+    &lt;div class=&quot;content-area&quot;&gt;
+      Content
+    &lt;&#x2F;div&gt;
+    &lt;nav class=&quot;sidenav&quot;&gt;
+      Sidenav
+    &lt;&#x2F;nav&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+</code></pre>
+<p>開啟瀏覽器檢視結果。<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_16.png" alt=""><br>修改 <code>src\app\home\index\index.component.ts</code>，將 <code>selector</code> 屬性設為 <code>&#39;home&#39;</code>。<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_17.png" alt="">  </p>
+<blockquote>
+<p><code>selector</code> 命名如果分類的好，後續其他專案可以整個模組資料夾複製過去沿用，因此應避免名稱容易重複的命名規則。</p>
+</blockquote>
+<h2 id="Sidenav"><a href="#Sidenav" class="headerlink" title="Sidenav"></a>Sidenav</h2><p>如同 Header 步驟，我們先建立一個 <strong>SidenavComponent</strong>，並將 <code>selector</code> 設定為 <code>&#39;home-sidenav&#39;</code>。<br><code>ng g c home\sidenav</code><br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_18.png" alt=""><br>再將官方 <a href="https://vmware.github.io/clarity/documentation/sidenav" target="_blank" rel="external">Sidenav 範例</a> 複製至 <code>src\app\home\sidenav\sidenav.component.html</code>。<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_19.png" alt="">  </p>
+<pre><code>&lt;nav class=&quot;sidenav&quot;&gt;
+  &lt;section class=&quot;sidenav-content&quot;&gt;
+    &lt;a href=&quot;...&quot; class=&quot;nav-link active&quot;&gt;
+          Nav Element 1
+      &lt;&#x2F;a&gt;
+    &lt;a href=&quot;...&quot; class=&quot;nav-link&quot;&gt;
+          Nav Element 2
+      &lt;&#x2F;a&gt;
+    &lt;section class=&quot;nav-group collapsible&quot;&gt;
+      &lt;input id=&quot;tabexample1&quot; type=&quot;checkbox&quot;&gt;
+      &lt;label for=&quot;tabexample1&quot;&gt;Collapsible Nav Element&lt;&#x2F;label&gt;
+      &lt;ul class=&quot;nav-list&quot;&gt;
+        &lt;li&gt;&lt;a class=&quot;nav-link&quot;&gt;Link 1&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+        &lt;li&gt;&lt;a class=&quot;nav-link&quot;&gt;Link 2&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+      &lt;&#x2F;ul&gt;
+    &lt;&#x2F;section&gt;
+    &lt;section class=&quot;nav-group&quot;&gt;
+      &lt;input id=&quot;tabexample2&quot; type=&quot;checkbox&quot;&gt;
+      &lt;label for=&quot;tabexample2&quot;&gt;Default Nav Element&lt;&#x2F;label&gt;
+      &lt;ul class=&quot;nav-list&quot;&gt;
+        &lt;li&gt;&lt;a class=&quot;nav-link&quot;&gt;Link 1&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+        &lt;li&gt;&lt;a class=&quot;nav-link&quot;&gt;Link 2&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+        &lt;li&gt;&lt;a class=&quot;nav-link active&quot;&gt;Link 3&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+        &lt;li&gt;&lt;a class=&quot;nav-link&quot;&gt;Link 4&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+        &lt;li&gt;&lt;a class=&quot;nav-link&quot;&gt;Link 5&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+        &lt;li&gt;&lt;a class=&quot;nav-link&quot;&gt;Link 6&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+      &lt;&#x2F;ul&gt;
+    &lt;&#x2F;section&gt;
+  &lt;&#x2F;section&gt;
+&lt;&#x2F;nav&gt;
+</code></pre>
+<p>開啟 <code>src\app\home\index\index.component.html</code>，插入 <strong>SidenavComponent</strong>。</p>
+<pre><code>&lt;div class=&quot;main-container&quot;&gt;
+  &lt;div class=&quot;alert alert-app-level&quot;&gt;
+    Alert
+  &lt;&#x2F;div&gt;
+  &lt;home-header&gt;&lt;&#x2F;home-header&gt;
+  &lt;nav class=&quot;subnav&quot;&gt;
+    Subnav
+  &lt;&#x2F;nav&gt;
+  &lt;div class=&quot;content-container&quot;&gt;
+    &lt;home-sidenav&gt;&lt;&#x2F;home-sidenav&gt;
+    &lt;div class=&quot;content-area&quot;&gt;
+      Content
+    &lt;&#x2F;div&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+</code></pre>
+<p>開啟瀏覽器檢視結果。<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_20.png" alt="">  </p>
+<h2 id="Tabs"><a href="#Tabs" class="headerlink" title="Tabs"></a>Tabs</h2><p>再來筆者選用官方元件-<a href="https://vmware.github.io/clarity/documentation/tabs" target="_blank" rel="external">Tabs</a>，來取代 Subnav 區塊，方法與之前雷同。<br><code>ng g c home\subnav</code><br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_21.png" alt=""><br>編輯 <code>src\app\home\subnav\subnav.component.html</code>。</p>
+<pre><code>&lt;ul id=&quot;demoTabs&quot; class=&quot;nav&quot; role=&quot;tablist&quot;&gt;
+  &lt;li role=&quot;presentation&quot; class=&quot;nav-item&quot;&gt;
+    &lt;button id=&quot;tab1&quot; class=&quot;btn btn-link nav-link active&quot; aria-controls=&quot;panel1&quot; aria-selected=&quot;true&quot; type=&quot;button&quot;&gt;Dashboard&lt;&#x2F;button&gt;
+  &lt;&#x2F;li&gt;
+  &lt;li role=&quot;presentation&quot; class=&quot;nav-item&quot;&gt;
+    &lt;button id=&quot;tab2&quot; class=&quot;btn btn-link nav-link&quot; aria-controls=&quot;panel2&quot; aria-selected=&quot;false&quot; type=&quot;button&quot;&gt;Management&lt;&#x2F;button&gt;
+  &lt;&#x2F;li&gt;
+  &lt;li role=&quot;presentation&quot; class=&quot;nav-item&quot;&gt;
+    &lt;button id=&quot;tab3&quot; class=&quot;btn btn-link nav-link&quot; aria-controls=&quot;panel3&quot; aria-selected=&quot;false&quot; type=&quot;button&quot;&gt;Cloud&lt;&#x2F;button&gt;
+  &lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;section id=&quot;panel1&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;tab1&quot;&gt;
+  ...
+&lt;&#x2F;section&gt;
+&lt;section id=&quot;panel2&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;tab2&quot; aria-hidden=&quot;true&quot;&gt;
+  ...
+&lt;&#x2F;section&gt;
+&lt;section id=&quot;panel3&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;tab3&quot; aria-hidden=&quot;true&quot;&gt;
+  ...
+&lt;&#x2F;section&gt;
+</code></pre>
+<p>編輯 <code>src\app\home\index\index.component.html</code>。</p>
+<pre><code>&lt;div class=&quot;main-container&quot;&gt;
+  &lt;div class=&quot;alert alert-app-level&quot;&gt;
+    Alert
+  &lt;&#x2F;div&gt;
+  &lt;home-header&gt;&lt;&#x2F;home-header&gt;
+  &lt;home-subnav&gt;&lt;&#x2F;home-subnav&gt;
+  &lt;div class=&quot;content-container&quot;&gt;
+    &lt;home-sidenav&gt;&lt;&#x2F;home-sidenav&gt;
+    &lt;div class=&quot;content-area&quot;&gt;
+      Content
+    &lt;&#x2F;div&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+</code></pre>
+<p>開啟瀏覽器檢視結果。<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_22.png" alt="">  </p>
+<h2 id="Login-Page"><a href="#Login-Page" class="headerlink" title="Login Page"></a>Login Page</h2><p>切換到 <a href="https://vmware.github.io/clarity/documentation/login" target="_blank" rel="external">Login Page</a>，沒看錯， <strong>Clarity Design System</strong> 直接提供一個 login page，建立一個 <strong>LoginComponent</strong> 來對應。<br><code>ng g c login</code><br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_24.png" alt=""><br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_23.png" alt=""><br>編輯 <code>src\app\login\login.component.html</code>。  </p>
+<pre><code>&lt;div class=&quot;login-wrapper&quot;&gt;
+  &lt;form class=&quot;login&quot;&gt;
+    &lt;label class=&quot;title&quot;&gt;
+            &lt;h3 class=&quot;welcome&quot;&gt;Welcome to&lt;&#x2F;h3&gt;
+            Company Product Name
+            &lt;h5 class=&quot;hint&quot;&gt;Use your Company ID to sign in or create one now&lt;&#x2F;h5&gt;
+        &lt;&#x2F;label&gt;
+    &lt;div class=&quot;login-group&quot;&gt;
+      &lt;div class=&quot;auth-source select&quot;&gt;
+        &lt;select id=&quot;login-auth-source-1&quot;&gt;
+                    &lt;option&gt;Local Users&lt;&#x2F;option&gt;
+                    &lt;option&gt;Administrator&lt;&#x2F;option&gt;
+                &lt;&#x2F;select&gt;
+      &lt;&#x2F;div&gt;
+      &lt;input class=&quot;username&quot; type=&quot;text&quot; id=&quot;login_username&quot; placeholder=&quot;Username&quot;&gt;
+      &lt;input class=&quot;password&quot; type=&quot;password&quot; id=&quot;login_password&quot; placeholder=&quot;Password&quot;&gt;
+      &lt;div class=&quot;checkbox&quot;&gt;
+        &lt;input type=&quot;checkbox&quot; id=&quot;rememberme&quot;&gt;
+        &lt;label for=&quot;rememberme&quot;&gt;
+                    Remember me
+                &lt;&#x2F;label&gt;
+      &lt;&#x2F;div&gt;
+      &lt;div class=&quot;error active&quot;&gt;
+        Invalid user name or password
+      &lt;&#x2F;div&gt;
+      &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;NEXT&lt;&#x2F;button&gt;
+      &lt;a href=&quot;javascript:&#x2F;&#x2F;&quot; class=&quot;signup&quot;&gt;Sign up for a Company ID&lt;&#x2F;a&gt;
+    &lt;&#x2F;div&gt;
+  &lt;&#x2F;form&gt;
+&lt;&#x2F;div&gt;
+</code></pre>
+<p>編輯 <code>src\app\app-routing.module.ts</code>，插入 <code>login</code> 的路由規則。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { Routes, RouterModule } from &#39;@angular&#x2F;router&#39;;
+import { LoginComponent } from &#39;.&#x2F;login&#x2F;login.component&#39;;
+
+const routes: Routes = [
+  { path: &#39;login&#39;, component: LoginComponent}
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+</code></pre>
+<p>執行專案，瀏覽 <a href="http://localhost:4200/login。" target="_blank" rel="external">http://localhost:4200/login。</a><br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_25.png" alt=""><br>整個網站基本框架就在不斷複製貼上中完成，對於一般網頁開發新手來說是不是簡單很多？  </p>
+<p><img src="/images/download.png" width="36"><a href="/uploads/genesis_2017-09-08.zip"><strong>genesis_2017-09-08.zip</strong></a>  </p>
 
       
     </div>
@@ -725,7 +939,7 @@ export class HomeRoutingModule { }
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Clarity-Design-System"><span class="nav-number">1.</span> <span class="nav-text">Clarity Design System</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立-Angular-專案"><span class="nav-number">1.1.</span> <span class="nav-text">建立 Angular 專案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝圖示：Clarity-Icons"><span class="nav-number">1.2.</span> <span class="nav-text">安裝圖示：Clarity Icons</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-polyfill：webcomponents-custom-elements"><span class="nav-number">1.3.</span> <span class="nav-text">安裝 polyfill：webcomponents/custom-elements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Clarity-UI"><span class="nav-number">1.4.</span> <span class="nav-text">安裝 Clarity UI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Clarity-Angular"><span class="nav-number">1.5.</span> <span class="nav-text">安裝 Clarity Angular</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立首頁"><span class="nav-number">1.6.</span> <span class="nav-text">建立首頁</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Clarity-Design-System"><span class="nav-number">1.</span> <span class="nav-text">Clarity Design System</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立-Angular-專案"><span class="nav-number">1.1.</span> <span class="nav-text">建立 Angular 專案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝圖示：Clarity-Icons"><span class="nav-number">1.2.</span> <span class="nav-text">安裝圖示：Clarity Icons</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-polyfill：webcomponents-custom-elements"><span class="nav-number">1.3.</span> <span class="nav-text">安裝 polyfill：webcomponents/custom-elements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Clarity-UI"><span class="nav-number">1.4.</span> <span class="nav-text">安裝 Clarity UI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Clarity-Angular"><span class="nav-number">1.5.</span> <span class="nav-text">安裝 Clarity Angular</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立首頁"><span class="nav-number">1.6.</span> <span class="nav-text">建立首頁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Header"><span class="nav-number">1.7.</span> <span class="nav-text">Header</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改-component-selector"><span class="nav-number">1.8.</span> <span class="nav-text">修改 component-selector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sidenav"><span class="nav-number">1.9.</span> <span class="nav-text">Sidenav</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tabs"><span class="nav-number">1.10.</span> <span class="nav-text">Tabs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Login-Page"><span class="nav-number">1.11.</span> <span class="nav-text">Login Page</span></a></li></ol></li></ol></div>
             
 
           </div>

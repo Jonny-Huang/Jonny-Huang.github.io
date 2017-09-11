@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jonny-huang.github.io/categories/</loc>
+    
+    <lastmod>2017-09-11T06:24:48.492Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jonny-huang.github.io/angular/training/14_angular_ui_clarity_design_system/</loc>
     
-    <lastmod>2017-09-11T03:12:16.737Z</lastmod>
+    <lastmod>2017-09-11T05:59:36.409Z</lastmod>
     
   </url>
   
@@ -30,14 +37,14 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/08_angular_ui-flex_layout/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/05_angular_navigation/</loc>
     
     <lastmod>2017-09-08T07:20:25.544Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/05_angular_navigation/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/08_angular_ui-flex_layout/</loc>
     
     <lastmod>2017-09-08T07:20:25.544Z</lastmod>
     
@@ -54,13 +61,6 @@
     <loc>https://jonny-huang.github.io/angular/training/00_development_environment_windows/</loc>
     
     <lastmod>2017-09-08T03:43:24.423Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/categories/</loc>
-    
-    <lastmod>2017-09-06T02:06:03.759Z</lastmod>
     
   </url>
   

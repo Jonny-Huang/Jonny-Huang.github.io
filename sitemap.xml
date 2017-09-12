@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jonny-huang.github.io/angular/training/15_angular_directive/</loc>
+    
+    <lastmod>2017-09-12T07:49:53.327Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/angular/training/13_angular_event/</loc>
+    
+    <lastmod>2017-09-12T03:39:02.591Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jonny-huang.github.io/categories/</loc>
     
     <lastmod>2017-09-11T06:24:48.492Z</lastmod>
@@ -12,13 +26,6 @@
     <loc>https://jonny-huang.github.io/angular/training/14_angular_ui_clarity_design_system/</loc>
     
     <lastmod>2017-09-11T05:59:36.409Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/angular/training/13_angular_event/</loc>
-    
-    <lastmod>2017-09-08T08:27:20.153Z</lastmod>
     
   </url>
   

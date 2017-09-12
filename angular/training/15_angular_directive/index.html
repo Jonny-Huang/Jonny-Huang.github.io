@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Angular,ngIf,ngFor,ngStyle,interpolation,Property Binding,Directive,Binding" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+  <meta property="fb:admins" content="fb267234890438499" />
+  <meta property="fb:app_id" content="267234890438499" />
+
+
+
+<meta name="description" content="指令(Directive)在 Angular UI：Clarity Design System 中，透過修改 tslint.json 檔的 component-selector 屬性來讓我們可以自訂元件 selector 屬性，現在同樣的來調整 first-app 專案，將 employee 資料夾內的元件改成 emp 開頭，將 home 資料夾內的元件改成 home 開頭。修改 tslint.j">
+<meta name="keywords" content="Angular,ngIf,ngFor,ngStyle,interpolation,Property Binding,Directive,Binding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular 資料繫結 &amp; 指令">
+<meta property="og:url" content="https://jonny-huang.github.io/angular/training/15_angular_directive/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="指令(Directive)在 Angular UI：Clarity Design System 中，透過修改 tslint.json 檔的 component-selector 屬性來讓我們可以自訂元件 selector 屬性，現在同樣的來調整 first-app 專案，將 employee 資料夾內的元件改成 emp 開頭，將 home 資料夾內的元件改成 home 開頭。修改 tslint.j">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_01.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_02.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_03.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_03.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_04.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_05.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_06.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_06.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_07.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_08.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_09.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_10.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_11.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_12.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_13.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_14.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
+<meta property="og:updated_time" content="2017-09-12T07:49:53.327Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular 資料繫結 &amp; 指令">
+<meta name="twitter:description" content="指令(Directive)在 Angular UI：Clarity Design System 中，透過修改 tslint.json 檔的 component-selector 屬性來讓我們可以自訂元件 selector 屬性，現在同樣的來調整 first-app 專案，將 employee 資料夾內的元件改成 emp 開頭，將 home 資料夾內的元件改成 home 開頭。修改 tslint.j">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Jonny'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jonny-huang.github.io/angular/training/15_angular_directive/"/>
+
+
+
+
+
+  <title>Angular 資料繫結 & 指令 | Jonny Huang 的學習筆記</title>
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '267234890438499',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_tw/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jonny Huang 的學習筆記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Angular</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            目錄
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/15_angular_directive/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Angular 資料繫結 & 指令</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新於</span>
+              
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-12T15:49:53+08:00">
+                2017/09/12
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Training/" itemprop="url" rel="index">
+                    <span itemprop="name">Training</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="指令-Directive"><a href="#指令-Directive" class="headerlink" title="指令(Directive)"></a>指令(Directive)</h1><p>在 <a href="/angular/training/14_angular_ui_clarity_design_system/">Angular UI：Clarity Design System</a> 中，透過修改 <code>tslint.json</code> 檔的 <code>component-selector</code> 屬性來讓我們可以自訂元件 <code>selector</code> 屬性，現在同樣的來調整 first-app 專案，將 employee 資料夾內的元件改成 <code>emp</code> 開頭，將 home 資料夾內的元件改成 <code>home</code> 開頭。<br>修改 <code>tslint.json</code> 的 <code>component-selector</code> 設定。<br><img src="/images/angular/training/directive/angular_directive_01.png" alt=""><br>調整相關元件的 <code>selector</code> 屬性。<br><img src="/images/angular/training/directive/angular_directive_02.png" alt="">  </p>
+<pre><code>&#x2F;&#x2F; src\app\employee\address-book\address-book.component.ts
+@Component({
+  selector: &#39;emp-address-book&#39;,
+  ...
+
+&#x2F;&#x2F; src\app\employee\calendar\calendar.component.ts
+@Component({
+  selector: &#39;emp-calendar&#39;,
+  ...
+
+&#x2F;&#x2F; src\app\employee\file\file.component.ts
+@Component({
+  selector: &#39;emp-file&#39;,
+  ...
+
+&#x2F;&#x2F; src\app\employee\leave\leave.component.ts
+@Component({
+  selector: &#39;emp-leave&#39;,
+  ...
+
+&#x2F;&#x2F; src\app\employee\logbook\logbook.component.ts
+@Component({
+  selector: &#39;emp-logbook&#39;,
+  ...
+
+&#x2F;&#x2F; src\app\employee\reimburse\reimburse.component.ts
+@Component({
+  selector: &#39;emp-reimburse&#39;,
+  ...
+
+&#x2F;&#x2F; src\app\employee\to-do-list\to-do-list.component.ts
+@Component({
+  selector: &#39;emp-to-do-list&#39;,
+  ...
+
+&#x2F;&#x2F; src\app\home\aside\aside.component.ts
+@Component({
+  selector: &#39;home-aside&#39;,
+  ...
+
+&#x2F;&#x2F; src\app\home\header\header.component.ts
+@Component({
+  selector: &#39;home-header&#39;,
+  ...
+
+&#x2F;&#x2F; src\app\home\home.component.ts
+@Component({
+  selector: &#39;home&#39;,
+  ...
+</code></pre>
+<p>修改 <code>src\app\home\home.component.html</code>，將 <code>app-header</code> 改為 <code>home-header</code>，<code>app-aside</code> 改為 <code>home-aside</code>。  </p>
+<pre><code>&lt;div fxFill fxLayout=&quot;column&quot; class=&quot;layout&quot;&gt;
+  &lt;div class=&quot;header&quot; fxLayout=&quot;row&quot;&gt;
+    &lt;home-header fxFlex (sidenavClick)=&quot;sidenav.open()&quot;&gt;&lt;&#x2F;home-header&gt;
+  &lt;&#x2F;div&gt;
+  &lt;div fxFlex fxLayout=&quot;row&quot; class=&quot;main&quot;&gt;
+    &lt;div fxFlex=&quot;200px&quot; class=&quot;aside&quot; fxHide.xs&gt;
+      &lt;home-aside (menuClick)=&quot;sidenav.close()&quot;&gt;&lt;&#x2F;home-aside&gt;
+    &lt;&#x2F;div&gt;
+    &lt;md-sidenav-container fxFlex&gt;
+      &lt;md-sidenav #sidenav mode=&quot;over&quot; class=&quot;aside&quot; fxHide fxShow.xs&gt;
+        &lt;home-aside fxFlex=&quot;200px&quot; (menuClick)=&quot;sidenav.close()&quot;&gt;&lt;&#x2F;home-aside&gt;
+      &lt;&#x2F;md-sidenav&gt;
+      &lt;div fxFlex class=&quot;content&quot;&gt;
+        &lt;router-outlet&gt;&lt;&#x2F;router-outlet&gt;
+      &lt;&#x2F;div&gt;
+    &lt;&#x2F;md-sidenav-container&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+</code></pre>
+<h2 id="編輯行事曆"><a href="#編輯行事曆" class="headerlink" title="編輯行事曆"></a>編輯行事曆</h2><p>其實網路上已經有一些 Angular 版本的元件可以套用，不過這邊我們練習如何用簡單的方式就可以做出一個雛形。<br>開啟 <code>src\app\custom-material.module.ts</code> 加入 <a href="https://material.angular.io/components/card/examples" target="_blank" rel="external"><strong>MdCardModule</strong></a>。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { FlexLayoutModule } from &#39;@angular&#x2F;flex-layout&#39;;
+import {
+  MdIconModule,
+  MdButtonModule,
+  MdListModule,
+  MdToolbarModule,
+  MdTooltipModule,
+  MdSidenavModule,
+  MdCardModule
+} from &#39;@angular&#x2F;material&#39;;
+
+@NgModule({
+  imports: [
+    FlexLayoutModule,
+    MdIconModule,
+    MdButtonModule,
+    MdListModule,
+    MdToolbarModule,
+    MdTooltipModule,
+    MdSidenavModule,
+    MdCardModule
+  ],
+  exports: [
+    FlexLayoutModule,
+    MdIconModule,
+    MdButtonModule,
+    MdListModule,
+    MdToolbarModule,
+    MdTooltipModule,
+    MdSidenavModule,
+    MdCardModule
+  ]
+})
+export class CustomMaterialModule { }
+</code></pre>
+<p>開啟 <code>src\app\employee\employee.module.ts</code>，將 <strong>CustomMaterialModule</strong> 註冊到裡面。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { CommonModule } from &#39;@angular&#x2F;common&#39;;
+import { CalendarComponent } from &#39;.&#x2F;calendar&#x2F;calendar.component&#39;;
+import { AddressBookComponent } from &#39;.&#x2F;address-book&#x2F;address-book.component&#39;;
+import { LogbookComponent } from &#39;.&#x2F;logbook&#x2F;logbook.component&#39;;
+import { ToDoListComponent } from &#39;.&#x2F;to-do-list&#x2F;to-do-list.component&#39;;
+import { FileComponent } from &#39;.&#x2F;file&#x2F;file.component&#39;;
+import { LeaveComponent } from &#39;.&#x2F;leave&#x2F;leave.component&#39;;
+import { ReimburseComponent } from &#39;.&#x2F;reimburse&#x2F;reimburse.component&#39;;
+import { EmployeeRoutingModule } from &#39;.&#x2F;employee-routing.module&#39;;
+import { CustomMaterialModule } from &#39;..&#x2F;custom-material.module&#39;;
+
+@NgModule({
+  imports: [
+    CommonModule,
+    EmployeeRoutingModule,
+    CustomMaterialModule
+  ],
+  declarations: [
+    CalendarComponent,
+    AddressBookComponent,
+    LogbookComponent,
+    ToDoListComponent,
+    FileComponent,
+    LeaveComponent,
+    ReimburseComponent
+  ]
+})
+export class EmployeeModule { }
+</code></pre>
+<p>開啟 <code>src\app\employee\calendar\calendar.component.html</code>，加入 card 元件，以及月份切換按鈕。 </p>
+<pre><code>&lt;md-card&gt;
+  &lt;md-card-header&gt;
+    &lt;md-card-title&gt;行事曆&lt;&#x2F;md-card-title&gt;
+    &lt;md-card-subtitle&gt;
+      &lt;h1&gt;2017 年 9 月&lt;&#x2F;h1&gt;
+    &lt;&#x2F;md-card-subtitle&gt;
+  &lt;&#x2F;md-card-header&gt;
+  &lt;md-card-content&gt;
+  &lt;&#x2F;md-card-content&gt;
+  &lt;md-card-actions&gt;
+    &lt;button md-button&gt;上個月&lt;&#x2F;button&gt;
+    &lt;button md-button&gt;本月&lt;&#x2F;button&gt;
+    &lt;button md-button&gt;下個月&lt;&#x2F;button&gt;
+  &lt;&#x2F;md-card-actions&gt;
+&lt;&#x2F;md-card&gt;
+</code></pre>
+<p>執行專案，從瀏覽器上可以看到最外層的卡片效果。<br><img src="/images/angular/training/directive/angular_directive_03.png" alt="">  </p>
+<h2 id="內嵌繫結-interpolation"><a href="#內嵌繫結-interpolation" class="headerlink" title="內嵌繫結 (interpolation)"></a>內嵌繫結 (interpolation)</h2><p>在 <a href="/angular/training/13_angular_event/">Angular 事件</a> 中，我們學會 <strong>事件繫結</strong>，透過 <strong>小括號</strong>(<code>( event )</code>) 的方式讓前端樣板狀態變更時可以通知後端元件。<br>接下來我們希望畫面上的月份可以透過程式動態修改，所以我們利用 Angular 提供的另一種資料繫結模式-<strong>內嵌繫結</strong> (<strong>interpolation</strong>)，我們可以透過2個大括號(<code></code>)方式將元件所對應 ts 檔的變數嵌入到樣板上。  </p>
+<blockquote>
+<p>若是私有(private)變數則無法存取，若變數沒有加上存取修飾詞，那預設值就是 public。</p>
+</blockquote>
+<p>開啟 <code>src\app\employee\calendar\calendar.component.ts</code>，加入變數 <code>selectedMonth</code>，並提供<strong>方法</strong>將日期轉成文字格式給 <code>selectedMonth</code>。 </p>
+<pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
+
+@Component({
+  selector: &#39;emp-calendar&#39;,
+  templateUrl: &#39;.&#x2F;calendar.component.html&#39;,
+  styleUrls: [&#39;.&#x2F;calendar.component.scss&#39;]
+})
+export class CalendarComponent implements OnInit {
+  selectedDay: Date;
+  selectedMonth = &#39;&#39;;
+  constructor() { }
+
+  ngOnInit() {
+    this.getToday();
+  }
+  getToday() {
+    this.selectedDay = new Date();
+    this.getDay();
+  }
+  getDay() {
+    let year = this.selectedDay.getFullYear();
+    let month = this.selectedDay.getMonth();
+    month++;
+    &#x2F;&#x2F; month為13時表示隔年的1月。
+    if (month === 13) {
+      month = 1;
+      year++;
+    }
+    this.selectedMonth = `${year} 年 ${month} 月`;
+  }
+}
+</code></pre>
+<p>修改 <code>calendar.component.html</code>，套用 <code>selectedMonth</code> 變數。</p>
+<pre><code>&lt;md-card&gt;
+  &lt;md-card-header&gt;
+    &lt;md-card-title&gt;行事曆&lt;&#x2F;md-card-title&gt;
+    &lt;md-card-subtitle&gt;
+      &lt;h1&gt;{ {selectedMonth} }&lt;&#x2F;h1&gt;
+    &lt;&#x2F;md-card-subtitle&gt;
+  &lt;&#x2F;md-card-header&gt;
+  &lt;md-card-content&gt;
+  &lt;&#x2F;md-card-content&gt;
+  &lt;md-card-actions&gt;
+    &lt;button md-button&gt;上個月&lt;&#x2F;button&gt;
+    &lt;button md-button&gt;本月&lt;&#x2F;button&gt;
+    &lt;button md-button&gt;下個月&lt;&#x2F;button&gt;
+  &lt;&#x2F;md-card-actions&gt;
+&lt;&#x2F;md-card&gt;
+</code></pre>
+<p>從瀏覽器上看不出改變，但是月份已經用變數取代。<br><img src="/images/angular/training/directive/angular_directive_03.png" alt="">  </p>
+<h2 id="加入月份切換功能"><a href="#加入月份切換功能" class="headerlink" title="加入月份切換功能"></a>加入月份切換功能</h2><p>修改 <code>calendar.component.html</code>，為切換按鈕加入事件，並透過 <strong>事件繫結</strong> 綁定。</p>
+<pre><code>&lt;md-card&gt;
+  &lt;md-card-header&gt;
+    &lt;md-card-title&gt;行事曆&lt;&#x2F;md-card-title&gt;
+    &lt;md-card-subtitle&gt;
+      &lt;h1&gt;{ {selectedMonth} }&lt;&#x2F;h1&gt;
+    &lt;&#x2F;md-card-subtitle&gt;
+  &lt;&#x2F;md-card-header&gt;
+  &lt;md-card-content&gt;
+  &lt;&#x2F;md-card-content&gt;
+  &lt;md-card-actions&gt;
+    &lt;button md-button (click)=&quot;getDay(-1)&quot;&gt;上個月&lt;&#x2F;button&gt;
+    &lt;button md-button (click)=&quot;getToday()&quot;&gt;本月&lt;&#x2F;button&gt;
+    &lt;button md-button (click)=&quot;getDay(1)&quot;&gt;下個月&lt;&#x2F;button&gt;
+  &lt;&#x2F;md-card-actions&gt;
+&lt;&#x2F;md-card&gt;
+</code></pre>
+<p>修改 <code>calendar.component.ts</code> 實作對應的方法。  </p>
+<pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
+
+@Component({
+  selector: &#39;emp-calendar&#39;,
+  templateUrl: &#39;.&#x2F;calendar.component.html&#39;,
+  styleUrls: [&#39;.&#x2F;calendar.component.scss&#39;]
+})
+export class CalendarComponent implements OnInit {
+  selectedDay: Date;
+  selectedMonth = &#39;&#39;;
+  constructor() { }
+
+  ngOnInit() {
+    this.getToday();
+  }
+  getToday() {
+    this.selectedDay = new Date();
+    this.getDay(0);
+  }
+
+  getDay(addDMonth: number) {
+    let year = this.selectedDay.getFullYear();
+    let month = this.selectedDay.getMonth() + addDMonth;
+    const dt = new Date(year, month, 1);
+    year = dt.getFullYear();
+    month = dt.getMonth();
+
+    this.selectedDay = new Date(year, month, 1);
+    month++;
+    &#x2F;&#x2F; month為13時表示隔年的1月。
+    if (month === 13) {
+      month = 1;
+      year++;
+    }
+    this.selectedMonth = `${year} 年 ${month} 月`;
+  }
+}
+</code></pre>
+<blockquote>
+<p><code>ngOnInit</code> 是 Angular <a href="https://angular.io/guide/lifecycle-hooks" target="_blank" rel="external"><strong>生命週期</strong></a> 衍生的事件，它會發生在第一次繫結資料發生變動(ngOnChanges)之後。<br><img src="/images/angular/training/directive/angular_directive_04.png" alt="">  </p>
+</blockquote>
+<p>從瀏覽器來看，月份切換已經有效果了<br><img src="/images/angular/training/directive/angular_directive_05.gif" alt="">  </p>
+<h2 id="加入-Grid-List"><a href="#加入-Grid-List" class="headerlink" title="加入 Grid List"></a>加入 Grid List</h2><p>開啟 <code>src\app\custom-material.module.ts</code> 加入 <a href="https://material.angular.io/components/grid-list/examples" target="_blank" rel="external"><strong>MdGridListModule</strong></a>。  </p>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { FlexLayoutModule } from &#39;@angular&#x2F;flex-layout&#39;;
+import {
+  MdIconModule,
+  ...
+  MdCardModule,
+  MdGridListModule
+} from &#39;@angular&#x2F;material&#39;;
+
+@NgModule({
+  imports: [
+    FlexLayoutModule,
+    ...
+    MdCardModule,
+    MdGridListModule
+  ],
+  exports: [
+    FlexLayoutModule,
+    ...
+    MdCardModule,
+    MdGridListModule
+  ]
+})
+export class CustomMaterialModule { }
+</code></pre>
+<p>修改 <code>calendar.component.html</code>，加入 Grid List。</p>
+<pre><code>&lt;md-card&gt;
+  &lt;md-card-header&gt;
+    &lt;md-card-title&gt;行事曆&lt;&#x2F;md-card-title&gt;
+    &lt;md-card-subtitle&gt;
+      &lt;h1&gt;{ {selectedMonth} }&lt;&#x2F;h1&gt;
+    &lt;&#x2F;md-card-subtitle&gt;
+  &lt;&#x2F;md-card-header&gt;
+  &lt;md-card-content&gt;
+    &lt;md-grid-list cols=&quot;7&quot; rowHeight=&quot;68px&quot;&gt;
+      &lt;md-grid-tile&gt;日&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;一&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;二&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;三&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;四&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;五&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;六&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;1&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;2&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;3&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;4&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;5&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;6&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;7&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;8&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;9&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;10&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;11&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;12&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;13&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;14&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;15&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;16&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;17&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;18&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;19&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;20&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;21&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;22&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;23&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;24&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;25&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;26&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;27&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;28&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;29&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;30&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;31&lt;&#x2F;md-grid-tile&gt;
+    &lt;&#x2F;md-grid-list&gt;
+  &lt;&#x2F;md-card-content&gt;
+  &lt;md-card-actions&gt;
+    &lt;button md-button (click)=&quot;getDay(-1)&quot;&gt;上個月&lt;&#x2F;button&gt;
+    &lt;button md-button (click)=&quot;getToday()&quot;&gt;本月&lt;&#x2F;button&gt;
+    &lt;button md-button (click)=&quot;getDay(1)&quot;&gt;下個月&lt;&#x2F;button&gt;
+  &lt;&#x2F;md-card-actions&gt;
+&lt;&#x2F;md-card&gt;
+</code></pre>
+<p>從瀏覽器來看，行事曆的效果已經出現了<br><img src="/images/angular/training/directive/angular_directive_06.png" alt="">  </p>
+<blockquote>
+<p>從<a href="https://material.angular.io/components/grid-list/api" target="_blank" rel="external">API文件</a>來看，<strong>MdGridListModule</strong> 與 HTML 的 Table 功能類似。<br><strong>MdGridList</strong> 提供一個 <code>cols</code> 的屬性，當內容項目-<strong>MdGridTile</strong> 超過其數值時就會自動換行，我們設定 <code>7</code> 是因為一個禮拜有7天。<br><strong>MdGridTile</strong> 則提供 <code>rowspan</code>、<code>colspan</code> 可以設定所占用的 <strong>列數</strong> 與 <strong>欄位數</strong>，這邊因為都是占用1單位，所以不設定。</p>
+</blockquote>
+<h2 id="ngFor"><a href="#ngFor" class="headerlink" title="*ngFor"></a>*ngFor</h2><p>Angular 提供一個樣板指令-<strong>*ngFor</strong>，讓我們可以依照陣列物件重複產生樣板語法，同時將資料嵌入到樣板內。<br>修改 <code>calendar.component.ts</code>，加入星期的陣列變數-<strong>dayHeaders</strong>。  </p>
+<pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
+
+@Component({
+  selector: &#39;emp-calendar&#39;,
+  templateUrl: &#39;.&#x2F;calendar.component.html&#39;,
+  styleUrls: [&#39;.&#x2F;calendar.component.scss&#39;]
+})
+export class CalendarComponent implements OnInit {
+  selectedDay: Date;
+  selectedMonth = &#39;&#39;;
+  dayHeaders = [&#39;日&#39;, &#39;一&#39;, &#39;二&#39;, &#39;三&#39;, &#39;四&#39;, &#39;五&#39;, &#39;六&#39;];
+  constructor() { }
+  ...</code></pre>
+<p>修改 <code>calendar.component.html</code>，透過 <strong>*ngFor</strong> 指令來巡覽 <code>dayHeaders</code> 陣列，並宣告一個 變數(<code>header</code>) 來承接其值，最後再透過<strong>內嵌繫結</strong>將 <code>header</code> 嵌入到樣板內。</p>
+<pre><code>&lt;md-card&gt;
+  &lt;md-card-header&gt;
+    &lt;md-card-title&gt;行事曆&lt;&#x2F;md-card-title&gt;
+    &lt;md-card-subtitle&gt;
+      &lt;h1&gt;{ {selectedMonth} }&lt;&#x2F;h1&gt;
+    &lt;&#x2F;md-card-subtitle&gt;
+  &lt;&#x2F;md-card-header&gt;
+  &lt;md-card-content&gt;
+    &lt;md-grid-list cols=&quot;7&quot; rowHeight=&quot;68px&quot;&gt;
+      &lt;md-grid-tile *ngFor=&quot;let header of dayHeaders&quot;&gt;
+        &lt;h3&gt;{ {header} }&lt;&#x2F;h3&gt;
+      &lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;1&lt;&#x2F;md-grid-tile&gt;
+      ...</code></pre>
+<p>從瀏覽器上看不出改變，但是星期已經用變數取代。<br><img src="/images/angular/training/directive/angular_directive_06.png" alt="">  </p>
+<blockquote>
+<p><code>*ngFor</code> 本身還提供下列變數可使用：<br><code>index</code> (number)：表示目前資料在陣列中的索引值。<br><code>first</code> (boolean)：表示目前資料是否為第一筆。<br><code>last</code> (boolean)：表示目前資料是否為最後一筆。<br><code>even</code> (boolean)：表示目前資料的索引值是否為偶數筆。<br><code>odd</code> (boolean)：表示目前資料的索引值是否為奇數筆。<br>但是上述變數不可直接使用，必須另行宣告變數來承接。<br>例如：我們宣告一個變數 <code>i</code> 來承接 <code>index</code> 索引值，並將 <code>i</code> 嵌入到星期變數前面。<br><img src="/images/angular/training/directive/angular_directive_07.png" alt=""><br><img src="/images/angular/training/directive/angular_directive_08.png" alt="">  </p>
+</blockquote>
+<h2 id="NgStyle"><a href="#NgStyle" class="headerlink" title="NgStyle"></a>NgStyle</h2><p>Angular 提供一個類似 <code>style</code> tag 的指令-<code>[ngStyle]</code>，最大的差異就是 <code>[ngStyle]</code> 所設定CSS的屬性值可以是變數、方法，也就是我們可以動態改變值。<br>修改 <code>calendar.component.ts</code>，加入星期的顏色陣列變數-<strong>dayColors</strong>。  </p>
+<pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
+
+@Component({
+  selector: &#39;emp-calendar&#39;,
+  templateUrl: &#39;.&#x2F;calendar.component.html&#39;,
+  styleUrls: [&#39;.&#x2F;calendar.component.scss&#39;]
+})
+export class CalendarComponent implements OnInit {
+  selectedDay: Date;
+  selectedMonth = &#39;&#39;;
+  dayHeaders = [&#39;日&#39;, &#39;一&#39;, &#39;二&#39;, &#39;三&#39;, &#39;四&#39;, &#39;五&#39;, &#39;六&#39;];
+  dayColors = [&#39;red&#39;, &#39;white&#39;, &#39;white&#39;, &#39;white&#39;, &#39;white&#39;, &#39;white&#39;, &#39;green&#39;];
+  constructor() { }
+  ...</code></pre>
+<p>開啟 <code>calendar.component.html</code>，加入 <code>ngStyle</code> 將文字顏色來源指向 <strong>dayColors</strong>。</p>
+<pre><code>&lt;md-card&gt;
+  &lt;md-card-header&gt;
+    &lt;md-card-title&gt;行事曆&lt;&#x2F;md-card-title&gt;
+    &lt;md-card-subtitle&gt;
+      &lt;h1&gt;{ {selectedMonth} }&lt;&#x2F;h1&gt;
+    &lt;&#x2F;md-card-subtitle&gt;
+  &lt;&#x2F;md-card-header&gt;
+  &lt;md-card-content&gt;
+    &lt;md-grid-list cols=&quot;7&quot; rowHeight=&quot;68px&quot;&gt;
+      &lt;md-grid-tile *ngFor=&quot;let header of dayHeaders; let i = index&quot; 
+        [ngStyle]=&quot;{&#39;color&#39;: dayColors[i]}&quot;&gt;
+        &lt;h3&gt;{ {header} }&lt;&#x2F;h3&gt;
+      &lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile&gt;1&lt;&#x2F;md-grid-tile&gt;
+      ...</code></pre>
+<p>從瀏覽器上可以看到星期日變成紅色、星期六變成綠色。<br><img src="/images/angular/training/directive/angular_directive_09.png" alt=""><br>接下來就是將日期改為動態產生，開啟 <code>calendar.component.ts</code>，新增 <code>days</code> 陣列變數，在 <code>getDay(addDMonth)</code> 方法內將選取月份的日期與星期都填入 <code>days</code> 內。  </p>
+<pre><code>...
+export class CalendarComponent implements OnInit {
+  selectedDay: Date;
+  selectedMonth = &#39;&#39;;
+  dayHeaders = [&#39;日&#39;, &#39;一&#39;, &#39;二&#39;, &#39;三&#39;, &#39;四&#39;, &#39;五&#39;, &#39;六&#39;];
+  dayColors = [&#39;red&#39;, &#39;white&#39;, &#39;white&#39;, &#39;white&#39;, &#39;white&#39;, &#39;white&#39;, &#39;green&#39;];
+  days = [];
+  constructor() { }
+  ...
+  getDay(addDMonth: number) {
+    let year = this.selectedDay.getFullYear();
+    let month = this.selectedDay.getMonth() + addDMonth;
+    const dt = new Date(year, month, 1);
+    year = dt.getFullYear();
+    month = dt.getMonth();
+
+    const _days = [];
+    for (let day = 1; day &lt;= 31; day++) {
+      const time = new Date(year, month, day);
+      if (time.getMonth() &gt; month) {
+        break;
+      }
+      const d: any = {
+        day: day,
+        week: time.getDay()
+      };
+      _days.push(d);
+    }
+    this.days = [..._days];
+
+    this.selectedDay = new Date(year, month, 1);
+    month++;
+    &#x2F;&#x2F; month為13時表示隔年的1月。
+    if (month === 13) {
+      month = 1;
+      year++;
+    }
+    this.selectedMonth = `${year} 年 ${month} 月`;
+  }
+}
+</code></pre>
+<p>開啟 <code>calendar.component.html</code>，加入 <code>ngStyle</code> 將文字顏色來源指向 <strong>dayColors</strong>。</p>
+<pre><code>...
+  &lt;md-card-content&gt;
+    &lt;md-grid-list cols=&quot;7&quot; rowHeight=&quot;68px&quot;&gt;
+      &lt;md-grid-tile *ngFor=&quot;let header of dayHeaders; let i = index&quot;
+        [ngStyle]=&quot;{&#39;color&#39;: dayColors[i]}&quot;&gt;
+        &lt;h3&gt;&lt;&#x2F;h3&gt;
+      &lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile *ngFor=&quot;let item of days&quot; 
+        [ngStyle]=&quot;{&#39;color&#39;: dayColors[item.week]}&quot;&gt;
+        &lt;span&gt;&lt;&#x2F;span&gt;
+      &lt;&#x2F;md-grid-tile&gt;
+    &lt;&#x2F;md-grid-list&gt;
+  ...</code></pre>
+<p>從瀏覽器上可以看到日期為星期日與星期六的顏色都改變了，但是位置不對，2017/9/1 應該是禮拜五。<br><img src="/images/angular/training/directive/angular_directive_10.png" alt="">  </p>
+<h2 id="屬性繫結-Property-Binding"><a href="#屬性繫結-Property-Binding" class="headerlink" title="屬性繫結 (Property Binding)"></a>屬性繫結 (Property Binding)</h2><p>上面提到的 <strong>內嵌繫結</strong> 可以將後端元件類別變數輸出到前端樣板，但是它最終會轉換成文字，如果我們需要繫結對象是樣板元素的屬性時可能就會不適用，因此 Angular 提供另一種資料繫結模式-<strong>屬性繫結</strong>，我們可以在目標屬性上加上 <strong>中括號</strong>(<code>[ property ]</code>) 來表示資料來源是來自元件類別。  </p>
+<blockquote>
+<p><strong>屬性繫結</strong> 的資料如果是字串，可以在值外面加上單引號來表示值為字串。</p>
+</blockquote>
+<p>我們在每月1號的 <code>md-grid-tile</code> 前面再插入一個 <code>md-grid-tile</code>，並透過 <code>colspan</code> 屬性將1號推擠到對應的星期。<br>開啟 <code>calendar.component.ts</code>，新增 <code>lastMonth_colspan</code> 變數，在 <code>getDay(addDMonth)</code> 方法內計算需要偏移的天數。  </p>
+<pre><code>...
+export class CalendarComponent implements OnInit {
+  selectedDay: Date;
+  selectedMonth = &#39;&#39;;
+  dayHeaders = [&#39;日&#39;, &#39;一&#39;, &#39;二&#39;, &#39;三&#39;, &#39;四&#39;, &#39;五&#39;, &#39;六&#39;];
+  dayColors = [&#39;red&#39;, &#39;white&#39;, &#39;white&#39;, &#39;white&#39;, &#39;white&#39;, &#39;white&#39;, &#39;green&#39;];
+  days = [];
+  lastMonth_colspan = 0;
+  constructor() { }
+  ...
+  getDay(addDMonth: number) {
+    let year = this.selectedDay.getFullYear();
+    let month = this.selectedDay.getMonth() + addDMonth;
+    const dt = new Date(year, month, 1);
+    year = dt.getFullYear();
+    month = dt.getMonth();
+
+    this.lastMonth_colspan = new Date(year, month, 1).getDay();
+    const _days = [];
+    ...</code></pre>
+<p>開啟 <code>calendar.component.html</code>，加入一個 <code>md-grid-tile</code>，並透過<strong>屬性繫結</strong>將 <code>colspan</code> 屬性繫結至 <code>lastMonth_colspan</code> 變數。</p>
+<pre><code>...
+  &lt;md-card-content&gt;
+    &lt;md-grid-list cols=&quot;7&quot; rowHeight=&quot;68px&quot;&gt;
+      &lt;md-grid-tile *ngFor=&quot;let header of dayHeaders; let i = index&quot;
+        [ngStyle]=&quot;{&#39;color&#39;: dayColors[i]}&quot;&gt;
+        &lt;h3&gt;&lt;&#x2F;h3&gt;
+      &lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile [colspan]=&quot;lastMonth_colspan&quot;&gt;&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile *ngFor=&quot;let item of days&quot; 
+        [ngStyle]=&quot;{&#39;color&#39;: dayColors[item.week]}&quot;&gt;
+        &lt;span&gt;&lt;&#x2F;span&gt;
+      &lt;&#x2F;md-grid-tile&gt;
+    &lt;&#x2F;md-grid-list&gt;
+  ...</code></pre>
+<p>從瀏覽器上看起來應該都是正常。<br><img src="/images/angular/training/directive/angular_directive_11.png" alt="">  </p>
+<h2 id="ngFor-1"><a href="#ngFor-1" class="headerlink" title="*ngFor"></a>*ngFor</h2><p>我們切換到下個月(2017/10)問題就出現了，原本 2017/10/1 應該是星期日，但是卻被移到星期六。<br><img src="/images/angular/training/directive/angular_directive_12.png" alt=""><br>當 <code>lastMonth_colspan = 0</code> 時表示不需要推移，因此應該移除日期前的 <code>md-grid-tile</code>，Angular 提供一個便捷的樣板指令-<strong>*ngFor</strong>，當後面的判斷式為 <code>true</code> 時該樣板元素會顯示，當值為 <code>false</code> 時該樣板元素會被移除。<br>開啟 <code>calendar.component.html</code>，添加 <strong>*ngFor</strong> 判斷式。</p>
+<pre><code>...
+  &lt;md-card-content&gt;
+    &lt;md-grid-list cols=&quot;7&quot; rowHeight=&quot;68px&quot;&gt;
+      &lt;md-grid-tile *ngFor=&quot;let header of dayHeaders; let i = index&quot;
+        [ngStyle]=&quot;{&#39;color&#39;: dayColors[i]}&quot;&gt;
+        &lt;h3&gt;&lt;&#x2F;h3&gt;
+      &lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile [colspan]=&quot;lastMonth_colspan&quot; *ngIf=&quot;lastMonth_colspan&quot;&gt;&lt;&#x2F;md-grid-tile&gt;
+      ...</code></pre>
+<p>從瀏覽器上看起來 2017/10 月份行事曆應該就正常。<br><img src="/images/angular/training/directive/angular_directive_13.png" alt=""><br>最後我們在 <code>src\app\employee\calendar\calendar.component.scss</code> 加上一點 CSS 樣式，並套用到 <code>calendar.component.html</code>。  </p>
+<pre><code>.day {
+  border: solid 1px DimGray;
+  .text {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+  }
+}
+</code></pre>
+<pre><code>&lt;md-card&gt;
+  &lt;md-card-header&gt;
+    &lt;md-card-title&gt;行事曆&lt;&#x2F;md-card-title&gt;
+    &lt;md-card-subtitle&gt;
+      &lt;h1&gt;&lt;&#x2F;h1&gt;
+    &lt;&#x2F;md-card-subtitle&gt;
+  &lt;&#x2F;md-card-header&gt;
+  &lt;md-card-content&gt;
+    &lt;md-grid-list cols=&quot;7&quot; rowHeight=&quot;68px&quot;&gt;
+      &lt;md-grid-tile *ngFor=&quot;let header of dayHeaders; let i = index&quot;
+        [ngStyle]=&quot;{&#39;color&#39;: dayColors[i]}&quot;&gt;
+        &lt;h3&gt;&lt;&#x2F;h3&gt;
+      &lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile [colspan]=&quot;lastMonth_colspan&quot; *ngIf=&quot;lastMonth_colspan&quot;&gt;&lt;&#x2F;md-grid-tile&gt;
+      &lt;md-grid-tile *ngFor=&quot;let item of days&quot;
+        [ngStyle]=&quot;{&#39;color&#39;: dayColors[item.week]}&quot; class=&quot;day&quot;&gt;
+        &lt;span class=&quot;text&quot;&gt;&lt;&#x2F;span&gt;
+      &lt;&#x2F;md-grid-tile&gt;
+    &lt;&#x2F;md-grid-list&gt;
+  &lt;&#x2F;md-card-content&gt;
+  &lt;md-card-actions&gt;
+    &lt;button md-button (click)=&quot;getDay(-1)&quot;&gt;上個月&lt;&#x2F;button&gt;
+    &lt;button md-button (click)=&quot;getToday()&quot;&gt;本月&lt;&#x2F;button&gt;
+    &lt;button md-button (click)=&quot;getDay(1)&quot;&gt;下個月&lt;&#x2F;button&gt;
+  &lt;&#x2F;md-card-actions&gt;
+&lt;&#x2F;md-card&gt;
+</code></pre>
+<p>執行專案，從瀏覽器上操作應該都正常了。<br><img src="/images/angular/training/directive/angular_directive_14.gif" alt="">  </p>
+<p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-12.zip"><strong>first-app_2017-09-12.zip</strong></a>  </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Angular/" rel="tag"># Angular</a>
+          
+            <a href="/tags/Directive/" rel="tag"># Directive</a>
+          
+            <a href="/tags/Binding/" rel="tag"># Binding</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/angular/training/14_angular_ui_clarity_design_system/" rel="next" title="Angular UI：Clarity Design System">
+                <i class="fa fa-chevron-left"></i> Angular UI：Clarity Design System
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Jonny Huang" />
+          <p class="site-author-name" itemprop="name">Jonny Huang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分類</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#指令-Directive"><span class="nav-number">1.</span> <span class="nav-text">指令(Directive)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#編輯行事曆"><span class="nav-number">1.1.</span> <span class="nav-text">編輯行事曆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#內嵌繫結-interpolation"><span class="nav-number">1.2.</span> <span class="nav-text">內嵌繫結 (interpolation)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入月份切換功能"><span class="nav-number">1.3.</span> <span class="nav-text">加入月份切換功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入-Grid-List"><span class="nav-number">1.4.</span> <span class="nav-text">加入 Grid List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ngFor"><span class="nav-number">1.5.</span> <span class="nav-text">*ngFor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NgStyle"><span class="nav-number">1.6.</span> <span class="nav-text">NgStyle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#屬性繫結-Property-Binding"><span class="nav-number">1.7.</span> <span class="nav-text">屬性繫結 (Property Binding)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ngFor-1"><span class="nav-number">1.8.</span> <span class="nav-text">*ngFor</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-Jonny Huang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
+<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+      prettyPrint();
+  });
+</script>
+
+</body>
+</html>

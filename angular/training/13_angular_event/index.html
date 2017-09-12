@@ -90,22 +90,22 @@
 
 
 
-<meta name="description" content="事件 (EventEmitter)事件(Event) 可以說是一種狀態的描述，它提供一個主動通知的機制，讓我們可以在發生的當下去做一些額外的處理，例如：按下按鈕，這應該是我們最常用了事件，在點擊按鈕後我們可能儲存目前資訊、切換目前頁面、顯示額外訊息…等等。在 Angular UI：標題列 我們從官方範例一起複製了一段代碼-(click)=&amp;quot;sidenav.open()&amp;quot;，看起來">
+<meta name="description" content="事件 (EventEmitter)事件繫結 (Event Binding)事件(Event) 可以說是一種狀態的描述，它提供一個主動通知的機制，讓我們可以在發生的當下去做一些額外的處理，例如：按下按鈕，這應該是我們最常用了事件，在點擊按鈕後我們可能儲存目前資訊、切換目前頁面、顯示額外訊息…等等。在 Angular UI：標題列 我們從官方範例一起複製了一段代碼-(click)=&amp;quot;side">
 <meta name="keywords" content="Angular,Output,EventEmitter,Event">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular 事件">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/13_angular_event/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="事件 (EventEmitter)事件(Event) 可以說是一種狀態的描述，它提供一個主動通知的機制，讓我們可以在發生的當下去做一些額外的處理，例如：按下按鈕，這應該是我們最常用了事件，在點擊按鈕後我們可能儲存目前資訊、切換目前頁面、顯示額外訊息…等等。在 Angular UI：標題列 我們從官方範例一起複製了一段代碼-(click)=&amp;quot;sidenav.open()&amp;quot;，看起來">
+<meta property="og:description" content="事件 (EventEmitter)事件繫結 (Event Binding)事件(Event) 可以說是一種狀態的描述，它提供一個主動通知的機制，讓我們可以在發生的當下去做一些額外的處理，例如：按下按鈕，這應該是我們最常用了事件，在點擊按鈕後我們可能儲存目前資訊、切換目前頁面、顯示額外訊息…等等。在 Angular UI：標題列 我們從官方範例一起複製了一段代碼-(click)=&amp;quot;side">
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/event/angular_event_01.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/event/angular_event_02.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/event/angular_event_03.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-08T08:27:20.153Z">
+<meta property="og:updated_time" content="2017-09-12T03:39:02.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular 事件">
-<meta name="twitter:description" content="事件 (EventEmitter)事件(Event) 可以說是一種狀態的描述，它提供一個主動通知的機制，讓我們可以在發生的當下去做一些額外的處理，例如：按下按鈕，這應該是我們最常用了事件，在點擊按鈕後我們可能儲存目前資訊、切換目前頁面、顯示額外訊息…等等。在 Angular UI：標題列 我們從官方範例一起複製了一段代碼-(click)=&amp;quot;sidenav.open()&amp;quot;，看起來">
+<meta name="twitter:description" content="事件 (EventEmitter)事件繫結 (Event Binding)事件(Event) 可以說是一種狀態的描述，它提供一個主動通知的機制，讓我們可以在發生的當下去做一些額外的處理，例如：按下按鈕，這應該是我們最常用了事件，在點擊按鈕後我們可能儲存目前資訊、切換目前頁面、顯示額外訊息…等等。在 Angular UI：標題列 我們從官方範例一起複製了一段代碼-(click)=&amp;quot;side">
 <meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/event/angular_event_01.png">
 
 
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-08T16:27:20+08:00">
-                2017/09/08
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-12T11:39:02+08:00">
+                2017/09/12
               </time>
             
           </span>
@@ -363,7 +363,7 @@
       
 
       
-        <h1 id="事件-EventEmitter"><a href="#事件-EventEmitter" class="headerlink" title="事件 (EventEmitter)"></a>事件 (EventEmitter)</h1><p><strong>事件(Event)</strong> 可以說是一種<strong>狀態</strong>的描述，它提供一個主動通知的機制，讓我們可以在發生的當下去做一些額外的處理，例如：<strong>按下按鈕</strong>，這應該是我們最常用了事件，在點擊按鈕後我們可能儲存目前資訊、切換目前頁面、顯示額外訊息…等等。<br>在 <a href="/angular/training/12_angular_ui_header/">Angular UI：標題列</a> 我們從<a href="https://material.angular.io/components/sidenav/overview" target="_blank" rel="external"><strong>官方範例</strong></a>一起複製了一段代碼-<code>(click)=&quot;sidenav.open()&quot;</code>，看起來就像是點擊事件，但是又跟 DOM 的點擊事件(<code>onclick</code>)比起來少了最前面的 <code>on</code> 多了小括弧。  </p>
+        <h1 id="事件-EventEmitter"><a href="#事件-EventEmitter" class="headerlink" title="事件 (EventEmitter)"></a>事件 (EventEmitter)</h1><h2 id="事件繫結-Event-Binding"><a href="#事件繫結-Event-Binding" class="headerlink" title="事件繫結 (Event Binding)"></a>事件繫結 (Event Binding)</h2><p><strong>事件(Event)</strong> 可以說是一種<strong>狀態</strong>的描述，它提供一個主動通知的機制，讓我們可以在發生的當下去做一些額外的處理，例如：<strong>按下按鈕</strong>，這應該是我們最常用了事件，在點擊按鈕後我們可能儲存目前資訊、切換目前頁面、顯示額外訊息…等等。<br>在 <a href="/angular/training/12_angular_ui_header/">Angular UI：標題列</a> 我們從<a href="https://material.angular.io/components/sidenav/overview" target="_blank" rel="external"><strong>官方範例</strong></a>一起複製了一段代碼-<code>(click)=&quot;sidenav.open()&quot;</code>，看起來就像是點擊事件，但是又跟 DOM 的點擊事件(<code>onclick</code>)比起來少了最前面的 <code>on</code> 多了小括弧。  </p>
 <blockquote>
 <p>Angular 內建透過指令(Directive)方式產生了相對應 DOM 事件的 <strong>偽事件</strong> (不是正確觀念，但是這樣說好像比較好理解)， 它本身會去監控 DOM 的事件，當 DOM 事件觸發時在去觸發對應的 <strong>偽事件</strong>，初期我們可以直接把它當作 DOM 事件來看待，只是寫法上稍做調整。<br><strong>小括號</strong> 其實是 Angular <strong>單向繫結</strong>(<strong>事件繫結</strong>)的語法，透過繫結方式讓 <strong>前端樣板</strong>(xxx<strong>.component.html</strong>) 的變化( <strong>偽事件</strong>的觸發) 可以反應回 <strong>後端元件</strong>(xxx<strong>.component.ts</strong>)。</p>
 </blockquote>
@@ -671,7 +671,7 @@ export class AsideComponent implements OnInit {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -693,7 +693,7 @@ export class AsideComponent implements OnInit {
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -779,7 +779,7 @@ export class AsideComponent implements OnInit {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#事件-EventEmitter"><span class="nav-number">1.</span> <span class="nav-text">事件 (EventEmitter)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立自訂事件"><span class="nav-number">1.1.</span> <span class="nav-text">建立自訂事件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#事件-EventEmitter"><span class="nav-number">1.</span> <span class="nav-text">事件 (EventEmitter)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件繫結-Event-Binding"><span class="nav-number">1.1.</span> <span class="nav-text">事件繫結 (Event Binding)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立自訂事件"><span class="nav-number">1.2.</span> <span class="nav-text">建立自訂事件</span></a></li></ol></li></ol></div>
             
 
           </div>

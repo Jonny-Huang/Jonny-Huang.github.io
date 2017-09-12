@@ -115,7 +115,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_13.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_14.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-12T08:20:04.322Z">
+<meta property="og:updated_time" content="2017-09-12T13:18:56.723Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular 資料繫結 &amp; 指令">
 <meta name="twitter:description" content="資料繫結 (Binding) &amp;amp; 指令 (Directive)在 Angular UI：Clarity Design System 中，透過修改 tslint.json 檔的 component-selector 屬性來讓我們可以自訂元件 selector 屬性，現在同樣的來調整 first-app 專案，將 employee 資料夾內的元件改成 emp 開頭，將 home 資料夾內的元件">
@@ -323,7 +323,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-12T16:20:04+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-12T21:18:56+08:00">
                 2017/09/12
               </time>
             
@@ -533,7 +533,7 @@ export class EmployeeModule { }
 &lt;&#x2F;md-card&gt;
 </code></pre>
 <p>執行專案，從瀏覽器上可以看到最外層的卡片效果。<br><img src="/images/angular/training/directive/angular_directive_03.png" alt="">  </p>
-<h2 id="內嵌繫結-interpolation"><a href="#內嵌繫結-interpolation" class="headerlink" title="內嵌繫結 (interpolation)"></a>內嵌繫結 (interpolation)</h2><p>在 <a href="/angular/training/13_angular_event/">Angular 事件</a> 中，我們學會 <strong>事件繫結</strong>，透過 <strong>小括號</strong>(<code>( event )</code>) 的方式讓前端樣板狀態變更時可以通知後端元件。<br>接下來我們希望畫面上的月份可以透過程式動態修改，所以我們利用 Angular 提供的另一種資料繫結模式-<strong>內嵌繫結</strong> (<strong>interpolation</strong>)，我們可以透過2個大括號(<code></code>)方式將元件所對應 ts 檔的變數嵌入到樣板上。  </p>
+<h2 id="Binding：內嵌繫結-interpolation"><a href="#Binding：內嵌繫結-interpolation" class="headerlink" title="Binding：內嵌繫結 (interpolation)"></a>Binding：內嵌繫結 (interpolation)</h2><p>在 <a href="/angular/training/13_angular_event/">Angular 事件</a> 中，我們學會 <strong>事件繫結</strong>，透過 <strong>小括號</strong>(<code>( event )</code>) 的方式讓前端樣板狀態變更時可以通知後端元件。<br>接下來我們希望畫面上的月份可以透過程式動態修改，所以我們利用 Angular 提供的另一種資料繫結模式-<strong>內嵌繫結</strong> (<strong>interpolation</strong>)，我們可以透過2個大括號(<code></code>)方式將元件所對應 ts 檔的變數嵌入到樣板上。  </p>
 <blockquote>
 <p>若是私有(private)變數則無法存取，若變數沒有加上存取修飾詞，那預設值就是 public。</p>
 </blockquote>
@@ -735,7 +735,7 @@ export class CustomMaterialModule { }
 <blockquote>
 <p>從<a href="https://material.angular.io/components/grid-list/api" target="_blank" rel="external">API文件</a>來看，<strong>MdGridListModule</strong> 與 HTML 的 Table 功能類似。<br><strong>MdGridList</strong> 提供一個 <code>cols</code> 的屬性，當內容項目-<strong>MdGridTile</strong> 超過其數值時就會自動換行，我們設定 <code>7</code> 是因為一個禮拜有7天。<br><strong>MdGridTile</strong> 則提供 <code>rowspan</code>、<code>colspan</code> 可以設定所占用的 <strong>列數</strong> 與 <strong>欄位數</strong>，這邊因為都是占用1單位，所以不設定。</p>
 </blockquote>
-<h2 id="ngFor"><a href="#ngFor" class="headerlink" title="*ngFor"></a>*ngFor</h2><p>Angular 提供一個樣板指令-<strong>*ngFor</strong>，讓我們可以依照陣列物件重複產生樣板語法，同時將資料嵌入到樣板內。<br>修改 <code>calendar.component.ts</code>，加入星期的陣列變數-<strong>dayHeaders</strong>。  </p>
+<h2 id="Directive：-ngFor"><a href="#Directive：-ngFor" class="headerlink" title="Directive：*ngFor"></a>Directive：*ngFor</h2><p>Angular 提供一個樣板指令-<strong>*ngFor</strong>，讓我們可以依照陣列物件重複產生樣板語法，同時將資料嵌入到樣板內。<br>修改 <code>calendar.component.ts</code>，加入星期的陣列變數-<strong>dayHeaders</strong>。  </p>
 <pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
 
 @Component({
@@ -768,7 +768,7 @@ export class CalendarComponent implements OnInit {
 <blockquote>
 <p><code>*ngFor</code> 本身還提供下列變數可使用：<br><code>index</code> (number)：表示目前資料在陣列中的索引值。<br><code>first</code> (boolean)：表示目前資料是否為第一筆。<br><code>last</code> (boolean)：表示目前資料是否為最後一筆。<br><code>even</code> (boolean)：表示目前資料的索引值是否為偶數筆。<br><code>odd</code> (boolean)：表示目前資料的索引值是否為奇數筆。<br>但是上述變數不可直接使用，必須另行宣告變數來承接。<br>例如：我們宣告一個變數 <code>i</code> 來承接 <code>index</code> 索引值，並將 <code>i</code> 嵌入到星期變數前面。<br><img src="/images/angular/training/directive/angular_directive_07.png" alt=""><br><img src="/images/angular/training/directive/angular_directive_08.png" alt="">  </p>
 </blockquote>
-<h2 id="NgStyle"><a href="#NgStyle" class="headerlink" title="NgStyle"></a>NgStyle</h2><p>Angular 提供一個類似 <code>style</code> tag 的指令-<code>[ngStyle]</code>，最大的差異就是 <code>[ngStyle]</code> 所設定CSS的屬性值可以是變數、方法，也就是我們可以動態改變值。<br>修改 <code>calendar.component.ts</code>，加入星期的顏色陣列變數-<strong>dayColors</strong>。  </p>
+<h2 id="Directive：NgStyle"><a href="#Directive：NgStyle" class="headerlink" title="Directive：NgStyle"></a>Directive：NgStyle</h2><p>Angular 提供一個類似 <code>style</code> tag 的指令-<code>[ngStyle]</code>，最大的差異就是 <code>[ngStyle]</code> 所設定CSS的屬性值可以是變數、方法，也就是我們可以動態改變值。<br>修改 <code>calendar.component.ts</code>，加入星期的顏色陣列變數-<strong>dayColors</strong>。  </p>
 <pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
 
 @Component({
@@ -856,7 +856,7 @@ export class CalendarComponent implements OnInit {
     &lt;&#x2F;md-grid-list&gt;
   ...</code></pre>
 <p>從瀏覽器上可以看到日期為星期日與星期六的顏色都改變了，但是位置不對，2017/9/1 應該是禮拜五。<br><img src="/images/angular/training/directive/angular_directive_10.png" alt="">  </p>
-<h2 id="屬性繫結-Property-Binding"><a href="#屬性繫結-Property-Binding" class="headerlink" title="屬性繫結 (Property Binding)"></a>屬性繫結 (Property Binding)</h2><p>上面提到的 <strong>內嵌繫結</strong> 可以將後端元件類別變數輸出到前端樣板，但是它最終會轉換成文字，如果我們需要繫結對象是樣板元素的屬性時可能就會不適用，因此 Angular 提供另一種資料繫結模式-<strong>屬性繫結</strong>，我們可以在目標屬性上加上 <strong>中括號</strong>(<code>[ property ]</code>) 來表示資料來源是來自元件類別。  </p>
+<h2 id="Binding：屬性繫結-Property-Binding"><a href="#Binding：屬性繫結-Property-Binding" class="headerlink" title="Binding：屬性繫結 (Property Binding)"></a>Binding：屬性繫結 (Property Binding)</h2><p>上面提到的 <strong>內嵌繫結</strong> 可以將後端元件類別變數輸出到前端樣板，但是它最終會轉換成文字，如果我們需要繫結對象是樣板元素的屬性時可能就會不適用，因此 Angular 提供另一種資料繫結模式-<strong>屬性繫結</strong>，我們可以在目標屬性上加上 <strong>中括號</strong>(<code>[ property ]</code>) 來表示資料來源是來自元件類別。  </p>
 <blockquote>
 <p><strong>屬性繫結</strong> 的資料如果是字串，可以在值外面加上單引號來表示值為字串。</p>
 </blockquote>
@@ -897,7 +897,7 @@ export class CalendarComponent implements OnInit {
     &lt;&#x2F;md-grid-list&gt;
   ...</code></pre>
 <p>從瀏覽器上看起來應該都是正常。<br><img src="/images/angular/training/directive/angular_directive_11.png" alt="">  </p>
-<h2 id="ngFor-1"><a href="#ngFor-1" class="headerlink" title="*ngFor"></a>*ngFor</h2><p>我們切換到下個月(2017/10)問題就出現了，原本 2017/10/1 應該是星期日，但是卻被移到星期六。<br><img src="/images/angular/training/directive/angular_directive_12.png" alt=""><br>當 <code>lastMonth_colspan = 0</code> 時表示不需要推移，因此應該移除日期前的 <code>md-grid-tile</code>，Angular 提供一個便捷的樣板指令-<strong>*ngFor</strong>，當後面的判斷式為 <code>true</code> 時該樣板元素會顯示，當值為 <code>false</code> 時該樣板元素會被移除。<br>開啟 <code>calendar.component.html</code>，添加 <strong>*ngFor</strong> 判斷式。</p>
+<h2 id="Directive：-ngFor-1"><a href="#Directive：-ngFor-1" class="headerlink" title="Directive：*ngFor"></a>Directive：*ngFor</h2><p>我們切換到下個月(2017/10)問題就出現了，原本 2017/10/1 應該是星期日，但是卻被移到星期六。<br><img src="/images/angular/training/directive/angular_directive_12.png" alt=""><br>當 <code>lastMonth_colspan = 0</code> 時表示不需要推移，因此應該移除日期前的 <code>md-grid-tile</code>，Angular 提供一個便捷的樣板指令-<strong>*ngFor</strong>，當後面的判斷式為 <code>true</code> 時該樣板元素會顯示，當值為 <code>false</code> 時該樣板元素會被移除。<br>開啟 <code>calendar.component.html</code>，添加 <strong>*ngFor</strong> 判斷式。</p>
 <pre><code>...
   &lt;md-card-content&gt;
     &lt;md-grid-list cols=&quot;7&quot; rowHeight=&quot;68px&quot;&gt;
@@ -1197,7 +1197,7 @@ export class CalendarComponent implements OnInit {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#資料繫結-Binding-amp-指令-Directive"><span class="nav-number">1.</span> <span class="nav-text">資料繫結 (Binding) & 指令 (Directive)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#編輯行事曆"><span class="nav-number">1.1.</span> <span class="nav-text">編輯行事曆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#內嵌繫結-interpolation"><span class="nav-number">1.2.</span> <span class="nav-text">內嵌繫結 (interpolation)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入月份切換功能"><span class="nav-number">1.3.</span> <span class="nav-text">加入月份切換功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入-Grid-List"><span class="nav-number">1.4.</span> <span class="nav-text">加入 Grid List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ngFor"><span class="nav-number">1.5.</span> <span class="nav-text">*ngFor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NgStyle"><span class="nav-number">1.6.</span> <span class="nav-text">NgStyle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#屬性繫結-Property-Binding"><span class="nav-number">1.7.</span> <span class="nav-text">屬性繫結 (Property Binding)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ngFor-1"><span class="nav-number">1.8.</span> <span class="nav-text">*ngFor</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#資料繫結-Binding-amp-指令-Directive"><span class="nav-number">1.</span> <span class="nav-text">資料繫結 (Binding) & 指令 (Directive)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#編輯行事曆"><span class="nav-number">1.1.</span> <span class="nav-text">編輯行事曆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binding：內嵌繫結-interpolation"><span class="nav-number">1.2.</span> <span class="nav-text">Binding：內嵌繫結 (interpolation)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入月份切換功能"><span class="nav-number">1.3.</span> <span class="nav-text">加入月份切換功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入-Grid-List"><span class="nav-number">1.4.</span> <span class="nav-text">加入 Grid List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directive：-ngFor"><span class="nav-number">1.5.</span> <span class="nav-text">Directive：*ngFor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directive：NgStyle"><span class="nav-number">1.6.</span> <span class="nav-text">Directive：NgStyle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binding：屬性繫結-Property-Binding"><span class="nav-number">1.7.</span> <span class="nav-text">Binding：屬性繫結 (Property Binding)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directive：-ngFor-1"><span class="nav-number">1.8.</span> <span class="nav-text">Directive：*ngFor</span></a></li></ol></li></ol></div>
             
 
           </div>

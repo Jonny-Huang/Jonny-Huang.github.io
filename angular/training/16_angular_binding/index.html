@@ -90,18 +90,22 @@
 
 
 
-<meta name="description" content="單向繫結(One-Way Binding)">
+<meta name="description" content="單向繫結(One-Way Binding)我們在 Angular 事件 中演練了 事件繫結 的應用，在 Angular 指令 &amp;amp; 資料繫結 中演練了 內嵌繫結 與 屬性繫結，這3種資料繫結方式正是 Angular 所提供的單向繫結，其差異如下：    當後端類別所繫結的 變數(或屬性) 發生變化時，會自動更新前端樣板的資料。內嵌繫結 (interpolation)：在要遷入的地方加入雙大括">
 <meta name="keywords" content="Angular,Binding,interpolation,Property Binding,Directive">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular 單向繫結">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/16_angular_binding/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="單向繫結(One-Way Binding)">
+<meta property="og:description" content="單向繫結(One-Way Binding)我們在 Angular 事件 中演練了 事件繫結 的應用，在 Angular 指令 &amp;amp; 資料繫結 中演練了 內嵌繫結 與 屬性繫結，這3種資料繫結方式正是 Angular 所提供的單向繫結，其差異如下：    當後端類別所繫結的 變數(或屬性) 發生變化時，會自動更新前端樣板的資料。內嵌繫結 (interpolation)：在要遷入的地方加入雙大括">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-09-13T02:11:12.038Z">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_01.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_02.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_03.png">
+<meta property="og:updated_time" content="2017-09-13T04:03:30.502Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular 單向繫結">
-<meta name="twitter:description" content="單向繫結(One-Way Binding)">
+<meta name="twitter:description" content="單向繫結(One-Way Binding)我們在 Angular 事件 中演練了 事件繫結 的應用，在 Angular 指令 &amp;amp; 資料繫結 中演練了 內嵌繫結 與 屬性繫結，這3種資料繫結方式正是 Angular 所提供的單向繫結，其差異如下：    當後端類別所繫結的 變數(或屬性) 發生變化時，會自動更新前端樣板的資料。內嵌繫結 (interpolation)：在要遷入的地方加入雙大括">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_01.png">
 
 
 
@@ -305,7 +309,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-13T10:11:12+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-13T12:03:30+08:00">
                 2017/09/13
               </time>
             
@@ -358,7 +362,14 @@
       
 
       
-        <h1 id="單向繫結-One-Way-Binding"><a href="#單向繫結-One-Way-Binding" class="headerlink" title="單向繫結(One-Way Binding)"></a>單向繫結(One-Way Binding)</h1>
+        <h1 id="單向繫結-One-Way-Binding"><a href="#單向繫結-One-Way-Binding" class="headerlink" title="單向繫結(One-Way Binding)"></a>單向繫結(One-Way Binding)</h1><p>我們在 <a href="/angular/training/13_angular_event/">Angular 事件</a> 中演練了 <strong>事件繫結</strong> 的應用，在 <a href="/angular/training/15_angular_directive/">Angular 指令 &amp; 資料繫結</a> 中演練了 <strong>內嵌繫結</strong> 與 <strong>屬性繫結</strong>，這3種資料繫結方式正是 Angular 所提供的單向繫結，其差異如下：  </p>
+<ul>
+<li><p>當後端類別所繫結的 <strong>變數(或屬性)</strong> 發生變化時，會自動更新前端樣板的資料。<br>內嵌繫結 (interpolation)：在要遷入的地方加入雙大括號。<br><img src="/images/angular/training/binding/angular_binding_01.png" alt=""><br>屬性繫結 (Property Binding)：在要繫結的屬性對象加上中括號。<br><img src="/images/angular/training/binding/angular_binding_02.png" alt="">  </p>
+</li>
+<li><p>當前端樣板狀態發生變化時，可以主動觸發後端類別的方法(也可以直接嵌入程式邏輯)。<br>事件繫結 (Event Binding)：在要繫結的事件對象加上小括號。<br><img src="/images/angular/training/binding/angular_binding_03.png" alt="">  </p>
+</li>
+</ul>
+
       
     </div>
 

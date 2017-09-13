@@ -115,7 +115,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_13.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_14.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-13T02:05:50.557Z">
+<meta property="og:updated_time" content="2017-09-13T08:25:29.043Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular 指令 &amp; 資料繫結">
 <meta name="twitter:description" content="指令 (Directive) &amp;amp; 資料繫結 (Binding)在 Angular UI：Clarity Design System 中，透過修改 tslint.json 檔的 component-selector 屬性來讓我們可以自訂元件 selector 屬性，現在同樣的來調整 first-app 專案，將 employee 資料夾內的元件改成 emp 開頭，將 home 資料夾內的元件">
@@ -323,7 +323,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-13T10:05:50+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-13T16:25:29+08:00">
                 2017/09/13
               </time>
             
@@ -570,6 +570,9 @@ export class CalendarComponent implements OnInit {
   }
 }
 </code></pre>
+<blockquote>
+<p>TypeScript 在宣告變數時必須給定<a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" rel="external">型別</a>，例如：boolean、number、string、any、…，格式是在變數後面加上冒號(<code>:</code>)再加上型別，但是如果有給初始值時可以省略，因為 TypeScript 會自動依初始值來推斷變數的型別，後續程式邏輯若給予的值與型別不符時就會出現警告。<br>TypeScript 最終還是會編譯成 JavaScript，它主要是提供了<strong>開發時期</strong>的型別檢查。<br><code>any</code> 算是比較特殊的型別，代表它可以是任意型別，當變數設成 <code>any</code> 時，我們可以視為 TypeScript 就不會做檢查，當變數的值可能為不同型別時可以使用，但是宣告成 <code>any</code> 也代表失去 TypeScript 的檢核機制，建議盡量避免使用。<br>在 function 內宣告變數時，TypeScript 預設會建議你用 <code>const</code> 宣告，如果值會改變時則用 <code>let</code>。</p>
+</blockquote>
 <p>修改 <code>calendar.component.html</code>，套用 <code>selectedMonth</code> 變數。</p>
 <pre><code>&lt;md-card&gt;
   &lt;md-card-header&gt;
@@ -1093,7 +1096,7 @@ export class CalendarComponent implements OnInit {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -1115,7 +1118,7 @@ export class CalendarComponent implements OnInit {
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>

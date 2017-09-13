@@ -101,7 +101,15 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_01.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_02.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_03.png">
-<meta property="og:updated_time" content="2017-09-13T04:03:30.502Z">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_04.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_05.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_06.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_07.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_08.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_09.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_10.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
+<meta property="og:updated_time" content="2017-09-13T16:13:30.413Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular 單向繫結">
 <meta name="twitter:description" content="單向繫結(One-Way Binding)我們在 Angular 事件 中演練了 事件繫結 的應用，在 Angular 指令 &amp;amp; 資料繫結 中演練了 內嵌繫結 與 屬性繫結，這3種資料繫結方式正是 Angular 所提供的單向繫結，其差異如下：    當後端類別所繫結的 變數(或屬性) 發生變化時，會自動更新前端樣板的資料。內嵌繫結 (interpolation)：在要遷入的地方加入雙大括">
@@ -309,8 +317,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-13T12:03:30+08:00">
-                2017/09/13
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-14T00:13:30+08:00">
+                2017/09/14
               </time>
             
           </span>
@@ -364,11 +372,261 @@
       
         <h1 id="單向繫結-One-Way-Binding"><a href="#單向繫結-One-Way-Binding" class="headerlink" title="單向繫結(One-Way Binding)"></a>單向繫結(One-Way Binding)</h1><p>我們在 <a href="/angular/training/13_angular_event/">Angular 事件</a> 中演練了 <strong>事件繫結</strong> 的應用，在 <a href="/angular/training/15_angular_directive/">Angular 指令 &amp; 資料繫結</a> 中演練了 <strong>內嵌繫結</strong> 與 <strong>屬性繫結</strong>，這3種資料繫結方式正是 Angular 所提供的單向繫結，其差異如下：  </p>
 <ul>
-<li><p>當後端類別所繫結的 <strong>變數(或屬性)</strong> 發生變化時，會自動更新前端樣板的資料。<br>內嵌繫結 (interpolation)：在要遷入的地方加入雙大括號。<br><img src="/images/angular/training/binding/angular_binding_01.png" alt=""><br>屬性繫結 (Property Binding)：在要繫結的屬性對象加上中括號。<br><img src="/images/angular/training/binding/angular_binding_02.png" alt="">  </p>
+<li><p>當後端類別所繫結的 <strong>變數(或屬性)</strong> 發生變化時，會自動更新前端樣板的資料。<br><strong>內嵌繫結</strong> (<strong>interpolation</strong>)：在要遷入的地方加入雙大括號。<br><img src="/images/angular/training/binding/angular_binding_01.png" alt=""><br><strong>屬性繫結</strong> (<strong>Property Binding</strong>)：在要繫結的屬性對象加上中括號。<br><img src="/images/angular/training/binding/angular_binding_02.png" alt="">  </p>
 </li>
-<li><p>當前端樣板狀態發生變化時，可以主動觸發後端類別的方法(也可以直接嵌入程式邏輯)。<br>事件繫結 (Event Binding)：在要繫結的事件對象加上小括號。<br><img src="/images/angular/training/binding/angular_binding_03.png" alt="">  </p>
+<li><p>當前端樣板狀態發生變化時，可以主動觸發後端類別的方法(也可以直接嵌入程式邏輯)。<br><strong>事件繫結</strong> (<strong>Event Binding</strong>)：在要繫結的事件對象加上小括號。<br><img src="/images/angular/training/binding/angular_binding_03.png" alt="">  </p>
 </li>
 </ul>
+<p>接下來我們開始建置行事曆的明細項目，並且活用繫結的特性讓我們可以減少透過程式邏輯來控制介面。  </p>
+<h2 id="TypeScript：預設值"><a href="#TypeScript：預設值" class="headerlink" title="TypeScript：預設值"></a>TypeScript：預設值</h2><p>開啟 <code>src\app\employee\calendar\calendar.component.ts</code>，賦予 <code>getDay</code> 方法參數 <code>addDMonth</code> 預設值 <code>0</code>，透過設定預設值的方式，讓我們在呼叫該方法時可以省略參數，也就是說當呼叫方法時若沒有帶入參數值則 TypeScript 自動帶入預設值。<br><img src="/images/angular/training/binding/angular_binding_04.png" alt="">  </p>
+<blockquote>
+<p>後續會逐漸加入 TypeScript 的實用技巧，畢竟先學會 TypeScript，再比較 TypeScript 與 JavaScript 哪個比較好才有意義，這會比光看網路上別人的評論來決定還要準確，因為每個人的認知會都不同。</p>
+</blockquote>
+<h2 id="增加明細的顯示區塊"><a href="#增加明細的顯示區塊" class="headerlink" title="增加明細的顯示區塊"></a>增加明細的顯示區塊</h2><p>這便再次利用 Angular Flex-Layout 來幫我們切版，開啟 <code>src\app\employee\calendar\calendar.component.html</code> 外層加入 <code>div</code> tag 來分割，預設是水平排列(<code>fxLayout=&quot;row&quot;</code>)，但是考慮到手機尺寸，我們在加上 <code>fxLayout.xs=&quot;column&quot;，讓手機尺寸可以改為垂直排列。  
+行事曆的區塊在水平排列時會占用 70% (</code>fxFlex=”70”<code>)，而在垂直排列時則會依內容大小填入，因為</code>fxLayout<code>預設模式是填滿(</code>stretch`)，所以行事曆就會填滿整個寬度。  </p>
+<pre><code>&lt;div fxLayout=&quot;row&quot; fxLayout.xs=&quot;column&quot;&gt;
+  &lt;div fxFlex=&quot;70&quot; fxFlex.xs&gt;
+    &lt;md-card&gt;
+      ...
+    &lt;&#x2F;md-card&gt;
+  &lt;&#x2F;div&gt;
+  &lt;div fxFlex&gt;
+    &lt;md-card&gt;
+      &lt;md-card-content&gt;
+        &lt;h1&gt;{ {selectedDay} }&lt;&#x2F;h1&gt;
+        &lt;md-divider&gt;&lt;&#x2F;md-divider&gt;
+
+      &lt;&#x2F;md-card-content&gt;
+    &lt;&#x2F;md-card&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+</code></pre>
+<p>用瀏覽器檢視可以看到桌機與手機的差異。<br><img src="/images/angular/training/binding/angular_binding_05.png" alt=""><br><img src="/images/angular/training/binding/angular_binding_06.png" alt="">  </p>
+<h2 id="通道-Pipe"><a href="#通道-Pipe" class="headerlink" title="通道 (Pipe)"></a>通道 (Pipe)</h2><p>Angular 提供許多 <strong>通道</strong>(<strong>Pipe</strong>) 讓我們可以對 <strong>內嵌繫結</strong> 的資料再進一步的轉換，很顯然明細區塊的 <code>selectedDay</code> 所顯示的結果並不是我們想要的，因此這邊我們利用 <a href="https://angular.io/api/common/DatePipe" target="_blank" rel="external">DatePipe</a> 來將日期格式化成 <code>年/月/日</code>。</p>
+<pre><code>&lt;div fxLayout=&quot;row&quot; fxLayout.xs=&quot;column&quot;&gt;
+  ...
+  &lt;div fxFlex&gt;
+    &lt;md-card&gt;
+      &lt;md-card-content&gt;
+        &lt;h1&gt;{ {selectedDay | date:&#39;yyyy&#x2F;MM&#x2F;dd&#39;} }&lt;&#x2F;h1&gt;
+        &lt;md-divider&gt;&lt;&#x2F;md-divider&gt;
+
+      &lt;&#x2F;md-card-content&gt;
+    &lt;&#x2F;md-card&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+</code></pre>
+<p><img src="/images/angular/training/binding/angular_binding_07.png" alt="">  </p>
+<blockquote>
+<p>Angular 目前提供的通道可以查詢 <a href="https://angular.io/api?type=pipe" target="_blank" rel="external">API 文件</a><br><img src="/images/angular/training/binding/angular_binding_08.png" alt=""><br>如果功能不敷使用其實我們也可以自己撰寫 Pipe。</p>
+</blockquote>
+<h2 id="日期選取效果"><a href="#日期選取效果" class="headerlink" title="日期選取效果"></a>日期選取效果</h2><p>接下來我們在行事曆樣板上的日期 元件(<code>md-grid-tile</code>) 加入點擊(<code>click</code>)的事件，並透過<strong>事件繫結</strong>來繫結到元件類別的 <code>selectdDay(item)</code> 方法。<br>接著在 <code>md-grid-tile</code>裡面再加上一個水藍色的 <code>div</code> 外框，並透過 <strong>*ngIf</strong> 指令來依照 <code>item</code> 的 <code>isSelected</code> 屬性決定是否顯示，接下來只要將選取到的日期所屬 <code>item</code> 的 <code>isSelected</code> 屬性改成 <code>true</code>，其餘改成 <code>false</code> 就可以呈現選取效果。<br>編輯 <code>calendar.component.html</code>。</p>
+<pre><code>&lt;div fxLayout=&quot;row&quot; fxLayout.xs=&quot;column&quot;&gt;
+  &lt;div fxFlex=&quot;70&quot; fxFlex.xs&gt;
+    &lt;md-card&gt;
+      &lt;md-card-header&gt;
+        &lt;md-card-title&gt;行事曆&lt;&#x2F;md-card-title&gt;
+        &lt;md-card-subtitle&gt;
+          &lt;h1&gt;{ {selectedMonth} }&lt;&#x2F;h1&gt;
+        &lt;&#x2F;md-card-subtitle&gt;
+      &lt;&#x2F;md-card-header&gt;
+      &lt;md-card-content&gt;
+        &lt;md-grid-list cols=&quot;7&quot; rowHeight=&quot;68px&quot;&gt;
+          &lt;md-grid-tile *ngFor=&quot;let header of dayHeaders; let i = index&quot; [ngStyle]=&quot;{&#39;color&#39;: dayColors[i]}&quot;&gt;
+            &lt;h3&gt;{ {header} }&lt;&#x2F;h3&gt;
+          &lt;&#x2F;md-grid-tile&gt;
+          &lt;md-grid-tile [colspan]=&quot;lastMonth_colspan&quot; *ngIf=&quot;lastMonth_colspan&quot;&gt;&lt;&#x2F;md-grid-tile&gt;
+          &lt;md-grid-tile *ngFor=&quot;let item of days&quot;
+            [ngStyle]=&quot;{&#39;color&#39;: dayColors[item.week]}&quot;
+            class=&quot;day&quot;
+            (click)=&quot;selectdDay(item)&quot;&gt;
+            &lt;div fxFill *ngIf=&quot;item.isSelected&quot; class=&quot;selected&quot;&gt;
+            &lt;&#x2F;div&gt;
+            &lt;span class=&quot;text&quot;&gt;{ {item.day} }&lt;&#x2F;span&gt;
+          &lt;&#x2F;md-grid-tile&gt;
+        &lt;&#x2F;md-grid-list&gt;
+      &lt;&#x2F;md-card-content&gt;
+      &lt;md-card-actions&gt;
+        &lt;button md-button (click)=&quot;getDay(-1)&quot;&gt;上個月&lt;&#x2F;button&gt;
+        &lt;button md-button (click)=&quot;getToday()&quot;&gt;本月&lt;&#x2F;button&gt;
+        &lt;button md-button (click)=&quot;getDay(1)&quot;&gt;下個月&lt;&#x2F;button&gt;
+      &lt;&#x2F;md-card-actions&gt;
+    &lt;&#x2F;md-card&gt;
+  &lt;&#x2F;div&gt;
+  &lt;div fxFlex&gt;
+    &lt;md-card&gt;
+      &lt;md-card-content&gt;
+        &lt;h1&gt;{ {selectedDay | date:&#39;yyyy&#x2F;MM&#x2F;dd&#39;} }&lt;&#x2F;h1&gt;
+        &lt;md-divider&gt;&lt;&#x2F;md-divider&gt;
+
+      &lt;&#x2F;md-card-content&gt;
+    &lt;&#x2F;md-card&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+</code></pre>
+<p>編輯 <code>calendar.component.scss</code>。</p>
+<pre><code>.day {
+  border: solid 1px DimGray;
+  .text {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+  }
+  .selected {
+    box-sizing: border-box;
+    border: dashed 4px skyblue;
+  }
+}
+</code></pre>
+<p>編輯 <code>calendar.component.ts</code>。</p>
+<pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
+
+@Component({
+  selector: &#39;emp-calendar&#39;,
+  templateUrl: &#39;.&#x2F;calendar.component.html&#39;,
+  styleUrls: [&#39;.&#x2F;calendar.component.scss&#39;]
+})
+export class CalendarComponent implements OnInit {
+  selectedDay: Date;
+  selectedMonth = &#39;&#39;;
+  dayHeaders = [&#39;日&#39;, &#39;一&#39;, &#39;二&#39;, &#39;三&#39;, &#39;四&#39;, &#39;五&#39;, &#39;六&#39;];
+  dayColors = [&#39;red&#39;, &#39;white&#39;, &#39;white&#39;, &#39;white&#39;, &#39;white&#39;, &#39;white&#39;, &#39;green&#39;];
+  days = [];
+  lastMonth_colspan = 0;
+  selectedItem: any;
+  constructor() { }
+
+  ngOnInit() {
+    this.getToday();
+  }
+
+  getToday() {
+    this.selectedDay = new Date();
+    this.getDay();
+  }
+
+  getDay(addDMonth: number = 0) {
+    let year = this.selectedDay.getFullYear();
+    let month = this.selectedDay.getMonth() + addDMonth;
+    const dt = new Date(year, month, 1);
+    year = dt.getFullYear();
+    month = dt.getMonth();
+
+    const maxDay = new Date(year, month + 1, 0).getDate();
+    const newDay = this.selectedDay.getDate();
+    this.selectedDay = new Date(year, month, (newDay &lt; maxDay) ? newDay : maxDay);
+    const dayNumber = this.selectedDay.getDate();
+    this.lastMonth_colspan = new Date(year, month, 1).getDay();
+    const _days = [];
+    for (let day = 1; day &lt;= 31; day++) {
+      const time = new Date(year, month, day);
+      if (time.getMonth() &gt; month) {
+        break;
+      }
+      const isSelected = time.getDate() === dayNumber;
+      const d: any = {
+        isSelected: isSelected,
+        datetime: time,
+        day: day,
+        week: time.getDay()
+      };
+      if (isSelected) {
+        this.selectedItem = d;
+      }
+      _days.push(d);
+    }
+    this.days = [..._days];
+    month++;
+    &#x2F;&#x2F; month為13時表示隔年的1月。
+    if (month === 13) {
+      month = 1;
+      year++;
+    }
+    this.selectedMonth = `${year} 年 ${month} 月`;
+  }
+
+  selectdDay(item: any) {
+    if (this.selectedItem) {
+      this.selectedItem.isSelected = false;
+    }
+    item.isSelected = true;
+    this.selectedItem = item;
+    this.selectedDay = item.datetime;
+  }
+}
+</code></pre>
+<p>查看瀏覽器，選取效果已經出現。<br><img src="/images/angular/training/binding/angular_binding_09.gif" alt="">  </p>
+<h2 id="模擬紀錄"><a href="#模擬紀錄" class="headerlink" title="模擬紀錄"></a>模擬紀錄</h2><p>接著我們在 <code>calendar.component.ts</code> 內建立一個讀取紀錄的方法-<code>getNote()</code>，並透過亂數函式來產生一些紀錄。  </p>
+<pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
+
+@Component({
+  selector: &#39;emp-calendar&#39;,
+  templateUrl: &#39;.&#x2F;calendar.component.html&#39;,
+  styleUrls: [&#39;.&#x2F;calendar.component.scss&#39;]
+})
+export class CalendarComponent implements OnInit {
+  ...
+  getDay(addDMonth: number = 0) {
+    let year = this.selectedDay.getFullYear();
+    ...
+    this.selectedMonth = `${year} 年 ${month} 月`;
+    this.getNote();
+  }
+
+  selectdDay(item: any) {
+    ...
+  }
+
+  getNote() {
+    if (this.days.length &gt; 0) {
+      const d = Math.floor(Math.random() * 28);
+      this.days.forEach(item =&gt; {
+        const notes = [];
+        if (item.week !== 0 &amp;&amp; item.week !== 6) {
+          if (item.week === 1) {
+            notes.push(&#39;8:00 每周會議&#39;);
+          }
+          let b = Math.random() &gt;= 0.5;
+          if (b) {
+            notes.push(&#39;XXX客戶拜訪&#39;);
+          }
+          b = Math.random() &gt;= 0.5;
+          if (b) {
+            notes.push(&#39;專案討論&#39;);
+          }
+          if (item.day === d) {
+            notes.push(&#39;部門聚餐&#39;);
+          }
+        }
+        item.notes = notes;
+      });
+
+    }
+  }
+}
+</code></pre>
+<p>編輯 <code>calendar.component.html</code>。</p>
+<pre><code>&lt;div fxLayout=&quot;row&quot; fxLayout.xs=&quot;column&quot;&gt;
+  &lt;div fxFlex=&quot;70&quot; fxFlex.xs&gt;
+    ...
+  &lt;&#x2F;div&gt;
+  &lt;div fxFlex&gt;
+    &lt;md-card&gt;
+      &lt;md-card-content&gt;
+        &lt;h1&gt;{ {selectedDay | date:&#39;yyyy&#x2F;MM&#x2F;dd&#39;} }&lt;&#x2F;h1&gt;
+        &lt;md-divider&gt;&lt;&#x2F;md-divider&gt;
+        &lt;md-list&gt;
+          &lt;md-list-item *ngFor=&quot;let item of selectedItem.notes; let i = index&quot;&gt;
+            NaN. 
+          &lt;&#x2F;md-list-item&gt;
+        &lt;&#x2F;md-list&gt;
+      &lt;&#x2F;md-card-content&gt;
+    &lt;&#x2F;md-card&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+</code></pre>
+<p>查看瀏覽器，選取日期時右邊已經會出現紀錄。<br><img src="/images/angular/training/binding/angular_binding_10.gif" alt="">  </p>
+<p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-13.zip"><strong>first-app_2017-09-13.zip</strong></a>  </p>
 
       
     </div>
@@ -438,6 +696,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/angular/training/17_angular_service/" rel="prev" title="Angular 服務">
+                Angular 服務 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -510,7 +772,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -532,7 +794,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -618,7 +880,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#單向繫結-One-Way-Binding"><span class="nav-number">1.</span> <span class="nav-text">單向繫結(One-Way Binding)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#單向繫結-One-Way-Binding"><span class="nav-number">1.</span> <span class="nav-text">單向繫結(One-Way Binding)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TypeScript：預設值"><span class="nav-number">1.1.</span> <span class="nav-text">TypeScript：預設值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加明細的顯示區塊"><span class="nav-number">1.2.</span> <span class="nav-text">增加明細的顯示區塊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通道-Pipe"><span class="nav-number">1.3.</span> <span class="nav-text">通道 (Pipe)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日期選取效果"><span class="nav-number">1.4.</span> <span class="nav-text">日期選取效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模擬紀錄"><span class="nav-number">1.5.</span> <span class="nav-text">模擬紀錄</span></a></li></ol></li></ol></div>
             
 
           </div>

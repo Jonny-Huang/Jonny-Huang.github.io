@@ -90,13 +90,13 @@
 
 
 
-<meta name="description" content="資料繫結 (Binding) &amp;amp; 指令 (Directive)在 Angular UI：Clarity Design System 中，透過修改 tslint.json 檔的 component-selector 屬性來讓我們可以自訂元件 selector 屬性，現在同樣的來調整 first-app 專案，將 employee 資料夾內的元件改成 emp 開頭，將 home 資料夾內的元件">
+<meta name="description" content="指令 (Directive) &amp;amp; 資料繫結 (Binding)在 Angular UI：Clarity Design System 中，透過修改 tslint.json 檔的 component-selector 屬性來讓我們可以自訂元件 selector 屬性，現在同樣的來調整 first-app 專案，將 employee 資料夾內的元件改成 emp 開頭，將 home 資料夾內的元件">
 <meta name="keywords" content="Angular,ngIf,ngFor,ngStyle,interpolation,Property Binding,Directive,Binding">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Angular 資料繫結 &amp; 指令">
+<meta property="og:title" content="Angular 指令 &amp; 資料繫結">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/15_angular_directive/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="資料繫結 (Binding) &amp;amp; 指令 (Directive)在 Angular UI：Clarity Design System 中，透過修改 tslint.json 檔的 component-selector 屬性來讓我們可以自訂元件 selector 屬性，現在同樣的來調整 first-app 專案，將 employee 資料夾內的元件改成 emp 開頭，將 home 資料夾內的元件">
+<meta property="og:description" content="指令 (Directive) &amp;amp; 資料繫結 (Binding)在 Angular UI：Clarity Design System 中，透過修改 tslint.json 檔的 component-selector 屬性來讓我們可以自訂元件 selector 屬性，現在同樣的來調整 first-app 專案，將 employee 資料夾內的元件改成 emp 開頭，將 home 資料夾內的元件">
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_01.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_02.png">
@@ -115,10 +115,10 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_13.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_14.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-12T13:18:56.723Z">
+<meta property="og:updated_time" content="2017-09-13T02:05:50.557Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Angular 資料繫結 &amp; 指令">
-<meta name="twitter:description" content="資料繫結 (Binding) &amp;amp; 指令 (Directive)在 Angular UI：Clarity Design System 中，透過修改 tslint.json 檔的 component-selector 屬性來讓我們可以自訂元件 selector 屬性，現在同樣的來調整 first-app 專案，將 employee 資料夾內的元件改成 emp 開頭，將 home 資料夾內的元件">
+<meta name="twitter:title" content="Angular 指令 &amp; 資料繫結">
+<meta name="twitter:description" content="指令 (Directive) &amp;amp; 資料繫結 (Binding)在 Angular UI：Clarity Design System 中，透過修改 tslint.json 檔的 component-selector 屬性來讓我們可以自訂元件 selector 屬性，現在同樣的來調整 first-app 專案，將 employee 資料夾內的元件改成 emp 開頭，將 home 資料夾內的元件">
 <meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/directive/angular_directive_01.png">
 
 
@@ -153,7 +153,7 @@
 
 
 
-  <title>Angular 資料繫結 & 指令 | Jonny Huang 的學習筆記</title>
+  <title>Angular 指令 & 資料繫結 | Jonny Huang 的學習筆記</title>
   
 <script>
   window.fbAsyncInit = function() {
@@ -307,7 +307,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Angular 資料繫結 & 指令</h2>
+          <h2 class="post-title" itemprop="name headline">Angular 指令 & 資料繫結</h2>
         
 
         <div class="post-meta">
@@ -323,8 +323,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-12T21:18:56+08:00">
-                2017/09/12
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-13T10:05:50+08:00">
+                2017/09/13
               </time>
             
           </span>
@@ -376,7 +376,7 @@
       
 
       
-        <h1 id="資料繫結-Binding-amp-指令-Directive"><a href="#資料繫結-Binding-amp-指令-Directive" class="headerlink" title="資料繫結 (Binding) &amp; 指令 (Directive)"></a>資料繫結 (Binding) &amp; 指令 (Directive)</h1><p>在 <a href="/angular/training/14_angular_ui_clarity_design_system/">Angular UI：Clarity Design System</a> 中，透過修改 <code>tslint.json</code> 檔的 <code>component-selector</code> 屬性來讓我們可以自訂元件 <code>selector</code> 屬性，現在同樣的來調整 first-app 專案，將 employee 資料夾內的元件改成 <code>emp</code> 開頭，將 home 資料夾內的元件改成 <code>home</code> 開頭。<br>修改 <code>tslint.json</code> 的 <code>component-selector</code> 設定。<br><img src="/images/angular/training/directive/angular_directive_01.png" alt=""><br>調整相關元件的 <code>selector</code> 屬性。<br><img src="/images/angular/training/directive/angular_directive_02.png" alt="">  </p>
+        <h1 id="指令-Directive-amp-資料繫結-Binding"><a href="#指令-Directive-amp-資料繫結-Binding" class="headerlink" title="指令 (Directive) &amp; 資料繫結 (Binding)"></a>指令 (Directive) &amp; 資料繫結 (Binding)</h1><p>在 <a href="/angular/training/14_angular_ui_clarity_design_system/">Angular UI：Clarity Design System</a> 中，透過修改 <code>tslint.json</code> 檔的 <code>component-selector</code> 屬性來讓我們可以自訂元件 <code>selector</code> 屬性，現在同樣的來調整 first-app 專案，將 employee 資料夾內的元件改成 <code>emp</code> 開頭，將 home 資料夾內的元件改成 <code>home</code> 開頭。<br>修改 <code>tslint.json</code> 的 <code>component-selector</code> 設定。<br><img src="/images/angular/training/directive/angular_directive_01.png" alt=""><br>調整相關元件的 <code>selector</code> 屬性。<br><img src="/images/angular/training/directive/angular_directive_02.png" alt="">  </p>
 <pre><code>&#x2F;&#x2F; src\app\employee\address-book\address-book.component.ts
 @Component({
   selector: &#39;emp-address-book&#39;,
@@ -1018,6 +1018,10 @@ export class CalendarComponent implements OnInit {
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/angular/training/16_angular_binding/" rel="prev" title="Angular 資料繫結">
+                Angular 資料繫結 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -1089,7 +1093,7 @@ export class CalendarComponent implements OnInit {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -1197,7 +1201,7 @@ export class CalendarComponent implements OnInit {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#資料繫結-Binding-amp-指令-Directive"><span class="nav-number">1.</span> <span class="nav-text">資料繫結 (Binding) & 指令 (Directive)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#編輯行事曆"><span class="nav-number">1.1.</span> <span class="nav-text">編輯行事曆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binding：內嵌繫結-interpolation"><span class="nav-number">1.2.</span> <span class="nav-text">Binding：內嵌繫結 (interpolation)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入月份切換功能"><span class="nav-number">1.3.</span> <span class="nav-text">加入月份切換功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入-Grid-List"><span class="nav-number">1.4.</span> <span class="nav-text">加入 Grid List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directive：-ngFor"><span class="nav-number">1.5.</span> <span class="nav-text">Directive：*ngFor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directive：NgStyle"><span class="nav-number">1.6.</span> <span class="nav-text">Directive：NgStyle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binding：屬性繫結-Property-Binding"><span class="nav-number">1.7.</span> <span class="nav-text">Binding：屬性繫結 (Property Binding)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directive：-ngFor-1"><span class="nav-number">1.8.</span> <span class="nav-text">Directive：*ngFor</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#指令-Directive-amp-資料繫結-Binding"><span class="nav-number">1.</span> <span class="nav-text">指令 (Directive) & 資料繫結 (Binding)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#編輯行事曆"><span class="nav-number">1.1.</span> <span class="nav-text">編輯行事曆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binding：內嵌繫結-interpolation"><span class="nav-number">1.2.</span> <span class="nav-text">Binding：內嵌繫結 (interpolation)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入月份切換功能"><span class="nav-number">1.3.</span> <span class="nav-text">加入月份切換功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入-Grid-List"><span class="nav-number">1.4.</span> <span class="nav-text">加入 Grid List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directive：-ngFor"><span class="nav-number">1.5.</span> <span class="nav-text">Directive：*ngFor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directive：NgStyle"><span class="nav-number">1.6.</span> <span class="nav-text">Directive：NgStyle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binding：屬性繫結-Property-Binding"><span class="nav-number">1.7.</span> <span class="nav-text">Binding：屬性繫結 (Property Binding)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directive：-ngFor-1"><span class="nav-number">1.8.</span> <span class="nav-text">Directive：*ngFor</span></a></li></ol></li></ol></div>
             
 
           </div>

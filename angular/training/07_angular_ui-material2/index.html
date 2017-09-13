@@ -113,7 +113,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_13.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_08.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-08T07:20:25.550Z">
+<meta property="og:updated_time" content="2017-09-13T22:49:47.178Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular UI：Angular Material2">
 <meta name="twitter:description" content="Material Design for Angular在 Angular 模組 最後我們只加了幾行 CSS 樣式，由一開始練習至此感覺起來這種網頁效果十幾年前用記事本就可以做到了，那花時間學這個幹嘛？我們過去會的技術能不能繼續沿用下來？首當其衝的就是 jQuery for Angular 的問題。    其實筆者並沒用過 jQuery、Ajax，對於 JavaScript、CSS 也都是上網查詢別">
@@ -321,8 +321,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-08T15:20:25+08:00">
-                2017/09/08
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-14T06:49:47+08:00">
+                2017/09/14
               </time>
             
           </span>
@@ -419,7 +419,7 @@ import { OperationModule } from &#39;.&#x2F;operation&#x2F;operation.module&#39;
 })
 export class AppModule { }
 </code></pre>
-<h2 id="匯入要使用的元件模組"><a href="#匯入要使用的元件模組" class="headerlink" title="匯入要使用的元件模組"></a>匯入要使用的<strong>元件模組</strong></h2><p>說成 <strong>元件模組</strong> 是因為 <strong>Angular Material2</strong> 特別將每個元件(Component)都用一個獨立的模組(NgModule)包覆起來，這樣就不會連沒使用到的元件都一起打包到專案內，造成編譯後的檔案太大。<br>因為目前還沒決定要使用那些元件，所以暫時不先加入，後面有使用時再說明，但是官方文件提出一個很好的元件管理方式-建立一個模組來集中管理有用到的元件，有元件需要使用時再將它加入到該元件所依附的模組內。<br>執行下面安裝指令建立一個 <strong>CustomMaterialModule</strong>，帶上 <code>--flat</code> 參數讓不要建立資料夾，因為不確定那些模組會使用，所以我們將檔案放置在最外層 <code>src\app</code> 底下。<br><code>ng g m customMaterial --flat</code><br><img src="/images/angular/training/ui/angular_ui_04.png" alt=""></p>
+<h2 id="匯入要使用的元件模組"><a href="#匯入要使用的元件模組" class="headerlink" title="匯入要使用的元件模組"></a>匯入要使用的<strong>元件模組</strong></h2><p>說成 <strong>元件模組</strong> 是因為 <strong>Angular Material2</strong> 特別將每個元件(Component)都用一個獨立的模組(NgModule)包覆起來，這樣就不會連沒使用到的元件都一起打包到專案內，造成編譯後的檔案太大。<br>因為目前還沒決定要使用那些元件，所以暫時不先加入，後面有使用時再說明，但是官方文件提出一個很好的元件管理方式-建立一個模組來集中管理有用到的元件，有元件需要使用時再將它加入到該元件所依附的模組內。<br>執行下面安裝指令建立一個 <strong>CustomMaterialModule</strong>，帶上 <code>--flat</code> 參數讓 CLI 不要建立資料夾，因為不確定那些模組會使用，所以我們將檔案放置在最外層 <code>src\app</code> 底下。<br><code>ng g m customMaterial --flat</code><br><img src="/images/angular/training/ui/angular_ui_04.png" alt=""></p>
 <blockquote>
 <p>文件下方特別提到元件模組需加入在 <strong>BrowserModule</strong> 之後，也就是使用時除了要註冊到模組的 <code>imports</code> 屬性，如果 <code>imports</code> 屬性包含 <strong>BrowserModule</strong> 時需要將 <strong>CustomMaterialModule</strong> 放置在它的後面。<br>由此也可說明 <code>imports</code> 屬性具有<strong>順序性</strong>，它會依序處理。</p>
 </blockquote>

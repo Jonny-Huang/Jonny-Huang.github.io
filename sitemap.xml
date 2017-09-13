@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jonny-huang.github.io/angular/training/07_angular_ui-material2/</loc>
+    
+    <lastmod>2017-09-13T22:49:47.178Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jonny-huang.github.io/angular/training/17_angular_service/</loc>
     
-    <lastmod>2017-09-13T16:14:30.759Z</lastmod>
+    <lastmod>2017-09-13T22:49:47.172Z</lastmod>
     
   </url>
   
@@ -47,13 +54,6 @@
     <loc>https://jonny-huang.github.io/angular/training/12_angular_ui_header/</loc>
     
     <lastmod>2017-09-08T07:20:25.554Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/angular/training/07_angular_ui-material2/</loc>
-    
-    <lastmod>2017-09-08T07:20:25.550Z</lastmod>
     
   </url>
   

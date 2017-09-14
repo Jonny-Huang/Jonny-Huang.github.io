@@ -108,8 +108,9 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_08.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_09.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_10.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_11.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-13T16:13:30.413Z">
+<meta property="og:updated_time" content="2017-09-14T01:16:52.971Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular 單向繫結">
 <meta name="twitter:description" content="單向繫結(One-Way Binding)我們在 Angular 事件 中演練了 事件繫結 的應用，在 Angular 指令 &amp;amp; 資料繫結 中演練了 內嵌繫結 與 屬性繫結，這3種資料繫結方式正是 Angular 所提供的單向繫結，其差異如下：    當後端類別所繫結的 變數(或屬性) 發生變化時，會自動更新前端樣板的資料。內嵌繫結 (interpolation)：在要遷入的地方加入雙大括">
@@ -317,7 +318,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-14T00:13:30+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-14T09:16:52+08:00">
                 2017/09/14
               </time>
             
@@ -473,6 +474,9 @@
     right: 8px;
   }
   .selected {
+    position: absolute;
+    top: 0px;
+    left: 0px;
     box-sizing: border-box;
     border: dashed 4px skyblue;
   }
@@ -626,6 +630,102 @@ export class CalendarComponent implements OnInit {
 &lt;&#x2F;div&gt;
 </code></pre>
 <p>查看瀏覽器，選取日期時右邊已經會出現紀錄。<br><img src="/images/angular/training/binding/angular_binding_10.gif" alt="">  </p>
+<h2 id="Directive：-ngSwitch"><a href="#Directive：-ngSwitch" class="headerlink" title="Directive：[ngSwitch]"></a>Directive：[ngSwitch]</h2><p>之前我們使用了 <code>*ngFor</code>、<code>*ngIf</code> 指令，接下來我們練習另一個指令-<code>[ngSwitch]</code>，使用上跟程式語言的 switch 語法雷同，配合 <code>*ngSwitchCase</code> 與 <code>*ngSwitchDefault</code> 與條件式比對，將符合的值所對應的樣板顯示出來，比較特別的是 <strong>ngSwitch 是用中括號(<code>[ ]</code>)包起來</strong>，而不是在前面加上星號(<code>*</code>)。  </p>
+<p>首先我們修改 <code>calendar.component.ts</code> 內的 <strong>紀錄</strong>(<code>notes</code>) 的資料結構，將字串陣列改成物件陣列，原本字串的內容移至物件內的 <code>subject</code> 屬性，並再增加 <code>type</code> 屬性當作分類用途。  </p>
+<pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
+
+@Component({
+  selector: &#39;emp-calendar&#39;,
+  templateUrl: &#39;.&#x2F;calendar.component.html&#39;,
+  styleUrls: [&#39;.&#x2F;calendar.component.scss&#39;]
+})
+export class CalendarComponent implements OnInit {
+  ...
+  getNote() {
+    if (this.days.length &gt; 0) {
+      const d = Math.floor(Math.random() * 28);
+      this.days.forEach(item =&gt; {
+        const notes = [];
+        if (item.week !== 0 &amp;&amp; item.week !== 6) {
+          if (item.week === 1) {
+            notes.push({ type: 1, subject: &#39;8:00 每周會議&#39; });
+          }
+          let b = Math.random() &gt;= 0.5;
+          if (b) {
+            notes.push({ type: 2, subject: &#39;XXX客戶拜訪&#39; });
+          }
+          b = Math.random() &gt;= 0.5;
+          if (b) {
+            notes.push({ type: 3, subject: &#39;專案討論&#39; });
+          }
+          if (item.day === d) {
+            notes.push({ type: 4, subject: &#39;部門聚餐&#39; });
+          }
+        }
+        item.notes = notes;
+      });
+
+    }
+  }
+}
+</code></pre>
+<p>接著編輯 <code>calendar.component.html</code>，透過 <code>[ngSwitch]</code> 指令來依紀錄分類顯示對應的圖示。</p>
+<pre><code>&lt;div fxLayout=&quot;row&quot; fxLayout.xs=&quot;column&quot;&gt;
+  &lt;div fxFlex=&quot;70&quot; fxFlex.xs&gt;
+    &lt;md-card&gt;
+      ...
+      &lt;md-card-content&gt;
+        &lt;md-grid-list cols=&quot;7&quot; rowHeight=&quot;68px&quot;&gt;
+          &lt;md-grid-tile *ngFor=&quot;let header of dayHeaders; let i = index&quot; [ngStyle]=&quot;{&#39;color&#39;: dayColors[i]}&quot;&gt;
+            &lt;h3&gt;{ {header} }&lt;&#x2F;h3&gt;
+          &lt;&#x2F;md-grid-tile&gt;
+          &lt;md-grid-tile [colspan]=&quot;lastMonth_colspan&quot; *ngIf=&quot;lastMonth_colspan&quot;&gt;&lt;&#x2F;md-grid-tile&gt;
+          &lt;md-grid-tile *ngFor=&quot;let item of days&quot; [ngStyle]=&quot;{&#39;color&#39;: dayColors[item.week]}&quot; class=&quot;day&quot; (click)=&quot;selectdDay(item)&quot;&gt;
+            &lt;div fxFill *ngIf=&quot;item.isSelected&quot; class=&quot;selected&quot;&gt;&lt;&#x2F;div&gt;
+            &lt;span class=&quot;text&quot;&gt;{ {item.day} }&lt;&#x2F;span&gt;
+            &lt;div fxFill fxLayout=&quot;row&quot; fxLayoutAlign=&quot;start end&quot; class=&quot;note&quot;&gt;
+                &lt;ng-container *ngFor=&quot;let note of item.notes&quot;&gt;
+                    &lt;ng-container [ngSwitch]=&quot;note.type&quot;&gt;
+                        &lt;md-icon *ngSwitchCase=&quot;1&quot;&gt;assessment&lt;&#x2F;md-icon&gt;
+                        &lt;md-icon *ngSwitchCase=&quot;2&quot;&gt;directions_run&lt;&#x2F;md-icon&gt;
+                        &lt;md-icon *ngSwitchCase=&quot;3&quot;&gt;forum&lt;&#x2F;md-icon&gt;
+                        &lt;md-icon *ngSwitchCase=&quot;4&quot;&gt;local_dining&lt;&#x2F;md-icon&gt;
+                        &lt;md-icon *ngSwitchDefault=&quot;&quot;&gt;alarm&lt;&#x2F;md-icon&gt;
+                    &lt;&#x2F;ng-container&gt;
+                &lt;&#x2F;ng-container&gt;
+            &lt;&#x2F;div&gt;
+          &lt;&#x2F;md-grid-tile&gt;
+        &lt;&#x2F;md-grid-list&gt;
+      &lt;&#x2F;md-card-content&gt;
+      ...
+    &lt;&#x2F;md-card&gt;
+  &lt;&#x2F;div&gt;
+  ...
+&lt;&#x2F;div&gt;
+</code></pre>
+<p>編輯 <code>calendar.component.scss</code>，增加 <strong>note</strong> 樣式。</p>
+<pre><code>.day {
+  border: solid 1px DimGray;
+  .text {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+  }
+  .selected {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    box-sizing: border-box;
+    border: dashed 4px skyblue;
+  }
+  .note {
+    position: absolute;
+    bottom: 4px;
+    left: 4px;
+  }
+}
+</code></pre>
+<p>查看瀏覽器，日期下方多了圖示。<br><img src="/images/angular/training/binding/angular_binding_11.gif" alt="">  </p>
 <p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-13.zip"><strong>first-app_2017-09-13.zip</strong></a>  </p>
 
       
@@ -880,7 +980,7 @@ export class CalendarComponent implements OnInit {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#單向繫結-One-Way-Binding"><span class="nav-number">1.</span> <span class="nav-text">單向繫結(One-Way Binding)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TypeScript：預設值"><span class="nav-number">1.1.</span> <span class="nav-text">TypeScript：預設值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加明細的顯示區塊"><span class="nav-number">1.2.</span> <span class="nav-text">增加明細的顯示區塊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通道-Pipe"><span class="nav-number">1.3.</span> <span class="nav-text">通道 (Pipe)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日期選取效果"><span class="nav-number">1.4.</span> <span class="nav-text">日期選取效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模擬紀錄"><span class="nav-number">1.5.</span> <span class="nav-text">模擬紀錄</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#單向繫結-One-Way-Binding"><span class="nav-number">1.</span> <span class="nav-text">單向繫結(One-Way Binding)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TypeScript：預設值"><span class="nav-number">1.1.</span> <span class="nav-text">TypeScript：預設值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加明細的顯示區塊"><span class="nav-number">1.2.</span> <span class="nav-text">增加明細的顯示區塊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通道-Pipe"><span class="nav-number">1.3.</span> <span class="nav-text">通道 (Pipe)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日期選取效果"><span class="nav-number">1.4.</span> <span class="nav-text">日期選取效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模擬紀錄"><span class="nav-number">1.5.</span> <span class="nav-text">模擬紀錄</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directive：-ngSwitch"><span class="nav-number">1.6.</span> <span class="nav-text">Directive：[ngSwitch]</span></a></li></ol></li></ol></div>
             
 
           </div>

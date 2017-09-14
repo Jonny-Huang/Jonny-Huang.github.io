@@ -110,7 +110,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_10.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_11.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-14T01:24:12.980Z">
+<meta property="og:updated_time" content="2017-09-14T01:53:32.394Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular 單向繫結">
 <meta name="twitter:description" content="單向繫結(One-Way Binding)我們在 Angular 事件 中演練了 事件繫結 的應用，在 Angular 指令 &amp;amp; 資料繫結 中演練了 內嵌繫結 與 屬性繫結，這3種資料繫結方式正是 Angular 所提供的單向繫結，其差異如下：    當後端類別所繫結的 變數(或屬性) 發生變化時，會自動更新前端樣板的資料。內嵌繫結 (interpolation)：在要遷入的地方加入雙大括">
@@ -318,7 +318,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-14T09:24:12+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-14T09:53:32+08:00">
                 2017/09/14
               </time>
             
@@ -703,6 +703,9 @@ export class CalendarComponent implements OnInit {
   ...
 &lt;&#x2F;div&gt;
 </code></pre>
+<blockquote>
+<p><code>ng-container</code> 是一個比較特別的 tag，因為在執行時期它不會出現在樣板上，所以很適合拿來拆解過長的指令，例如我們需要在包含 <code>*ngFor</code> 指令的樣板元素內再加上 <code>*ngIf</code> 指令，以往方式可能將 <code>*ngFor</code> 往上拉一層並透過 <code>div</code> tag 包覆，但是會造成每個元素都多包一個 <code>div</code>，這不只會增加運算成本，<code>div</code> 還有機會被其他 CSS 樣式影響而造成版面效果與預期不同，這時如改用 <code>ng-container</code> 來替換，因為不會輸出成 tag 所以不會增加運算成本也不會受到 CSS 樣式影響。</p>
+</blockquote>
 <p>編輯 <code>calendar.component.scss</code>，增加 <strong>note</strong> 樣式。</p>
 <pre><code>.day {
   border: solid 1px DimGray;

@@ -110,7 +110,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_10.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_11.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-14T01:16:52.971Z">
+<meta property="og:updated_time" content="2017-09-14T01:24:12.980Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular 單向繫結">
 <meta name="twitter:description" content="單向繫結(One-Way Binding)我們在 Angular 事件 中演練了 事件繫結 的應用，在 Angular 指令 &amp;amp; 資料繫結 中演練了 內嵌繫結 與 屬性繫結，這3種資料繫結方式正是 Angular 所提供的單向繫結，其差異如下：    當後端類別所繫結的 變數(或屬性) 發生變化時，會自動更新前端樣板的資料。內嵌繫結 (interpolation)：在要遷入的地方加入雙大括">
@@ -318,7 +318,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-14T09:16:52+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-14T09:24:12+08:00">
                 2017/09/14
               </time>
             
@@ -630,7 +630,7 @@ export class CalendarComponent implements OnInit {
 &lt;&#x2F;div&gt;
 </code></pre>
 <p>查看瀏覽器，選取日期時右邊已經會出現紀錄。<br><img src="/images/angular/training/binding/angular_binding_10.gif" alt="">  </p>
-<h2 id="Directive：-ngSwitch"><a href="#Directive：-ngSwitch" class="headerlink" title="Directive：[ngSwitch]"></a>Directive：[ngSwitch]</h2><p>之前我們使用了 <code>*ngFor</code>、<code>*ngIf</code> 指令，接下來我們練習另一個指令-<code>[ngSwitch]</code>，使用上跟程式語言的 switch 語法雷同，配合 <code>*ngSwitchCase</code> 與 <code>*ngSwitchDefault</code> 與條件式比對，將符合的值所對應的樣板顯示出來，比較特別的是 <strong>ngSwitch 是用中括號(<code>[ ]</code>)包起來</strong>，而不是在前面加上星號(<code>*</code>)。  </p>
+<h2 id="Directive：-ngSwitch"><a href="#Directive：-ngSwitch" class="headerlink" title="Directive：[ngSwitch]"></a>Directive：[ngSwitch]</h2><p>之前我們使用了 <code>*ngFor</code>、<code>*ngIf</code> 指令，接下來我們練習另一個指令-<code>[ngSwitch]</code>，使用上跟程式語言的 switch 語法雷同，配合 <code>*ngSwitchCase</code> 與 <code>*ngSwitchDefault</code> 與條件式比對，將符合的值所對應的樣板顯示出來，比較特別的是 <strong>ngSwitch 是用中括號</strong>(<code>[ ]</code>)<strong>包起來</strong>，而不是在前面加上星號(<code>*</code>)。  </p>
 <p>首先我們修改 <code>calendar.component.ts</code> 內的 <strong>紀錄</strong>(<code>notes</code>) 的資料結構，將字串陣列改成物件陣列，原本字串的內容移至物件內的 <code>subject</code> 屬性，並再增加 <code>type</code> 屬性當作分類用途。  </p>
 <pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
 

@@ -2,6 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jonny-huang.github.io/ionic/training/01_creating_first_project/</loc>
+    
+    <lastmod>2017-09-15T19:08:28.352Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/ionic/training/00_development_environment/</loc>
+    
+    <lastmod>2017-09-15T01:16:49.462Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_windows/</loc>
+    
+    <lastmod>2017-09-15T00:36:59.257Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_ubuntu/</loc>
+    
+    <lastmod>2017-09-15T00:36:59.257Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/categories/</loc>
+    
+    <lastmod>2017-09-15T00:11:09.765Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/ionic/</loc>
+    
+    <lastmod>2017-09-15T00:11:09.761Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jonny-huang.github.io/angular/training/17_angular_service/</loc>
     
     <lastmod>2017-09-14T10:07:46.558Z</lastmod>
@@ -37,13 +79,6 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/categories/</loc>
-    
-    <lastmod>2017-09-11T06:24:48.492Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jonny-huang.github.io/angular/training/14_angular_ui_clarity_design_system/</loc>
     
     <lastmod>2017-09-11T05:59:36.409Z</lastmod>
@@ -68,20 +103,6 @@
     <loc>https://jonny-huang.github.io/angular/training/08_angular_ui-flex_layout/</loc>
     
     <lastmod>2017-09-08T07:20:25.544Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_windows/</loc>
-    
-    <lastmod>2017-09-08T03:43:24.423Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_ubuntu/</loc>
-    
-    <lastmod>2017-09-08T03:43:24.423Z</lastmod>
     
   </url>
   

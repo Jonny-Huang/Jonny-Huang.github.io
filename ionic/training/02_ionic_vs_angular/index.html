@@ -107,7 +107,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/ionic/training/vs_angular/ionic_vs_angular_07.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/ionic/training/vs_angular/ionic_vs_angular_08.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/ionic/training/vs_angular/ionic_vs_angular_09.png">
-<meta property="og:updated_time" content="2017-09-18T03:17:27.656Z">
+<meta property="og:updated_time" content="2017-09-18T06:13:23.143Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ionic vs. Angular">
 <meta name="twitter:description" content="Ionic 與 Angular 比較在建立 Ionic 專案中，我們練習了如何建立 Ionic，接下來對於 會開發 Angular 程式的人來說，最關注的應該就是 Ionic 跟 Angular 有什麼不同？要再多學些什麼？   啟動流程我們依照程式執行順序來比較一下差異： index.html從 Browser 或 WebView 第一個取得的就是 index.html 網頁，在裡面我們可以看到">
@@ -335,7 +335,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-18T11:17:27+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-18T14:13:23+08:00">
                 2017/09/18
               </time>
             
@@ -586,7 +586,7 @@ export class MyApp {
 }
 </code></pre>
 <blockquote>
-<p>眼尖的人其實可以發現 Ionic 預設在 <strong>AppModule</strong> 內比 Angular 專案多設定了 <code>entryComponents</code> 屬性。<br>查詢 Angular 官網的 <a href="https://angular.io/guide/dynamic-component-loader" target="_blank" rel="external">Dynamic Component Loader</a> 可以看到說明，但是說明很模糊，沒有深入研究很難區別它跟透過路由模組的載入有什麼差異？<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_06.png" alt="">  </p>
+<p>眼尖的人其實可以發現 Ionic 預設在 <strong>AppModule</strong> 內比 Angular 專案多設定了 <code>entryComponents</code> 屬性。<br>查詢 Angular 官網的 <a href="https://angular.io/guide/dynamic-component-loader" target="_blank" rel="external">Dynamic Component Loader</a> 可以看到說明，但是說明感覺很籠統，目前看起來應該是說只要是透過 <code>ViewContainerRef.createComponent()</code> 來建立的元件都需要註冊到 <code>entryComponents</code>。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_06.png" alt="">  </p>
 <p>從建構式內還可看到 <code>splashScreen.hide();</code>，Ionic 也提供給我們可以設定程式啟動的等待畫面。<br><code>statusBar.styleDefault();</code> 則是讓我們設定手機最上方的狀態列，例如我們希望 App 佔滿整個螢幕時可以把狀態列隱藏起來。</p>
 </blockquote>
 <h3 id="Angular-路由-vs-Ionic-導覽"><a href="#Angular-路由-vs-Ionic-導覽" class="headerlink" title="Angular 路由 vs. Ionic 導覽"></a>Angular 路由 vs. Ionic 導覽</h3><p>開啟 Angular 專案 <code>src\app\app.component.html</code>，我們可以看到最後一行也是最重要的一行 <code>&lt;router-outlet&gt;&lt;/router-outlet&gt;</code>，Angular 的 <strong>路由模組</strong>(<strong>RouterModule</strong>) 就是透過這個 <strong>路由插座</strong>(<code>router-outlet</code>) 來插入符合路由規則的元件。</p>
@@ -660,8 +660,8 @@ export declare class NavControllerBase extends Ion implements NavController {
     ...
 }
 </code></pre>
-<p>其實這樣看起來 <strong>Nav</strong>(<code>ion-nav</code>) 與 <strong>Tab</strong>(<code>ion-tab</code>) 與 Angular 的 <strong>路由插座</strong>(<code>router-outlet</code>) 相比更加強大，因為它們本身就提供的頁面切換的方法，當然這都是因為它們繼承了 NavControllerBase。  </p>
-<h3 id="Last-In-First-Out-LIFO"><a href="#Last-In-First-Out-LIFO" class="headerlink" title="Last In First Out (LIFO)"></a>Last In First Out (LIFO)</h3>
+<p>其實這樣看起來 <strong>Nav</strong>(<code>ion-nav</code>) 與 <strong>Tab</strong>(<code>ion-tab</code>) 與 Angular 的 <strong>路由插座</strong>(<code>router-outlet</code>) 相比更加強大，因為它們本身就提供的頁面切換的方法，可以將它本身的 content 內容替換成我們指定的元件類別，當然這都是因為它們繼承了 NavControllerBase。  </p>
+<h2 id="Page"><a href="#Page" class="headerlink" title="Page"></a>Page</h2><h3 id="Last-In-First-Out-LIFO"><a href="#Last-In-First-Out-LIFO" class="headerlink" title="Last In First Out (LIFO)"></a>Last In First Out (LIFO)</h3>
       
     </div>
 
@@ -908,7 +908,7 @@ export declare class NavControllerBase extends Ion implements NavController {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ionic-與-Angular-比較"><span class="nav-number">1.</span> <span class="nav-text">Ionic 與 Angular 比較</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#啟動流程"><span class="nav-number">1.1.</span> <span class="nav-text">啟動流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#index-html"><span class="nav-number">1.1.1.</span> <span class="nav-text">index.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-ts"><span class="nav-number">1.1.2.</span> <span class="nav-text">main.ts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#app-module-ts"><span class="nav-number">1.1.3.</span> <span class="nav-text">app.module.ts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AppComponent-vs-MyApp"><span class="nav-number">1.1.4.</span> <span class="nav-text">AppComponent vs. MyApp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Angular-路由-vs-Ionic-導覽"><span class="nav-number">1.1.5.</span> <span class="nav-text">Angular 路由 vs. Ionic 導覽</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NavController"><span class="nav-number">1.2.</span> <span class="nav-text">NavController</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Last-In-First-Out-LIFO"><span class="nav-number">1.2.1.</span> <span class="nav-text">Last In First Out (LIFO)</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ionic-與-Angular-比較"><span class="nav-number">1.</span> <span class="nav-text">Ionic 與 Angular 比較</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#啟動流程"><span class="nav-number">1.1.</span> <span class="nav-text">啟動流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#index-html"><span class="nav-number">1.1.1.</span> <span class="nav-text">index.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-ts"><span class="nav-number">1.1.2.</span> <span class="nav-text">main.ts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#app-module-ts"><span class="nav-number">1.1.3.</span> <span class="nav-text">app.module.ts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AppComponent-vs-MyApp"><span class="nav-number">1.1.4.</span> <span class="nav-text">AppComponent vs. MyApp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Angular-路由-vs-Ionic-導覽"><span class="nav-number">1.1.5.</span> <span class="nav-text">Angular 路由 vs. Ionic 導覽</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NavController"><span class="nav-number">1.2.</span> <span class="nav-text">NavController</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Page"><span class="nav-number">1.3.</span> <span class="nav-text">Page</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Last-In-First-Out-LIFO"><span class="nav-number">1.3.1.</span> <span class="nav-text">Last In First Out (LIFO)</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

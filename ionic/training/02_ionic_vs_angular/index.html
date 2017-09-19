@@ -118,7 +118,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/ionic/training/vs_angular/ionic_vs_angular_18.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/ionic/training/vs_angular/ionic_vs_angular_19.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/ionic/training/vs_angular/ionic_vs_angular_20.gif">
-<meta property="og:updated_time" content="2017-09-19T05:37:25.250Z">
+<meta property="og:updated_time" content="2017-09-19T05:45:56.959Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ionic vs. Angular">
 <meta name="twitter:description" content="Ionic 與 Angular 比較在建立 Ionic 專案中，我們練習了如何建立 Ionic，接下來對於 會開發 Angular 程式的人來說，最關注的應該就是 Ionic 跟 Angular 有什麼不同？要再多學些什麼？   啟動流程我們依照程式執行順序來比較一下差異： index.html從 Browser 或 WebView 第一個取得的就是 index.html 網頁，在裡面我們可以看到">
@@ -346,7 +346,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-19T13:37:25+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-19T13:45:56+08:00">
                 2017/09/19
               </time>
             
@@ -860,6 +860,9 @@ import { Page1Page } from &#39;..&#x2F;pages&#x2F;page1&#x2F;page1&#39;;
 export class AppModule {}
 </code></pre>
 <p>其實如果仔細觀察，沒有<strong>延遲載入</strong>時頁面切換會有滑動效果，反之則沒有，在設計上這一點可能也要考量一下，例如操作功能的切換頁面可能透過<strong>延遲載入</strong>比較適合，因為我們大部分會透過 tabs 或是 menu 選單來做切換，但是同一個功能內的頁面切換不要透過<strong>延遲載入</strong>比較適合，因為上下頁面切換的滑動效果會讓整個功能比較有整體感。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_20.gif" alt="">  </p>
+<blockquote>
+<p>參考文件：<a href="http://blog.ionic.io/ionic-and-lazy-loading-pt-1/" target="_blank" rel="external">Ionic and Lazy Loading Pt 1</a></p>
+</blockquote>
 <h3 id="後進先出-LIFO：Last-In-First-Out"><a href="#後進先出-LIFO：Last-In-First-Out" class="headerlink" title="後進先出 (LIFO：Last In First Out)"></a>後進先出 (LIFO：Last In First Out)</h3>
       
     </div>

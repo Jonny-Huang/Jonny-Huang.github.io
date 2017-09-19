@@ -122,7 +122,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/ionic/training/vs_angular/ionic_vs_angular_22.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/ionic/training/vs_angular/ionic_vs_angular_23.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-19T07:47:34.799Z">
+<meta property="og:updated_time" content="2017-09-19T07:52:43.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ionic vs. Angular">
 <meta name="twitter:description" content="Ionic 與 Angular 比較在建立 Ionic 專案中，我們練習了如何建立 Ionic，接下來對於 會開發 Angular 程式的人來說，最關注的應該就是 Ionic 跟 Angular 有什麼不同？要再多學些什麼？   啟動流程我們依照程式執行順序來比較一下差異： index.html從 Browser 或 WebView 第一個取得的就是 index.html 網頁，在裡面我們可以看到">
@@ -350,7 +350,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-19T15:47:34+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-19T15:52:43+08:00">
                 2017/09/19
               </time>
             
@@ -867,7 +867,10 @@ export class AppModule {}
 <blockquote>
 <p>參考文件：<a href="http://blog.ionic.io/ionic-and-lazy-loading-pt-1/" target="_blank" rel="external">Ionic and Lazy Loading Pt 1</a></p>
 </blockquote>
-<h3 id="後進先出-LIFO：Last-In-First-Out"><a href="#後進先出-LIFO：Last-In-First-Out" class="headerlink" title="後進先出 (LIFO：Last In First Out)"></a>後進先出 (LIFO：Last In First Out)</h3><p>我們先修改 page1 樣板，加入 input 輸入方塊，一個導覽按鈕，點擊時會再次導覽回 page1，一個導覽返回鈕，接著在類別內加入一個 page_length 屬性並給予 NavController 目前頁面堆疊數量，最後再透過<strong>嵌入繫結</strong>方式繫結到樣板上。  </p>
+<h3 id="後進先出-LIFO：Last-In-First-Out"><a href="#後進先出-LIFO：Last-In-First-Out" class="headerlink" title="後進先出 (LIFO：Last In First Out)"></a>後進先出 (LIFO：Last In First Out)</h3><p>我們先修改 page1 樣板，加入 input 輸入方塊，一個導覽按鈕，點擊時會再次導覽回 page1，一個導覽返回鈕，接著在類別內加入一個 page_length 屬性並給予 NavController 目前頁面堆疊數量，最後再透過<strong>嵌入繫結</strong>方式繫結到樣板上。</p>
+<blockquote>
+<p>Ionic 的 Component 都已經預先載入了，所以可以直接使用。</p>
+</blockquote>
 <pre><code>&#x2F;&#x2F; [Ionic] src\pages\page1\page1.html 
 &lt;ion-header&gt;
 

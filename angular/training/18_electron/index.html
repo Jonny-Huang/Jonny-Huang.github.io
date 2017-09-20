@@ -132,7 +132,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/electron/electron_31.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/electron/electron_32.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-20T11:26:39.749Z">
+<meta property="og:updated_time" content="2017-09-20T14:11:02.236Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Electron：跨平台的視窗應用程式">
 <meta name="twitter:description" content="歷史很多事情沒有經歷過就無法深刻體會，所以”感同身受”真的很難，但是軟體工程師是一個很特別的職務，尤其是與業務的隔閡，說給同業的朋友聽時，既使他沒遇過同樣的事情，但是也可以感同身受了解你的苦處。 Q業務：『客戶需要一個 Windows 程式。』  攻城獅：『沒問題。』 躬成屍：GAME OVER  Q業務：『客戶的老闆是用 MacBook，所以系統要能支援 Mac，麻煩你加一下。』  攻城獅：『沒">
@@ -360,7 +360,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-20T19:26:39+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-20T22:11:02+08:00">
                 2017/09/20
               </time>
             
@@ -536,7 +536,7 @@ app.on(&#39;activate&#39;, function () {
 </blockquote>
 <p><img src="/images/angular/training/electron/electron_26.png" alt="">  </p>
 <h3 id="Linux-64位元版本"><a href="#Linux-64位元版本" class="headerlink" title="Linux 64位元版本"></a>Linux 64位元版本</h3><p>在 <code>package.json</code> 的 <code>scripts</code> 插入下列指令：<br><code>electron-packager . LinuxApp --platform=linux --arch=x64 --asar</code>，並透過指令 <code>npm run build_linux</code> 編譯。<br><img src="/images/angular/training/electron/electron_27.png" alt=""><br><img src="/images/angular/training/electron/electron_28.png" alt=""><br>將編譯所產生的 <code>LinuxApp-linux-x64</code> 資料夾複製至 Linux 64位元系統(筆者測試環境是 Ubuntu 17 64位元)，並執行 <code>LinuxApp</code>，可以看到跟 Winodws 一樣的結果。<br><img src="/images/angular/training/electron/electron_29.png" alt="">  </p>
-<h3 id="Linux-ARM-版本"><a href="#Linux-ARM-版本" class="headerlink" title="Linux ARM 版本"></a>Linux ARM 版本</h3><p>在 <code>package.json</code> 的 <code>scripts</code> 插入下列指令：<br><code>electron-packager . ARMApp --platform=linux --arch=armv7l --asar</code>，並透過指令 <code>npm run build_arm</code> 編譯。<br><img src="/images/angular/training/electron/electron_30.png" alt=""><br><img src="/images/angular/training/electron/electron_31.png" alt=""><br>將編譯所產生的 <code>ARMApp-linux-armv7l</code> 資料夾複製至 Linux ARM 系統(筆者測試環境硬體是 Raspberry Pi 3，軟體是 Raspbian)，並執行 <code>ARMApp</code>，可以看到跟 Winodws 一樣的結果。<br><img src="/images/angular/training/electron/electron_32.png" alt="">  </p>
+<h3 id="Linux-ARM-版本"><a href="#Linux-ARM-版本" class="headerlink" title="Linux ARM 版本"></a>Linux ARM 版本</h3><p>在 <code>package.json</code> 的 <code>scripts</code> 插入下列指令：<br><code>electron-packager . ARMApp --platform=linux --arch=armv7l --asar</code>，並透過指令 <code>npm run build_arm</code> 編譯。<br><img src="/images/angular/training/electron/electron_30.png" alt=""><br><img src="/images/angular/training/electron/electron_31.png" alt=""><br>將編譯所產生的 <code>ARMApp-linux-armv7l</code> 資料夾複製至 Linux ARM 系統(筆者測試環境硬體是 Raspberry Pi 3，系統是 Raspbian)，並執行 <code>ARMApp</code>，可以看到跟 Winodws 一樣的結果。<br><img src="/images/angular/training/electron/electron_32.png" alt="">  </p>
 <blockquote>
 <p>因為筆者沒有 Mac 所以在此不做測試，但是方法應該大同小異。  </p>
 </blockquote>

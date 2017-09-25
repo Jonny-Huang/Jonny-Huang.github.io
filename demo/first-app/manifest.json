@@ -1,7 +1,7 @@
 {
   "name": "WebApp - First App",
   "short_name": "FirstApp",
-  "start_url": "./index.html",
+  "start_url": "index.html",
   "description": "My First APP",
   "icons": [
     {

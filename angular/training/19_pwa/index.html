@@ -108,7 +108,21 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_06.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_07.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_08.png">
-<meta property="og:updated_time" content="2017-09-25T07:56:20.244Z">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_08.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_09.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_10.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_11.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_12.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_13.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_14.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_15.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_16.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_17.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_18.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_19.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_20.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_21.png">
+<meta property="og:updated_time" content="2017-09-25T09:44:03.128Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PWA 偽裝術：manifest.json">
 <meta name="twitter:description" content="漸進式網頁應用程式 (Progressive Web App)什麼是 漸進式網頁應用程式(PWA) 其在網路上已經有很多篇文章了，筆者看完得到的結論就是-讓以前只有 APP 做得到的事情，現在在 Web 上也可以做到，而現在之所以能實現是因為新版的瀏覽器增加了相關功能，言下之意就是瀏覽器的版本很重要，後續測試會以 Google Chrome 為主。我們可以看一下 W3C 最新的 Web App M">
@@ -336,7 +350,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-25T15:56:20+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-25T17:44:03+08:00">
                 2017/09/25
               </time>
             
@@ -542,10 +556,33 @@
 <blockquote>
 <p>參考文件：<a href="https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html" target="_blank" rel="external">Configuring Web Applications</a></p>
 </blockquote>
-<h2 id="加到-桌面-主畫面"><a href="#加到-桌面-主畫面" class="headerlink" title="加到 桌面/主畫面"></a>加到 桌面/主畫面</h2><p>執行指令 <code>ng serve</code> 來啟動 Angular 專案，點選 Chrome 瀏覽器 <strong>加到桌面</strong> 功能，從出現的對話視窗可以看到，圖示跟應用程式名稱都是來自 <code>manifest.json</code>，確認後可以發現桌面多一個<strong>類似應用程式的捷徑</strong>。<br><img src="/images/angular/training/pwa/pwa_05.png" alt=""><br><img src="/images/angular/training/pwa/pwa_06.png" alt=""><br>點選捷徑啟動<strong>應用程式</strong>，可以發現透過 Chrome 預設開啟時就我們隱藏網址列與工具列，若不是透過滑鼠右鍵的功能選單，還真的很難發現這是 Web App，跟我們在 <a href="/angular/training/18_electron/">Electron：跨平台的視窗應用程式</a> 所做的步驟比起來是否更加簡單。<br><img src="/images/angular/training/pwa/pwa_07.png" alt="">  </p>
+<h2 id="Windows：加到桌面"><a href="#Windows：加到桌面" class="headerlink" title="Windows：加到桌面"></a>Windows：加到桌面</h2><p>執行指令 <code>ng serve</code> 來啟動 Angular 專案，點選 Chrome 瀏覽器 <strong>加到桌面</strong> 功能，從出現的對話視窗可以看到，圖示跟應用程式名稱都是來自 <code>manifest.json</code>，確認後可以發現桌面多一個<strong>類似應用程式的捷徑</strong>。<br><img src="/images/angular/training/pwa/pwa_05.png" alt=""><br><img src="/images/angular/training/pwa/pwa_06.png" alt=""><br>點選捷徑啟動<strong>應用程式</strong>，可以發現透過 Chrome 預設開啟時就我們隱藏網址列與工具列，若不是透過滑鼠右鍵的功能選單，還真的很難發現這是 Web App，跟我們在 <a href="/angular/training/18_electron/">Electron：跨平台的視窗應用程式</a> 所做的步驟比起來是否更加簡單。<br><img src="/images/angular/training/pwa/pwa_07.png" alt="">  </p>
 <blockquote>
 <p>如果確定網站不會使用到滑鼠右鍵，那可以更進一步把右鍵隱藏，讓一般使用者幾乎無法察覺。<br><img src="/images/angular/training/pwa/pwa_08.png" alt=""></p>
 </blockquote>
+<h3 id="start-url"><a href="#start-url" class="headerlink" title="start_url"></a>start_url</h3><p>接下來我們安裝 Chrome 擴充功能-<a href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb" target="_blank" rel="external">Web Server for Chrome</a>，透過它可以快速建立一個網頁伺服器，我們只要將資料夾設定為 Angular 輸出資料夾 <code>dist</code>，接著啟動 Web Server 就可以開始使用，在這邊筆者特別將連接埠改為 8081，透過瀏覽器檢視 <a href="http://10.0.1.107:8081。" target="_blank" rel="external">http://10.0.1.107:8081。</a><br><img src="/images/angular/training/pwa/pwa_08.png" alt=""><br><img src="/images/angular/training/pwa/pwa_09.png" alt=""><br>再將 Web 程式加到桌面，我們可以注意到因為 Angular 路由規則的關係預設會被導到<strong>待辦事項</strong>，所以網址會變成 <a href="http://10.0.1.107:8081/home/to-do-list。" target="_blank" rel="external">http://10.0.1.107:8081/home/to-do-list。</a><br><img src="/images/angular/training/pwa/pwa_10.png" alt=""><br>接著透過桌面捷徑啟動，可以發現找不到 <strong>/home/to-do-list</strong> 的錯誤訊息，這是因為 Angular 是一個 SPA 網頁應用程式，所以除了首頁(index.html)之外就沒有任何實體網頁，網址列上的網址都是 Angular 路由模組產生的路由路徑，實際上並不存在。<br><img src="/images/angular/training/pwa/pwa_11.png" alt=""><br><img src="/images/angular/training/pwa/pwa_12.png" alt=""><br>我們可以透過設定 <strong>manifest.json</strong> 的 <code>start_url</code> 來解決這個問題，將 <code>start_url</code> 設定為首頁-<code>index.html</code>，透過添加此屬性，可以強制改由 <code>start_url</code> 所指定的網址來開啟。  </p>
+<pre><code>{
+  &quot;name&quot;: &quot;WebApp - First App&quot;,
+  &quot;short_name&quot;: &quot;FirstApp&quot;,
+  &quot;start_url&quot;: &quot;&#x2F;index.html&quot;,
+  &quot;description&quot;: &quot;My First APP&quot;,
+  &quot;icons&quot;: [...]
+}
+</code></pre>
+<p>重新建立潔淨後再執行應該就能正常顯示了。<br><img src="/images/angular/training/pwa/pwa_13.png" alt="">  </p>
+<h2 id="Android：加到主畫面"><a href="#Android：加到主畫面" class="headerlink" title="Android：加到主畫面"></a>Android：加到主畫面</h2><p>接著我們改用 Android 手機的 Chrome 瀏覽器連結網站 <a href="http://10.0.1.107:8081。" target="_blank" rel="external">http://10.0.1.107:8081。</a><br><img src="/images/angular/training/pwa/pwa_14.png" alt=""><br>透過 Chrome <strong>加到主畫面</strong> 功能，我們一樣可以將網站釘選到手機桌面，只是預設名稱會改用 <strong>應用程式簡稱</strong>(<strong>short_name</strong>)，點選新增後就會在手機桌面建立捷徑。<br><img src="/images/angular/training/pwa/pwa_15.png" alt=""><br><img src="/images/angular/training/pwa/pwa_16.png" alt=""><br><img src="/images/angular/training/pwa/pwa_17.png" alt=""><br>點選捷徑來啟動 Web App 可以發現在網頁載入的等待過程會有 <strong>啟動畫面</strong>(<strong>Splashscreen</strong>)，開啟後可以發現一樣是沒有網址列的滿版網頁。<br><img src="/images/angular/training/pwa/pwa_18.png" alt=""><br><img src="/images/angular/training/pwa/pwa_19.png" alt="">  </p>
+<p>最後我們在 <code>manifest.json</code> 內在透過 <code>background_color</code> 來設定<strong>啟動畫面</strong>的背景顏色，透過 <code>theme_color</code> 來設定手機的主題顏色，修改如下：  </p>
+<pre><code>{
+  &quot;name&quot;: &quot;WebApp - First App&quot;,
+  &quot;short_name&quot;: &quot;FirstApp&quot;,
+  &quot;start_url&quot;: &quot;&#x2F;index.html&quot;,
+  &quot;background_color&quot;: &quot;#5490CC&quot;,
+  &quot;theme_color&quot;: &quot;#F4981F&quot;,
+  &quot;description&quot;: &quot;My First APP&quot;,
+  &quot;icons&quot;: [...]
+}
+</code></pre>
+<p>重新建立捷徑後再啟動，可以看到<strong>啟動畫面</strong>的背景顏色與手機上方的狀態列顏色都改變了。<br><img src="/images/angular/training/pwa/pwa_20.png" alt=""><br><img src="/images/angular/training/pwa/pwa_21.png" alt="">  </p>
 
       
     </div>
@@ -793,7 +830,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#漸進式網頁應用程式-Progressive-Web-App"><span class="nav-number">1.</span> <span class="nav-text">漸進式網頁應用程式 (Progressive Web App)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#manifest-json"><span class="nav-number">1.1.</span> <span class="nav-text">manifest.json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#link"><span class="nav-number">1.2.</span> <span class="nav-text">link</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Safari"><span class="nav-number">1.2.1.</span> <span class="nav-text">Safari</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加到-桌面-主畫面"><span class="nav-number">1.3.</span> <span class="nav-text">加到 桌面/主畫面</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#漸進式網頁應用程式-Progressive-Web-App"><span class="nav-number">1.</span> <span class="nav-text">漸進式網頁應用程式 (Progressive Web App)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#manifest-json"><span class="nav-number">1.1.</span> <span class="nav-text">manifest.json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#link"><span class="nav-number">1.2.</span> <span class="nav-text">link</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Safari"><span class="nav-number">1.2.1.</span> <span class="nav-text">Safari</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows：加到桌面"><span class="nav-number">1.3.</span> <span class="nav-text">Windows：加到桌面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#start-url"><span class="nav-number">1.3.1.</span> <span class="nav-text">start_url</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android：加到主畫面"><span class="nav-number">1.4.</span> <span class="nav-text">Android：加到主畫面</span></a></li></ol></li></ol></div>
             
 
           </div>

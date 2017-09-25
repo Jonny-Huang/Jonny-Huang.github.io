@@ -1,15 +1,8 @@
 {
   "name": "WebApp - First App",
   "short_name": "FirstApp",
-  "display": "standalone",
-  "start_url": "./index.html",
+  "start_url": "/index.html",
   "description": "My First APP",
-  "scope": ".",
-  "background_color": "#EEE",
-  "theme_color": "#1565c0",
-  "dir": "ltr",
-  "lang":"zh-TW",
-  "orientation": "any",
   "icons": [
     {
       "src": "assets/images/android_048.png",

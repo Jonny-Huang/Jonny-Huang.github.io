@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Angular,Progressive Web App,PWA" />
+  <meta name="keywords" content="Angular,manifest.json,Progressive Web App,PWA" />
 
 
 
@@ -90,18 +90,29 @@
 
 
 
-<meta name="description" content="漸進式網頁應用程式 (Progressive Web App)manifest.json   欄位 說明     name 應用程式名稱   short_name 應用程式簡稱   display ●   start_url ●   description ●   scope ●   background_color ●   theme_color ●   dir ●   lang ●   ori">
-<meta name="keywords" content="Angular,Progressive Web App,PWA">
+<meta name="description" content="漸進式網頁應用程式 (Progressive Web App)什麼是 漸進式網頁應用程式(PWA) 其在網路上已經有很多篇文章了，筆者看完得到的結論就是-讓以前只有 APP 做得到的事情，現在在 Web 上也可以做到，而現在之所以能實現是因為新版的瀏覽器增加了相關功能，言下之意就是瀏覽器的版本很重要，後續測試會以 Google Chrome 為主。我們可以看一下 W3C 最新的 Web App M">
+<meta name="keywords" content="Angular,manifest.json,Progressive Web App,PWA">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PWA：漸進式網頁應用程式">
+<meta property="og:title" content="PWA 偽裝術：manifest.json">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/19_pwa/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="漸進式網頁應用程式 (Progressive Web App)manifest.json   欄位 說明     name 應用程式名稱   short_name 應用程式簡稱   display ●   start_url ●   description ●   scope ●   background_color ●   theme_color ●   dir ●   lang ●   ori">
+<meta property="og:description" content="漸進式網頁應用程式 (Progressive Web App)什麼是 漸進式網頁應用程式(PWA) 其在網路上已經有很多篇文章了，筆者看完得到的結論就是-讓以前只有 APP 做得到的事情，現在在 Web 上也可以做到，而現在之所以能實現是因為新版的瀏覽器增加了相關功能，言下之意就是瀏覽器的版本很重要，後續測試會以 Google Chrome 為主。我們可以看一下 W3C 最新的 Web App M">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2017-09-25T03:32:25.906Z">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_01.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_02.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_03.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/metro_studio.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_04.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_05.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_06.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_07.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_08.png">
+<meta property="og:updated_time" content="2017-09-25T07:56:20.244Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PWA：漸進式網頁應用程式">
-<meta name="twitter:description" content="漸進式網頁應用程式 (Progressive Web App)manifest.json   欄位 說明     name 應用程式名稱   short_name 應用程式簡稱   display ●   start_url ●   description ●   scope ●   background_color ●   theme_color ●   dir ●   lang ●   ori">
+<meta name="twitter:title" content="PWA 偽裝術：manifest.json">
+<meta name="twitter:description" content="漸進式網頁應用程式 (Progressive Web App)什麼是 漸進式網頁應用程式(PWA) 其在網路上已經有很多篇文章了，筆者看完得到的結論就是-讓以前只有 APP 做得到的事情，現在在 Web 上也可以做到，而現在之所以能實現是因為新版的瀏覽器增加了相關功能，言下之意就是瀏覽器的版本很重要，後續測試會以 Google Chrome 為主。我們可以看一下 W3C 最新的 Web App M">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_01.png">
 
 
 
@@ -135,7 +146,7 @@
 
 
 
-  <title>PWA：漸進式網頁應用程式 | Jonny Huang 的學習筆記</title>
+  <title>PWA 偽裝術：manifest.json | Jonny Huang 的學習筆記</title>
   
 <script>
   window.fbAsyncInit = function() {
@@ -309,7 +320,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">PWA：漸進式網頁應用程式</h2>
+          <h2 class="post-title" itemprop="name headline">PWA 偽裝術：manifest.json</h2>
         
 
         <div class="post-meta">
@@ -325,7 +336,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-25T11:32:25+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-25T15:56:20+08:00">
                 2017/09/25
               </time>
             
@@ -378,69 +389,164 @@
       
 
       
-        <h1 id="漸進式網頁應用程式-Progressive-Web-App"><a href="#漸進式網頁應用程式-Progressive-Web-App" class="headerlink" title="漸進式網頁應用程式 (Progressive Web App)"></a>漸進式網頁應用程式 (Progressive Web App)</h1><h2 id="manifest-json"><a href="#manifest-json" class="headerlink" title="manifest.json"></a>manifest.json</h2><table>
+        <h1 id="漸進式網頁應用程式-Progressive-Web-App"><a href="#漸進式網頁應用程式-Progressive-Web-App" class="headerlink" title="漸進式網頁應用程式 (Progressive Web App)"></a>漸進式網頁應用程式 (Progressive Web App)</h1><p>什麼是 <strong>漸進式網頁應用程式</strong>(<strong>PWA</strong>) 其在網路上已經有很多篇文章了，筆者看完得到的結論就是-<strong>讓以前只有 APP 做得到的事情，現在在 Web 上也可以做到</strong>，而現在之所以能實現是因為<strong>新版</strong>的瀏覽器增加了相關功能，言下之意就是<strong>瀏覽器的版本</strong>很重要，後續測試會以 Google Chrome 為主。<br>我們可以看一下 W3C 最新的 <a href="https://www.w3.org/TR/appmanifest/" target="_blank" rel="external">Web App Manifest</a> 草案，可以看到編輯者主要來自 Mozilla、Intel、Google、Microsotf，這意味著主流瀏覽器都將支援。<br><img src="/images/angular/training/pwa/pwa_01.png" alt=""><br>雖然 Apple 並沒有在名單內，不過 查看 <a href="https://webkit.org/status/#specification-web-app-manifest" target="_blank" rel="external">WebKit Feature Status</a> 可以看到 <strong>Web App Manifest</strong> 已經列入考慮選項內，這也表示如果沒有意外 Safari 未來也將支援。<br><img src="/images/angular/training/pwa/pwa_02.png" alt="">  </p>
+<blockquote>
+<p>參考文件：<a href="https://developers.google.com/web/fundamentals/getting-started/codelabs/your-first-pwapp/?hl=zh-tw" target="_blank" rel="external">你的首個 Progressive Web App</a></p>
+</blockquote>
+<h2 id="manifest-json"><a href="#manifest-json" class="headerlink" title="manifest.json"></a>manifest.json</h2><p><strong>manifest.json</strong> 與 <strong>Service Work</strong> 可以說是 PWA 最核心的功能，比起較複雜的 <strong>Service Work</strong>，本篇先練習如何透過 <strong>manifest.json</strong> 就可以讓 Web APP 看起來跟一般的 APP 一樣。</p>
+<p>這邊我們拿之前練習到 <a href="/angular/training/17_angular_service/">Angular 服務</a> 的程式來當範例。<br><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-14.zip"><strong>first-app_2017-09-14.zip</strong></a>  </p>
+<blockquote>
+<p>若要下載請記得先透過指令 <code>npm install</code> 來重新安裝 package。</p>
+</blockquote>
+<p>我們在專案目錄下的 <code>src</code> 資料夾內建立一個 <code>manifest.json</code>，並添加相關設定值，以及應用程式圖示，下面是比較常用的設定值：  </p>
+<table>
 <thead>
 <tr>
 <th style="text-align:center">欄位</th>
-<th style="text-align:left">說明</th>
+<th>說明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:center">name</td>
-<td style="text-align:left">應用程式名稱</td>
+<td>應用程式名稱</td>
 </tr>
 <tr>
 <td style="text-align:center">short_name</td>
-<td style="text-align:left">應用程式簡稱</td>
+<td>應用程式簡稱</td>
 </tr>
 <tr>
 <td style="text-align:center">display</td>
-<td style="text-align:left">●</td>
+<td>顯示模式：<code>fullscreen</code>、<code>standalone</code>、<code>minimal-ui</code>、<code>browser</code></td>
 </tr>
 <tr>
 <td style="text-align:center">start_url</td>
-<td style="text-align:left">●</td>
+<td>設定起始頁面</td>
 </tr>
 <tr>
 <td style="text-align:center">description</td>
-<td style="text-align:left">●</td>
+<td>應用程式描述</td>
 </tr>
 <tr>
 <td style="text-align:center">scope</td>
-<td style="text-align:left">●</td>
+<td>相關設定影響範圍</td>
 </tr>
 <tr>
 <td style="text-align:center">background_color</td>
-<td style="text-align:left">●</td>
+<td>啟動畫面(Splashscreen)背景顏色</td>
 </tr>
 <tr>
 <td style="text-align:center">theme_color</td>
-<td style="text-align:left">●</td>
+<td>主題顏色</td>
 </tr>
 <tr>
 <td style="text-align:center">dir</td>
-<td style="text-align:left">●</td>
+<td>排版方式：<code>ltr</code>(由左到右)、<code>rtl</code>(由右到左)、<code>auto</code></td>
 </tr>
 <tr>
 <td style="text-align:center">lang</td>
-<td style="text-align:left">●</td>
+<td>應用程式語系</td>
 </tr>
 <tr>
 <td style="text-align:center">orientation</td>
-<td style="text-align:left">●</td>
+<td>螢幕方向：<code>any</code>、<code>natural</code>、<code>landscape</code>、<code>portrait</code>、<code>portrait-primary</code>、<code>portrait-secondary</code>、<code>landscape-primary</code>、<code>landscape-secondary</code></td>
 </tr>
 <tr>
 <td style="text-align:center">icons</td>
-<td style="text-align:left">●</td>
+<td>應用程式圖示</td>
 </tr>
 </tbody>
 </table>
 <blockquote>
-<p>MDN-WebExtensions：<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json" target="_blank" rel="external">manifest.json</a></p>
+<p>其他設定可參考<br>W3C - <a href="https://www.w3.org/TR/appmanifest/" target="_blank" rel="external">Web App Manifest</a><br>MDN - <a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json" target="_blank" rel="external">WebExtensions：manifest.json</a> </p>
 </blockquote>
-<p><code>ng build --prod -oh</code></p>
-<h2 id="Service-Worker"><a href="#Service-Worker" class="headerlink" title="Service Worker"></a>Service Worker</h2>
+<p>我們先添加應用程式名稱與圖示：<br><img src="/images/angular/training/pwa/pwa_03.png" alt="">  </p>
+<pre><code>{
+  &quot;name&quot;: &quot;WebApp - First App&quot;,
+  &quot;short_name&quot;: &quot;FirstApp&quot;,
+  &quot;description&quot;: &quot;My First APP&quot;,
+  &quot;icons&quot;: [
+    {
+      &quot;src&quot;: &quot;assets&#x2F;images&#x2F;android_048.png&quot;,
+      &quot;sizes&quot;: &quot;48x48&quot;,
+      &quot;type&quot;: &quot;image&#x2F;png&quot;
+    },
+    {
+      &quot;src&quot;: &quot;assets&#x2F;images&#x2F;android_096.png&quot;,
+      &quot;sizes&quot;: &quot;96x96&quot;,
+      &quot;type&quot;: &quot;image&#x2F;png&quot;
+    },
+    {
+      &quot;src&quot;: &quot;assets&#x2F;images&#x2F;android_144.png&quot;,
+      &quot;sizes&quot;: &quot;144x144&quot;,
+      &quot;type&quot;: &quot;image&#x2F;png&quot;
+    },
+    {
+      &quot;src&quot;: &quot;assets&#x2F;images&#x2F;android_192.png&quot;,
+      &quot;sizes&quot;: &quot;192x192&quot;,
+      &quot;type&quot;: &quot;image&#x2F;png&quot;
+    },
+    {
+      &quot;src&quot;: &quot;assets&#x2F;images&#x2F;android_512.png&quot;,
+      &quot;sizes&quot;: &quot;512x512&quot;,
+      &quot;type&quot;: &quot;image&#x2F;png&quot;
+    }
+  ]
+}
+</code></pre>
+<blockquote>
+<p><img src="/images/angular/training/pwa/metro_studio.png" alt=""><br>找不到圖示的，可以像筆者一樣去下載 <a href="https://www.syncfusion.com/downloads/metrostudio" target="_blank" rel="external">Metro Studio</a>，註冊帳號後就會收到一組免費序號，目前版本累積圖示有 7000 多個，可以自己調整圖示大小、顏色、旋轉、外框，也提供多種匯出格式，不過最重要的是可以用於<strong>商業用途</strong>。<br><img src="/images/angular/training/pwa/pwa_04.png" alt=""></p>
+</blockquote>
+<h2 id="link"><a href="#link" class="headerlink" title="link"></a>link</h2><p>接著就是將 <code>manifest.json</code> 關連到網頁上，開啟 <code>src\index.html</code>，將下列語法加入 <code>head</code> tag 內。<br><code>&lt;link rel=&quot;manifest&quot; href=&quot;manifest.json&quot;&gt;</code>  </p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;FirstApp&lt;&#x2F;title&gt;
+  &lt;base href=&quot;&#x2F;&quot;&gt;
+
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+  &lt;link rel=&quot;icon&quot; type=&quot;image&#x2F;x-icon&quot; href=&quot;favicon.ico&quot;&gt;
+  &lt;link href=&quot;https:&#x2F;&#x2F;fonts.googleapis.com&#x2F;icon?family=Material+Icons&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;link rel=&quot;manifest&quot; href=&quot;manifest.json&quot;&gt;
+&lt;&#x2F;head&gt;
+
+&lt;body oncontextmenu=&quot;return false&quot;&gt;
+  &lt;app-root&gt;&lt;&#x2F;app-root&gt;
+&lt;&#x2F;body&gt;
+
+&lt;&#x2F;html&gt;
+</code></pre>
+<h3 id="Safari"><a href="#Safari" class="headerlink" title="Safari"></a>Safari</h3><p>目前針對 Safari 瀏覽器我們需要在網頁內的 <code>head</code> tag 加入額外設定，尤其需要針對不同 iOS 裝置提供對應尺寸的圖示，當 Safari 正是支援 W3C 標準後應該就可以省略，修改設定如下：<br><code>&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;</code>  </p>
+<pre><code>...
+&lt;head&gt;
+  ...
+  &lt;link rel=&quot;manifest&quot; href=&quot;manifest.json&quot;&gt;
+  &lt;!-- Apple Safari --&gt;
+  &lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;
+  &lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;black&quot;&gt;
+  &lt;meta name=&quot;apple-mobile-web-app-title&quot; content=&quot;WebApp - First App&quot;&gt;
+  &lt;link rel=&quot;apple-touch-icon&quot; href=&quot;&#x2F;assets&#x2F;images&#x2F;android_057.png&quot; sizes=&quot;57x57&quot;&gt;
+  &lt;link rel=&quot;apple-touch-icon&quot; href=&quot;&#x2F;assets&#x2F;images&#x2F;android_060.png&quot; sizes=&quot;60x60&quot;&gt;
+  &lt;link rel=&quot;apple-touch-icon&quot; href=&quot;&#x2F;assets&#x2F;images&#x2F;android_072.png&quot; sizes=&quot;72x72&quot;&gt;
+  &lt;link rel=&quot;apple-touch-icon&quot; href=&quot;&#x2F;assets&#x2F;images&#x2F;android_076.png&quot; sizes=&quot;76x76&quot;&gt;
+  &lt;link rel=&quot;apple-touch-icon&quot; href=&quot;&#x2F;assets&#x2F;images&#x2F;android_114.png&quot; sizes=&quot;114x114&quot;&gt;
+  &lt;link rel=&quot;apple-touch-icon&quot; href=&quot;&#x2F;assets&#x2F;images&#x2F;android_120.png&quot; sizes=&quot;120x120&quot;&gt;
+  &lt;link rel=&quot;apple-touch-icon&quot; href=&quot;&#x2F;assets&#x2F;images&#x2F;android_144.png&quot; sizes=&quot;144x144&quot;&gt;
+  &lt;link rel=&quot;apple-touch-icon&quot; href=&quot;&#x2F;assets&#x2F;images&#x2F;android_152.png&quot; sizes=&quot;152x152&quot;&gt;
+  &lt;link rel=&quot;apple-touch-icon&quot; href=&quot;&#x2F;assets&#x2F;images&#x2F;android_167.png&quot; sizes=&quot;167x167&quot;&gt;
+  &lt;link rel=&quot;apple-touch-icon&quot; href=&quot;&#x2F;assets&#x2F;images&#x2F;android_180.png&quot; sizes=&quot;180x180&quot;&gt;
+&lt;&#x2F;head&gt;
+...</code></pre>
+<blockquote>
+<p>參考文件：<a href="https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html" target="_blank" rel="external">Configuring Web Applications</a></p>
+</blockquote>
+<h2 id="加到-桌面-主畫面"><a href="#加到-桌面-主畫面" class="headerlink" title="加到 桌面/主畫面"></a>加到 桌面/主畫面</h2><p>執行指令 <code>ng serve</code> 來啟動 Angular 專案，點選 Chrome 瀏覽器 <strong>加到桌面</strong> 功能，從出現的對話視窗可以看到，圖示跟應用程式名稱都是來自 <code>manifest.json</code>，確認後可以發現桌面多一個<strong>類似應用程式的捷徑</strong>。<br><img src="/images/angular/training/pwa/pwa_05.png" alt=""><br><img src="/images/angular/training/pwa/pwa_06.png" alt=""><br>點選捷徑啟動<strong>應用程式</strong>，可以發現透過 Chrome 預設開啟時就我們隱藏網址列與工具列，若不是透過滑鼠右鍵的功能選單，還真的很難發現這是 Web App，跟我們在 <a href="/angular/training/18_electron/">Electron：跨平台的視窗應用程式</a> 所做的步驟比起來是否更加簡單。<br><img src="/images/angular/training/pwa/pwa_07.png" alt="">  </p>
+<blockquote>
+<p>如果確定網站不會使用到滑鼠右鍵，那可以更進一步把右鍵隱藏，讓一般使用者幾乎無法察覺。<br><img src="/images/angular/training/pwa/pwa_08.png" alt=""></p>
+</blockquote>
+
       
     </div>
 
@@ -687,7 +793,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#漸進式網頁應用程式-Progressive-Web-App"><span class="nav-number">1.</span> <span class="nav-text">漸進式網頁應用程式 (Progressive Web App)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#manifest-json"><span class="nav-number">1.1.</span> <span class="nav-text">manifest.json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service-Worker"><span class="nav-number">1.2.</span> <span class="nav-text">Service Worker</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#漸進式網頁應用程式-Progressive-Web-App"><span class="nav-number">1.</span> <span class="nav-text">漸進式網頁應用程式 (Progressive Web App)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#manifest-json"><span class="nav-number">1.1.</span> <span class="nav-text">manifest.json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#link"><span class="nav-number">1.2.</span> <span class="nav-text">link</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Safari"><span class="nav-number">1.2.1.</span> <span class="nav-text">Safari</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加到-桌面-主畫面"><span class="nav-number">1.3.</span> <span class="nav-text">加到 桌面/主畫面</span></a></li></ol></li></ol></div>
             
 
           </div>

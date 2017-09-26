@@ -112,7 +112,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_33.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_34.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-26T09:06:03.431Z">
+<meta property="og:updated_time" content="2017-09-26T09:11:23.720Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PWA 替身術：ServiceWorker - caches">
 <meta name="twitter:description" content="ServiceWorker在 PWA 偽裝術：manifest.json 我們透過 manifest.json 來讓 Web 可以在桌面上產生捷徑，並在執行時隱藏了不需要的網址列，讓外觀上跟一般 App 已無太大差異，接下來我們要解決 Web App 的另一大難題-離線機制，雖然說現在的系統幾乎都是透過網路與後端資料做即時交換，可說如果沒有網路的話過半數的 App 大概都會失去它的功用，但是與網頁">
@@ -340,7 +340,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-26T17:06:03+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-26T17:11:23+08:00">
                 2017/09/26
               </time>
             
@@ -523,7 +523,7 @@ self.addEventListener(&#39;activate&#39;, event =&gt; {
 ...</code></pre>
 <p>重新執行，可以發現快取名稱已經變成 <code>v2</code>，而原本的 <code>v1</code> 已經被移除了。<br><img src="/images/angular/training/pwa/pwa_33.png" alt="">  </p>
 <h2 id="API-快取"><a href="#API-快取" class="headerlink" title="API 快取"></a>API 快取</h2><p>因為筆者目前沒有建立 WebAPI 環境，所以在此不做練習，但是我們可以參考 MDN 網站 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers" target="_blank" rel="external">使用 Service Workers</a> 的範例，由範例程式碼可以看到它的作法與我們上面的方法類似，當快取內沒有相關資料時就改從網路去後台抓取，差別就在於它抓取資料後會先存入快取內，這樣下次就可以直接從快取提取資料。<br><img src="/images/angular/training/pwa/pwa_34.png" alt="">  </p>
-<p>目前的機制還會衍生出另一個問題：有些 API 雖然參數一樣，但是在不同時間會回傳不一樣的內容，例如：最新消息，系統公告…等等，這時候若都從快取抓取資料便會讓使用者有資料沒有更新的假象，這部分後續有機會再做討論。  </p>
+<p>目前的機制看起來與其說我們在建立快取，不如說更像在實作一個 Web App 專屬的代理伺服器(Proxy Server)，但是其實衍生出另一個問題：有些 API 雖然參數一樣，但是在不同時間會回傳不一樣的內容，例如：最新消息，系統公告…等等，這時候若都從快取抓取資料便會讓使用者有資料沒有更新的假象，這部分後續有機會再做討論。  </p>
 <p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-26.zip"><strong>first-app_2017-09-26.zip</strong></a> </p>
 
       

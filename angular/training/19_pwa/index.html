@@ -101,6 +101,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_01.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_02.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_22.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_03.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/metro_studio.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_04.png">
@@ -122,7 +123,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_19.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_20.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_21.png">
-<meta property="og:updated_time" content="2017-09-25T09:44:03.128Z">
+<meta property="og:updated_time" content="2017-09-26T00:33:29.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PWA 偽裝術：manifest.json">
 <meta name="twitter:description" content="漸進式網頁應用程式 (Progressive Web App)什麼是 漸進式網頁應用程式(PWA) 其在網路上已經有很多篇文章了，筆者看完得到的結論就是-讓以前只有 APP 做得到的事情，現在在 Web 上也可以做到，而現在之所以能實現是因為新版的瀏覽器增加了相關功能，言下之意就是瀏覽器的版本很重要，後續測試會以 Google Chrome 為主。我們可以看一下 W3C 最新的 Web App M">
@@ -350,8 +351,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-25T17:44:03+08:00">
-                2017/09/25
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-26T08:33:29+08:00">
+                2017/09/26
               </time>
             
           </span>
@@ -413,6 +414,9 @@
 <p>若要下載請記得先透過指令 <code>npm install</code> 來重新安裝 package。</p>
 </blockquote>
 <p>我們在專案目錄下的 <code>src</code> 資料夾內建立一個 <code>manifest.json</code>，並添加相關設定值，以及應用程式圖示，下面是比較常用的設定值：  </p>
+<blockquote>
+<p>若是 Angular 專案，別忘了將 <code>manifest.json</code> 加到 <code>.angular-cli.json</code> 的 <code>assets</code>，這樣建置時才會將 <code>manifest.json</code> 一併複製。<br><img src="/images/angular/training/pwa/pwa_22.png" alt=""></p>
+</blockquote>
 <table>
 <thead>
 <tr>

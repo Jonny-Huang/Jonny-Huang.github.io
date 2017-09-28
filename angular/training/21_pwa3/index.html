@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Notification,push,ServiceWorker,Progressive Web App,PWA,Angular" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+  <meta property="fb:admins" content="fb267234890438499" />
+  <meta property="fb:app_id" content="267234890438499" />
+
+
+
+<meta name="description" content="推送通知 (Push Notification)推送通知(Push Notification) 或者也可以稱作推播，有智慧手機的人我想應該非常熟悉，尤其是 App 盛行的時期幾乎每隻 App 都會有推送通知功能，這也是惡夢的開始，你會發覺在大半夜裏你的手機會三不五時地叫你起床，所以現在的手機幾乎都內建了勿擾模式，讓使用者可以設定每天的某個時段可以封鎖特定的訊息通知，甚至現在的系統都可以讓使用用決定">
+<meta name="keywords" content="Notification,push,ServiceWorker,Progressive Web App,PWA,Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PWA 推送通知：ServiceWorker - push">
+<meta property="og:url" content="https://jonny-huang.github.io/angular/training/21_pwa3/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="推送通知 (Push Notification)推送通知(Push Notification) 或者也可以稱作推播，有智慧手機的人我想應該非常熟悉，尤其是 App 盛行的時期幾乎每隻 App 都會有推送通知功能，這也是惡夢的開始，你會發覺在大半夜裏你的手機會三不五時地叫你起床，所以現在的手機幾乎都內建了勿擾模式，讓使用者可以設定每天的某個時段可以封鎖特定的訊息通知，甚至現在的系統都可以讓使用用決定">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_43.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_44.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_45.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_46.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_35.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_36.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_37.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_38.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_39.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_40.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_41.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_42.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_47.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_48.gif">
+<meta property="og:updated_time" content="2017-09-28T17:54:17.420Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PWA 推送通知：ServiceWorker - push">
+<meta name="twitter:description" content="推送通知 (Push Notification)推送通知(Push Notification) 或者也可以稱作推播，有智慧手機的人我想應該非常熟悉，尤其是 App 盛行的時期幾乎每隻 App 都會有推送通知功能，這也是惡夢的開始，你會發覺在大半夜裏你的手機會三不五時地叫你起床，所以現在的手機幾乎都內建了勿擾模式，讓使用者可以設定每天的某個時段可以封鎖特定的訊息通知，甚至現在的系統都可以讓使用用決定">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/download.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Jonny'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jonny-huang.github.io/angular/training/21_pwa3/"/>
+
+
+
+
+
+  <title>PWA 推送通知：ServiceWorker - push | Jonny Huang 的學習筆記</title>
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '267234890438499',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_tw/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jonny Huang 的學習筆記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Angular</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            目錄
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-angular">
+          <a href="/angular/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-paperclip"></i> <br />
+            
+            Angular
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ionic">
+          <a href="/ionic/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-paperclip"></i> <br />
+            
+            Ionic
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/21_pwa3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">PWA 推送通知：ServiceWorker - push</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新於</span>
+              
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-29T01:54:17+08:00">
+                2017/09/29
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Training/" itemprop="url" rel="index">
+                    <span itemprop="name">Training</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="推送通知-Push-Notification"><a href="#推送通知-Push-Notification" class="headerlink" title="推送通知 (Push Notification)"></a>推送通知 (Push Notification)</h1><p><strong>推送通知</strong>(<strong>Push Notification</strong>) 或者也可以稱作<strong>推播</strong>，有智慧手機的人我想應該非常熟悉，尤其是 App 盛行的時期幾乎每隻 App 都會有推送通知功能，這也是惡夢的開始，你會發覺在大半夜裏你的手機會三不五時地叫你起床，所以現在的手機幾乎都內建了勿擾模式，讓使用者可以設定每天的某個時段可以封鎖特定的訊息通知，甚至現在的系統都可以讓使用用決定 App 允許那些權限。  </p>
+<blockquote>
+<p><strong>推送通知</strong> 就像一把雙面刃，懂得善用它可以提升用戶體驗，反之，若濫用它則會讓使用者觀感不好。</p>
+</blockquote>
+<p>在本篇中筆者會將 <strong>推送通知</strong>(<strong>Push Notification</strong>) 分成 <strong>推送</strong>(<strong>Push</strong>) 與 <strong>通知</strong>(<strong>Notification</strong>) 來說明，<strong>推送</strong>指的是伺服器的後端程式與瀏覽器上的程式之間的溝通，而<strong>通知</strong>則是瀏覽器上的程式與使用者之間的溝通。  </p>
+<h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p>我們接續 <a href="/angular/training/20_pwa2/">PWA 替身術：ServiceWorker - caches</a> 的程式來當範例。<br><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-26.zip"><strong>first-app_2017-09-26.zip</strong></a>。  </p>
+<blockquote>
+<p>若要下載請記得先透過指令 <code>npm install</code> 來重新安裝 package。</p>
+</blockquote>
+<p>接著編輯 <code>src\sw.js</code>，取消 fetch 事件的 <code>console.log</code> 以免開發者工具的 Console 視窗太多 fetch 事件，同時也取消 <code>register_sw.js</code> 的快取。  </p>
+<pre><code>const cacheVersion = &#39;v2&#39;;
+const filesToCache = [
+  ...
+  &#39;polyfills.bundle.js&#39;,
+  &#x2F;&#x2F; &#39;register_sw.js&#39;,
+  &#39;styles.bundle.css&#39;,
+  ...
+];
+...
+self.addEventListener(&#39;fetch&#39;, event =&gt; {
+  &#x2F;&#x2F; console.log(&#39;[ServiceWorker] fetch&#39;, event.request);
+  event.respondWith(
+    ...
+  );
+});
+</code></pre>
+<p>再透過 <code>ng build --prod -oh</code> 指令來建置專案，預設會在專案目錄產生一個 <code>dist</code> 資料夾，並將編譯產生的檔案放在裡面，因為目前不會調整網站內容，所以我們改以 <code>dist</code> 當作專案資料夾來練習建立推送通知功能。<br><img src="/images/angular/training/pwa/pwa_43.png" alt="">  </p>
+<p>接下來我們嘗試改用 VS Code 的擴充功能 - <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank" rel="external">Live Server</a> 來執行網站。  </p>
+<blockquote>
+<p>當然也可以繼續沿用 Chrome 擴充功能-<a href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb" target="_blank" rel="external">Web Server for Chrome</a> 來執行。</p>
+</blockquote>
+<p><img src="/images/angular/training/pwa/pwa_44.png" alt=""><br>再來我們改以 <code>dist</code> 資料夾當根目錄來開啟 VS Code，選取一個檔案當作 Live Server 啟動時預設會開啟的檔案，這邊我們選擇首頁-index.html，接著我們可以透過右鍵的功能選單-<strong>Open with Live Server</strong> 或是下方狀態列的 <strong>Go Live</strong> 來啟動 Live Server，Live Server 會自動開啟瀏覽器並載入我們選擇的檔案。<br><img src="/images/angular/training/pwa/pwa_45.png" alt=""><br><img src="/images/angular/training/pwa/pwa_46.png" alt="">  </p>
+<blockquote>
+<p>不過要特別注意的是我們是<strong>直接編輯 <code>dist</code> 資料夾下的檔案</strong>，這是 Angular CLI 透過 <code>ng build</code> 建置專案時所產生的資料夾，每次建置前都會將 <code>dist</code> 給刪除，所以請記得<strong>務必將異動過的檔案複製回 <code>src</code> 資料夾下的對應位置</strong>。</p>
+</blockquote>
+<h2 id="通知-Notification"><a href="#通知-Notification" class="headerlink" title="通知 (Notification)"></a>通知 (Notification)</h2><p>不論是 Google Chrome 或是 Mozilla FireFox 最近的版本都已經允許使用者可以依不同網站賦予不同的權限。<br><img src="/images/angular/training/pwa/pwa_35.png" alt=""><br><img src="/images/angular/training/pwa/pwa_36.png" alt=""><br>由上圖可以看到通知的設定剛好對應到 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notification" target="_blank" rel="external">Notification API</a> 的 <code>permission</code> 屬性：  </p>
+<ul>
+<li><code>default</code>：使用者尚未給予任何權限 (因此不會顯示任何通知)</li>
+<li><code>granted</code>：使用者允許接收到網站的通知</li>
+<li><code>denied</code>：使用者拒絕接收網站的通知</li>
+</ul>
+<h3 id="授權"><a href="#授權" class="headerlink" title="授權"></a>授權</h3><p>由 Notification API 可以知道我們可以透過 <code>Notification.requestPermission</code> 方法在瀏覽器界面上產生一個允許通知的請求視窗，讓使用者允許 Web App 可以啟用<strong>通知</strong>功能。<br><code>requestPermission</code> 方法只有在 <code>permission</code> 屬性為 <code>default</code> 才有效，我們可以看做網站第一次開啟時才會顯示，當使用者不論是選取選取 <strong>允許</strong>(<code>granted</code>) 或是 <strong>拒絕</strong>(<code>denied</code>)，後續請求視窗都不會再出現，我們開啟 <code>register_sw.js</code> 並加入 <code>requestPermission</code> 方法。</p>
+<pre><code>if (&#39;serviceWorker&#39; in navigator) {
+  navigator.serviceWorker.register(&#39;&#x2F;sw.js&#39;)
+    .then(reg =&gt; {
+      &#x2F;&#x2F; registration worked
+      console.log(&#39;[Service Worker] Registration succeeded. Scope is &#39; + reg.scope);
+    }).catch(error =&gt; {
+      &#x2F;&#x2F; registration failed
+      console.log(&#39;[Service Worker] Registration failed with &#39; + error);
+    });
+
+  if (&#39;Notification&#39; in window) {
+    console.log(&#39;Notification permission status:&#39;, Notification.permission);
+    Notification.requestPermission(function (status) {
+      console.log(&#39;Notification permission status:&#39;, status);
+    });
+  }
+}
+</code></pre>
+<blockquote>
+<p>因為 <strong>推送</strong>(<strong>Push</strong>) 需要透過 ServiceWorker 所以程式加在 ServiceWorker 判斷式內，以確保我們執行的瀏覽器同時支援 ServiceWorker 與 Notification。  </p>
+</blockquote>
+<p>開啟瀏覽器，可以發現目前 <code>permission</code> 屬性為 <code>default</code> 所以畫面上也出現顯示通知的詢問視窗。<br><img src="/images/angular/training/pwa/pwa_37.png" alt=""><br>若按下<strong>允許</strong>則 <code>permission</code> 屬性會改為 <code>granted</code>。<br><img src="/images/angular/training/pwa/pwa_38.png" alt=""><br>反之，按下<strong>拒絕</strong>則 <code>permission</code> 屬性會改為 <code>denied</code>。<br><img src="/images/angular/training/pwa/pwa_39.png" alt="">  </p>
+<p>但是不論選取為何，重新開啟網頁後由 Console 視窗可以看到 <code>requestPermission</code> 方法雖然會被呼叫，但是介面上卻不會出現請求視窗。<br><img src="/images/angular/training/pwa/pwa_40.png" alt=""><br><img src="/images/angular/training/pwa/pwa_41.png" alt="">  </p>
+<blockquote>
+<p>對於網站開發者而言會比較擔心的是使用者選取<strong>拒絕</strong>，因為這時候就必須讓使用者手動變更設定，這對大部分的人來說應該是比較困難的，這時候其實可以透過 <code>Notification.permission</code> 方法來確認授權狀態，若是<strong>拒絕</strong>(<code>denied</code>)我們可以在頁面適當的位置呈現變更通知權限的教學。<br><img src="/images/angular/training/pwa/pwa_42.png" alt=""></p>
+</blockquote>
+<h3 id="訊息顯示"><a href="#訊息顯示" class="headerlink" title="訊息顯示"></a>訊息顯示</h3><p>上面我們處理了授權問題，接下來在使用者允許通知的前提下，我們開始實作如何在畫面上顯示訊息。<br>透過由 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification" target="_blank" rel="external">MDN</a> 上可以得知我們可以透過 <code>ServiceWorkerRegistration.showNotification()</code> 方法來呈現訊息，下面列常用的選擇性屬性。  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">屬性</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">icon</td>
+<td>圖示路徑</td>
+</tr>
+<tr>
+<td style="text-align:center">body</td>
+<td>內文文字</td>
+</tr>
+<tr>
+<td style="text-align:center">image</td>
+<td>內文圖片</td>
+</tr>
+<tr>
+<td style="text-align:center">requireInteraction</td>
+<td><strong>false</strong>(預設)：自動關閉(Chrome 大約20秒後關閉)。  <strong>true</strong>：訊息一直顯示，直到使用者點擊或是按關閉按鈕才會消失。</td>
+</tr>
+<tr>
+<td style="text-align:center">data</td>
+<td>夾帶資料，讓我們可以在使用者在點擊時依照不同的參數資訊做不同的功能</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>其餘屬性請查詢 MDN - <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification" target="_blank" rel="external">ServiceWorkerRegistration.showNotification()</a></p>
+</blockquote>
+<p>我們開啟 <code>register_sw.js</code> 加入 <code>displayNotification</code> 方法，修改內容如下：  </p>
+<pre><code>if (&#39;serviceWorker&#39; in navigator) {
+  ...
+
+  if (&#39;Notification&#39; in window) {
+    ...
+  }
+  displayNotification();
+}
+
+function displayNotification() {
+  if (Notification.permission == &#39;granted&#39;) {
+    navigator.serviceWorker.getRegistration().then(reg =&gt; {
+      var options = {
+        icon: &#39;.&#x2F;assets&#x2F;images&#x2F;android_048.png&#39;,
+        body: &#39;歡迎加入 Angular 社群&#39;,
+        image: &#39;https:&#x2F;&#x2F;augt-forum-upload.s3-ap-southeast-1.amazonaws.com&#x2F;original&#x2F;1X&#x2F;6b3cd55281b7bedea101dc36a6ef24034806390b.png&#39;
+      };
+      reg.showNotification(&#39;Angular User Group Taiwan&#39;, options);
+      console.log(&#39;displayNotification&#39;);
+    });
+  }
+}
+</code></pre>
+<p>儲存後，開啟瀏覽器可以發現通知訊息已經出現，但是目前除了點擊訊息視窗右上方關閉按鈕外，點擊其他地方都無任何反應。<br><img src="/images/angular/training/pwa/pwa_47.gif" alt="">  </p>
+<blockquote>
+<p>雖然訊息視窗是透過 ServiceWorker 來呈現，但是其實我們仍然可以在前端網頁上透過 JavaScript 來呼叫，只是若要顯示的訊息與當前瀏覽器上正在進行的作業相關，那直接將訊息顯示在頁面內對使用者來說會更友善，不一定要透過通知視窗。</p>
+</blockquote>
+<p>接下來我們嘗試讓使用者在點擊訊息視窗後開啟一個頁面，我們將要開啟的網頁網址加到 <code>data</code> 屬性內。  </p>
+<pre><code>...
+function displayNotification() {
+  if (Notification.permission == &#39;granted&#39;) {
+    navigator.serviceWorker.getRegistration().then(reg =&gt; {
+      var options = {
+        icon: &#39;.&#x2F;assets&#x2F;images&#x2F;android_048.png&#39;,
+        body: &#39;歡迎加入 Angular 社群&#39;,
+        image: &#39;https:&#x2F;&#x2F;augt-forum-upload.s3-ap-southeast-1.amazonaws.com&#x2F;original&#x2F;1X&#x2F;6b3cd55281b7bedea101dc36a6ef24034806390b.png&#39;,
+        data: {
+          link: &#39;https:&#x2F;&#x2F;forum.angular.tw&#x2F;&#39;
+        }
+      };
+      ...
+    });
+  }
+}
+</code></pre>
+<p>接著編輯 <code>sw.js</code>，加入監聽 <code>notificationclick</code> 事件來接收 <code>data</code> 屬性所傳遞的資料。  </p>
+<pre><code>...
+self.addEventListener(&#39;fetch&#39;, event =&gt; {
+  ...
+});
+
+self.addEventListener(&#39;notificationclick&#39;, event =&gt; {
+  const notification = event.notification;
+  const action = event.action;
+  const link = notification.data.link;
+  if (action !== &#39;close&#39;) {
+    if (link) {
+      clients.openWindow(link);
+    }
+  }
+  notification.close();
+  console.log(&#39;notificationclick action is&#39;, action);
+})
+</code></pre>
+<p>重新開啟瀏覽器可以看到點擊後已經可以開啟網頁。<br><img src="/images/angular/training/pwa/pwa_48.gif" alt="">  </p>
+<blockquote>
+<p>參考資料：<br>MDN - <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/Notifications_API/Using_the_Notifications_API" target="_blank" rel="external">使用 Web Notifications</a>  </p>
+</blockquote>
+<!-- >[Notification Generator](https://tests.peter.sh/notification-generator/) -->
+<h2 id="推送-Push"><a href="#推送-Push" class="headerlink" title="推送 (Push)"></a>推送 (Push)</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PWA/" rel="tag"># PWA</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/angular/training/20_pwa2/" rel="next" title="PWA 替身術：ServiceWorker - caches">
+                <i class="fa fa-chevron-left"></i> PWA 替身術：ServiceWorker - caches
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Jonny Huang" />
+          <p class="site-author-name" itemprop="name">Jonny Huang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分類</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#推送通知-Push-Notification"><span class="nav-number">1.</span> <span class="nav-text">推送通知 (Push Notification)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#事前準備"><span class="nav-number">1.1.</span> <span class="nav-text">事前準備</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通知-Notification"><span class="nav-number">1.2.</span> <span class="nav-text">通知 (Notification)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#授權"><span class="nav-number">1.2.1.</span> <span class="nav-text">授權</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#訊息顯示"><span class="nav-number">1.2.2.</span> <span class="nav-text">訊息顯示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推送-Push"><span class="nav-number">1.3.</span> <span class="nav-text">推送 (Push)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-Jonny Huang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
+<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+      prettyPrint();
+  });
+</script>
+
+</body>
+</html>

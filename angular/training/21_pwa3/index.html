@@ -113,7 +113,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_42.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_47.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_48.gif">
-<meta property="og:updated_time" content="2017-09-28T23:58:15.224Z">
+<meta property="og:updated_time" content="2017-09-29T00:19:25.446Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PWA 推送通知：ServiceWorker - push">
 <meta name="twitter:description" content="推送通知 (Push Notification)推送通知(Push Notification) 或者也可以稱作推播，有智慧手機的人我想應該非常熟悉，尤其是 App 盛行的時期幾乎每隻 App 都會有推送通知功能，這也是惡夢的開始，你會發覺在大半夜裏你的手機會三不五時地叫你起床，所以現在的手機幾乎都內建了勿擾模式，讓使用者可以設定每天的某個時段可以封鎖特定的訊息通知，甚至現在的系統都可以讓使用用決定">
@@ -341,7 +341,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-29T07:58:15+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-29T08:19:25+08:00">
                 2017/09/29
               </time>
             
@@ -441,17 +441,17 @@ self.addEventListener(&#39;fetch&#39;, event =&gt; {
     .then(reg =&gt; {
       &#x2F;&#x2F; registration worked
       console.log(&#39;[Service Worker] Registration succeeded. Scope is &#39; + reg.scope);
+
+      if (&#39;Notification&#39; in window) {
+        console.log(&#39;Notification permission default status:&#39;, Notification.permission);
+        Notification.requestPermission(function (status) {
+          console.log(&#39;Notification permission status:&#39;, status);
+        });
+      }
     }).catch(error =&gt; {
       &#x2F;&#x2F; registration failed
       console.log(&#39;[Service Worker] Registration failed with &#39; + error);
     });
-
-  if (&#39;Notification&#39; in window) {
-    console.log(&#39;Notification permission status:&#39;, Notification.permission);
-    Notification.requestPermission(function (status) {
-      console.log(&#39;Notification permission status:&#39;, status);
-    });
-  }
 }
 </code></pre>
 <blockquote>
@@ -496,14 +496,19 @@ self.addEventListener(&#39;fetch&#39;, event =&gt; {
 <blockquote>
 <p>其餘屬性請查詢 MDN - <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification" target="_blank" rel="external">ServiceWorkerRegistration.showNotification()</a></p>
 </blockquote>
-<p>我們開啟 <code>register_sw.js</code> 加入 <code>displayNotification</code> 方法，修改內容如下：  </p>
+<p>我們開啟 <code>register_sw.js</code> 加入 <code>displayNotification</code> 方法，並在判斷 Notification 條件式之後去呼叫它，所以正常情況下當瀏覽器有支援而且使用者允許通知情況下網頁開啟後就會自動顯示，修改內容如下：  </p>
 <pre><code>if (&#39;serviceWorker&#39; in navigator) {
-  ...
+  navigator.serviceWorker.register(&#39;&#x2F;sw.js&#39;)
+    .then(reg =&gt; {
+      ...
+      if (&#39;Notification&#39; in window) {
+        ...
+      }
 
-  if (&#39;Notification&#39; in window) {
-    ...
-  }
-  displayNotification();
+      console.log(&#39;[Service Worker] register end&#39;);
+    }).catch(error =&gt; {
+      ...
+    });
 }
 
 function displayNotification() {

@@ -117,7 +117,16 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_50.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_51.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_52.gif">
-<meta property="og:updated_time" content="2017-09-29T10:00:51.202Z">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_53.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_54.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_55.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_56.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_57.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_58.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_59.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_60.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
+<meta property="og:updated_time" content="2017-09-29T15:19:57.339Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PWA 推送通知：ServiceWorker - push">
 <meta name="twitter:description" content="推送通知 (Push Notification)推送通知(Push Notification) 或者也可以稱作推播，有智慧手機的人我想應該非常熟悉，尤其是 App 盛行的時期幾乎每隻 App 都會有推送通知功能，這也是惡夢的開始，你會發覺在大半夜裏你的手機會三不五時地叫你起床，所以現在的手機幾乎都內建了勿擾模式，讓使用者可以設定每天的某個時段可以封鎖特定的訊息通知，甚至現在的系統都可以讓使用用決定">
@@ -345,7 +354,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-29T18:00:51+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-29T23:19:57+08:00">
                 2017/09/29
               </time>
             
@@ -511,6 +520,10 @@ self.addEventListener(&#39;fetch&#39;, event =&gt; {
       ...
       if (&#39;Notification&#39; in window) {
         ...
+        Notification.requestPermission(function (status) {
+          console.log(&#39;Notification permission status:&#39;, status);
+          displayNotification();
+        });
       }
 
       console.log(&#39;[Service Worker] register end&#39;);
@@ -653,14 +666,163 @@ self.addEventListener(&#39;notificationclick&#39;, event =&gt; {
 <blockquote>
 <p>參考資料：<br>MDN - <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/Notifications_API/Using_the_Notifications_API" target="_blank" rel="external">使用 Web Notifications</a>  </p>
 </blockquote>
-<h2 id="推送-Push"><a href="#推送-Push" class="headerlink" title="推送 (Push)"></a>推送 (Push)</h2><!-- https://developers.google.com/web/fundamentals/push-notifications/sending-messages-with-web-push-libraries -->
-<!-- https://developers.google.com/web/fundamentals/codelabs/push-notifications/ -->
-<!-- 
-Public Key:
-BPkIUOIylNfWjC9MQ3_8oVx0MsaryiEaak1WyYWyqWp1-FuyQitttiMkdjvACkoEds94crwhyRIyVTyc2tVYICI
+<h2 id="推送-Push"><a href="#推送-Push" class="headerlink" title="推送 (Push)"></a>推送 (Push)</h2><p>以往為了獲得後端變更的最新資訊，前端往往需要透過使用者手動或是系統棟頻繁的不斷重複查詢來讓我們<strong>及早獲得資訊</strong>，這種被動式查詢不僅對於網路頻寬、伺服器資源都會占用持續且龐大的成本，因此如果有一種機制可以在後台伺服端資料改變當下主動通知前端，這不僅可以大大降低硬體成本，對於需要這些資訊的使用者更可以<strong>及時獲得資訊</strong>。<br><strong>推送</strong>(<strong>Push</strong>) 就是提供這種機制的功能，而這種功能已經不只在 App 上可以做到，現在連 Web 都可以實現。  </p>
+<h2 id="事前準備-1"><a href="#事前準備-1" class="headerlink" title="事前準備"></a>事前準備</h2><p>編輯 <code>register_sw.js</code>，將 <code>displayNotification</code> 方法註解起來，這樣前端就不會再顯示訊息視窗。</p>
+<pre><code>if (&#39;serviceWorker&#39; in navigator) {
+  navigator.serviceWorker.register(&#39;.&#x2F;sw.js&#39;)
+    .then(reg =&gt; {
+      ...
+      if (&#39;Notification&#39; in window) {
+        ...
+        Notification.requestPermission(function (status) {
+          console.log(&#39;Notification permission status:&#39;, status);
+          &#x2F;&#x2F; displayNotification();
+        });
+      }
+    ...
+}
+</code></pre>
+<h3 id="安裝-web-push"><a href="#安裝-web-push" class="headerlink" title="安裝 web-push"></a>安裝 web-push</h3><p>開啟 fitst-app 專案，透過下列指令安裝 web-push。<br><code>npm install web-push</code>  </p>
+<blockquote>
+<p>參考資料：<a href="https://github.com/web-push-libs/web-push" target="_blank" rel="external">https://github.com/web-push-libs/web-push</a></p>
+</blockquote>
+<h3 id="產生金鑰"><a href="#產生金鑰" class="headerlink" title="產生金鑰"></a>產生金鑰</h3><p>透過下列指令產生一組<strong>公鑰</strong>與<strong>私鑰</strong>，當然<strong>私鑰要保管好</strong>不能外流，這邊因為是測試用得所以將私鑰也呈現出來讓大家比較容易理解範例程式。<br><code>web-push generate-vapid-keys</code><br><img src="/images/angular/training/pwa/pwa_53.png" alt=""><br>公鑰:<code>BPkIUOIylNfWjC9MQ3_8oVx0MsaryiEaak1WyYWyqWp1-FuyQitttiMkdjvACkoEds94crwhyRIyVTyc2tVYICI</code><br>私鑰:<code>5ZwdOLmdJEmdsYcp-ERUtmMg328EKq7jMGSAn3nSBgM</code></p>
+<h3 id="訂閱"><a href="#訂閱" class="headerlink" title="訂閱"></a>訂閱</h3><p>接下來我們要透過 <code>ServiceWorkerRegistration.pushManager</code> 向推送伺服器發出請求，我們需要先將 base64 格式的公鑰轉換成 UInt8Array 格式，再連同 <code>userVisibleOnly: true</code> 參數一起發送至推送伺服器，伺服器會返回一組訂閱資訊(PushSubscription)，推送伺服器可以憑藉此資訊來聯繫瀏覽器，而瀏覽器也可以知道這是來自哪一個 Web App，至於其背後運作原理不再這裡討論，我們可以把它想成跟身分證一樣，我們可以透過身分證的地址找到所在位置，再透過姓名找到是哪一隻 App。</p>
+<blockquote>
+<p><strong>ServiceWorkerRegistration</strong> 可從註冊 ServiceWork 時的返回值取得實體。<br><img src="/images/angular/training/pwa/pwa_54.png" alt=""><br><code>userVisibleOnly: true</code>：表示允許推送到用戶端時顯示訊息。</p>
+</blockquote>
+<p>編輯 <code>register_sw.js</code>，加入註冊方法-<code>subscribeUser</code>。  </p>
+<pre><code>if (&#39;serviceWorker&#39; in navigator) {
+  navigator.serviceWorker.register(&#39;.&#x2F;sw.js&#39;)
+    .then(reg =&gt; {
+      ...
+      subscribeUser(reg);
+      ...
+    }).catch(error =&gt; {
+      ...
+    });
+}
+...
+const applicationServerPublicKey = `BPkIUOIylNfWjC9MQ3_8oVx0MsaryiEaak1WyYWyqWp1-FuyQitttiMkdjvACkoEds94crwhyRIyVTyc2tVYICI`;
 
-Private Key:
-5ZwdOLmdJEmdsYcp-ERUtmMg328EKq7jMGSAn3nSBgM -->
+function urlB64ToUint8Array(base64String) {
+  const padding = &#39;=&#39;.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding)
+    .replace(&#x2F;\-&#x2F;g, &#39;+&#39;)
+    .replace(&#x2F;_&#x2F;g, &#39;&#x2F;&#39;);
+
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let i = 0; i &lt; rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+}
+
+function subscribeUser(swRegistration) {
+  const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
+  swRegistration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: applicationServerKey
+    })
+    .then(subscription =&gt; {
+      console.log(&#39;User is subscribed&#39;);
+      console.log(JSON.stringify(subscription));
+    })
+    .catch(err =&gt; {
+      console.log(&#39;Failed to subscribe the user: &#39;, err);
+    });
+}
+</code></pre>
+<p>執行網頁，當註冊成功時透過 <code>console.log(JSON.stringify(subscription));</code> 可從開發人員工具查詢到 <code>subscription</code> 的訂閱資訊，正常情況下我們需要將這個資訊儲存到後台的資料庫，後續才可以用這個資訊透過推送伺服器來向瀏覽器發送訊息，眼尖的人可以發現它的 <code>endpoint</code> 資訊是網址而且是來自 <a href="https://fcm.googleapis.com/，其實它就是" target="_blank" rel="external">https://fcm.googleapis.com/，其實它就是</a> Google 的 FCM (Firebase Cloud Messaging)，這也表示我們中間是透過 FCM 來傳遞，所以客戶端與伺服端至少要能連結到這個外部服務平台，推送功能才能正常運行。<br><img src="/images/angular/training/pwa/pwa_55.png" alt="">  </p>
+<blockquote>
+<p>目前雖然我們可以從 FCM 取得 PushSubscription，但是依照筆者測試結果，因為我們是連結本機端網址(localhost)，所以這是一個無效的 PushSubscription，所以測試時必須將網頁架設在有實體IP的網站下。</p>
+</blockquote>
+<h3 id="監聽-ServiceWorker-的-push-事件"><a href="#監聽-ServiceWorker-的-push-事件" class="headerlink" title="監聽 ServiceWorker 的 push 事件"></a>監聽 ServiceWorker 的 push 事件</h3><p>當伺服器推送訊息給瀏覽器時，我們可以從 ServiceWorker 的 push 事件取得相關資訊，因此我們在這個事件內去抓取回傳過來的資訊並透過訊息通知視窗顯示出來，開啟 <code>sw.js</code> 修改如下：  </p>
+<pre><code>...
+self.addEventListener(&#39;push&#39;, event =&gt; {
+  console.log(&#39;[Service Worker] Push Received.&#39;);
+  let title = &#39;Server Push&#39;;
+  let options = {
+    body: &#39;push TEST&#39;,
+    icon: &#39;.&#x2F;assets&#x2F;images&#x2F;android_048.png&#39;
+  };
+  if (event.data) {
+    options = event.data.json();
+    title = options.title;
+  }
+
+  event.waitUntil(self.registration.showNotification(title, options));
+});</code></pre>
+<h3 id="移植至-GitHub"><a href="#移植至-GitHub" class="headerlink" title="移植至 GitHub"></a>移植至 GitHub</h3><p>如前面提到在本機端(localhost)的環境下所得到的 PushSubscription 會是無效的，因此筆者暫時先將網頁上傳至 GitHub，因為 GitHub 本身又是 HTTPS，剛好又符合 ServiceWorker 要求，所以當作臨時的 demo 環境應該不錯，測試網址如下：<br><a href="https://jonny-huang.github.io/demo/first-app/index.html">https://jonny-huang.github.io/demo/first-app/index.html</a><br><img src="/images/angular/training/pwa/pwa_56.png" alt=""><br>由開發者工具可以取得 PushSubscription 資訊如下:</p>
+<pre><code>{
+  endpoint: &quot;https:&#x2F;&#x2F;fcm.googleapis.com&#x2F;fcm&#x2F;send&#x2F;fwNbCkZtyr0:APA91bF-tttRSH0KBHuZ3lGehkd7kcNzWOfAVTKeXp4cYUURgq2bEkTkCtLQAvrzDZ7q_N7on0ved-Ss9SGLRYGm61D2rkmPe2R2EUnLn7s1y7Fwrjts2I-qM94SQINyJA4VBV5spTdy&quot;,
+  expirationTime: null,
+  keys: {
+    p256dh: &quot;BEClFpLV0UV65m9wtmPxLVN6kIUTrALuRlUANPySm3eSXXArabumm4aziX4tPYefRtDaGpqL8SxwyyJlc9BvJzA=&quot;,
+    auth: &quot;I4qBuGIBj1pUVbT4sQnHEg==&quot;
+  }
+}</code></pre>
+<h3 id="後台推送"><a href="#後台推送" class="headerlink" title="後台推送"></a>後台推送</h3><p>開啟 first-app 專案，在專案目錄建立一個 <code>server</code> 資料夾，並在裡面建立一個 <code>push.ts</code> 檔案。<br><img src="/images/angular/training/pwa/pwa_57.png" alt=""><br>接下來我們透過 web-push 來推送訊息，程式可參考 <a href="https://github.com/web-push-libs/web-push" target="_blank" rel="external">GitHub</a> 範例，重點是：</p>
+<ul>
+<li>呼叫 <code>setVapidDetails</code> 方法，並帶入公鑰與私鑰。</li>
+<li>取得要推波對象的 PushSubscription。</li>
+<li>設定要傳遞的參數，這邊我們直接拿 <code>register_sw.js</code> 的 <code>displayNotification</code> 方法內的參數。</li>
+<li>透過 <code>sendNotification</code> 推送訊息。</li>
+</ul>
+<p><code>push.ts</code> 檔程式如下：</p>
+<pre><code>import * as webpush from &#39;web-push&#39;;
+
+const vapidKeys = {
+  publicKey: &#39;BPkIUOIylNfWjC9MQ3_8oVx0MsaryiEaak1WyYWyqWp1-FuyQitttiMkdjvACkoEds94crwhyRIyVTyc2tVYICI&#39;,
+  privateKey: &#39;5ZwdOLmdJEmdsYcp-ERUtmMg328EKq7jMGSAn3nSBgM&#39;
+};
+const webPush = webpush;
+
+webPush.setVapidDetails(
+  &#39;mailto:denhuang@gmail.com&#39;,
+  vapidKeys.publicKey,
+  vapidKeys.privateKey
+);
+
+const options = {
+  icon: &#39;assets&#x2F;images&#x2F;android_048.png&#39;,
+  body: &#39;Angular 測試工作坊 9月23日(六)&#39;,
+  image: &#39;https:&#x2F;&#x2F;scontent.ftpe7-1.fna.fbcdn.net&#x2F;v&#x2F;t31.0-8&#x2F;21273134_10156585628499554_8520027102111869914_o.jpg?oh=9d7bcbc999c161f5ce778e361a4b9ea4&amp;oe=5A47D9EE&#39;,
+  data: {
+    link: &#39;https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;&#39;,
+    link_ok: &#39;https:&#x2F;&#x2F;www.facebook.com&#x2F;events&#x2F;188912961650574&#x2F;?acontext=%7B%22ref%22%3A%224%22%2C%22feed_story_type%22%3A%22370%22%2C%22action_history%22%3A%22null%22%7D&#39;,
+    link_ng: &#39;https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;angularstudygroup&#x2F;&#39;
+  },
+  requireInteraction: true,
+  actions: [{
+    action: &#39;yes&#39;,
+    title: &#39;參加&#39;,
+    icon: &#39;.&#x2F;assets&#x2F;images&#x2F;img_ok.png&#39;
+  },
+  {
+    action: &#39;no&#39;,
+    title: &#39;不參加&#39;,
+    icon: &#39;.&#x2F;assets&#x2F;images&#x2F;img_ng.png&#39;
+  },
+  ]
+};
+
+const subscription = {
+  endpoint: &#39;https:&#x2F;&#x2F;fcm.googleapis.com&#x2F;fcm&#x2F;send&#x2F;fwNbCkZtyr0:APA91bF-tttRSH0KBHuZ3lGehkd7kcNzWOfAVTKeXp4cYUURgq2bEkTkCtLQAvrzDZ7q_N7on0ved-Ss9SGLRYGm61D2rkmPe2R2EUnLn7s1y7Fwrjts2I-qM94SQINyJA4VBV5spTdy&#39;,
+  expirationTime: null,
+  keys: {
+    p256dh: &#39;BEClFpLV0UV65m9wtmPxLVN6kIUTrALuRlUANPySm3eSXXArabumm4aziX4tPYefRtDaGpqL8SxwyyJlc9BvJzA=&#39;,
+    auth: &#39;I4qBuGIBj1pUVbT4sQnHEg==&#39;
+  }
+};
+
+webPush.sendNotification(subscription, JSON.stringify(options));
+</code></pre>
+<p>接著我們在 <code>package.json</code> 的 <code>scripts</code> 增加 <code>&quot;push&quot;: &quot;ts-node ./server/push.ts&quot;</code> 指令。<br><img src="/images/angular/training/pwa/pwa_58.png" alt=""><br>桌面上至少開啟一個瀏覽器，瀏覽器可以是任意網頁，這時候我們只要在專案目錄下執行 <code>npm run push</code>，就可發現桌面會出現通知訊息視窗。<br><img src="/images/angular/training/pwa/pwa_59.png" alt=""><br>雖然看起來結果一樣，但是這事是由後端推送訊息。<br><img src="/images/angular/training/pwa/pwa_60.gif" alt="">  </p>
+<p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-29.zip"><strong>first-app_2017-09-29.zip</strong></a>  </p>
+
       
     </div>
 
@@ -907,7 +1069,7 @@ Private Key:
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#推送通知-Push-Notification"><span class="nav-number">1.</span> <span class="nav-text">推送通知 (Push Notification)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#事前準備"><span class="nav-number">1.1.</span> <span class="nav-text">事前準備</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通知-Notification"><span class="nav-number">1.2.</span> <span class="nav-text">通知 (Notification)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#授權"><span class="nav-number">1.2.1.</span> <span class="nav-text">授權</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#訊息顯示"><span class="nav-number">1.2.2.</span> <span class="nav-text">訊息顯示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#進階互動"><span class="nav-number">1.2.3.</span> <span class="nav-text">進階互動</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推送-Push"><span class="nav-number">1.3.</span> <span class="nav-text">推送 (Push)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#推送通知-Push-Notification"><span class="nav-number">1.</span> <span class="nav-text">推送通知 (Push Notification)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#事前準備"><span class="nav-number">1.1.</span> <span class="nav-text">事前準備</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通知-Notification"><span class="nav-number">1.2.</span> <span class="nav-text">通知 (Notification)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#授權"><span class="nav-number">1.2.1.</span> <span class="nav-text">授權</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#訊息顯示"><span class="nav-number">1.2.2.</span> <span class="nav-text">訊息顯示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#進階互動"><span class="nav-number">1.2.3.</span> <span class="nav-text">進階互動</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推送-Push"><span class="nav-number">1.3.</span> <span class="nav-text">推送 (Push)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事前準備-1"><span class="nav-number">1.4.</span> <span class="nav-text">事前準備</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝-web-push"><span class="nav-number">1.4.1.</span> <span class="nav-text">安裝 web-push</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#產生金鑰"><span class="nav-number">1.4.2.</span> <span class="nav-text">產生金鑰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#訂閱"><span class="nav-number">1.4.3.</span> <span class="nav-text">訂閱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#監聽-ServiceWorker-的-push-事件"><span class="nav-number">1.4.4.</span> <span class="nav-text">監聽 ServiceWorker 的 push 事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移植至-GitHub"><span class="nav-number">1.4.5.</span> <span class="nav-text">移植至 GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#後台推送"><span class="nav-number">1.4.6.</span> <span class="nav-text">後台推送</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

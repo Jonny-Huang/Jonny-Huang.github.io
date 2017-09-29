@@ -112,7 +112,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_33.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_34.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-28T01:57:10.591Z">
+<meta property="og:updated_time" content="2017-09-29T10:06:09.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PWA 替身術：ServiceWorker - caches">
 <meta name="twitter:description" content="ServiceWorker在 PWA 偽裝術：manifest.json 我們透過 manifest.json 來讓 Web 可以在桌面上產生捷徑，並在執行時隱藏了不需要的網址列，讓外觀上跟一般 App 已無太大差異，接下來我們要解決 Web App 的另一大難題-離線機制，雖然說現在的系統幾乎都是透過網路與後端資料做即時交換，可說如果沒有網路的話過半數的 App 大概都會失去它的功用，但是與網頁">
@@ -340,8 +340,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-28T09:57:10+08:00">
-                2017/09/28
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-29T18:06:09+08:00">
+                2017/09/29
               </time>
             
           </span>
@@ -401,7 +401,7 @@
 </blockquote>
 <h3 id="註冊"><a href="#註冊" class="headerlink" title="註冊"></a>註冊</h3><p>首先我們在專案目錄下建立 <code>sw.js</code> 當作 ServiceWorker 腳本，並建立一個 <code>register_sw.js</code> 負責註冊這個腳本，語法如下：  </p>
 <pre><code>if (&#39;serviceWorker&#39; in navigator) {
-  navigator.serviceWorker.register(&#39;&#x2F;sw.js&#39;)
+  navigator.serviceWorker.register(&#39;.&#x2F;sw.js&#39;)
     .then(reg =&gt; {
       &#x2F;&#x2F; registration worked
       console.log(&#39;[Service Worker] Registration succeeded. Scope is &#39; + reg.scope);
@@ -461,19 +461,19 @@ const filesToCache = [
   &#39;register_sw.js&#39;,
   &#39;styles.bundle.css&#39;,
   &#39;vendor.bundle.js&#39;,
-  &#39;&#x2F;assets&#x2F;images&#x2F;android_048.png&#39;,
-  &#39;&#x2F;assets&#x2F;images&#x2F;android_057.png&#39;,
-  &#39;&#x2F;assets&#x2F;images&#x2F;android_072.png&#39;,
-  &#39;&#x2F;assets&#x2F;images&#x2F;android_076.png&#39;,
-  &#39;&#x2F;assets&#x2F;images&#x2F;android_096.png&#39;,
-  &#39;&#x2F;assets&#x2F;images&#x2F;android_114.png&#39;,
-  &#39;&#x2F;assets&#x2F;images&#x2F;android_120.png&#39;,
-  &#39;&#x2F;assets&#x2F;images&#x2F;android_144.png&#39;,
-  &#39;&#x2F;assets&#x2F;images&#x2F;android_152.png&#39;,
-  &#39;&#x2F;assets&#x2F;images&#x2F;android_167.png&#39;,
-  &#39;&#x2F;assets&#x2F;images&#x2F;android_180.png&#39;,
-  &#39;&#x2F;assets&#x2F;images&#x2F;android_192.png&#39;,
-  &#39;&#x2F;assets&#x2F;images&#x2F;android_512.png&#39;
+  &#39;assets&#x2F;images&#x2F;android_048.png&#39;,
+  &#39;assets&#x2F;images&#x2F;android_057.png&#39;,
+  &#39;assets&#x2F;images&#x2F;android_072.png&#39;,
+  &#39;assets&#x2F;images&#x2F;android_076.png&#39;,
+  &#39;assets&#x2F;images&#x2F;android_096.png&#39;,
+  &#39;assets&#x2F;images&#x2F;android_114.png&#39;,
+  &#39;assets&#x2F;images&#x2F;android_120.png&#39;,
+  &#39;assets&#x2F;images&#x2F;android_144.png&#39;,
+  &#39;assets&#x2F;images&#x2F;android_152.png&#39;,
+  &#39;assets&#x2F;images&#x2F;android_167.png&#39;,
+  &#39;assets&#x2F;images&#x2F;android_180.png&#39;,
+  &#39;assets&#x2F;images&#x2F;android_192.png&#39;,
+  &#39;assets&#x2F;images&#x2F;android_512.png&#39;
 ];
 
 self.addEventListener(&#39;install&#39;, event =&gt; {

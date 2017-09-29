@@ -89,7 +89,7 @@ self.addEventListener('notificationclick', event => {
 
 self.addEventListener('push', event => {
   console.log('[Service Worker] Push Received.');
-
+  console.log(event);
   const title = 'Push Codelab';
   const options = {
     body: 'push TEST',

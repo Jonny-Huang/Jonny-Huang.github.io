@@ -90,8 +90,8 @@ function subscribeUser(swRegistration) {
     //       console.log(response);
     //     })
 
-    // })
-    // .catch(err => {
-    //   console.log('Failed to subscribe the user: ', err);
-    // });
+    })
+    .catch(err => {
+      console.log('Failed to subscribe the user: ', err);
+    });
 }

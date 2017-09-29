@@ -93,7 +93,7 @@ self.addEventListener('push', event => {
   const title = 'Push Codelab';
   const options = {
     body: 'push TEST',
-    icon: 'assets/images/android_048.png'
+    icon: './assets/images/android_048.png'
   };
 
   event.waitUntil(self.registration.showNotification(title, options));

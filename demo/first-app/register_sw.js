@@ -1,5 +1,5 @@
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js')
+  navigator.serviceWorker.register('./sw.js')
     .then(reg => {
       // registration worked
       console.log('[Service Worker] Registration succeeded. Scope is ' + reg.scope);
@@ -9,7 +9,7 @@ if ('serviceWorker' in navigator) {
         console.log('Notification permission default status:', Notification.permission);
         Notification.requestPermission(function (status) {
           console.log('Notification permission status:', status);
-          // displayNotification();
+          displayNotification();
         });
       }
 
@@ -24,7 +24,7 @@ function displayNotification() {
   if (Notification.permission == 'granted') {
     navigator.serviceWorker.getRegistration().then(reg => {
       const options = {
-        icon: './assets/images/android_048.png',
+        icon: 'assets/images/android_048.png',
         body: 'Angular 測試工作坊 9月23日(六)',
         image: 'https://scontent.ftpe7-1.fna.fbcdn.net/v/t31.0-8/21273134_10156585628499554_8520027102111869914_o.jpg?oh=9d7bcbc999c161f5ce778e361a4b9ea4&oe=5A47D9EE',
         data: {
@@ -36,12 +36,12 @@ function displayNotification() {
         actions: [{
             action: 'yes',
             title: '參加',
-            icon: 'assets/images/img_ok.png'
+            icon: './assets/images/img_ok.png'
           },
           {
             action: 'no',
             title: '不參加',
-            icon: 'assets/images/img_ng.png'
+            icon: './sassets/images/img_ng.png'
           },
         ]
       };
@@ -78,18 +78,6 @@ function subscribeUser(swRegistration) {
     .then(subscription => {
       console.log('User is subscribed');
       console.log(JSON.stringify(subscription));
-
-    //   fetch('/api/subscription/', {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json'
-    //       },
-    //       body: JSON.stringify(subscription)
-    //     })
-    //     .then(function (response) {
-    //       console.log(response);
-    //     })
-
     })
     .catch(err => {
       console.log('Failed to subscribe the user: ', err);

@@ -41,7 +41,7 @@ function displayNotification() {
           {
             action: 'no',
             title: '不參加',
-            icon: './sassets/images/img_ng.png'
+            icon: './assets/images/img_ng.png'
           },
         ]
       };

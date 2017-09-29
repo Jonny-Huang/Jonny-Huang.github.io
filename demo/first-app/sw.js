@@ -9,19 +9,19 @@ const filesToCache = [
   // 'register_sw.js',
   'styles.bundle.css',
   'vendor.bundle.js',
-  '/assets/images/android_048.png',
-  '/assets/images/android_057.png',
-  '/assets/images/android_072.png',
-  '/assets/images/android_076.png',
-  '/assets/images/android_096.png',
-  '/assets/images/android_114.png',
-  '/assets/images/android_120.png',
-  '/assets/images/android_144.png',
-  '/assets/images/android_152.png',
-  '/assets/images/android_167.png',
-  '/assets/images/android_180.png',
-  '/assets/images/android_192.png',
-  '/assets/images/android_512.png'
+  'assets/images/android_048.png',
+  'assets/images/android_057.png',
+  'assets/images/android_072.png',
+  'assets/images/android_076.png',
+  'assets/images/android_096.png',
+  'assets/images/android_114.png',
+  'assets/images/android_120.png',
+  'assets/images/android_144.png',
+  'assets/images/android_152.png',
+  'assets/images/android_167.png',
+  'assets/images/android_180.png',
+  'assets/images/android_192.png',
+  'assets/images/android_512.png'
 ];
 
 self.addEventListener('install', event => {
@@ -93,7 +93,7 @@ self.addEventListener('push', event => {
   const title = 'Push Codelab';
   const options = {
     body: 'push TEST',
-    icon: './assets/images/android_048.png'
+    icon: 'assets/images/android_048.png'
   };
 
   event.waitUntil(self.registration.showNotification(title, options));

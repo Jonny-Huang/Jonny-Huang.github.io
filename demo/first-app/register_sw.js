@@ -1,18 +1,9 @@
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js')
+  navigator.serviceWorker.register('/sw.js')
     .then(reg => {
       // registration worked
       console.log('[Service Worker] Registration succeeded. Scope is ' + reg.scope);
-      // subscribeUser(reg);
-      reg.pushManager.getSubscription()
-        .then(subscription => {
-          if (subscription) {
-            console.log('User IS subscribed.',subscription);
-          } else {
-            console.log('User is NOT subscribed.');
-          }
-
-        });
+      subscribeUser(reg);
 
       if ('Notification' in window) {
         console.log('Notification permission default status:', Notification.permission);
@@ -76,20 +67,31 @@ function urlB64ToUint8Array(base64String) {
   return outputArray;
 }
 
-// const applicationServerPublicKey = `AIzaSyDTuMROs--jbU2c06Rz5gTtleq_jhxg4Yk`;
+const applicationServerPublicKey = `BPkIUOIylNfWjC9MQ3_8oVx0MsaryiEaak1WyYWyqWp1-FuyQitttiMkdjvACkoEds94crwhyRIyVTyc2tVYICI`;
 
 function subscribeUser(swRegistration) {
-  // const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
-  swRegistration.pushManager.getSubscription({
+  const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
+  swRegistration.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: applicationServerKey
     })
     .then(subscription => {
-      console.log('User is subscribed:', subscription);
-      // 在 server 端儲存使用者資訊
-      //updateSubscriptionOnServer(subscription);
-    })
-    .catch(err => {
-      console.log('Failed to subscribe the user: ', err);
-    });
+      console.log('User is subscribed');
+      console.log(JSON.stringify(subscription));
+
+    //   fetch('/api/subscription/', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json'
+    //       },
+    //       body: JSON.stringify(subscription)
+    //     })
+    //     .then(function (response) {
+    //       console.log(response);
+    //     })
+
+    // })
+    // .catch(err => {
+    //   console.log('Failed to subscribe the user: ', err);
+    // });
 }

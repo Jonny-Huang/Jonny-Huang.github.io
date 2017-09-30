@@ -126,7 +126,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_59.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_60.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-30T00:22:28.927Z">
+<meta property="og:updated_time" content="2017-09-30T00:36:21.968Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PWA 推送通知：ServiceWorker - push">
 <meta name="twitter:description" content="推送通知 (Push Notification)推送通知(Push Notification) 或者也可以稱作推播，有智慧手機的人我想應該非常熟悉，尤其是 App 盛行的時期幾乎每隻 App 都會有推送通知功能，這也是惡夢的開始，你會發覺在大半夜裏你的手機會三不五時地叫你起床，所以現在的手機幾乎都內建了勿擾模式，讓使用者可以設定每天的某個時段可以封鎖特定的訊息通知，甚至現在的系統都可以讓使用用決定">
@@ -354,7 +354,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-30T08:22:28+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-30T08:36:21+08:00">
                 2017/09/30
               </time>
             
@@ -588,7 +588,7 @@ self.addEventListener(&#39;notificationclick&#39;, event =&gt; {
 })
 </code></pre>
 <p>重新開啟瀏覽器可以看到點擊後已經可以開啟網頁。<br><img src="/images/angular/training/pwa/pwa_48.gif" alt="">  </p>
-<h3 id="進階互動"><a href="#進階互動" class="headerlink" title="進階互動"></a>進階互動</h3><p>訊息視窗其實不只單單提供靜態資訊而已，其實還可以透過 <code>actions</code> 屬性加入選單功能與使用者互動，開啟 <code>register_sw.js</code> 將訊息視窗內容改為具有報名功能的活動宣傳，這邊順邊加入 <code>requireInteraction: true</code> 設定以確保視窗不會自動消失。  </p>
+<h3 id="進階互動"><a href="#進階互動" class="headerlink" title="進階互動"></a>進階互動</h3><p>訊息視窗其實不只單單提供靜態資訊而已，其實還可以透過 <code>actions</code> 屬性加入選單功能與使用者互動，開啟 <code>register_sw.js</code> 將訊息視窗內容改為具有報名功能的活動宣傳，這邊順便加入 <code>requireInteraction: true</code> 設定以確保視窗不會自動消失。  </p>
 <pre><code>...
 function displayNotification() {
   if (Notification.permission == &#39;granted&#39;) {

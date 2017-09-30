@@ -126,7 +126,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_59.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_60.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-29T15:19:57.339Z">
+<meta property="og:updated_time" content="2017-09-30T00:22:28.927Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PWA 推送通知：ServiceWorker - push">
 <meta name="twitter:description" content="推送通知 (Push Notification)推送通知(Push Notification) 或者也可以稱作推播，有智慧手機的人我想應該非常熟悉，尤其是 App 盛行的時期幾乎每隻 App 都會有推送通知功能，這也是惡夢的開始，你會發覺在大半夜裏你的手機會三不五時地叫你起床，所以現在的手機幾乎都內建了勿擾模式，讓使用者可以設定每天的某個時段可以封鎖特定的訊息通知，甚至現在的系統都可以讓使用用決定">
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-29T23:19:57+08:00">
-                2017/09/29
+              <time title="更新於" itemprop="dateModified" datetime="2017-09-30T08:22:28+08:00">
+                2017/09/30
               </time>
             
           </span>
@@ -820,7 +820,7 @@ const subscription = {
 
 webPush.sendNotification(subscription, JSON.stringify(options));
 </code></pre>
-<p>接著我們在 <code>package.json</code> 的 <code>scripts</code> 增加 <code>&quot;push&quot;: &quot;ts-node ./server/push.ts&quot;</code> 指令。<br><img src="/images/angular/training/pwa/pwa_58.png" alt=""><br>桌面上至少開啟一個瀏覽器，瀏覽器可以是任意網頁，這時候我們只要在專案目錄下執行 <code>npm run push</code>，就可發現桌面會出現通知訊息視窗。<br><img src="/images/angular/training/pwa/pwa_59.png" alt=""><br>雖然看起來結果一樣，但是這事是由後端推送訊息。<br><img src="/images/angular/training/pwa/pwa_60.gif" alt="">  </p>
+<p>接著我們在 <code>package.json</code> 的 <code>scripts</code> 增加 <code>&quot;push&quot;: &quot;ts-node ./server/push.ts&quot;</code> 指令。<br><img src="/images/angular/training/pwa/pwa_58.png" alt=""><br>桌面上至少開啟一個瀏覽器，瀏覽器可以是任意網頁，這時候我們只要在專案目錄下執行 <code>npm run push</code>，就可發現桌面會出現通知訊息視窗。<br><img src="/images/angular/training/pwa/pwa_59.png" alt=""><br>雖然看起來結果一樣，但是這次是由後端推送訊息，而且瀏覽器並不需要開啟我們開發的網站。<br><img src="/images/angular/training/pwa/pwa_60.gif" alt="">  </p>
 <p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-29.zip"><strong>first-app_2017-09-29.zip</strong></a>  </p>
 
       

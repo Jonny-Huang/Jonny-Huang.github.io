@@ -104,6 +104,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_24.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_29.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_25.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_61.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_26.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_27.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_30.png">
@@ -112,7 +113,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_33.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_34.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-29T10:06:09.690Z">
+<meta property="og:updated_time" content="2017-10-02T03:05:36.202Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PWA 替身術：ServiceWorker - caches">
 <meta name="twitter:description" content="ServiceWorker在 PWA 偽裝術：manifest.json 我們透過 manifest.json 來讓 Web 可以在桌面上產生捷徑，並在執行時隱藏了不需要的網址列，讓外觀上跟一般 App 已無太大差異，接下來我們要解決 Web App 的另一大難題-離線機制，雖然說現在的系統幾乎都是透過網路與後端資料做即時交換，可說如果沒有網路的話過半數的 App 大概都會失去它的功用，但是與網頁">
@@ -340,8 +341,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-29T18:06:09+08:00">
-                2017/09/29
+              <time title="更新於" itemprop="dateModified" datetime="2017-10-02T11:05:36+08:00">
+                2017/10/02
               </time>
             
           </span>
@@ -445,7 +446,11 @@ self.addEventListener(&#39;fetch&#39;, event =&gt; {
   console.log(&#39;[ServiceWorker] fetch&#39;, event.request);
 });
 </code></pre>
-<p>直接在原本的瀏覽器視窗重新整理，可以發現瀏覽器很聰明的發現 ServiceWorker 腳本(<code>sw.js</code>) 有變更過，因此多個一個 <strong>#251</strong> 的流水號，但是仔細觀看可以發現它的狀態是在等待被啟動，目前啟動的版本仍然是之前的版本，這是因為<br>當瀏覽器前端有運行這一支 Web 應用程式時，瀏覽器預設不會終止目前的腳本，腳本更新會等到不再需要 ServiceWorker 時(例如關閉目前的瀏覽器視窗)才會更新為新的腳本。<br><img src="/images/angular/training/pwa/pwa_25.png" alt=""><br>關閉目前瀏覽器視窗再用新的視窗開啟網頁，可以發現目前啟動 ServiceWork 其流水號為 <strong>#251</strong>，切換到 Console 視窗也可看到相關事件被觸發了。<br><img src="/images/angular/training/pwa/pwa_26.png" alt=""><br><img src="/images/angular/training/pwa/pwa_27.png" alt="">  </p>
+<p>直接在原本的瀏覽器視窗重新整理，可以發現瀏覽器很聰明的發現 ServiceWorker 腳本(<code>sw.js</code>) 有變更過，因此多個一個 <strong>#251</strong> 的流水號，但是仔細觀看可以發現它的狀態是在等待被啟動，目前啟動的版本仍然是之前的版本，這是因為<br>當瀏覽器前端有運行這一支 Web 應用程式時，瀏覽器預設不會終止目前的腳本，腳本更新會等到不再需要 ServiceWorker 時(例如關閉目前的瀏覽器視窗)才會更新為新的腳本。<br><img src="/images/angular/training/pwa/pwa_25.png" alt=""><br>關閉目前瀏覽器視窗再用新的視窗開啟網頁，可以發現目前啟動 ServiceWork 其流水號為 <strong>#251</strong>，切換到 Console 視窗也可看到相關事件被觸發了。  </p>
+<blockquote>
+<p>如果希望異動過的程式能夠立即更新，可以在 <code>install</code> 事件內透過 <code>skipWaiting</code> 方法來立即啟用。<br><img src="/images/angular/training/pwa/pwa_61.png" alt=""></p>
+</blockquote>
+<p><img src="/images/angular/training/pwa/pwa_26.png" alt=""><br><img src="/images/angular/training/pwa/pwa_27.png" alt="">  </p>
 <blockquote>
 <p>由上圖也可以了解 ServiceWork 的處理順序為<br><code>install</code>(安裝) =&gt; <code>activate</code>(啟動) =&gt; <code>fetch</code>(存取)<br><code>install</code>、<code>activate</code> 只會觸發一次，<code>fetch</code> 則是只要前端對後台發出 request 就會觸發。</p>
 </blockquote>

@@ -111,7 +111,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/angular_pwa/angular_pwa_11.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/angular_pwa/angular_pwa_12.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/angular_pwa/angular_pwa_13.gif">
-<meta property="og:updated_time" content="2017-10-02T10:58:47.868Z">
+<meta property="og:updated_time" content="2017-10-02T11:51:10.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="既期待又怕受傷害：@angular&#x2F;service-worker">
 <meta name="twitter:description" content="前言原本打算研究 ServiceWorker 另一個功能-Sync，不過網路上找不到比較詳細的說明，也沒比較完整的範例，因此打算改研究 Workbox 或 @angular/service-worker，因為這2個是將 Angular 調整為 PWA 比較常見的用法，但是從 npm 網站查詢可以看到 @angular/service-worker 被歸屬在 mobile-toolkit 下面，而">
@@ -339,7 +339,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2017-10-02T18:58:47+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2017-10-02T19:51:10+08:00">
                 2017/10/02
               </time>
             
@@ -399,7 +399,7 @@
 <h1 id="降版"><a href="#降版" class="headerlink" title="降版"></a>降版</h1><p>透過 <code>npm i @angular/service-worker@latest</code> 安裝 @angular/service-worker，讓版本降回-<strong>1.0.0-beta.16</strong>。<br><img src="/images/angular/training/angular_pwa/angular_pwa_08.png" alt=""><br>重新再透過 <code>ng build --prod</code> 建置，可以發現 <strong>index.html</strong> 多載入一個 <code>sw-register.xxx.bundle.js</code> 檔。<br><img src="/images/angular/training/angular_pwa/angular_pwa_09.png" alt=""><br>開啟檔案可以看到它將 <code>worker-basic.min.js</code> 註冊給 <strong>ServiceWorker</strong>。<br><img src="/images/angular/training/angular_pwa/angular_pwa_10.png" alt=""><br>開啟 <code>worker-basic.min.js</code> 並格式化，可以看到它會讀取 <code>ngsw-manifest.json</code>。<br><img src="/images/angular/training/angular_pwa/angular_pwa_11.png" alt=""><br>開啟 <code>ngsw-manifest.json</code> 可以看到其實它就是我們在 <a href="/angular/training/20_pwa2/">PWA 替身術：ServiceWorker - caches</a> 所做的靜態快取檔案清單。<br> <img src="/images/angular/training/angular_pwa/angular_pwa_12.png" alt="">  </p>
 <h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>比對一下 @angular/service-worker <strong>1.0.0-beta.16</strong> 版與 <strong>5.0.0-rc.0</strong> 版程式結構，可以發現新版本幾乎可以算是整個重新改寫。<br> <img src="/images/angular/training/angular_pwa/angular_pwa_13.gif" alt=""><br>因此<br><strong>讓人期待的是應該會有更多 ServiceWorker 功能被時做出來。</strong><br><strong>讓人害怕的是會不會是我們以後不用改寫任何一行程式碼，只要升級到 Angular 5版就會變成 PWA 應用程式。</strong></p>
 <blockquote>
-<p>目前好像突然沒有動力去研究 <strong>Workbox</strong> 了。</p>
+<p>目前好像突然沒有動力去研究 <strong>Workbox</strong> 了，好像連什麼是 PWA 也不用在意了，怎麼 Angular 搞得跟 MMORPG 一樣 - 升級送裝備。</p>
 </blockquote>
 
       

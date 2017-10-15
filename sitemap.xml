@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jonny-huang.github.io/angular/training/23_compodoc/</loc>
+    
+    <lastmod>2017-10-15T18:53:59.938Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jonny-huang.github.io/angular/training/22_angular_pwa/</loc>
     
     <lastmod>2017-10-03T04:44:22.234Z</lastmod>

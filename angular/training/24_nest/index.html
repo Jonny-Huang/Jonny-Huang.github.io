@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Nest,Angular" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+  <meta property="fb:admins" content="fb267234890438499" />
+  <meta property="fb:app_id" content="267234890438499" />
+
+
+
+<meta name="description" content="前言我們都知道 Angular 是一個純前端的網頁框架，學習上也比其他框架多了些許的門檻，甚至也需要我們改變開發模式，說白一點，很多地方無法用過去的經驗來套用，我想這也是許多人抗拒學習的因素，當然對於開始使用的人來說，會逐漸了解這些代價的犧牲是為了解決過去開發上會遇到的許多問題，相對報酬來說得到的會比失去的還多，最近筆者就看到一個具有 Angular 風格的後端框架-Nest，對於已經會 Angu">
+<meta name="keywords" content="Nest,Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="學會 Angular 後，就只能寫前端程式嗎？：Nest">
+<meta property="og:url" content="https://jonny-huang.github.io/angular/training/24_nest/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言我們都知道 Angular 是一個純前端的網頁框架，學習上也比其他框架多了些許的門檻，甚至也需要我們改變開發模式，說白一點，很多地方無法用過去的經驗來套用，我想這也是許多人抗拒學習的因素，當然對於開始使用的人來說，會逐漸了解這些代價的犧牲是為了解決過去開發上會遇到的許多問題，相對報酬來說得到的會比失去的還多，最近筆者就看到一個具有 Angular 風格的後端框架-Nest，對於已經會 Angu">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/nest/nest.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/nest/nest_01.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/nest/nest_02.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/nest/nest_03.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/nest/nest_04.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/nest/nest_05.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/nest/nest_06.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/nest/nest_07.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/nest/nest_08.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/nest/nest_09.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/nest/nest_13.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/nest/nest_10.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/nest/nest_11.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/nest/nest_12.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/nest/nest_14.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/nest/nest_15.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/nest/nest_16.png">
+<meta property="og:updated_time" content="2017-10-16T15:15:54.794Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="學會 Angular 後，就只能寫前端程式嗎？：Nest">
+<meta name="twitter:description" content="前言我們都知道 Angular 是一個純前端的網頁框架，學習上也比其他框架多了些許的門檻，甚至也需要我們改變開發模式，說白一點，很多地方無法用過去的經驗來套用，我想這也是許多人抗拒學習的因素，當然對於開始使用的人來說，會逐漸了解這些代價的犧牲是為了解決過去開發上會遇到的許多問題，相對報酬來說得到的會比失去的還多，最近筆者就看到一個具有 Angular 風格的後端框架-Nest，對於已經會 Angu">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/nest/nest.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Jonny'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jonny-huang.github.io/angular/training/24_nest/"/>
+
+
+
+
+
+  <title>學會 Angular 後，就只能寫前端程式嗎？：Nest | Jonny Huang 的學習筆記</title>
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '267234890438499',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_tw/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jonny Huang 的學習筆記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Angular</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            目錄
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-angular">
+          <a href="/angular/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-paperclip"></i> <br />
+            
+            Angular
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ionic">
+          <a href="/ionic/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-paperclip"></i> <br />
+            
+            Ionic
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/24_nest/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">學會 Angular 後，就只能寫前端程式嗎？：Nest</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新於</span>
+              
+              <time title="更新於" itemprop="dateModified" datetime="2017-10-16T23:15:54+08:00">
+                2017/10/16
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Training/" itemprop="url" rel="index">
+                    <span itemprop="name">Training</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我們都知道 Angular 是一個純前端的網頁框架，學習上也比其他框架多了些許的門檻，甚至也需要我們改變開發模式，說白一點，很多地方無法用過去的經驗來套用，我想這也是許多人抗拒學習的因素，當然對於開始使用的人來說，會逐漸了解這些代價的犧牲是為了解決過去開發上會遇到的許多問題，相對報酬來說得到的會比失去的還多，最近筆者就看到一個具有 Angular 風格的後端框架-<strong>Nest</strong>，對於已經會 Angular 的人來說，這應該是一個報酬率很高的投資。  </p>
+<h1 id="安裝-Nest-CLI"><a href="#安裝-Nest-CLI" class="headerlink" title="安裝 Nest CLI"></a>安裝 Nest CLI</h1><p><img src="/images/angular/training/nest/nest.png" alt="">  </p>
+<blockquote>
+<p>官方網站：<a href="https://docs.nestjs.com/" target="_blank" rel="external">https://docs.nestjs.com</a><br>GitHub：<a href="https://github.com/nestjs/nest" target="_blank" rel="external">https://github.com/nestjs/nest</a></p>
+</blockquote>
+<p>透過下列指令建立 Nest CLI：<br><code>npm i -g @nestjs/cli</code><br><img src="/images/angular/training/nest/nest_01.png" alt="">  </p>
+<p>透過 <code>nest -h</code> 可以看到跟 Angular CLI 一樣是透過 <code>new</code> 參數來建立專案，透過 <code>generate</code> (縮寫：<code>g</code>) 來建立相關的資源檔案。<br><img src="/images/angular/training/nest/nest_02.png" alt=""><br>透過下列指令建立 Nest 專案：<br><code>nest new demo-nest</code><br><img src="/images/angular/training/nest/nest_03.png" alt=""><br>透過 IDE 編輯工具(筆者是使用 Visual Studio Code) 開啟專案，可以發現並沒有 node_modules 資料夾，也就是預設 Nest CLI 並不會安裝 <code>package.json</code> 內的 package 套件。<br><img src="/images/angular/training/nest/nest_04.png" alt=""><br>所以我們先透過 <code>npm i</code> 指令安裝套件。<br><img src="/images/angular/training/nest/nest_05.png" alt="">  </p>
+<h1 id="執行專案"><a href="#執行專案" class="headerlink" title="執行專案"></a>執行專案</h1><p>開啟說明檔 <code>README.md</code> 也可以看到我們必須先執行安裝指令。<br><img src="/images/angular/training/nest/nest_06.png" alt=""><br>若依 <code>README.md</code> 的指令 <code>npm run start</code> 來啟動專案會發生錯誤。<br><img src="/images/angular/training/nest/nest_07.png" alt=""><br>開啟 <code>package.json</code> 可以看到 <code>start</code> 只是單純透過 Node.js 來執行 index.js，並不會先將 TypeScript 檔案編譯成 JavaScript。<br><img src="/images/angular/training/nest/nest_08.png" alt=""><br>所以我們改用 <code>npm run serve</code> 來啟動專案，預設連接埠為 <strong>3000</strong>。<br><img src="/images/angular/training/nest/nest_09.png" alt="">  </p>
+<blockquote>
+<p>開啟 <code>src\app\server.ts</code> 可以看到預設是將連接埠是寫死在程式內，所以後續佈署在正式環境時需要再調整。<br><img src="/images/angular/training/nest/nest_13.png" alt=""></p>
+</blockquote>
+<p>透過瀏覽器開啟 <a href="http://localhost:3000/，雖然沒有任何功能但是系統已經能正常運作。" target="_blank" rel="external">http://localhost:3000/，雖然沒有任何功能但是系統已經能正常運作。</a><br><img src="/images/angular/training/nest/nest_10.png" alt="">  </p>
+<h1 id="建立-Web-API"><a href="#建立-Web-API" class="headerlink" title="建立 Web API"></a>建立 Web API</h1><p>我們可以透過指令 <code>nest generate controller &lt;assetName&gt;</code> 來建立 controller 提供資料交換的對外接口。</p>
+<blockquote>
+<p><code>generate</code> 可以縮寫為 <code>g</code>。</p>
+</blockquote>
+<p>接下來就直接透過 <code>nest g controller users</code> 來建立一個 <strong>UsersController</strong>。<br><img src="/images/angular/training/nest/nest_11.png" alt="">  </p>
+<blockquote>
+<p>我們可以看到 controller 預設會建立在 <code>src\app\controllers\</code> 資料夾下，並依 controllers 名稱建立資料夾，同時在內部建立 controller 檔以及 controller 的單元測試檔，最後再將 controller 註冊到 <strong>ApplicationModule</strong>，這個步驟跟 Angular CLI 在建立 Component 的步驟可以說是十分雷同。<br><img src="/images/angular/training/nest/nest_12.png" alt=""> </p>
+</blockquote>
+<p>可以看到 <code>src\app\controllers\users\users.controller.ts</code> 預設是空的，只是類別包含一個 <code>@Controller()</code> 的裝飾器。  </p>
+<pre><code>import {Controller} from &#39;@nestjs&#x2F;common&#39;;
+
+@Controller()
+export class UsersController {
+    constructor() {}
+}
+</code></pre>
+<p>打開 <code>src\app\app.module.ts</code> 可以看到 <strong>UsersController</strong> 被註冊到 <strong>ApplicationModule</strong> 內，就跟 Angular Component 必須加到 NgMoudle 內一樣。</p>
+<pre><code>import { Module } from &#39;@nestjs&#x2F;common&#39;;
+import {UsersController} from &#39;.&#x2F;controllers&#x2F;users&#x2F;users.controller&#39;;
+
+@Module({
+  controllers: [
+    UsersController
+  ]
+})
+export class ApplicationModule { }</code></pre>
+<p>在 <strong>Nest</strong> 內已經將 HTTP Method 都變成裝飾器，我們可以在 controller 內的方法上加上允許的 HTTP Method 就可以讓該方法對外溝通。<br><img src="/images/angular/training/nest/nest_14.png" alt=""><br>接下來參考官方說明在 <strong>UsersController</strong> 內加入一 HTTP Get 方法：</p>
+<pre><code>import { Controller, Get, Res, HttpStatus } from &#39;@nestjs&#x2F;common&#39;;
+
+@Controller(&#39;users&#39;)
+export class UsersController {
+    constructor() { }
+
+    @Get(&#39;find&#39;)
+    find() {
+        return &#39;張三&#39;;
+    }
+
+    @Get(&#39;findAll&#39;)
+    findAll( @Res() res) {
+        res.status(HttpStatus.OK).json([&#39;張三&#39;, &#39;李四&#39;, &#39;老五&#39;]);
+    }
+}
+</code></pre>
+<p>透過 <code>npm run serve</code> 啟動專案，並瀏覽對應的 API，可以看到回應的結果。<br><img src="/images/angular/training/nest/nest_15.png" alt=""><br><img src="/images/angular/training/nest/nest_16.png" alt="">  </p>
+<h1 id="備註"><a href="#備註" class="headerlink" title="備註"></a>備註</h1><p>其實 <strong>Nest</strong> 底層是透過 <a href="http://expressjs.com" target="_blank" rel="external">Express</a> 來運作，透過他的封裝讓我們可以簡單的開發後端程式。 </p>
+<blockquote>
+<p><strong>Nest</strong> 也提供了 WebSocket 而它的底層也是直接使用熱門的 <strong>socket.io</strong>。</p>
+</blockquote>
+<p>對於學過的 Angular 的人來說官方文件應該不會有太大的門檻，但是若要全部功能都演練一遍也不是短時間可以完成的，所以筆者初略看過後先說明自己的感想，後續有機會再做詳細說明。  </p>
+<ul>
+<li>Nest 並不是直接套用 Angular 的架構，而是引用 Angular 架構上的優點來封裝 Express 與 socket.io。</li>
+<li><a href="https://docs.nestjs.com/controllers" target="_blank" rel="external">Controller</a> 可以看到 Angular Component 的影子。  </li>
+<li><a href="https://docs.nestjs.com/components" target="_blank" rel="external">Component</a> 可以看到 Angular Service 的影子。  </li>
+<li><a href="https://docs.nestjs.com/modules" target="_blank" rel="external">Module</a> 可以看到 Angular NgModule 的影子。  </li>
+<li><a href="https://docs.nestjs.com/pipes" target="_blank" rel="external">Pipe</a>、<a href="https://docs.nestjs.com/guards" target="_blank" rel="external">Guard</a> 甚至 <a href="https://docs.nestjs.com/advanced/dependency-injection" target="_blank" rel="external">DI</a> 都有 Angular 上的特質。  </li>
+<li><a href="https://docs.nestjs.com/middlewares" target="_blank" rel="external">Middleware</a> 讓我們可以攔截訊息做額外處理。  </li>
+<li>在資料庫介接部分官方推薦使用 <a href="https://github.com/typeorm/typeorm" target="_blank" rel="external">TypeORM</a>。</li>
+</ul>
+<p>PS：有接觸過的人希望您也可以在社團上分享經驗，感謝。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Nest/" rel="tag"># Nest</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/angular/training/23_compodoc/" rel="next" title="你寫的文件別人看得懂嗎？：compodoc">
+                <i class="fa fa-chevron-left"></i> 你寫的文件別人看得懂嗎？：compodoc
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Jonny Huang" />
+          <p class="site-author-name" itemprop="name">Jonny Huang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分類</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝-Nest-CLI"><span class="nav-number">2.</span> <span class="nav-text">安裝 Nest CLI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#執行專案"><span class="nav-number">3.</span> <span class="nav-text">執行專案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立-Web-API"><span class="nav-number">4.</span> <span class="nav-text">建立 Web API</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#備註"><span class="nav-number">5.</span> <span class="nav-text">備註</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-Jonny Huang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
+<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+      prettyPrint();
+  });
+</script>
+
+</body>
+</html>

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jonny-huang.github.io/angular/training/24_nest/</loc>
+    
+    <lastmod>2017-10-16T15:15:54.794Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jonny-huang.github.io/angular/training/23_compodoc/</loc>
     
     <lastmod>2017-10-16T03:24:01.451Z</lastmod>
@@ -142,14 +149,14 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/05_angular_navigation/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/08_angular_ui-flex_layout/</loc>
     
     <lastmod>2017-09-08T07:20:25.544Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/08_angular_ui-flex_layout/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/05_angular_navigation/</loc>
     
     <lastmod>2017-09-08T07:20:25.544Z</lastmod>
     

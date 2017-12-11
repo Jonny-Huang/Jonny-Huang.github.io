@@ -474,7 +474,7 @@ export class HomeRoutingModule { }
 <p>因為目前的路由模組是透過 Angular 幫我們整合，正常情況下它會以根路由為主，在依子路由模組加入的順序依次加進去，所以如果根路由包含了萬用路由的規則，那路由規則比對時可能就會在此就被攔截，後續路由規則可能就會不再比對。</p>
 </blockquote>
 <p><img src="/images/angular/training/ui/angular_ui_29.png" alt=""><br>如上圖所示，一般我們可能會在 Aside 區塊會列出一些系統的功能選單，等點選功能選單後 Content 區塊會將該功能的操作介面呈現出來。  </p>
-<p>先在 Aside 區塊加入一些功能項目，因為會使用到 <a href="https://material.angular.io/components/list/api" target="_blank" rel="external"><strong>MdListModule</strong></a>、<a href="https://material.angular.io/components/button/api" target="_blank" rel="external"><strong>MdButtonModule</strong></a>、<a href="https://material.angular.io/components/icon/api" target="_blank" rel="external"><strong>MdIconModule</strong></a>，所以開啟 <code>src\app\custom-material.module.ts</code> 將缺少的模組補上。  </p>
+<p>先在 Aside 區塊加入一些功能項目，因為會使用到 <a href="https://material.angular.io/components/list/api" target="_blank" rel="noopener"><strong>MdListModule</strong></a>、<a href="https://material.angular.io/components/button/api" target="_blank" rel="noopener"><strong>MdButtonModule</strong></a>、<a href="https://material.angular.io/components/icon/api" target="_blank" rel="noopener"><strong>MdIconModule</strong></a>，所以開啟 <code>src\app\custom-material.module.ts</code> 將缺少的模組補上。  </p>
 <pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
 import { FlexLayoutModule } from &#39;@angular&#x2F;flex-layout&#39;;
 import {
@@ -546,7 +546,7 @@ export class CustomMaterialModule { }
   &lt;&#x2F;button&gt;
 &lt;&#x2F;md-list&gt;
 </code></pre>
-<p>開啟瀏覽器查看結果。<br><img src="/images/angular/training/router/angular_router_06.gif" alt=""><br>但是縮小視窗高度時會發現因為視窗高度小於內容高度所以最右邊出現滾動條(scrollbar)，但是正常來說我們比較期望滾動條出現在 Aside 區塊，Header 區塊不會因為往下拖拉被隱藏起來，而是始終都能顯示在最上面。<br><img src="/images/angular/training/router/angular_router_07.png" alt=""><br>開啟 <code>src\styles.scss</code>，將 <code>html</code>、<code>body</code>加入隱藏滾動，並另外建立一個 <code>scrollbar</code> 的樣式，可以到  <strong>CodePen</strong> 搜尋<a href="https://codepen.io/GhostRider/pen/GHaFw" target="_blank" rel="external">範例</a>。  </p>
+<p>開啟瀏覽器查看結果。<br><img src="/images/angular/training/router/angular_router_06.gif" alt=""><br>但是縮小視窗高度時會發現因為視窗高度小於內容高度所以最右邊出現滾動條(scrollbar)，但是正常來說我們比較期望滾動條出現在 Aside 區塊，Header 區塊不會因為往下拖拉被隱藏起來，而是始終都能顯示在最上面。<br><img src="/images/angular/training/router/angular_router_07.png" alt=""><br>開啟 <code>src\styles.scss</code>，將 <code>html</code>、<code>body</code>加入隱藏滾動，並另外建立一個 <code>scrollbar</code> 的樣式，可以到  <strong>CodePen</strong> 搜尋<a href="https://codepen.io/GhostRider/pen/GHaFw" target="_blank" rel="noopener">範例</a>。  </p>
 <pre><code>html,
 body {
   height: 100%;
@@ -878,7 +878,7 @@ export class HomeRoutingModule { }
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -889,7 +889,7 @@ export class HomeRoutingModule { }
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分類</span>
               
             </div>
@@ -900,7 +900,7 @@ export class HomeRoutingModule { }
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -986,7 +986,7 @@ export class HomeRoutingModule { }
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#子路由-Child-Routing"><span class="nav-number">1.</span> <span class="nav-text">子路由 (Child Routing)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#子路由-Child-Routing"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5B50;&#x8DEF;&#x7531;-Child-Routing" class="headerlink" title="&#x5B50;&#x8DEF;&#x7531; (Child Routing)"></a>&#x5B50;&#x8DEF;&#x7531; (Child Routing)</span></a></li></ol></div>
             
 
           </div>

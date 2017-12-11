@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="PlantUML,UML,Projects" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+  <meta property="fb:admins" content="fb267234890438499" />
+  <meta property="fb:app_id" content="267234890438499" />
+
+
+
+<meta name="description" content="前言對於資源充足的公司來說專案管理可以說是稀鬆平常的事，但是對於資源有限的公司來說比起它的效益來說所帶來的成本更是可怕，在有限的人力下，往往是邊跟客戶討論邊開發系統，而文件其實也常常在驗收後或請款前才由工程師自己”補上”，因為如果每次變更都要撰寫文件讓客戶確認後才做修改，那專案鐵定會延遲，更不用說這是”額外”的人力成本。 省略文件其實一種高風險的行為，尤其是需求變更卻沒有任何佐證資料時，當變更有效">
+<meta name="keywords" content="PlantUML,UML,Projects">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用筆記也可以管理專案(一)：PlantUML">
+<meta property="og:url" content="https://jonny-huang.github.io/projects/01_plantuml/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言對於資源充足的公司來說專案管理可以說是稀鬆平常的事，但是對於資源有限的公司來說比起它的效益來說所帶來的成本更是可怕，在有限的人力下，往往是邊跟客戶討論邊開發系統，而文件其實也常常在驗收後或請款前才由工程師自己”補上”，因為如果每次變更都要撰寫文件讓客戶確認後才做修改，那專案鐵定會延遲，更不用說這是”額外”的人力成本。 省略文件其實一種高風險的行為，尤其是需求變更卻沒有任何佐證資料時，當變更有效">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_01.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_02.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_03.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_04.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_05.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_06.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_21.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_22.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_23.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_24.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_25.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_26.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_27.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_28.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_29.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_07.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_08.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_09.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_10.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_11.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_12.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_13.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_14.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_15.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_16.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_17.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_18.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_19.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_19.png">
+<meta property="og:updated_time" content="2017-12-11T17:02:17.002Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用筆記也可以管理專案(一)：PlantUML">
+<meta name="twitter:description" content="前言對於資源充足的公司來說專案管理可以說是稀鬆平常的事，但是對於資源有限的公司來說比起它的效益來說所帶來的成本更是可怕，在有限的人力下，往往是邊跟客戶討論邊開發系統，而文件其實也常常在驗收後或請款前才由工程師自己”補上”，因為如果每次變更都要撰寫文件讓客戶確認後才做修改，那專案鐵定會延遲，更不用說這是”額外”的人力成本。 省略文件其實一種高風險的行為，尤其是需求變更卻沒有任何佐證資料時，當變更有效">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/projects/markdown_preview_enhanced/mpe_01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Jonny'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jonny-huang.github.io/projects/01_plantuml/"/>
+
+
+
+
+
+  <title>用筆記也可以管理專案(一)：PlantUML | Jonny Huang 的學習筆記</title>
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '267234890438499',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_tw/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jonny Huang 的學習筆記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Angular</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            目錄
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-angular">
+          <a href="/angular/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-paperclip"></i> <br />
+            
+            Angular
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ionic">
+          <a href="/ionic/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-paperclip"></i> <br />
+            
+            Ionic
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/projects/01_plantuml/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">用筆記也可以管理專案(一)：PlantUML</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新於</span>
+              
+              <time title="更新於" itemprop="dateModified" datetime="2017-12-12T01:02:17+08:00">
+                2017/12/12
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Projects/" itemprop="url" rel="index">
+                    <span itemprop="name">Projects</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>對於資源充足的公司來說專案管理可以說是稀鬆平常的事，但是對於資源有限的公司來說比起它的效益來說所帶來的成本更是可怕，在有限的人力下，往往是邊跟客戶討論邊開發系統，而文件其實也常常在驗收後或請款前才由工程師自己”補上”，因為如果每次變更都要撰寫文件讓客戶確認後才做修改，那專案鐵定會延遲，更不用說這是”額外”的人力成本。</p>
+<p>省略文件其實一種高風險的行為，尤其是需求變更卻沒有任何佐證資料時，當變更有效益時是皆大歡喜，但是當變更不但沒有效益反變成不可行的流程那就是一種災難，因為它會變成一個羅生門的需求，沒有人會承認這個需求是他提出的。</p>
+<p>沒有文件是一種可怕的災難，但是多了文件又是一種資源的浪費，這是一種充滿矛盾的問題，因此<br><strong>什麼是必要的文件？如何縮短文件撰寫時間？</strong> 便是我們的重點。</p>
+<blockquote>
+<p>再次強調，這是以資源有限的公司的情境下為前提，所以這不是追求合理的方法，而是在不得不妥協下所做的變通辦法。</p>
+</blockquote>
+<h1 id="安裝-Visual-Studio-Code"><a href="#安裝-Visual-Studio-Code" class="headerlink" title="安裝 Visual Studio Code"></a>安裝 Visual Studio Code</h1><p>既然定位在資源有限的公司，當然就以免費軟體來降低導入門檻，連至 <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a> 網站下載並安裝 Visual Studio Code(後續簡稱：VS Code)。<br><img src="/images/projects/markdown_preview_enhanced/mpe_01.png" alt=""><br>安裝過程建議勾選下圖選項，讓我們可以直接從檔案總管中開啟 VS Code。<br><img src="/images/projects/markdown_preview_enhanced/mpe_02.png" alt=""></p>
+<h2 id="修改圖示：vscode-icons-選擇性"><a href="#修改圖示：vscode-icons-選擇性" class="headerlink" title="修改圖示：vscode-icons (選擇性)"></a>修改圖示：vscode-icons (選擇性)</h2><p>開啟 VS Code，點選擴充功能，搜尋喜歡的檔案圖式佈景主題並安裝，筆者以下載率較高的 <a href="https://marketplace.visualstudio.com/items?itemName=robertohuertasm.vscode-icons" target="_blank" rel="noopener">vscode-icons</a> 為例。<br><img src="/images/projects/markdown_preview_enhanced/mpe_03.png" alt=""><br>安裝完成後點選<strong>重新載入</strong>，VS Code 會自動載入擴充功能，也可透過關閉再重新開啟 VS Code 來載入擴充功能。<br><img src="/images/projects/markdown_preview_enhanced/mpe_04.png" alt=""><br>點選 VS Code 左下方的設定圖示按鈕並選擇<strong>檔案圖示佈景主題</strong>，接著選擇自己所安裝的主題 - <strong>VSCode Icons</strong>，VS Code 便會依照檔案類型載入對應的圖示。<br><img src="/images/projects/markdown_preview_enhanced/mpe_05.png" alt=""></p>
+<h2 id="修改佈景：One-Dark-Pro-選擇性"><a href="#修改佈景：One-Dark-Pro-選擇性" class="headerlink" title="修改佈景：One Dark Pro (選擇性)"></a>修改佈景：One Dark Pro (選擇性)</h2><p>重複上述步驟，這次改安裝 <a href="https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme" target="_blank" rel="noopener">One Dark Pro</a>。<br>重新載入後，改透過<strong>色彩佈景主題</strong>來選擇 One Dark Pro，VS Code 便會套用該主題的設定。<br><img src="/images/projects/markdown_preview_enhanced/mpe_06.png" alt=""></p>
+<h1 id="PlantUML"><a href="#PlantUML" class="headerlink" title="PlantUML"></a>PlantUML</h1><p><a href="http://plantuml.com/" target="_blank" rel="noopener">PlantUML</a> 是一個可以透過直觀的文字描述產生對應 UML 的模型生成工具，官方網站已經提供了詳細的範例以及說明，相關語法其實不用一開始就先死背，需要時至網站查詢即可，上手難度不大，目前提供下列 UML 模型：  </p>
+<table>
+<thead>
+<tr>
+<th>模型名稱</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://plantuml.com/sequence-diagram" target="_blank" rel="noopener">循序圖 (Sequence Diagram)</a></td>
+<td><img src="/images/projects/markdown_preview_enhanced/mpe_21.png" alt=""></td>
+</tr>
+<tr>
+<td><a href="http://plantuml.com/use-case-diagram" target="_blank" rel="noopener">使用案例圖 (Use Case Diagram)</a></td>
+<td><img src="/images/projects/markdown_preview_enhanced/mpe_22.png" alt=""></td>
+</tr>
+<tr>
+<td><a href="http://plantuml.com/class-diagram" target="_blank" rel="noopener">類別圖 (Class Diagram)</a></td>
+<td><img src="/images/projects/markdown_preview_enhanced/mpe_23.png" alt=""></td>
+</tr>
+<tr>
+<td><a href="http://plantuml.com/activity-diagram-beta" target="_blank" rel="noopener">活動圖 (Activity Diagram)</a></td>
+<td><img src="/images/projects/markdown_preview_enhanced/mpe_24.png" alt=""></td>
+</tr>
+<tr>
+<td><a href="http://plantuml.com/component-diagram" target="_blank" rel="noopener">元件圖 (Component Diagram)</a></td>
+<td><img src="/images/projects/markdown_preview_enhanced/mpe_25.png" alt=""></td>
+</tr>
+<tr>
+<td><a href="http://plantuml.com/state-diagram" target="_blank" rel="noopener">狀態圖 (State Diagram)</a></td>
+<td><img src="/images/projects/markdown_preview_enhanced/mpe_26.png" alt=""></td>
+</tr>
+<tr>
+<td><a href="http://plantuml.com/object-diagram" target="_blank" rel="noopener">物件圖 (Object Diagram)</a></td>
+<td><img src="/images/projects/markdown_preview_enhanced/mpe_27.png" alt=""></td>
+</tr>
+<tr>
+<td><a href="http://plantuml.com/deployment-diagram" target="_blank" rel="noopener">佈署圖 (Deployment Diagram)</a></td>
+<td><img src="/images/projects/markdown_preview_enhanced/mpe_28.png" alt=""></td>
+</tr>
+<tr>
+<td><a href="http://plantuml.com/timing-diagram" target="_blank" rel="noopener">時序圖 (Timing Diagram)</a></td>
+<td><img src="/images/projects/markdown_preview_enhanced/mpe_29.png" alt=""></td>
+</tr>
+</tbody>
+</table>
+<h2 id="安裝擴充功能：PlantUML"><a href="#安裝擴充功能：PlantUML" class="headerlink" title="安裝擴充功能：PlantUML"></a>安裝擴充功能：PlantUML</h2><p>依上方擴充功能安裝方式安裝 <a href="https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml" target="_blank" rel="noopener">PlantUML</a>。<br><img src="/images/projects/markdown_preview_enhanced/mpe_07.png" alt=""><br>建立一個副檔名為 <code>.puml</code> 的新檔(<strong>demo.puml</strong>)，並至<a href="http://plantuml.com/" target="_blank" rel="noopener">PlantUML 官方網站</a>將一個範例貼入。<br><img src="/images/projects/markdown_preview_enhanced/mpe_08.png" alt=""><br><img src="/images/projects/markdown_preview_enhanced/mpe_09.png" alt=""><br>透過熱鍵 <code>Alt</code> + <code>D</code> 開啟檢視畫面，可以發現還需要安裝 Java。<br><img src="/images/projects/markdown_preview_enhanced/mpe_10.png" alt=""></p>
+<h3 id="安裝-Java-Runtime-Environment"><a href="#安裝-Java-Runtime-Environment" class="headerlink" title="安裝 Java Runtime Environment"></a>安裝 Java Runtime Environment</h3><p>我們至 <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">官方網站</a> 下載並安裝 JRE(Java Runtime Environment)<br><img src="/images/projects/markdown_preview_enhanced/mpe_11.png" alt=""><br>安裝後重新開啟 VS Code，又發現還要再安裝 Graphviz。<br><img src="/images/projects/markdown_preview_enhanced/mpe_12.png" alt=""></p>
+<h3 id="安裝-Graphviz"><a href="#安裝-Graphviz" class="headerlink" title="安裝 Graphviz"></a>安裝 Graphviz</h3><p>至<a href="https://www.graphviz.org/download/" target="_blank" rel="noopener">官方下載頁面</a>下載並安裝 Graphviz。<br><img src="/images/projects/markdown_preview_enhanced/mpe_13.png" alt=""><br>重新開啟 VS Code，UML 模型圖示已經可以出現了。<br><img src="/images/projects/markdown_preview_enhanced/mpe_14.png" alt=""></p>
+<h3 id="更新-plantuml-jar-選擇性"><a href="#更新-plantuml-jar-選擇性" class="headerlink" title="更新 plantuml.jar (選擇性)"></a>更新 plantuml.jar (選擇性)</h3><p>開啟擴充功能 PlantUML 資料夾(使用者資料夾.vscode\extensions\jebbs.plantuml-x.x.x) 可以發現此擴充功能也是透過官方元件 - plantuml.jar 來繪製圖模型。<br><img src="/images/projects/markdown_preview_enhanced/mpe_15.png" alt=""><br>執行程式並查看關於(About)頁面可以發現目前版本為 <strong>1.2017.15</strong>。<br><img src="/images/projects/markdown_preview_enhanced/mpe_16.png" alt=""><br>開啟 PlantUML <a href="http://plantuml.com/download" target="_blank" rel="noopener">官方下載頁面</a> 可以看到目前有新的版本 <strong>1.2017.19</strong>，下載 plantuml.jar 並覆蓋掉舊版本即可升級至新版本。<br><img src="/images/projects/markdown_preview_enhanced/mpe_17.png" alt=""></p>
+<h3 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h3><p>我們也可以加入 markdown 的表格語法。<br><img src="/images/projects/markdown_preview_enhanced/mpe_18.png" alt=""><br>不可否認系統產生的模型在排版上可讀性會隨著邏輯複雜度而降低，甚至難以閱讀，像下圖的付款方式應該是”多選一”。<br><img src="/images/projects/markdown_preview_enhanced/mpe_19.png" alt=""><br>筆者選擇放棄 UML 的標準圖示含意，改用 <strong>並行分流</strong>(concurrent flow) 來提升可讀性。<br><img src="/images/projects/markdown_preview_enhanced/mpe_19.png" alt=""></p>
+<h1 id="妥協下的變通"><a href="#妥協下的變通" class="headerlink" title="妥協下的變通"></a>妥協下的變通</h1><p>在筆者執行過的專案中，其實客戶真的看得懂 UML 模型的是極少數，有時候過於拘泥於”正確標準”，反而會讓客戶難以理解，因此筆者覺得”看得懂”才是重點、才有價值。<br>此張圖表主要是希望同時能讓客戶理解也能協助工程師規劃，圖示中加入 “<strong>資料</strong>“ 註解，主要是表示這個步驟”外部”所需提供的資料，避免系統等到要資料串接時才發現無法取得相關資料，彙整這些 “<strong>資料</strong>“ 後可以盡早與客戶確認，配合流程步驟也可理解目前已經取得的資訊是否足夠，會不會有步驟順序不合理之處，例如目前需要的資訊是在後面步驟才會取得。<br>“<strong>輸出</strong>“ 註解則表示該步驟需要我們的系統提供資料(大部分都是表示需要使用者輸入資料，或者是紙本表單上的欄位)，這對於資料儲存(例如資料庫)的規劃可以提供參考依據。<br>最後再藉由每個步驟所需呈現的”資料”與所需填寫的”輸出”來初步規劃系統需要幾個操作頁面，每個頁面需要呈現多少資料，這對於視覺設計師來說應該算是比較具體的參考。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Projects/" rel="tag"># Projects</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/else/else_01/" rel="next" title="學習思考">
+                <i class="fa fa-chevron-left"></i> 學習思考
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Jonny Huang" />
+          <p class="site-author-name" itemprop="name">Jonny Huang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分類</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝-Visual-Studio-Code"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5B89;&#x88DD;-Visual-Studio-Code" class="headerlink" title="&#x5B89;&#x88DD; Visual Studio Code"></a>&#x5B89;&#x88DD; Visual Studio Code</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#修改圖示：vscode-icons-選擇性"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x4FEE;&#x6539;&#x5716;&#x793A;&#xFF1A;vscode-icons-&#x9078;&#x64C7;&#x6027;" class="headerlink" title="&#x4FEE;&#x6539;&#x5716;&#x793A;&#xFF1A;vscode-icons (&#x9078;&#x64C7;&#x6027;)"></a>&#x4FEE;&#x6539;&#x5716;&#x793A;&#xFF1A;vscode-icons (&#x9078;&#x64C7;&#x6027;)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改佈景：One-Dark-Pro-選擇性"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x4FEE;&#x6539;&#x4F48;&#x666F;&#xFF1A;One-Dark-Pro-&#x9078;&#x64C7;&#x6027;" class="headerlink" title="&#x4FEE;&#x6539;&#x4F48;&#x666F;&#xFF1A;One Dark Pro (&#x9078;&#x64C7;&#x6027;)"></a>&#x4FEE;&#x6539;&#x4F48;&#x666F;&#xFF1A;One Dark Pro (&#x9078;&#x64C7;&#x6027;)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PlantUML"><span class="nav-number">3.</span> <span class="nav-text"><a href="#PlantUML" class="headerlink" title="PlantUML"></a>PlantUML</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝擴充功能：PlantUML"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x5B89;&#x88DD;&#x64F4;&#x5145;&#x529F;&#x80FD;&#xFF1A;PlantUML" class="headerlink" title="&#x5B89;&#x88DD;&#x64F4;&#x5145;&#x529F;&#x80FD;&#xFF1A;PlantUML"></a>&#x5B89;&#x88DD;&#x64F4;&#x5145;&#x529F;&#x80FD;&#xFF1A;PlantUML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝-Java-Runtime-Environment"><span class="nav-number">3.1.1.</span> <span class="nav-text"><a href="#&#x5B89;&#x88DD;-Java-Runtime-Environment" class="headerlink" title="&#x5B89;&#x88DD; Java Runtime Environment"></a>&#x5B89;&#x88DD; Java Runtime Environment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝-Graphviz"><span class="nav-number">3.1.2.</span> <span class="nav-text"><a href="#&#x5B89;&#x88DD;-Graphviz" class="headerlink" title="&#x5B89;&#x88DD; Graphviz"></a>&#x5B89;&#x88DD; Graphviz</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新-plantuml-jar-選擇性"><span class="nav-number">3.1.3.</span> <span class="nav-text"><a href="#&#x66F4;&#x65B0;-plantuml-jar-&#x9078;&#x64C7;&#x6027;" class="headerlink" title="&#x66F4;&#x65B0; plantuml.jar (&#x9078;&#x64C7;&#x6027;)"></a>&#x66F4;&#x65B0; plantuml.jar (&#x9078;&#x64C7;&#x6027;)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例"><span class="nav-number">3.1.4.</span> <span class="nav-text"><a href="#&#x7BC4;&#x4F8B;" class="headerlink" title="&#x7BC4;&#x4F8B;"></a>&#x7BC4;&#x4F8B;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#妥協下的變通"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x59A5;&#x5354;&#x4E0B;&#x7684;&#x8B8A;&#x901A;" class="headerlink" title="&#x59A5;&#x5354;&#x4E0B;&#x7684;&#x8B8A;&#x901A;"></a>&#x59A5;&#x5354;&#x4E0B;&#x7684;&#x8B8A;&#x901A;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-Jonny Huang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
+<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+      prettyPrint();
+  });
+</script>
+
+</body>
+</html>

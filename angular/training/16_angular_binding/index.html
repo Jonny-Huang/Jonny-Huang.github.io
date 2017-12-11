@@ -424,7 +424,7 @@
 &lt;&#x2F;div&gt;
 </code></pre>
 <p>用瀏覽器檢視可以看到桌機與手機的差異。<br><img src="/images/angular/training/binding/angular_binding_05.png" alt=""><br><img src="/images/angular/training/binding/angular_binding_06.png" alt="">  </p>
-<h2 id="通道-Pipe"><a href="#通道-Pipe" class="headerlink" title="通道 (Pipe)"></a>通道 (Pipe)</h2><p>Angular 提供許多 <strong>通道</strong>(<strong>Pipe</strong>) 讓我們可以對 <strong>內嵌繫結</strong> 的資料再進一步的轉換，很顯然明細區塊的 <code>selectedDay</code> 所顯示的結果並不是我們想要的，因此這邊我們利用 <a href="https://angular.io/api/common/DatePipe" target="_blank" rel="external">DatePipe</a> 來將日期格式化成 <code>年/月/日</code>。</p>
+<h2 id="通道-Pipe"><a href="#通道-Pipe" class="headerlink" title="通道 (Pipe)"></a>通道 (Pipe)</h2><p>Angular 提供許多 <strong>通道</strong>(<strong>Pipe</strong>) 讓我們可以對 <strong>內嵌繫結</strong> 的資料再進一步的轉換，很顯然明細區塊的 <code>selectedDay</code> 所顯示的結果並不是我們想要的，因此這邊我們利用 <a href="https://angular.io/api/common/DatePipe" target="_blank" rel="noopener">DatePipe</a> 來將日期格式化成 <code>年/月/日</code>。</p>
 <pre><code>&lt;div fxLayout=&quot;row&quot; fxLayout.xs=&quot;column&quot;&gt;
   ...
   &lt;div fxFlex&gt;
@@ -440,7 +440,7 @@
 </code></pre>
 <p><img src="/images/angular/training/binding/angular_binding_07.png" alt="">  </p>
 <blockquote>
-<p>Angular 目前提供的通道可以查詢 <a href="https://angular.io/api?type=pipe" target="_blank" rel="external">API 文件</a><br><img src="/images/angular/training/binding/angular_binding_08.png" alt=""><br>如果功能不敷使用其實我們也可以自己撰寫 Pipe。</p>
+<p>Angular 目前提供的通道可以查詢 <a href="https://angular.io/api?type=pipe" target="_blank" rel="noopener">API 文件</a><br><img src="/images/angular/training/binding/angular_binding_08.png" alt=""><br>如果功能不敷使用其實我們也可以自己撰寫 Pipe。</p>
 </blockquote>
 <h2 id="日期選取效果"><a href="#日期選取效果" class="headerlink" title="日期選取效果"></a>日期選取效果</h2><p>接下來我們在行事曆樣板上的日期 元件(<code>md-grid-tile</code>) 加入點擊(<code>click</code>)的事件，並透過<strong>事件繫結</strong>來繫結到元件類別的 <code>selectdDay(item)</code> 方法。<br>接著在 <code>md-grid-tile</code>裡面再加上一個水藍色的 <code>div</code> 外框，並透過 <strong>*ngIf</strong> 指令來依照 <code>item</code> 的 <code>isSelected</code> 屬性決定是否顯示，接下來只要將選取到的日期所屬 <code>item</code> 的 <code>isSelected</code> 屬性改成 <code>true</code>，其餘改成 <code>false</code> 就可以呈現選取效果。<br>編輯 <code>calendar.component.html</code>。</p>
 <pre><code>&lt;div fxLayout=&quot;row&quot; fxLayout.xs=&quot;column&quot;&gt;
@@ -896,7 +896,7 @@ export class CalendarComponent implements OnInit {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -907,7 +907,7 @@ export class CalendarComponent implements OnInit {
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分類</span>
               
             </div>
@@ -918,7 +918,7 @@ export class CalendarComponent implements OnInit {
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -1004,7 +1004,7 @@ export class CalendarComponent implements OnInit {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#單向繫結-One-Way-Binding"><span class="nav-number">1.</span> <span class="nav-text">單向繫結(One-Way Binding)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TypeScript：預設值"><span class="nav-number">1.1.</span> <span class="nav-text">TypeScript：預設值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加明細的顯示區塊"><span class="nav-number">1.2.</span> <span class="nav-text">增加明細的顯示區塊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通道-Pipe"><span class="nav-number">1.3.</span> <span class="nav-text">通道 (Pipe)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日期選取效果"><span class="nav-number">1.4.</span> <span class="nav-text">日期選取效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模擬紀錄"><span class="nav-number">1.5.</span> <span class="nav-text">模擬紀錄</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directive：-ngSwitch"><span class="nav-number">1.6.</span> <span class="nav-text">Directive：[ngSwitch]</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#單向繫結-One-Way-Binding"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x55AE;&#x5411;&#x7E6B;&#x7D50;-One-Way-Binding" class="headerlink" title="&#x55AE;&#x5411;&#x7E6B;&#x7D50;(One-Way Binding)"></a>&#x55AE;&#x5411;&#x7E6B;&#x7D50;(One-Way Binding)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TypeScript：預設值"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#TypeScript&#xFF1A;&#x9810;&#x8A2D;&#x503C;" class="headerlink" title="TypeScript&#xFF1A;&#x9810;&#x8A2D;&#x503C;"></a>TypeScript&#xFF1A;&#x9810;&#x8A2D;&#x503C;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加明細的顯示區塊"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x589E;&#x52A0;&#x660E;&#x7D30;&#x7684;&#x986F;&#x793A;&#x5340;&#x584A;" class="headerlink" title="&#x589E;&#x52A0;&#x660E;&#x7D30;&#x7684;&#x986F;&#x793A;&#x5340;&#x584A;"></a>&#x589E;&#x52A0;&#x660E;&#x7D30;&#x7684;&#x986F;&#x793A;&#x5340;&#x584A;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通道-Pipe"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x901A;&#x9053;-Pipe" class="headerlink" title="&#x901A;&#x9053; (Pipe)"></a>&#x901A;&#x9053; (Pipe)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日期選取效果"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#&#x65E5;&#x671F;&#x9078;&#x53D6;&#x6548;&#x679C;" class="headerlink" title="&#x65E5;&#x671F;&#x9078;&#x53D6;&#x6548;&#x679C;"></a>&#x65E5;&#x671F;&#x9078;&#x53D6;&#x6548;&#x679C;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模擬紀錄"><span class="nav-number">1.5.</span> <span class="nav-text"><a href="#&#x6A21;&#x64EC;&#x7D00;&#x9304;" class="headerlink" title="&#x6A21;&#x64EC;&#x7D00;&#x9304;"></a>&#x6A21;&#x64EC;&#x7D00;&#x9304;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directive：-ngSwitch"><span class="nav-number">1.6.</span> <span class="nav-text"><a href="#Directive&#xFF1A;-ngSwitch" class="headerlink" title="Directive&#xFF1A;[ngSwitch]"></a>Directive&#xFF1A;[ngSwitch]</span></a></li></ol></li></ol></div>
             
 
           </div>

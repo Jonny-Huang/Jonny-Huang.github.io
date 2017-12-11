@@ -423,7 +423,7 @@ export class AppModule { }
 <p>我們可以把 <strong>模組</strong> 假想成 <strong>資料夾</strong>，把 <strong>元件</strong> 想成是 <strong>檔案</strong>，對應下來的專案結構就會變成如下圖所示：<br><img src="/images/angular/training/module/angular_module_01.png" alt=""><br>檔案必須存在於某個資料夾之內，而資料夾裡面除了可以放置檔案外還可以再放置其他的資料夾，整個專案就像樹狀結構一樣可以不斷的建立分支。  </p>
 <h2 id="建立新模組"><a href="#建立新模組" class="headerlink" title="建立新模組"></a>建立新模組</h2><p>透過 Angular-CLI 指令 <code>ng g m [name]</code> 來建立新模組，例如建立一個<strong>OperationModule</strong>，透過<br><code>ng g m operation</code>  </p>
 <blockquote>
-<p><code>g</code>為 <code>generate</code> 縮寫，<code>m</code> 為 <code>module</code> 縮寫。<br>相關參數請參閱 <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/generate/module.md" target="_blank" rel="external">GitHub</a></p>
+<p><code>g</code>為 <code>generate</code> 縮寫，<code>m</code> 為 <code>module</code> 縮寫。<br>相關參數請參閱 <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/generate/module.md" target="_blank" rel="noopener">GitHub</a></p>
 </blockquote>
 <p><img src="/images/angular/training/module/angular_module_02.png" alt=""><br>CLI 產生一個位於 <code>src\app\operation\operation.module.ts</code> 的模組，下一行出現警告，提醒我們這個模組沒有被註冊所以無法使用，如果某個元件要使用到這個模組就必須將它註冊到該元件所屬的模組內，這樣才能使用。  </p>
 <pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
@@ -485,7 +485,7 @@ const routes: Routes = [
 export class AppRoutingModule { }
 </code></pre>
 <blockquote>
-<p>如果 VS Code 有安裝 <a href="https://marketplace.visualstudio.com/items?itemName=DSKWRK.vscode-generate-getter-setter" target="_blank" rel="external">TypeScript Toolbox</a> ，直接在路由規則輸入 Opt1Component 後會出現找不到名稱的警示，點選 Opt1Component 再行號旁會出現燈泡的圖示，點選後會出現 add import 的功能，它會自動幫我們在上面加入 import 宣告，TypeScript Toolbox 已經被包含在 <a href="https://marketplace.visualstudio.com/items?itemName=doggy8088.angular-extension-pack" target="_blank" rel="external">Angular Extension Pack</a> 內。<br><img src="/images/angular/training/module/angular_module_07.png" alt="">  </p>
+<p>如果 VS Code 有安裝 <a href="https://marketplace.visualstudio.com/items?itemName=DSKWRK.vscode-generate-getter-setter" target="_blank" rel="noopener">TypeScript Toolbox</a> ，直接在路由規則輸入 Opt1Component 後會出現找不到名稱的警示，點選 Opt1Component 再行號旁會出現燈泡的圖示，點選後會出現 add import 的功能，它會自動幫我們在上面加入 import 宣告，TypeScript Toolbox 已經被包含在 <a href="https://marketplace.visualstudio.com/items?itemName=doggy8088.angular-extension-pack" target="_blank" rel="noopener">Angular Extension Pack</a> 內。<br><img src="/images/angular/training/module/angular_module_07.png" alt="">  </p>
 </blockquote>
 <p>再將 <code>app.component.html</code> 樣板插入一個 <strong>Opt1Component</strong> 的連結。  </p>
 <pre><code>&lt;a routerLink=&quot;&#x2F;p1&quot;&gt;Page 1&lt;&#x2F;a&gt;
@@ -534,7 +534,7 @@ export class AppModule { }
 </code></pre>
 <p><img src="/images/angular/training/module/angular_module_05.png" alt="">  </p>
 <blockquote>
-<p>如果 VS Code 有安裝 <a href="https://marketplace.visualstudio.com/items?itemName=Angular.ng-template" target="_blank" rel="external">Angular Language Service</a> 在開發時期 VS Code 就會出現警告，Angular Language Service 已經被包含在 <a href="https://marketplace.visualstudio.com/items?itemName=doggy8088.angular-extension-pack" target="_blank" rel="external">Angular Extension Pack</a> 內。<br><img src="/images/angular/training/module/angular_module_06.png" alt="">  </p>
+<p>如果 VS Code 有安裝 <a href="https://marketplace.visualstudio.com/items?itemName=Angular.ng-template" target="_blank" rel="noopener">Angular Language Service</a> 在開發時期 VS Code 就會出現警告，Angular Language Service 已經被包含在 <a href="https://marketplace.visualstudio.com/items?itemName=doggy8088.angular-extension-pack" target="_blank" rel="noopener">Angular Extension Pack</a> 內。<br><img src="/images/angular/training/module/angular_module_06.png" alt="">  </p>
 </blockquote>
 <p>雖然 <strong>OperationModule</strong> 已經註冊到 <strong>AppModule</strong> 內，但是透過 Component tag 方式來引用時仍然會出現錯誤。<br>現在我們需要使用到 <strong>NgModule</strong> 的另一個屬性 <strong>exports</strong>，開啟 <code>src\app\operation\operation.module.ts</code> 將 <strong>Opt1Component</strong> 設定到 <strong>OperationModule</strong> 的 <strong>exports</strong> 內。  </p>
 <pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
@@ -719,7 +719,7 @@ P {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -730,7 +730,7 @@ P {
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分類</span>
               
             </div>
@@ -741,7 +741,7 @@ P {
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -827,7 +827,7 @@ P {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#模組-NgModule"><span class="nav-number">1.</span> <span class="nav-text">模組 (NgModule)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立新模組"><span class="nav-number">1.1.</span> <span class="nav-text">建立新模組</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#情境A"><span class="nav-number">1.1.1.</span> <span class="nav-text">情境A</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#情境B"><span class="nav-number">1.1.2.</span> <span class="nav-text">情境B</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#模組-NgModule"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x6A21;&#x7D44;-NgModule" class="headerlink" title="&#x6A21;&#x7D44; (NgModule)"></a>&#x6A21;&#x7D44; (NgModule)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立新模組"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x5EFA;&#x7ACB;&#x65B0;&#x6A21;&#x7D44;" class="headerlink" title="&#x5EFA;&#x7ACB;&#x65B0;&#x6A21;&#x7D44;"></a>&#x5EFA;&#x7ACB;&#x65B0;&#x6A21;&#x7D44;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#情境A"><span class="nav-number">1.1.1.</span> <span class="nav-text"><a href="#&#x60C5;&#x5883;A" class="headerlink" title="&#x60C5;&#x5883;A"></a>&#x60C5;&#x5883;A</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#情境B"><span class="nav-number">1.1.2.</span> <span class="nav-text"><a href="#&#x60C5;&#x5883;B" class="headerlink" title="&#x60C5;&#x5883;B"></a>&#x60C5;&#x5883;B</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

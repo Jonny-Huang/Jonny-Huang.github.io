@@ -405,14 +405,14 @@
       
 
       
-        <h1 id="Clarity-Design-System"><a href="#Clarity-Design-System" class="headerlink" title="Clarity Design System"></a>Clarity Design System</h1><p>因為多個一個新案子，所以就順便試試 VMware 所開發的 <a href="https://vmware.github.io/clarity/" target="_blank" rel="external">Clarity Design System</a></p>
+        <h1 id="Clarity-Design-System"><a href="#Clarity-Design-System" class="headerlink" title="Clarity Design System"></a>Clarity Design System</h1><p>因為多個一個新案子，所以就順便試試 VMware 所開發的 <a href="https://vmware.github.io/clarity/" target="_blank" rel="noopener">Clarity Design System</a></p>
 <h2 id="建立-Angular-專案"><a href="#建立-Angular-專案" class="headerlink" title="建立 Angular 專案"></a>建立 Angular 專案</h2><p>不知道怎麼建立的可以參考 <a href="/angular/training/01_creating_first_project/"><strong>建立 Angular 專案</strong></a>。<br>目前環境：  </p>
 <ul>
 <li>Node.js：8.4.0</li>
 <li>Angular CLI：1.4.0</li>
 <li>Angular：4.4.0-RC.0</li>
 </ul>
-<p><img src="/images/angular/training/ui/clarity/angular_ui_clarity_01.png" alt=""><br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_02.png" alt=""><br>安裝教學可參閱 <a href="https://vmware.github.io/clarity/get-started" target="_blank" rel="external">https://vmware.github.io/clarity/get-started</a>。  </p>
+<p><img src="/images/angular/training/ui/clarity/angular_ui_clarity_01.png" alt=""><br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_02.png" alt=""><br>安裝教學可參閱 <a href="https://vmware.github.io/clarity/get-started" target="_blank" rel="noopener">https://vmware.github.io/clarity/get-started</a>。  </p>
 <h2 id="安裝圖示：Clarity-Icons"><a href="#安裝圖示：Clarity-Icons" class="headerlink" title="安裝圖示：Clarity Icons"></a>安裝圖示：Clarity Icons</h2><p>安裝指令如下：<br><code>npm install clarity-icons --save</code><br>官方指南是在網頁加入連結：<br><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;path/to/node_modules/clarity-icons/clarity-icons.min.css&quot;&gt;</code><br><code>&lt;script src=&quot;path/to/node_modules/clarity-icons/clarity-icons.min.js&quot;&gt;&lt;/script&gt;</code><br>但是筆者是將它加到 <code>.angular-cli.json</code> 內的 <code>styles</code> 以及 <code>scripts</code> 屬性。<br><code>&quot;../node_modules/clarity-icons/clarity-icons.min.css&quot;</code><br><code>&quot;../node_modules/clarity-icons/clarity-icons.min.js&quot;</code><br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_03.png" alt="">  </p>
 <blockquote>
 <p>js 檔或是 css 檔連結來自 <code>node_modules</code> 時，筆者習慣都是加到 <code>.angular-cli.json</code>。</p>
@@ -483,7 +483,7 @@ const routes: Routes = [
 })
 export class HomeRoutingModule { }
 </code></pre>
-<p>查看網站可以發現官方已經提供一個版面-<a href="https://vmware.github.io/clarity/documentation/app-layout" target="_blank" rel="external">Application Layout</a>。<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_08.png" alt=""><br>將範例程式碼複製到 <code>src\app\home\index\index.component.html</code>，並在每個 <code>div</code> 區段內加入文字註解。</p>
+<p>查看網站可以發現官方已經提供一個版面-<a href="https://vmware.github.io/clarity/documentation/app-layout" target="_blank" rel="noopener">Application Layout</a>。<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_08.png" alt=""><br>將範例程式碼複製到 <code>src\app\home\index\index.component.html</code>，並在每個 <code>div</code> 區段內加入文字註解。</p>
 <pre><code>&lt;div class=&quot;main-container&quot;&gt;
   &lt;div class=&quot;alert alert-app-level&quot;&gt;
     Alert
@@ -506,14 +506,14 @@ export class HomeRoutingModule { }
 </code></pre>
 <p>透過 <code>ng serve</code> 啟動，並開啟瀏覽器觀看結果。<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_09.png" alt="">  </p>
 <blockquote>
-<p>因為今天早上看到 Angular CLI 的 1.4.0 版已經 <a href="https://github.com/angular/angular-cli/releases" target="_blank" rel="external">release</a> 所以就直接更新，開發過程卻因此發生一些問題：</p>
+<p>因為今天早上看到 Angular CLI 的 1.4.0 版已經 <a href="https://github.com/angular/angular-cli/releases" target="_blank" rel="noopener">release</a> 所以就直接更新，開發過程卻因此發生一些問題：</p>
 <ul>
 <li>在 <code>.angular-cli.json</code> 關閉 spec，但是單元測試檔仍然會被建立。  </li>
 <li><code>style</code> 設成 <code>scss</code>，但是建立元件時樣式檔卻是 <code>.css</code>。</li>
 </ul>
 <p>所以如果不能忍受 bug 的人，建議晚幾個禮拜確定沒有災情發生後再更新。</p>
 </blockquote>
-<h2 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h2><p>建立 <strong>Header元件</strong> 指令如下：<br><code>ng g c home\header</code><br>複製官方 <a href="https://vmware.github.io/clarity/documentation/header" target="_blank" rel="external">Header</a> 範例：<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_10.png" alt="">  </p>
+<h2 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h2><p>建立 <strong>Header元件</strong> 指令如下：<br><code>ng g c home\header</code><br>複製官方 <a href="https://vmware.github.io/clarity/documentation/header" target="_blank" rel="noopener">Header</a> 範例：<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_10.png" alt="">  </p>
 <pre><code>&lt;header class=&quot;header header-6&quot;&gt;
   &lt;div class=&quot;branding&quot;&gt;
     &lt;a href=&quot;...&quot; class=&quot;nav-link&quot;&gt;
@@ -573,7 +573,7 @@ export class HomeRoutingModule { }
 <blockquote>
 <p><code>selector</code> 命名如果分類的好，後續其他專案可以整個模組資料夾複製過去沿用，因此應避免名稱容易重複的命名規則。</p>
 </blockquote>
-<h2 id="Sidenav"><a href="#Sidenav" class="headerlink" title="Sidenav"></a>Sidenav</h2><p>如同 Header 步驟，我們先建立一個 <strong>SidenavComponent</strong>，並將 <code>selector</code> 設定為 <code>&#39;home-sidenav&#39;</code>。<br><code>ng g c home\sidenav</code><br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_18.png" alt=""><br>再將官方 <a href="https://vmware.github.io/clarity/documentation/sidenav" target="_blank" rel="external">Sidenav 範例</a> 複製至 <code>src\app\home\sidenav\sidenav.component.html</code>。<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_19.png" alt="">  </p>
+<h2 id="Sidenav"><a href="#Sidenav" class="headerlink" title="Sidenav"></a>Sidenav</h2><p>如同 Header 步驟，我們先建立一個 <strong>SidenavComponent</strong>，並將 <code>selector</code> 設定為 <code>&#39;home-sidenav&#39;</code>。<br><code>ng g c home\sidenav</code><br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_18.png" alt=""><br>再將官方 <a href="https://vmware.github.io/clarity/documentation/sidenav" target="_blank" rel="noopener">Sidenav 範例</a> 複製至 <code>src\app\home\sidenav\sidenav.component.html</code>。<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_19.png" alt="">  </p>
 <pre><code>&lt;nav class=&quot;sidenav&quot;&gt;
   &lt;section class=&quot;sidenav-content&quot;&gt;
     &lt;a href=&quot;...&quot; class=&quot;nav-link active&quot;&gt;
@@ -623,7 +623,7 @@ export class HomeRoutingModule { }
 &lt;&#x2F;div&gt;
 </code></pre>
 <p>開啟瀏覽器檢視結果。<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_20.png" alt="">  </p>
-<h2 id="Tabs"><a href="#Tabs" class="headerlink" title="Tabs"></a>Tabs</h2><p>再來筆者選用官方元件-<a href="https://vmware.github.io/clarity/documentation/tabs" target="_blank" rel="external">Tabs</a>，來取代 Subnav 區塊，方法與之前雷同。<br><code>ng g c home\subnav</code><br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_21.png" alt=""><br>編輯 <code>src\app\home\subnav\subnav.component.html</code>。</p>
+<h2 id="Tabs"><a href="#Tabs" class="headerlink" title="Tabs"></a>Tabs</h2><p>再來筆者選用官方元件-<a href="https://vmware.github.io/clarity/documentation/tabs" target="_blank" rel="noopener">Tabs</a>，來取代 Subnav 區塊，方法與之前雷同。<br><code>ng g c home\subnav</code><br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_21.png" alt=""><br>編輯 <code>src\app\home\subnav\subnav.component.html</code>。</p>
 <pre><code>&lt;ul id=&quot;demoTabs&quot; class=&quot;nav&quot; role=&quot;tablist&quot;&gt;
   &lt;li role=&quot;presentation&quot; class=&quot;nav-item&quot;&gt;
     &lt;button id=&quot;tab1&quot; class=&quot;btn btn-link nav-link active&quot; aria-controls=&quot;panel1&quot; aria-selected=&quot;true&quot; type=&quot;button&quot;&gt;Dashboard&lt;&#x2F;button&gt;
@@ -661,7 +661,7 @@ export class HomeRoutingModule { }
 &lt;&#x2F;div&gt;
 </code></pre>
 <p>開啟瀏覽器檢視結果。<br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_22.png" alt="">  </p>
-<h2 id="Login-Page"><a href="#Login-Page" class="headerlink" title="Login Page"></a>Login Page</h2><p>切換到 <a href="https://vmware.github.io/clarity/documentation/login" target="_blank" rel="external">Login Page</a>，沒看錯， <strong>Clarity Design System</strong> 直接提供一個 login page，建立一個 <strong>LoginComponent</strong> 來對應。<br><code>ng g c login</code><br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_24.png" alt=""><br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_23.png" alt=""><br>編輯 <code>src\app\login\login.component.html</code>。  </p>
+<h2 id="Login-Page"><a href="#Login-Page" class="headerlink" title="Login Page"></a>Login Page</h2><p>切換到 <a href="https://vmware.github.io/clarity/documentation/login" target="_blank" rel="noopener">Login Page</a>，沒看錯， <strong>Clarity Design System</strong> 直接提供一個 login page，建立一個 <strong>LoginComponent</strong> 來對應。<br><code>ng g c login</code><br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_24.png" alt=""><br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_23.png" alt=""><br>編輯 <code>src\app\login\login.component.html</code>。  </p>
 <pre><code>&lt;div class=&quot;login-wrapper&quot;&gt;
   &lt;form class=&quot;login&quot;&gt;
     &lt;label class=&quot;title&quot;&gt;
@@ -708,7 +708,7 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 </code></pre>
-<p>執行專案，瀏覽 <a href="http://localhost:4200/login。" target="_blank" rel="external">http://localhost:4200/login。</a><br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_25.png" alt=""><br>整個網站基本框架就在不斷複製貼上中完成，對於網頁開發新手來說是不是簡單很多？  </p>
+<p>執行專案，瀏覽 <a href="http://localhost:4200/login。" target="_blank" rel="noopener">http://localhost:4200/login。</a><br><img src="/images/angular/training/ui/clarity/angular_ui_clarity_25.png" alt=""><br>整個網站基本框架就在不斷複製貼上中完成，對於網頁開發新手來說是不是簡單很多？  </p>
 <p><img src="/images/download.png" width="36"><a href="/uploads/genesis_2017-09-08.zip"><strong>genesis_2017-09-08.zip</strong></a>  </p>
 
       
@@ -855,7 +855,7 @@ export class AppRoutingModule { }
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -866,7 +866,7 @@ export class AppRoutingModule { }
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分類</span>
               
             </div>
@@ -877,7 +877,7 @@ export class AppRoutingModule { }
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -963,7 +963,7 @@ export class AppRoutingModule { }
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Clarity-Design-System"><span class="nav-number">1.</span> <span class="nav-text">Clarity Design System</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立-Angular-專案"><span class="nav-number">1.1.</span> <span class="nav-text">建立 Angular 專案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝圖示：Clarity-Icons"><span class="nav-number">1.2.</span> <span class="nav-text">安裝圖示：Clarity Icons</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-polyfill：webcomponents-custom-elements"><span class="nav-number">1.3.</span> <span class="nav-text">安裝 polyfill：webcomponents/custom-elements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Clarity-UI"><span class="nav-number">1.4.</span> <span class="nav-text">安裝 Clarity UI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Clarity-Angular"><span class="nav-number">1.5.</span> <span class="nav-text">安裝 Clarity Angular</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立首頁"><span class="nav-number">1.6.</span> <span class="nav-text">建立首頁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Header"><span class="nav-number">1.7.</span> <span class="nav-text">Header</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改-component-selector"><span class="nav-number">1.8.</span> <span class="nav-text">修改 component-selector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sidenav"><span class="nav-number">1.9.</span> <span class="nav-text">Sidenav</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tabs"><span class="nav-number">1.10.</span> <span class="nav-text">Tabs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Login-Page"><span class="nav-number">1.11.</span> <span class="nav-text">Login Page</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Clarity-Design-System"><span class="nav-number">1.</span> <span class="nav-text"><a href="#Clarity-Design-System" class="headerlink" title="Clarity Design System"></a>Clarity Design System</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立-Angular-專案"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x5EFA;&#x7ACB;-Angular-&#x5C08;&#x6848;" class="headerlink" title="&#x5EFA;&#x7ACB; Angular &#x5C08;&#x6848;"></a>&#x5EFA;&#x7ACB; Angular &#x5C08;&#x6848;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝圖示：Clarity-Icons"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x5B89;&#x88DD;&#x5716;&#x793A;&#xFF1A;Clarity-Icons" class="headerlink" title="&#x5B89;&#x88DD;&#x5716;&#x793A;&#xFF1A;Clarity Icons"></a>&#x5B89;&#x88DD;&#x5716;&#x793A;&#xFF1A;Clarity Icons</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-polyfill：webcomponents-custom-elements"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x5B89;&#x88DD;-polyfill&#xFF1A;webcomponents-custom-elements" class="headerlink" title="&#x5B89;&#x88DD; polyfill&#xFF1A;webcomponents/custom-elements"></a>&#x5B89;&#x88DD; polyfill&#xFF1A;webcomponents/custom-elements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Clarity-UI"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#&#x5B89;&#x88DD;-Clarity-UI" class="headerlink" title="&#x5B89;&#x88DD; Clarity UI"></a>&#x5B89;&#x88DD; Clarity UI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Clarity-Angular"><span class="nav-number">1.5.</span> <span class="nav-text"><a href="#&#x5B89;&#x88DD;-Clarity-Angular" class="headerlink" title="&#x5B89;&#x88DD; Clarity Angular"></a>&#x5B89;&#x88DD; Clarity Angular</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立首頁"><span class="nav-number">1.6.</span> <span class="nav-text"><a href="#&#x5EFA;&#x7ACB;&#x9996;&#x9801;" class="headerlink" title="&#x5EFA;&#x7ACB;&#x9996;&#x9801;"></a>&#x5EFA;&#x7ACB;&#x9996;&#x9801;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Header"><span class="nav-number">1.7.</span> <span class="nav-text"><a href="#Header" class="headerlink" title="Header"></a>Header</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改-component-selector"><span class="nav-number">1.8.</span> <span class="nav-text"><a href="#&#x4FEE;&#x6539;-component-selector" class="headerlink" title="&#x4FEE;&#x6539; component-selector"></a>&#x4FEE;&#x6539; component-selector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sidenav"><span class="nav-number">1.9.</span> <span class="nav-text"><a href="#Sidenav" class="headerlink" title="Sidenav"></a>Sidenav</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tabs"><span class="nav-number">1.10.</span> <span class="nav-text"><a href="#Tabs" class="headerlink" title="Tabs"></a>Tabs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Login-Page"><span class="nav-number">1.11.</span> <span class="nav-text"><a href="#Login-Page" class="headerlink" title="Login Page"></a>Login Page</span></a></li></ol></li></ol></div>
             
 
           </div>

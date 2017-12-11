@@ -394,11 +394,11 @@
       
 
       
-        <h1 id="Material-Design-for-Angular"><a href="#Material-Design-for-Angular" class="headerlink" title="Material Design for Angular"></a>Material Design for Angular</h1><p>在 <a href="/angular/training/06_angular_module/">Angular 模組</a> 最後我們只加了幾行 CSS 樣式，由一開始練習至此感覺起來這種網頁效果十幾年前用記事本就可以做到了，那花時間學這個幹嘛？我們過去會的技術能不能繼續沿用下來？首當其衝的就是 <a href="https://jquery.com/" target="_blank" rel="external">jQuery</a> for Angular 的問題。  </p>
+        <h1 id="Material-Design-for-Angular"><a href="#Material-Design-for-Angular" class="headerlink" title="Material Design for Angular"></a>Material Design for Angular</h1><p>在 <a href="/angular/training/06_angular_module/">Angular 模組</a> 最後我們只加了幾行 CSS 樣式，由一開始練習至此感覺起來這種網頁效果十幾年前用記事本就可以做到了，那花時間學這個幹嘛？我們過去會的技術能不能繼續沿用下來？首當其衝的就是 <a href="https://jquery.com/" target="_blank" rel="noopener">jQuery</a> for Angular 的問題。  </p>
 <blockquote>
 <p>其實筆者並沒用過 jQuery、Ajax，對於 JavaScript、CSS 也都是上網查詢別人寫好的範例來改，過去都是在開發視窗程式，網頁的經驗是停留在 ASP.NET 2.0 時代，利用 Visual Studio .NET，透過滑鼠拖拉產生千篇一律的畫面，再加上 C# 撰寫邏輯來產生網站。<br>說了這個多只是想告訴大家筆者是一個網路開發的初學者，站在這個角度來分享，身為後追者的我如何利用 Angular 來快速追趕上那些有多年開發經驗的人，至少能看到前方的車尾燈，畢竟在職場上客戶不會因為不同的資歷而有不同的評分標準，只會考慮誰能解決他的問題，老闆也不會讓你花幾年的時間慢慢磨練。<br>網路上其實已經有很多非常深入的文章，所以後續內容會著重在<strong>怎麼用</strong>以及如何<strong>善用 Angular 的優勢</strong>。</p>
 </blockquote>
-<p>我們開啟官方網站的資源頁面 <a href="https://angular.io/resources" target="_blank" rel="external">https://angular.io/resources</a> 一開始提到過上面有推薦一些開發工具，今天我們要來看的是官方所推薦的模組化元件-<a href="https://github.com/angular/material2" target="_blank" rel="external">Angular Material2</a>。<br><img src="/images/angular/training/ui/angular_ui_01.png" alt=""><br>我們依照 <a href="https://material.angular.io/guide/getting-started" target="_blank" rel="external">官方安裝教學步驟</a> 來安裝。</p>
+<p>我們開啟官方網站的資源頁面 <a href="https://angular.io/resources" target="_blank" rel="noopener">https://angular.io/resources</a> 一開始提到過上面有推薦一些開發工具，今天我們要來看的是官方所推薦的模組化元件-<a href="https://github.com/angular/material2" target="_blank" rel="noopener">Angular Material2</a>。<br><img src="/images/angular/training/ui/angular_ui_01.png" alt=""><br>我們依照 <a href="https://material.angular.io/guide/getting-started" target="_blank" rel="noopener">官方安裝教學步驟</a> 來安裝。</p>
 <h2 id="安裝-Angular-Material-與-Angular-CDK"><a href="#安裝-Angular-Material-與-Angular-CDK" class="headerlink" title="安裝 Angular Material 與 Angular CDK"></a>安裝 Angular Material 與 Angular CDK</h2><p>透過下列指令來安裝<br><code>npm install --save @angular/material @angular/cdk</code><br><img src="/images/angular/training/ui/angular_ui_02.png" alt="">  </p>
 <blockquote>
 <p>如果大家安裝有遇到權限不足的錯誤訊息，甚至出現要求以系統管理員身分重新安裝時，可以嘗試把專案內的 <code>package-lock.json</code> 檔刪除後再重新安裝試試，npm 5.0 增加了 lock 機制。<br><img src="/images/angular/training/ui/angular_ui_03.png" alt=""></p>
@@ -458,7 +458,7 @@ P {
   margin: 8px;
 }
 </code></pre>
-<h2 id="安裝手勢操作的套件-HammerJS"><a href="#安裝手勢操作的套件-HammerJS" class="headerlink" title="安裝手勢操作的套件 HammerJS"></a>安裝手勢操作的套件 <a href="http://hammerjs.github.io/" target="_blank" rel="external">HammerJS</a></h2><p>安裝指令如下：<br><code>npm install --save hammerjs</code><br><img src="/images/angular/training/ui/angular_ui_06.png" alt=""><br>將 <code>hammerjs</code> import 到程式的<strong>進入點</strong>(entry point)，我們將下列語法加入至 <code>src\main.ts</code>。<br><code>import &#39;hammerjs&#39;;</code>  </p>
+<h2 id="安裝手勢操作的套件-HammerJS"><a href="#安裝手勢操作的套件-HammerJS" class="headerlink" title="安裝手勢操作的套件 HammerJS"></a>安裝手勢操作的套件 <a href="http://hammerjs.github.io/" target="_blank" rel="noopener">HammerJS</a></h2><p>安裝指令如下：<br><code>npm install --save hammerjs</code><br><img src="/images/angular/training/ui/angular_ui_06.png" alt=""><br>將 <code>hammerjs</code> import 到程式的<strong>進入點</strong>(entry point)，我們將下列語法加入至 <code>src\main.ts</code>。<br><code>import &#39;hammerjs&#39;;</code>  </p>
 <pre><code>import { enableProdMode } from &#39;@angular&#x2F;core&#39;;
 import { platformBrowserDynamic } from &#39;@angular&#x2F;platform-browser-dynamic&#39;;
 
@@ -492,7 +492,7 @@ platformBrowserDynamic().bootstrapModule(AppModule);
 
 &lt;&#x2F;html&gt;
 </code></pre>
-<h2 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h2><p>開啟 <a href="https://material.angular.io/components" target="_blank" rel="external">https://material.angular.io/components</a> 頁面可以看到網頁展示了 <strong>Angular Material2</strong> 元件效果，同時也提供設定與使用說明。<br>以 <code>md-icon</code> 為例，選擇 <strong>Icon</strong> 元件頁籤，點選內容的 <strong>API</strong> 內容，可以看到該模組名稱為 <strong>MdIconModule</strong>，開起 <code>src\app\custom-material.module.ts</code> 並將 <strong>MdIconModule</strong> 加到  <code>imports</code> 以及 <code>exports</code> 屬性內。</p>
+<h2 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h2><p>開啟 <a href="https://material.angular.io/components" target="_blank" rel="noopener">https://material.angular.io/components</a> 頁面可以看到網頁展示了 <strong>Angular Material2</strong> 元件效果，同時也提供設定與使用說明。<br>以 <code>md-icon</code> 為例，選擇 <strong>Icon</strong> 元件頁籤，點選內容的 <strong>API</strong> 內容，可以看到該模組名稱為 <strong>MdIconModule</strong>，開起 <code>src\app\custom-material.module.ts</code> 並將 <strong>MdIconModule</strong> 加到  <code>imports</code> 以及 <code>exports</code> 屬性內。</p>
 <pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
 import { MdIconModule } from &#39;@angular&#x2F;material&#39;;
 
@@ -549,10 +549,10 @@ export class AppModule { }
 </code></pre>
 <p>執行並切到 Page1 頁籤時可以看到畫面上確實出現了圖示。<br><img src="/images/angular/training/ui/angular_ui_08.png" alt="">  </p>
 <blockquote>
-<p>圖示及其名稱可參閱 <a href="https://material.io/icons/" target="_blank" rel="external">https://material.io/icons/</a> 查詢</p>
+<p>圖示及其名稱可參閱 <a href="https://material.io/icons/" target="_blank" rel="noopener">https://material.io/icons/</a> 查詢</p>
 </blockquote>
-<h2 id="區域網路"><a href="#區域網路" class="headerlink" title="區域網路"></a>區域網路</h2><p>其實圖示是連結到 <strong><a href="https://fonts.googleapis.com/" target="_blank" rel="external">https://fonts.googleapis.com/</a></strong> 網站來下載圖示檔，對於開放外部使用的網站來說可以減省傳輸流量，但是如果是在企業內部使用，有可能就不見得可以連結到外部網站，因此也我們需要能夠將圖示字型放置到所部屬的伺服器，以免網頁無法呈現圖示。  </p>
-<h3 id="方法1：下載圖示字型"><a href="#方法1：下載圖示字型" class="headerlink" title="方法1：下載圖示字型"></a>方法1：下載圖示字型</h3><p>開啟 <a href="https://google.github.io/material-design-icons/" target="_blank" rel="external">https://google.github.io/material-design-icons/</a>，在網頁上提到官方提供圖示字型下載連結 <a href="https://github.com/google/material-design-icons/archive/master.zip" target="_blank" rel="external"><strong>material-design-icons-master.zip</strong></a>。<br><img src="/images/angular/training/ui/angular_ui_09.png" alt=""><br><img src="/images/angular/training/ui/angular_ui_10.png" alt=""><br>解壓縮後將 <strong>iconfont</strong> 資料夾複製到 <code>src\assets</code> 資料夾下。<br><img src="/images/angular/training/ui/angular_ui_11.png" alt=""><br>修改 <code>src\index.html</code> 內的連結路徑，重新執行圖示應該也可以正常顯示，但是圖示來源已經改成專案目錄。</p>
+<h2 id="區域網路"><a href="#區域網路" class="headerlink" title="區域網路"></a>區域網路</h2><p>其實圖示是連結到 <strong><a href="https://fonts.googleapis.com/" target="_blank" rel="noopener">https://fonts.googleapis.com/</a></strong> 網站來下載圖示檔，對於開放外部使用的網站來說可以減省傳輸流量，但是如果是在企業內部使用，有可能就不見得可以連結到外部網站，因此也我們需要能夠將圖示字型放置到所部屬的伺服器，以免網頁無法呈現圖示。  </p>
+<h3 id="方法1：下載圖示字型"><a href="#方法1：下載圖示字型" class="headerlink" title="方法1：下載圖示字型"></a>方法1：下載圖示字型</h3><p>開啟 <a href="https://google.github.io/material-design-icons/" target="_blank" rel="noopener">https://google.github.io/material-design-icons/</a>，在網頁上提到官方提供圖示字型下載連結 <a href="https://github.com/google/material-design-icons/archive/master.zip" target="_blank" rel="noopener"><strong>material-design-icons-master.zip</strong></a>。<br><img src="/images/angular/training/ui/angular_ui_09.png" alt=""><br><img src="/images/angular/training/ui/angular_ui_10.png" alt=""><br>解壓縮後將 <strong>iconfont</strong> 資料夾複製到 <code>src\assets</code> 資料夾下。<br><img src="/images/angular/training/ui/angular_ui_11.png" alt=""><br>修改 <code>src\index.html</code> 內的連結路徑，重新執行圖示應該也可以正常顯示，但是圖示來源已經改成專案目錄。</p>
 <pre><code>&lt;!doctype html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 
@@ -762,7 +762,7 @@ P {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -773,7 +773,7 @@ P {
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分類</span>
               
             </div>
@@ -784,7 +784,7 @@ P {
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -870,7 +870,7 @@ P {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Material-Design-for-Angular"><span class="nav-number">1.</span> <span class="nav-text">Material Design for Angular</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Angular-Material-與-Angular-CDK"><span class="nav-number">1.1.</span> <span class="nav-text">安裝 Angular Material 與 Angular CDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Angular-Animations-動畫模組"><span class="nav-number">1.2.</span> <span class="nav-text">安裝 Angular Animations 動畫模組</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匯入要使用的元件模組"><span class="nav-number">1.3.</span> <span class="nav-text">匯入要使用的元件模組</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匯入樣式"><span class="nav-number">1.4.</span> <span class="nav-text">匯入樣式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝手勢操作的套件-HammerJS"><span class="nav-number">1.5.</span> <span class="nav-text">安裝手勢操作的套件 HammerJS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#選擇性-安裝圖示套件-Material-Icons"><span class="nav-number">1.6.</span> <span class="nav-text">(選擇性) 安裝圖示套件 Material Icons</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#測試"><span class="nav-number">1.7.</span> <span class="nav-text">測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#區域網路"><span class="nav-number">1.8.</span> <span class="nav-text">區域網路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法1：下載圖示字型"><span class="nav-number">1.8.1.</span> <span class="nav-text">方法1：下載圖示字型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法2：透過-npm-安裝"><span class="nav-number">1.8.2.</span> <span class="nav-text">方法2：透過 npm 安裝</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Material-Design-for-Angular"><span class="nav-number">1.</span> <span class="nav-text"><a href="#Material-Design-for-Angular" class="headerlink" title="Material Design for Angular"></a>Material Design for Angular</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Angular-Material-與-Angular-CDK"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x5B89;&#x88DD;-Angular-Material-&#x8207;-Angular-CDK" class="headerlink" title="&#x5B89;&#x88DD; Angular Material &#x8207; Angular CDK"></a>&#x5B89;&#x88DD; Angular Material &#x8207; Angular CDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Angular-Animations-動畫模組"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x5B89;&#x88DD;-Angular-Animations-&#x52D5;&#x756B;&#x6A21;&#x7D44;" class="headerlink" title="&#x5B89;&#x88DD; Angular Animations &#x52D5;&#x756B;&#x6A21;&#x7D44;"></a>&#x5B89;&#x88DD; Angular Animations &#x52D5;&#x756B;&#x6A21;&#x7D44;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匯入要使用的元件模組"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x532F;&#x5165;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x5143;&#x4EF6;&#x6A21;&#x7D44;" class="headerlink" title="&#x532F;&#x5165;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x5143;&#x4EF6;&#x6A21;&#x7D44;"></a>&#x532F;&#x5165;&#x8981;&#x4F7F;&#x7528;&#x7684;<strong>&#x5143;&#x4EF6;&#x6A21;&#x7D44;</strong></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匯入樣式"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#&#x532F;&#x5165;&#x6A23;&#x5F0F;" class="headerlink" title="&#x532F;&#x5165;&#x6A23;&#x5F0F;"></a>&#x532F;&#x5165;&#x6A23;&#x5F0F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝手勢操作的套件-HammerJS"><span class="nav-number">1.5.</span> <span class="nav-text"><a href="#&#x5B89;&#x88DD;&#x624B;&#x52E2;&#x64CD;&#x4F5C;&#x7684;&#x5957;&#x4EF6;-HammerJS" class="headerlink" title="&#x5B89;&#x88DD;&#x624B;&#x52E2;&#x64CD;&#x4F5C;&#x7684;&#x5957;&#x4EF6; HammerJS"></a>&#x5B89;&#x88DD;&#x624B;&#x52E2;&#x64CD;&#x4F5C;&#x7684;&#x5957;&#x4EF6; <a href="http://hammerjs.github.io/" target="_blank" rel="noopener">HammerJS</a></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#選擇性-安裝圖示套件-Material-Icons"><span class="nav-number">1.6.</span> <span class="nav-text"><a href="#&#x9078;&#x64C7;&#x6027;-&#x5B89;&#x88DD;&#x5716;&#x793A;&#x5957;&#x4EF6;-Material-Icons" class="headerlink" title="(&#x9078;&#x64C7;&#x6027;) &#x5B89;&#x88DD;&#x5716;&#x793A;&#x5957;&#x4EF6; Material Icons"></a>(&#x9078;&#x64C7;&#x6027;) &#x5B89;&#x88DD;&#x5716;&#x793A;&#x5957;&#x4EF6; Material Icons</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#測試"><span class="nav-number">1.7.</span> <span class="nav-text"><a href="#&#x6E2C;&#x8A66;" class="headerlink" title="&#x6E2C;&#x8A66;"></a>&#x6E2C;&#x8A66;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#區域網路"><span class="nav-number">1.8.</span> <span class="nav-text"><a href="#&#x5340;&#x57DF;&#x7DB2;&#x8DEF;" class="headerlink" title="&#x5340;&#x57DF;&#x7DB2;&#x8DEF;"></a>&#x5340;&#x57DF;&#x7DB2;&#x8DEF;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法1：下載圖示字型"><span class="nav-number">1.8.1.</span> <span class="nav-text"><a href="#&#x65B9;&#x6CD5;1&#xFF1A;&#x4E0B;&#x8F09;&#x5716;&#x793A;&#x5B57;&#x578B;" class="headerlink" title="&#x65B9;&#x6CD5;1&#xFF1A;&#x4E0B;&#x8F09;&#x5716;&#x793A;&#x5B57;&#x578B;"></a>&#x65B9;&#x6CD5;1&#xFF1A;&#x4E0B;&#x8F09;&#x5716;&#x793A;&#x5B57;&#x578B;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法2：透過-npm-安裝"><span class="nav-number">1.8.2.</span> <span class="nav-text"><a href="#&#x65B9;&#x6CD5;2&#xFF1A;&#x900F;&#x904E;-npm-&#x5B89;&#x88DD;" class="headerlink" title="&#x65B9;&#x6CD5;2&#xFF1A;&#x900F;&#x904E; npm &#x5B89;&#x88DD;"></a>&#x65B9;&#x6CD5;2&#xFF1A;&#x900F;&#x904E; npm &#x5B89;&#x88DD;</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

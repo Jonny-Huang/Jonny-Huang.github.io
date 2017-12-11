@@ -409,7 +409,7 @@
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>對程式設計師來說撰寫程式應該是最花時間跟精力的事情，但是撰寫文件卻是一件不輸撰寫程式的工作，尤其是現在這種需求變更越來越頻繁、更新速度越來越快的時代，撰寫文件往往變成只是應付驗收用的工作，所以很多公司都是驗收前再開始撰寫，避免<strong>浪費人力跟時間</strong>，而這種敷衍的心態也造成系統上線(驗收)後隨著需求不斷的調整與增加，文件跟程式越來越不同步，甚至不再維護文件，所以承接別人的系統應該是程式設計師最討厭的事情。  </p>
 <h1 id="安裝-compodoc"><a href="#安裝-compodoc" class="headerlink" title="安裝 compodoc"></a>安裝 compodoc</h1><p><img src="/images/angular/training/compodoc/compodoc.png" alt="">  </p>
 <blockquote>
-<p>官方網站：<a href="https://compodoc.github.io/website/" target="_blank" rel="external">https://compodoc.github.io/website/</a><br>GitHub：<a href="https://github.com/compodoc/compodoc" target="_blank" rel="external">https://github.com/compodoc/compodoc</a></p>
+<p>官方網站：<a href="https://compodoc.github.io/website/" target="_blank" rel="noopener">https://compodoc.github.io/website/</a><br>GitHub：<a href="https://github.com/compodoc/compodoc" target="_blank" rel="noopener">https://github.com/compodoc/compodoc</a></p>
 </blockquote>
 <p><strong>compodoc</strong> 是一個能夠分析 Angular 程式碼並自動幫我們產生相關網頁文件的工具，透過它可以協助我們產生一份與程式碼同步的文件，接下來我們就直接來時做一次，首先當然就是安裝 <strong>compodoc</strong>，我們可以透過下列指令將其安裝在 Node.js 全域內供所有專案使用：<br><code>npm i -g @compodoc/compodoc</code><br>或者可以單純安裝到專案內：<br><code>npm i -d @compodoc/compodoc</code><br><img src="/images/angular/training/compodoc/compodoc_01.png" alt="">  </p>
 <h1 id="產生文件"><a href="#產生文件" class="headerlink" title="產生文件"></a>產生文件</h1><p>接下來我們切換到 Angular 專案目錄下，並透過下列指令來產生文件：<br><code>compodoc -p src\tsconfig.app.json</code><br>&gt;</p>
@@ -418,12 +418,12 @@
 <blockquote>
 <p>依照官方文件來看 <code>-s</code> 參數應該也會建立網頁，不過目前並沒有效果。<br><img src="/images/angular/training/compodoc/compodoc_09.png" alt=""></p>
 </blockquote>
-<p><img src="/images/angular/training/compodoc/compodoc_06.png" alt=""><br>透過瀏覽器瀏覽 <a href="http://localhost:8080。" target="_blank" rel="external">http://localhost:8080。</a><br><img src="/images/angular/training/compodoc/compodoc_07.png" alt="">  </p>
+<p><img src="/images/angular/training/compodoc/compodoc_06.png" alt=""><br>透過瀏覽器瀏覽 <a href="http://localhost:8080。" target="_blank" rel="noopener">http://localhost:8080。</a><br><img src="/images/angular/training/compodoc/compodoc_07.png" alt="">  </p>
 <blockquote>
 <p><strong>compodoc</strong> 產生的是靜態網頁文件，所以也可以直接用瀏覽器開啟。<br><img src="/images/angular/training/compodoc/compodoc_08.png" alt=""></p>
 </blockquote>
 <p><strong>overview.html</strong><br>預設的 overview 頁面已經呈現此專案的基本架構<br><img src="/images/angular/training/compodoc/compodoc_10.png" alt=""><br><strong>Modules</strong><br>RouterModule：路由模組<br><img src="/images/angular/training/compodoc/compodoc_13.png" alt=""><br><img src="/images/angular/training/compodoc/compodoc_14.png" alt=""><br>NgModule 夾帶的資料越多頁面也會呈現越多資訊<br><img src="/images/angular/training/compodoc/compodoc_11.png" alt=""><br><img src="/images/angular/training/compodoc/compodoc_12.png" alt=""><br><strong>Components</strong><br>Info：類別資訊<br><img src="/images/angular/training/compodoc/compodoc_15.png" alt=""><br>Source：程式原始碼當然是原始的 TypeScript，而不是編譯過的 JavaScript<br><img src="/images/angular/training/compodoc/compodoc_16.png" alt=""><br>Template：樣板原始碼<br><img src="/images/angular/training/compodoc/compodoc_17.png" alt=""><br>DOM Tree<br><img src="/images/angular/training/compodoc/compodoc_18.png" alt=""><br><strong>Routes</strong><br>完整的路由路徑<br><img src="/images/angular/training/compodoc/compodoc_19.png" alt="">  </p>
-<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p><strong>compodoc</strong> 也支援 <a href="http://usejsdoc.org/" target="_blank" rel="external">JSDoc</a> 註解，所以我們只要在程式碼做好適當註解，最後就可以一併輸出到文件上，這部分就須依賴大家自己建立良好的習慣，在程式撰寫同時務必加入註解，修改時也須注意註解說明是否需要調整，這樣只要一行指令就可產生一份具有專業水準的說明文件(網站)。  </p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p><strong>compodoc</strong> 也支援 <a href="http://usejsdoc.org/" target="_blank" rel="noopener">JSDoc</a> 註解，所以我們只要在程式碼做好適當註解，最後就可以一併輸出到文件上，這部分就須依賴大家自己建立良好的習慣，在程式撰寫同時務必加入註解，修改時也須注意註解說明是否需要調整，這樣只要一行指令就可產生一份具有專業水準的說明文件(網站)。  </p>
 <h1 id="附錄：主題樣式"><a href="#附錄：主題樣式" class="headerlink" title="附錄：主題樣式"></a>附錄：主題樣式</h1><p>我們可以透過 <code>--theme [theme]</code> 參數來設定主題樣式，完整指令如下：<br><code>compodoc -p src\tsconfig.app.json --theme [theme]</code><br>目前提供主題樣式如下表：  </p>
 <table>
 <thead>
@@ -509,7 +509,7 @@
 </tr>
 <tr>
 <td><code>--serve</code></td>
-<td>縮寫：<code>-s</code>，服務生成的文檔，預設網址為 <a href="http://localhost:8080/" target="_blank" rel="external">http://localhost:8080/</a></td>
+<td>縮寫：<code>-s</code>，服務生成的文檔，預設網址為 <a href="http://localhost:8080/" target="_blank" rel="noopener">http://localhost:8080/</a></td>
 </tr>
 <tr>
 <td><code>--port [port]</code></td>
@@ -566,7 +566,7 @@
 </tbody>
 </table>
 <blockquote>
-<p>參考資料：<a href="https://compodoc.github.io/website/guides/usage.html" target="_blank" rel="external">https://compodoc.github.io/website/guides/usage.html</a> </p>
+<p>參考資料：<a href="https://compodoc.github.io/website/guides/usage.html" target="_blank" rel="noopener">https://compodoc.github.io/website/guides/usage.html</a> </p>
 </blockquote>
 
       
@@ -711,7 +711,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -722,7 +722,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分類</span>
               
             </div>
@@ -733,7 +733,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -819,7 +819,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝-compodoc"><span class="nav-number">2.</span> <span class="nav-text">安裝 compodoc</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#產生文件"><span class="nav-number">3.</span> <span class="nav-text">產生文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#執行"><span class="nav-number">4.</span> <span class="nav-text">執行</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">5.</span> <span class="nav-text">後記</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附錄：主題樣式"><span class="nav-number">6.</span> <span class="nav-text">附錄：主題樣式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附錄：參數表"><span class="nav-number">7.</span> <span class="nav-text">附錄：參數表</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝-compodoc"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5B89;&#x88DD;-compodoc" class="headerlink" title="&#x5B89;&#x88DD; compodoc"></a>&#x5B89;&#x88DD; compodoc</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#產生文件"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x7522;&#x751F;&#x6587;&#x4EF6;" class="headerlink" title="&#x7522;&#x751F;&#x6587;&#x4EF6;"></a>&#x7522;&#x751F;&#x6587;&#x4EF6;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#執行"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x57F7;&#x884C;" class="headerlink" title="&#x57F7;&#x884C;"></a>&#x57F7;&#x884C;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x5F8C;&#x8A18;" class="headerlink" title="&#x5F8C;&#x8A18;"></a>&#x5F8C;&#x8A18;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附錄：主題樣式"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x9644;&#x9304;&#xFF1A;&#x4E3B;&#x984C;&#x6A23;&#x5F0F;" class="headerlink" title="&#x9644;&#x9304;&#xFF1A;&#x4E3B;&#x984C;&#x6A23;&#x5F0F;"></a>&#x9644;&#x9304;&#xFF1A;&#x4E3B;&#x984C;&#x6A23;&#x5F0F;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附錄：參數表"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x9644;&#x9304;&#xFF1A;&#x53C3;&#x6578;&#x8868;" class="headerlink" title="&#x9644;&#x9304;&#xFF1A;&#x53C3;&#x6578;&#x8868;"></a>&#x9644;&#x9304;&#xFF1A;&#x53C3;&#x6578;&#x8868;</span></a></li></ol></div>
             
 
           </div>

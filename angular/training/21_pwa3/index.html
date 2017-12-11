@@ -434,15 +434,15 @@ self.addEventListener(&#39;fetch&#39;, event =&gt; {
 });
 </code></pre>
 <p>再透過 <code>ng build --prod -oh</code> 指令來建置專案，預設會在專案目錄產生一個 <code>dist</code> 資料夾，並將編譯產生的檔案放在裡面，因為目前不會調整網站內容，所以我們改以 <code>dist</code> 當作專案資料夾來練習建立推送通知功能。<br><img src="/images/angular/training/pwa/pwa_43.png" alt="">  </p>
-<p>接下來我們嘗試改用 VS Code 的擴充功能 - <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank" rel="external">Live Server</a> 來執行網站。  </p>
+<p>接下來我們嘗試改用 VS Code 的擴充功能 - <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank" rel="noopener">Live Server</a> 來執行網站。  </p>
 <blockquote>
-<p>當然也可以繼續沿用 Chrome 擴充功能-<a href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb" target="_blank" rel="external">Web Server for Chrome</a> 來執行。</p>
+<p>當然也可以繼續沿用 Chrome 擴充功能-<a href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb" target="_blank" rel="noopener">Web Server for Chrome</a> 來執行。</p>
 </blockquote>
 <p><img src="/images/angular/training/pwa/pwa_44.png" alt=""><br>再來我們改以 <code>dist</code> 資料夾當根目錄來開啟 VS Code，先選取一個檔案，接著我們可以透過右鍵的功能選單-<strong>Open with Live Server</strong> 或是下方狀態列的 <strong>Go Live</strong> 來啟動 ，Live Server 會自動開啟瀏覽器並載入我們選擇的檔案。<br><img src="/images/angular/training/pwa/pwa_45.png" alt=""><br><img src="/images/angular/training/pwa/pwa_46.png" alt="">  </p>
 <blockquote>
 <p>不過要特別注意的是我們是<strong>直接編輯 <code>dist</code> 資料夾下的檔案</strong>，這是 Angular CLI 透過 <code>ng build</code> 建置專案時所產生的資料夾，每次建置前都會將 <code>dist</code> 給刪除，所以請記得<strong>務必將異動過的檔案複製回 <code>src</code> 資料夾下的對應位置</strong>。</p>
 </blockquote>
-<h2 id="通知-Notification"><a href="#通知-Notification" class="headerlink" title="通知 (Notification)"></a>通知 (Notification)</h2><p>不論是 Google Chrome 或是 Mozilla FireFox 最近的版本都已經允許使用者可以依不同網站賦予不同的權限。<br><img src="/images/angular/training/pwa/pwa_35.png" alt=""><br><img src="/images/angular/training/pwa/pwa_36.png" alt=""><br>由上圖可以看到通知的設定剛好對應到 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notification" target="_blank" rel="external">Notification API</a> 的 <code>permission</code> 屬性：  </p>
+<h2 id="通知-Notification"><a href="#通知-Notification" class="headerlink" title="通知 (Notification)"></a>通知 (Notification)</h2><p>不論是 Google Chrome 或是 Mozilla FireFox 最近的版本都已經允許使用者可以依不同網站賦予不同的權限。<br><img src="/images/angular/training/pwa/pwa_35.png" alt=""><br><img src="/images/angular/training/pwa/pwa_36.png" alt=""><br>由上圖可以看到通知的設定剛好對應到 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notification" target="_blank" rel="noopener">Notification API</a> 的 <code>permission</code> 屬性：  </p>
 <ul>
 <li><code>default</code>：使用者尚未給予任何權限 (因此不會顯示任何通知)</li>
 <li><code>granted</code>：使用者允許接收到網站的通知</li>
@@ -475,7 +475,7 @@ self.addEventListener(&#39;fetch&#39;, event =&gt; {
 <blockquote>
 <p>對於網站開發者而言會比較擔心的是使用者選取<strong>拒絕</strong>，因為這時候就必須讓使用者手動變更設定，這對大部分的人來說應該是比較困難的，這時候其實可以透過 <code>Notification.permission</code> 方法來確認授權狀態，若是<strong>拒絕</strong>(<code>denied</code>)我們可以在頁面適當的位置呈現變更通知權限的教學。<br><img src="/images/angular/training/pwa/pwa_42.png" alt=""></p>
 </blockquote>
-<h3 id="訊息顯示"><a href="#訊息顯示" class="headerlink" title="訊息顯示"></a>訊息顯示</h3><p>上面我們處理了授權問題，接下來在使用者允許通知的前提下，我們開始實作如何在畫面上顯示訊息。<br>透過由 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification" target="_blank" rel="external">MDN</a> 上可以得知我們可以透過 <code>ServiceWorkerRegistration.showNotification()</code> 方法來呈現訊息，下面列常用的選擇性屬性。  </p>
+<h3 id="訊息顯示"><a href="#訊息顯示" class="headerlink" title="訊息顯示"></a>訊息顯示</h3><p>上面我們處理了授權問題，接下來在使用者允許通知的前提下，我們開始實作如何在畫面上顯示訊息。<br>透過由 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification" target="_blank" rel="noopener">MDN</a> 上可以得知我們可以透過 <code>ServiceWorkerRegistration.showNotification()</code> 方法來呈現訊息，下面列常用的選擇性屬性。  </p>
 <table>
 <thead>
 <tr>
@@ -511,7 +511,7 @@ self.addEventListener(&#39;fetch&#39;, event =&gt; {
 </tbody>
 </table>
 <blockquote>
-<p>其餘屬性請查詢 MDN - <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification" target="_blank" rel="external">ServiceWorkerRegistration.showNotification()</a></p>
+<p>其餘屬性請查詢 MDN - <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification" target="_blank" rel="noopener">ServiceWorkerRegistration.showNotification()</a></p>
 </blockquote>
 <p>我們開啟 <code>register_sw.js</code> 加入 <code>displayNotification</code> 方法，並在判斷 Notification 條件式之後去呼叫它，所以正常情況下當瀏覽器有支援而且使用者允許通知情況下網頁開啟後就會自動顯示，修改內容如下：  </p>
 <pre><code>if (&#39;serviceWorker&#39; in navigator) {
@@ -665,7 +665,7 @@ self.addEventListener(&#39;notificationclick&#39;, event =&gt; {
 <li>選取 <strong>關閉</strong> 則只會關閉訊息視窗<br><img src="/images/angular/training/pwa/pwa_52.gif" alt=""></li>
 </ul>
 <blockquote>
-<p>參考資料：<br>MDN - <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/Notifications_API/Using_the_Notifications_API" target="_blank" rel="external">使用 Web Notifications</a>  </p>
+<p>參考資料：<br>MDN - <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/Notifications_API/Using_the_Notifications_API" target="_blank" rel="noopener">使用 Web Notifications</a>  </p>
 </blockquote>
 <h2 id="推送-Push"><a href="#推送-Push" class="headerlink" title="推送 (Push)"></a>推送 (Push)</h2><p>以往為了獲得後端變更的最新資訊，前端往往需要透過使用者手動或是系統棟頻繁的不斷重複查詢來讓我們<strong>及早獲得資訊</strong>，這種被動式查詢不僅對於網路頻寬、伺服器資源都會占用持續且龐大的成本，因此如果有一種機制可以在後台伺服端資料改變當下主動通知前端，這不僅可以大大降低硬體成本，對於需要這些資訊的使用者更可以<strong>及時獲得資訊</strong>。<br><strong>推送</strong>(<strong>Push</strong>) 就是提供這種機制的功能，而這種功能已經不只在 App 上可以做到，現在連 Web 都可以實現。  </p>
 <h2 id="事前準備-1"><a href="#事前準備-1" class="headerlink" title="事前準備"></a>事前準備</h2><p>編輯 <code>register_sw.js</code>，將 <code>displayNotification</code> 方法註解起來，這樣前端就不會再顯示訊息視窗。</p>
@@ -685,7 +685,7 @@ self.addEventListener(&#39;notificationclick&#39;, event =&gt; {
 </code></pre>
 <h3 id="安裝-web-push"><a href="#安裝-web-push" class="headerlink" title="安裝 web-push"></a>安裝 web-push</h3><p>開啟 fitst-app 專案，透過下列指令安裝 web-push。<br><code>npm install web-push</code>  </p>
 <blockquote>
-<p>參考資料：<a href="https://github.com/web-push-libs/web-push" target="_blank" rel="external">https://github.com/web-push-libs/web-push</a></p>
+<p>參考資料：<a href="https://github.com/web-push-libs/web-push" target="_blank" rel="noopener">https://github.com/web-push-libs/web-push</a></p>
 </blockquote>
 <h3 id="產生金鑰"><a href="#產生金鑰" class="headerlink" title="產生金鑰"></a>產生金鑰</h3><p>透過下列指令產生一組<strong>公鑰</strong>與<strong>私鑰</strong>，當然<strong>私鑰要保管好</strong>不能外流，這邊因為是測試用得所以將私鑰也呈現出來讓大家比較容易理解範例程式。<br><code>web-push generate-vapid-keys</code><br><img src="/images/angular/training/pwa/pwa_53.png" alt=""><br>公鑰:<code>BPkIUOIylNfWjC9MQ3_8oVx0MsaryiEaak1WyYWyqWp1-FuyQitttiMkdjvACkoEds94crwhyRIyVTyc2tVYICI</code><br>私鑰:<code>5ZwdOLmdJEmdsYcp-ERUtmMg328EKq7jMGSAn3nSBgM</code></p>
 <h3 id="訂閱"><a href="#訂閱" class="headerlink" title="訂閱"></a>訂閱</h3><p>接下來我們要透過 <code>ServiceWorkerRegistration.pushManager</code> 向推送伺服器發出請求，我們需要先將 base64 格式的公鑰轉換成 UInt8Array 格式，再連同 <code>userVisibleOnly: true</code> 參數一起發送至推送伺服器，伺服器會返回一組訂閱資訊(PushSubscription)，推送伺服器可以憑藉此資訊來聯繫瀏覽器，而瀏覽器也可以知道這是來自哪一個 Web App，至於其背後運作原理不再這裡討論，我們可以把它想成跟身分證一樣，我們可以透過身分證的地址找到所在位置，再透過姓名找到是哪一隻 App。</p>
@@ -736,7 +736,7 @@ function subscribeUser(swRegistration) {
     });
 }
 </code></pre>
-<p>執行網頁，當註冊成功時透過 <code>console.log(JSON.stringify(subscription));</code> 可從開發人員工具查詢到 <code>subscription</code> 的訂閱資訊，正常情況下我們需要將這個資訊儲存到後台的資料庫，後續才可以用這個資訊透過推送伺服器來向瀏覽器發送訊息，眼尖的人可以發現它的 <code>endpoint</code> 資訊是網址而且是來自 <a href="https://fcm.googleapis.com/，其實它就是" target="_blank" rel="external">https://fcm.googleapis.com/，其實它就是</a> Google 的 FCM (Firebase Cloud Messaging)，這也表示我們中間是透過 FCM 來傳遞，所以客戶端與伺服端至少要能連結到這個外部服務平台，推送功能才能正常運行。<br><img src="/images/angular/training/pwa/pwa_55.png" alt="">  </p>
+<p>執行網頁，當註冊成功時透過 <code>console.log(JSON.stringify(subscription));</code> 可從開發人員工具查詢到 <code>subscription</code> 的訂閱資訊，正常情況下我們需要將這個資訊儲存到後台的資料庫，後續才可以用這個資訊透過推送伺服器來向瀏覽器發送訊息，眼尖的人可以發現它的 <code>endpoint</code> 資訊是網址而且是來自 <a href="https://fcm.googleapis.com/，其實它就是" target="_blank" rel="noopener">https://fcm.googleapis.com/，其實它就是</a> Google 的 FCM (Firebase Cloud Messaging)，這也表示我們中間是透過 FCM 來傳遞，所以客戶端與伺服端至少要能連結到這個外部服務平台，推送功能才能正常運行。<br><img src="/images/angular/training/pwa/pwa_55.png" alt="">  </p>
 <blockquote>
 <p>目前雖然我們可以從 FCM 取得 PushSubscription，但是依照筆者測試結果，因為我們是連結本機端網址(localhost)，所以這是一個無效的 PushSubscription，所以測試時必須將網頁架設在有實體IP的網站下。</p>
 </blockquote>
@@ -765,7 +765,7 @@ self.addEventListener(&#39;push&#39;, event =&gt; {
     auth: &quot;I4qBuGIBj1pUVbT4sQnHEg==&quot;
   }
 }</code></pre>
-<h3 id="後台推送"><a href="#後台推送" class="headerlink" title="後台推送"></a>後台推送</h3><p>開啟 first-app 專案，在專案目錄建立一個 <code>server</code> 資料夾，並在裡面建立一個 <code>push.ts</code> 檔案。<br><img src="/images/angular/training/pwa/pwa_57.png" alt=""><br>接下來我們透過 web-push 來推送訊息，程式可參考 <a href="https://github.com/web-push-libs/web-push" target="_blank" rel="external">GitHub</a> 範例，重點是：</p>
+<h3 id="後台推送"><a href="#後台推送" class="headerlink" title="後台推送"></a>後台推送</h3><p>開啟 first-app 專案，在專案目錄建立一個 <code>server</code> 資料夾，並在裡面建立一個 <code>push.ts</code> 檔案。<br><img src="/images/angular/training/pwa/pwa_57.png" alt=""><br>接下來我們透過 web-push 來推送訊息，程式可參考 <a href="https://github.com/web-push-libs/web-push" target="_blank" rel="noopener">GitHub</a> 範例，重點是：</p>
 <ul>
 <li>呼叫 <code>setVapidDetails</code> 方法，並帶入公鑰與私鑰。</li>
 <li>取得要推波對象的 PushSubscription。</li>
@@ -881,8 +881,8 @@ webPush.sendNotification(subscription, JSON.stringify(options));
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/angular/training/19_pwa/" rel="next" title="PWA 偽裝術：manifest.json">
-                <i class="fa fa-chevron-left"></i> PWA 偽裝術：manifest.json
+              <a href="/angular/training/20_pwa2/" rel="next" title="PWA 替身術：ServiceWorker - caches">
+                <i class="fa fa-chevron-left"></i> PWA 替身術：ServiceWorker - caches
               </a>
             
           </div>
@@ -891,8 +891,8 @@ webPush.sendNotification(subscription, JSON.stringify(options));
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/angular/training/20_pwa2/" rel="prev" title="PWA 替身術：ServiceWorker - caches">
-                PWA 替身術：ServiceWorker - caches <i class="fa fa-chevron-right"></i>
+              <a href="/angular/training/22_angular_pwa/" rel="prev" title="既期待又怕受傷害：@angular/service-worker">
+                既期待又怕受傷害：@angular/service-worker <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -966,7 +966,7 @@ webPush.sendNotification(subscription, JSON.stringify(options));
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -977,7 +977,7 @@ webPush.sendNotification(subscription, JSON.stringify(options));
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分類</span>
               
             </div>
@@ -988,7 +988,7 @@ webPush.sendNotification(subscription, JSON.stringify(options));
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -1074,7 +1074,7 @@ webPush.sendNotification(subscription, JSON.stringify(options));
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#推送通知-Push-Notification"><span class="nav-number">1.</span> <span class="nav-text">推送通知 (Push Notification)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#事前準備"><span class="nav-number">1.1.</span> <span class="nav-text">事前準備</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通知-Notification"><span class="nav-number">1.2.</span> <span class="nav-text">通知 (Notification)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#授權"><span class="nav-number">1.2.1.</span> <span class="nav-text">授權</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#訊息顯示"><span class="nav-number">1.2.2.</span> <span class="nav-text">訊息顯示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#進階互動"><span class="nav-number">1.2.3.</span> <span class="nav-text">進階互動</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推送-Push"><span class="nav-number">1.3.</span> <span class="nav-text">推送 (Push)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事前準備-1"><span class="nav-number">1.4.</span> <span class="nav-text">事前準備</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝-web-push"><span class="nav-number">1.4.1.</span> <span class="nav-text">安裝 web-push</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#產生金鑰"><span class="nav-number">1.4.2.</span> <span class="nav-text">產生金鑰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#訂閱"><span class="nav-number">1.4.3.</span> <span class="nav-text">訂閱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#監聽-ServiceWorker-的-push-事件"><span class="nav-number">1.4.4.</span> <span class="nav-text">監聽 ServiceWorker 的 push 事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移植至-GitHub"><span class="nav-number">1.4.5.</span> <span class="nav-text">移植至 GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#後台推送"><span class="nav-number">1.4.6.</span> <span class="nav-text">後台推送</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#推送通知-Push-Notification"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x63A8;&#x9001;&#x901A;&#x77E5;-Push-Notification" class="headerlink" title="&#x63A8;&#x9001;&#x901A;&#x77E5; (Push Notification)"></a>&#x63A8;&#x9001;&#x901A;&#x77E5; (Push Notification)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#事前準備"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x4E8B;&#x524D;&#x6E96;&#x5099;" class="headerlink" title="&#x4E8B;&#x524D;&#x6E96;&#x5099;"></a>&#x4E8B;&#x524D;&#x6E96;&#x5099;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通知-Notification"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x901A;&#x77E5;-Notification" class="headerlink" title="&#x901A;&#x77E5; (Notification)"></a>&#x901A;&#x77E5; (Notification)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#授權"><span class="nav-number">1.2.1.</span> <span class="nav-text"><a href="#&#x6388;&#x6B0A;" class="headerlink" title="&#x6388;&#x6B0A;"></a>&#x6388;&#x6B0A;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#訊息顯示"><span class="nav-number">1.2.2.</span> <span class="nav-text"><a href="#&#x8A0A;&#x606F;&#x986F;&#x793A;" class="headerlink" title="&#x8A0A;&#x606F;&#x986F;&#x793A;"></a>&#x8A0A;&#x606F;&#x986F;&#x793A;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#進階互動"><span class="nav-number">1.2.3.</span> <span class="nav-text"><a href="#&#x9032;&#x968E;&#x4E92;&#x52D5;" class="headerlink" title="&#x9032;&#x968E;&#x4E92;&#x52D5;"></a>&#x9032;&#x968E;&#x4E92;&#x52D5;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推送-Push"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x63A8;&#x9001;-Push" class="headerlink" title="&#x63A8;&#x9001; (Push)"></a>&#x63A8;&#x9001; (Push)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事前準備-1"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#&#x4E8B;&#x524D;&#x6E96;&#x5099;-1" class="headerlink" title="&#x4E8B;&#x524D;&#x6E96;&#x5099;"></a>&#x4E8B;&#x524D;&#x6E96;&#x5099;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝-web-push"><span class="nav-number">1.4.1.</span> <span class="nav-text"><a href="#&#x5B89;&#x88DD;-web-push" class="headerlink" title="&#x5B89;&#x88DD; web-push"></a>&#x5B89;&#x88DD; web-push</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#產生金鑰"><span class="nav-number">1.4.2.</span> <span class="nav-text"><a href="#&#x7522;&#x751F;&#x91D1;&#x9470;" class="headerlink" title="&#x7522;&#x751F;&#x91D1;&#x9470;"></a>&#x7522;&#x751F;&#x91D1;&#x9470;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#訂閱"><span class="nav-number">1.4.3.</span> <span class="nav-text"><a href="#&#x8A02;&#x95B1;" class="headerlink" title="&#x8A02;&#x95B1;"></a>&#x8A02;&#x95B1;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#監聽-ServiceWorker-的-push-事件"><span class="nav-number">1.4.4.</span> <span class="nav-text"><a href="#&#x76E3;&#x807D;-ServiceWorker-&#x7684;-push-&#x4E8B;&#x4EF6;" class="headerlink" title="&#x76E3;&#x807D; ServiceWorker &#x7684; push &#x4E8B;&#x4EF6;"></a>&#x76E3;&#x807D; ServiceWorker &#x7684; push &#x4E8B;&#x4EF6;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移植至-GitHub"><span class="nav-number">1.4.5.</span> <span class="nav-text"><a href="#&#x79FB;&#x690D;&#x81F3;-GitHub" class="headerlink" title="&#x79FB;&#x690D;&#x81F3; GitHub"></a>&#x79FB;&#x690D;&#x81F3; GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#後台推送"><span class="nav-number">1.4.6.</span> <span class="nav-text"><a href="#&#x5F8C;&#x53F0;&#x63A8;&#x9001;" class="headerlink" title="&#x5F8C;&#x53F0;&#x63A8;&#x9001;"></a>&#x5F8C;&#x53F0;&#x63A8;&#x9001;</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

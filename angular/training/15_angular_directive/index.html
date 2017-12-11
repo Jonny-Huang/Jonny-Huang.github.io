@@ -467,7 +467,7 @@
   &lt;&#x2F;div&gt;
 &lt;&#x2F;div&gt;
 </code></pre>
-<h2 id="編輯行事曆"><a href="#編輯行事曆" class="headerlink" title="編輯行事曆"></a>編輯行事曆</h2><p>其實網路上已經有一些 Angular 版本的元件可以套用，不過這邊我們練習如何用簡單的方式就可以做出一個雛形。<br>開啟 <code>src\app\custom-material.module.ts</code> 加入 <a href="https://material.angular.io/components/card/examples" target="_blank" rel="external"><strong>MdCardModule</strong></a>。  </p>
+<h2 id="編輯行事曆"><a href="#編輯行事曆" class="headerlink" title="編輯行事曆"></a>編輯行事曆</h2><p>其實網路上已經有一些 Angular 版本的元件可以套用，不過這邊我們練習如何用簡單的方式就可以做出一個雛形。<br>開啟 <code>src\app\custom-material.module.ts</code> 加入 <a href="https://material.angular.io/components/card/examples" target="_blank" rel="noopener"><strong>MdCardModule</strong></a>。  </p>
 <pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
 import { FlexLayoutModule } from &#39;@angular&#x2F;flex-layout&#39;;
 import {
@@ -591,7 +591,7 @@ export class CalendarComponent implements OnInit {
 }
 </code></pre>
 <blockquote>
-<p>TypeScript 在宣告變數時必須給定<a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" rel="external">型別</a>，例如：boolean、number、string、any、…，格式是在變數後面加上冒號(<code>:</code>)再加上型別，但是如果有給初始值時可以省略，因為 TypeScript 會自動依初始值來推斷變數的型別，後續程式邏輯若給予的值與型別不符時就會出現警告。<br>TypeScript 最終還是會編譯成 JavaScript，它主要是提供了<strong>開發時期</strong>的型別檢查。<br><code>any</code> 算是比較特殊的型別，代表它可以是任意型別，當變數設成 <code>any</code> 時，我們可以視為 TypeScript 就不會做檢查，當變數的值可能為不同型別時可以使用，但是宣告成 <code>any</code> 也代表失去 TypeScript 的檢核機制，建議盡量避免使用。<br>在 function 內宣告變數時，TypeScript 預設會建議你用 <code>const</code> 宣告，如果值會改變時則用 <code>let</code>。</p>
+<p>TypeScript 在宣告變數時必須給定<a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" rel="noopener">型別</a>，例如：boolean、number、string、any、…，格式是在變數後面加上冒號(<code>:</code>)再加上型別，但是如果有給初始值時可以省略，因為 TypeScript 會自動依初始值來推斷變數的型別，後續程式邏輯若給予的值與型別不符時就會出現警告。<br>TypeScript 最終還是會編譯成 JavaScript，它主要是提供了<strong>開發時期</strong>的型別檢查。<br><code>any</code> 算是比較特殊的型別，代表它可以是任意型別，當變數設成 <code>any</code> 時，我們可以視為 TypeScript 就不會做檢查，當變數的值可能為不同型別時可以使用，但是宣告成 <code>any</code> 也代表失去 TypeScript 的檢核機制，建議盡量避免使用。<br>在 function 內宣告變數時，TypeScript 預設會建議你用 <code>const</code> 宣告，如果值會改變時則用 <code>let</code>。</p>
 </blockquote>
 <p>修改 <code>calendar.component.html</code>，套用 <code>selectedMonth</code> 變數。</p>
 <pre><code>&lt;md-card&gt;
@@ -668,10 +668,10 @@ export class CalendarComponent implements OnInit {
 }
 </code></pre>
 <blockquote>
-<p><code>ngOnInit</code> 是 Angular <a href="https://angular.io/guide/lifecycle-hooks" target="_blank" rel="external"><strong>生命週期</strong></a> 衍生的事件，它會發生在第一次繫結資料發生變動(ngOnChanges)之後。<br><img src="/images/angular/training/directive/angular_directive_04.png" alt="">  </p>
+<p><code>ngOnInit</code> 是 Angular <a href="https://angular.io/guide/lifecycle-hooks" target="_blank" rel="noopener"><strong>生命週期</strong></a> 衍生的事件，它會發生在第一次繫結資料發生變動(ngOnChanges)之後。<br><img src="/images/angular/training/directive/angular_directive_04.png" alt="">  </p>
 </blockquote>
 <p>從瀏覽器來看，月份切換已經有效果了<br><img src="/images/angular/training/directive/angular_directive_05.gif" alt="">  </p>
-<h2 id="加入-Grid-List"><a href="#加入-Grid-List" class="headerlink" title="加入 Grid List"></a>加入 Grid List</h2><p>開啟 <code>src\app\custom-material.module.ts</code> 加入 <a href="https://material.angular.io/components/grid-list/examples" target="_blank" rel="external"><strong>MdGridListModule</strong></a>。  </p>
+<h2 id="加入-Grid-List"><a href="#加入-Grid-List" class="headerlink" title="加入 Grid List"></a>加入 Grid List</h2><p>開啟 <code>src\app\custom-material.module.ts</code> 加入 <a href="https://material.angular.io/components/grid-list/examples" target="_blank" rel="noopener"><strong>MdGridListModule</strong></a>。  </p>
 <pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
 import { FlexLayoutModule } from &#39;@angular&#x2F;flex-layout&#39;;
 import {
@@ -756,7 +756,7 @@ export class CustomMaterialModule { }
 </code></pre>
 <p>從瀏覽器來看，行事曆的效果已經出現了<br><img src="/images/angular/training/directive/angular_directive_06.png" alt="">  </p>
 <blockquote>
-<p>從<a href="https://material.angular.io/components/grid-list/api" target="_blank" rel="external">API文件</a>來看，<strong>MdGridListModule</strong> 與 HTML 的 Table 功能類似。<br><strong>MdGridList</strong> 提供一個 <code>cols</code> 的屬性，當內容項目-<strong>MdGridTile</strong> 超過其數值時就會自動換行，我們設定 <code>7</code> 是因為一個禮拜有7天。<br><strong>MdGridTile</strong> 則提供 <code>rowspan</code>、<code>colspan</code> 可以設定所占用的 <strong>列數</strong> 與 <strong>欄位數</strong>，這邊因為都是占用1單位，所以不設定。</p>
+<p>從<a href="https://material.angular.io/components/grid-list/api" target="_blank" rel="noopener">API文件</a>來看，<strong>MdGridListModule</strong> 與 HTML 的 Table 功能類似。<br><strong>MdGridList</strong> 提供一個 <code>cols</code> 的屬性，當內容項目-<strong>MdGridTile</strong> 超過其數值時就會自動換行，我們設定 <code>7</code> 是因為一個禮拜有7天。<br><strong>MdGridTile</strong> 則提供 <code>rowspan</code>、<code>colspan</code> 可以設定所占用的 <strong>列數</strong> 與 <strong>欄位數</strong>，這邊因為都是占用1單位，所以不設定。</p>
 </blockquote>
 <h2 id="Directive：-ngFor"><a href="#Directive：-ngFor" class="headerlink" title="Directive：*ngFor"></a>Directive：*ngFor</h2><p>Angular 提供一個樣板指令-<strong>*ngFor</strong>，讓我們可以依照陣列物件重複產生樣板語法，同時將資料嵌入到樣板內。<br>修改 <code>calendar.component.ts</code>，加入星期的陣列變數-<strong>dayHeaders</strong>。  </p>
 <pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
@@ -1116,7 +1116,7 @@ export class CalendarComponent implements OnInit {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -1127,7 +1127,7 @@ export class CalendarComponent implements OnInit {
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分類</span>
               
             </div>
@@ -1138,7 +1138,7 @@ export class CalendarComponent implements OnInit {
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -1224,7 +1224,7 @@ export class CalendarComponent implements OnInit {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#指令-Directive-amp-資料繫結-Binding"><span class="nav-number">1.</span> <span class="nav-text">指令 (Directive) & 資料繫結 (Binding)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#編輯行事曆"><span class="nav-number">1.1.</span> <span class="nav-text">編輯行事曆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binding：內嵌繫結-interpolation"><span class="nav-number">1.2.</span> <span class="nav-text">Binding：內嵌繫結 (interpolation)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入月份切換功能"><span class="nav-number">1.3.</span> <span class="nav-text">加入月份切換功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入-Grid-List"><span class="nav-number">1.4.</span> <span class="nav-text">加入 Grid List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directive：-ngFor"><span class="nav-number">1.5.</span> <span class="nav-text">Directive：*ngFor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directive：NgStyle"><span class="nav-number">1.6.</span> <span class="nav-text">Directive：NgStyle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binding：屬性繫結-Property-Binding"><span class="nav-number">1.7.</span> <span class="nav-text">Binding：屬性繫結 (Property Binding)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directive：-ngFor-1"><span class="nav-number">1.8.</span> <span class="nav-text">Directive：*ngFor</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#指令-Directive-amp-資料繫結-Binding"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x6307;&#x4EE4;-Directive-amp-&#x8CC7;&#x6599;&#x7E6B;&#x7D50;-Binding" class="headerlink" title="&#x6307;&#x4EE4; (Directive) &amp; &#x8CC7;&#x6599;&#x7E6B;&#x7D50; (Binding)"></a>&#x6307;&#x4EE4; (Directive) &amp; &#x8CC7;&#x6599;&#x7E6B;&#x7D50; (Binding)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#編輯行事曆"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x7DE8;&#x8F2F;&#x884C;&#x4E8B;&#x66C6;" class="headerlink" title="&#x7DE8;&#x8F2F;&#x884C;&#x4E8B;&#x66C6;"></a>&#x7DE8;&#x8F2F;&#x884C;&#x4E8B;&#x66C6;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binding：內嵌繫結-interpolation"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#Binding&#xFF1A;&#x5167;&#x5D4C;&#x7E6B;&#x7D50;-interpolation" class="headerlink" title="Binding&#xFF1A;&#x5167;&#x5D4C;&#x7E6B;&#x7D50; (interpolation)"></a>Binding&#xFF1A;&#x5167;&#x5D4C;&#x7E6B;&#x7D50; (interpolation)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入月份切換功能"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x52A0;&#x5165;&#x6708;&#x4EFD;&#x5207;&#x63DB;&#x529F;&#x80FD;" class="headerlink" title="&#x52A0;&#x5165;&#x6708;&#x4EFD;&#x5207;&#x63DB;&#x529F;&#x80FD;"></a>&#x52A0;&#x5165;&#x6708;&#x4EFD;&#x5207;&#x63DB;&#x529F;&#x80FD;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入-Grid-List"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#&#x52A0;&#x5165;-Grid-List" class="headerlink" title="&#x52A0;&#x5165; Grid List"></a>&#x52A0;&#x5165; Grid List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directive：-ngFor"><span class="nav-number">1.5.</span> <span class="nav-text"><a href="#Directive&#xFF1A;-ngFor" class="headerlink" title="Directive&#xFF1A;*ngFor"></a>Directive&#xFF1A;*ngFor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directive：NgStyle"><span class="nav-number">1.6.</span> <span class="nav-text"><a href="#Directive&#xFF1A;NgStyle" class="headerlink" title="Directive&#xFF1A;NgStyle"></a>Directive&#xFF1A;NgStyle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binding：屬性繫結-Property-Binding"><span class="nav-number">1.7.</span> <span class="nav-text"><a href="#Binding&#xFF1A;&#x5C6C;&#x6027;&#x7E6B;&#x7D50;-Property-Binding" class="headerlink" title="Binding&#xFF1A;&#x5C6C;&#x6027;&#x7E6B;&#x7D50; (Property Binding)"></a>Binding&#xFF1A;&#x5C6C;&#x6027;&#x7E6B;&#x7D50; (Property Binding)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Directive：-ngFor-1"><span class="nav-number">1.8.</span> <span class="nav-text"><a href="#Directive&#xFF1A;-ngFor-1" class="headerlink" title="Directive&#xFF1A;*ngFor"></a>Directive&#xFF1A;*ngFor</span></a></li></ol></li></ol></div>
             
 
           </div>

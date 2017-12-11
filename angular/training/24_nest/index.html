@@ -399,7 +399,7 @@
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我們都知道 Angular 是一個純前端的網頁框架，學習上也比其他框架多了些許的門檻，甚至也需要我們改變開發模式，說白一點，很多地方無法用過去的經驗來套用，我想這也是許多人抗拒學習的因素，當然對於開始使用的人來說，會逐漸了解這些代價的犧牲是為了解決過去開發上會遇到的許多問題，相對報酬來說得到的會比失去的還多，最近筆者就看到一個具有 Angular 風格的後端框架-<strong>Nest</strong>，對於已經會 Angular 的人來說，這應該是一個報酬率很高的投資。  </p>
 <h1 id="安裝-Nest-CLI"><a href="#安裝-Nest-CLI" class="headerlink" title="安裝 Nest CLI"></a>安裝 Nest CLI</h1><p><img src="/images/angular/training/nest/nest.png" alt="">  </p>
 <blockquote>
-<p>官方網站：<a href="https://docs.nestjs.com/" target="_blank" rel="external">https://docs.nestjs.com</a><br>GitHub：<a href="https://github.com/nestjs/nest" target="_blank" rel="external">https://github.com/nestjs/nest</a></p>
+<p>官方網站：<a href="https://docs.nestjs.com/" target="_blank" rel="noopener">https://docs.nestjs.com</a><br>GitHub：<a href="https://github.com/nestjs/nest" target="_blank" rel="noopener">https://github.com/nestjs/nest</a></p>
 </blockquote>
 <p>透過下列指令建立 Nest CLI：<br><code>npm i -g @nestjs/cli</code><br><img src="/images/angular/training/nest/nest_01.png" alt="">  </p>
 <p>透過 <code>nest -h</code> 可以看到跟 Angular CLI 一樣是透過 <code>new</code> 參數來建立專案，透過 <code>generate</code> (縮寫：<code>g</code>) 來建立相關的資源檔案。<br><img src="/images/angular/training/nest/nest_02.png" alt=""><br>透過下列指令建立 Nest 專案：<br><code>nest new demo-nest</code><br><img src="/images/angular/training/nest/nest_03.png" alt=""><br>透過 IDE 編輯工具(筆者是使用 Visual Studio Code) 開啟專案，可以發現並沒有 node_modules 資料夾，也就是預設 Nest CLI 並不會安裝 <code>package.json</code> 內的 package 套件。<br><img src="/images/angular/training/nest/nest_04.png" alt=""><br>所以我們先透過 <code>npm i</code> 指令安裝套件。<br><img src="/images/angular/training/nest/nest_05.png" alt="">  </p>
@@ -407,7 +407,7 @@
 <blockquote>
 <p>開啟 <code>src\app\server.ts</code> 可以看到預設是將連接埠是寫死在程式內，所以後續佈署在正式環境時需要再調整。<br><img src="/images/angular/training/nest/nest_13.png" alt=""></p>
 </blockquote>
-<p>透過瀏覽器開啟 <a href="http://localhost:3000/，雖然沒有任何功能但是系統已經能正常運作。" target="_blank" rel="external">http://localhost:3000/，雖然沒有任何功能但是系統已經能正常運作。</a><br><img src="/images/angular/training/nest/nest_10.png" alt="">  </p>
+<p>透過瀏覽器開啟 <a href="http://localhost:3000/，雖然沒有任何功能但是系統已經能正常運作。" target="_blank" rel="noopener">http://localhost:3000/，雖然沒有任何功能但是系統已經能正常運作。</a><br><img src="/images/angular/training/nest/nest_10.png" alt="">  </p>
 <h1 id="建立-Web-API"><a href="#建立-Web-API" class="headerlink" title="建立 Web API"></a>建立 Web API</h1><p>我們可以透過指令 <code>nest generate controller &lt;assetName&gt;</code> 來建立 controller 提供資料交換的對外接口。</p>
 <blockquote>
 <p><code>generate</code> 可以縮寫為 <code>g</code>。</p>
@@ -453,23 +453,23 @@ export class UsersController {
 }
 </code></pre>
 <p>透過 <code>npm run serve</code> 啟動專案，並瀏覽對應的 API，可以看到回應的結果。<br><img src="/images/angular/training/nest/nest_15.png" alt=""><br><img src="/images/angular/training/nest/nest_16.png" alt="">  </p>
-<h1 id="備註"><a href="#備註" class="headerlink" title="備註"></a>備註</h1><p>其實 <strong>Nest</strong> 底層是透過 <a href="http://expressjs.com" target="_blank" rel="external">Express</a> 來運作，透過他的封裝讓我們可以簡單的開發後端程式。 </p>
+<h1 id="備註"><a href="#備註" class="headerlink" title="備註"></a>備註</h1><p>其實 <strong>Nest</strong> 底層是透過 <a href="http://expressjs.com" target="_blank" rel="noopener">Express</a> 來運作，透過他的封裝讓我們可以簡單的開發後端程式。 </p>
 <blockquote>
 <p><strong>Nest</strong> 也提供了 WebSocket 而它的底層也是直接使用熱門的 <strong>socket.io</strong>。</p>
 </blockquote>
 <p>對於學過的 Angular 的人來說官方文件應該不會有太大的門檻，但是若要全部功能都演練一遍也不是短時間可以完成的，所以筆者初略看過後先說明自己的感想，後續有機會再做詳細說明。  </p>
 <ul>
 <li>Nest 並不是直接套用 Angular 的架構，而是引用 Angular 架構上的優點來封裝 Express 與 socket.io。</li>
-<li><a href="https://docs.nestjs.com/controllers" target="_blank" rel="external">Controller</a> 可以看到 Angular Component 的影子。  </li>
-<li><a href="https://docs.nestjs.com/components" target="_blank" rel="external">Component</a> 可以看到 Angular Service 的影子。  </li>
-<li><a href="https://docs.nestjs.com/modules" target="_blank" rel="external">Module</a> 可以看到 Angular NgModule 的影子。  </li>
-<li><a href="https://docs.nestjs.com/pipes" target="_blank" rel="external">Pipe</a>、<a href="https://docs.nestjs.com/guards" target="_blank" rel="external">Guard</a> 甚至 <a href="https://docs.nestjs.com/advanced/dependency-injection" target="_blank" rel="external">DI</a> 都有 Angular 上的特質。  </li>
-<li><a href="https://docs.nestjs.com/middlewares" target="_blank" rel="external">Middleware</a> 讓我們可以攔截訊息做額外處理。  </li>
-<li>在資料庫介接部分官方推薦使用 <a href="https://github.com/typeorm/typeorm" target="_blank" rel="external">TypeORM</a>。</li>
-<li>官方範例：<a href="https://github.com/nestjs/nest/tree/master/examples" target="_blank" rel="external">https://github.com/nestjs/nest/tree/master/examples</a></li>
+<li><a href="https://docs.nestjs.com/controllers" target="_blank" rel="noopener">Controller</a> 可以看到 Angular Component 的影子。  </li>
+<li><a href="https://docs.nestjs.com/components" target="_blank" rel="noopener">Component</a> 可以看到 Angular Service 的影子。  </li>
+<li><a href="https://docs.nestjs.com/modules" target="_blank" rel="noopener">Module</a> 可以看到 Angular NgModule 的影子。  </li>
+<li><a href="https://docs.nestjs.com/pipes" target="_blank" rel="noopener">Pipe</a>、<a href="https://docs.nestjs.com/guards" target="_blank" rel="noopener">Guard</a> 甚至 <a href="https://docs.nestjs.com/advanced/dependency-injection" target="_blank" rel="noopener">DI</a> 都有 Angular 上的特質。  </li>
+<li><a href="https://docs.nestjs.com/middlewares" target="_blank" rel="noopener">Middleware</a> 讓我們可以攔截訊息做額外處理。  </li>
+<li>在資料庫介接部分官方推薦使用 <a href="https://github.com/typeorm/typeorm" target="_blank" rel="noopener">TypeORM</a>。</li>
+<li>官方範例：<a href="https://github.com/nestjs/nest/tree/master/examples" target="_blank" rel="noopener">https://github.com/nestjs/nest/tree/master/examples</a></li>
 </ul>
 <blockquote>
-<p>中文翻譯：<a href="https://exlley.gitbooks.io/nest-js/" target="_blank" rel="external">https://exlley.gitbooks.io/nest-js/</a></p>
+<p>中文翻譯：<a href="https://exlley.gitbooks.io/nest-js/" target="_blank" rel="noopener">https://exlley.gitbooks.io/nest-js/</a></p>
 </blockquote>
 <p>PS：有接觸過的人希望您也可以在社團上分享經驗，感謝。</p>
 
@@ -539,6 +539,10 @@ export class UsersController {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/nest/training/01_nest/" rel="prev" title="Nest 新手上路">
+                Nest 新手上路 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -611,7 +615,7 @@ export class UsersController {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -622,7 +626,7 @@ export class UsersController {
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分類</span>
               
             </div>
@@ -633,7 +637,7 @@ export class UsersController {
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -719,7 +723,7 @@ export class UsersController {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝-Nest-CLI"><span class="nav-number">2.</span> <span class="nav-text">安裝 Nest CLI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#執行專案"><span class="nav-number">3.</span> <span class="nav-text">執行專案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立-Web-API"><span class="nav-number">4.</span> <span class="nav-text">建立 Web API</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#備註"><span class="nav-number">5.</span> <span class="nav-text">備註</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝-Nest-CLI"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5B89;&#x88DD;-Nest-CLI" class="headerlink" title="&#x5B89;&#x88DD; Nest CLI"></a>&#x5B89;&#x88DD; Nest CLI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#執行專案"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x57F7;&#x884C;&#x5C08;&#x6848;" class="headerlink" title="&#x57F7;&#x884C;&#x5C08;&#x6848;"></a>&#x57F7;&#x884C;&#x5C08;&#x6848;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立-Web-API"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5EFA;&#x7ACB;-Web-API" class="headerlink" title="&#x5EFA;&#x7ACB; Web API"></a>&#x5EFA;&#x7ACB; Web API</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#備註"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x5099;&#x8A3B;" class="headerlink" title="&#x5099;&#x8A3B;"></a>&#x5099;&#x8A3B;</span></a></li></ol></div>
             
 
           </div>

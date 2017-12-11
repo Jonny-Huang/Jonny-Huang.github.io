@@ -397,7 +397,7 @@
 <li><strong>動態載入</strong>：當 js 檔下載完成時目前的狀態可能因為使用者的操作而跟初始狀態不同了，這時該如何匯入。</li>
 </ul>
 <p>在 <a href="/angular/training/10_angular_module2/">Angular 模組化</a> 我們發現 <strong>元件</strong>(Component) 可以很容易的移動到任意的 <strong>模組</strong>(NgModule) 內，不論是一開始的先規劃好或是事後的調整，其實沒有很困難，因此如果我們可以以 <strong>模組</strong> 當作切割單位，每個模組可以單獨為一個檔案，當使用者有需要用到該功能時再下載，這應該對開發人員來說應該會是很容易規劃的 <strong>延遲載入</strong> 方式，接下來我們就來看看如何利用 Angular 來實作 <strong>延遲載入</strong> 。  </p>
-<h2 id="安裝-Angular-Augury"><a href="#安裝-Angular-Augury" class="headerlink" title="安裝 Angular Augury"></a>安裝 <a href="https://augury.angular.io/" target="_blank" rel="external">Angular Augury</a></h2><p>利用 Chrome 瀏覽器安裝 <a href="https://chrome.google.com/webstore/detail/augury/elgalmkoelokbchhkhacckoklkejnhcd" target="_blank" rel="external">Augury</a> 擴充功能。<br><img src="/images/angular/training/lazy_loading/angular_lazy_loading_01.png" alt=""><br>執行專案，並透過 Chrome 的開發者工具查看，可以發現 <strong>Augury</strong> 下面的 <strong>RouterTree</strong> 完整的呈現專案的路由樹狀圖。<br><img src="/images/angular/training/lazy_loading/angular_lazy_loading_02.png" alt="">  </p>
+<h2 id="安裝-Angular-Augury"><a href="#安裝-Angular-Augury" class="headerlink" title="安裝 Angular Augury"></a>安裝 <a href="https://augury.angular.io/" target="_blank" rel="noopener">Angular Augury</a></h2><p>利用 Chrome 瀏覽器安裝 <a href="https://chrome.google.com/webstore/detail/augury/elgalmkoelokbchhkhacckoklkejnhcd" target="_blank" rel="noopener">Augury</a> 擴充功能。<br><img src="/images/angular/training/lazy_loading/angular_lazy_loading_01.png" alt=""><br>執行專案，並透過 Chrome 的開發者工具查看，可以發現 <strong>Augury</strong> 下面的 <strong>RouterTree</strong> 完整的呈現專案的路由樹狀圖。<br><img src="/images/angular/training/lazy_loading/angular_lazy_loading_02.png" alt="">  </p>
 <h2 id="建立-employee-的路由模組"><a href="#建立-employee-的路由模組" class="headerlink" title="建立 employee 的路由模組"></a>建立 employee 的路由模組</h2><p>比較一下自己手動建立的路由規則的定義檔(<code>src\app\employee\employee.routing.ts</code>)與透過 <code>--routing</code> 參數建立的路由模組(<code>src\app\home\home-routing.module.ts</code>)，可以發現最大差別就是 <code>--routing</code> 參數所建立的檔案會將路由規則再包覆到一個模組內。  </p>
 <pre><code>import { Routes } from &#39;@angular&#x2F;router&#39;;
 import { AddressBookComponent } from &#39;.&#x2F;address-book&#x2F;address-book.component&#39;;
@@ -748,7 +748,7 @@ export class AppRoutingModule { }
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -759,7 +759,7 @@ export class AppRoutingModule { }
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分類</span>
               
             </div>
@@ -770,7 +770,7 @@ export class AppRoutingModule { }
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -856,7 +856,7 @@ export class AppRoutingModule { }
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#延遲載入-Lazy-loading"><span class="nav-number">1.</span> <span class="nav-text">延遲載入 (Lazy loading)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Angular-Augury"><span class="nav-number">1.1.</span> <span class="nav-text">安裝 Angular Augury</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立-employee-的路由模組"><span class="nav-number">1.2.</span> <span class="nav-text">建立 employee 的路由模組</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#loadChildren"><span class="nav-number">1.3.</span> <span class="nav-text">loadChildren</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PreloadAllModules"><span class="nav-number">1.4.</span> <span class="nav-text">PreloadAllModules</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#延遲載入-Lazy-loading"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5EF6;&#x9072;&#x8F09;&#x5165;-Lazy-loading" class="headerlink" title="&#x5EF6;&#x9072;&#x8F09;&#x5165; (Lazy loading)"></a>&#x5EF6;&#x9072;&#x8F09;&#x5165; (Lazy loading)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-Angular-Augury"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x5B89;&#x88DD;-Angular-Augury" class="headerlink" title="&#x5B89;&#x88DD; Angular Augury"></a>&#x5B89;&#x88DD; <a href="https://augury.angular.io/" target="_blank" rel="noopener">Angular Augury</a></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立-employee-的路由模組"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x5EFA;&#x7ACB;-employee-&#x7684;&#x8DEF;&#x7531;&#x6A21;&#x7D44;" class="headerlink" title="&#x5EFA;&#x7ACB; employee &#x7684;&#x8DEF;&#x7531;&#x6A21;&#x7D44;"></a>&#x5EFA;&#x7ACB; employee &#x7684;&#x8DEF;&#x7531;&#x6A21;&#x7D44;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#loadChildren"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#loadChildren" class="headerlink" title="loadChildren"></a>loadChildren</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PreloadAllModules"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#PreloadAllModules" class="headerlink" title="PreloadAllModules"></a>PreloadAllModules</span></a></li></ol></li></ol></div>
             
 
           </div>

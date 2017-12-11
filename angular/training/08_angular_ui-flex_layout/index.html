@@ -392,7 +392,7 @@
       
         <h1 id="Angular-Flex-Layout"><a href="#Angular-Flex-Layout" class="headerlink" title="Angular Flex-Layout"></a>Angular Flex-Layout</h1><p><strong>Angular Flex-Layout</strong> 原本是依附在 <a href="/angular/training/07_angular_ui-material2/"><strong>Angular Material2</strong></a> 內的模組，它主要實作了 CSS3 的 Flexbox 排版，因此要注意使用者瀏覽器是否支援此語法。  </p>
 <blockquote>
-<p>可以到 <a href="http://caniuse.com/#feat=flexbox" target="_blank" rel="external">Can I use</a> 網站查詢。<br>為了支援 Angular v4.1 AOT，所以 2.0.0-beta.7 以後版本不支援 Angular 2.4.x 版，因此如果有需要可能就必須將專案版本升級到 4.1 以上。<br>理論上 Angular 2 與 Angular 4 是 100% 相容，但是升級前還是做好版控或備份。<br>官方提供了範例網站可以觀看排版效果 <a href="https://tburleson-layouts-demos.firebaseapp.com/" target="_blank" rel="external">https://tburleson-layouts-demos.firebaseapp.com/</a></p>
+<p>可以到 <a href="http://caniuse.com/#feat=flexbox" target="_blank" rel="noopener">Can I use</a> 網站查詢。<br>為了支援 Angular v4.1 AOT，所以 2.0.0-beta.7 以後版本不支援 Angular 2.4.x 版，因此如果有需要可能就必須將專案版本升級到 4.1 以上。<br>理論上 Angular 2 與 Angular 4 是 100% 相容，但是升級前還是做好版控或備份。<br>官方提供了範例網站可以觀看排版效果 <a href="https://tburleson-layouts-demos.firebaseapp.com/" target="_blank" rel="noopener">https://tburleson-layouts-demos.firebaseapp.com/</a></p>
 </blockquote>
 <p>透過下列指令安裝，可以得到目前最新版本為 2.0.0-beta.9。<br><code>npm install --save @angular/flex-layout@latest</code>  </p>
 <p><img src="/images/angular/training/ui/angular_ui_21.png" alt=""><br>將 <strong>FlexLayoutModule</strong> 加到 <code>src\app\custom-material.module.ts</code>，要使用時只到將 <strong>CustomMaterialModule</strong> 對應的模組內就可以直接使用。  </p>
@@ -413,7 +413,7 @@ import { MdIconModule } from &#39;@angular&#x2F;material&#39;;
 export class CustomMaterialModule { }
 </code></pre>
 <h2 id="建立網站框架"><a href="#建立網站框架" class="headerlink" title="建立網站框架"></a>建立網站框架</h2><p>我們可以看到大部分功能性網站都會如下圖一般，上方會有 <strong>header</strong> 區塊，側邊會有 <strong>aside</strong> 區塊，剩下最大區域就是呈現內容的 <strong>content</strong>。<br><img src="/images/angular/training/ui/angular_ui_22.png" alt="">  </p>
-<h3 id="重置"><a href="#重置" class="headerlink" title="重置"></a>重置</h3><p>將 <code>md-icon</code> 的圖示改回透過 <a href="https://fonts.googleapis.com/" target="_blank" rel="external">https://fonts.googleapis.com/</a> 連結，開啟 <code>src\index.html</code> 修改成最初做法。</p>
+<h3 id="重置"><a href="#重置" class="headerlink" title="重置"></a>重置</h3><p>將 <code>md-icon</code> 的圖示改回透過 <a href="https://fonts.googleapis.com/" target="_blank" rel="noopener">https://fonts.googleapis.com/</a> 連結，開啟 <code>src\index.html</code> 修改成最初做法。</p>
 <pre><code>&lt;!doctype html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 
@@ -533,7 +533,7 @@ export class AppRoutingModule { }
 &lt;hr&gt; --&gt;
 &lt;router-outlet&gt;&lt;&#x2F;router-outlet&gt;
 </code></pre>
-<p>執行測試，會發現 <strong><a href="http://localhost:4200/" target="_blank" rel="external">http://localhost:4200/</a></strong> 會被自動引導到 <strong><a href="http://localhost:4200/home" target="_blank" rel="external">http://localhost:4200/home</a></strong>，整個頁面只會出現 <strong>HeaderComponent</strong> 的樣板。<br><img src="/images/angular/training/ui/angular_ui_28.png" alt="">  </p>
+<p>執行測試，會發現 <strong><a href="http://localhost:4200/" target="_blank" rel="noopener">http://localhost:4200/</a></strong> 會被自動引導到 <strong><a href="http://localhost:4200/home" target="_blank" rel="noopener">http://localhost:4200/home</a></strong>，整個頁面只會出現 <strong>HeaderComponent</strong> 的樣板。<br><img src="/images/angular/training/ui/angular_ui_28.png" alt="">  </p>
 <h3 id="切版"><a href="#切版" class="headerlink" title="切版"></a>切版</h3><p>因為會使用到 <strong>Angular Flex-Layout</strong> 所以將 <strong>CustomMaterialModule</strong> 註冊到 <strong>HomeModule</strong> (<code>src\app\home\home.module.ts</code>) 內。  </p>
 <pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
 import { CommonModule } from &#39;@angular&#x2F;common&#39;;
@@ -757,7 +757,7 @@ body {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -768,7 +768,7 @@ body {
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分類</span>
               
             </div>
@@ -779,7 +779,7 @@ body {
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -865,7 +865,7 @@ body {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Angular-Flex-Layout"><span class="nav-number">1.</span> <span class="nav-text">Angular Flex-Layout</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立網站框架"><span class="nav-number">1.1.</span> <span class="nav-text">建立網站框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重置"><span class="nav-number">1.1.1.</span> <span class="nav-text">重置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立獨立模組與元件"><span class="nav-number">1.1.2.</span> <span class="nav-text">建立獨立模組與元件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切版"><span class="nav-number">1.1.3.</span> <span class="nav-text">切版</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Angular-Flex-Layout"><span class="nav-number">1.</span> <span class="nav-text"><a href="#Angular-Flex-Layout" class="headerlink" title="Angular Flex-Layout"></a>Angular Flex-Layout</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立網站框架"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x5EFA;&#x7ACB;&#x7DB2;&#x7AD9;&#x6846;&#x67B6;" class="headerlink" title="&#x5EFA;&#x7ACB;&#x7DB2;&#x7AD9;&#x6846;&#x67B6;"></a>&#x5EFA;&#x7ACB;&#x7DB2;&#x7AD9;&#x6846;&#x67B6;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重置"><span class="nav-number">1.1.1.</span> <span class="nav-text"><a href="#&#x91CD;&#x7F6E;" class="headerlink" title="&#x91CD;&#x7F6E;"></a>&#x91CD;&#x7F6E;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立獨立模組與元件"><span class="nav-number">1.1.2.</span> <span class="nav-text"><a href="#&#x5EFA;&#x7ACB;&#x7368;&#x7ACB;&#x6A21;&#x7D44;&#x8207;&#x5143;&#x4EF6;" class="headerlink" title="&#x5EFA;&#x7ACB;&#x7368;&#x7ACB;&#x6A21;&#x7D44;&#x8207;&#x5143;&#x4EF6;"></a>&#x5EFA;&#x7ACB;&#x7368;&#x7ACB;&#x6A21;&#x7D44;&#x8207;&#x5143;&#x4EF6;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切版"><span class="nav-number">1.1.3.</span> <span class="nav-text"><a href="#&#x5207;&#x7248;" class="headerlink" title="&#x5207;&#x7248;"></a>&#x5207;&#x7248;</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

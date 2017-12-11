@@ -392,16 +392,16 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>原本打算研究 ServiceWorker 另一個功能-<strong>Sync</strong>，不過網路上找不到比較詳細的說明，也沒比較完整的範例，因此打算改研究 <a href="https://workboxjs.org/" target="_blank" rel="external">Workbox</a> 或 <a href="https://www.npmjs.com/package/@angular/service-worker" target="_blank" rel="external">@angular/service-worker</a>，因為這2個是將 Angular 調整為 PWA 比較常見的用法，但是從 <a href="https://www.npmjs.com/package/@angular/service-worker" target="_blank" rel="external">npm 網站</a>查詢可以看到 <strong>@angular/service-worker</strong> 被歸屬在 <strong>mobile-toolkit</strong> 下面，而 mobile-toolkit 幾乎沒有在維護了。<br><img src="/images/angular/training/angular_pwa/angular_pwa_01.png" alt=""><br>從 <a href="https://mobile.angular.io/guides/" target="_blank" rel="external">https://mobile.angular.io/guides/</a> 網站說明可以看到 Angular CLI 版本停留在 1.0.0-beta.4，@angular/service-worker 的版本則停在 1.0.0-beta.16，不過看到最後發佈是在4個月前，一時興起就乾脆查一下它發布過的版本，透過 <code>npm show @angular/service-worker</code> 查詢後發現就在幾天前(09/28) <strong>5.0.0-rc.0</strong> 版出現了，一口氣連升4級。<br><img src="/images/angular/training/angular_pwa/angular_pwa_02.png" alt="">  </p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>原本打算研究 ServiceWorker 另一個功能-<strong>Sync</strong>，不過網路上找不到比較詳細的說明，也沒比較完整的範例，因此打算改研究 <a href="https://workboxjs.org/" target="_blank" rel="noopener">Workbox</a> 或 <a href="https://www.npmjs.com/package/@angular/service-worker" target="_blank" rel="noopener">@angular/service-worker</a>，因為這2個是將 Angular 調整為 PWA 比較常見的用法，但是從 <a href="https://www.npmjs.com/package/@angular/service-worker" target="_blank" rel="noopener">npm 網站</a>查詢可以看到 <strong>@angular/service-worker</strong> 被歸屬在 <strong>mobile-toolkit</strong> 下面，而 mobile-toolkit 幾乎沒有在維護了。<br><img src="/images/angular/training/angular_pwa/angular_pwa_01.png" alt=""><br>從 <a href="https://mobile.angular.io/guides/" target="_blank" rel="noopener">https://mobile.angular.io/guides/</a> 網站說明可以看到 Angular CLI 版本停留在 1.0.0-beta.4，@angular/service-worker 的版本則停在 1.0.0-beta.16，不過看到最後發佈是在4個月前，一時興起就乾脆查一下它發布過的版本，透過 <code>npm show @angular/service-worker</code> 查詢後發現就在幾天前(09/28) <strong>5.0.0-rc.0</strong> 版出現了，一口氣連升4級。<br><img src="/images/angular/training/angular_pwa/angular_pwa_02.png" alt="">  </p>
 <h1 id="angular-service-worker"><a href="#angular-service-worker" class="headerlink" title="@angular/service-worker"></a>@angular/service-worker</h1><p>由版本號 <strong>5.0.0-rc.0</strong> 版其實大概可以推敲出它是跟著 Angular 版本號，所以正式版發布時透過 CLI 建立的專案應該會直接內建。<br>接下來當然是建立個 Angular 5.0.0-rc 的專案，先透過 CLI 建立一個 Angular 4 專案，接著透過 npm 指令去抓取 <code>next</code> 版本，指令如下：<br><code>npm i @angular/animations@next @angular/common@next @angular/compiler@next @angular/core@next @angular/forms@next @angular/http@next @angular/platform-browser@next @angular/platform-browser-dynamic@next @angular/router@next</code><br><code>npm i -D @angular/cli@next @angular/compiler-cli@next @angular/language-service@next</code><br>因為 Angular 4 並沒有內建 @angular/service-worker ，所以要再額外安裝。<br><code>npm i @angular/service-worker@next</code><br><img src="/images/angular/training/angular_pwa/angular_pwa_07.png" alt="">  </p>
-<h1 id="angular-cli-json"><a href="#angular-cli-json" class="headerlink" title=".angular-cli.json"></a>.angular-cli.json</h1><p>透過官方文件 <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/angular-cli.md" target="_blank" rel="external">Angular CLI Config Schema</a> 可以看到 <code>.angular-cli.json</code> 內的 <code>app</code> 區段有一個屬性 <code>serviceWorker</code> 預設是關閉(<code>false</code>)的，在此我們將它開啟。<br><img src="/images/angular/training/angular_pwa/angular_pwa_03.png" alt=""><br><img src="/images/angular/training/angular_pwa/angular_pwa_04.png" alt="">  </p>
+<h1 id="angular-cli-json"><a href="#angular-cli-json" class="headerlink" title=".angular-cli.json"></a>.angular-cli.json</h1><p>透過官方文件 <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/angular-cli.md" target="_blank" rel="noopener">Angular CLI Config Schema</a> 可以看到 <code>.angular-cli.json</code> 內的 <code>app</code> 區段有一個屬性 <code>serviceWorker</code> 預設是關閉(<code>false</code>)的，在此我們將它開啟。<br><img src="/images/angular/training/angular_pwa/angular_pwa_03.png" alt=""><br><img src="/images/angular/training/angular_pwa/angular_pwa_04.png" alt="">  </p>
 <h1 id="建置"><a href="#建置" class="headerlink" title="建置"></a>建置</h1><p>接下來就是透過 <code>ng build</code> 來建置，但是發現建置後的檔案並沒有任何變化。<br><img src="/images/angular/training/angular_pwa/angular_pwa_05.png" alt=""><br>改用 <code>ng build --prod</code> 來建置，結果出現錯誤，從錯誤訊息可以知道目前 @angular/service-worker 只能使用 2.0.0 以前的版本，雖然有點失望，但是看起來未來 Angular 5 再編時就會讓網站變成 PWA。<br><img src="/images/angular/training/angular_pwa/angular_pwa_06.png" alt="">  </p>
 <h1 id="降版"><a href="#降版" class="headerlink" title="降版"></a>降版</h1><p>透過 <code>npm i @angular/service-worker@latest</code> 安裝 @angular/service-worker，讓版本降回-<strong>1.0.0-beta.16</strong>。<br><img src="/images/angular/training/angular_pwa/angular_pwa_08.png" alt=""><br>重新再透過 <code>ng build --prod</code> 建置，可以發現 <strong>index.html</strong> 多載入一個 <code>sw-register.xxx.bundle.js</code> 檔。<br><img src="/images/angular/training/angular_pwa/angular_pwa_09.png" alt=""><br>開啟檔案可以看到它將 <code>worker-basic.min.js</code> 註冊給 <strong>ServiceWorker</strong>。<br><img src="/images/angular/training/angular_pwa/angular_pwa_10.png" alt=""><br>開啟 <code>worker-basic.min.js</code> 並格式化，可以看到它會讀取 <code>ngsw-manifest.json</code>。<br><img src="/images/angular/training/angular_pwa/angular_pwa_11.png" alt=""><br>開啟 <code>ngsw-manifest.json</code> 可以看到其實它就是我們在 <a href="/angular/training/20_pwa2/">PWA 替身術：ServiceWorker - caches</a> 所做的靜態快取檔案清單。<br> <img src="/images/angular/training/angular_pwa/angular_pwa_12.png" alt="">  </p>
 <h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>比對一下 @angular/service-worker <strong>1.0.0-beta.16</strong> 版與 <strong>5.0.0-rc.0</strong> 版程式結構，可以發現新版本幾乎可以算是整個重新改寫。<br> <img src="/images/angular/training/angular_pwa/angular_pwa_13.gif" alt=""><br>因此<br><strong>讓人期待的是應該會有更多 ServiceWorker 功能被時做出來。</strong><br><strong>讓人害怕的是會不會是我們以後不用改寫任何一行程式碼，只要升級到 Angular 5版就會變成 PWA 應用程式。</strong></p>
 <blockquote>
 <p>目前好像突然沒有動力去研究 <strong>Workbox</strong> 了，好像連什麼是 PWA 也不用在意了，怎麼 Angular 搞得跟 MMORPG 一樣 - 升級送裝備。</p>
 </blockquote>
-<p><strong>@angular/service-worker 5.0.0-rc.0</strong> 實作方式可以參考：<br><a href="https://medium.com/@webmaxru/a-new-angular-service-worker-creating-automatic-progressive-web-apps-part-1-theory-37d7d7647cc7" target="_blank" rel="external">A new Angular Service Worker — creating automatic progressive web apps. Part 1: theory</a></p>
+<p><strong>@angular/service-worker 5.0.0-rc.0</strong> 實作方式可以參考：<br><a href="https://medium.com/@webmaxru/a-new-angular-service-worker-creating-automatic-progressive-web-apps-part-1-theory-37d7d7647cc7" target="_blank" rel="noopener">A new Angular Service Worker — creating automatic progressive web apps. Part 1: theory</a></p>
 
       
     </div>
@@ -460,8 +460,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/angular/training/20_pwa2/" rel="next" title="PWA 替身術：ServiceWorker - caches">
-                <i class="fa fa-chevron-left"></i> PWA 替身術：ServiceWorker - caches
+              <a href="/angular/training/21_pwa3/" rel="next" title="PWA 推送通知：ServiceWorker - push">
+                <i class="fa fa-chevron-left"></i> PWA 推送通知：ServiceWorker - push
               </a>
             
           </div>
@@ -545,7 +545,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -556,7 +556,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分類</span>
               
             </div>
@@ -567,7 +567,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -653,7 +653,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#angular-service-worker"><span class="nav-number">2.</span> <span class="nav-text">@angular/service-worker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#angular-cli-json"><span class="nav-number">3.</span> <span class="nav-text">.angular-cli.json</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建置"><span class="nav-number">4.</span> <span class="nav-text">建置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#降版"><span class="nav-number">5.</span> <span class="nav-text">降版</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">6.</span> <span class="nav-text">後記</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#angular-service-worker"><span class="nav-number">2.</span> <span class="nav-text"><a href="#angular-service-worker" class="headerlink" title="@angular/service-worker"></a>@angular/service-worker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#angular-cli-json"><span class="nav-number">3.</span> <span class="nav-text"><a href="#angular-cli-json" class="headerlink" title=".angular-cli.json"></a>.angular-cli.json</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建置"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5EFA;&#x7F6E;" class="headerlink" title="&#x5EFA;&#x7F6E;"></a>&#x5EFA;&#x7F6E;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#降版"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x964D;&#x7248;" class="headerlink" title="&#x964D;&#x7248;"></a>&#x964D;&#x7248;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x5F8C;&#x8A18;" class="headerlink" title="&#x5F8C;&#x8A18;"></a>&#x5F8C;&#x8A18;</span></a></li></ol></div>
             
 
           </div>

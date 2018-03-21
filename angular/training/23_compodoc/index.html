@@ -282,12 +282,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-ionic">
-          <a href="/ionic/" rel="section">
+        <li class="menu-item menu-item-docker">
+          <a href="/docker/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-paperclip"></i> <br />
             
-            Ionic
+            menu.docker
           </a>
         </li>
       
@@ -412,7 +412,9 @@
 <p>官方網站：<a href="https://compodoc.github.io/website/" target="_blank" rel="noopener">https://compodoc.github.io/website/</a><br>GitHub：<a href="https://github.com/compodoc/compodoc" target="_blank" rel="noopener">https://github.com/compodoc/compodoc</a></p>
 </blockquote>
 <p><strong>compodoc</strong> 是一個能夠分析 Angular 程式碼並自動幫我們產生相關網頁文件的工具，透過它可以協助我們產生一份與程式碼同步的文件，接下來我們就直接來時做一次，首先當然就是安裝 <strong>compodoc</strong>，我們可以透過下列指令將其安裝在 Node.js 全域內供所有專案使用：<br><code>npm i -g @compodoc/compodoc</code><br>或者可以單純安裝到專案內：<br><code>npm i -d @compodoc/compodoc</code><br><img src="/images/angular/training/compodoc/compodoc_01.png" alt="">  </p>
-<h1 id="產生文件"><a href="#產生文件" class="headerlink" title="產生文件"></a>產生文件</h1><p>接下來我們切換到 Angular 專案目錄下，並透過下列指令來產生文件：<br><code>compodoc -p src\tsconfig.app.json</code><br>&gt;</p>
+<h1 id="產生文件"><a href="#產生文件" class="headerlink" title="產生文件"></a>產生文件</h1><p>接下來我們切換到 Angular 專案目錄下，並透過下列指令來產生文件：<br><code>compodoc -p src\tsconfig.app.json</code>  </p>
+<blockquote>
+</blockquote>
 <p><img src="/images/angular/training/compodoc/compodoc_02.png" alt=""><br>我們可以看到 <strong>compodoc</strong> 會分析 Angular 專案的結構<br><img src="/images/angular/training/compodoc/compodoc_03.png" alt=""><br>預設輸出路徑為 <code>documentation</code> 資料夾，可以透過 <code>-d [folder]</code> 參數修改位置<br><img src="/images/angular/training/compodoc/compodoc_04.png" alt=""><br><img src="/images/angular/training/compodoc/compodoc_05.png" alt="">  </p>
 <h1 id="執行"><a href="#執行" class="headerlink" title="執行"></a>執行</h1><p>我們可以透過指令 <code>compodoc -s</code> 來啟動內建的網頁伺服器，預設連接埠為 8080，可以透過 <code>-r [port]</code> 來修改。  </p>
 <blockquote>
@@ -711,7 +713,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -733,7 +735,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -819,7 +821,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝-compodoc"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5B89;&#x88DD;-compodoc" class="headerlink" title="&#x5B89;&#x88DD; compodoc"></a>&#x5B89;&#x88DD; compodoc</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#產生文件"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x7522;&#x751F;&#x6587;&#x4EF6;" class="headerlink" title="&#x7522;&#x751F;&#x6587;&#x4EF6;"></a>&#x7522;&#x751F;&#x6587;&#x4EF6;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#執行"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x57F7;&#x884C;" class="headerlink" title="&#x57F7;&#x884C;"></a>&#x57F7;&#x884C;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x5F8C;&#x8A18;" class="headerlink" title="&#x5F8C;&#x8A18;"></a>&#x5F8C;&#x8A18;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附錄：主題樣式"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x9644;&#x9304;&#xFF1A;&#x4E3B;&#x984C;&#x6A23;&#x5F0F;" class="headerlink" title="&#x9644;&#x9304;&#xFF1A;&#x4E3B;&#x984C;&#x6A23;&#x5F0F;"></a>&#x9644;&#x9304;&#xFF1A;&#x4E3B;&#x984C;&#x6A23;&#x5F0F;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附錄：參數表"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x9644;&#x9304;&#xFF1A;&#x53C3;&#x6578;&#x8868;" class="headerlink" title="&#x9644;&#x9304;&#xFF1A;&#x53C3;&#x6578;&#x8868;"></a>&#x9644;&#x9304;&#xFF1A;&#x53C3;&#x6578;&#x8868;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝-compodoc"><span class="nav-number">2.</span> <span class="nav-text">安裝 compodoc</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#產生文件"><span class="nav-number">3.</span> <span class="nav-text">產生文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#執行"><span class="nav-number">4.</span> <span class="nav-text">執行</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">5.</span> <span class="nav-text">後記</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附錄：主題樣式"><span class="nav-number">6.</span> <span class="nav-text">附錄：主題樣式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附錄：參數表"><span class="nav-number">7.</span> <span class="nav-text">附錄：參數表</span></a></li></ol></div>
             
 
           </div>
@@ -842,7 +844,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-Jonny Huang"></i>
   </span>

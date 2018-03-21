@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Docker,Angular" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+  <meta property="fb:admins" content="fb267234890438499" />
+  <meta property="fb:app_id" content="267234890438499" />
+
+
+
+<meta name="description" content="前言因為 Docker 熱潮越來越紅，那種炒熱的氛圍感覺好像如果不會就跟不會寫程式一樣，所以就花幾天的時間玩了一下，雖然不盡理解但是大概也能略懂大家在講什麼，最重要的就是了解自己程式是否能在容器(Container)  內執行，在這邊就不班門弄斧說明 Docker 原理，而著重在實際建置。   環境建置：Docker for WindowsDocker 在 Windows 上是透過 Hyper-V">
+<meta name="keywords" content="Docker,Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用 Docker 建立不同 Angular CLI 版本的開發環境">
+<meta property="og:url" content="https://jonny-huang.github.io/docker/docker_01/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言因為 Docker 熱潮越來越紅，那種炒熱的氛圍感覺好像如果不會就跟不會寫程式一樣，所以就花幾天的時間玩了一下，雖然不盡理解但是大概也能略懂大家在講什麼，最重要的就是了解自己程式是否能在容器(Container)  內執行，在這邊就不班門弄斧說明 Docker 原理，而著重在實際建置。   環境建置：Docker for WindowsDocker 在 Windows 上是透過 Hyper-V">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_003.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_004.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_005.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_002.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_007.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_006.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_008.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_009.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_010.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_011.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_012.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_013.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_014.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_015.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_016.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_017.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_018.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_019.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_020.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_021.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_022.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_023.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_024.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_025.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_026.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_027.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_028.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_029.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_030.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_031.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_032.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_033.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_034.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_035.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_036.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_037.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_038.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/docker_039.png">
+<meta property="og:updated_time" content="2018-03-21T10:01:15.489Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用 Docker 建立不同 Angular CLI 版本的開發環境">
+<meta name="twitter:description" content="前言因為 Docker 熱潮越來越紅，那種炒熱的氛圍感覺好像如果不會就跟不會寫程式一樣，所以就花幾天的時間玩了一下，雖然不盡理解但是大概也能略懂大家在講什麼，最重要的就是了解自己程式是否能在容器(Container)  內執行，在這邊就不班門弄斧說明 Docker 原理，而著重在實際建置。   環境建置：Docker for WindowsDocker 在 Windows 上是透過 Hyper-V">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/docker/docker_003.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Jonny'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jonny-huang.github.io/docker/docker_01/"/>
+
+
+
+
+
+  <title>用 Docker 建立不同 Angular CLI 版本的開發環境 | Jonny Huang 的學習筆記</title>
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '267234890438499',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_tw/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jonny Huang 的學習筆記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Angular</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            目錄
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-angular">
+          <a href="/angular/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-paperclip"></i> <br />
+            
+            Angular
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-docker">
+          <a href="/docker/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-paperclip"></i> <br />
+            
+            menu.docker
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/docker/docker_01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">用 Docker 建立不同 Angular CLI 版本的開發環境</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新於</span>
+              
+              <time title="更新於" itemprop="dateModified" datetime="2018-03-21T18:01:15+08:00">
+                2018/03/21
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Training/" itemprop="url" rel="index">
+                    <span itemprop="name">Training</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>因為 Docker 熱潮越來越紅，那種炒熱的氛圍感覺好像如果不會就跟不會寫程式一樣，所以就花幾天的時間玩了一下，雖然不盡理解但是大概也能略懂大家在講什麼，最重要的就是<strong>了解自己程式是否能在容器(Container)  內執行</strong>，在這邊就不班門弄斧說明 Docker 原理，而著重在實際建置。  </p>
+<h1 id="環境建置：Docker-for-Windows"><a href="#環境建置：Docker-for-Windows" class="headerlink" title="環境建置：Docker for Windows"></a>環境建置：Docker for Windows</h1><p>Docker 在 Windows 上是透過 Hyper-V 建立一個 Linux 環境並在上方執行，因此需要 Windows 10 (1607) 專業版、企業版或教育版。</p>
+<blockquote>
+<p>Windows 8 雖然也有 Hyper-V 不過筆者沒試過，Windows 7 則透過安裝 <a href="https://docs.docker.com/toolbox/toolbox_install_windows/" target="_blank" rel="noopener">Docker Toolbox on Windows</a> 來執行。</p>
+</blockquote>
+<p>雖然 Docker 在安裝過程會協助安裝 Hyper-V，但是因為 Hyper-V 預設的虛擬硬碟檔案室存放在 C 槽下面，所以如果空間不足，或是希望存放位置要修蓋至別的地方，可以先自行手動安裝 Hyper-V 並修改存放路徑。<br><img src="/images/docker/docker_003.png" alt=""><br><img src="/images/docker/docker_004.png" alt="">  </p>
+<blockquote>
+<p>因為後續從 <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a> 下載的 <strong>映像檔(Image)</strong>，以及我們建置的 <strong>容器(Container)</strong>，都會存放在 Hyper-V 映像檔內，所以要考路成長空間。  </p>
+</blockquote>
+<p>如果還未註冊帳號可以先連結到<a href="https://www.docker.com/" target="_blank" rel="noopener">官方網站</a>註冊一組帳號。<br><img src="/images/docker/docker_005.png" alt=""><br>接著連到<a href="https://www.docker.com/community-edition" target="_blank" rel="noopener">官方下載頁面</a> 下載並安裝 Docker，安裝完成後啟動 Docker for Windows，第一次會在 Hyper-V 內建立執行環境，並要求輸入 Docker 帳號。<br><img src="/images/docker/docker_002.png" alt="">  </p>
+<blockquote>
+<p>因為 Hyper-V 與 Mware Workstation 只能擇一啟動，所以不便建置模擬環境來截圖說明整個安裝步驟。  </p>
+</blockquote>
+<p>比較特別的是在 Windows 上面記憶體的配置比例無法太高，筆者筆電是 8G 記憶體，記憶體若配置超過 3G Docker 的映像檔就啟動失敗，看來 Hyper-V 映像檔啟動時也會鎮用不少記憶體。<br><img src="/images/docker/docker_007.png" alt=""><br><img src="/images/docker/docker_006.png" alt=""><br>如果是在 Linux 環境建置 Docker 就比較單純，雖然 Docker 常常被拿來跟 VM 比較，但是說穿了他就是一隻程式，所以在 Linux 上執行就不需要預先配置記憶體，需要多少就用多少，完全看主機上的記憶體還有多少可用。  </p>
+<blockquote>
+<p>過去有團隊在 Raspberry Pi 上執行 2499 個 Container，雖然跟正式專案會執行的 Container 有不少落差，但是足以看到 Docker 除了佔用資源少之外，藉由適度的配置可以讓每台伺服器發會最大的效能，這點在寸土寸金的雲端上可以說是很重要的，參考連結：<br><a href="https://www.ithome.com.tw/news/99447" target="_blank" rel="noopener">一片Raspberry Pi能跑多少個Container？答案驚人</a><br><a href="https://blog.docker.com/2015/10/raspberry-pi-dockercon-challenge-winner/" target="_blank" rel="noopener">RASPBERRY PI DOCKERCON CHALLENGE: WE HAVE A WINNER!</a> </p>
+</blockquote>
+<h1 id="使用-VS-Code-管理-Docker"><a href="#使用-VS-Code-管理-Docker" class="headerlink" title="使用 VS Code 管理 Docker"></a>使用 VS Code 管理 Docker</h1><p>利用 VS Code 來管理 Dokcer 可以說是入門的好選擇，我們不需要先花時間看完所有指令摻數就可以完成基本的操作。<br>開啟 VS Code，選擇擴充功能並安裝 <a href="https://marketplace.visualstudio.com/items?itemName=PeterJausovec.vscode-docker#review-details" target="_blank" rel="noopener">Docker</a>。<br><img src="/images/docker/docker_008.png" alt=""><br>重新啟動後就可以看到多了 Docker 的檢視區塊，我們可以直接在上面看到本機上的 Image、Container 以及上傳到 Docker Hub 的 Image。</p>
+<blockquote>
+<p><code>docker images</code>：列出本機上有的 Image，除了來自 Docker Hub，我們也可以自己將 Container 打包成 Image，在上傳到 Docker Hub。</p>
+</blockquote>
+<p><img src="/images/docker/docker_009.png" alt=""><br>我們可以透過 Image 的功能選單來執行或移除 Image，我們也可以從終端機顯示的對應指令來逐步學習。<br>Image 有點像 Linux 的 Live CD，是一個唯讀的映像檔，所以在建立 Image 就有點像是將 Container 燒錄在 CD-ROM 上，在執行時他會建立一個可讀寫的 Container 並將 Image(唯讀的 Container) 優先載入。<br><img src="/images/docker/docker_010.png" alt=""><br>當然我們也可以透過 Container 的功能選單來做相關的操作，透過管理工具操作另一個好處就是不必輸入操作對象的 Id，有些指令(例如移除)需要輸入鎖鑰操作的 Image 或是 Container 的 Id，筆者遇到最大問題就是 Container 啟動失敗，從 Show Logs 就可以了解問題是出現在哪裡。<br><img src="/images/docker/docker_011.png" alt="">  </p>
+<h1 id="下載映像檔：docker-pull"><a href="#下載映像檔：docker-pull" class="headerlink" title="下載映像檔：docker pull"></a>下載映像檔：docker pull</h1><p>我們知道 Angular-CLI 是透過 Node.js 來執行的，而 Node.js 則須執行在某個 OS 上。<br>OS =&gt; Node.js =&gt; Angular-CLI<br>因此正常情況下應該是先做出一個 OS 的 Image，我們可以直接從 <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a> 搜尋已經製作好的 Image，以 Ubuntu 為例，輸入關鍵字後便會列出許多熱心人士幫我們製作好的 Image，當然其中也包含官方釋出的版本。<br><img src="/images/docker/docker_012.png" alt=""><br>點擊進去之後便可看見詳細說明，右邊也提示我們可以透過 <code>docker pull ubuntu</code> 指令來下載 Image。<br><img src="/images/docker/docker_013.png" alt=""><br>完整指令是<code>docker pull [OPTIONS] NAME[:TAG|@DIGEST]</code>，大部分我們都會加上 <code>Tag</code> 來抓取特定版本，Tag 一個識別名稱但是習慣上都會使用版本號來方便識別，如果沒有帶入 Tag 參數，預設會去尋找 Tag 為 <code>latest</code> 的 Image 來下載，一般建議加入指定的 Tag (版本)。<br><img src="/images/docker/docker_014.png" alt=""><br>但是我們還可以發現同一個版本有多個 Tag Name，會讓人不知道要下載哪一個，其實將他們都下載之後就會發現他們的 Image Id 都一樣，也就是說其實任何一個 Tag Name 都可以使用，沒有差異，Docker 也不會重複下載同樣 Id 的 Image，不過 <code>latest</code> 這個  Tag Name 一般是指最新版本，所以有可能對應的 Image Id 會變動。<br><img src="/images/docker/docker_015.png" alt="">  </p>
+<h1 id="站在巨人的肩膀上"><a href="#站在巨人的肩膀上" class="headerlink" title="站在巨人的肩膀上"></a>站在巨人的肩膀上</h1><p>其實 <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a> 已經有封裝好的 Node.js 映像檔我們可以直接利用而不需要從頭開始，我們一樣抓取<a href="https://hub.docker.com/_/node/" target="_blank" rel="noopener">官方製作</a>的 Image，從說明葉面可以發現許多版本，最大的差異大概是底層所運行的 Linux 不同。<br><img src="/images/docker/docker_016.png" alt=""><br>我們分別透過 <code>docker pull node:9.8.0</code> 與 <code>docker pull node:9.8.0-alpine</code> 分別安裝標準版本(debian)以及 比較熱門的 alpine 版本，可以發現容量大小差很多，因為 alpine 容量只有 3.97MB，應該算是在 Docker Hub 上最小的 Linux。<br><img src="/images/docker/docker_017.png" alt="">  </p>
+<h1 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h1><p>我們除了可以在終端機上透過指令操作外還可以將指令打包成執行腳本 <strong>Dockerfile</strong>，Node.js 的說明頁面也提供了 Dockerfile 連結讓我們了解整個 Image 倒底包含了什麼東西，例如我們開啟 <code>9.8.0-alpine</code> 版本的 Dockerfile，第一行 <code>FROM alpine:3.6</code> 便說明了這個 Image 又載入了 <code>alpine:3.6</code> 這個 Image，也由此可知此版本確實透過 alpine 來執行。  </p>
+<blockquote>
+<p><code>FROM</code>：載入其他 Image，正常會放在 dockerfile 第一行。<br>我們可以透過 <code>docker build</code> 來執行 dockerfile 所有指令，藉此產生對應的 Image，可以藉由 <code>--file</code>(縮寫：<code>-f</code>)來指定要執行的 dockerfile，若沒有指定，預設會搜尋當前目錄下的 <strong>Dockerfile</strong> 來執行。</p>
+</blockquote>
+<p><img src="/images/docker/docker_018.png" alt=""><br>接著我們查看 <code>9.8.0</code> 所關聯的 Dockerfile，可以發現他總共包了5層 Image，在最後一層才發現他是以 Debian 為基底，這邊也說明了每個 Container 應該以單一任務為原則，不宜處理太多事情，這樣在維護上也比較容易，微服務似乎也是這個概念。<br><img src="/images/docker/docker_019.png" alt="">  </p>
+<h1 id="建立映像檔-Image"><a href="#建立映像檔-Image" class="headerlink" title="建立映像檔 (Image)"></a>建立映像檔 (Image)</h1><p>接著我們開始嘗試建立一個具有 Angular CLI 的 Image，首先我們建一個 <strong>Dockerfile</strong> 的檔案，並輸入下列內容。</p>
+<pre><code>FROM node:9.8.0-alpine
+
+RUN chown -R node:node /usr/local/lib/node_modules \
+ &amp;&amp; chown -R node:node /usr/local/bin
+
+USER node
+RUN npm install -g @angular/cli@1.7.3
+</code></pre><p><img src="/images/docker/docker_020.png" alt=""><br>指令說明：<br><code>FROM node:9.8.0-alpine</code><br>表示我們會以 node:9.8.0-alpine 的 Image 當作基底。<br><code>RUN chown -R node:node /usr/local/lib/node_modules</code><br><code>&amp;&amp; chown -R node:node /usr/local/bin</code><br>因為筆者測試過程發現在安裝 Angular CLI 過程會發生相關資料夾無權寫入的問題，既使透過 root 權限，<br><img src="/images/docker/docker_021.png" alt=""><br><img src="/images/docker/docker_022.png" alt=""><br>加上觀察 node Image 的 Dockerfile 發現它會建立一組 <strong>node</strong> 的帳號與群組。<br><img src="/images/docker/docker_023.png" alt=""><br><code>USER node</code>  </p>
+<blockquote>
+<p><code>USER</code>：指定要使用的帳號</p>
+</blockquote>
+<p><code>RUN npm install -g @angular/cli@1.7.3</code><br>因此便切換成 node 帳號來安裝 Angular CLI。  </p>
+<p>接著我們透過 <code>docker build -t ng-cli:1.7.3 .</code> 指令來建立 Image。</p>
+<blockquote>
+<p><code>--tag</code>：縮寫 <code>-t</code>，表示此 Image 的 Tag Name，此範例名稱為 <code>ng-cli:1.7.3</code>。<br>最後的 <code>.</code> 表示當前目錄。</p>
+</blockquote>
+<p><img src="/images/docker/docker_024.png" alt="">  </p>
+<blockquote>
+<p>仔細觀察可以發現 Docker 在執行 dockerfile 指令時，每一行指令都會建立一個臨時的 Container 來儲存。</p>
+</blockquote>
+<p>最後建置完成可以發現 Image 列表多了一個 <code>ng-cli:1.7.3</code> 的 Image。<br><img src="/images/docker/docker_025.png" alt="">  </p>
+<h1 id="建立容器-Container"><a href="#建立容器-Container" class="headerlink" title="建立容器 (Container)"></a>建立容器 (Container)</h1><p>Container 可以說是 Docker 提供給我們的沙箱執行環境，藉由這種隔離模式可以讓我們在裡面的執行程式避免受到其他程式干擾，上一節我們已經建立了一個具有 Angular CLI 的 Image，理論上透過 Docker 放到 Container 內執行我們就可以得到一個開發環境，但是我們會遇到幾個問題，第一如果程式碼也放在 Container 內那別人要維護會變得很困難，第二是它無法執行GUI程式，所以無法執行 VS Code，除非你可以接受使用 vim 來撰寫程式。<br>Docker 提供一個參數 <code>--volume</code> (縮寫：<code>-v</code>) 讓我們可以指定 Container 內的特定路徑與外部掛載在一起。</p>
+<p>接著我們透過下來指令來建立並執行 Container：<br><code>docker run --name angular_173 -v D:\demo-docker:&quot;/home&quot; -it -d -p 4200:4200 ng-cli:1.7.3</code><br>指令說明：<br><code>docker run</code><br>若只是單純建立 Container 則可以透過 <code>docker create</code> 來執行，<code>docker run</code> 除了會建立之外還會直接啟動 Container。<br><code>--name angular_173</code><br>將 Container 名稱設定為 <code>angular_173</code>。<br><code>-v D:\demo-docker:&quot;/home&quot;</code><br>將 Windows 上的資料夾 <code>D:\demo-docker</code> 與 Container 內的資料夾 <code>home</code> 掛載在一起。</p>
+<blockquote>
+<p>在 Windows 上，我們需要先設定 Shared Drives 才有辦法讓 Container 與 Windows 串接。<br><img src="/images/docker/docker_026.png" alt="">  </p>
+</blockquote>
+<p><code>-it</code><br><code>--interactive</code>(縮寫：<code>-i</code>，保持STDIN打開) 與 <code>--tty</code>(縮寫：<code>-t</code>，分配TTY) 的簡寫，藉此可以讓運行 Shell 的終端指令。<br><code>-d</code><br>讓 Container 在後台運行，<code>--detach</code> 的縮寫。<br><code>-p 4200:4200</code><br>將 Container 的4200連結埠(第二個參數)發佈到外部的4200連結埠(第一個參數)，<code>--publish</code> 的縮寫。<br><code>ng-cli:1.7.3</code><br>最後指定要啟動的 Image。<br><img src="/images/docker/docker_027.png" alt="">  </p>
+<blockquote>
+<p>如果希望停止 Container 時便自動移除可以加上 <code>-rm</code> 參數，Container 的建立速度很快，所以也可以在要使用時再建立。<br>完整參數說明請參閱：<a href="https://docs.docker.com/engine/reference/commandline/run/" target="_blank" rel="noopener">docker run</a></p>
+</blockquote>
+<p>接著我們透過 Container 的 <strong>Attach Shell</strong> 功能來與 Container 通訊。<br><img src="/images/docker/docker_028.png" alt=""><br>嘗試在 Container 的 home 資料夾內建立一個 abc 資料夾，開啟檔案總管可以發現 D:\demo-docker 確實也有一個 abc 資料夾，因此可以確認路徑掛載成功。<br><img src="/images/docker/docker_029.png" alt="">  </p>
+<h1 id="建立-Angular-專案"><a href="#建立-Angular-專案" class="headerlink" title="建立 Angular 專案"></a>建立 Angular 專案</h1><p>我們在 <strong>Container</strong> 內透過 Angular CLI 來建立一個名為 ng5 的 Angular 專案，執行方法就跟本機操作一樣，指令如下：<br><code>ng new ng5 --router --style scss --service-worker</code><br><img src="/images/docker/docker_030.png" alt="">  </p>
+<p>接著我們在<strong>本機</strong>上透過 VS Code 來開啟，<br><img src="/images/docker/docker_031.png" alt=""><br><img src="/images/docker/docker_032.png" alt=""><br>當然我們也可以透過 CLI 來建立 Component。<br><img src="/images/docker/docker_033.png" alt=""><br><img src="/images/docker/docker_034.png" alt="">  </p>
+<blockquote>
+<p>重點在於在 <strong>Container</strong> 內執行 Angular CLI 指令，在<strong>本機</strong>上撰寫程式碼。  </p>
+</blockquote>
+<h1 id="執行-Angular-專案"><a href="#執行-Angular-專案" class="headerlink" title="執行 Angular 專案"></a>執行 Angular 專案</h1><p>在 <strong>Container</strong> 內透 <code>ng serve</code> 來執行專案，可以發現與本機端模式一致。<br><img src="/images/docker/docker_035.png" alt=""><br>接著我們在<strong>本機端</strong>開啟 <a href="http://localhost:4200/，可以發現網頁無法啟用。" target="_blank" rel="noopener">http://localhost:4200/，可以發現網頁無法啟用。</a><br><img src="/images/docker/docker_036.png" alt=""><br>其實這是因為 <code>ng serve</code> 預設只能從本機(localhost)開啟，Angular CLI 的本機是在 Container，由外部的瀏覽器開啟等同於遠端連結，因此我們改用 <code>ng serve -H 0.0.0.0</code> 指令來執行，允許外部主機可以連結到 Container 的 ng serve。<br><img src="/images/docker/docker_037.png" alt=""><br>再透過瀏覽器開啟就發現網頁正常顯示了。<br><img src="/images/docker/docker_038.png" alt="">  </p>
+<p>當然我們也可以直接將參數加在專案內的 <code>package.json</code>，並透過 <code>npm start</code> 來執行。<br><img src="/images/docker/docker_039.png" alt="">  </p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>依照上面操作，我們可以建立不同 Angular CLI 版本的 Image 以及 Container，並依專案需要執行對應版本的 Container，這樣就可以在同意台電腦上開發不同版本的專案。  </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Angular/" rel="tag"># Angular</a>
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/angular/training/25_rxjs/" rel="next" title="醫生與護士的祕密日記：RxJS">
+                <i class="fa fa-chevron-left"></i> 醫生與護士的祕密日記：RxJS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Jonny Huang" />
+          <p class="site-author-name" itemprop="name">Jonny Huang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分類</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#環境建置：Docker-for-Windows"><span class="nav-number">2.</span> <span class="nav-text">環境建置：Docker for Windows</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-VS-Code-管理-Docker"><span class="nav-number">3.</span> <span class="nav-text">使用 VS Code 管理 Docker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下載映像檔：docker-pull"><span class="nav-number">4.</span> <span class="nav-text">下載映像檔：docker pull</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#站在巨人的肩膀上"><span class="nav-number">5.</span> <span class="nav-text">站在巨人的肩膀上</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dockerfile"><span class="nav-number">6.</span> <span class="nav-text">Dockerfile</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立映像檔-Image"><span class="nav-number">7.</span> <span class="nav-text">建立映像檔 (Image)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立容器-Container"><span class="nav-number">8.</span> <span class="nav-text">建立容器 (Container)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立-Angular-專案"><span class="nav-number">9.</span> <span class="nav-text">建立 Angular 專案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#執行-Angular-專案"><span class="nav-number">10.</span> <span class="nav-text">執行 Angular 專案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">11.</span> <span class="nav-text">後記</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-Jonny Huang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
+<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+      prettyPrint();
+  });
+</script>
+
+</body>
+</html>

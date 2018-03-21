@@ -264,12 +264,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-ionic">
-          <a href="/ionic/" rel="section">
+        <li class="menu-item menu-item-docker">
+          <a href="/docker/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-paperclip"></i> <br />
             
-            Ionic
+            menu.docker
           </a>
         </li>
       
@@ -525,7 +525,7 @@ import { Page2Component } from &#39;.&#x2F;page2.component&#39;;
 })
 export class AppModule { }
 </code></pre>
-<p>比較特別的是 <code>@Component</code> 內 <code>templateUrl</code> 被 <code>template</code> 替代，<code>styleUrls</code> 被 <code>styles</code> 替代，我們可以把樣板內容直接填寫在 <code>template</code> 屬性，把樣式內容填寫在 styles 屬性。<br>也就是說當我們希望樣板及樣式是獨立檔案時可使用 <code>templateUrl</code> 與 <code>styleUrls</code> 來連結檔案，如果是希望能夠合併成一個檔案時則改用 <code>template</code> 與 <code>styles</code> 屬性。<br><blockquote><p>模板源文本使用 (``) (重音符號，又稱反引號) 圍著，而非字串常用的、英文中的單引號或雙引號。模板源文本中可以包涵由錢字符($)與大括號({ })所構成的佔位符(即：${expression})，佔位符與其附近的文字會一併傳給函數，預設函數將把這些部分組合成一個單一的字串。如果模板源文本由一個表達式開頭（即下方範例中使用的 myTag），我們稱之為「帶標籤模板源文本」(tagged template literal)。在這種情況下，該標籤表達式（通常是函數）會在模板源文本處理後被呼叫，因此我們可以在輸出文字之前，做進一步的操作。若要在模板源文本中使用反引號，要使用轉義字元的形式，在前面加上反斜線「\」。</p>
+<p>比較特別的是 <code>@Component</code> 內 <code>templateUrl</code> 被 <code>template</code> 替代，<code>styleUrls</code> 被 <code>styles</code> 替代，我們可以把樣板內容直接填寫在 <code>template</code> 屬性，把樣式內容填寫在 styles 屬性。<br>也就是說當我們希望樣板及樣式是獨立檔案時可使用 <code>templateUrl</code> 與 <code>styleUrls</code> 來連結檔案，如果是希望能夠合併成一個檔案時則改用 <code>template</code> 與 <code>styles</code> 屬性。<br><blockquote><p>模板源文本使用 (<code></code>) (重音符號，又稱反引號) 圍著，而非字串常用的、英文中的單引號或雙引號。模板源文本中可以包涵由錢字符($)與大括號({ })所構成的佔位符(即：${expression})，佔位符與其附近的文字會一併傳給函數，預設函數將把這些部分組合成一個單一的字串。如果模板源文本由一個表達式開頭（即下方範例中使用的 myTag），我們稱之為「帶標籤模板源文本」(tagged template literal)。在這種情況下，該標籤表達式（通常是函數）會在模板源文本處理後被呼叫，因此我們可以在輸出文字之前，做進一步的操作。若要在模板源文本中使用反引號，要使用轉義字元的形式，在前面加上反斜線「\」。</p>
 <footer><strong>Mozilla</strong><cite><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Template_literals" target="_blank" rel="noopener">模板源文本</a></cite></footer></blockquote></p>
 <h3 id="半-純手工打造-page3-component"><a href="#半-純手工打造-page3-component" class="headerlink" title="(半)純手工打造 page3 component"></a>(半)純手工打造 page3 component</h3><p>點選 <strong>app</strong> 資料夾再點選<strong>新增檔案</strong>按鈕(或者再 <strong>app</strong> 資料夾按滑鼠右鍵選擇<strong>新增檔案</strong>)，將檔案命名為 <code>page3.component.ts</code>。<br><img src="/images/angular/training/component/angular_component_09.png" alt=""><br>開啟 <code>page3.component.ts</code>，輸入 <code>a-</code> 則會列出 <a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.Angular2" target="_blank" rel="noopener">Angular v4 TypeScript Snippets</a> 所提供的代碼片段，選擇 <code>a-component</code> 即可產生基本的程式框架。<br><img src="/images/angular/training/component/angular_component_10.png" alt=""><br><img src="/images/angular/training/component/angular_component_11.png" alt=""><br>最後再手動修該部分代碼以及將 Page3Component 註冊到 AppModule 即可完成。</p>
 <pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
@@ -722,7 +722,7 @@ export class AppModule { }
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -744,7 +744,7 @@ export class AppModule { }
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -830,7 +830,7 @@ export class AppModule { }
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#元件-Component"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5143;&#x4EF6;-Component" class="headerlink" title="&#x5143;&#x4EF6; (Component)"></a>&#x5143;&#x4EF6; (Component)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何新增元件"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x5982;&#x4F55;&#x65B0;&#x589E;&#x5143;&#x4EF6;" class="headerlink" title="&#x5982;&#x4F55;&#x65B0;&#x589E;&#x5143;&#x4EF6;"></a>&#x5982;&#x4F55;&#x65B0;&#x589E;&#x5143;&#x4EF6;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#練習新增一個-page1-component"><span class="nav-number">1.1.1.</span> <span class="nav-text"><a href="#&#x7DF4;&#x7FD2;&#x65B0;&#x589E;&#x4E00;&#x500B;-page1-component" class="headerlink" title="&#x7DF4;&#x7FD2;&#x65B0;&#x589E;&#x4E00;&#x500B; page1 component"></a>&#x7DF4;&#x7FD2;&#x65B0;&#x589E;&#x4E00;&#x500B; page1 component</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#練習新增一個最陽春的-page2-component"><span class="nav-number">1.1.2.</span> <span class="nav-text"><a href="#&#x7DF4;&#x7FD2;&#x65B0;&#x589E;&#x4E00;&#x500B;&#x6700;&#x967D;&#x6625;&#x7684;-page2-component" class="headerlink" title="&#x7DF4;&#x7FD2;&#x65B0;&#x589E;&#x4E00;&#x500B;&#x6700;&#x967D;&#x6625;&#x7684; page2 component"></a>&#x7DF4;&#x7FD2;&#x65B0;&#x589E;&#x4E00;&#x500B;&#x6700;&#x967D;&#x6625;&#x7684; page2 component</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#半-純手工打造-page3-component"><span class="nav-number">1.1.3.</span> <span class="nav-text"><a href="#&#x534A;-&#x7D14;&#x624B;&#x5DE5;&#x6253;&#x9020;-page3-component" class="headerlink" title="(&#x534A;)&#x7D14;&#x624B;&#x5DE5;&#x6253;&#x9020; page3 component"></a>(&#x534A;)&#x7D14;&#x624B;&#x5DE5;&#x6253;&#x9020; page3 component</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#套用-Component"><span class="nav-number">1.1.4.</span> <span class="nav-text"><a href="#&#x5957;&#x7528;-Component" class="headerlink" title="&#x5957;&#x7528; Component"></a>&#x5957;&#x7528; Component</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#元件-Component"><span class="nav-number">1.</span> <span class="nav-text">元件 (Component)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何新增元件"><span class="nav-number">1.1.</span> <span class="nav-text">如何新增元件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#練習新增一個-page1-component"><span class="nav-number">1.1.1.</span> <span class="nav-text">練習新增一個 page1 component</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#練習新增一個最陽春的-page2-component"><span class="nav-number">1.1.2.</span> <span class="nav-text">練習新增一個最陽春的 page2 component</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#半-純手工打造-page3-component"><span class="nav-number">1.1.3.</span> <span class="nav-text">(半)純手工打造 page3 component</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#套用-Component"><span class="nav-number">1.1.4.</span> <span class="nav-text">套用 Component</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -853,7 +853,7 @@ export class AppModule { }
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-Jonny Huang"></i>
   </span>

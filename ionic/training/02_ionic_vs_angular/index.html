@@ -279,12 +279,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-ionic">
-          <a href="/ionic/" rel="section">
+        <li class="menu-item menu-item-docker">
+          <a href="/docker/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-paperclip"></i> <br />
             
-            Ionic
+            menu.docker
           </a>
         </li>
       
@@ -605,6 +605,8 @@ export class MyApp {
 </code></pre>
 <blockquote>
 <p>眼尖的人其實可以發現 Ionic 預設在 <strong>AppModule</strong> 內比 Angular 專案多設定了 <code>entryComponents</code> 屬性。<br>查詢 Angular 官網的 <a href="https://angular.io/guide/dynamic-component-loader" target="_blank" rel="noopener">Dynamic Component Loader</a> 可以看到說明，但是說明感覺很籠統，目前看起來應該是說只要是透過 <code>ViewContainerRef.createComponent()</code> 來建立的元件都需要註冊到 <code>entryComponents</code>。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_06.png" alt="">  </p>
+</blockquote>
+<blockquote>
 <p>從建構式內還可看到 <code>splashScreen.hide();</code>，Ionic 也提供給我們可以設定程式啟動的等待畫面。<br><code>statusBar.styleDefault();</code> 則是讓我們設定手機最上方的狀態列，例如我們希望 App 佔滿整個螢幕時可以把狀態列隱藏起來。</p>
 </blockquote>
 <h3 id="Angular-路由-vs-Ionic-導覽"><a href="#Angular-路由-vs-Ionic-導覽" class="headerlink" title="Angular 路由 vs. Ionic 導覽"></a>Angular 路由 vs. Ionic 導覽</h3><p>開啟 Angular 專案 <code>src\app\app.component.html</code>，我們可以看到最後一行也是最重要的一行 <code>&lt;router-outlet&gt;&lt;/router-outlet&gt;</code>，Angular 的 <strong>路由模組</strong>(<strong>RouterModule</strong>) 就是透過這個 <strong>路由插座</strong>(<code>router-outlet</code>) 來插入符合路由規則的元件。</p>
@@ -1063,7 +1065,7 @@ export class Page1Page {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -1085,7 +1087,7 @@ export class Page1Page {
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">標籤</span>
               
             </div>
@@ -1171,7 +1173,7 @@ export class Page1Page {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ionic-與-Angular-比較"><span class="nav-number">1.</span> <span class="nav-text"><a href="#Ionic-&#x8207;-Angular-&#x6BD4;&#x8F03;" class="headerlink" title="Ionic &#x8207; Angular &#x6BD4;&#x8F03;"></a>Ionic &#x8207; Angular &#x6BD4;&#x8F03;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#啟動流程"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x555F;&#x52D5;&#x6D41;&#x7A0B;" class="headerlink" title="&#x555F;&#x52D5;&#x6D41;&#x7A0B;"></a>&#x555F;&#x52D5;&#x6D41;&#x7A0B;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#index-html"><span class="nav-number">1.1.1.</span> <span class="nav-text"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-ts"><span class="nav-number">1.1.2.</span> <span class="nav-text"><a href="#main-ts" class="headerlink" title="main.ts"></a>main.ts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#app-module-ts"><span class="nav-number">1.1.3.</span> <span class="nav-text"><a href="#app-module-ts" class="headerlink" title="app.module.ts"></a>app.module.ts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AppComponent-vs-MyApp"><span class="nav-number">1.1.4.</span> <span class="nav-text"><a href="#AppComponent-vs-MyApp" class="headerlink" title="AppComponent vs. MyApp"></a>AppComponent vs. MyApp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Angular-路由-vs-Ionic-導覽"><span class="nav-number">1.1.5.</span> <span class="nav-text"><a href="#Angular-&#x8DEF;&#x7531;-vs-Ionic-&#x5C0E;&#x89BD;" class="headerlink" title="Angular &#x8DEF;&#x7531; vs. Ionic &#x5C0E;&#x89BD;"></a>Angular &#x8DEF;&#x7531; vs. Ionic &#x5C0E;&#x89BD;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NavController"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#NavController" class="headerlink" title="NavController"></a>NavController</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Page"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#Page" class="headerlink" title="Page"></a>Page</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#延遲載入-Lazy-loaded"><span class="nav-number">1.3.1.</span> <span class="nav-text"><a href="#&#x5EF6;&#x9072;&#x8F09;&#x5165;-Lazy-loaded" class="headerlink" title="&#x5EF6;&#x9072;&#x8F09;&#x5165; (Lazy loaded)"></a>&#x5EF6;&#x9072;&#x8F09;&#x5165; (Lazy loaded)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#後進先出-LIFO：Last-In-First-Out"><span class="nav-number">1.3.2.</span> <span class="nav-text"><a href="#&#x5F8C;&#x9032;&#x5148;&#x51FA;-LIFO&#xFF1A;Last-In-First-Out" class="headerlink" title="&#x5F8C;&#x9032;&#x5148;&#x51FA; (LIFO&#xFF1A;Last In First Out)"></a>&#x5F8C;&#x9032;&#x5148;&#x51FA; (LIFO&#xFF1A;Last In First Out)</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ionic-與-Angular-比較"><span class="nav-number">1.</span> <span class="nav-text">Ionic 與 Angular 比較</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#啟動流程"><span class="nav-number">1.1.</span> <span class="nav-text">啟動流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#index-html"><span class="nav-number">1.1.1.</span> <span class="nav-text">index.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-ts"><span class="nav-number">1.1.2.</span> <span class="nav-text">main.ts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#app-module-ts"><span class="nav-number">1.1.3.</span> <span class="nav-text">app.module.ts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AppComponent-vs-MyApp"><span class="nav-number">1.1.4.</span> <span class="nav-text">AppComponent vs. MyApp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Angular-路由-vs-Ionic-導覽"><span class="nav-number">1.1.5.</span> <span class="nav-text">Angular 路由 vs. Ionic 導覽</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NavController"><span class="nav-number">1.2.</span> <span class="nav-text">NavController</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Page"><span class="nav-number">1.3.</span> <span class="nav-text">Page</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#延遲載入-Lazy-loaded"><span class="nav-number">1.3.1.</span> <span class="nav-text">延遲載入 (Lazy loaded)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#後進先出-LIFO：Last-In-First-Out"><span class="nav-number">1.3.2.</span> <span class="nav-text">後進先出 (LIFO：Last In First Out)</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1194,7 +1196,7 @@ export class Page1Page {
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-Jonny Huang"></i>
   </span>

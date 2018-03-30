@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jonny-huang.github.io/docker/docker_02/</loc>
+    
+    <lastmod>2018-03-30T09:21:39.041Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jonny-huang.github.io/docker/docker_01/</loc>
     
-    <lastmod>2018-03-26T00:43:56.779Z</lastmod>
+    <lastmod>2018-03-30T08:53:32.238Z</lastmod>
     
   </url>
   
@@ -135,14 +142,14 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_windows/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_ubuntu/</loc>
     
     <lastmod>2017-09-15T00:36:59.257Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_ubuntu/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_windows/</loc>
     
     <lastmod>2017-09-15T00:36:59.257Z</lastmod>
     

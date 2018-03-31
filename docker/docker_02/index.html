@@ -147,7 +147,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/02/docker02_049.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/02/docker02_047.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/02/docker02_048.png">
-<meta property="og:updated_time" content="2018-03-30T09:25:25.677Z">
+<meta property="og:updated_time" content="2018-03-31T00:50:20.192Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用 Docker 建立多種資料庫的開發環境">
 <meta name="twitter:description" content="前言上一篇 用 Docker 建立不同 Angular CLI 版本的開發環境 我們利用 Docker 將 Angular CLI 封裝在容器(Container)內，其實筆者一開始是想透過 Docker 來執行資料庫，因為我們可能因應客戶環境不同系統後端所對應的資料庫也不同，因此常常需要安裝不同類型的資料庫以便系統開發，不過如果本機端安裝多套資料庫除了增加 CPU 效能及記憶體的負擔外，相容性也">
@@ -375,8 +375,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2018-03-30T17:25:25+08:00">
-                2018/03/30
+              <time title="更新於" itemprop="dateModified" datetime="2018-03-31T08:50:20+08:00">
+                2018/03/31
               </time>
             
           </span>
@@ -539,7 +539,7 @@
 <p>筆者特別先清除本機上的映像檔，整個安裝過程由網路下載映像檔到整個安裝設定完成不用到2分鐘，以往那種費時的安裝過程現在已經沒有了。<br><img src="/images/docker/02/docker02_042.gif" alt="">  </p>
 </blockquote>
 <p>比較特別的是在建立資料庫時會出現錯誤，由錯誤訊息來看應該是與資料庫儲存路徑有關，大概是 SSMS 無法正確讀取 Linux 路徑，而又傳遞包含空值(null)儲存路徑的語法給資料庫，造成資料庫處理發生異常。<br><img src="/images/docker/02/docker02_045.png" alt=""><br>目前我們手動下語法來解決此問題，簡單的說就是不要指定儲存路徑讓資料庫使用預設路徑來建立，或者是傳遞<strong>正確的儲存路徑</strong>給資料庫。<br><img src="/images/docker/02/docker02_046.png" alt=""><br>目前架構如下：<br><img src="/images/docker/02/docker02_049.png" alt="">  </p>
-<h1 id="後計"><a href="#後計" class="headerlink" title="後計"></a>後計</h1><p>我們可以透過指令 <code>docker stats</code> 來查看目前容器使用資源的狀況，可以發現既使3個資料庫都開啟的情況下，待機下也才耗費1G多的記憶體，CPU的資源也使用非常少，對於開發環境其實幫助很大，尤其我們還關閉不需要使用的資料庫，隨時依開發需求只啟用必要的資料庫，這種秒開秒關的方式應該很適合有點惰性的我。<br><img src="/images/docker/02/docker02_047.png" alt=""><br>我們從 <a href="https://store.docker.com/search?certification_status=certified&amp;q=oracle&amp;source=verified&amp;type=image" target="_blank" rel="noopener">Docker Store</a> 上其實也可看到企業版的 <a href="https://store.docker.com/images/oracle-database-enterprise-edition" target="_blank" rel="noopener">Oracle Database Enterprise Edition</a>、<a href="https://store.docker.com/images/mysql-enterprise-server" target="_blank" rel="noopener">MySQL Server Enterprise Edition</a>，在 <a href="https://db-engines.com/en/ranking" target="_blank" rel="noopener">DB-Engines</a> 排名上比較常見的資料庫應該都可以找到 Docker 的映像檔。<br><img src="/images/docker/02/docker02_048.png" alt=""><br>雖然筆者習慣將 <strong>Container</strong> 與 <strong>Volume</strong> 都給予名稱，但是若考量到系統佈署時就不見得很合適了，因為當主機上要執行的容器很多時可能會有名稱重複的問題，更不用說要叢集化管理多台主機時，給予名稱可能會增加平衡負載的困難，不過事事無絕對，如果事先討論制定好命名規則，對於中小型系統名稱可以更便於管理。</p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>我們可以透過指令 <code>docker stats</code> 來查看目前容器使用資源的狀況，可以發現既使3個資料庫都開啟的情況下，待機下也才耗費1G多的記憶體，CPU的資源也使用非常少，對於開發環境其實幫助很大，尤其我們還關閉不需要使用的資料庫，隨時依開發需求只啟用必要的資料庫，這種秒開秒關的方式應該很適合有點惰性的我。<br><img src="/images/docker/02/docker02_047.png" alt=""><br>我們從 <a href="https://store.docker.com/search?certification_status=certified&amp;q=oracle&amp;source=verified&amp;type=image" target="_blank" rel="noopener">Docker Store</a> 上其實也可看到企業版的 <a href="https://store.docker.com/images/oracle-database-enterprise-edition" target="_blank" rel="noopener">Oracle Database Enterprise Edition</a>、<a href="https://store.docker.com/images/mysql-enterprise-server" target="_blank" rel="noopener">MySQL Server Enterprise Edition</a>，在 <a href="https://db-engines.com/en/ranking" target="_blank" rel="noopener">DB-Engines</a> 排名上比較常見的資料庫應該都可以找到 Docker 的映像檔。<br><img src="/images/docker/02/docker02_048.png" alt=""><br>雖然筆者習慣將 <strong>Container</strong> 與 <strong>Volume</strong> 都給予名稱，但是若考量到系統佈署時就不見得很合適了，因為當主機上要執行的容器很多時可能會有名稱重複的問題，更不用說要叢集化管理多台主機時，給予名稱可能會增加平衡負載的困難，不過事事無絕對，如果事先討論制定好命名規則，對於中小型系統名稱可以更便於管理。</p>
 
       
     </div>
@@ -787,7 +787,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-for-Ubuntu"><span class="nav-number">2.</span> <span class="nav-text">Docker for Ubuntu</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Volume"><span class="nav-number">3.</span> <span class="nav-text">Volume</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立資料庫：PostgreSQL"><span class="nav-number">4.</span> <span class="nav-text">建立資料庫：PostgreSQL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自訂橋接器：Bridge"><span class="nav-number">5.</span> <span class="nav-text">自訂橋接器：Bridge</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立資料庫：Mariadb"><span class="nav-number">6.</span> <span class="nav-text">建立資料庫：Mariadb</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立資料庫：Microsofr-SQL-Server-2017"><span class="nav-number">7.</span> <span class="nav-text">建立資料庫：Microsofr SQL Server 2017</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後計"><span class="nav-number">8.</span> <span class="nav-text">後計</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-for-Ubuntu"><span class="nav-number">2.</span> <span class="nav-text">Docker for Ubuntu</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Volume"><span class="nav-number">3.</span> <span class="nav-text">Volume</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立資料庫：PostgreSQL"><span class="nav-number">4.</span> <span class="nav-text">建立資料庫：PostgreSQL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自訂橋接器：Bridge"><span class="nav-number">5.</span> <span class="nav-text">自訂橋接器：Bridge</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立資料庫：Mariadb"><span class="nav-number">6.</span> <span class="nav-text">建立資料庫：Mariadb</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立資料庫：Microsofr-SQL-Server-2017"><span class="nav-number">7.</span> <span class="nav-text">建立資料庫：Microsofr SQL Server 2017</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">8.</span> <span class="nav-text">後記</span></a></li></ol></div>
             
 
           </div>

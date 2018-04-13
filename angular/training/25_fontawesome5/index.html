@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Font Awesome,Angular" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+  <meta property="fb:admins" content="fb267234890438499" />
+  <meta property="fb:app_id" content="267234890438499" />
+
+
+
+<meta name="description" content="前言Font Awesome 可以說是最熱門的圖示之一，它除了開源外還提供了免費版本，最新的 Font Awesome 5 付費版本就有 1718 個圖示，免費版也有 991 個圖示，因此許多網頁版型都找的到它的蹤跡。    由 Google 推出的 Material icons 也是不錯的選擇，只是相對圖示較少。  PrimeNGPrimeNG 是 Angular 上的知名 UI 元件(Comp">
+<meta name="keywords" content="Font Awesome,Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="土法煉鋼的升級之路：Font Awesome 5">
+<meta property="og:url" content="https://jonny-huang.github.io/angular/training/25_fontawesome5/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言Font Awesome 可以說是最熱門的圖示之一，它除了開源外還提供了免費版本，最新的 Font Awesome 5 付費版本就有 1718 個圖示，免費版也有 991 個圖示，因此許多網頁版型都找的到它的蹤跡。    由 Google 推出的 Material icons 也是不錯的選擇，只是相對圖示較少。  PrimeNGPrimeNG 是 Angular 上的知名 UI 元件(Comp">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_01.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_02.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_03.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_06.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_08.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_04.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_07.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_10.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_11.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_12.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_05.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_13.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_14.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_15.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_16.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_17.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_18.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_19.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_20.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_21.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_22.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_23.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_24.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_25.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_26.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_27.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_28.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_29.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_30.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_31.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_32.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_33.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_34.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_35.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
+<meta property="og:updated_time" content="2018-04-13T09:03:03.791Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="土法煉鋼的升級之路：Font Awesome 5">
+<meta name="twitter:description" content="前言Font Awesome 可以說是最熱門的圖示之一，它除了開源外還提供了免費版本，最新的 Font Awesome 5 付費版本就有 1718 個圖示，免費版也有 991 個圖示，因此許多網頁版型都找的到它的蹤跡。    由 Google 推出的 Material icons 也是不錯的選擇，只是相對圖示較少。  PrimeNGPrimeNG 是 Angular 上的知名 UI 元件(Comp">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Jonny'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jonny-huang.github.io/angular/training/25_fontawesome5/"/>
+
+
+
+
+
+  <title>土法煉鋼的升級之路：Font Awesome 5 | Jonny Huang 的學習筆記</title>
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '267234890438499',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_tw/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jonny Huang 的學習筆記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Angular</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            目錄
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-angular">
+          <a href="/angular/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-paperclip"></i> <br />
+            
+            Angular
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-docker">
+          <a href="/docker/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-paperclip"></i> <br />
+            
+            menu.docker
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/25_fontawesome5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">土法煉鋼的升級之路：Font Awesome 5</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新於</span>
+              
+              <time title="更新於" itemprop="dateModified" datetime="2018-04-13T17:03:03+08:00">
+                2018/04/13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Training/" itemprop="url" rel="index">
+                    <span itemprop="name">Training</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="https://fontawesome.com/" target="_blank" rel="noopener">Font Awesome</a> 可以說是最熱門的圖示之一，它除了開源外還提供了免費版本，最新的 Font Awesome 5 付費版本就有 1718 個圖示，免費版也有 991 個圖示，因此許多網頁版型都找的到它的蹤跡。<br><img src="/images/angular/training/fontawesome/fontawesome_01.png" alt="">  </p>
+<blockquote>
+<p>由 Google 推出的 <a href="https://material.io/icons/" target="_blank" rel="noopener">Material icons</a> 也是不錯的選擇，只是相對圖示較少。</p>
+</blockquote>
+<h1 id="PrimeNG"><a href="#PrimeNG" class="headerlink" title="PrimeNG"></a>PrimeNG</h1><p><a href="https://www.primefaces.org/primeng/" target="_blank" rel="noopener">PrimeNG</a> 是 Angular 上的知名 UI 元件(Component)，我們可以免費使用這些元件，當然您也可以付費購買他們的樣版，非常佛心的它是一次購買終身升級(應該吧)，會隨著 Angular 的更新腳步不斷釋出新版本，目前它的圖示是採用 Font Awesome 4，這是便使用它來測試升級到 Font Awesome 5 的結果。  </p>
+<blockquote>
+<p>有興趣使用 PrimeNG 的人可以先看看 <a href="https://www.youtube.com/watch?v=SkwEBL6U014&amp;feature=youtu.be" target="_blank" rel="noopener">Angular 線上讀書會：[無主題E10] PrimeNG</a>。</p>
+</blockquote>
+<p>首先先利用 Angular CLI 建立一個 Angular 專案，指令如下：<br><code>ng new demo-primeng</code><br><img src="/images/angular/training/fontawesome/fontawesome_02.png" alt="">  </p>
+<p>接著我們參照官網 <a href="https://www.primefaces.org/primeng/#/setup" target="_blank" rel="noopener">Get Started</a> 說明來加入 PrimeNG，由說明提示 Angular 4 開始多了動畫模組(BrowserAnimationsModule)來協助我們處理 CSS 動畫效果，如果需要可以加入到專案內。<br><img src="/images/angular/training/fontawesome/fontawesome_03.png" alt=""><br>開啟 <code>src\app.module.ts</code>，並將 BrowserAnimationsModule 加入到 AppModule 內。<br><img src="/images/angular/training/fontawesome/fontawesome_06.png" alt="">  </p>
+<blockquote>
+<p>現在的 Angular CLI 在建立專案時便會順便幫我們安裝 <code>@angular/animations</code>(忘記從哪一版開始)，如果專案沒有的話也可以自己透過 <code>npm install @angular/animations --save</code> 指令來安裝。</p>
+</blockquote>
+<p>接著便要求我們安裝 <code>primeng</code>、<code>font-awesome</code>，並載入相關的 CSS 樣式到 <code>.angular-cli.json</code> 內。<br><img src="/images/angular/training/fontawesome/fontawesome_08.png" alt=""><br>因為我們要使用 Font Awesome 5，所以先安裝 <code>primeng</code>，指令如下：<br><code>npm install --save primeng</code><br><img src="/images/angular/training/fontawesome/fontawesome_04.png" alt=""><br>接著開啟 <code>.angular-cli.json</code> 將說明頁的 css 路徑複製到 styles 內，由於我們未安裝 Font Awesome，因此便省略該連結。<br><img src="/images/angular/training/fontawesome/fontawesome_07.png" alt=""><br>我們開起 <a href="https://fontawesome.com/" target="_blank" rel="noopener">Font Awesome 首頁</a>下載免費版。<br><img src="/images/angular/training/fontawesome/fontawesome_10.png" alt=""><br>將壓縮檔內的資料夾 web-fonts-with-css 複製到專案內的 assets，筆者只保留字型與 css，並將資料夾修改為 font-awesome。<br><img src="/images/angular/training/fontawesome/fontawesome_11.png" alt=""><br>接著在首頁(<code>index.html</code>)加入連結。<br><img src="/images/angular/training/fontawesome/fontawesome_12.png" alt="">  </p>
+<blockquote>
+<p>由 Font Awesome 官方文件 <a href="https://fontawesome.com/how-to-use/js-component-packages" target="_blank" rel="noopener">JS Component Packages</a> 可以知道從第5版開始套件名稱改變了，免費版本安裝指令如下：<br><code>npm install --save @fortawesome/fontawesome-free-webfonts</code><br><img src="/images/angular/training/fontawesome/fontawesome_05.png" alt=""></p>
+</blockquote>
+<p>開啟 <code>src\assets\font-awesome\fontawesome-all.css</code> 可以看到 <code>.fas</code>、<code>.far</code>、<code>.fal</code>、<code>.fab</code> 剛好對應到4種字型 <code>solid</code>、<code>regular</code>、<code>light</code>、<code>brands</code>(免費版沒有提供 <code>light</code>)，原本的 <code>fa</code> 也被保留下來，所以使用 Font Awesome 5 應該是沒有太大的問題。<br><img src="/images/angular/training/fontawesome/fontawesome_13.png" alt="">  </p>
+<p>接著我們建立一個 <strong>SharedModule</strong>(<code>src\app\shared-primeng.module.ts</code>) 來存放與管理 PrimeNG 元件，筆者習慣一開始先將所有元件都匯入，最後階段再將沒有用到的元件給註解且來，避免開發過程中因為漏加元件而出錯。<br><img src="/images/angular/training/fontawesome/fontawesome_14.png" alt="">  </p>
+<blockquote>
+<p>可參考 Angular Material 官方教學 <a href="https://material.angular.io/guide/getting-started" target="_blank" rel="noopener">Getting started</a>，或者是 <a href="https://ithelp.ithome.com.tw/articles/10192517" target="_blank" rel="noopener">[Angular Material完全攻略] Day 02 - 環境設定 &amp; 安裝 ＆ Hello World</a></p>
+</blockquote>
+<p>再來將 SharedModule 加入到 <strong>AppModule</strong>(<code>src\app\app.module.ts</code>) 內，我們便可以開始使用。<br><img src="/images/angular/training/fontawesome/fontawesome_15.png" alt="">  </p>
+<h1 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h1><p>我們選擇一個元件說明頁面並將範例複製到專案內來測試，筆者選擇 <strong>InputGroup</strong>，剛好範例也使用到 Font Awesome 圖示。<br><img src="/images/angular/training/fontawesome/fontawesome_16.png" alt=""><br>將範例複製到 <code>src\app\app.component.html</code> 內。  </p>
+<pre><code>&lt;h3 class=&quot;first&quot;&gt;Addons&lt;&#x2F;h3&gt;
+&lt;div class=&quot;ui-g ui-fluid&quot;&gt;
+    &lt;div class=&quot;ui-g-12 ui-md-4&quot;&gt;
+        &lt;div class=&quot;ui-inputgroup&quot;&gt;
+            &lt;span class=&quot;ui-inputgroup-addon&quot;&gt;&lt;i class=&quot;fa fa-user&quot;&gt;&lt;&#x2F;i&gt;&lt;&#x2F;span&gt;
+            &lt;input type=&quot;text&quot; pInputText placeholder=&quot;Username&quot;&gt;
+        &lt;&#x2F;div&gt;
+    &lt;&#x2F;div&gt;
+
+    &lt;div class=&quot;ui-g-12 ui-md-4&quot;&gt;
+        &lt;div class=&quot;ui-inputgroup&quot;&gt;
+            &lt;span class=&quot;ui-inputgroup-addon&quot;&gt;$&lt;&#x2F;span&gt;
+            &lt;input type=&quot;text&quot; pInputText placeholder=&quot;Price&quot;&gt;
+            &lt;span class=&quot;ui-inputgroup-addon&quot;&gt;.00&lt;&#x2F;span&gt;
+        &lt;&#x2F;div&gt;
+    &lt;&#x2F;div&gt;
+
+    &lt;div class=&quot;ui-g-12 ui-md-4&quot;&gt;
+        &lt;div class=&quot;ui-inputgroup&quot;&gt;
+            &lt;span class=&quot;ui-inputgroup-addon&quot;&gt;www&lt;&#x2F;span&gt;
+            &lt;input type=&quot;text&quot; pInputText placeholder=&quot;Website&quot;&gt;
+        &lt;&#x2F;div&gt;
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+</code></pre>
+<p>我們透過 <code>ng serve</code> 來啟動專案，由瀏覽器觀看圖示也正常顯示，看來一切都沒問題。<br><img src="/images/angular/training/fontawesome/fontawesome_17.png" alt="">  </p>
+<h2 id="Dialog"><a href="#Dialog" class="headerlink" title="Dialog"></a>Dialog</h2><p>沒問題的話當然就不會浪費這麼多唇舌說這麼多，我們開起 <a href="https://www.primefaces.org/primeng/#/dialog" target="_blank" rel="noopener">Dialog 說明頁面</a> 將範例複製到專案內。<br><img src="/images/angular/training/fontawesome/fontawesome_18.png" alt=""><br>開啟 <code>src\app\app.component.html</code> 並添加 Dialog 元件：</p>
+<pre><code>&lt;h3 class=&quot;first&quot;&gt;Addons&lt;&#x2F;h3&gt;
+&lt;div class=&quot;ui-g ui-fluid&quot;&gt;
+    &lt;div class=&quot;ui-g-12 ui-md-4&quot;&gt;
+        &lt;div class=&quot;ui-inputgroup&quot;&gt;
+            &lt;span class=&quot;ui-inputgroup-addon&quot;&gt;&lt;i class=&quot;fa fa-user&quot;&gt;&lt;&#x2F;i&gt;&lt;&#x2F;span&gt;
+            &lt;input type=&quot;text&quot; pInputText placeholder=&quot;Username&quot;&gt;
+        &lt;&#x2F;div&gt;
+    &lt;&#x2F;div&gt;
+
+    &lt;div class=&quot;ui-g-12 ui-md-4&quot;&gt;
+        &lt;div class=&quot;ui-inputgroup&quot;&gt;
+            &lt;span class=&quot;ui-inputgroup-addon&quot;&gt;$&lt;&#x2F;span&gt;
+            &lt;input type=&quot;text&quot; pInputText placeholder=&quot;Price&quot;&gt;
+            &lt;span class=&quot;ui-inputgroup-addon&quot;&gt;.00&lt;&#x2F;span&gt;
+        &lt;&#x2F;div&gt;
+    &lt;&#x2F;div&gt;
+
+    &lt;div class=&quot;ui-g-12 ui-md-4&quot;&gt;
+        &lt;div class=&quot;ui-inputgroup&quot;&gt;
+            &lt;span class=&quot;ui-inputgroup-addon&quot;&gt;www&lt;&#x2F;span&gt;
+            &lt;input type=&quot;text&quot; pInputText placeholder=&quot;Website&quot;&gt;
+        &lt;&#x2F;div&gt;
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+
+&lt;p-dialog header=&quot;Title&quot; [(visible)]=&quot;display&quot;&gt;
+    Content
+&lt;&#x2F;p-dialog&gt;
+
+&lt;button type=&quot;text&quot; (click)=&quot;showDialog()&quot; pButton icon=&quot;fa-external-link-square&quot; label=&quot;Show&quot;&gt;&lt;&#x2F;button&gt;
+</code></pre>
+<p>開啟 <code>src\app\app.component.ts</code> 並修改如下：</p>
+<pre><code>import { Component } from &#39;@angular&#x2F;core&#39;;
+
+@Component({
+  selector: &#39;app-root&#39;,
+  templateUrl: &#39;.&#x2F;app.component.html&#39;,
+  styleUrls: [&#39;.&#x2F;app.component.css&#39;]
+})
+export class AppComponent {
+  display = false;
+  showDialog() {
+    this.display = true;
+  }
+}
+</code></pre>
+<p>執行 <code>ng serve</code>，並開啟瀏覽器，看起來正常，點選按鈕後會彈出對話是方塊，不過按鈕的圖示(fa-external-link-square)怎麼不見了。<br><img src="/images/angular/training/fontawesome/fontawesome_19.png" alt=""><br>連到 <a href="https://fontawesome.com/icons?d=gallery&amp;q=external-link-square" target="_blank" rel="noopener">Font Awesome 官網</a> 查詢發現 <code>external-link-square</code> 圖示怎麼好像變成付費版才有。<br><img src="/images/angular/training/fontawesome/fontawesome_20.png" alt=""><br>再搜尋一下官方資料，從 <a href="https://fontawesome.com/how-to-use/upgrading-from-4" target="_blank" rel="noopener">Upgrading from Version 4</a> 可以發現原來 Font Awesome 5 仍然保留 Font Awesome 4 的圖示，只是名稱改變了。<br><img src="/images/angular/training/fontawesome/fontawesome_21.png" alt=""><br>開啟 <code>src\app\app.component.html</code> 並將圖示名稱<code>fa-external-link-square</code> 改成 <code>fa-external-link-square-alt</code>，重新執行後就發現圖示出現了。</p>
+<pre><code>...
+&lt;p-dialog header=&quot;Title&quot; [(visible)]=&quot;display&quot;&gt;
+    Content
+&lt;&#x2F;p-dialog&gt;
+
+&lt;button type=&quot;text&quot; (click)=&quot;showDialog()&quot; pButton icon=&quot;fa-external-link-square-alt&quot; label=&quot;Show&quot;&gt;&lt;&#x2F;button&gt;
+</code></pre>
+<p><img src="/images/angular/training/fontawesome/fontawesome_22.png" alt="">  </p>
+<h2 id="Close"><a href="#Close" class="headerlink" title="Close"></a>Close</h2><p>從官方範例來看 Dialog 元件再標題列的右方還提供關閉按鈕，這還是蠻實用的功能，當然我們也可以自己在下方手動加入按鈕。<br><img src="/images/angular/training/fontawesome/fontawesome_23.png" alt=""><br>從官方文件可以看到我們可以透過 <code>closable</code> 屬性來設定，但是預設值已經是 <code>true</code>，照理說應該會出現才對，難道是預設值變成 <code>false</code> 而文件未更新。<br><img src="/images/angular/training/fontawesome/fontawesome_24.png" alt=""><br>開啟 <code>src\app\app.component.html</code> 並添加 <code>closable</code> 屬性。</p>
+<pre><code>...
+&lt;p-dialog header=&quot;Title&quot; [(visible)]=&quot;display&quot; [closable]=&quot;true&quot;&gt;
+    Content
+&lt;&#x2F;p-dialog&gt;
+...</code></pre>
+<p>開啟網頁發現仍然沒有出現關閉按鈕。<br><img src="/images/angular/training/fontawesome/fontawesome_25.png" alt=""><br>直接查看官方範例按鈕的內容，可以看到它是採用 <code>fa-close</code> 圖示。<br><img src="/images/angular/training/fontawesome/fontawesome_26.png" alt=""><br>查看 <a href="https://fontawesome.com/how-to-use/upgrading-from-4" target="_blank" rel="noopener">Upgrading from Version 4</a> 可以發現 <code>close</code> 被改成 <code>times</code>，而且既使付費版也沒有同名圖示。<br><img src="/images/angular/training/fontawesome/fontawesome_27.png" alt=""><br><img src="/images/angular/training/fontawesome/fontawesome_28.png" alt=""><br>問題來了，Dialog 元件並沒有提供修改圖示功能，難不成要降回 Font Awesome 4，或者同事載入 4、5，亦或修改原始碼。  </p>
+<blockquote>
+<p>官方提供的 [Version 4 Shim (SVG with JavaScript only)**] 的升級模式，對於採用圖示字型(web-fonts-with-css)的樣版有可能會出現跑版問題。</p>
+</blockquote>
+<p>其實既然既然 Font Awesome 5 也有涵蓋 Font Awesome 4 的圖示，那我們所缺少的就是相關的 CSS 選擇器設定，我們開起 <code>src\assets\font-awesome\css\fontawesome-all.css</code>，搜尋 <code>fa-times</code> 便可以查出該選擇器。<br><img src="/images/angular/training/fontawesome/fontawesome_29.png" alt=""><br>接著我們建立一個 <code>fontawesome-support-v4.css</code>，將 <code>fa-times</code> 選擇器複製到檔案內並將名稱改回 Font Awesome 4 的 <code>fa-close</code>。<br><img src="/images/angular/training/fontawesome/fontawesome_30.png" alt=""><br>接著我們在 <code>index.html</code> 加入連結。<br><img src="/images/angular/training/fontawesome/fontawesome_31.png" alt=""><br>開啟瀏覽器可以看到關閉按鈕圖示已經出現了。<br><img src="/images/angular/training/fontawesome/fontawesome_32.png" alt="">  </p>
+<h1 id="修仙之路"><a href="#修仙之路" class="headerlink" title="修仙之路"></a>修仙之路</h1><p>既然結果可行，就索性把剩下的選擇器都給補上。<br><img src="/images/angular/training/fontawesome/fontawesome_33.png" alt=""><br>接著我們把 <code>src\app\app.component.html</code> 恢復回官方範例。<br><img src="/images/angular/training/fontawesome/fontawesome_34.png" alt=""><br>開啟瀏覽器可以發現一切正常。<br><img src="/images/angular/training/fontawesome/fontawesome_35.png" alt="">  </p>
+<p><img src="/images/download.png" width="36"><a href="/uploads/fontawesome-support-v4.css"><strong>fontawesome-support-v4.css</strong></a><br><a href="/uploads/fontawesome-support-v4.min.css"><strong>fontawesome-support-v4.min.css</strong></a> </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Font-Awesome/" rel="tag"># Font Awesome</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/docker/docker_02/" rel="next" title="用 Docker 建立多種資料庫的開發環境">
+                <i class="fa fa-chevron-left"></i> 用 Docker 建立多種資料庫的開發環境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Jonny Huang" />
+          <p class="site-author-name" itemprop="name">Jonny Huang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分類</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PrimeNG"><span class="nav-number">2.</span> <span class="nav-text">PrimeNG</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#測試"><span class="nav-number">3.</span> <span class="nav-text">測試</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dialog"><span class="nav-number">3.1.</span> <span class="nav-text">Dialog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Close"><span class="nav-number">3.2.</span> <span class="nav-text">Close</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修仙之路"><span class="nav-number">4.</span> <span class="nav-text">修仙之路</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-Jonny Huang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
+<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+      prettyPrint();
+  });
+</script>
+
+</body>
+</html>

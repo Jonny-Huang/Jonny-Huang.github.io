@@ -133,7 +133,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_34.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/fontawesome/fontawesome_35.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2018-04-13T09:57:59.826Z">
+<meta property="og:updated_time" content="2018-04-13T09:58:50.933Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="土法煉鋼的升級之路：Font Awesome 5">
 <meta name="twitter:description" content="前言Font Awesome 可以說是最熱門的圖示之一，它除了開源外還提供了免費版本，最新的 Font Awesome 5 付費版本就有 1718 個圖示，免費版也有 991 個圖示，因此許多網頁版型都找的到它的蹤跡。    由 Google 推出的 Material icons 也是不錯的選擇，只是相對圖示較少。  PrimeNGPrimeNG 是 Angular 上的知名 UI 元件(Comp">
@@ -361,7 +361,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2018-04-13T17:57:59+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2018-04-13T17:58:50+08:00">
                 2018/04/13
               </time>
             
@@ -528,7 +528,7 @@ export class AppComponent {
 ...</code></pre>
 <p>開啟網頁發現仍然沒有出現關閉按鈕。<br><img src="/images/angular/training/fontawesome/fontawesome_25.png" alt=""><br>直接查看官方範例按鈕的內容，可以看到它是採用 <code>fa-close</code> 圖示。<br><img src="/images/angular/training/fontawesome/fontawesome_26.png" alt=""><br>查看 <a href="https://fontawesome.com/how-to-use/upgrading-from-4" target="_blank" rel="noopener">Upgrading from Version 4</a> 可以發現 <code>close</code> 被改成 <code>times</code>，而且既使付費版也沒有同名圖示。<br><img src="/images/angular/training/fontawesome/fontawesome_27.png" alt=""><br><img src="/images/angular/training/fontawesome/fontawesome_28.png" alt=""><br>問題來了，Dialog 元件並沒有提供修改圖示功能，難不成要降回 Font Awesome 4，或者同時載入 4、5，亦或修改原始碼。  </p>
 <blockquote>
-<p>官方提供的 [Version 4 Shim (SVG with JavaScript only)**] 的升級模式，對於採用圖示字型(web-fonts-with-css)的樣版有可能會出現跑版問題。</p>
+<p>官方提供的 <strong>Version 4 Shim (SVG with JavaScript only)</strong> 的升級模式，對於採用圖示字型(web-fonts-with-css)的樣版有可能會出現跑版問題。</p>
 </blockquote>
 <p>其實既然既然 Font Awesome 5 也有涵蓋 Font Awesome 4 的圖示，那我們所缺少的就是相關的 CSS 選擇器設定，我們開起 <code>src\assets\font-awesome\css\fontawesome-all.css</code>，搜尋 <code>fa-times</code> 便可以查出該選擇器。<br><img src="/images/angular/training/fontawesome/fontawesome_29.png" alt=""><br>接著我們建立一個 <code>fontawesome-support-v4.css</code>，將 <code>fa-times</code> 選擇器複製到檔案內並將名稱改回 Font Awesome 4 的 <code>fa-close</code>。<br><img src="/images/angular/training/fontawesome/fontawesome_30.png" alt=""><br>接著我們在 <code>index.html</code> 加入連結。<br><img src="/images/angular/training/fontawesome/fontawesome_31.png" alt=""><br>開啟瀏覽器可以看到關閉按鈕圖示已經出現了。<br><img src="/images/angular/training/fontawesome/fontawesome_32.png" alt="">  </p>
 <h1 id="修仙之路"><a href="#修仙之路" class="headerlink" title="修仙之路"></a>修仙之路</h1><p>既然結果可行，就索性把剩下的選擇器都給補上。<br><img src="/images/angular/training/fontawesome/fontawesome_33.png" alt=""><br>接著我們把 <code>src\app\app.component.html</code> 恢復回官方範例。<br><img src="/images/angular/training/fontawesome/fontawesome_34.png" alt=""><br>開啟瀏覽器可以發現一切正常。<br><img src="/images/angular/training/fontawesome/fontawesome_35.png" alt="">  </p>

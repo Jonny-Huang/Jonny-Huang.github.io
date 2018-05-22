@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Git,Projects" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+  <meta property="fb:admins" content="fb267234890438499" />
+  <meta property="fb:app_id" content="267234890438499" />
+
+
+
+<meta name="description" content="前言上一篇 易學難精：Git 簡單的部分(一) 我們說明了 git 基本指令的運作原理，HEAD、commit、tree、blob 也會有如下的階層樹的關係：下層的內容異動間接影響上層的雜湊值，這也是為什麼每次 Commit 都會產生新的 雜湊值(Commit Id) 的原因。   我們可以把 Repository 想像成一個圖書館，而 Commit 可以想像成書。每一次 Commit 都會產生一">
+<meta name="keywords" content="Git,Projects">
+<meta property="og:type" content="article">
+<meta property="og:title" content="易學難精：Git 簡單的部分(二)">
+<meta property="og:url" content="https://jonny-huang.github.io/projects/04_git_02/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言上一篇 易學難精：Git 簡單的部分(一) 我們說明了 git 基本指令的運作原理，HEAD、commit、tree、blob 也會有如下的階層樹的關係：下層的內容異動間接影響上層的雜湊值，這也是為什麼每次 Commit 都會產生新的 雜湊值(Commit Id) 的原因。   我們可以把 Repository 想像成一個圖書館，而 Commit 可以想像成書。每一次 Commit 都會產生一">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_081.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_082.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_083.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_084.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_085.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_086.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_087.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_111.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_088.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_089.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_112.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_113.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_114.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_090.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_091.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_092.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_093.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_094.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_095.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_098.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_096.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_097.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_099.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_100.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_101.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_103.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_102.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_105.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_106.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_107.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_108.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_109.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_110.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_115.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/git/git_116.png">
+<meta property="og:updated_time" content="2018-05-22T04:03:43.432Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="易學難精：Git 簡單的部分(二)">
+<meta name="twitter:description" content="前言上一篇 易學難精：Git 簡單的部分(一) 我們說明了 git 基本指令的運作原理，HEAD、commit、tree、blob 也會有如下的階層樹的關係：下層的內容異動間接影響上層的雜湊值，這也是為什麼每次 Commit 都會產生新的 雜湊值(Commit Id) 的原因。   我們可以把 Repository 想像成一個圖書館，而 Commit 可以想像成書。每一次 Commit 都會產生一">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/projects/git/git_081.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Jonny'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jonny-huang.github.io/projects/04_git_02/"/>
+
+
+
+
+
+  <title>易學難精：Git 簡單的部分(二) | Jonny Huang 的學習筆記</title>
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '267234890438499',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_tw/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jonny Huang 的學習筆記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Angular</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            目錄
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-slides">
+          <a href="/slides/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-slideshare"></i> <br />
+            
+            簡報
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-angular">
+          <a href="/angular/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-paperclip"></i> <br />
+            
+            Angular
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-docker">
+          <a href="/docker/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-paperclip"></i> <br />
+            
+            docker
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/projects/04_git_02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">易學難精：Git 簡單的部分(二)</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新於</span>
+              
+              <time title="更新於" itemprop="dateModified" datetime="2018-05-22T12:03:43+08:00">
+                2018/05/22
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Projects/" itemprop="url" rel="index">
+                    <span itemprop="name">Projects</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上一篇 <a href="/projects/03_git_01/">易學難精：Git 簡單的部分(一)</a> 我們說明了 git 基本指令的運作原理，HEAD、commit、tree、blob 也會有如下的階層樹的關係：<br><img src="/images/projects/git/git_081.png" alt=""><br>下層的內容異動間接影響上層的雜湊值，這也是為什麼每次 Commit 都會產生新的 雜湊值(Commit Id) 的原因。<br><img src="/images/projects/git/git_082.png" alt="">  </p>
+<p>我們可以把 <strong>Repository</strong> 想像成一個圖書館，而 <strong>Commit</strong> 可以想像成書。<br><img src="/images/projects/git/git_083.png" alt=""><br>每一次 Commit 都會產生一本書，每一本書都會被賦予唯一的 <a href="https://zh.wikipedia.org/wiki/%E5%9B%BD%E9%99%85%E6%A0%87%E5%87%86%E4%B9%A6%E5%8F%B7" target="_blank" rel="noopener">ISBN(國際標準書號)</a>，也就是 Commit Id，<strong>Tree</strong> 就好像段落章節，<strong>Blob</strong> 則是章節的內容，<strong>HEAD (Branch)</strong> 則是書名。<br><img src="/images/projects/git/git_084.png" alt=""><br>所以 Commit 除了產生一本書之外，還會把目前的書名剪下來貼到新書封面上。<br><img src="/images/projects/git/git_085.png" alt=""><br>而 Commit 會紀錄由哪一本書(Commit)延續下來的，最後就像長篇小說一樣變成系列作品(Commit History)，只是差別在於小說是不斷延伸新的內容，而 git 則是在同一個主題內不斷調整內容。<br><img src="/images/projects/git/git_086.png" alt="">  </p>
+<h1 id="匿名分支-detached-HEAD"><a href="#匿名分支-detached-HEAD" class="headerlink" title="匿名分支 (detached HEAD)"></a>匿名分支 (detached HEAD)</h1><p>我們說每個 commit 都是一本”完整”的書，所以我們除了可以以書名(HEAD)來取得書籍外還可以拿書號(Commit Id)來取得書籍，拿上篇的範例來看 <code>h1</code> 與 <code>976bfb2</code> 其實都是同一本書，所以不論以 HEAD 或是 Commit Id 都可以取得相同的內容，有趣的是當我們利用 Commit Id 來取書時會發現出現 <strong>detached HEAD</strong> 的警告，git 會建議你透過 <code>git checkout -b &lt;new-branch-name&gt;</code> 在讀取時同時建立一個新分支。<br><img src="/images/projects/git/git_087.png" alt=""><br>開啟 <code>\.git\HEAD</code> 可以看到確實記錄現在 commit id <code>976bfb2</code>，但是不會有 HEAD(<code>\.git\refs\heads\</code>) 對應到這個 commit id。<br><img src="/images/projects/git/git_111.png" alt=""><br>再回想一下 Commit 在做什麼？除了產生一本新書外，還會將<strong>目前的</strong>書名(HEAD)貼到新書上，但是我們並不知道目前的書名是什麼，也許你會想為什麼 git 不自動去比對 <code>\.git\refs\heads\</code> 內所有的 HEAD，但是別忘了在 git 內不同的書名(HEAD)可以對應的同一本書(Commit Id)，所以它會不知道要使用哪一個書名。<br><img src="/images/projects/git/git_088.png" alt=""><br>另一點，我們的線圖雖然是將 Commit 的歷史紀錄給串接起來，不過都是以 HEAD 為出發點，匿名分支 (detached HEAD) 代表它沒有對應的 HEAD，所以<strong>正常情況下</strong>不會出現在線圖上，就像一本無法<strong>直接</strong>借閱的書籍，除非我們記得這本書的書號(Commit Id)。<br>但是在 detached HEAD 狀態下我們仍然可以 commit，只是這個”分支”實際上並沒有 HEAD。<br><img src="/images/projects/git/git_089.png" alt=""><br>我們可以說當 <code>\.git\HEAD</code> 是參考自 <code>\.git\refs\heads\</code> 內的 HEAD 時就是一般分支，<strong>當 <code>\.git\HEAD</code> 直接對應到 commit id 時就是匿名分支 (detached HEAD)</strong>。<br><img src="/images/projects/git/git_112.png" alt=""><br>再次確認一下，目前分支 <code>master</code> 所對應的 commit id 為 <code>aece387</code>。<br><img src="/images/projects/git/git_113.png" alt=""><br>我們可以發現只要是透過 commit id 來切換分支時都會變成 detached HEAD，既使它有對應的 HEAD <code>master</code>。<br><img src="/images/projects/git/git_114.png" alt="">  </p>
+<h2 id="模擬"><a href="#模擬" class="headerlink" title="模擬"></a>模擬</h2><p>情境：客戶突然取消新功能，希望我們維護既有功能即可。<br>透過 TortoiseGit 的日誌或是命令 <code>git log</code> 可以查詢當前 commit 紀錄。<br><img src="/images/projects/git/git_090.png" alt="">  </p>
+<blockquote>
+<p>注意：<code>976bfb2</code> 並不是 <code>master</code> 的 commit，為了避免搞混可以取消勾選”所有分支”，只顯示當前分支。<br><img src="/images/projects/git/git_091.png" alt=""></p>
+</blockquote>
+<p>依照時間順序可以繪製出如下的線圖。<br><img src="/images/projects/git/git_092.png" alt=""><br>我們回復到開發新功能之前的版本，這邊假設是上一個版本 <code>910d17e</code>，我們可以透過日誌來重新(reset)當前的 HEAD <code>master</code> 所對應的 commit id。<br><img src="/images/projects/git/git_093.png" alt="">  </p>
+<blockquote>
+<p>亦可透過指令 <code>git reset --hard &lt;commit id&gt;</code> 來完成。<br><img src="/images/projects/git/git_094.png" alt=""><br>不過透過日誌來變更有一個好處，如果選錯 commit id 還可以立即恢復回原本的 commid id。<br><img src="/images/projects/git/git_095.png" alt=""><br>或者可以查詢 <code>\.git\logs\refs\heads\</code> 內所對應的 HEAD，來了解 commid id 變更紀錄。<br><img src="/images/projects/git/git_098.png" alt=""></p>
+</blockquote>
+<p>從日誌來看 <code>aece387</code> 這一本書已經消失了。<br><img src="/images/projects/git/git_096.png" alt=""><br><img src="/images/projects/git/git_097.png" alt=""><br>接著我們做一些系統修正並提交，這邊假設產生一個 hotfix.txt 檔案。<br><img src="/images/projects/git/git_099.png" alt=""><br>由日誌可以看到 git 重新產生不同於以往的新分支 <code>ad23163</code>。<br><img src="/images/projects/git/git_100.png" alt="">  </p>
+<h2 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h2><p>如果我們的動作仿照原本 commit <code>aece387</code> 所做的事情，增加一個 master.txt 檔案，這時候提交得到的 commit id 會是 <code>aece387</code> 嗎？<br>再回憶規則：<strong>先將要儲存的內容透過 SHA-1 雜湊演算出雜湊值，再以這個雜湊值當作檔名來儲存。</strong><br>commit 的內容包含了<strong>提交時間</strong>，所以事務上 commit id 一定不同，因為提交時間不一樣。  </p>
+<h1 id="標籤-Tag"><a href="#標籤-Tag" class="headerlink" title="標籤 (Tag)"></a>標籤 (Tag)</h1><p>為了避免出現 detached HEAD，比較快的方式就是建立一個新分支來記錄 commit，分支會隨著每次 commit 而改變所記錄的  commit id，但是我們有時候只是為了標註一個特定的 commit，git 提供一個標籤(Tag)功能來協助我們註記特定 commit。<br>利用 TortoiseGit 功能選單來新增一個 tag <code>tag1</code>。<br><img src="/images/projects/git/git_101.png" alt="">  </p>
+<blockquote>
+<p>亦可透過指令 <code>git tag [tag name]</code> 來完成。<br><img src="/images/projects/git/git_103.png" alt="">  </p>
+</blockquote>
+<p>開啟 <code>\.git\refs\tags\</code> 可以發先多了一個 <code>tag1</code> 的檔案，查看內容發現跟 HEAD <code>master</code> 一樣都對應到 commit id <code>ad23163</code>。<br><img src="/images/projects/git/git_102.png" alt=""><br>檢視日誌上的所有分支，可以看到 <code>tag1</code> 也會被描繪出來。<br>看起來 tag 跟 HEAD 效用應該是一樣的，不過我們切換到 tag <code>tag1</code> 就可以發現 <code>tag1</code> 被視為一個 detached HEAD，也就是它無法隨著 commit 而變更，也因為他的固定特性，所以 tag 除了拿來當作一般註解用的標籤外，也很適合拿來當作版本紀錄。<br><img src="/images/projects/git/git_105.png" alt="">  </p>
+<h2 id="輕量標籤-lightweight-tag-與-標示標籤-annotated-tag"><a href="#輕量標籤-lightweight-tag-與-標示標籤-annotated-tag" class="headerlink" title="輕量標籤 (lightweight tag) 與 標示標籤 (annotated tag)"></a>輕量標籤 (lightweight tag) 與 標示標籤 (annotated tag)</h2><p>接著我在 <code>master</code> 分支在增加一個 版本號的 tag <code>v1.0</code>，比較特別的是這次我們加入紀錄信息。<br><img src="/images/projects/git/git_106.png" alt=""><br>從日誌的結果我們很直覺地想到如下的關聯圖。<br><img src="/images/projects/git/git_107.png" alt=""><br>但是如果我們檢視 <code>\.git\refs\tags\v1.0</code> 內容，可以發現 <code>tag1</code> 並不是指向 commit id <code>aece387</code>，而是一個未知的物件 <code>ae89d11</code>，查詢後可以發現它是 git Object 的一種類型 tag，裡面也記錄著我們加入的信息。<br><img src="/images/projects/git/git_108.png" alt=""><br>修正一下關聯圖。<br><img src="/images/projects/git/git_109.png" alt=""><br>我們可以說 tag 這個類型是為了讓我們可以在 tag 標籤上儲存更多額外的資訊而產生的，當 tag 直接對應到 commit id 時我們會說它是一個<strong>輕量標籤 (lightweight tag)</strong>，而當 tag 是透過 tag 類型間接對應到 commit id 時我們會說它是一個<strong>標示標籤 (annotated tag)</strong>。  </p>
+<h2 id="標籤-Tag-與-提交-Commit"><a href="#標籤-Tag-與-提交-Commit" class="headerlink" title="標籤 (Tag) 與 提交 (Commit)"></a>標籤 (Tag) 與 提交 (Commit)</h2><p>切換到 tag <code>v1.0</code>可以發現又 detached HEAD 警告，查閱一下 <code>\.git\HEAD</code> 它是指向 commit id，所以說 <code>\.git\HEAD</code> 只會參考自 <code>\.git\refs\heads\</code> 內的 HEAD，或是直接對應到 commit id。<br><img src="/images/projects/git/git_110.png" alt=""><br>這時後我們在新增一個檔案 <code>tag_v1.0.txt</code> 並提交，可以發現 tag <code>v1.0</code> 並沒有變更 commit id，但是 <code>\.git\HEAD</code> 卻有更新。<br><img src="/images/projects/git/git_115.png" alt=""><br><img src="/images/projects/git/git_116.png" alt=""><br>所以我們應該再修正一下，Commit 所做的事情：<br><strong>Commit 除了會儲存當前狀態之外還會更新 <code>\.git\HEAD</code>，當 <code>\.git\HEAD</code> 是參考自 <code>\.git\refs\heads\</code> 時，它會自動去更新對應 HEAD 的 commit id，當它是直接指定 commit id 時，則直接更新該 commit id。</strong><br>當我們切換到任何一個 tag 時，<code>\.git\HEAD</code> 是直接指向 commit id，所以當然再做 commit 時 tag 不會跟著變更，所以我們也可以說 <strong>Tag</strong> 是一個固定標籤，而 <strong>Commit</strong> 則是一個會隨 commit 而變動的標籤。  </p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>就像 git 的圖示一樣，目前只講到”分支”的部分，但是 git 的”合併”與”遠端同步”也是很重要的常用功能，不過這部分<br>重點不在於如何下指令，而是如何<strong>解決衝突</strong>，這是一個難以三言兩語說明的問題，在一知半解情況下使用可能會讓你對 git 失去信心，後續有比較好的想法時在分享。<br>目前也都在說明如何”建立”沒有”移除”，例如有些人希望將線圖修改的漂亮一點，移除掉一些不必要的 commit，這種”手術”其實一不小心就會把不該切除的東西也一起切除了，因此我們沒有特別說明，但是如果有概念的話，就可以知道線圖是由 commit 類型串接起來的，而 commit 類型一旦存入 <code>\.git\objects\</code>，”內容”就不能被變更，這個內容包含了父提交(Parent Commit)，所以東西(狀態)不會不見，<code>\.git\logs\</code> 內也儲存著所有 commit 的變更紀錄，在 git 內只要有 Commit 都有跡可循。  </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Git/" rel="tag"># Git</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/projects/03_git_01/" rel="next" title="易學難精：Git 簡單的部分(一)">
+                <i class="fa fa-chevron-left"></i> 易學難精：Git 簡單的部分(一)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Jonny Huang" />
+          <p class="site-author-name" itemprop="name">Jonny Huang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分類</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#匿名分支-detached-HEAD"><span class="nav-number">2.</span> <span class="nav-text">匿名分支 (detached HEAD)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模擬"><span class="nav-number">2.1.</span> <span class="nav-text">模擬</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#問題"><span class="nav-number">2.2.</span> <span class="nav-text">問題</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#標籤-Tag"><span class="nav-number">3.</span> <span class="nav-text">標籤 (Tag)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#輕量標籤-lightweight-tag-與-標示標籤-annotated-tag"><span class="nav-number">3.1.</span> <span class="nav-text">輕量標籤 (lightweight tag) 與 標示標籤 (annotated tag)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#標籤-Tag-與-提交-Commit"><span class="nav-number">3.2.</span> <span class="nav-text">標籤 (Tag) 與 提交 (Commit)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">4.</span> <span class="nav-text">後記</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-Jonny Huang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
+<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+      prettyPrint();
+  });
+</script>
+
+</body>
+</html>

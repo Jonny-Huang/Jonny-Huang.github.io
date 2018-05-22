@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jonny-huang.github.io/projects/04_git_02/</loc>
+    
+    <lastmod>2018-05-22T04:03:43.432Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jonny-huang.github.io/projects/03_git_01/</loc>
     
-    <lastmod>2018-05-17T15:24:57.094Z</lastmod>
+    <lastmod>2018-05-21T11:13:29.426Z</lastmod>
     
   </url>
   
@@ -156,14 +163,14 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_windows/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_ubuntu/</loc>
     
     <lastmod>2017-09-15T00:36:59.257Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_ubuntu/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/00_development_environment_windows/</loc>
     
     <lastmod>2017-09-15T00:36:59.257Z</lastmod>
     

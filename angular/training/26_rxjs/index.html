@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="RxJS,Angular" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+  <meta property="fb:admins" content="fb267234890438499" />
+  <meta property="fb:app_id" content="267234890438499" />
+
+
+
+<meta name="description" content="前言RxJS 教學其實RxJS官方文件與30 天精通 RxJS系列都是不錯的資料，這也是大部分人會推薦的教學網站，要說好用的原因與例證大概都不難說明，但是要如何說的讓人想用？這讓我愣了一陣不知如何回答，”用過都說讚“是一個難以說服想要入門的人但卻是當時我想的到的答案，所以今天想了個看圖說故事的方法先把在門外觀望的人給騙進來。    官方文件很佛心的在一開始的入門頁面就將最精華的部份給呈現出來">
+<meta name="keywords" content="RxJS,Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每個醫師身邊都應該要有個白衣天使：RxJS">
+<meta property="og:url" content="https://jonny-huang.github.io/angular/training/26_rxjs/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言RxJS 教學其實RxJS官方文件與30 天精通 RxJS系列都是不錯的資料，這也是大部分人會推薦的教學網站，要說好用的原因與例證大概都不難說明，但是要如何說的讓人想用？這讓我愣了一陣不知如何回答，”用過都說讚“是一個難以說服想要入門的人但卻是當時我想的到的答案，所以今天想了個看圖說故事的方法先把在門外觀望的人給騙進來。    官方文件很佛心的在一開始的入門頁面就將最精華的部份給呈現出來">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_logo.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_000.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_001.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_002.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_003.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_004.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_005.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_006.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_007.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_008.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_009.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_010.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_011.png">
+<meta property="og:updated_time" content="2018-06-06T10:01:53.248Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每個醫師身邊都應該要有個白衣天使：RxJS">
+<meta name="twitter:description" content="前言RxJS 教學其實RxJS官方文件與30 天精通 RxJS系列都是不錯的資料，這也是大部分人會推薦的教學網站，要說好用的原因與例證大概都不難說明，但是要如何說的讓人想用？這讓我愣了一陣不知如何回答，”用過都說讚“是一個難以說服想要入門的人但卻是當時我想的到的答案，所以今天想了個看圖說故事的方法先把在門外觀望的人給騙進來。    官方文件很佛心的在一開始的入門頁面就將最精華的部份給呈現出來">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_logo.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Jonny'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jonny-huang.github.io/angular/training/26_rxjs/"/>
+
+
+
+
+
+  <title>每個醫師身邊都應該要有個白衣天使：RxJS | Jonny Huang 的學習筆記</title>
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '267234890438499',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_tw/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jonny Huang 的學習筆記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Angular</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            目錄
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-slides">
+          <a href="/slides/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-slideshare"></i> <br />
+            
+            簡報
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-angular">
+          <a href="/angular/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Angular
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-docker">
+          <a href="/docker/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            docker
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-quotes">
+          <a href="/quotes/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br />
+            
+            欣雨露
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/26_rxjs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">每個醫師身邊都應該要有個白衣天使：RxJS</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新於</span>
+              
+              <time title="更新於" itemprop="dateModified" datetime="2018-06-06T18:01:53+08:00">
+                2018/06/06
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Training/" itemprop="url" rel="index">
+                    <span itemprop="name">Training</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/angular/training/rxjs/rxjs_logo.png" alt="">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>RxJS 教學其實<a href="https://cn.rx.js.org/" target="_blank" rel="noopener">RxJS官方文件</a>與<a href="https://ithelp.ithome.com.tw/users/20103367/ironman/1199" target="_blank" rel="noopener">30 天精通 RxJS系列</a>都是不錯的資料，這也是大部分人會推薦的教學網站，要說<strong>好用</strong>的原因與例證大概都不難說明，但是要如何說的讓人<strong>想用</strong>？這讓我愣了一陣不知如何回答，”<strong>用過都說讚</strong>“是一個難以說服想要入門的人但卻是當時我想的到的答案，所以今天想了個看圖說故事的方法先把在門外觀望的人給騙進來。  </p>
+<blockquote>
+<p><a href="https://cn.rx.js.org/manual/overview.html" target="_blank" rel="noopener">官方文件</a>很佛心的在一開始的入門頁面就將最精華的部份給呈現出來，但是好像有些人看到這邊就放棄了。<br><img src="/images/angular/training/rxjs/rxjs_000.png" alt="">  </p>
+</blockquote>
+<h1 id="過去的江湖郎中"><a href="#過去的江湖郎中" class="headerlink" title="過去的江湖郎中"></a>過去的江湖郎中</h1><p>背著一個藥箱，只要一張桌子兩張板凳就可以幫人診脈看病，整個過程一手包辦，這就是古代戲劇內常見的江湖郎中，也因為要做的事情多，所以每天可以看的病人少。<br><img src="/images/angular/training/rxjs/rxjs_001.png" alt=""><br>筆者習慣將自己比喻成醫師，我們會先幫<strong>病患</strong>(企業)做<strong>診斷</strong>(系統分析)，再開<strong>抓藥</strong>(開發系統)，最終解決病患的<strong>疾病</strong>(問題、需求)，只是我們與醫生最大的差異就在於病患最終會妥協於醫師的意見，因為這跟他們的生命有關，但是客戶時常要我們妥協於他們的想法，既使充滿不合理的邏輯，反正出了問題都是我們的責任。  </p>
+<h1 id="現在的醫院、診所"><a href="#現在的醫院、診所" class="headerlink" title="現在的醫院、診所"></a>現在的醫院、診所</h1><p>現代不論是到醫院或是診所看病，每個診間都會有一個護士，在醫生看診前她會先幫你量體溫、血壓，甚至詢問一些基本的問題(會不會過敏、有沒有家族病史)，有效率一點的護士會事先量測下一位病患，讓醫生可以不間斷的接續診斷，當然可以服務的病患相對也比較多。<br><img src="/images/angular/training/rxjs/rxjs_002.png" alt="">  </p>
+<h1 id="超級護士-Observable"><a href="#超級護士-Observable" class="headerlink" title="超級護士 (Observable)"></a>超級護士 (Observable)</h1><p>其實護士還提供另一個優點<strong>主動告知</strong>，她會告訴醫生現在有病患需要診斷以及病患的基本狀況，而醫生只要在<strong>這個時間點</strong>去做診斷就好，RxJS 其中一個功能就是扮演這個護士，我們可以說病患的體溫、血壓是一種<strong>變數</strong>，以往我們(醫師)要自己主動量測才會知道目前的數值，甚至要定期量測才會知道這些數據是否改變，而透過護士我們除了可以得知現在的<strong>狀態(值)</strong>外，還可知道狀態(值)的改變，所以我們可以說護士的功能是將<strong>原本單純的值包裝成一個可以被觀察的對象(Observable)</strong>，而醫生則是一個希望了解病患狀態的人，所以我們也可說他是一個<strong>觀察者(Observer)</strong>。<br><img src="/images/angular/training/rxjs/rxjs_003.png" alt="">  </p>
+<h1 id="半被動"><a href="#半被動" class="headerlink" title="半被動"></a>半被動</h1><p>在 RxJS 設計上我們可以說這個小護士有個特點就是半被動，我們必須告訴她要做，她才會開始去做，因此我們必須請她(Observable)將”狀態發生改變時告知我們來診斷(diagnose)”這件事情 <strong>紀錄(subscribe)</strong> 在 <strong>便條紙(subscriotion)</strong> 上，這樣她才會開始動作，當然如果我們希望她停止做這件事前只要將 便條紙(subscriotion) 給 <strong>撕下來(unsubscribe)</strong> 就可以讓她停止處理，換個角度來看這樣就不會一直耗費資源，所以說這是一種特點，而不是缺點。<br><img src="/images/angular/training/rxjs/rxjs_004.png" alt="">  </p>
+<h1 id="專才小護士-Operators"><a href="#專才小護士-Operators" class="headerlink" title="專才小護士 (Operators)"></a>專才小護士 (Operators)</h1><p>使用 RxJS 另一個好處就是它提供了很多<strong>專才小護士</strong>，每個小護士可以幫我們處理特定的問題，她們可以針對我們原本護士(Observable)所要傳遞的內容再做進一步的處理，所以懂得善用她們才是重點，因為她們做得越多，那我們接收到的資訊就越精要。<br><img src="/images/angular/training/rxjs/rxjs_005.png" alt="">  </p>
+<h2 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h2><p>我們假設有一位病患因為發燒住院，因此需要持續追蹤體溫，因此我們就指派一個護士(Observable)，當然我們就會每小時收到護士告知現在病患的體溫是多少。<br><img src="/images/angular/training/rxjs/rxjs_006.png" alt=""><br>但是我們發現溫度是以華氏溫度來記錄，對於習慣看攝氏溫度的我們來說會非常不習慣，一個方式是我們自己每次收到體溫值時做換算，另一個辦法就是請一個小護士(map)幫我們換算，所以原本會由護士(Observable)直接通知我們，現在變成透過小護士(map)幫我們換算後再將資料交給我們。<br><img src="/images/angular/training/rxjs/rxjs_007.png" alt=""><br>每個小時都被告知一次病患體溫其實也有點多，我們可能只需要再體溫有變化時再做診斷就可以，所以可以再請另一位小護士(distinctUntilChanged)幫忙，只要在體溫改變時通知我們就好，一天下來就只收到 14 次的通知。<br><img src="/images/angular/training/rxjs/rxjs_008.png" alt=""><br>接著當體溫為正常溫度 37 度時，其實也不需要知會我們，當有發燒時再處理即可，所以我們可以透過第三位小護士(filter)再幫我們篩選一次，最後我們只收到 10 次通知。<br><img src="/images/angular/training/rxjs/rxjs_009.png" alt="">  </p>
+<blockquote>
+<p>RxJS 6 增加一個 pipeable 操作符，可以將需要用到的操作符(Operators)給集中起來，從原始碼可以看到它就是使用 <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce" target="_blank" rel="noopener">Array.reduce()</a> 來逐一呼叫函式，並，並將每個函式的回傳值傳遞給下一個函式，所以 Operators 是有順序性的。<br><img src="/images/angular/training/rxjs/rxjs_010.png" alt="">  </p>
+</blockquote>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>RxJS 所提供的<strong>小護士(Operators)</strong> 還有很多種，大部分其實常用的就是那幾種，當我們遇到很複雜的處理邏輯再到官網搜尋即可。  </p>
+<h2 id="護士長-Subject"><a href="#護士長-Subject" class="headerlink" title="護士長(Subject)"></a>護士長(Subject)</h2><p><strong>Observable</strong> 的限制就是通知對象只有一個觀察者，而 <strong>Subject</strong> 則是可以通知多個觀察者，所以如果 Observable 是護士的話，那 Subject 就是可以服務多個醫生的護士長，當然所有護士(Observable)做得到的事情護士長(Subject)也都做得到。<br><img src="/images/angular/training/rxjs/rxjs_011.png" alt="">  </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RxJS/" rel="tag"># RxJS</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/quotes/quotes_004/" rel="next" title="為了達到目的可以不擇手段">
+                <i class="fa fa-chevron-left"></i> 為了達到目的可以不擇手段
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Jonny Huang" />
+          <p class="site-author-name" itemprop="name">Jonny Huang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分類</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#過去的江湖郎中"><span class="nav-number">2.</span> <span class="nav-text">過去的江湖郎中</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#現在的醫院、診所"><span class="nav-number">3.</span> <span class="nav-text">現在的醫院、診所</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#超級護士-Observable"><span class="nav-number">4.</span> <span class="nav-text">超級護士 (Observable)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#半被動"><span class="nav-number">5.</span> <span class="nav-text">半被動</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#專才小護士-Operators"><span class="nav-number">6.</span> <span class="nav-text">專才小護士 (Operators)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#範例"><span class="nav-number">6.1.</span> <span class="nav-text">範例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">7.</span> <span class="nav-text">後記</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#護士長-Subject"><span class="nav-number">7.1.</span> <span class="nav-text">護士長(Subject)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-Jonny Huang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
+<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+      prettyPrint();
+  });
+</script>
+
+</body>
+</html>

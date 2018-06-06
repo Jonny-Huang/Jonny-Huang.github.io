@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jonny-huang.github.io/angular/training/26_rxjs/</loc>
+    
+    <lastmod>2018-06-06T10:01:53.248Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jonny-huang.github.io/quotes/quotes_004/</loc>
     
     <lastmod>2018-06-05T03:03:37.260Z</lastmod>

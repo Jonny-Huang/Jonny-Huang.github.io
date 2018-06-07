@@ -90,13 +90,13 @@
 
 
 
-<meta name="description" content="buffer：緩衝源 Observable 的值直到 closingNotifier 發出。公車發車時油站帳發出通知，會將目前還在排隊的旅客給請上車，當然會因為等待的旅客人數不同有可能每班車的人數也不同。   bufferTime：在特定時間週期內緩衝源 Observable 的值。定時發車，例如每半個小時一班，時間一到公車就會把目前的旅客給載走，不需要透過站長通知。   bufferCou">
+<meta name="description" content="buffer：緩衝源 Observable 的值直到 closingNotifier 發出。公車發車時由站長發出通知，會將目前還在排隊的旅客給請上車，當然會因為等待的旅客人數不同有可能每班車的人數也不同。   bufferTime：在特定時間週期內緩衝源 Observable 的值。定時發車，例如每半個小時一班，時間一到公車就會把目前的旅客給載走，不需要透過站長通知。   bufferCou">
 <meta name="keywords" content="RxJS,Angular">
 <meta property="og:type" content="article">
 <meta property="og:title" content="彈珠圖塗鴉篇(一)：RxJS">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/27_rxjs_2/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="buffer：緩衝源 Observable 的值直到 closingNotifier 發出。公車發車時油站帳發出通知，會將目前還在排隊的旅客給請上車，當然會因為等待的旅客人數不同有可能每班車的人數也不同。   bufferTime：在特定時間週期內緩衝源 Observable 的值。定時發車，例如每半個小時一班，時間一到公車就會把目前的旅客給載走，不需要透過站長通知。   bufferCou">
+<meta property="og:description" content="buffer：緩衝源 Observable 的值直到 closingNotifier 發出。公車發車時由站長發出通知，會將目前還在排隊的旅客給請上車，當然會因為等待的旅客人數不同有可能每班車的人數也不同。   bufferTime：在特定時間週期內緩衝源 Observable 的值。定時發車，例如每半個小時一班，時間一到公車就會把目前的旅客給載走，不需要透過站長通知。   bufferCou">
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_012.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_013.png">
@@ -116,10 +116,10 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_027.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_028.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_029.png">
-<meta property="og:updated_time" content="2018-06-07T10:21:37.056Z">
+<meta property="og:updated_time" content="2018-06-07T11:34:41.177Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="彈珠圖塗鴉篇(一)：RxJS">
-<meta name="twitter:description" content="buffer：緩衝源 Observable 的值直到 closingNotifier 發出。公車發車時油站帳發出通知，會將目前還在排隊的旅客給請上車，當然會因為等待的旅客人數不同有可能每班車的人數也不同。   bufferTime：在特定時間週期內緩衝源 Observable 的值。定時發車，例如每半個小時一班，時間一到公車就會把目前的旅客給載走，不需要透過站長通知。   bufferCou">
+<meta name="twitter:description" content="buffer：緩衝源 Observable 的值直到 closingNotifier 發出。公車發車時由站長發出通知，會將目前還在排隊的旅客給請上車，當然會因為等待的旅客人數不同有可能每班車的人數也不同。   bufferTime：在特定時間週期內緩衝源 Observable 的值。定時發車，例如每半個小時一班，時間一到公車就會把目前的旅客給載走，不需要透過站長通知。   bufferCou">
 <meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_012.png">
 
 
@@ -364,7 +364,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2018-06-07T18:21:37+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2018-06-07T19:34:41+08:00">
                 2018/06/07
               </time>
             
@@ -418,7 +418,7 @@
 
       
         <p><img src="/images/angular/training/rxjs/rxjs_012.png" alt="">  </p>
-<p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-buffer" target="_blank" rel="noopener"><strong>buffer</strong></a>：緩衝源 Observable 的值直到 closingNotifier 發出。<br>公車發車時油站帳發出通知，會將目前還在排隊的旅客給請上車，當然會因為等待的旅客人數不同有可能每班車的人數也不同。<br><img src="/images/angular/training/rxjs/rxjs_013.png" alt="">  </p>
+<p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-buffer" target="_blank" rel="noopener"><strong>buffer</strong></a>：緩衝源 Observable 的值直到 closingNotifier 發出。<br>公車發車時由站長發出通知，會將目前還在排隊的旅客給請上車，當然會因為等待的旅客人數不同有可能每班車的人數也不同。<br><img src="/images/angular/training/rxjs/rxjs_013.png" alt="">  </p>
 <p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-bufferTime" target="_blank" rel="noopener"><strong>bufferTime</strong></a>：在特定時間週期內緩衝源 Observable 的值。<br>定時發車，例如每半個小時一班，時間一到公車就會把目前的旅客給載走，不需要透過站長通知。<br><img src="/images/angular/training/rxjs/rxjs_014.png" alt="">  </p>
 <p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-bufferCount" target="_blank" rel="noopener"><strong>bufferCount</strong></a>：緩衝源 Observable 的值直到緩衝數量到達設定的 bufferSize。<br>滿車發車，有些客運站會有 Uber 司機，他們習慣人數坐滿在發車。<br><img src="/images/angular/training/rxjs/rxjs_015.png" alt="">  </p>
 <blockquote>

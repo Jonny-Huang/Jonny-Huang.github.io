@@ -116,7 +116,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_027.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_028.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_029.png">
-<meta property="og:updated_time" content="2018-06-07T11:34:41.177Z">
+<meta property="og:updated_time" content="2018-06-07T22:40:36.204Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="彈珠圖塗鴉篇(一)：RxJS">
 <meta name="twitter:description" content="buffer：緩衝源 Observable 的值直到 closingNotifier 發出。公車發車時由站長發出通知，會將目前還在排隊的旅客給請上車，當然會因為等待的旅客人數不同有可能每班車的人數也不同。   bufferTime：在特定時間週期內緩衝源 Observable 的值。定時發車，例如每半個小時一班，時間一到公車就會把目前的旅客給載走，不需要透過站長通知。   bufferCou">
@@ -364,8 +364,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2018-06-07T19:34:41+08:00">
-                2018/06/07
+              <time title="更新於" itemprop="dateModified" datetime="2018-06-08T06:40:36+08:00">
+                2018/06/08
               </time>
             
           </span>
@@ -430,7 +430,7 @@
 <p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-map" target="_blank" rel="noopener"><strong>map</strong></a>：將給定的 project 函式應用於源 Observable 發出的每個值，並將結果值作為 Observable 發出。<br>市面上有很多類似的產品都來自於同一家工廠，差別在於最後<strong>加工</strong>的部份塗上不同的 logo。<br><img src="/images/angular/training/rxjs/rxjs_019.png" alt="">  </p>
 <p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-mapTo" target="_blank" rel="noopener"><strong>mapTo</strong></a>：每次源 Observble 發出值時，都在輸出 Observable 上發出給定的常量值。<br>對於物流中心而言他們只在意每輛貨車載幾箱，而不關心每個箱子到底裝什麼。<br><img src="/images/angular/training/rxjs/rxjs_020.png" alt="">  </p>
 <p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-pairwise" target="_blank" rel="noopener"><strong>pairwise</strong></a>：將一系列連續的發送成對的組合在一起，並將這些分組作為兩個值的陣列發出。<br>交往最大的禁忌就是不要拿前一任來做比較。<br><img src="/images/angular/training/rxjs/rxjs_021.png" alt="">  </p>
-<p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-scan" target="_blank" rel="noopener"><strong>scan</strong></a>：對源 Observable 使用累加器函式， 返回生成的中間值， 可選的初始值。<br>對於生意不好的店家而言，使用累計來客數座宣傳會比每日來客數效果好。<br><img src="/images/angular/training/rxjs/rxjs_023.png" alt="">  </p>
+<p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-scan" target="_blank" rel="noopener"><strong>scan</strong></a>：對源 Observable 使用累加器函式， 返回生成的中間值， 可選的初始值。<br>對於生意不好的店家而言，使用累計來客數做宣傳會比每日來客數效果好。<br><img src="/images/angular/training/rxjs/rxjs_023.png" alt="">  </p>
 <p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-debounceTime" target="_blank" rel="noopener"><strong>debounceTime</strong></a>：只有在特定的一段時間經過後並且沒有發出另一個源值，才從源 Observable 中發出一個值。<br>還記得 Windows 的睡眠設定嗎？你只要一定時間沒動作它就會睡著。<br><img src="/images/angular/training/rxjs/rxjs_024.png" alt="">  </p>
 <p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-distinct" target="_blank" rel="noopener"><strong>distinct</strong></a>：返回 Observable，它發出由源 Observable 所發出的所有與之前的項都不相同的項。<br>當你跟小孩說只能拿一個，他們會不加思索的當作每一種只能拿一個。<br><img src="/images/angular/training/rxjs/rxjs_025.png" alt="">   </p>
 <p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-distinctUntilChanged" target="_blank" rel="noopener"><strong>distinctUntilChanged</strong></a>：返回 Observable，它發出源 Observable 發出的所有與前一項不相同的項。<br>不得不說女生只要站在體重計上，除非數值沒變否則都會驚呼，不論它是變輕還是變重。<br><img src="/images/angular/training/rxjs/rxjs_026.png" alt="">   </p>

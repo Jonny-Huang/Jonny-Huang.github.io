@@ -99,7 +99,7 @@
 <meta property="og:description" content="前言這幾天看到另一個問題：”看得懂官方文件，但是不知道怎麼用(Operators)。“當然最好的辦法就是找一堆案例來說明，讓大家很容易理解與體會，這種重責大任當然不會落在筆者身上，畢竟使用過的 Operators 一隻手就數得出來，所以腦筋就動到資料處理的老大哥 SQL 身上，40年的演化讓它成為一個非常成熟的技術，查詢的能力當然是首屈一指。   SQL 語法處理順序下面是一個非常常見的 SQL">
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_045.png">
-<meta property="og:updated_time" content="2018-06-15T07:38:59.023Z">
+<meta property="og:updated_time" content="2018-06-15T07:49:16.136Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Operators 聯想篇：RxJS">
 <meta name="twitter:description" content="前言這幾天看到另一個問題：”看得懂官方文件，但是不知道怎麼用(Operators)。“當然最好的辦法就是找一堆案例來說明，讓大家很容易理解與體會，這種重責大任當然不會落在筆者身上，畢竟使用過的 Operators 一隻手就數得出來，所以腦筋就動到資料處理的老大哥 SQL 身上，40年的演化讓它成為一個非常成熟的技術，查詢的能力當然是首屈一指。   SQL 語法處理順序下面是一個非常常見的 SQL">
@@ -347,7 +347,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2018-06-15T15:38:59+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2018-06-15T15:49:16+08:00">
                 2018/06/15
               </time>
             
@@ -436,8 +436,8 @@ ORDER BY
     Discounts = ((OrderDetail.OrderQty * Product.UnitPrice) * Product.UnitPriceDiscount)
 </code></pre></p>
 <p>對 RxJS 來說可以利用 <strong>map</strong> 來轉換輸出的資料。  </p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>像 <strong>first、last、skip、take</strong> 這一系列 Operators 會與 SQL TOP 語法相近。<br><strong>distinct</strong> 當然與 SQL 的 DISTINCT 一樣負責篩選掉重複的資料。  </p>
-<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>對於會 SQL 的人來說，其實透過 SQL 語法的觀念來思考要使用那些 Operators 應該是不錯的模式，因為除了容易聯想，這種邏輯順序的可讀性也較容易讓別人理解其用意，雖然不能解決所有的情境，但是對於大部分的需求來說應該都可以套用，當然可能會有效能問題，不過”<strong>優化</strong>“應該是等上手再去思考。  </p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>像 <strong>first、last、skip、take</strong> 這一系列 Operators 會與 SQL TOP 語法相近。<br><strong>distinct</strong> 當然與 SQL 的 DISTINCT 一樣負責篩選掉重複的資料。<br>還有一些運算類型的，例如　<strong>count、max、min</strong>，其實也與 SQL 雷同。  </p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>其他的 Operators 我們可以透過彈珠圖來思考它的功能比較像 SQL 語法的哪一個類型，看不懂的就先跳過吧！因為既然無法理解那現階段你也不會想要使用它。　　<br>對於會 SQL 的人來說，其實透過 SQL 語法的觀念來思考要使用那些 Operators 應該是不錯的模式，因為除了容易聯想，這種邏輯順序的可讀性也較容易讓別人理解其用意，雖然不能解決所有的情境，但是對於大部分的需求來說應該都可以套用，當然可能會有效能問題，不過”<strong>優化</strong>“應該是等上手再去思考。  </p>
 
       
     </div>
@@ -685,7 +685,7 @@ ORDER BY
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-語法處理順序"><span class="nav-number">2.</span> <span class="nav-text">SQL 語法處理順序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#FROM"><span class="nav-number">2.1.</span> <span class="nav-text">FROM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JOIN"><span class="nav-number">2.2.</span> <span class="nav-text">JOIN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WHERE"><span class="nav-number">2.3.</span> <span class="nav-text">WHERE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SELECT"><span class="nav-number">2.4.</span> <span class="nav-text">SELECT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">2.5.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#後記"><span class="nav-number">2.6.</span> <span class="nav-text">後記</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-語法處理順序"><span class="nav-number">2.</span> <span class="nav-text">SQL 語法處理順序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#FROM"><span class="nav-number">2.1.</span> <span class="nav-text">FROM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JOIN"><span class="nav-number">2.2.</span> <span class="nav-text">JOIN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WHERE"><span class="nav-number">2.3.</span> <span class="nav-text">WHERE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SELECT"><span class="nav-number">2.4.</span> <span class="nav-text">SELECT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">2.5.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">3.</span> <span class="nav-text">後記</span></a></li></ol></div>
             
 
           </div>

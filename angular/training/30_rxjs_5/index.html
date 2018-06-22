@@ -90,21 +90,21 @@
 
 
 
-<meta name="description" content="前言隨著 GitHub 的盛行，越來越多的技術都走向開源，研究原始碼可以讓我們了解相關技術運作原理，藉以修正認知上的落差，畢竟官方文件雖然豐富，但是很多概念難以透過文字描述就可以理解，另一個好處就是學習這些大神的技術。以上說明都不是本篇的重點，要知道，看完整程式碼是賢人，看懂程式碼是神人，這都不是筆者這種”閒”人可以做到的，所以我們只挑選簡單的部分來協助我們更容易的理解 RxJS。    我們可以">
+<meta name="description" content="前言隨著 GitHub 的盛行，越來越多的技術都走向開源，研究原始碼可以讓我們了解相關技術運作原理，藉以修正認知上的落差，畢竟官方文件雖然豐富，但是很多概念難以透過文字描述就可以理解，另一個好處就是學習這些大神的技術。以上說明都不是本篇的重點，要知道，看完程式碼是賢人，看懂程式碼是神人，這都不是筆者這種”閒”人可以做到的，所以我們只挑選簡單的部分來協助我們更容易的理解 RxJS。    我們可以到">
 <meta name="keywords" content="RxJS,Angular">
 <meta property="og:type" content="article">
 <meta property="og:title" content="別太在意包裝上的照片與實物之間的差異：RxJS">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/30_rxjs_5/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="前言隨著 GitHub 的盛行，越來越多的技術都走向開源，研究原始碼可以讓我們了解相關技術運作原理，藉以修正認知上的落差，畢竟官方文件雖然豐富，但是很多概念難以透過文字描述就可以理解，另一個好處就是學習這些大神的技術。以上說明都不是本篇的重點，要知道，看完整程式碼是賢人，看懂程式碼是神人，這都不是筆者這種”閒”人可以做到的，所以我們只挑選簡單的部分來協助我們更容易的理解 RxJS。    我們可以">
+<meta property="og:description" content="前言隨著 GitHub 的盛行，越來越多的技術都走向開源，研究原始碼可以讓我們了解相關技術運作原理，藉以修正認知上的落差，畢竟官方文件雖然豐富，但是很多概念難以透過文字描述就可以理解，另一個好處就是學習這些大神的技術。以上說明都不是本篇的重點，要知道，看完程式碼是賢人，看懂程式碼是神人，這都不是筆者這種”閒”人可以做到的，所以我們只挑選簡單的部分來協助我們更容易的理解 RxJS。    我們可以到">
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_046.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_047.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_048.png">
-<meta property="og:updated_time" content="2018-06-22T09:47:03.812Z">
+<meta property="og:updated_time" content="2018-06-22T14:55:01.231Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="別太在意包裝上的照片與實物之間的差異：RxJS">
-<meta name="twitter:description" content="前言隨著 GitHub 的盛行，越來越多的技術都走向開源，研究原始碼可以讓我們了解相關技術運作原理，藉以修正認知上的落差，畢竟官方文件雖然豐富，但是很多概念難以透過文字描述就可以理解，另一個好處就是學習這些大神的技術。以上說明都不是本篇的重點，要知道，看完整程式碼是賢人，看懂程式碼是神人，這都不是筆者這種”閒”人可以做到的，所以我們只挑選簡單的部分來協助我們更容易的理解 RxJS。    我們可以">
+<meta name="twitter:description" content="前言隨著 GitHub 的盛行，越來越多的技術都走向開源，研究原始碼可以讓我們了解相關技術運作原理，藉以修正認知上的落差，畢竟官方文件雖然豐富，但是很多概念難以透過文字描述就可以理解，另一個好處就是學習這些大神的技術。以上說明都不是本篇的重點，要知道，看完程式碼是賢人，看懂程式碼是神人，這都不是筆者這種”閒”人可以做到的，所以我們只挑選簡單的部分來協助我們更容易的理解 RxJS。    我們可以到">
 <meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_046.png">
 
 
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2018-06-22T17:47:03+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2018-06-22T22:55:01+08:00">
                 2018/06/22
               </time>
             
@@ -402,7 +402,7 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>隨著 GitHub 的盛行，越來越多的技術都走向開源，研究原始碼可以讓我們了解相關技術運作原理，藉以修正認知上的落差，畢竟官方文件雖然豐富，但是很多概念難以透過文字描述就可以理解，另一個好處就是學習這些大神的技術。<br>以上說明都不是本篇的重點，要知道，<strong>看完整</strong>程式碼是賢人，<strong>看懂</strong>程式碼是神人，這都不是筆者這種”閒”人可以做到的，所以我們只挑選簡單的部分來協助我們更容易的理解 RxJS。  </p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>隨著 GitHub 的盛行，越來越多的技術都走向開源，研究原始碼可以讓我們了解相關技術運作原理，藉以修正認知上的落差，畢竟官方文件雖然豐富，但是很多概念難以透過文字描述就可以理解，另一個好處就是學習這些大神的技術。<br>以上說明都不是本篇的重點，要知道，<strong>看完</strong>程式碼是賢人，<strong>看懂</strong>程式碼是神人，這都不是筆者這種”閒”人可以做到的，所以我們只挑選簡單的部分來協助我們更容易的理解 RxJS。  </p>
 <blockquote>
 <p>我們可以到 GitHub 網站下載 <a href="https://github.com/ReactiveX/RxJS" target="_blank" rel="noopener">RxJS 原始碼</a></p>
 </blockquote>
@@ -426,7 +426,7 @@ export interface Subscribable&lt;T&gt; {
 export interface Unsubscribable {
   unsubscribe(): void;
 }</code></pre></p>
-<p>Observable 透過 <code>1</code>subscribe` 來與 Observer 建立連結，也就是說我們可以<strong>透過 Observable 知道通知對象</strong>。</p>
+<p>Observable 透過 <code>subscribe</code> 來與 Observer 建立連結，也就是說我們可以<strong>透過 Observable 知道通知對象</strong>。</p>
 <h1 id="Operator-Function：Map"><a href="#Operator-Function：Map" class="headerlink" title="Operator Function：Map"></a>Operator Function：Map</h1><p>到目前為止我們還不知道 RxJS 的主動通知機制，我們透過 Map 這個最常使用的 RxJS Operator 來研究，開啟 <code>rxjs\src\internal\operators\map.ts</code>，可以看到 <strong>map</strong> 只是一個 Function，它最終會呼叫並回傳 Observable 的 <strong>lift</strong> 方法。<br><pre><code>export function map&lt;T, R&gt;(project: (value: T, index: number) =&gt; R, thisArg?: any): OperatorFunction&lt;T, R&gt; {
   return function mapOperation(source: Observable&lt;T&gt;): Observable&lt;R&gt; {
     if (typeof project !== &#39;function&#39;) {

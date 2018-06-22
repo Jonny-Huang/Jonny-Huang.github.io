@@ -2,6 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jonny-huang.github.io/angular/training/30_rxjs_5/</loc>
+    
+    <lastmod>2018-06-22T09:47:03.812Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/angular/basic/</loc>
+    
+    <lastmod>2018-06-19T13:06:17.922Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/angular/</loc>
+    
+    <lastmod>2018-06-19T13:04:08.652Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/quotes/quotes_002/</loc>
+    
+    <lastmod>2018-06-19T05:46:04.687Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/quotes/quotes_005/</loc>
+    
+    <lastmod>2018-06-19T05:31:43.773Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/quotes/quotes_001/</loc>
+    
+    <lastmod>2018-06-19T05:30:00.060Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jonny-huang.github.io/angular/training/29_rxjs_4/</loc>
     
     <lastmod>2018-06-15T07:49:16.136Z</lastmod>
@@ -47,20 +89,6 @@
     <loc>https://jonny-huang.github.io/quotes/quotes_003/</loc>
     
     <lastmod>2018-06-04T01:30:43.379Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/quotes/quotes_002/</loc>
-    
-    <lastmod>2018-06-04T01:01:23.271Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/quotes/quotes_001/</loc>
-    
-    <lastmod>2018-06-04T01:01:22.606Z</lastmod>
     
   </url>
   
@@ -282,14 +310,14 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/08_angular_ui-flex_layout/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/05_angular_navigation/</loc>
     
     <lastmod>2017-09-08T07:20:25.544Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/05_angular_navigation/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/08_angular_ui-flex_layout/</loc>
     
     <lastmod>2017-09-08T07:20:25.544Z</lastmod>
     
@@ -317,13 +345,6 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/</loc>
-    
-    <lastmod>2017-09-03T12:07:48.746Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jonny-huang.github.io/angular/training/06_angular_module/</loc>
     
     <lastmod>2017-09-01T06:51:44.768Z</lastmod>
@@ -345,14 +366,14 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/02_angular_operation/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/01_creating_first_project/</loc>
     
     <lastmod>2017-08-31T05:51:37.251Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/01_creating_first_project/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/02_angular_operation/</loc>
     
     <lastmod>2017-08-31T05:51:37.251Z</lastmod>
     

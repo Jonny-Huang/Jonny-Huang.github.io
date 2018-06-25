@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="NgRx,RxJS,Angular" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+  <meta property="fb:admins" content="fb267234890438499" />
+  <meta property="fb:app_id" content="267234890438499" />
+
+
+
+<meta name="description" content="前言在 別太在意包裝上的照片與實物之間的差異：RxJS 我們透過原始碼可以了解 RxJS 對於監控對象提供了3種狀態(next、error、complete)的通知功能。我們可以透過時做 Observer 介面來決定3種狀態發生時要做什麼處理，而 Subscriber 除了可以決定要做什麼事情之外，還可以決定要如何通知別人，所以如果我們不需要提供通知功能只要實作 Observer 介面即可。">
+<meta name="keywords" content="NgRx,RxJS,Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="你或許看過四不像，但是你聽過四很像嗎？：NgRx">
+<meta property="og:url" content="https://jonny-huang.github.io/angular/training/31_ngrx_1/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言在 別太在意包裝上的照片與實物之間的差異：RxJS 我們透過原始碼可以了解 RxJS 對於監控對象提供了3種狀態(next、error、complete)的通知功能。我們可以透過時做 Observer 介面來決定3種狀態發生時要做什麼處理，而 Subscriber 除了可以決定要做什麼事情之外，還可以決定要如何通知別人，所以如果我們不需要提供通知功能只要實作 Observer 介面即可。">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ngrx/ngrx_logo.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ngrx/ngrx_001.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ngrx/ngrx_002.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ngrx/ngrx_003.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ngrx/ngrx_004.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ngrx/ngrx_005.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ngrx/ngrx_006.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ngrx/ngrx_007.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ngrx/ngrx_008.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ngrx/ngrx_009.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ngrx/ngrx_010.png">
+<meta property="og:updated_time" content="2018-06-25T09:48:13.628Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="你或許看過四不像，但是你聽過四很像嗎？：NgRx">
+<meta name="twitter:description" content="前言在 別太在意包裝上的照片與實物之間的差異：RxJS 我們透過原始碼可以了解 RxJS 對於監控對象提供了3種狀態(next、error、complete)的通知功能。我們可以透過時做 Observer 介面來決定3種狀態發生時要做什麼處理，而 Subscriber 除了可以決定要做什麼事情之外，還可以決定要如何通知別人，所以如果我們不需要提供通知功能只要實作 Observer 介面即可。">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/ngrx/ngrx_logo.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Jonny'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jonny-huang.github.io/angular/training/31_ngrx_1/"/>
+
+
+
+
+
+  <title>你或許看過四不像，但是你聽過四很像嗎？：NgRx | Jonny Huang 的學習筆記</title>
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '267234890438499',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_tw/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jonny Huang 的學習筆記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Angular</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            目錄
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-slides">
+          <a href="/slides/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-slideshare"></i> <br />
+            
+            簡報
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-angular">
+          <a href="/angular/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Angular
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-docker">
+          <a href="/docker/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            docker
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-quotes">
+          <a href="/quotes/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br />
+            
+            欣雨露
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/31_ngrx_1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">你或許看過四不像，但是你聽過四很像嗎？：NgRx</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新於</span>
+              
+              <time title="更新於" itemprop="dateModified" datetime="2018-06-25T17:48:13+08:00">
+                2018/06/25
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Training/" itemprop="url" rel="index">
+                    <span itemprop="name">Training</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/angular/training/ngrx/ngrx_logo.png" alt="">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 <a href="/angular/training/30_rxjs_5/">別太在意包裝上的照片與實物之間的差異：RxJS</a> 我們透過原始碼可以了解 RxJS 對於監控對象提供了3種<strong>狀態</strong>(<code>next</code>、<code>error</code>、<code>complete</code>)的通知功能。<br><img src="/images/angular/training/ngrx/ngrx_001.png" alt=""><br>我們可以透過時做 Observer 介面來決定3種狀態發生時要做什麼處理，而 Subscriber 除了可以決定要做什麼事情之外，還可以決定要如何通知別人，所以如果我們不需要提供通知功能只要實作 Observer 介面即可。<br>那 NgRx 是什麼東西？在做什麼事？上網搜尋得到的答案大概就是 Angular 版的 Redux Pattern。<br><code>NgRx = Redux + RxJS + Angular</code><br>同時應該也會看到許多類似下圖的圖解。<br><img src="/images/angular/training/ngrx/ngrx_002.png" alt="">  </p>
+<h1 id="Store"><a href="#Store" class="headerlink" title="Store"></a>Store</h1><p>從 <a href="http://ngrx.github.io/" target="_blank" rel="noopener">NgRx 官方頁面</a> 可以看到需多功能，其中 <strong>Store</strong> 大概是最常用也是最實用的功能，因此本篇就以略懂 RxJS 的角度來看看 NgRx 的 Store 在做什麼。  </p>
+<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><p>我們開啟 <a href="https://github.com/ngrx/platform/blob/master/docs/store/README.md" target="_blank" rel="noopener">@ngrx/store</a> 說明頁面，來看看它的教學，首先就是安裝套件，我們可以在專案目錄下透過下列指令來安裝：<br><code>npm install @ngrx/store</code>  </p>
+<h2 id="建立-Reducer"><a href="#建立-Reducer" class="headerlink" title="建立 Reducer"></a>建立 Reducer</h2><p>接著建立一個 Reducer 函式-<strong>counterReducer</strong>，由範例可以大概了解它會傳入2個參數 <code>state</code>、<code>action</code>，並<strong>依 <code>action.type</code> 回傳處理後的 state 值</strong>。<br><pre><code>import { Action } from &#39;@ngrx&#x2F;store&#39;;
+
+export const INCREMENT = &#39;INCREMENT&#39;;
+export const DECREMENT = &#39;DECREMENT&#39;;
+export const RESET = &#39;RESET&#39;;
+
+const initialState = 0;
+
+export function counterReducer(state: number = initialState, action: Action) {
+  switch (action.type) {
+    case INCREMENT:
+      return state + 1;
+
+    case DECREMENT:
+      return state - 1;
+
+    case RESET:
+      return 0;
+
+    default:
+      return state;
+  }
+}</code></pre></p>
+<h2 id="註冊-StoreModule"><a href="#註冊-StoreModule" class="headerlink" title="註冊 StoreModule"></a>註冊 StoreModule</h2><p>接著我們可以看到它在 AppModule 內透過 StoreModule.forRoot 將 StoreModule 註冊成 SharedModule，並同時帶入 counterReducer。  </p>
+<blockquote>
+<p>StoreModule 提供了 <code>forRoot</code>、<code>forFeature</code> 2種方法。<br>參考資料：<a href="https://poychang.github.io/use-forroot-to-provide-services-in-angular-shared-module/" target="_blank" rel="noopener">使用 forRoot() 幫助 SharedModule 提供單一實例服務</a> - Poy Chang</p>
+</blockquote>
+<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
+import { StoreModule } from &#39;@ngrx&#x2F;store&#39;;
+import { counterReducer } from &#39;.&#x2F;counter&#39;;
+
+@NgModule({
+  imports: [StoreModule.forRoot({ count: counterReducer })],
+})
+export class AppModule {}</code></pre>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>最後我們從使用範例上可以看到它做了幾件事情：  </p>
+<ul>
+<li>透過 DI 注入 一個具有 AppState 物件的 Store。</li>
+<li>在 button 的 click 事件內透過 <code>dispatch</code> 方法傳送具有 <code>type</code> 屬性的物件，<br>可以看到這些 type 的值剛好對應到 counterReducer 內的 action.type，<br>所以我們應該是傳送一個 Action 物件。</li>
+<li>宣告一個 Observable<number> 型別的屬性 count$ 來接收 <code>store.pipe(select(&#39;count&#39;))</code>，<br>因為使用了 RxJS 的 <code>pipe</code> 方法，所以 <code>select</code> 應該是一種 Operator，<br>最後再將 count$ 綁定到樣板上並透過 Angular 的 <a href="https://angular.io/api/common/AsyncPipe" target="_blank" rel="noopener">AsyncPipe</a> 來抓取資料。</number></li>
+</ul>
+<pre><code>import { Component } from &#39;@angular&#x2F;core&#39;;
+import { Store, select } from &#39;@ngrx&#x2F;store&#39;;
+import { Observable } from &#39;rxjs&#39;;
+import { INCREMENT, DECREMENT, RESET } from &#39;.&#x2F;counter&#39;;
+
+interface AppState {
+  count: number;
+}
+
+@Component({
+  selector: &#39;app-my-counter&#39;,
+  template: `
+    &lt;button (click)=&quot;increment()&quot;&gt;Increment&lt;&#x2F;button&gt;
+    &lt;div&gt;Current Count: { { count$ | async } }&lt;&#x2F;div&gt;
+    &lt;button (click)=&quot;decrement()&quot;&gt;Decrement&lt;&#x2F;button&gt;
+    &lt;button (click)=&quot;reset()&quot;&gt;Reset Counter&lt;&#x2F;button&gt;
+  `,
+})
+export class MyCounterComponent {
+  count$: Observable&lt;number&gt;;
+
+  constructor(private store: Store&lt;AppState&gt;) {
+    this.count$ = store.pipe(select(&#39;count&#39;));
+  }
+
+  increment() {
+    this.store.dispatch({ type: INCREMENT });
+  }
+
+  decrement() {
+    this.store.dispatch({ type: DECREMENT });
+  }
+
+  reset() {
+    this.store.dispatch({ type: RESET });
+  }
+}
+</code></pre>
+<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><p>我們重新在整理一下，我們實作了一個 counterReducer 並將它註冊到 NgRx 的 Store 內，接著我們會在 Component 上來呼叫它。<br><img src="/images/angular/training/ngrx/ngrx_003.png" alt=""><br>我們在點擊 Increment 按鈕時透過 Store 的 <code>dispatch</code> 方法傳送一個 <code>type: INCREMENT</code> 的 Action 物件。<br><img src="/images/angular/training/ngrx/ngrx_004.png" alt="">  </p>
+<blockquote>
+<p>從 NgRx 原始碼可以得知 <strong>Action</strong> 是一個只有 <code>type</code> 屬性的介面。<br><pre><code>export interface Action {
+  type: string;
+}</code></pre></p>
+</blockquote>
+<p>Store 內部會自行找到我們所建立的 counterReducer 並將 Action 值傳遞給它。<br><img src="/images/angular/training/ngrx/ngrx_005.png" alt=""><br>接著執行 counterReducer 函式，依照所傳入的 action.type 做處理並回傳新的 State。<br><img src="/images/angular/training/ngrx/ngrx_006.png" alt=""><br>Store 會接收到 counterReducer 函式所回傳的 State。<br><img src="/images/angular/training/ngrx/ngrx_007.png" alt=""><br>在 Component 上 透過 Store.select 方法來取得 State 目前所需要的資料。<br><img src="/images/angular/training/ngrx/ngrx_008.png" alt="">  </p>
+<h1 id="原始碼"><a href="#原始碼" class="headerlink" title="原始碼"></a>原始碼</h1><p>我們可以從 GitHub 網站下載 <a href="https://github.com/ngrx/platform" target="_blank" rel="noopener">NgRx 原始碼</a>，查看 <code>\modules\store\src\store.ts</code> 可以看到 NgRx 的 Store 類別實作了 RxJS 的 Observer 介面並繼承 Observable 類別，而 ActionsSubject 底層就是透過 BehaviorSubject 來包裝 Action，最特別的就是範例所使用的 <strong><code>dispatch</code> 方法其實就是呼叫 <code>next</code> 方法</strong>。<br>Store 對應 Observer 介面的3個方法(<code>next</code>、<code>error</code>、<code>complete</code>)也只觸發 BehaviorSubject 所對應的方法，本質上比較像 Subscriber，因為它並沒有決定要做什麼事。<br><pre><code>@Injectable()
+export class Store&lt;T&gt; extends Observable&lt;T&gt; implements Observer&lt;Action&gt; {
+  constructor(
+    state$: StateObservable,
+    private actionsObserver: ActionsSubject,
+    private reducerManager: ReducerManager
+  ) {
+    super();
+    this.source = state$;
+  }
+
+  dispatch&lt;V extends Action = Action&gt;(action: V) {
+    this.actionsObserver.next(action);
+  }
+
+  next(action: Action) {
+    this.actionsObserver.next(action);
+  }
+
+  error(err: any) {
+    this.actionsObserver.error(err);
+  }
+
+  complete() {
+    this.actionsObserver.complete();
+  }
+}
+
+export class ActionsSubject extends BehaviorSubject&lt;Action&gt; implements OnDestroy {
+
+}</code></pre></p>
+<h2 id="select-就是-RxJS-Operator"><a href="#select-就是-RxJS-Operator" class="headerlink" title="select 就是 RxJS Operator"></a>select 就是 RxJS Operator</h2><p>接著觀察 select 方法相關程式碼，如果有研究過 RxJS Operator 的原始碼應該可以發現 select 就是 NgRx 自己實作的 RxJS Operator，我們可以看到最關鍵的 selectOperator 函式：</p>
+<ul>
+<li>當傳入的參數是 <code>string</code> 時它會使用 RxJS 的 <code>pluck</code> Operator。</li>
+<li>當傳入的參數是 <code>function</code> 時它會使用 RxJS 的 <code>map</code> Operator。</li>
+<li>最後一律透過 RxJS 的 <code>distinctUntilChanged</code> 再篩選一次，也就是當 <code>dispatch</code>(<code>next</code>) 傳入的值與之前一樣時就不會回應。</li>
+</ul>
+<pre><code>@Injectable()
+export class Store&lt;T&gt; extends Observable&lt;T&gt; implements Observer&lt;Action&gt; {
+  lift&lt;R&gt;(operator: Operator&lt;T, R&gt;): Store&lt;R&gt; {
+    const store = new Store&lt;R&gt;(this, this.actionsObserver, this.reducerManager);
+    store.operator = operator;
+
+    return store;
+  }
+
+  select(
+    pathOrMapFn: ((state: T) =&gt; any) | string,
+    ...paths: string[]
+  ): Observable&lt;any&gt; {
+    return select.call(null, pathOrMapFn, ...paths)(this);
+  }
+}
+
+export function select&lt;T, K&gt;(
+  pathOrMapFn: ((state: T) =&gt; any) | string,
+  ...paths: string[]
+) {
+  return function selectOperator(source$: Observable&lt;T&gt;): Observable&lt;K&gt; {
+    let mapped$: Observable&lt;any&gt;;
+
+    if (typeof pathOrMapFn === &#39;string&#39;) {
+      mapped$ = source$.pipe(pluck(pathOrMapFn, ...paths));
+    } else if (typeof pathOrMapFn === &#39;function&#39;) {
+      mapped$ = source$.pipe(map(pathOrMapFn));
+    } else {
+      throw new TypeError(
+        `Unexpected type &#39;${typeof pathOrMapFn}&#39; in select operator,` +
+          ` expected &#39;string&#39; or &#39;function&#39;`
+      );
+    }
+
+    return mapped$.pipe(distinctUntilChanged());
+  };
+}</code></pre>
+<h1 id="腦補時間"><a href="#腦補時間" class="headerlink" title="腦補時間"></a>腦補時間</h1><p>雖然還沒仔細研究底層運作，但是就目前認知，大概可以推想出可能的運作模式，NgRx 會透過 RxJS 的 Subject 來監看     <code>action</code> 與 <code>state</code>，我們可以透過 <code>dispatch</code> 方法來觸發 Subject(負責監看 Action) 的 <code>next</code> 方法，Store 會透過訂閱，再發生 <code>next</code> 時幫我們去呼叫我們所撰寫的 Reducer 方法，接著將回傳值透過 <code>next</code> 塞入 Subject(負責監看 State)內，最後 NgRx 再對外提供一個已經訂閱 Subject(負責監看 State) 的 Select Operator，而我們則透過訂閱這個 Subject 來取得對應 Action 的資料。<br><img src="/images/angular/training/ngrx/ngrx_009.png" alt="">  </p>
+<ul>
+<li>Action 就像是 RxJS 的通知，只是 RxJS 只有3種狀態 <code>next</code>、<code>error</code>、<code>complete</code>，而 NgRx 可以讓我們自訂多種狀態，Action 應該是取自 UML：活動圖(activity diagram)，代表一個執行<strong>動作</strong>，其實我們也可以當成是”事件”或是”操作狀態”。</li>
+<li>State 雖然說是狀態，但是筆者認為比較像資料結構，我們將所有 Action 發生時所會用到的資料都訂定在 State 內，</li>
+<li>Reducer 就像是 RxJS 的 Subscriber，決定當狀態改變時要做什麼事情，只是它也像是一個轉換器，負責將 Action 轉換成對應的 State 資料。</li>
+<li>Reducer 傳入的 state 參數應該是指 Action 發生之前的資料狀態，而我們最後會在回傳新的 state 值，雖然沒有硬性規定，但是理論上 Reducer 應當回傳相同結構的 state 類別，因此除非真的會回傳不同類別，否則最好 利用 TypeScript  強制訂定回傳結構。</li>
+<li>Action 至少要包含 <code>type</code> 屬性，代表我們還可以帶入其他資料，所以 Reducer 不是只能單純判斷 <code>type</code> 屬性，使用 <code>type</code> 屬性主要是配合 Redux 風格。</li>
+<li>select 就是 RxJS Operator，它會回傳的就是透過 Observable 打包的 State 資料，所以我們可以直接在樣板上透過 <code>async</code> 來訂閱資料，或是我們自己訂閱(subscribe)，當然我們還可以先透過 RxJS Operator 再加工處理。</li>
+</ul>
+<h1 id="四很像"><a href="#四很像" class="headerlink" title="四很像"></a>四很像</h1><p>看過 NgRx Store 的程式碼後聯想起漫畫 <a href="https://zh.wikipedia.org/zh-tw/HUNTER%C3%97HUNTER" target="_blank" rel="noopener">HUNTER×HUNTER</a> 內雲古對小傑說的一句話。<br><img src="/images/angular/training/ngrx/ngrx_010.png" alt=""><br>將所有學到的技能一次同時展現就會變成很厲害的絕招，沒錯，Store 可以說是將 RxJS 的分散的功能都整合在一起，我們可以將 Component 內的操作都建立對應的 Action，並將相關邏輯處理都包再 Reducer 內，這樣整個 class 就會更加乾淨。<br>還有別忘了 Store 同時也是個 SharedModule，只要畫面上所有有訂閱的 Component 都可以即時收到通知，例如將登入、登出封裝到 Store，我們在登入成功後將使用者資訊儲存到 State 內，這樣有訂閱的 Component 就可以檢查權限是否足夠，相對的，收到登出通知時 Component 可以決定是否關閉畫面。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RxJS/" rel="tag"># RxJS</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/angular/training/30_rxjs_5/" rel="next" title="別太在意包裝上的照片與實物之間的差異：RxJS">
+                <i class="fa fa-chevron-left"></i> 別太在意包裝上的照片與實物之間的差異：RxJS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Jonny Huang" />
+          <p class="site-author-name" itemprop="name">Jonny Huang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分類</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Store"><span class="nav-number">2.</span> <span class="nav-text">Store</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝"><span class="nav-number">2.1.</span> <span class="nav-text">安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立-Reducer"><span class="nav-number">2.2.</span> <span class="nav-text">建立 Reducer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#註冊-StoreModule"><span class="nav-number">2.3.</span> <span class="nav-text">註冊 StoreModule</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">2.4.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#流程"><span class="nav-number">3.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原始碼"><span class="nav-number">4.</span> <span class="nav-text">原始碼</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#select-就是-RxJS-Operator"><span class="nav-number">4.1.</span> <span class="nav-text">select 就是 RxJS Operator</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#腦補時間"><span class="nav-number">5.</span> <span class="nav-text">腦補時間</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四很像"><span class="nav-number">6.</span> <span class="nav-text">四很像</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-Jonny Huang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
+<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+      prettyPrint();
+  });
+</script>
+
+</body>
+</html>

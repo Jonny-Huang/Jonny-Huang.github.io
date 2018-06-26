@@ -109,7 +109,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ngrx/ngrx_008.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ngrx/ngrx_009.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ngrx/ngrx_010.png">
-<meta property="og:updated_time" content="2018-06-25T12:55:44.857Z">
+<meta property="og:updated_time" content="2018-06-26T00:30:17.201Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="你或許看過四不像，但是你聽過四很像嗎？：NgRx">
 <meta name="twitter:description" content="前言在 別太在意包裝上的照片與實物之間的差異：RxJS 我們透過原始碼可以了解 RxJS 對於監控對象提供了3種狀態(next、error、complete)的通知功能。我們可以透過時做 Observer 介面來決定3種狀態發生時要做什麼處理，而 Subscriber 除了可以決定要做什麼事情之外，還可以決定要如何通知別人，所以如果我們不需要提供通知功能只要實作 Observer 介面即可。">
@@ -357,8 +357,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2018-06-25T20:55:44+08:00">
-                2018/06/25
+              <time title="更新於" itemprop="dateModified" datetime="2018-06-26T08:30:17+08:00">
+                2018/06/26
               </time>
             
           </span>
@@ -583,7 +583,7 @@ export function select&lt;T, K&gt;(
 <li>Reducer 傳入的 state 參數應該是指 Action 發生之前的資料狀態，而我們最後會在回傳新的 state 值，雖然沒有硬性規定，但是理論上 Reducer 應當回傳相同結構的 state 類別，因此除非真的會回傳不同類別，否則最好 利用 TypeScript  強制訂定回傳結構。</li>
 <li>Action 至少要包含 <code>type</code> 屬性，代表我們還可以帶入其他資料，所以 Reducer 不是只能單純判斷 <code>type</code> 屬性，使用 <code>type</code> 屬性主要是配合 Redux 風格。</li>
 <li>select 就是 RxJS Operator，它會回傳的就是透過 Observable 打包的 State 資料，所以我們可以直接在樣板上透過 <code>async</code> 來訂閱資料，或是我們自己訂閱(subscribe)，當然我們還可以先透過 RxJS Operator 再加工處理。</li>
-<li>Store 繼承自 Observable<t>，這個 <code>T</code> 只的就是 state 類別，所以如果 select 不符合你的需求，那就直接訂閱 Store 物件，自己處理。</t></li>
+<li>Store 繼承自 <code>Observable&lt;T&gt;</code>，這個 <code>T</code> 只的就是 state 類別，所以如果 select 不符合你的需求，那就直接訂閱 Store 物件，自己處理。</li>
 </ul>
 <h1 id="四很像"><a href="#四很像" class="headerlink" title="四很像"></a>四很像</h1><p>看過 NgRx Store 的程式碼後聯想起漫畫 <a href="https://zh.wikipedia.org/zh-tw/HUNTER%C3%97HUNTER" target="_blank" rel="noopener">HUNTER×HUNTER</a> 內雲古對小傑說的一句話。<br><img src="/images/angular/training/ngrx/ngrx_010.png" alt=""><br>將所有學到的技能一次同時展現就會變成很厲害的絕招，沒錯，Store 可以說是將 RxJS 的分散的功能都整合在一起，我們可以將 Component 內的操作都建立對應的 Action，並將相關邏輯處理都包再 Reducer 內，這樣整個 class 就會更加乾淨。<br>還有別忘了 Store 同時也是個 SharedModule，只要畫面上所有有訂閱的 Component 都可以即時收到通知，例如將登入、登出封裝到 Store，我們在登入成功後將使用者資訊儲存到 State 內，這樣有訂閱的 Component 就可以檢查權限是否足夠，相對的，收到登出通知時 Component 可以決定是否關閉畫面。</p>
 

@@ -147,7 +147,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_050.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_051.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_052.png">
-<meta property="og:updated_time" content="2018-11-01T11:15:47.686Z">
+<meta property="og:updated_time" content="2018-11-01T11:28:29.593Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="不合理的要求是磨練：Docker 架站">
 <meta name="twitter:description" content="前言買一把菜、A一把蔥，在省錢至上的市場上可以說是屢見不鮮，但是買一把菜還要送一盤牛肉這種不合理的行徑，在近幾年來可以說這不是一種常態而是已經變成一種生態，但是對於軟體專案來說你可以放棄測試轉嫁給客戶，你可以減少非必需的文件，但是可以省的事情其實只佔小部分的比例，這些都還不夠客戶砍一次價，既然要決定要留在這種生態中，cost down 是必然會面對的問題，但是如何”不合理的”縮減成本但又不違背自己">
@@ -385,7 +385,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2018-11-01T19:15:47+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2018-11-01T19:28:29+08:00">
                 2018/11/01
               </time>
             
@@ -606,7 +606,7 @@
 </blockquote>
 <p>我們可以看 site4 連結的是我們開啟的 5000 連接埠而不是 80，這也意味著 letsencrypt 在掃描時會以該容器提供的連接埠當作輸出。<br><img src="/images/docker/03/docker03_050.png" alt="">  </p>
 <h2 id="比我們想得更聰明"><a href="#比我們想得更聰明" class="headerlink" title="比我們想得更聰明"></a>比我們想得更聰明</h2><p>當我們將 site1 ~ site3 的容器都給停止只保留 site4 時，我們可以看到 letsencrypt 自動幫我們移除相關憑證。<br><img src="/images/docker/03/docker03_051.png" alt=""><br>而且我們可以看到 <code>default.conf</code> 設定檔 site1 ~ site3 相關設定也一併被移除，也就是說 letsencrypt 並不是只有執行一次，而是每當容器有異動時都會立即掃瞄並修改設定，所以我們自己要客製化的設定最好另外建立設定檔存放，避免被影響。<br><img src="/images/docker/03/docker03_052.png" alt="">  </p>
-<p>整個實作過程其實可以發現我們只有設定少數參數，但是我們的主機已經是一台支援最新標準的網頁伺服器了，而且也已經做好相關優化了，這要是再 Windows Server 上透過 IIS 來建置網站，應該不是這麼簡單就可以完成的。  </p>
+<p>整個實作過程其實可以發現我們只有設定少數參數，但是我們的主機已經是一台支援最新標準的網頁伺服器了，而且也已經做好相關優化了，這要是在 Windows Server 上透過 IIS 來建置網站，應該不是這麼簡單就可以完成的。  </p>
 <h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>就像報告班長電影裡的名言：”合理的要求是訓練，不合理的要求是磨練”，把花在抱怨一切的不合理的時間拿來思考可行方案，你會發覺另一個名言：”生命會自己找到出路”，過去所學的技術透過非正規的方法可以延伸出更多可能。  </p>
 <h2 id="Cloudflare"><a href="#Cloudflare" class="headerlink" title="Cloudflare"></a>Cloudflare</h2><p>筆者後續改用 <a href="https://www.cloudflare.com/zh-tw/" target="_blank" rel="noopener">Cloudflare</a> 測試 DNS 託管，它提供每組帳號一個免費託管服務，而且更新速度很快，同時也有提供免費的 SSL 憑證以及一些基本的資安服務，這無疑就像多了一個硬體防火牆對網站也是多一層保護。  </p>
 

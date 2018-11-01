@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-tw">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Docker">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+  <meta property="fb:admins" content="fb267234890438499">
+  <meta property="fb:app_id" content="267234890438499">
+
+
+
+<meta name="description" content="前言買一把菜、A一把蔥，在省錢至上的市場上可以說是屢見不鮮，但是買一把菜還要送一盤牛肉這種不合理的行徑，在近幾年來可以說這不是一種常態而是已經變成一種生態，但是對於軟體專案來說你可以放棄測試轉嫁給客戶，你可以減少非必需的文件，但是可以省的事情其實只佔小部分的比例，這些都還不夠客戶砍一次價，既然要決定要留在這種生態中，cost down 是必然會面對的問題，但是如何”不合理的”縮減成本但又不違背自己">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不合理的要求是磨練：Docker 架站">
+<meta property="og:url" content="https://jonny-huang.github.io/docker/docker_03/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言買一把菜、A一把蔥，在省錢至上的市場上可以說是屢見不鮮，但是買一把菜還要送一盤牛肉這種不合理的行徑，在近幾年來可以說這不是一種常態而是已經變成一種生態，但是對於軟體專案來說你可以放棄測試轉嫁給客戶，你可以減少非必需的文件，但是可以省的事情其實只佔小部分的比例，這些都還不夠客戶砍一次價，既然要決定要留在這種生態中，cost down 是必然會面對的問題，但是如何”不合理的”縮減成本但又不違背自己">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_004.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_027.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_001.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_006.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_007.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_008.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_009.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_002.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_003.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_010.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_005.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_012.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_013.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_014.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_015.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_016.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_017.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_018.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_019.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_020.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_022.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_023.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_025.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_026.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_028.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_029.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_030.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_033.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_031.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_032.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_034.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_035.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_039.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_040.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_036.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_037.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_038.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_041.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_042.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_044.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_043.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_045.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_047.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_046.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_048.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_049.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_050.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_051.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_052.png">
+<meta property="og:updated_time" content="2018-11-01T05:07:24.061Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不合理的要求是磨練：Docker 架站">
+<meta name="twitter:description" content="前言買一把菜、A一把蔥，在省錢至上的市場上可以說是屢見不鮮，但是買一把菜還要送一盤牛肉這種不合理的行徑，在近幾年來可以說這不是一種常態而是已經變成一種生態，但是對於軟體專案來說你可以放棄測試轉嫁給客戶，你可以減少非必需的文件，但是可以省的事情其實只佔小部分的比例，這些都還不夠客戶砍一次價，既然要決定要留在這種生態中，cost down 是必然會面對的問題，但是如何”不合理的”縮減成本但又不違背自己">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/docker/03/docker03_004.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Jonny'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jonny-huang.github.io/docker/docker_03/">
+
+
+
+
+
+  <title>不合理的要求是磨練：Docker 架站 | Jonny Huang 的學習筆記</title>
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '267234890438499',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_tw/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jonny Huang 的學習筆記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Angular、Flutter</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            目錄
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-flutter">
+          <a href="/flutter/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Flutter
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-angular">
+          <a href="/angular/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Angular
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-quotes">
+          <a href="/quotes/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br>
+            
+            欣雨露
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/docker/docker_03/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">不合理的要求是磨練：Docker 架站</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新於</span>
+              
+              <time title="更新於" itemprop="dateModified" datetime="2018-11-01T13:07:24+08:00">
+                2018/11/01
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Training/" itemprop="url" rel="index">
+                    <span itemprop="name">Training</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>買一把菜、A一把蔥，在省錢至上的市場上可以說是屢見不鮮，但是買一把菜還要送一盤牛肉這種不合理的行徑，在近幾年來可以說這不是一種常態而是已經變成一種生態，但是對於軟體專案來說你可以放棄測試轉嫁給客戶，你可以減少非必需的文件，但是可以省的事情其實只佔小部分的比例，這些都還不夠客戶砍一次價，既然要決定要留在這種生態中，cost down 是必然會面對的問題，但是如何”不合理的”縮減成本但又不違背自己的良知，那就真的要傷透腦筋了。  </p>
+<h2 id="測試環境"><a href="#測試環境" class="headerlink" title="測試環境"></a>測試環境</h2><p>這次測試環境的設備如下：</p>
+<ul>
+<li><strong>一台 PC</strong>：原本想在 Raspberry Pi 上測試，不過應該不會接觸到這麼自虐的客戶，所以就找一台低規的 mini pc 來測試，配備為 8GB 記憶體搭上無風扇的 <a href="https://ark.intel.com/zh-tw/products/78867/Intel-Celeron-Processor-J1900-2M-Cache-up-to-2-42-GHz-" target="_blank" rel="noopener">Intel J1900</a> CPU 的弱雞電腦，第一刀最快的就是縮減硬體成本。<br><img src="/images/docker/03/docker03_004.png" alt=""></li>
+<li><strong>一個固定實體 IP</strong>：雖然動態 IP 也有解套方案，不過現在申請固定 IP 也很容易，所以就以固定 IP 來測試，這邊借測的 IP 為 <strong>118.163.1.106</strong>。  </li>
+<li><strong>一個網域名稱(Domain Name)</strong>：模擬多網站共用 IP，以及註冊 SSL 憑證需要，這邊借測的網域名稱為 <strong>beehouse.tw</strong>。  </li>
+<li><strong>DNS 代管</strong>：這邊使用中華電信的代管服務，因為 DNS　更新需要時間，所以我們先設定 將 beehouse.tw 指定到 118.163.1.106，並增加 site1 ~ site4 四組測試用的子網域，並都指向 beehouse.tw。　　<br><img src="/images/docker/03/docker03_027.png" alt="">  </li>
+<li><strong>SSL 憑證</strong>：現在主流的瀏覽器都已將 HTTP 傳輸協定列為不安全，所以網站改走 HTTPS 已經變成必要的模式，也有不少廠商提供免費憑證申請，在這邊我們使用 <a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let’s Encrypt</a> 所提供的憑證。 </li>
+</ul>
+<h1 id="免錢的最貴"><a href="#免錢的最貴" class="headerlink" title="免錢的最貴"></a>免錢的最貴</h1><p>微軟的 Windows Server 與 SQL Server 可以說是很多公司都在使用的系統，但是要光是要”合法授權”，所需的費用就很容易超出客戶預算，用 Linux 取代 Windows Server 可以說是最簡單的解套方案，對於 Linux 達人來說以穩定度著稱的 <a href="https://www.centos.org/" target="_blank" rel="noopener">CentOS</a> 應該是最好的選擇，不過對於半路出家的筆者來說 <a href="https://www.ubuntu.com/" target="_blank" rel="noopener">Ubuntu</a> 或是 <a href="https://www.linuxmint.com/" target="_blank" rel="noopener">Linux Mint</a> 會是更好的選擇，因為有一群專家在持續維護，如果後續還需要花時間解決 Linux 系統產生的問題那就本末倒置了。  </p>
+<blockquote>
+<p>也可以參考 <a href="https://distrowatch.com/" target="_blank" rel="noopener">DistroWatch</a> 網站，基本上瀏覽排名在前段班的 Linux 都是不錯的選擇。  </p>
+</blockquote>
+<h1 id="安裝-Ubuntu"><a href="#安裝-Ubuntu" class="headerlink" title="安裝 Ubuntu"></a>安裝 Ubuntu</h1><p>先從官方下桌面版本(Desktop)載映像檔並燒錄成光碟，目前的<strong>長期支援版(LTS)</strong>為 18.04.1，接下來便是開始安裝 Ubuntu 作業系統，系統安裝過程大概都一直下一步的點選下去即可，以下是筆者比較習慣的做法：</p>
+<ul>
+<li><p>安裝英文版，雖然可以選中文語系，但是為了避免使用者資料夾會變成中文檔名，我們可以先安裝英文版後續再變換語系。<br><img src="/images/docker/03/docker03_001.png" alt="">  </p>
+<blockquote>
+<p>在系統內可以透過 Language Support 來變更成中文版，<br><img src="/images/docker/03/docker03_006.png" alt=""><br>特別的是筆者在安裝繁體中文後只出現香港的版本，必須<strong>移除繁體中文語系再重新安裝一次</strong>之後才會出現臺灣的繁體版本。<br><img src="/images/docker/03/docker03_007.png" alt=""><br>將<strong>漢語(臺灣)</strong>拖曳至最上方，登出再重新登入便可切換語系。<br><img src="/images/docker/03/docker03_008.png" alt=""><br>重新登入後，選擇保留舊名稱可以避面後續路徑問題出現。<br><img src="/images/docker/03/docker03_009.png" alt="">  </p>
+</blockquote>
+</li>
+<li><p>選擇最小安裝，避免安裝一些不需要的軟體。<br><img src="/images/docker/03/docker03_002.png" alt="">  </p>
+</li>
+<li><p>選擇自動登入，站在資安立場這是非常不妥的行為，但是總是有客戶會擅自修改密碼卻又會忘記新密碼，讓系統自動登入可以減少他們修改密碼的機會。<br><img src="/images/docker/03/docker03_003.png" alt="">  </p>
+<blockquote>
+<p>進入系統後可以利用指令 <code>sudo passwd root</code> 來修改 root 帳號的密碼，當然這組密碼最好自己保留就好，這是搶救系統的最後手段。<br><img src="/images/docker/03/docker03_010.png" alt="">  </p>
+</blockquote>
+</li>
+<li><p>執行軟體更新，Ubuntu 內建了視覺化的軟體更新程式，再主機有聯網狀態下會自動檢測是否有新版程式需要更新。<br><img src="/images/docker/03/docker03_005.png" alt="">  </p>
+<blockquote>
+<p>當然我們也可以在終端機上透過指令手動更新：<br><code>sudo apt update</code>：更新套件清單。<br><code>sudo apt dist-upgrade</code>：依據套件清單更新套件，<strong>dist-upgrade</strong> 與 <strong>upgrade</strong> 的差異請自己上網搜尋相關文章。<br><img src="/images/docker/03/docker03_012.png" alt="">  </p>
+</blockquote>
+</li>
+</ul>
+<p>為什麼安裝桌面版本而不是伺服器版本，主要降低上手難度，畢竟視窗化的操作介面還是較容易，對於一般客戶來說感覺也會比較”有價值”，當然如果非常在意佔用資源問題的人，最後可以在將系統調整成文字模式(text mode)。  </p>
+<h1 id="安裝-Docker"><a href="#安裝-Docker" class="headerlink" title="安裝 Docker"></a>安裝 Docker</h1><p>透過容器化的技術可以將每個系統隔離開來，避免互相干擾，因此我們需要安裝 Docker，後續要執行的系統也會打包成 Container 來運行，安裝方式可以參考官方說明 <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/" target="_blank" rel="noopener">Get Docker CE for Ubuntu</a> 或是參考 <a href="/docker/docker_02/#Docker-for-Ubuntu">Docker for Ubuntu</a>。  </p>
+<p>因為是在單一主機上運行，所以我們在 Docker 環境中建立一個名稱為 <strong>bridge-network</strong> 的橋接網絡(bridge)，指令如下：<br><code>docker network create bridge bridge-network</code>  </p>
+<h1 id="安裝-Visual-Studio-Code"><a href="#安裝-Visual-Studio-Code" class="headerlink" title="安裝 Visual Studio Code"></a>安裝 Visual Studio Code</h1><p>利用 VS Code 來協助我們管理 Container 是比較簡單又方便的方法，可以省去打指令的時間，雖然到<a href="https://code.visualstudio.com/Download" target="_blank" rel="noopener">官方下載頁面</a> 下載 deb 檔來安裝是最簡單的，不過筆者比較建案參考 <a href="https://code.visualstudio.com/docs/setup/linux" target="_blank" rel="noopener">Visual Studio Code on Linux</a> 說明手動安裝，這可以配合 apt 更新指令來更新。<br>我們透過下列指令來安裝 VS Code 的 GPG 金鑰：<br><code>curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor &gt; microsoft.gpg</code><br><code>sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/</code><br>接著將 VS Code 的遠端儲存庫添加到 apt 的來源清單內：<br><code>sudo sh -c &#39;echo &quot;deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main&quot; &gt; /etc/apt/sources.list.d/vscode.list&#39;</code><br>安裝 apt-transport-https 套件：<br><code>sudo apt install apt-transport-https</code><br>更新套件清單：<br><code>sudo apt update</code><br>接下來就是安裝 VS Code：<br><code>sudo apt install code</code><br>最後開啟 VS Code 並安裝 <a href="https://marketplace.visualstudio.com/items?itemName=PeterJausovec.vscode-docker#review-details" target="_blank" rel="noopener">Docker 擴充功能</a>，詳細作法請參閱 <a href="/docker/docker_01/#%E4%BD%BF%E7%94%A8-VS-Code-%E7%AE%A1%E7%90%86-Docker">使用 VS Code 管理 Docker</a>。</p>
+<h1 id="安裝資料庫：PostgreSQL"><a href="#安裝資料庫：PostgreSQL" class="headerlink" title="安裝資料庫：PostgreSQL"></a>安裝資料庫：PostgreSQL</h1><p>提到免費的資料庫，我想不少人使用 <a href="https://www.mysql.com/" target="_blank" rel="noopener">MySQL</a> 或是 <a href="https://mariadb.com/" target="_blank" rel="noopener">MariaDB</a>，但是筆者比較喜歡使用 <a href="https://www.postgresql.org/" target="_blank" rel="noopener">PostgreSQL</a>，因為它內建視覺化管理工具 <a href="https://www.pgadmin.org/" target="_blank" rel="noopener">pgAdmin</a>，對於習慣使用 SQL Server 或是 Oracle Database 的人來說上手難度應該較低，我們在終端機(也可以直接在 VS Code 內透過 <code>ctrl</code> + <code>`</code> 來開啟)執行下列指令來建立 PostgreSQL：<br><pre><code>sudo docker run \
+    --name postgres \
+    -v $HOME&#x2F;postgres&#x2F;pgdata:&#x2F;var&#x2F;lib&#x2F;postgresql&#x2F;data \
+    -e &#39;POSTGRES_PASSWORD=vPxhP977DYEw5SvZ&#39; \
+    -p 5432:5432 \
+    -d \
+    --restart unless-stopped \
+    --net bridge-network \
+    postgres:11-alpine</code></pre></p>
+<p><img src="/images/docker/03/docker03_013.png" alt="">  </p>
+<blockquote>
+<p><code>run</code>：在建立容器後立即啟動。<br><code>--name postgres</code>：容器名稱設定為 <strong>postgres</strong>。<br><code>-v $HOME/postgres/pgdata:/var/lib/postgresql/data</code>：將資料庫儲存路徑移至 $HOME/postgres/pgdata，當資料庫異常時可以較方便救援，Docker 會自動幫我們建立資料夾。<br><img src="/images/docker/03/docker03_014.png" alt=""><br><code>-e &#39;POSTGRES_PASSWORD=vPxhP977DYEw5SvZ&#39;</code>：設定預設帳號(postgres)的密碼，目前設定為 <strong>vPxhP977DYEw5SvZ</strong>。<br><code>-p 5432:5432</code>：將容器的連接埠(後面) 5432 與本機連接埠(前面) 5432 串接，方便外部連線。<br><code>-d</code>：讓容器再背景運行。<br><code>--restart unless-stopped</code>：設定容器自動重新啟動，除非容器原本狀態為停止。<br><code>--net bridge-network</code>：將容器的網路與剛所建立的橋接網路 <strong>bridge-network</strong>。<br><code>postgres:11-alpine</code>：指定容器要掛載的映像檔，目前是指用 PostgreSQL 11。  </p>
+</blockquote>
+<p>接著我們安裝管理工具 pgAdmin，從第4版開始 pgAdmin 使用網頁來呈現操作介面，也因此很容易封裝成容器，所以官方也提供容器化的版本，安裝指令如下：<br><pre><code>sudo docker run \
+    --name pgadmin \
+    -e &#39;PGADMIN_DEFAULT_EMAIL=jonnyhuang@outlook.com&#39; \
+    -e &#39;PGADMIN_DEFAULT_PASSWORD=W7JzUjxEvT8CG5rC&#39; \
+    -p 8081:80 \
+    -d \
+    --restart unless-stopped \
+    --network bridge-network \
+    dpage&#x2F;pgadmin4</code></pre></p>
+<p><img src="/images/docker/03/docker03_015.png" alt="">  </p>
+<blockquote>
+<p><code>--name pgadmin</code>：容器名稱設定為 <strong>pgadmin</strong>。<br><code>-e &#39;PGADMIN_DEFAULT_EMAIL=jonnyhuang@outlook.com&#39;</code>：設定預設帳號的 email。<br><code>-e &#39;PGADMIN_DEFAULT_PASSWORD=W7JzUjxEvT8CG5rC&#39;</code>：設定預設帳號的密碼。<br><code>-p 8081:80</code>：將容器的連接埠(後面) 80 與本機連接埠(前面) 8081 串接。<br><code>dpage/pgadmin4</code>：指定容器要掛載的映像檔 pgadmin4，若沒有指定版本(tag)預設會使用 latest。  </p>
+</blockquote>
+<p>透過瀏覽器開啟 <a href="http://localhost:8081，便可出現登出畫面。" target="_blank" rel="noopener">http://localhost:8081，便可出現登出畫面。</a><br><img src="/images/docker/03/docker03_016.png" alt=""><br>登入後便可建立資料庫連線，要注意的是<strong>主機名稱需填寫容器名稱</strong>。<br><img src="/images/docker/03/docker03_017.png" alt=""><br>連線成功便可開始操作資料庫。<br><img src="/images/docker/03/docker03_018.png" alt="">  </p>
+<h1 id="建立反向代理-Reverse-Proxy"><a href="#建立反向代理-Reverse-Proxy" class="headerlink" title="建立反向代理 (Reverse Proxy)"></a>建立反向代理 (Reverse Proxy)</h1><p>因為我們需要多網站共用一組 IP，所以必須建立一個反向代理服務來協助我們將不同的網域名稱指定到對應的網站服務，建立指令如下：<br><pre><code>sudo docker run \
+    --name reverse-proxy \
+    -v $HOME&#x2F;nginx&#x2F;certs:&#x2F;etc&#x2F;nginx&#x2F;certs:ro \
+    -v $HOME&#x2F;nginx&#x2F;vhost.d:&#x2F;etc&#x2F;nginx&#x2F;vhost.d \
+    -v $HOME&#x2F;nginx&#x2F;html:&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html \
+    -v $HOME&#x2F;nginx&#x2F;conf.d:&#x2F;etc&#x2F;nginx&#x2F;conf.d \
+    -v &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;tmp&#x2F;docker.sock:ro \
+    --label com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true \
+    -p 80:80 \
+    -p 443:443 \
+    -d \
+    --restart unless-stopped \
+    --network bridge-network \
+    jwilder&#x2F;nginx-proxy</code></pre></p>
+<p><img src="/images/docker/03/docker03_019.png" alt="">  </p>
+<blockquote>
+<p><code>--name reverse-proxy</code>：容器名稱設定為 <strong>reverse-proxy</strong>。<br><code>-v $HOME/nginx/certs:/etc/nginx/certs:ro</code>：設定憑證存取路徑，讀取權限為唯讀(ro)。<br><code>-v $HOME/nginx/html:/usr/share/nginx/html</code>：設定 nginx 靜態網頁存放路徑。<br><code>-v $HOME/nginx/conf.d:/etc/nginx/conf.d</code>：設定 nginx 設定檔存放路徑。<br><code>-v /var/run/docker.sock:/tmp/docker.sock:ro</code>：透過掛載 /var/run/docker.sock，讓容器可以與本機的 Docker daemon 溝通。<br><code>--label com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true</code>：設定標籤，後續說明。<br><code>-p 80:80</code>、<code>-p 443:443</code>：將容器的 80、443 連接埠與本機串接，這樣連接到本機的 HTTP、HTTPS 請求都會轉送到容器內。<br><code>jwilder/nginx-proxy</code>：指定容器要掛載的映像檔，因為此映像檔已經設定好 nginx 的反向代理設定，讓我們可以省略設定步驟。  </p>
+</blockquote>
+<p>透過瀏覽器開啟 <a href="http://localhost/" target="_blank" rel="noopener">http://localhost/</a> 可以看到 nginx 已經可以運行。<br><img src="/images/docker/03/docker03_020.png" alt=""><br>因為我們已經將網域名稱 beehouse.tw 指定到本機的實體 IP 118.163.1.106，所改以網址 <a href="http://beehouse.tw/" target="_blank" rel="noopener">http://beehouse.tw/</a> 來連結，可以看到相同的頁面，表示外部裝置已經可以透過網域名稱連結到我們的測試主機，當然因為是使用 HTTP 協定，所以被瀏覽器標示為不安全。<br><img src="/images/docker/03/docker03_022.png" alt="">  </p>
+<p>做到這邊可以發現其實既使我們不了解 nginx，透過容器封裝技術可以很快速的架設起來。  </p>
+<h1 id="訂閱-Let’s-Encrypt-憑證"><a href="#訂閱-Let’s-Encrypt-憑證" class="headerlink" title="訂閱 Let’s Encrypt 憑證"></a>訂閱 Let’s Encrypt 憑證</h1><p>Let’s Encrypt 憑證雖然可以免費申請，但是它的有效期限只有 90 天，所以原則上我們要自己續訂，但是網路大神無所不在，我們可以利用別人建置好的憑證自動申請/續訂服務來省略申請流程，建立指令如下：<br><pre><code>docker run \
+    --name letsencrypt \
+    --volumes-from reverse-proxy \
+    -v $HOME&#x2F;nginx&#x2F;certs:&#x2F;etc&#x2F;nginx&#x2F;certs:rw \
+    -v &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;var&#x2F;run&#x2F;docker.sock:ro \
+    -d \
+    --restart unless-stopped \
+    --network bridge-network \
+    jrcs&#x2F;letsencrypt-nginx-proxy-companion</code></pre></p>
+<p><img src="/images/docker/03/docker03_023.png" alt="">  </p>
+<blockquote>
+<p><code>--name letsencrypt</code>：容器名稱設定為 <strong>letsencrypt</strong>。<br><code>--volumes-from reverse-proxy</code>：設定讓此容器可以存取 <strong>reverse-proxy</strong> 容器的內容，這邊要注意是指定容器名稱。<br><code>-v $HOME/nginx/certs:/etc/nginx/certs:rw</code>：設定憑證存取路徑，這邊具有寫入權限，因為我們必須提供憑證證書的存放位置。<br><code>jrcs/letsencrypt-nginx-proxy-companion</code>：指定容器要掛載的映像檔。  </p>
+</blockquote>
+<p>還記得在 reverse-proxy 容器內設定了一組標籤 <code>--label com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true</code>，此容器會透過 Docker 來搜尋具有此標前的容器，以便了解是哪個負責提供反向代理。  </p>
+<blockquote>
+<p>參考資料：<br><a href="https://cloud.google.com/community/tutorials/nginx-reverse-proxy-docker" target="_blank" rel="noopener">Running an NGINX Reverse Proxy with Docker and Let’s Encrypt on Google Compute Engine</a><br><a href="https://github.com/jwilder/nginx-proxy" target="_blank" rel="noopener">nginx-proxy</a><br><a href="https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion" target="_blank" rel="noopener">docker -letsencrypt-nginx-proxy-companion</a>  </p>
+</blockquote>
+<h1 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h1><p>接下來我們便可以開始佈署網站，重點是在建立容器時需要增加3個參數以提供申請 Let’s Encrypt 憑證所需資訊：  </p>
+<ul>
+<li><code>LETSENCRYPT_EMAIL</code>：設定 Let’s Encrypt 憑證的電子信箱。  </li>
+<li><code>LETSENCRYPT_HOST</code>：設定 Let’s Encrypt 憑證的網域名稱。  </li>
+<li><code>VIRTUAL_HOST</code>：設定容器要接收的網域名稱請求。  </li>
+</ul>
+<h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><p>建立 nginx 網頁伺服器並指定給 site1.beehouse.tw，建立指令如下：<br><pre><code>docker run \
+    --name site1 \
+    -e &#39;LETSENCRYPT_EMAIL=jonnyhuang@outlook.com&#39; \
+    -e &#39;LETSENCRYPT_HOST=site1.beehouse.tw&#39; \
+    -e &#39;VIRTUAL_HOST=site1.beehouse.tw&#39; \
+    -d \
+    --restart unless-stopped \
+    --network bridge-network \
+    nginx:alpine</code></pre></p>
+<p><img src="/images/docker/03/docker03_025.png" alt=""><br>瀏覽 <code>$HOME/nginx/certs/</code> 資料夾，可以發現 letsencrypt 容器服務自動幫我們申請憑證，並將相關的檔案下載回來。<br><img src="/images/docker/03/docker03_026.png" alt=""><br>瀏覽 <a href="https://site1.beehouse.tw/" target="_blank" rel="noopener">https://site1.beehouse.tw/</a> 可以發現網站呈現 nginx 預設網頁，而且憑證也是有效的。<br><img src="/images/docker/03/docker03_028.png" alt=""><br>檢視憑證內容確實是由 Let’s Encrypt 所派發的憑證，有 90 天的有效期限。<br><img src="/images/docker/03/docker03_029.png" alt="">  </p>
+<p>有趣的是如果我們透過 HTTP 協定來開啟網站( <a href="http://site1.beehouse.tw/" target="_blank" rel="noopener">http://site1.beehouse.tw/</a> )，瀏覽器會被自動轉換到 HTTPS 協定來瀏覽，也是就是說 reverse-proxy 非常貼心的自動幫我們切換成 HTTPS 協定。  </p>
+<h2 id="Apache-HTTP-Server"><a href="#Apache-HTTP-Server" class="headerlink" title="Apache HTTP Server"></a>Apache HTTP Server</h2><p>同樣地也可以建置 Apache 網頁伺服器，我們將 site2.beehouse.tw 指定到此容器上，建立指令如下：<br><pre><code>docker run \
+    --name site2 \
+    -e &#39;LETSENCRYPT_EMAIL=jonnyhuang@outlook.com&#39; \
+    -e &#39;LETSENCRYPT_HOST=site2.beehouse.tw&#39; \
+    -e &#39;VIRTUAL_HOST=site2.beehouse.tw&#39; \
+    -d \
+    --restart unless-stopped \
+    --network bridge-network \
+    httpd:alpine</code></pre></p>
+<p>瀏覽 <a href="https://site2.beehouse.tw/" target="_blank" rel="noopener">https://site2.beehouse.tw/</a> 也可以正常開啟。<br><img src="/images/docker/03/docker03_030.png" alt="">  </p>
+<h2 id="GitLab"><a href="#GitLab" class="headerlink" title="GitLab"></a>GitLab</h2><p>接下來就來建立比較有份量的網站，對於專案開發來說版控是必備工具，<a href="https://gitlab.com/" target="_blank" rel="noopener">GitLab</a> 非常佛心的提供打包好的容器讓我們可以快速架設私有版控系統，建立指令如下：<br><pre><code>docker run --name gitlab \
+    -e &#39;LETSENCRYPT_EMAIL=jonnyhuang@outlook.com&#39; \
+    -e &#39;LETSENCRYPT_HOST=site3.beehouse.tw&#39; \
+    -e &#39;VIRTUAL_HOST=site3.beehouse.tw&#39; \
+    --hostname beehouse.tw \
+    -v $HOME&#x2F;gitlab&#x2F;etc&#x2F;gitlab:&#x2F;etc&#x2F;gitlab \
+    -v $HOME&#x2F;gitlab&#x2F;var&#x2F;opt&#x2F;gitlab:&#x2F;var&#x2F;opt&#x2F;gitlab \
+    -v $HOME&#x2F;gitlab&#x2F;var&#x2F;log&#x2F;gitlab:&#x2F;var&#x2F;log&#x2F;gitlab \
+    -d \
+    --restart unless-stopped \
+    --network bridge-network \
+    gitlab&#x2F;gitlab-ce</code></pre></p>
+<p><img src="/images/docker/03/docker03_033.png" alt=""><br>不過 GitLab 需要建立資料庫來存放資料，所以容器啟動時會需要等待一段時間，我們可以查看 log 來了解目前狀態。<br><img src="/images/docker/03/docker03_031.png" alt=""><br>瀏覽 <a href="https://site3.beehouse.tw/" target="_blank" rel="noopener">https://site3.beehouse.tw/</a> 看到 GitLab 確實正常執行。<br><img src="/images/docker/03/docker03_032.png" alt="">  </p>
+<blockquote>
+<p>因為 nginx 預設上傳檔案大小為 1MB，所以既使我們在 GitLab 內增大上傳檔案大小限制，當超過 1MB 的檔案經過 reverse-proxy 時就會被擋下來，所以我們可以在 nginx 內的 <code>conf.d</code> 資料夾修改設定，雖然也可以直接在 default.conf 修改設定，不過這邊我們以增加一個設定檔 <code>custom_proxy_settings.conf</code> 來修改，原因後續會說明，在檔案內設定 <strong>client_max_body_size</strong> 參數，改成允許的上傳大小即可。<br><img src="/images/docker/03/docker03_034.png" alt="">  </p>
+</blockquote>
+<h2 id="Angular-Net-Core"><a href="#Angular-Net-Core" class="headerlink" title="Angular + .Net Core"></a>Angular + .Net Core</h2><p>最後一個我們就使用自己撰寫的網站，後端我們使用微軟的”真”跨平台方案 <a href="https://docs.microsoft.com/zh-tw/aspnet/core/?view=aspnetcore-2.1" target="_blank" rel="noopener">.Net Core</a> 來建置 WebAPI，資料庫採用剛建立好的 PostgreSQL，前端則使用 Google 的開源技術 <a href="https://angular.io/" target="_blank" rel="noopener">Angular</a>。<br>先將專案複製到伺服器主機上，開啟 appsettings.json 修改資料庫連線參數。<br><img src="/images/docker/03/docker03_035.png" alt=""><br>我們透過瀏覽器開啟資料庫管理工具 pgAdmin，先建立系統需要的資料庫 <strong>pps</strong>。<br><img src="/images/docker/03/docker03_039.png" alt=""><br>利用管理工具的將測試環境的資料庫備份出來，再將它還原到當前資料庫。<br><img src="/images/docker/03/docker03_040.png" alt=""><br>接著我們編輯 Dockerfile，先透過具有 .Net Core SDK 的容器來編譯程式，這樣主機就不需要安裝 SDK，再將程式與 .NET Core runtime 容器打包在一起成為新的容器映像檔(Image)。<br><img src="/images/docker/03/docker03_036.png" alt=""><br>在終端機內切換到專案目錄下，透過指令 <code>docker build -t spa-web .</code> 來建置，Docker 會搜尋當前目錄下的 Dockerfile 來執行，最後會建立一個名稱(tag name)為 spa-web 的映像檔。<br><img src="/images/docker/03/docker03_037.png" alt=""><br>最後透過下列指令來建立容器：<br><pre><code>docker run \
+    --name web \
+    -e &#39;LETSENCRYPT_EMAIL=jonnyhuang@outlook.com&#39; \
+    -e &#39;LETSENCRYPT_HOST=site4.beehouse.tw&#39; \
+    -e &#39;VIRTUAL_HOST=site4.beehouse.tw&#39; \
+    -p 5000:5000 \
+    -d \
+    --restart unless-stopped \
+    --network bridge-network \
+    spa-web</code></pre></p>
+<p><img src="/images/docker/03/docker03_038.png" alt=""><br>瀏覽 <a href="https://site4.beehouse.tw/" target="_blank" rel="noopener">https://site4.beehouse.tw/</a> 確實也可以正常執行，資料也有呈現，表示與資料庫連結正常。<br><img src="/images/docker/03/docker03_041.png" alt="">  </p>
+<blockquote>
+<p>在這邊要特別注意，因為在 Dockerfile 並未指定對外連接埠，所以我們在建立容器時要額外指定，當最能事先設定是最好的。  </p>
+</blockquote>
+<h1 id="效能"><a href="#效能" class="headerlink" title="效能"></a>效能</h1><p>我們透過指令 <code>docker stats</code> 可以監看目前容器使用資料，我們可以看到就一般網站程式而言，其實需要硬體資源的時間只有使用者發出請求到資料處理並回復的這段期間，所以我們可以看到當前待機下使用資源並不多。<br><img src="/images/docker/03/docker03_042.png" alt="">  </p>
+<blockquote>
+<p>Docker 的優勢是可以共用硬體資源，當然這是一個雙面刃，這表示任何一個容器都有可能吃掉所有資源，可能造成其他容器服務無法運行，甚至整個系統陣亡，這再程式有 Bug 時最容易發生，因此最好適當的限制每個容器可用的資源，這邊不特別討論。  </p>
+</blockquote>
+<h1 id="反向代理在做什麼？"><a href="#反向代理在做什麼？" class="headerlink" title="反向代理在做什麼？"></a>反向代理在做什麼？</h1><p>開啟 <code>$HOME/nginx/conf.d/default.conf</code> 可以看到許多設定，因為用戶請求是透過反向代理轉送，所以它會幫我們加上相關的識別 header。<br><img src="/images/docker/03/docker03_044.png" alt=""><br>接著我們可以看到 site1.beehouse.tw 子網域的設定，最多的大概就是 SSL 憑證設定，如果是要筆者這種新手自己設定大概就直接放棄了，而且它預設已經支援 TLS 所有版本，包括最新的 1.3 版。<br><img src="/images/docker/03/docker03_043.png" alt=""><br>接著我們看到 HTTP 80 連接埠的設定，我們可以看到它會發出 HTTP 301 的轉址請求，將網址轉換到 HTTPS，這就是為什麼我們之前瀏覽時會被自動轉換的原因。<br><img src="/images/docker/03/docker03_045.png" alt=""><br>再 HTTPS 443 連接埠的設定上，除了 SSL 憑證設定外，我們還可以看到它也支援 HTTP/2 的 傳輸協定。<br><img src="/images/docker/03/docker03_047.png" alt=""><br>透過瀏覽器的開發者工具可以看到網頁確實是走 HTTP/2。<br><img src="/images/docker/03/docker03_046.png" alt=""><br>最後我們來看 location 節點，這邊是設定當街收到來自 <code>site1.beehouse.tw</code> 的請求時要轉送的位置，裡面的 site1.beehouse.tw 是對應 upstream 節點的名稱，因此最終會連結到 172.18.0.2:80，172.18.0.xxx 網段是我們上面建立 bridge-network 橋接網路的網段，任何容器有連結 Docker 都會配置一組 IP 給它。<br><img src="/images/docker/03/docker03_048.png" alt=""><br>所以我們也可在主機上透過此 IP 瀏覽容器的網站。<br><img src="/images/docker/03/docker03_049.png" alt="">  </p>
+<blockquote>
+<p>如果要建立多個容器來做負載平衡(Load Balance)，可以將相關容器的 IP 都加到對應的 upstream 節點內即可。  </p>
+</blockquote>
+<p>我們可以看 site4 連結的是我們開啟的 5000 連接埠而不是 80，這也意味著 letsencrypt 在掃描時會以該容器提供的連接埠當作輸出。<br><img src="/images/docker/03/docker03_050.png" alt="">  </p>
+<h2 id="比我們想得更聰明"><a href="#比我們想得更聰明" class="headerlink" title="比我們想得更聰明"></a>比我們想得更聰明</h2><p>當我們將 site1 ~ site3 的容器都給停止只保留 site4 時，我們可以看到 letsencrypt 自動幫我們移除相關憑證。<br><img src="/images/docker/03/docker03_051.png" alt=""><br>而且我們可以看到 <code>default.conf</code> 設定檔 site1 ~ site3 相關設定也一併被移除，也就是說 letsencrypt 並不是只有執行一次，而是每當容器有異動時都會立即掃瞄並修改設定，所以我們自己要客製化的設定最好另外建立設定檔存放，避免被影響。<br><img src="/images/docker/03/docker03_052.png" alt="">  </p>
+<p>整個實作過程其實可以發現我們只有設定少數參數，但是我們的主機已經是一台支援最新標準的網頁伺服器了，而且也已經做好相關優化了，這要是再 Windows Server 上透過 IIS 來建置網站，應該不是這麼簡單就可以完成的。  </p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>就像報告班長電影裡的名言：”合理的要求是訓練，不合理的要求是磨練”，把花在抱怨一切的不合理的時間拿來思考可行方案，你會發覺另一個名言：”生命會自己找到出路”，過去所學的技術透過非正規的方法可以延伸出更多可能。  </p>
+<h2 id="Cloudflare"><a href="#Cloudflare" class="headerlink" title="Cloudflare"></a>Cloudflare</h2><p>筆者後續改用 <a href="https://www.cloudflare.com/zh-tw/" target="_blank" rel="noopener">Cloudflare</a> 測試 DNS 託管，它提供每組帳號一個免費託管服務，而且更新速度很快，同時也有提供免費的 SSL 憑證以及一些基本的資安服務，這無疑就像多了一個硬體防火牆對網站也是多一層保護。  </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/angular/training/32_rxjs_6/" rel="next" title="一家烤肉萬家香，一家著火...：RxJS - Subject">
+                <i class="fa fa-chevron-left"></i> 一家烤肉萬家香，一家著火...：RxJS - Subject
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Jonny Huang">
+          <p class="site-author-name" itemprop="name">Jonny Huang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分類</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.facebook.com/groups/flutter.tw/" title="Flutter Taiwan" target="_blank">Flutter Taiwan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#測試環境"><span class="nav-number">1.1.</span> <span class="nav-text">測試環境</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#免錢的最貴"><span class="nav-number">2.</span> <span class="nav-text">免錢的最貴</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝-Ubuntu"><span class="nav-number">3.</span> <span class="nav-text">安裝 Ubuntu</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝-Docker"><span class="nav-number">4.</span> <span class="nav-text">安裝 Docker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝-Visual-Studio-Code"><span class="nav-number">5.</span> <span class="nav-text">安裝 Visual Studio Code</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝資料庫：PostgreSQL"><span class="nav-number">6.</span> <span class="nav-text">安裝資料庫：PostgreSQL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立反向代理-Reverse-Proxy"><span class="nav-number">7.</span> <span class="nav-text">建立反向代理 (Reverse Proxy)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#訂閱-Let’s-Encrypt-憑證"><span class="nav-number">8.</span> <span class="nav-text">訂閱 Let’s Encrypt 憑證</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#測試"><span class="nav-number">9.</span> <span class="nav-text">測試</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx"><span class="nav-number">9.1.</span> <span class="nav-text">nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Apache-HTTP-Server"><span class="nav-number">9.2.</span> <span class="nav-text">Apache HTTP Server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitLab"><span class="nav-number">9.3.</span> <span class="nav-text">GitLab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-Net-Core"><span class="nav-number">9.4.</span> <span class="nav-text">Angular + .Net Core</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#效能"><span class="nav-number">10.</span> <span class="nav-text">效能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#反向代理在做什麼？"><span class="nav-number">11.</span> <span class="nav-text">反向代理在做什麼？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#比我們想得更聰明"><span class="nav-number">11.1.</span> <span class="nav-text">比我們想得更聰明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">12.</span> <span class="nav-text">後記</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cloudflare"><span class="nav-number">12.1.</span> <span class="nav-text">Cloudflare</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-Jonny Huang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
+<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+      prettyPrint();
+  });
+</script>
+
+</body>
+</html>

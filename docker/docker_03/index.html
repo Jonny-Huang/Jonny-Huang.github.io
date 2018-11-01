@@ -147,7 +147,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_050.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_051.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_052.png">
-<meta property="og:updated_time" content="2018-11-01T11:14:01.169Z">
+<meta property="og:updated_time" content="2018-11-01T11:15:47.686Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="不合理的要求是磨練：Docker 架站">
 <meta name="twitter:description" content="前言買一把菜、A一把蔥，在省錢至上的市場上可以說是屢見不鮮，但是買一把菜還要送一盤牛肉這種不合理的行徑，在近幾年來可以說這不是一種常態而是已經變成一種生態，但是對於軟體專案來說你可以放棄測試轉嫁給客戶，你可以減少非必需的文件，但是可以省的事情其實只佔小部分的比例，這些都還不夠客戶砍一次價，既然要決定要留在這種生態中，cost down 是必然會面對的問題，但是如何”不合理的”縮減成本但又不違背自己">
@@ -385,7 +385,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2018-11-01T19:14:01+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2018-11-01T19:15:47+08:00">
                 2018/11/01
               </time>
             
@@ -598,7 +598,7 @@
 </blockquote>
 <h1 id="效能"><a href="#效能" class="headerlink" title="效能"></a>效能</h1><p>我們透過指令 <code>docker stats</code> 可以監看目前容器使用資料，我們可以看到就一般網站程式而言，其實需要硬體資源的時間只有使用者發出請求到資料處理並回復的這段期間，所以我們可以看到當前待機下使用資源並不多。<br><img src="/images/docker/03/docker03_042.png" alt="">  </p>
 <blockquote>
-<p>Docker 的優勢是可以共用硬體資源，當然這是一個雙面刃，這表示任何一個容器都有可能吃掉所有資源，可能造成其他容器服務無法運行，甚至整個系統陣亡，這再程式有 Bug 時最容易發生，因此最好適當的限制每個容器可用的資源，這邊不特別討論。  </p>
+<p>Docker 的優勢是可以共用硬體資源，當然這是一個雙面刃，這表示任何一個容器都有可能吃掉所有資源，可能造成其他容器服務無法運行，甚至整個系統陣亡，這在程式有 Bug 時最容易發生，因此最好適當的限制每個容器可用的資源，這邊不特別討論。  </p>
 </blockquote>
 <h1 id="反向代理在做什麼？"><a href="#反向代理在做什麼？" class="headerlink" title="反向代理在做什麼？"></a>反向代理在做什麼？</h1><p>開啟 <code>$HOME/nginx/conf.d/default.conf</code> 可以看到許多設定，因為用戶請求是透過反向代理轉送，所以它會幫我們加上相關的識別 header。<br><img src="/images/docker/03/docker03_044.png" alt=""><br>接著我們可以看到 site1.beehouse.tw 子網域的設定，最多的大概就是 SSL 憑證設定，如果是要筆者這種新手自己設定大概就直接放棄了，而且它預設已經支援 TLS 所有版本，包括最新的 1.3 版。<br><img src="/images/docker/03/docker03_043.png" alt=""><br>接著我們看到 HTTP 80 連接埠的設定，我們可以看到它會發出 HTTP 301 的轉址請求，將網址轉換到 HTTPS，這就是為什麼我們之前瀏覽時會被自動轉換的原因。<br><img src="/images/docker/03/docker03_045.png" alt=""><br>再 HTTPS 443 連接埠的設定上，除了 SSL 憑證設定外，我們還可以看到它也支援 HTTP/2 的 傳輸協定。<br><img src="/images/docker/03/docker03_047.png" alt=""><br>透過瀏覽器的開發者工具可以看到網頁確實是走 HTTP/2。<br><img src="/images/docker/03/docker03_046.png" alt=""><br>最後我們來看 location 節點，這邊是設定當街收到來自 <code>site1.beehouse.tw</code> 的請求時要轉送的位置，裡面的 site1.beehouse.tw 是對應 upstream 節點的名稱，因此最終會連結到 172.18.0.2:80，172.18.0.xxx 網段是我們上面建立 bridge-network 橋接網路的網段，任何容器有連結 Docker 都會配置一組 IP 給它。<br><img src="/images/docker/03/docker03_048.png" alt=""><br>所以我們也可在主機上透過此 IP 瀏覽容器的網站。<br><img src="/images/docker/03/docker03_049.png" alt="">  </p>
 <blockquote>

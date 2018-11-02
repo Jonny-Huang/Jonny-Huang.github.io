@@ -147,7 +147,9 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_050.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_051.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_052.png">
-<meta property="og:updated_time" content="2018-11-01T11:28:29.593Z">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_053.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_054.png">
+<meta property="og:updated_time" content="2018-11-02T01:04:33.661Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="不合理的要求是磨練：Docker 架站">
 <meta name="twitter:description" content="前言買一把菜、A一把蔥，在省錢至上的市場上可以說是屢見不鮮，但是買一把菜還要送一盤牛肉這種不合理的行徑，在近幾年來可以說這不是一種常態而是已經變成一種生態，但是對於軟體專案來說你可以放棄測試轉嫁給客戶，你可以減少非必需的文件，但是可以省的事情其實只佔小部分的比例，這些都還不夠客戶砍一次價，既然要決定要留在這種生態中，cost down 是必然會面對的問題，但是如何”不合理的”縮減成本但又不違背自己">
@@ -385,8 +387,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2018-11-01T19:28:29+08:00">
-                2018/11/01
+              <time title="更新於" itemprop="dateModified" datetime="2018-11-02T09:04:33+08:00">
+                2018/11/02
               </time>
             
           </span>
@@ -451,7 +453,7 @@
 <blockquote>
 <p>也可以參考 <a href="https://distrowatch.com/" target="_blank" rel="noopener">DistroWatch</a> 網站，基本上瀏覽排名在前段班的 Linux 都是不錯的選擇。  </p>
 </blockquote>
-<h1 id="安裝-Ubuntu"><a href="#安裝-Ubuntu" class="headerlink" title="安裝 Ubuntu"></a>安裝 Ubuntu</h1><p>先從官方下桌面版本(Desktop)載映像檔並燒錄成光碟，目前的<strong>長期支援版(LTS)</strong>為 18.04.1，接下來便是開始安裝 Ubuntu 作業系統，系統安裝過程大概都一直下一步的點選下去即可，以下是筆者比較習慣的做法：</p>
+<h1 id="安裝-Ubuntu"><a href="#安裝-Ubuntu" class="headerlink" title="安裝 Ubuntu"></a>安裝 Ubuntu</h1><p>先從<a href="https://www.ubuntu.com/download" target="_blank" rel="noopener">官方網站</a>下載<a href="https://www.ubuntu.com/download/desktop" target="_blank" rel="noopener">桌面版本(Desktop)</a> 載映像檔並燒錄成光碟，目前的<strong>長期支援版(LTS)</strong>為 18.04.1，接下來便是開始安裝 Ubuntu 作業系統，系統安裝過程大概都一直下一步的點選下去即可，以下是筆者比較習慣的做法：</p>
 <ul>
 <li><p>安裝英文版，雖然可以選中文語系，但是為了避免使用者資料夾會變成中文檔名，我們可以先安裝英文版後續再變換語系。<br><img src="/images/docker/03/docker03_001.png" alt="">  </p>
 <blockquote>
@@ -465,15 +467,15 @@
 <p>進入系統後可以利用指令 <code>sudo passwd root</code> 來修改 root 帳號的密碼，當然這組密碼最好自己保留就好，這是搶救系統的最後手段。<br><img src="/images/docker/03/docker03_010.png" alt="">  </p>
 </blockquote>
 </li>
-<li><p>執行軟體更新，Ubuntu 內建了視覺化的軟體更新程式，再主機有聯網狀態下會自動檢測是否有新版程式需要更新。<br><img src="/images/docker/03/docker03_005.png" alt="">  </p>
+<li><p>執行軟體更新，Ubuntu 內建了視覺化的軟體更新程式，在主機有連網狀態下會自動檢測是否有新版程式需要更新。<br><img src="/images/docker/03/docker03_005.png" alt="">  </p>
 <blockquote>
 <p>當然我們也可以在終端機上透過指令手動更新：<br><code>sudo apt update</code>：更新套件清單。<br><code>sudo apt dist-upgrade</code>：依據套件清單更新套件，<strong>dist-upgrade</strong> 與 <strong>upgrade</strong> 的差異請自己上網搜尋相關文章。<br><img src="/images/docker/03/docker03_012.png" alt="">  </p>
 </blockquote>
 </li>
 </ul>
-<p>為什麼安裝桌面版本而不是伺服器版本，主要降低上手難度，畢竟視窗化的操作介面還是較容易，對於一般客戶來說感覺也會比較”有價值”，當然如果非常在意佔用資源問題的人，最後可以在將系統調整成文字模式(text mode)。  </p>
+<p>為什麼安裝桌面版本而不是伺服器版本，主要降低上手難度，畢竟視窗化的操作介面還是較容易，對於一般客戶來說感覺也會比較”有價值”，當然如果非常在意佔用資源問題的人，最後可以再將系統調整成文字模式(text mode)。  </p>
 <h1 id="安裝-Docker"><a href="#安裝-Docker" class="headerlink" title="安裝 Docker"></a>安裝 Docker</h1><p>透過容器化的技術可以將每個系統隔離開來，避免互相干擾，因此我們需要安裝 Docker，後續要執行的系統也會打包成 Container 來運行，安裝方式可以參考官方說明 <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/" target="_blank" rel="noopener">Get Docker CE for Ubuntu</a> 或是參考 <a href="/docker/docker_02/#Docker-for-Ubuntu">Docker for Ubuntu</a>。  </p>
-<p>因為是在單一主機上運行，所以我們在 Docker 環境中建立一個名稱為 <strong>bridge-network</strong> 的橋接網絡(bridge)，指令如下：<br><code>docker network create bridge bridge-network</code>  </p>
+<p>因為是在單一主機上運行，所以我們在 Docker 環境中建立一個名稱為 <strong>bridge-network</strong> 的橋接網絡(bridge)，指令如下：<br><code>sudo docker network create bridge bridge-network</code>  </p>
 <h1 id="安裝-Visual-Studio-Code"><a href="#安裝-Visual-Studio-Code" class="headerlink" title="安裝 Visual Studio Code"></a>安裝 Visual Studio Code</h1><p>利用 VS Code 來協助我們管理 Container 是比較簡單又方便的方法，可以省去打指令的時間，雖然到<a href="https://code.visualstudio.com/Download" target="_blank" rel="noopener">官方下載頁面</a> 下載 deb 檔來安裝是最簡單的，不過筆者比較建案參考 <a href="https://code.visualstudio.com/docs/setup/linux" target="_blank" rel="noopener">Visual Studio Code on Linux</a> 說明手動安裝，這可以配合 apt 更新指令來更新。<br>我們透過下列指令來安裝 VS Code 的 GPG 金鑰：<br><code>curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor &gt; microsoft.gpg</code><br><code>sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/</code><br>接著將 VS Code 的遠端儲存庫添加到 apt 的來源清單內：<br><code>sudo sh -c &#39;echo &quot;deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main&quot; &gt; /etc/apt/sources.list.d/vscode.list&#39;</code><br>安裝 apt-transport-https 套件：<br><code>sudo apt install apt-transport-https</code><br>更新套件清單：<br><code>sudo apt update</code><br>接下來就是安裝 VS Code：<br><code>sudo apt install code</code><br>最後開啟 VS Code 並安裝 <a href="https://marketplace.visualstudio.com/items?itemName=PeterJausovec.vscode-docker#review-details" target="_blank" rel="noopener">Docker 擴充功能</a>，詳細作法請參閱 <a href="/docker/docker_01/#%E4%BD%BF%E7%94%A8-VS-Code-%E7%AE%A1%E7%90%86-Docker">使用 VS Code 管理 Docker</a>。</p>
 <h1 id="安裝資料庫：PostgreSQL"><a href="#安裝資料庫：PostgreSQL" class="headerlink" title="安裝資料庫：PostgreSQL"></a>安裝資料庫：PostgreSQL</h1><p>提到免費的資料庫，我想不少人使用 <a href="https://www.mysql.com/" target="_blank" rel="noopener">MySQL</a> 或是 <a href="https://mariadb.com/" target="_blank" rel="noopener">MariaDB</a>，但是筆者比較喜歡使用 <a href="https://www.postgresql.org/" target="_blank" rel="noopener">PostgreSQL</a>，因為它內建視覺化管理工具 <a href="https://www.pgadmin.org/" target="_blank" rel="noopener">pgAdmin</a>，對於習慣使用 SQL Server 或是 Oracle Database 的人來說上手難度應該較低，我們在終端機(也可以直接在 VS Code 內透過 <code>ctrl</code> + <code>`</code> 來開啟)執行下列指令來建立 PostgreSQL：<br><pre><code>sudo docker run \
     --name postgres \
@@ -486,7 +488,7 @@
     postgres:11-alpine</code></pre></p>
 <p><img src="/images/docker/03/docker03_013.png" alt="">  </p>
 <blockquote>
-<p><code>run</code>：在建立容器後立即啟動。<br><code>--name postgres</code>：容器名稱設定為 <strong>postgres</strong>。<br><code>-v $HOME/postgres/pgdata:/var/lib/postgresql/data</code>：將資料庫儲存路徑移至 $HOME/postgres/pgdata，當資料庫異常時可以較方便救援，Docker 會自動幫我們建立資料夾。<br><img src="/images/docker/03/docker03_014.png" alt=""><br><code>-e &#39;POSTGRES_PASSWORD=vPxhP977DYEw5SvZ&#39;</code>：設定預設帳號(postgres)的密碼，目前設定為 <strong>vPxhP977DYEw5SvZ</strong>。<br><code>-p 5432:5432</code>：將容器的連接埠(後面) 5432 與本機連接埠(前面) 5432 串接，方便外部連線。<br><code>-d</code>：讓容器再背景運行。<br><code>--restart unless-stopped</code>：設定容器自動重新啟動，除非容器原本狀態為停止。<br><code>--net bridge-network</code>：將容器的網路與剛所建立的橋接網路 <strong>bridge-network</strong>。<br><code>postgres:11-alpine</code>：指定容器要掛載的映像檔，目前是指用 PostgreSQL 11。  </p>
+<p><code>run</code>：在建立容器後立即啟動。<br><code>--name postgres</code>：容器名稱設定為 <strong>postgres</strong>。<br><code>-v $HOME/postgres/pgdata:/var/lib/postgresql/data</code>：將資料庫儲存路徑移至 $HOME/postgres/pgdata，當資料庫異常時可以較方便救援，Docker 會自動幫我們建立資料夾。<br><img src="/images/docker/03/docker03_014.png" alt=""><br><code>-e &#39;POSTGRES_PASSWORD=vPxhP977DYEw5SvZ&#39;</code>：設定預設帳號(postgres)的密碼，目前設定為 <strong>vPxhP977DYEw5SvZ</strong>。<br><code>-p 5432:5432</code>：將容器的連接埠(後面) 5432 與本機連接埠(前面) 5432 串接，方便外部連線。<br><code>-d</code>：讓容器再背景運行。<br><code>--restart unless-stopped</code>：設定容器自動重新啟動，除非容器原本狀態為停止。<br><code>--net bridge-network</code>：將容器的網路與剛所建立的橋接網路 <strong>bridge-network</strong>。<br><code>postgres:11-alpine</code>：指定容器要掛載的映像檔，目前是指用 PostgreSQL 11，alpine 是指 Alpine Linux，大部以此 OS 來建置的映像檔都會比較小。  </p>
 </blockquote>
 <p>接著我們安裝管理工具 pgAdmin，從第4版開始 pgAdmin 使用網頁來呈現操作介面，也因此很容易封裝成容器，所以官方也提供容器化的版本，安裝指令如下：<br><pre><code>sudo docker run \
     --name pgadmin \
@@ -501,7 +503,7 @@
 <blockquote>
 <p><code>--name pgadmin</code>：容器名稱設定為 <strong>pgadmin</strong>。<br><code>-e &#39;PGADMIN_DEFAULT_EMAIL=jonnyhuang@outlook.com&#39;</code>：設定預設帳號的 email。<br><code>-e &#39;PGADMIN_DEFAULT_PASSWORD=W7JzUjxEvT8CG5rC&#39;</code>：設定預設帳號的密碼。<br><code>-p 8081:80</code>：將容器的連接埠(後面) 80 與本機連接埠(前面) 8081 串接。<br><code>dpage/pgadmin4</code>：指定容器要掛載的映像檔 pgadmin4，若沒有指定版本(tag)預設會使用 latest。  </p>
 </blockquote>
-<p>透過瀏覽器開啟 <a href="http://localhost:8081，便可出現登出畫面。" target="_blank" rel="noopener">http://localhost:8081，便可出現登出畫面。</a><br><img src="/images/docker/03/docker03_016.png" alt=""><br>登入後便可建立資料庫連線，要注意的是<strong>主機名稱需填寫容器名稱</strong>。<br><img src="/images/docker/03/docker03_017.png" alt=""><br>連線成功便可開始操作資料庫。<br><img src="/images/docker/03/docker03_018.png" alt="">  </p>
+<p>透過瀏覽器開啟 <a href="http://localhost:8081" target="_blank" rel="noopener">http://localhost:8081</a> ，便可出現登出畫面。<br><img src="/images/docker/03/docker03_016.png" alt=""><br>登入後便可建立資料庫連線，要注意的是<strong>主機名稱需填寫容器名稱</strong>。<br><img src="/images/docker/03/docker03_017.png" alt=""><br>連線成功便可開始操作資料庫。<br><img src="/images/docker/03/docker03_018.png" alt="">  </p>
 <h1 id="建立反向代理-Reverse-Proxy"><a href="#建立反向代理-Reverse-Proxy" class="headerlink" title="建立反向代理 (Reverse Proxy)"></a>建立反向代理 (Reverse Proxy)</h1><p>因為我們需要多網站共用一組 IP，所以必須建立一個反向代理服務來協助我們將不同的網域名稱指定到對應的網站服務，建立指令如下：<br><pre><code>sudo docker run \
     --name reverse-proxy \
     -v $HOME&#x2F;nginx&#x2F;certs:&#x2F;etc&#x2F;nginx&#x2F;certs:ro \
@@ -543,7 +545,7 @@
 <ul>
 <li><code>LETSENCRYPT_EMAIL</code>：設定 Let’s Encrypt 憑證的電子信箱。  </li>
 <li><code>LETSENCRYPT_HOST</code>：設定 Let’s Encrypt 憑證的網域名稱。  </li>
-<li><code>VIRTUAL_HOST</code>：設定容器要接收的網域名稱請求。  </li>
+<li><code>VIRTUAL_HOST</code>：設定容器要接收的網域名稱請求，主要是讓 letsencrypt 知道我們所建立的容器服務是要接收來自哪個網域名稱的請求，所以設定會與 LETSENCRYPT_HOST 參數一致。  </li>
 </ul>
 <h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><p>建立 nginx 網頁伺服器並指定給 site1.beehouse.tw，建立指令如下：<br><pre><code>docker run \
     --name site1 \
@@ -609,6 +611,25 @@
 <p>整個實作過程其實可以發現我們只有設定少數參數，但是我們的主機已經是一台支援最新標準的網頁伺服器了，而且也已經做好相關優化了，這要是在 Windows Server 上透過 IIS 來建置網站，應該不是這麼簡單就可以完成的。  </p>
 <h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>就像報告班長電影裡的名言：”合理的要求是訓練，不合理的要求是磨練”，把花在抱怨一切的不合理的時間拿來思考可行方案，你會發覺另一個名言：”生命會自己找到出路”，過去所學的技術透過非正規的方法可以延伸出更多可能。  </p>
 <h2 id="Cloudflare"><a href="#Cloudflare" class="headerlink" title="Cloudflare"></a>Cloudflare</h2><p>筆者後續改用 <a href="https://www.cloudflare.com/zh-tw/" target="_blank" rel="noopener">Cloudflare</a> 測試 DNS 託管，它提供每組帳號一個免費託管服務，而且更新速度很快，同時也有提供免費的 SSL 憑證以及一些基本的資安服務，這無疑就像多了一個硬體防火牆對網站也是多一層保護。  </p>
+<h2 id="ufw"><a href="#ufw" class="headerlink" title="ufw"></a>ufw</h2><p>Ubuntu 內建了 <strong>ufw</strong> 防火牆，我們可以透過它在強化系統安全，筆者用到指令如下：  </p>
+<ul>
+<li><code>sudo apt install ufw</code>：安裝，如果您的系統未安裝可以透過此指令來安裝。  </li>
+<li><code>sudo ufw status</code>：查看防火牆狀態。  </li>
+<li><code>sudo ufw enable</code>：開啟防火牆。  </li>
+<li><code>sudo ufw disable</code>：關閉防火牆。  </li>
+<li><code>sudo ufw default allow</code>：預設防火牆規則為允許。  </li>
+<li><code>sudo ufw default deny</code>：預設防火牆規則為不允許。  </li>
+<li><code>sudo ufw allow ssh</code>：允許 ssh 穿過防火牆。  </li>
+<li><code>sudo ufw allow in 80</code>：允許 80 連接埠穿過防火牆。  </li>
+</ul>
+<blockquote>
+<p>參考資料：<a href="https://wiki.ubuntu-tw.org/index.php?title=Ufw" target="_blank" rel="noopener">https://wiki.ubuntu-tw.org/index.php?title=Ufw</a>。  </p>
+</blockquote>
+<p>當然不想記指令可以安裝 GUI 工具 gufw，透過指令 <code>sudo apt install gufw</code> 來安裝，便可透過圖形操作來設定。<br><img src="/images/docker/03/docker03_053.png" alt="">  </p>
+<h2 id="ClamAV"><a href="#ClamAV" class="headerlink" title="ClamAV"></a>ClamAV</h2><p><a href="https://www.clamav.net/" target="_blank" rel="noopener">ClamAV</a> 是一套開源的防毒軟體，很多 NAS 上都會預載這套軟體來掃毒，我們可以透過指令 <code>sudo apt install clamav</code> 來安裝，如果不想記指令的可以再安裝 GUI工具 ClamTk(<code>sudo apt install clamtk</code>)，只是操作時要注意按鈕點選方式是連點2下(double click)。<br><img src="/images/docker/03/docker03_054.png" alt=""><br>預設 ClamAV 是被動掃描，也就是要我們自己手動來執行掃毒工作，我們可以再安裝 ClamAV-daemon(<code>sudo apt install clamav-daemon</code>)，讓 ClamAV 常駐運行。</p>
+<blockquote>
+<p>參考資料：<a href="https://help.ubuntu.com/community/ClamAV" target="_blank" rel="noopener">https://help.ubuntu.com/community/ClamAV</a>。</p>
+</blockquote>
 
       
     </div>
@@ -858,7 +879,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#測試環境"><span class="nav-number">1.1.</span> <span class="nav-text">測試環境</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#免錢的最貴"><span class="nav-number">2.</span> <span class="nav-text">免錢的最貴</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝-Ubuntu"><span class="nav-number">3.</span> <span class="nav-text">安裝 Ubuntu</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝-Docker"><span class="nav-number">4.</span> <span class="nav-text">安裝 Docker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝-Visual-Studio-Code"><span class="nav-number">5.</span> <span class="nav-text">安裝 Visual Studio Code</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝資料庫：PostgreSQL"><span class="nav-number">6.</span> <span class="nav-text">安裝資料庫：PostgreSQL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立反向代理-Reverse-Proxy"><span class="nav-number">7.</span> <span class="nav-text">建立反向代理 (Reverse Proxy)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#訂閱-Let’s-Encrypt-憑證"><span class="nav-number">8.</span> <span class="nav-text">訂閱 Let’s Encrypt 憑證</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#測試"><span class="nav-number">9.</span> <span class="nav-text">測試</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx"><span class="nav-number">9.1.</span> <span class="nav-text">nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Apache-HTTP-Server"><span class="nav-number">9.2.</span> <span class="nav-text">Apache HTTP Server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitLab"><span class="nav-number">9.3.</span> <span class="nav-text">GitLab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-Net-Core"><span class="nav-number">9.4.</span> <span class="nav-text">Angular + .Net Core</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#效能"><span class="nav-number">10.</span> <span class="nav-text">效能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#反向代理在做什麼？"><span class="nav-number">11.</span> <span class="nav-text">反向代理在做什麼？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#比我們想得更聰明"><span class="nav-number">11.1.</span> <span class="nav-text">比我們想得更聰明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">12.</span> <span class="nav-text">後記</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cloudflare"><span class="nav-number">12.1.</span> <span class="nav-text">Cloudflare</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#測試環境"><span class="nav-number">1.1.</span> <span class="nav-text">測試環境</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#免錢的最貴"><span class="nav-number">2.</span> <span class="nav-text">免錢的最貴</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝-Ubuntu"><span class="nav-number">3.</span> <span class="nav-text">安裝 Ubuntu</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝-Docker"><span class="nav-number">4.</span> <span class="nav-text">安裝 Docker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝-Visual-Studio-Code"><span class="nav-number">5.</span> <span class="nav-text">安裝 Visual Studio Code</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安裝資料庫：PostgreSQL"><span class="nav-number">6.</span> <span class="nav-text">安裝資料庫：PostgreSQL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立反向代理-Reverse-Proxy"><span class="nav-number">7.</span> <span class="nav-text">建立反向代理 (Reverse Proxy)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#訂閱-Let’s-Encrypt-憑證"><span class="nav-number">8.</span> <span class="nav-text">訂閱 Let’s Encrypt 憑證</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#測試"><span class="nav-number">9.</span> <span class="nav-text">測試</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx"><span class="nav-number">9.1.</span> <span class="nav-text">nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Apache-HTTP-Server"><span class="nav-number">9.2.</span> <span class="nav-text">Apache HTTP Server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitLab"><span class="nav-number">9.3.</span> <span class="nav-text">GitLab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-Net-Core"><span class="nav-number">9.4.</span> <span class="nav-text">Angular + .Net Core</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#效能"><span class="nav-number">10.</span> <span class="nav-text">效能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#反向代理在做什麼？"><span class="nav-number">11.</span> <span class="nav-text">反向代理在做什麼？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#比我們想得更聰明"><span class="nav-number">11.1.</span> <span class="nav-text">比我們想得更聰明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">12.</span> <span class="nav-text">後記</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cloudflare"><span class="nav-number">12.1.</span> <span class="nav-text">Cloudflare</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ufw"><span class="nav-number">12.2.</span> <span class="nav-text">ufw</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ClamAV"><span class="nav-number">12.3.</span> <span class="nav-text">ClamAV</span></a></li></ol></li></ol></div>
             
 
           </div>

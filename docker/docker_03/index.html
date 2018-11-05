@@ -149,7 +149,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_052.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_053.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/03/docker03_054.png">
-<meta property="og:updated_time" content="2018-11-02T01:04:33.661Z">
+<meta property="og:updated_time" content="2018-11-05T01:58:12.201Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="不合理的要求是磨練：Docker 架站">
 <meta name="twitter:description" content="前言買一把菜、A一把蔥，在省錢至上的市場上可以說是屢見不鮮，但是買一把菜還要送一盤牛肉這種不合理的行徑，在近幾年來可以說這不是一種常態而是已經變成一種生態，但是對於軟體專案來說你可以放棄測試轉嫁給客戶，你可以減少非必需的文件，但是可以省的事情其實只佔小部分的比例，這些都還不夠客戶砍一次價，既然要決定要留在這種生態中，cost down 是必然會面對的問題，但是如何”不合理的”縮減成本但又不違背自己">
@@ -387,8 +387,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2018-11-02T09:04:33+08:00">
-                2018/11/02
+              <time title="更新於" itemprop="dateModified" datetime="2018-11-05T09:58:12+08:00">
+                2018/11/05
               </time>
             
           </span>
@@ -596,7 +596,7 @@
     spa-web</code></pre></p>
 <p><img src="/images/docker/03/docker03_038.png" alt=""><br>瀏覽 <a href="https://site4.beehouse.tw/" target="_blank" rel="noopener">https://site4.beehouse.tw/</a> 確實也可以正常執行，資料也有呈現，表示與資料庫連結正常。<br><img src="/images/docker/03/docker03_041.png" alt="">  </p>
 <blockquote>
-<p>在這邊要特別注意，因為在 Dockerfile 並未指定對外連接埠，所以我們在建立容器時要額外指定，當然能事先設定是最好的。  </p>
+<p>在這邊要特別注意，因為在 Dockerfile 並未指定對外連接埠，所以我們在建立容器時要額外指定，當然能事先設定是最好的。<br>使用 <code>--expose</code> 只會將容器的連接埠暴露出來，而是用 <code>-p</code> 則會與本機連接埠綁定在一起。  </p>
 </blockquote>
 <h1 id="效能"><a href="#效能" class="headerlink" title="效能"></a>效能</h1><p>我們透過指令 <code>docker stats</code> 可以監看目前容器使用資料，我們可以看到就一般網站程式而言，其實需要硬體資源的時間只有使用者發出請求到資料處理並回復的這段期間，所以我們可以看到當前待機下使用資源並不多。<br><img src="/images/docker/03/docker03_042.png" alt="">  </p>
 <blockquote>

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jonny-huang.github.io/flutter/flutter_002/</loc>
+    
+    <lastmod>2019-04-25T13:03:05.093Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/angular/ng-tw-2018/</loc>
+    
+    <lastmod>2018-11-16T03:49:23.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jonny-huang.github.io/docker/docker_03/</loc>
     
     <lastmod>2018-11-05T11:25:49.239Z</lastmod>
@@ -25,7 +39,7 @@
   <url>
     <loc>https://jonny-huang.github.io/flutter/</loc>
     
-    <lastmod>2018-07-19T09:21:55.351Z</lastmod>
+    <lastmod>2018-07-19T09:21:55.000Z</lastmod>
     
   </url>
   
@@ -46,14 +60,14 @@
   <url>
     <loc>https://jonny-huang.github.io/angular/basic/</loc>
     
-    <lastmod>2018-06-19T13:06:17.922Z</lastmod>
+    <lastmod>2018-06-19T13:06:17.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://jonny-huang.github.io/angular/</loc>
     
-    <lastmod>2018-06-19T13:04:08.652Z</lastmod>
+    <lastmod>2018-06-19T13:04:08.000Z</lastmod>
     
   </url>
   
@@ -88,7 +102,7 @@
   <url>
     <loc>https://jonny-huang.github.io/slides/</loc>
     
-    <lastmod>2018-06-11T03:50:21.267Z</lastmod>
+    <lastmod>2018-06-11T03:50:21.000Z</lastmod>
     
   </url>
   
@@ -130,14 +144,14 @@
   <url>
     <loc>https://jonny-huang.github.io/quotes/</loc>
     
-    <lastmod>2018-06-04T00:59:10.610Z</lastmod>
+    <lastmod>2018-06-04T00:59:10.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://jonny-huang.github.io/categories/</loc>
     
-    <lastmod>2018-05-22T04:11:01.855Z</lastmod>
+    <lastmod>2018-05-22T04:11:01.000Z</lastmod>
     
   </url>
   
@@ -179,7 +193,7 @@
   <url>
     <loc>https://jonny-huang.github.io/docker/</loc>
     
-    <lastmod>2018-03-14T01:40:17.662Z</lastmod>
+    <lastmod>2018-03-14T01:40:17.000Z</lastmod>
     
   </url>
   
@@ -200,7 +214,7 @@
   <url>
     <loc>https://jonny-huang.github.io/projects/</loc>
     
-    <lastmod>2017-12-11T17:09:35.370Z</lastmod>
+    <lastmod>2017-12-11T17:09:35.000Z</lastmod>
     
   </url>
   
@@ -291,7 +305,7 @@
   <url>
     <loc>https://jonny-huang.github.io/ionic/</loc>
     
-    <lastmod>2017-09-15T00:11:09.761Z</lastmod>
+    <lastmod>2017-09-15T00:11:09.000Z</lastmod>
     
   </url>
   
@@ -345,14 +359,14 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/08_angular_ui-flex_layout/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/05_angular_navigation/</loc>
     
     <lastmod>2017-09-08T07:20:25.544Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/angular/training/05_angular_navigation/</loc>
+    <loc>https://jonny-huang.github.io/angular/training/08_angular_ui-flex_layout/</loc>
     
     <lastmod>2017-09-08T07:20:25.544Z</lastmod>
     

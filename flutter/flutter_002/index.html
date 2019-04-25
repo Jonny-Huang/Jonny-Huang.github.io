@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-tw">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Flutter,Dart">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+  <meta property="fb:admins" content="fb267234890438499">
+  <meta property="fb:app_id" content="267234890438499">
+
+
+
+<meta name="description" content="前言Dart 除了可以開發 Flutter 之外，其實也可以拿來開發 Web 程式，例如 AngularDart、Aqueduct，當然開發環境最重要的就是要安裝 Dart SDK，如果開發過 Flutter 的人大概都知道，我們所安裝的 Flutter SDK 其實已經包含了 Dart SDK，但是直接用它來開發 Flutter 以外的程式就會發現問題叢叢，上網搜尋有些人會說它是一個不完全">
+<meta name="keywords" content="Flutter,Dart">
+<meta property="og:type" content="article">
+<meta property="og:title" content="本是同根生：Dart 開發環境">
+<meta property="og:url" content="https://jonny-huang.github.io/flutter/flutter_002/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言Dart 除了可以開發 Flutter 之外，其實也可以拿來開發 Web 程式，例如 AngularDart、Aqueduct，當然開發環境最重要的就是要安裝 Dart SDK，如果開發過 Flutter 的人大概都知道，我們所安裝的 Flutter SDK 其實已經包含了 Dart SDK，但是直接用它來開發 Flutter 以外的程式就會發現問題叢叢，上網搜尋有些人會說它是一個不完全">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_000.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_001.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_002.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_003.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_004.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_005.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_006.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_007.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_008.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_009.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_010.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_011.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_012.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_013.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_014.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_015.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_016.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_017.png">
+<meta property="og:updated_time" content="2019-04-25T13:03:05.093Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="本是同根生：Dart 開發環境">
+<meta name="twitter:description" content="前言Dart 除了可以開發 Flutter 之外，其實也可以拿來開發 Web 程式，例如 AngularDart、Aqueduct，當然開發環境最重要的就是要安裝 Dart SDK，如果開發過 Flutter 的人大概都知道，我們所安裝的 Flutter SDK 其實已經包含了 Dart SDK，但是直接用它來開發 Flutter 以外的程式就會發現問題叢叢，上網搜尋有些人會說它是一個不完全">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_000.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Jonny'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jonny-huang.github.io/flutter/flutter_002/">
+
+
+
+
+
+  <title>本是同根生：Dart 開發環境 | Jonny Huang 的學習筆記</title>
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '267234890438499',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_tw/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jonny Huang 的學習筆記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Angular、Flutter</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            目錄
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-flutter">
+          <a href="/flutter/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Flutter
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-angular">
+          <a href="/angular/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Angular
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-quotes">
+          <a href="/quotes/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br>
+            
+            欣雨露
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/flutter/flutter_002/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">本是同根生：Dart 開發環境</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新於</span>
+              
+              <time title="更新於" itemprop="dateModified" datetime="2019-04-25T21:03:05+08:00">
+                2019/04/25
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flutter/" itemprop="url" rel="index">
+                    <span itemprop="name">Flutter</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/flutter/002/flutter_000.png" alt="">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Dart 除了可以開發 Flutter 之外，其實也可以拿來開發 Web 程式，例如 <a href="https://webdev.dartlang.org/angular" target="_blank" rel="noopener">AngularDart</a>、<a href="https://aqueduct.io/" target="_blank" rel="noopener">Aqueduct</a>，當然開發環境最重要的就是要安裝 Dart SDK，如果開發過 Flutter 的人大概都知道，我們所安裝的 Flutter SDK 其實已經包含了 Dart SDK，但是直接用它來開發 Flutter 以外的程式就會發現問題叢叢，上網搜尋有些人會說它是一個<strong>不完全</strong>的 SDK，建議另外再安裝完整的 Dart SDK 來開發，這不是很詭異的問題，難道 Flutter 是使用特製版本的 Dart SDK 嗎？今天我們就來嘗試補足它的不足之處。  </p>
+<blockquote>
+<p>Dart SDK 位於 Flutter SDK 資料夾內的 <code>\bin\cache\dart-sdk\</code> 下，筆者 Flutter SDK 是安裝於 <code>D:\Tools\flutter\</code>。<br><img src="/images/flutter/002/flutter_001.png" alt="">  </p>
+</blockquote>
+<h1 id="Aqueduct"><a href="#Aqueduct" class="headerlink" title="Aqueduct"></a>Aqueduct</h1><p>連到 <a href="https://aqueduct.io/" target="_blank" rel="noopener">Aqueduct 官方網站</a> 可以看到它的說明，Aqueduct 是一個可以利用 Dart 來開發後端 REST API。<br><blockquote><p>Aqueduct is an extensible HTTP framework for building REST APIs on top of the Dart VM. It includes a statically-typed ORM, OAuth 2.0 provider, automated testing libraries and OpenAPI 3.0 integration.</p>
+<footer><strong>Aqueduct</strong><cite><a href="https://aqueduct.io/" target="_blank" rel="noopener">One framework. Everything you need.</a></cite></footer></blockquote></p>
+<p>接下來我們可以看到5行安裝以及啟動指令：<br><pre><code>brew install dart
+pub global activate aqueduct
+aqueduct create my_app
+cd my_app
+aqueduct serve</code></pre></p>
+<h2 id="pub"><a href="#pub" class="headerlink" title="pub"></a>pub</h2><p>第1行安裝 Dart SDK 指令我們就直接忽略，因為我們已經安裝了 Flutter SDK，現在要想辦法直接利用其內含的 Dart SDK。<br>第2行指令 <code>pub global activate aqueduct</code> 是利用 Dart SDK 內含的 pub 來安裝 Aqueduct CLI，不出意外系統一定照不到 pub 指令。<br><img src="/images/flutter/002/flutter_002.png" alt=""><br>嘗試搜尋 Dart SDK 資料夾就可以發現 pub.bat 位於 SDK 的 <code>bin</code> 資料夾內。<br><img src="/images/flutter/002/flutter_003.png" alt=""><br>接下來為了可以在任何路徑呼叫，所以我們將 <code>bin</code> 資料夾路徑加入到環境變數 <code>Path</code> 內。<br><img src="/images/flutter/002/flutter_004.png" alt="">  </p>
+<blockquote>
+<p>其實查看 <code>bin</code> 資料夾就可以發現 Dart 相關指令的執行檔都在這個目錄下。<br><img src="/images/flutter/002/flutter_005.png" alt="">  </p>
+</blockquote>
+<p>重新再執行指令 <code>pub global activate aqueduct</code>，可以發現可以正常安裝 Aqueduct CLI，另外我們從最下方的訊息得知，pub 安裝所安裝的套件啟動指令都放在 <code>%APPDATA%\Pub\Cache\bin\</code> 下，也建議我們將該路徑加入倒 <code>Path</code> 環境變數內。<br><img src="/images/flutter/002/flutter_006.png" alt=""><br>往上一層觀看 <code>%APPDATA%\Pub\Cache\</code> 也可以知道 Dart 安裝的套件也放在此，可以 Flutter SDK 目錄下的 <code>.pub-cache</code> 資料夾也是存放套件的位置，難道不能放在一起嗎？<br><img src="/images/flutter/002/flutter_007.png" alt=""><br>查看官方文件 <a href="https://www.dartlang.org/tools/pub/environment-variables" target="_blank" rel="noopener">Configuring Pub Environment Variables</a> 可以知道 Dart SDK 提供一個環境變數 <code>PUB_CACHE</code> 讓我們可以修改儲存路徑。<br><img src="/images/flutter/002/flutter_008.png" alt=""><br>因此我們就直接新增 <code>PUB_CACHE</code> 環境變數，並將路徑指向 Flutter SDK 內的 <code>.pub-cache</code> 資料夾。<br><img src="/images/flutter/002/flutter_009.png" alt=""><br>但是別忘了套件的執行指令會放在 <code>bin</code> 資料夾，所以我們在環境變數 <code>Path</code> 內在增加路徑 <code>%PUB_CACHE%\bin</code>。<br><img src="/images/flutter/002/flutter_010.png" alt=""><br>重新再安裝一次 Aqueduct CLI，可以看到確實安裝在 <code>.pub-cache</code> 資料夾內。<br><img src="/images/flutter/002/flutter_011.png" alt=""><br>接下來透過 CLI 指令 <code>aqueduct create my_app</code> 來建立一個名為 <strong>my_app</strong> 的 aqueduct 專案。<br><img src="/images/flutter/002/flutter_012.png" alt=""><br>最後切換到 <code>my_app</code> 路徑，並透過 CLI 指令 <code>aqueduct serve</code> 來啟動專案。<br><img src="/images/flutter/002/flutter_013.png" alt=""><br>透過瀏覽器開啟 <a href="http://localhost:8888/" target="_blank" rel="noopener">http://localhost:8888/</a> 可以看到雖然找不到頁面，但是確實正常運作。<br><img src="/images/flutter/002/flutter_014.png" alt="">  </p>
+<blockquote>
+<p>連到範例頁面 <a href="http://localhost:8888/example" target="_blank" rel="noopener">http://localhost:8888/example</a> 就可以看到測試資料。<br><img src="/images/flutter/002/flutter_015.png" alt="">  </p>
+</blockquote>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><ul>
+<li>因為 <code>%APPDATA%\Pub\</code> 已經用不到了，所以其實可以刪除掉。</li>
+<li>如果直接安裝過 Dart SDK 就可以發現安裝程式幫我們設定一個環境變數 <code>DART_SDK</code>，並指向 Dart SDK 路徑，所以我們可以自己手動增加該變數。<br><img src="/images/flutter/002/flutter_016.png" alt=""><br>當然 <code>Path</code> 內的路徑也可以調整為 <code>%DART_SDK%\bin</code>。<br><img src="/images/flutter/002/flutter_017.png" alt="">  </li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Flutter/" rel="tag"># Flutter</a>
+          
+            <a href="/tags/Dart/" rel="tag"># Dart</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/angular/ng-tw-2018/" rel="next" title="ng-tw 2018">
+                <i class="fa fa-chevron-left"></i> ng-tw 2018
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Jonny Huang">
+          <p class="site-author-name" itemprop="name">Jonny Huang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分類</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.facebook.com/groups/flutter.tw/" title="Flutter Taiwan" target="_blank">Flutter Taiwan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Aqueduct"><span class="nav-number">2.</span> <span class="nav-text">Aqueduct</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pub"><span class="nav-number">2.1.</span> <span class="nav-text">pub</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">3.</span> <span class="nav-text">後記</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-Jonny Huang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
+<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+      prettyPrint();
+  });
+</script>
+
+</body>
+</html>

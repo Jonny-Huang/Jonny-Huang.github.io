@@ -116,7 +116,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_015.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_016.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/002/flutter_017.png">
-<meta property="og:updated_time" content="2019-04-25T13:03:05.093Z">
+<meta property="og:updated_time" content="2019-04-26T00:10:47.259Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="本是同根生：Dart 開發環境">
 <meta name="twitter:description" content="前言Dart 除了可以開發 Flutter 之外，其實也可以拿來開發 Web 程式，例如 AngularDart、Aqueduct，當然開發環境最重要的就是要安裝 Dart SDK，如果開發過 Flutter 的人大概都知道，我們所安裝的 Flutter SDK 其實已經包含了 Dart SDK，但是直接用它來開發 Flutter 以外的程式就會發現問題叢叢，上網搜尋有些人會說它是一個不完全">
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2019-04-25T21:03:05+08:00">
-                2019/04/25
+              <time title="更新於" itemprop="dateModified" datetime="2019-04-26T08:10:47+08:00">
+                2019/04/26
               </time>
             
           </span>
@@ -419,11 +419,11 @@ pub global activate aqueduct
 aqueduct create my_app
 cd my_app
 aqueduct serve</code></pre></p>
-<h2 id="pub"><a href="#pub" class="headerlink" title="pub"></a>pub</h2><p>第1行安裝 Dart SDK 指令我們就直接忽略，因為我們已經安裝了 Flutter SDK，現在要想辦法直接利用其內含的 Dart SDK。<br>第2行指令 <code>pub global activate aqueduct</code> 是利用 Dart SDK 內含的 pub 來安裝 Aqueduct CLI，不出意外系統一定照不到 pub 指令。<br><img src="/images/flutter/002/flutter_002.png" alt=""><br>嘗試搜尋 Dart SDK 資料夾就可以發現 pub.bat 位於 SDK 的 <code>bin</code> 資料夾內。<br><img src="/images/flutter/002/flutter_003.png" alt=""><br>接下來為了可以在任何路徑呼叫，所以我們將 <code>bin</code> 資料夾路徑加入到環境變數 <code>Path</code> 內。<br><img src="/images/flutter/002/flutter_004.png" alt="">  </p>
+<h2 id="pub"><a href="#pub" class="headerlink" title="pub"></a>pub</h2><p>第1行安裝 Dart SDK 指令我們就直接忽略，因為我們已經安裝了 Flutter SDK，現在要想辦法直接利用其內含的 Dart SDK。<br>第2行指令 <code>pub global activate aqueduct</code> 是利用 Dart SDK 內含的 pub 來安裝 Aqueduct CLI，不出意外系統一定找不到 pub 指令。<br><img src="/images/flutter/002/flutter_002.png" alt=""><br>嘗試搜尋 Dart SDK 資料夾就可以發現 pub.bat 位於 SDK 的 <code>bin</code> 資料夾內。<br><img src="/images/flutter/002/flutter_003.png" alt=""><br>接下來為了可以在任何路徑呼叫，所以我們將 <code>bin</code> 資料夾路徑加入到環境變數 <code>Path</code> 內。<br><img src="/images/flutter/002/flutter_004.png" alt="">  </p>
 <blockquote>
 <p>其實查看 <code>bin</code> 資料夾就可以發現 Dart 相關指令的執行檔都在這個目錄下。<br><img src="/images/flutter/002/flutter_005.png" alt="">  </p>
 </blockquote>
-<p>重新再執行指令 <code>pub global activate aqueduct</code>，可以發現可以正常安裝 Aqueduct CLI，另外我們從最下方的訊息得知，pub 安裝所安裝的套件啟動指令都放在 <code>%APPDATA%\Pub\Cache\bin\</code> 下，也建議我們將該路徑加入倒 <code>Path</code> 環境變數內。<br><img src="/images/flutter/002/flutter_006.png" alt=""><br>往上一層觀看 <code>%APPDATA%\Pub\Cache\</code> 也可以知道 Dart 安裝的套件也放在此，可以 Flutter SDK 目錄下的 <code>.pub-cache</code> 資料夾也是存放套件的位置，難道不能放在一起嗎？<br><img src="/images/flutter/002/flutter_007.png" alt=""><br>查看官方文件 <a href="https://www.dartlang.org/tools/pub/environment-variables" target="_blank" rel="noopener">Configuring Pub Environment Variables</a> 可以知道 Dart SDK 提供一個環境變數 <code>PUB_CACHE</code> 讓我們可以修改儲存路徑。<br><img src="/images/flutter/002/flutter_008.png" alt=""><br>因此我們就直接新增 <code>PUB_CACHE</code> 環境變數，並將路徑指向 Flutter SDK 內的 <code>.pub-cache</code> 資料夾。<br><img src="/images/flutter/002/flutter_009.png" alt=""><br>但是別忘了套件的執行指令會放在 <code>bin</code> 資料夾，所以我們在環境變數 <code>Path</code> 內在增加路徑 <code>%PUB_CACHE%\bin</code>。<br><img src="/images/flutter/002/flutter_010.png" alt=""><br>重新再安裝一次 Aqueduct CLI，可以看到確實安裝在 <code>.pub-cache</code> 資料夾內。<br><img src="/images/flutter/002/flutter_011.png" alt=""><br>接下來透過 CLI 指令 <code>aqueduct create my_app</code> 來建立一個名為 <strong>my_app</strong> 的 aqueduct 專案。<br><img src="/images/flutter/002/flutter_012.png" alt=""><br>最後切換到 <code>my_app</code> 路徑，並透過 CLI 指令 <code>aqueduct serve</code> 來啟動專案。<br><img src="/images/flutter/002/flutter_013.png" alt=""><br>透過瀏覽器開啟 <a href="http://localhost:8888/" target="_blank" rel="noopener">http://localhost:8888/</a> 可以看到雖然找不到頁面，但是確實正常運作。<br><img src="/images/flutter/002/flutter_014.png" alt="">  </p>
+<p>重新再執行指令 <code>pub global activate aqueduct</code>，可以發現可以正常安裝 Aqueduct CLI，另外我們從最下方的訊息得知，pub 安裝所安裝的套件啟動指令都放在 <code>%APPDATA%\Pub\Cache\bin\</code> 下，也建議我們將該路徑加入倒 <code>Path</code> 環境變數內。<br><img src="/images/flutter/002/flutter_006.png" alt=""><br>往上一層觀看 <code>%APPDATA%\Pub\Cache\</code> 也可以知道 Dart 安裝的套件也放在此，可是 Flutter SDK 目錄下的 <code>.pub-cache</code> 資料夾也是存放套件的位置，難道不能放在一起嗎？<br><img src="/images/flutter/002/flutter_007.png" alt=""><br>查看官方文件 <a href="https://www.dartlang.org/tools/pub/environment-variables" target="_blank" rel="noopener">Configuring Pub Environment Variables</a> 可以知道 Dart SDK 提供一個環境變數 <code>PUB_CACHE</code> 讓我們可以修改儲存路徑。<br><img src="/images/flutter/002/flutter_008.png" alt=""><br>因此我們就直接新增 <code>PUB_CACHE</code> 環境變數，並將路徑指向 Flutter SDK 內的 <code>.pub-cache</code> 資料夾。<br><img src="/images/flutter/002/flutter_009.png" alt=""><br>但是別忘了套件的執行指令會放在 <code>bin</code> 資料夾，所以我們在環境變數 <code>Path</code> 內在增加路徑 <code>%PUB_CACHE%\bin</code>。<br><img src="/images/flutter/002/flutter_010.png" alt=""><br>重新再安裝一次 Aqueduct CLI，可以看到確實安裝在 <code>.pub-cache</code> 資料夾內。<br><img src="/images/flutter/002/flutter_011.png" alt=""><br>接下來透過 CLI 指令 <code>aqueduct create my_app</code> 來建立一個名為 <strong>my_app</strong> 的 aqueduct 專案。<br><img src="/images/flutter/002/flutter_012.png" alt=""><br>最後切換到 <code>my_app</code> 路徑，並透過 CLI 指令 <code>aqueduct serve</code> 來啟動專案。<br><img src="/images/flutter/002/flutter_013.png" alt=""><br>透過瀏覽器開啟 <a href="http://localhost:8888/" target="_blank" rel="noopener">http://localhost:8888/</a> 可以看到雖然找不到頁面，但是確實正常運作。<br><img src="/images/flutter/002/flutter_014.png" alt="">  </p>
 <blockquote>
 <p>連到範例頁面 <a href="http://localhost:8888/example" target="_blank" rel="noopener">http://localhost:8888/example</a> 就可以看到測試資料。<br><img src="/images/flutter/002/flutter_015.png" alt="">  </p>
 </blockquote>

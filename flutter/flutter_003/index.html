@@ -116,7 +116,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/003/flutter_014.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/003/flutter_015.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/003/flutter_016.gif">
-<meta property="og:updated_time" content="2019-05-09T06:39:10.908Z">
+<meta property="og:updated_time" content="2019-05-09T13:42:21.296Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dart 敗部復活賽：Flutter for Web">
 <meta name="twitter:description" content="前言Dart 一開始是由 Google 所推出的一種網頁程式語言，它改善了許多 JavaScript 的歷史包袱，但是很不幸的並沒有受到大眾的支持，反倒是 Microsoft 以 JavaScript 為基礎所發展的 TypeScript 因為原生支援 JavaScript，所以反而使用者日漸增長，不過 Dart 仍然持續默默的發展，在 Flutter 的加持下又重新受到大家的關注，如今 F">
@@ -354,7 +354,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2019-05-09T14:39:10+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2019-05-09T21:42:21+08:00">
                 2019/05/09
               </time>
             
@@ -443,7 +443,7 @@ flutter_web_ui:
 <p>因為我們還沒安裝過相關的 package，所以我們可以直接利用開發工具提供的快捷鈕執行安裝，當然也可以自己手動執行 <code>flutter package get</code> 指令。<br><img src="/images/flutter/003/flutter_008.png" alt="">  </p>
 <h2 id="執行"><a href="#執行" class="headerlink" title="執行"></a>執行</h2><p>最後我們透過指令 <code>webdev serve</code> 來啟動專案。  </p>
 <blockquote>
-<p>如果沒安裝過 webdev 可以透過下列指令安裝：<br><code>flutter packages pub global activate webdev</code></p>
+<p>如果沒安裝過 webdev 可以透過下列指令安裝：<br><code>flutter packages pub global activate webdev</code><br>如果無法正常執行 <strong>webdev</strong>，可以參考上一篇文章([本是同根生：Dart 開發環境(/flutter/flutter_002/))修改設定試試，或是下載 <a href="https://flutter.dev/docs/get-started/install" target="_blank" rel="noopener">Dart SDK</a> 來安裝。  </p>
 </blockquote>
 <p><img src="/images/flutter/003/flutter_005.png" alt=""><br>透過瀏覽器開啟 <strong><a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a></strong>，具有 Flutter App 風格的 <strong>Hello, World!</strong> 頁面就出現了。<br><img src="/images/flutter/003/flutter_006.png" alt="">  </p>
 <h1 id="測試一"><a href="#測試一" class="headerlink" title="測試一"></a>測試一</h1><p>開啟 <code>lib\main.dart</code>，可以看到程式結果幾乎完全與 Flutter App 相同，最大的差別就是 <strong>material.dart</strong> 匯入位置改變了，由原本的<br><code>import &#39;package:flutter/material.dart&#39;;</code><br>變更為<br><code>import &#39;package:flutter_web/material.dart&#39;;</code><br><img src="/images/flutter/003/flutter_007.png" alt=""><br>接下來我們直接將 Flutter App 預設的範例直接覆蓋上去，並修改 <code>material.dart</code> 的 import 路徑。<br><pre><code>&#x2F;&#x2F; import &#39;package:flutter&#x2F;material.dart&#39;;

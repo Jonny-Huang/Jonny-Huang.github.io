@@ -114,7 +114,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_013.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_014.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_015.gif">
-<meta property="og:updated_time" content="2019-05-20T05:48:49.693Z">
+<meta property="og:updated_time" content="2019-05-20T06:26:33.115Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="翻桌吧！Flutter for Desktop">
 <meta name="twitter:description" content="前言自從 Google I/O 公開 Flutter for Web 之後大家便開始瘋狂測試，似乎都忘了它目前只是預覽版本，接下來大家另一個期待便是 Flutter 什麼時候開始支援桌面系統，今天剛好看到一篇令人心動的文章-Flutter for Desktop: Create and Run a Desktop Application，這篇文章使用的是 Google 之前在 GitHub">
@@ -352,7 +352,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2019-05-20T13:48:49+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2019-05-20T14:26:33+08:00">
                 2019/05/20
               </time>
             
@@ -452,7 +452,116 @@ On Windows:
   runApp(new MyApp());
 }</code></pre></p>
 <p>這主要是因為目前 <strong>TargetPlatform</strong> 只有 <code>android</code>、<code>fuchsia</code>、<code>iOS</code> 3種，目前桌面系統均無法識別，為了避免發生錯誤，所以暫時設定為 <code>fuchsia</code>，這樣也可避免將 Package 與 Android 或 iOS 相關的部分一起打包進來。<br><img src="/images/flutter/005/flutter_007.png" alt="">  </p>
-<h2 id="範例二"><a href="#範例二" class="headerlink" title="範例二"></a>範例二</h2><p>與之前測試 <strong>Flutter for Web</strong> 時一樣，我們套用上一篇文章 <a href="/flutter/flutter_005/">Flutter 當我們黏在一起：Provider</a> 的範例。<br>我們用開發工具開啟範例專案，筆者是用 Visual Studio Code，並在 <code>pubspec.yaml</code> 內加入 <code>provider</code> 這個 package，儲存後透過 <code>flutter package get</code> 來下載(VS Code 儲存 <code>pubspec.yaml</code> 時會自動執行指令)。<br><img src="/images/flutter/005/flutter_012.png" alt=""><br>接著將 <code>rx.dart</code> 複製到 <code>lib</code> 資料夾下。<br><img src="/images/flutter/005/flutter_013.png" alt=""><br>最後將 <code>main.dart</code> 內 <strong>MaterialApp</strong> 的 <code>home</code> 改為 <strong>RxPage</strong>。<br><img src="/images/flutter/005/flutter_014.png" alt=""><br>在透過指令 <code>flutter run</code> 重新執行，可以看到操作效果與 App 以及 Web 一樣。<br><img src="/images/flutter/005/flutter_015.gif" alt="">  </p>
+<h2 id="範例二"><a href="#範例二" class="headerlink" title="範例二"></a>範例二</h2><p>與之前測試 <strong>Flutter for Web</strong> 時一樣，我們套用上一篇文章 <a href="/flutter/flutter_005/">Flutter 當我們黏在一起：Provider</a> 的範例。<br>我們用開發工具開啟範例專案，筆者是用 Visual Studio Code，並在 <code>pubspec.yaml</code> 內加入 <code>provider</code> 這個 package，儲存後透過 <code>flutter package get</code> 來下載(VS Code 儲存 <code>pubspec.yaml</code> 時會自動執行指令)。<br><img src="/images/flutter/005/flutter_012.png" alt=""><br>接著將 <code>rx.dart</code> 複製到 <code>lib</code> 資料夾下。<br><img src="/images/flutter/005/flutter_013.png" alt=""><br>最後將 <code>main.dart</code> 內 <strong>MaterialApp</strong> 的 <code>home</code> 改為 <strong>RxPage</strong>。<br><img src="/images/flutter/005/flutter_014.png" alt=""><br>在透過指令 <code>flutter run</code> 重新執行，可以看到操作效果與 App 以及 Web 一樣。<br><img src="/images/flutter/005/flutter_015.gif" alt=""><br>完整程式碼如下：<br><pre><code>import &#39;dart:io&#39; show Platform;
+
+import &#39;package:flutter&#x2F;foundation.dart&#39; show debugDefaultTargetPlatformOverride;
+import &#39;package:flutter&#x2F;material.dart&#39;;
+import &#39;package:provider&#x2F;provider.dart&#39;;
+import &#39;package:example_flutter&#x2F;rx.dart&#39;;
+
+final controller = StreamController&lt;bool&gt;();
+
+void main() {
+  &#x2F;&#x2F; See https:&#x2F;&#x2F;github.com&#x2F;flutter&#x2F;flutter&#x2F;wiki&#x2F;Desktop-shells#target-platform-override
+  debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
+
+  runApp(new MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: &#39;Flutter Demo&#39;,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        &#x2F;&#x2F; See https:&#x2F;&#x2F;github.com&#x2F;flutter&#x2F;flutter&#x2F;wiki&#x2F;Desktop-shells#fonts
+        fontFamily: &#39;Roboto&#39;,
+      ),
+      &#x2F;&#x2F; home: MyHomePage(title: &#39;Flutter Demo Home Page&#39;),
+      home: StreamProvider.value(
+        initialData: false,
+        stream: controller.stream,
+        child: RxPage(),
+      ),
+    );
+  }
+}
+
+class RxPage extends StatefulWidget {
+  @override
+  _RxPageState createState() =&gt; _RxPageState();
+}
+
+class _RxPageState extends State&lt;RxPage&gt; {
+
+  @override
+  Widget build(BuildContext context) {
+    List&lt;Widget&gt; list = &lt;Widget&gt;[];
+    bool isLogin = Provider.of&lt;bool&gt;(context);
+    if (isLogin) {
+      list.add(UserAccountsDrawerHeader(
+        accountEmail: Text(&quot;jonnyhuang@outlooj.com&quot;),
+        accountName: Text(&quot;Jonny&quot;),
+        currentAccountPicture: CircleAvatar(
+          child: Text(&quot;J&quot;),
+        ),
+      ));
+    } else {
+      list.add(DrawerHeader(
+        decoration: BoxDecoration(
+          color: Colors.orange,
+        ),
+        child: Text(&quot;Guest&quot;),
+      ));
+    }
+    list.add(ListTile(
+      title: Text(isLogin ? &quot;登出&quot; : &quot;登入&quot;),
+      trailing: Icon(Icons.exit_to_app),
+      onTap: () {
+        controller.add(!isLogin);
+      },
+    ));
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(&#39;RxDart&#39;),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: list,
+        ),
+      ),
+      body: Page1Page(),
+    );
+  }
+}
+
+class Page1Page extends StatefulWidget {
+  @override
+  _Page1PageState createState() =&gt; _Page1PageState();
+}
+
+class _Page1PageState extends State&lt;Page1Page&gt; {
+
+  @override
+  Widget build(BuildContext context) {
+    bool isLogin = Provider.of&lt;bool&gt;(context);
+    return Scaffold(
+      body: Container(
+        color: isLogin ? Colors.green : Colors.grey,
+        alignment: Alignment.center,
+        child: MaterialButton(
+          child: Text(isLogin ? &quot;登出&quot; : &quot;登入&quot;),
+          onPressed: () {
+            controller.add(!isLogin);
+          },
+        ),
+      ),
+    );
+  }
+}
+</code></pre></p>
 <h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>比起 Flutter for Web 的進度似乎還有點落後，但是我們可以看到 Flutter 移植到其他平台時修改幅度並不大，可以看的出來 Flutter 團隊不只是想讓 Flutter 只是可以在各種平台上執行而已，減少重工降低維護成本在實務應用上更加重要，這不論是對於公司還是個人來說應該都是很大的導入誘因。  </p>
 
       

@@ -112,9 +112,9 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/004/flutter_011.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/004/flutter_013.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/004/flutter_012.png">
-<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/003/flutter_017.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/004/flutter_015.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/004/flutter_014.png">
-<meta property="og:updated_time" content="2019-05-14T05:34:59.537Z">
+<meta property="og:updated_time" content="2019-05-20T03:29:00.721Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flutter 當我們黏在一起：Provider">
 <meta name="twitter:description" content="前言依賴注入(Dependency Injection) 可以說是降低程式耦合度最簡單的方法，我們預先將某種”資源”注入到程式內，然後可以在任何地方自由提起該”資源”，完全不必理會這個資源在哪建立又放置在哪，我們只要知道有某種機制可以在我們需要時幫我們提取我們所需要的東西，接下來我們就嘗試如何在 Flutter 上做到該效果。   InheritedWidgetFlutter 提供一個有趣的">
@@ -352,8 +352,8 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2019-05-14T13:34:59+08:00">
-                2019/05/14
+              <time title="更新於" itemprop="dateModified" datetime="2019-05-20T11:29:00+08:00">
+                2019/05/20
               </time>
             
           </span>
@@ -785,7 +785,7 @@ class _Page1PageState extends State&lt;Page1Page&gt; {
   }
 }
 </code></pre></p>
-<p>執行專案可以看到操作效果跟原來的一樣。<br><img src="/images/flutter/003/flutter_017.gif" alt="">  </p>
+<p>執行專案可以看到操作效果跟原來的一樣。<br><img src="/images/flutter/004/flutter_015.gif" alt="">  </p>
 <h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>就如同官方說明一樣 <strong>Provider 是 InheritedWidget 的語法糖</strong>，當你了解到 InheritedWidget 的特性時也會明白 Provider 如何做到依賴注入，所以它不是要改變我們的程式架構，相反的在我們既有的撰寫模式下套用它可以讓程式變得更簡潔。  </p>
 <h2 id="MultiProvider"><a href="#MultiProvider" class="headerlink" title="MultiProvider"></a>MultiProvider</h2><p>就如同官網範例 <strong>MultiProvider</strong> 可以協助我們很方便的注入多個 Provider，但是每多註冊一個 Provider 就等於多一層 Widget，Widget 的成本很低，所以效能的差異是可以忽略的，不過如果利用 Dart DevTools 來看 Widget Tree 時應該就會有些抱怨，因為多了很多層，有時候我們可以將多個資源合併在一起來減少堆疊次數。<br><img src="/images/flutter/004/flutter_014.png" alt="">  </p>
 
@@ -858,6 +858,10 @@ class _Page1PageState extends State&lt;Page1Page&gt; {
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/flutter/flutter_005/" rel="prev" title="翻桌吧！Flutter for Desktop">
+                翻桌吧！Flutter for Desktop <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -927,7 +931,7 @@ class _Page1PageState extends State&lt;Page1Page&gt; {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-count">64</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>

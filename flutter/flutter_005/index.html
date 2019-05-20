@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-tw">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Flutter,Dart">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+  <meta property="fb:admins" content="fb267234890438499">
+  <meta property="fb:app_id" content="267234890438499">
+
+
+
+<meta name="description" content="前言自從 Google I/O 公開 Flutter for Web 之後大家便開始瘋狂測試，似乎都忘了它目前只是預覽版本，接下來大家另一個期待便是 Flutter 什麼時候開始支援桌面系統，今天剛好看到一篇令人心動的文章-Flutter for Desktop: Create and Run a Desktop Application，這篇文章使用的是 Google 之前在 GitHub">
+<meta name="keywords" content="Flutter,Dart">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻桌吧！Flutter for Desktop">
+<meta property="og:url" content="https://jonny-huang.github.io/flutter/flutter_005/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言自從 Google I/O 公開 Flutter for Web 之後大家便開始瘋狂測試，似乎都忘了它目前只是預覽版本，接下來大家另一個期待便是 Flutter 什麼時候開始支援桌面系統，今天剛好看到一篇令人心動的文章-Flutter for Desktop: Create and Run a Desktop Application，這篇文章使用的是 Google 之前在 GitHub">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_000.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_001.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_002.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_003.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_006.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_009.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_011.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_010.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_004.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_005.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_008.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_007.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_012.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_013.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_014.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_015.gif">
+<meta property="og:updated_time" content="2019-05-20T05:48:49.693Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="翻桌吧！Flutter for Desktop">
+<meta name="twitter:description" content="前言自從 Google I/O 公開 Flutter for Web 之後大家便開始瘋狂測試，似乎都忘了它目前只是預覽版本，接下來大家另一個期待便是 Flutter 什麼時候開始支援桌面系統，今天剛好看到一篇令人心動的文章-Flutter for Desktop: Create and Run a Desktop Application，這篇文章使用的是 Google 之前在 GitHub">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/flutter/005/flutter_000.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Jonny'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jonny-huang.github.io/flutter/flutter_005/">
+
+
+
+
+
+  <title>翻桌吧！Flutter for Desktop | Jonny Huang 的學習筆記</title>
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '267234890438499',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_tw/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jonny Huang 的學習筆記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Angular、Flutter</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            目錄
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-flutter">
+          <a href="/flutter/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Flutter
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-angular">
+          <a href="/angular/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Angular
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-quotes">
+          <a href="/quotes/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br>
+            
+            欣雨露
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/flutter/flutter_005/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">翻桌吧！Flutter for Desktop</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新於</span>
+              
+              <time title="更新於" itemprop="dateModified" datetime="2019-05-20T13:48:49+08:00">
+                2019/05/20
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flutter/" itemprop="url" rel="index">
+                    <span itemprop="name">Flutter</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/flutter/005/flutter_000.png" alt="">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>自從 Google I/O 公開 <a href="https://flutter.dev/web" target="_blank" rel="noopener">Flutter for Web</a> 之後大家便開始瘋狂測試，似乎都忘了它目前只是預覽版本，接下來大家另一個期待便是 Flutter 什麼時候開始支援桌面系統，今天剛好看到一篇令人心動的文章-<a href="https://medium.com/flutter-community/flutter-for-desktop-create-and-run-a-desktop-application-ebeb1604f1e0" target="_blank" rel="noopener">Flutter for Desktop: Create and Run a Desktop Application</a>，這篇文章使用的是 Google 之前在 GitHub 上釋出的試驗性專案 <a href="https://github.com/google/flutter-desktop-embedding" target="_blank" rel="noopener">flutter-desktop-embedding</a>，這也意味著目前官方的進度，接下來當然實機測試看看了。  </p>
+<h1 id="環境"><a href="#環境" class="headerlink" title="環境"></a>環境</h1><p>首先我們先下載專案，可以直接下載壓縮檔或是透過 Git 指令下載。<br><code>git clone https://github.com/google/flutter-desktop-embedding.git</code><br>開啟專案內的 <code>README.md</code> 可以看到各個開發需要的安裝的工具。<br><img src="/images/flutter/005/flutter_001.png" alt=""><br><pre><code>#### Tools
+
+You will need developer tools for your platform:
+* Linux: A recent version of GCC
+* macOS: The current version of Xcode
+* Windows: Visual Studio 2017 or 2019, including the &quot;Desktop development with C++&quot; workload.</code></pre></p>
+<p>因為筆者是在 Windows 上所以需要安裝 Visual Studio 2017 以上的版本，特別要注意的是需要安裝 <strong>使用 C++ 的桌面開發(Desktop development with C++)</strong>。<br><img src="/images/flutter/005/flutter_002.png" alt="">  </p>
+<blockquote>
+<p>若未安裝 <strong>使用 C++ 的桌面開發(Desktop development with C++)</strong>，執行時會出現找不到 vcvars64.bat 的錯誤。<br><img src="/images/flutter/005/flutter_003.png" alt="">  </p>
+</blockquote>
+<h2 id="Flutter-SDK"><a href="#Flutter-SDK" class="headerlink" title="Flutter SDK"></a>Flutter SDK</h2><p>接下來我們開啟專案內的範例程式 <code>flutter-desktop-embedding\example\</code>，從 <code>pubspec.yaml</code> 內可以看到執行環境需要 Flutter SDK 1.5.9-pre.270 以上版本。<br><img src="/images/flutter/005/flutter_006.png" alt="">  </p>
+<blockquote>
+<p>如果沒有修改，在下載 packages 時也會提醒。<br><img src="/images/flutter/005/flutter_009.png" alt="">  </p>
+</blockquote>
+<p>如果版本太低可透過指令 <code>flutter upgrade</code> 來升級 SDK 版本，透過 <code>flutter --version</code> 可以查看目前的版本資訊，筆者目前版本為 <strong>1.6.1-pre.41</strong>。<br><img src="/images/flutter/005/flutter_011.png" alt=""><br><img src="/images/flutter/005/flutter_010.png" alt="">  </p>
+<h2 id="環境變數-ENABLE-FLUTTER-DESKTOP"><a href="#環境變數-ENABLE-FLUTTER-DESKTOP" class="headerlink" title="環境變數 ENABLE_FLUTTER_DESKTOP"></a>環境變數 ENABLE_FLUTTER_DESKTOP</h2><p>開啟範例程式的 README.md(<code>flutter-desktop-embedding\example\README.md</code>) 可以知道還需要新增一個環境變數 <code>ENABLE_FLUTTER_DESKTOP</code>，並將值設為 <code>true</code>。<br><pre><code>### Enable Desktop Support
+
+The desktop support in the `flutter` tool is still highly experimental, and
+must be enabled with an environment variable. Run the command below in the
+terminal&#x2F;console you will be using to build and run the example.
+
+On macOS or Linux:
+
+```
+export ENABLE_FLUTTER_DESKTOP=true
+```
+
+On Windows:
+
+* PowerShell:
+  ```
+  $env:ENABLE_FLUTTER_DESKTOP=&quot;true&quot;
+  ```
+* CMD:
+
+  ```
+  set ENABLE_FLUTTER_DESKTOP=true
+  ```</code></pre><br><img src="/images/flutter/005/flutter_004.png" alt=""><br>透過指令 <code>flutter devices</code>，可以驗證是否連結成功。<br><img src="/images/flutter/005/flutter_005.png" alt="">  </p>
+<h1 id="執行"><a href="#執行" class="headerlink" title="執行"></a>執行</h1><p>接下來透過開啟終端機並切換到範例程式的路徑 <code>flutter-desktop-embedding\example</code>，最後透過指令 <code>flutter run</code> 來執行，效果如下：<br><img src="/images/flutter/005/flutter_008.gif" alt=""><br>開啟 <code>main.dart</code> 可以看到其實與原本我們自己建立的專案幾乎一樣，比較明顯的是在呼叫 <code>runApp</code> 之前特別將執行的環境設為 <code>fuchsia</code>。<br><pre><code>void main() {
+  &#x2F;&#x2F; See https:&#x2F;&#x2F;github.com&#x2F;flutter&#x2F;flutter&#x2F;wiki&#x2F;Desktop-shells#target-platform-override
+  debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
+
+  runApp(new MyApp());
+}</code></pre></p>
+<p>這主要是因為目前 <strong>TargetPlatform</strong> 只有 <code>android</code>、<code>fuchsia</code>、<code>iOS</code> 3種，目前桌面系統均無法識別，為了避免發生錯誤，所以暫時設定為 <code>fuchsia</code>，這樣也可避免將 Package 與 Android 或 iOS 相關的部分一起打包進來。<br><img src="/images/flutter/005/flutter_007.png" alt="">  </p>
+<h2 id="範例二"><a href="#範例二" class="headerlink" title="範例二"></a>範例二</h2><p>與之前測試 <strong>Flutter for Web</strong> 時一樣，我們套用上一篇文章 <a href="/flutter/flutter_005/">Flutter 當我們黏在一起：Provider</a> 的範例。<br>我們用開發工具開啟範例專案，筆者是用 Visual Studio Code，並在 <code>pubspec.yaml</code> 內加入 <code>provider</code> 這個 package，儲存後透過 <code>flutter package get</code> 來下載(VS Code 儲存 <code>pubspec.yaml</code> 時會自動執行指令)。<br><img src="/images/flutter/005/flutter_012.png" alt=""><br>接著將 <code>rx.dart</code> 複製到 <code>lib</code> 資料夾下。<br><img src="/images/flutter/005/flutter_013.png" alt=""><br>最後將 <code>main.dart</code> 內 <strong>MaterialApp</strong> 的 <code>home</code> 改為 <strong>RxPage</strong>。<br><img src="/images/flutter/005/flutter_014.png" alt=""><br>在透過指令 <code>flutter run</code> 重新執行，可以看到操作效果與 App 以及 Web 一樣。<br><img src="/images/flutter/005/flutter_015.gif" alt="">  </p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>比起 Flutter for Web 的進度似乎還有點落後，但是我們可以看到 Flutter 移植到其他平台時修改幅度並不大，可以看的出來 Flutter 團隊不只是想讓 Flutter 只是可以在各種平台上執行而已，減少重工降低維護成本在實務應用上更加重要，這不論是對於公司還是個人來說應該都是很大的導入誘因。  </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Flutter/" rel="tag"># Flutter</a>
+          
+            <a href="/tags/Dart/" rel="tag"># Dart</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/flutter/flutter_004/" rel="next" title="Flutter 當我們黏在一起：Provider">
+                <i class="fa fa-chevron-left"></i> Flutter 當我們黏在一起：Provider
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Jonny Huang">
+          <p class="site-author-name" itemprop="name">Jonny Huang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分類</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.facebook.com/groups/flutter.tw/" title="Flutter Taiwan" target="_blank">Flutter Taiwan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#環境"><span class="nav-number">2.</span> <span class="nav-text">環境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Flutter-SDK"><span class="nav-number">2.1.</span> <span class="nav-text">Flutter SDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#環境變數-ENABLE-FLUTTER-DESKTOP"><span class="nav-number">2.2.</span> <span class="nav-text">環境變數 ENABLE_FLUTTER_DESKTOP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#執行"><span class="nav-number">3.</span> <span class="nav-text">執行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#範例二"><span class="nav-number">3.1.</span> <span class="nav-text">範例二</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">4.</span> <span class="nav-text">後記</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-Jonny Huang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
+<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+      prettyPrint();
+  });
+</script>
+
+</body>
+</html>

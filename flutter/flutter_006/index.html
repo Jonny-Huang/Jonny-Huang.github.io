@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-tw">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Flutter,Dart,Angular">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+  <meta property="fb:admins" content="fb267234890438499">
+  <meta property="fb:app_id" content="267234890438499">
+
+
+
+<meta name="description" content="前言Material Design 是由 Google 所推廣的設計風格，當然 Google 自家的產品也遵循這個風格來設計，而對於它所釋出的開源框架 Angular 與 Flutter 也分別提供 Angular Material 與 Material Components widgets 來協助我們很快速地就可以設計具有 Material Design 的程式，今天我們就來嘗試 Angu">
+<meta name="keywords" content="Flutter,Dart,Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Material Design：Angular &amp; Flutter (一)">
+<meta property="og:url" content="https://jonny-huang.github.io/flutter/flutter_006/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言Material Design 是由 Google 所推廣的設計風格，當然 Google 自家的產品也遵循這個風格來設計，而對於它所釋出的開源框架 Angular 與 Flutter 也分別提供 Angular Material 與 Material Components widgets 來協助我們很快速地就可以設計具有 Material Design 的程式，今天我們就來嘗試 Angu">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_000.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_001.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_003.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_004.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_002.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_005.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_006.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_007.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_008.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_009.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_010.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_011.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_012.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_013.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_014.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_015.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_016.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_017.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_018.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_019.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_020.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_021.gif">
+<meta property="og:updated_time" content="2019-05-23T08:00:07.592Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Material Design：Angular &amp; Flutter (一)">
+<meta name="twitter:description" content="前言Material Design 是由 Google 所推廣的設計風格，當然 Google 自家的產品也遵循這個風格來設計，而對於它所釋出的開源框架 Angular 與 Flutter 也分別提供 Angular Material 與 Material Components widgets 來協助我們很快速地就可以設計具有 Material Design 的程式，今天我們就來嘗試 Angu">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/flutter/006/flutter_000.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Jonny'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jonny-huang.github.io/flutter/flutter_006/">
+
+
+
+
+
+  <title>Material Design：Angular & Flutter (一) | Jonny Huang 的學習筆記</title>
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '267234890438499',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/zh_tw/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jonny Huang 的學習筆記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Angular、Flutter</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            目錄
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-flutter">
+          <a href="/flutter/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Flutter
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-angular">
+          <a href="/angular/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Angular
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-quotes">
+          <a href="/quotes/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br>
+            
+            欣雨露
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/flutter/flutter_006/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Material Design：Angular & Flutter (一)</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新於</span>
+              
+              <time title="更新於" itemprop="dateModified" datetime="2019-05-23T16:00:07+08:00">
+                2019/05/23
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flutter/" itemprop="url" rel="index">
+                    <span itemprop="name">Flutter</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/flutter/006/flutter_000.png" alt="">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="https://material.io/" target="_blank" rel="noopener">Material Design</a> 是由 Google 所推廣的設計風格，當然 Google 自家的產品也遵循這個風格來設計，而對於它所釋出的開源框架 <a href="https://angular.io/" target="_blank" rel="noopener">Angular</a> 與 <a href="https://flutter.dev/" target="_blank" rel="noopener">Flutter</a> 也分別提供 <a href="https://material.angular.io/" target="_blank" rel="noopener">Angular Material</a> 與 <a href="https://flutter.dev/docs/development/ui/widgets/material" target="_blank" rel="noopener">Material Components widgets</a> 來協助我們很快速地就可以設計具有 Material Design 的程式，今天我們就來嘗試 Angular 與 Flutter 如何實作。  </p>
+<h1 id="開發環境"><a href="#開發環境" class="headerlink" title="開發環境"></a>開發環境</h1><h2 id="Angular"><a href="#Angular" class="headerlink" title="Angular"></a>Angular</h2><p>Angular 開發環境主要需要 <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a>、<a href="https://cli.angular.io/" target="_blank" rel="noopener">Angular CLI</a> 最後就是開發工具，筆者是用 <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a> (簡稱 VS Code)。<br>安裝完 Node.js 之後我們可以透過指令 <code>npm install -g @angular/cli</code> 來安裝 Angular CLI，接著就是透過 CLI 來建立專案，筆者建立一個名為 <strong>material-angular</strong> 的專案，並同時加入路由功能(routing)，網頁樣式檔採用 SCSS 格式，完整指令如下：<br><code>ng new material-angular --routing --style scss</code><br><img src="/images/flutter/006/flutter_001.png" alt=""><br>接著透過指令 <code>npm start</code> (或是 <code>ng serve</code>) 執行專案。<br><img src="/images/flutter/006/flutter_003.png" alt=""><br>最後透過瀏覽器開啟 <a href="http://localhost:4200/，便可看到專案預設網頁。" target="_blank" rel="noopener">http://localhost:4200/，便可看到專案預設網頁。</a><br><img src="/images/flutter/006/flutter_004.png" alt="">  </p>
+<h2 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h2><p>Flutter 開發環境主要需要 <a href="https://flutter.dev/docs/get-started/install" target="_blank" rel="noopener">Flutter SDK</a>，開發 APP 則需要 Android Studio(Android SDK、模擬器)、Xcode(iOS SDK、模擬器)，開發 Web 則需安裝 webdev。  </p>
+<blockquote>
+<p>詳細安裝方式請參考官方文件，或是 <a href="/flutter/flutter_001/">用 VS Code 建置 Flutter 開發環境</a> 與 <a href="/flutter/flutter_003/">Dart 敗部復活賽：Flutter for Web</a>。  </p>
+</blockquote>
+<p>接著我們一樣採用 VS Code 來開發，這邊為了方便比較我們使用 <strong>Flutter for Web</strong> 來開發，我們透過 VS Code 上 Dart &amp; Flutter 的擴充功能來建立一個名為 <strong>material_flutter</strong> 的專案。<br><img src="/images/flutter/006/flutter_002.png" alt="">  </p>
+<blockquote>
+<p><a href="https://dartcode.org/releases/v3-0/" target="_blank" rel="noopener">Dart &amp; Flutter 的擴充功能</a> 需要 3.0.0 以上版本。<br>Angular 專案名稱不允許使用<strong>底線(_)</strong>，Flutter 專案名稱不允許使用<strong>連字符號(-)</strong>。  </p>
+</blockquote>
+<p>再來透過指令 <code>webdev serve</code> 來啟動專案。<br><img src="/images/flutter/006/flutter_005.png" alt=""><br>最後透過瀏覽器開啟 <a href="http://localhost:8080，便可看到專案預設網頁。" target="_blank" rel="noopener">http://localhost:8080，便可看到專案預設網頁。</a><br><img src="/images/flutter/006/flutter_006.png" alt="">  </p>
+<h1 id="Material"><a href="#Material" class="headerlink" title="Material"></a>Material</h1><h2 id="Angular-1"><a href="#Angular-1" class="headerlink" title="Angular"></a>Angular</h2><p>Angular 專案要加入 Angular Material 可以參考官方文件 <a href="https://material.angular.io/guide/getting-started" target="_blank" rel="noopener">Getting started</a>，比較快的方式是透過 Schematics 指令 <code>ng add @angular/material</code> 來加入，包含網頁模板、動畫、手勢都可以透過設定選項來幫我們一次處理好。<br><img src="/images/flutter/006/flutter_007.png" alt=""><br>Angular Material 的 Component 都會包覆成獨立的NgModule，我們再依需求個別加入到專案內，比較方便的方式就是建立一個 SharedModule 統一加入到此，也方便後續維護管理，我們建立一個 <code>src\app\shared-material-module.ts</code>，並先加入所有 Angular Material 的 Component，等到專案建置完之後再移除掉不需要的 Component，程式碼如下：<br><pre><code>import { A11yModule } from &#39;@angular&#x2F;cdk&#x2F;a11y&#39;;
+import { DragDropModule } from &#39;@angular&#x2F;cdk&#x2F;drag-drop&#39;;
+import { PortalModule } from &#39;@angular&#x2F;cdk&#x2F;portal&#39;;
+
+import { ScrollingModule } from &#39;@angular&#x2F;cdk&#x2F;scrolling&#39;;
+import { CdkStepperModule } from &#39;@angular&#x2F;cdk&#x2F;stepper&#39;;
+import { CdkTableModule } from &#39;@angular&#x2F;cdk&#x2F;table&#39;;
+import { CdkTreeModule } from &#39;@angular&#x2F;cdk&#x2F;tree&#39;;
+import { NgModule } from &#39;@angular&#x2F;core&#39;;
+
+import { MatAutocompleteModule } from &#39;@angular&#x2F;material&#x2F;autocomplete&#39;;
+import { MatBadgeModule } from &#39;@angular&#x2F;material&#x2F;badge&#39;;
+import { MatBottomSheetModule } from &#39;@angular&#x2F;material&#x2F;bottom-sheet&#39;;
+import { MatButtonModule } from &#39;@angular&#x2F;material&#x2F;button&#39;;
+import { MatButtonToggleModule } from &#39;@angular&#x2F;material&#x2F;button-toggle&#39;;
+import { MatCardModule } from &#39;@angular&#x2F;material&#x2F;card&#39;;
+import { MatCheckboxModule } from &#39;@angular&#x2F;material&#x2F;checkbox&#39;;
+import { MatChipsModule } from &#39;@angular&#x2F;material&#x2F;chips&#39;;
+import { MatNativeDateModule, MatRippleModule } from &#39;@angular&#x2F;material&#x2F;core&#39;;
+import { MatDatepickerModule } from &#39;@angular&#x2F;material&#x2F;datepicker&#39;;
+import { MatDialogModule } from &#39;@angular&#x2F;material&#x2F;dialog&#39;;
+import { MatDividerModule } from &#39;@angular&#x2F;material&#x2F;divider&#39;;
+import { MatExpansionModule } from &#39;@angular&#x2F;material&#x2F;expansion&#39;;
+import { MatFormFieldModule } from &#39;@angular&#x2F;material&#x2F;form-field&#39;;
+import { MatGridListModule } from &#39;@angular&#x2F;material&#x2F;grid-list&#39;;
+import { MatIconModule } from &#39;@angular&#x2F;material&#x2F;icon&#39;;
+import { MatInputModule } from &#39;@angular&#x2F;material&#x2F;input&#39;;
+import { MatListModule } from &#39;@angular&#x2F;material&#x2F;list&#39;;
+import { MatMenuModule } from &#39;@angular&#x2F;material&#x2F;menu&#39;;
+import { MatPaginatorModule } from &#39;@angular&#x2F;material&#x2F;paginator&#39;;
+import { MatProgressBarModule } from &#39;@angular&#x2F;material&#x2F;progress-bar&#39;;
+import { MatProgressSpinnerModule } from &#39;@angular&#x2F;material&#x2F;progress-spinner&#39;;
+import { MatRadioModule } from &#39;@angular&#x2F;material&#x2F;radio&#39;;
+import { MatSelectModule } from &#39;@angular&#x2F;material&#x2F;select&#39;;
+import { MatSidenavModule } from &#39;@angular&#x2F;material&#x2F;sidenav&#39;;
+import { MatSlideToggleModule } from &#39;@angular&#x2F;material&#x2F;slide-toggle&#39;;
+import { MatSliderModule } from &#39;@angular&#x2F;material&#x2F;slider&#39;;
+import { MatSnackBarModule } from &#39;@angular&#x2F;material&#x2F;snack-bar&#39;;
+import { MatSortModule } from &#39;@angular&#x2F;material&#x2F;sort&#39;;
+import { MatStepperModule } from &#39;@angular&#x2F;material&#x2F;stepper&#39;;
+import { MatTableModule } from &#39;@angular&#x2F;material&#x2F;table&#39;;
+import { MatTabsModule } from &#39;@angular&#x2F;material&#x2F;tabs&#39;;
+import { MatToolbarModule } from &#39;@angular&#x2F;material&#x2F;toolbar&#39;;
+import { MatTooltipModule } from &#39;@angular&#x2F;material&#x2F;tooltip&#39;;
+import { MatTreeModule } from &#39;@angular&#x2F;material&#x2F;tree&#39;;
+
+@NgModule({
+  imports: [
+    A11yModule, CdkTableModule, CdkTreeModule, CdkStepperModule,
+    DragDropModule, MatAutocompleteModule, MatBadgeModule, MatBottomSheetModule,
+    MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule,
+    MatChipsModule, MatDatepickerModule, MatDialogModule, MatDividerModule,
+    MatExpansionModule, MatFormFieldModule, MatGridListModule, MatIconModule,
+    MatInputModule, MatListModule, MatMenuModule, MatPaginatorModule,
+    MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatRippleModule,
+    MatSelectModule, MatSidenavModule, MatSlideToggleModule, MatSliderModule,
+    MatSnackBarModule, MatSortModule, MatStepperModule, MatTableModule,
+    MatTabsModule, MatToolbarModule, MatTooltipModule, MatTreeModule,
+    ScrollingModule, PortalModule, MatNativeDateModule,
+  ],
+  exports: [
+    A11yModule, CdkTableModule, CdkTreeModule, CdkStepperModule,
+    DragDropModule, MatAutocompleteModule, MatBadgeModule, MatBottomSheetModule,
+    MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule,
+    MatChipsModule, MatDatepickerModule, MatDialogModule, MatDividerModule,
+    MatExpansionModule, MatFormFieldModule, MatGridListModule, MatIconModule,
+    MatInputModule, MatListModule, MatMenuModule, MatPaginatorModule,
+    MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatRippleModule,
+    MatSelectModule, MatSidenavModule, MatSlideToggleModule, MatSliderModule,
+    MatSnackBarModule, MatSortModule, MatStepperModule, MatTableModule,
+    MatTabsModule, MatToolbarModule, MatTooltipModule, MatTreeModule,
+    ScrollingModule, PortalModule, MatNativeDateModule,
+  ]
+})
+export class SharedMaterialModule { }</code></pre></p>
+<blockquote>
+<p>可以參考官方的範例的 <a href="https://github.com/angular/components/blob/master/src/material-examples/material-module.ts" target="_blank" rel="noopener">material-module.ts</a>。  </p>
+</blockquote>
+<p>接著將 <strong>SharedMaterialModule</strong> 加入到 <strong>AppModule</strong>(<code>src\app\app.module.ts</code>)，這樣 AppModule 下面的 Component 就可以使用，AppModule 的 <code>bootstrap</code> 預設指定 AppComponent 為起始頁面，到這裡我們就已經完成整個專案的設定。<br><img src="/images/flutter/006/flutter_008.png" alt="">  </p>
+<h2 id="Flutter-1"><a href="#Flutter-1" class="headerlink" title="Flutter"></a>Flutter</h2><p>Flutter 專案預設已經透過 MaterialApp 幫我們將相關設定都完成了，<code>theme</code> 就跟 CSS 一樣，我們可以修改一些樣式設定，<code>home</code> 則提供預設要載入的 Widget，我們可以將 Flutter 的 Widget 視同 Angular 的 Component，MaterialApp 的 <code>home</code> 就相當於 AppModule 的 <code>bootstrap</code>。<br><img src="/images/flutter/006/flutter_009.png" alt=""><br>比較特別的是目前必須手動加入 Material Icons，加入方法是在專案目錄 <code>web\assets\</code> 內建立一個 <code>FontManifest.json</code> 檔案(預設沒有 <code>assets</code> 資料夾，需自行建立)。<br><img src="/images/flutter/006/flutter_010.png" alt=""><br>並加入下列 JSON 資料：<br><pre><code>[
+    {
+        &quot;family&quot;: &quot;MaterialIcons&quot;,
+        &quot;fonts&quot;: [
+            {
+                &quot;asset&quot;: &quot;https:&#x2F;&#x2F;fonts.gstatic.com&#x2F;s&#x2F;materialicons&#x2F;v42&#x2F;flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2&quot;
+            }
+        ]
+    }
+]</code></pre></p>
+<h1 id="版型"><a href="#版型" class="headerlink" title="版型"></a>版型</h1><h2 id="Angular-2"><a href="#Angular-2" class="headerlink" title="Angular"></a>Angular</h2><p>Angular Material 提供了 <a href="https://material.angular.io/components/toolbar/overview" target="_blank" rel="noopener">toolbar</a> 與 <a href="https://material.angular.io/components/sidenav/overview" target="_blank" rel="noopener">sidenav</a> 可以讓我們快速建立一個具有<strong>工作欄</strong>與<strong>側邊欄</strong>的版型，修改網頁 <code>src\app\app.component.html</code> 如下：<br><pre><code>&lt;mat-drawer-container style=&quot;height: 100vh; width:100vw;&quot; autosize&gt;
+  &lt;mat-drawer #drawer style=&quot;width: 240px;&quot; mode=&quot;over&quot;&gt;
+    Menu
+  &lt;&#x2F;mat-drawer&gt;
+  &lt;mat-toolbar color=&quot;primary&quot;&gt;
+    &lt;button mat-icon-button (click)=&quot;drawer.toggle()&quot;&gt;
+      &lt;mat-icon class=&quot;example-icon&quot;&gt;menu&lt;&#x2F;mat-icon&gt;
+    &lt;&#x2F;button&gt;
+    &lt;span&gt;Angular Material&lt;&#x2F;span&gt;
+  &lt;&#x2F;mat-toolbar&gt;
+  &lt;div&gt;
+    Context
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;mat-drawer-container&gt;</code></pre></p>
+<blockquote>
+<p>為了與 Flutter 效果相近這裡<strong>側邊欄</strong>採用 <code>mat-drawer</code>。  </p>
+</blockquote>
+<p>執行專案可以看到效果如下：<br><img src="/images/flutter/006/flutter_011.gif" alt="">  </p>
+<h2 id="Flutter-2"><a href="#Flutter-2" class="headerlink" title="Flutter"></a>Flutter</h2><p>Flutter 提供一個 <a href="https://api.flutter.dev/flutter/material/Scaffold-class.html" target="_blank" rel="noopener">Scaffold</a> Widget，它預先配置頁面的基本布局，我們只要將對應的 Widget(<a href="https://api.flutter.dev/flutter/material/AppBar-class.html" target="_blank" rel="noopener">AppBar</a>、<a href="https://api.flutter.dev/flutter/material/Drawer-class.html" target="_blank" rel="noopener">Drawer</a>) 填入就可以完成版型，我直接修改 <code>lib\main.dart</code> 內的 <strong>MyHomePage</strong>。<br><img src="/images/flutter/006/flutter_012.png" alt=""><br>程式碼如下：<br><pre><code>class MyHomePage extends StatelessWidget {
+  final String title;
+
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final appBar = AppBar(
+      title: Text(title),
+    );
+
+    final drawer = Drawer(
+      child: Text(&#39;Menu&#39;),
+    );
+
+    final body = Text(&#39;Context&#39;);
+
+    return Scaffold(
+      appBar: appBar,
+      drawer: drawer,
+      body: body,
+    );
+  }
+}</code></pre></p>
+<p>執行專案可以看到與 Angular 相同的效果：<br><img src="/images/flutter/006/flutter_013.gif" alt="">  </p>
+<h1 id="路由導覽"><a href="#路由導覽" class="headerlink" title="路由導覽"></a>路由導覽</h1><h2 id="Angular-3"><a href="#Angular-3" class="headerlink" title="Angular"></a>Angular</h2><p>因為我們在建立專案時已經透過 Angular CLI 幫我們建立好路由設定，接下來只要直接使用即可，我們分別透過指令 <code>ng g c page1</code> 與 <code>ng g c page2</code> 建立2個 Component - <strong>Page1Component</strong>、<strong>Page2Component</strong>。<br><img src="/images/flutter/006/flutter_014.png" alt=""><br>接著修改 <code>src\app\page1\page1.component.html</code>、<code>src\app\page2\page2.component.html</code> 內文字的大小與顏色，以方便識別頁面。<br><img src="/images/flutter/006/flutter_015.png" alt=""><br>接著在 <code>src\app\app-routing.module.ts</code> 內添加路由規則：</p>
+<ul>
+<li><code>p1</code> 會導覽到 Page1Component。</li>
+<li><code>p2</code> 會導覽到 Page2Component。</li>
+<li><code>**</code> 其他路徑則切換回 <code>p1</code>，也就是會導覽到 Page1Component。</li>
+</ul>
+<p><img src="/images/flutter/006/flutter_016.png" alt=""><br>最後開啟 <code>src\app\app.component.html</code>，先將 Context 替換為路由插座 <code>router-outlet</code>，當路由運作時它會將路由規則所對應的 Component 插入到這個路由插座內，接著在 <code>mat-drawer</code> 內加入導覽用的按鈕，我們可以直接透過 <code>routerLink</code> 屬性來設定要導覽的路徑。<br><img src="/images/flutter/006/flutter_017.png" alt=""><br>重新執行專案，可以看到頁面切換的導覽效果。<br><img src="/images/flutter/006/flutter_018.gif" alt="">  </p>
+<h2 id="Flutter-3"><a href="#Flutter-3" class="headerlink" title="Flutter"></a>Flutter</h2><p>仿造 Angular 我們一樣建立2個 Widget-<strong>Page1</strong>、<strong>Page2</strong>，一樣在側邊欄 Drawer 內加入導覽按鈕。<br>特別的是在導覽之前會先執行 <code>Navigator.of(context).pop();</code>，因為 Drawer 不是建立在目前 Widget 內，而是堆疊在目前 Widget 之上，藉由 <code>pop</code> 方法我們先接它移除，另一點是 Flutter 是整頁切換，所以我們必須在每個頁面都使用 Scaffold 這個 Widget 包覆內容。<br><img src="/images/flutter/006/flutter_019.png" alt=""><br>最後我們在 <strong>MyApp</strong> 內的 <strong>MaterialApp</strong>　插入路由規則，要注意的是當 <code>routes</code> 內包含 <code>\</code> 時，外面的 <code>home</code> 屬性就不能設定，反之亦然，擇一使用。<br><img src="/images/flutter/006/flutter_020.png" alt=""><br>完整程式如下：<br><pre><code>import &#39;package:flutter_web&#x2F;material.dart&#39;;
+
+void main() =&gt; runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: &#39;Flutter Demo&#39;,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      &#x2F;&#x2F; home: MyHomePage(title: &#39;Flutter Material&#39;),
+      routes: {
+        &#39;&#x2F;&#39;: (context) =&gt; Page1(),
+        &#39;&#x2F;p1&#39;: (context) =&gt; Page1(),
+        &#39;&#x2F;p2&#39;: (context) =&gt; Page2(),
+      },
+    );
+  }
+}
+
+class Page1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final drawer = Drawer(
+      child: ListView(
+        children: &lt;Widget&gt;[
+          ListTile(
+            title: Text(&#39;Page1&#39;),
+            onTap: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).pushNamed(&#39;&#x2F;p1&#39;);
+            },
+          ),
+          ListTile(
+            title: Text(&#39;Page2&#39;),
+            onTap: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).pushNamed(&#39;&#x2F;p2&#39;);
+            },
+          ),
+        ],
+      ),
+    );
+
+    final body = Center(
+      child: Text(
+        &#39;Page1&#39;,
+        style: TextStyle(fontSize: 32, color: Colors.green),
+      ),
+    );
+
+    return Scaffold(
+      appBar: AppBar(title: Text(&#39;Page1&#39;)),
+      drawer: drawer,
+      body: body,
+    );
+  }
+}
+
+class Page2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final drawer = Drawer(
+      child: ListView(
+        children: &lt;Widget&gt;[
+          ListTile(
+            title: Text(&#39;Page1&#39;),
+            onTap: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).pushNamed(&#39;&#x2F;p1&#39;);
+            },
+          ),
+          ListTile(
+            title: Text(&#39;Page2&#39;),
+            onTap: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).pushNamed(&#39;&#x2F;p2&#39;);
+            },
+          ),
+        ],
+      ),
+    );
+
+    final body = Center(
+      child: Text(
+        &#39;Page2&#39;,
+        style: TextStyle(fontSize: 32, color: Colors.blue),
+      ),
+    );
+
+    return Scaffold(
+      appBar: AppBar(title: Text(&#39;Page2&#39;)),
+      drawer: drawer,
+      body: body,
+    );
+  }
+}</code></pre></p>
+<p>重新執行專案，可以看到頁面切換的導覽效果。<br><img src="/images/flutter/006/flutter_021.gif" alt="">  </p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>這邊並不是在比較 Angular 與 Flutter 哪一個比較好，使用自己最熟悉的技術就可以，剩下的 Google 相關團隊會讓它們越來越強大。  </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Angular/" rel="tag"># Angular</a>
+          
+            <a href="/tags/Flutter/" rel="tag"># Flutter</a>
+          
+            <a href="/tags/Dart/" rel="tag"># Dart</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/flutter/flutter_005/" rel="next" title="翻桌吧！Flutter for Desktop">
+                <i class="fa fa-chevron-left"></i> 翻桌吧！Flutter for Desktop
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Jonny Huang">
+          <p class="site-author-name" itemprop="name">Jonny Huang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">65</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分類</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.facebook.com/groups/flutter.tw/" title="Flutter Taiwan" target="_blank">Flutter Taiwan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#開發環境"><span class="nav-number">2.</span> <span class="nav-text">開發環境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular"><span class="nav-number">2.1.</span> <span class="nav-text">Angular</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flutter"><span class="nav-number">2.2.</span> <span class="nav-text">Flutter</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Material"><span class="nav-number">3.</span> <span class="nav-text">Material</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-1"><span class="nav-number">3.1.</span> <span class="nav-text">Angular</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flutter-1"><span class="nav-number">3.2.</span> <span class="nav-text">Flutter</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版型"><span class="nav-number">4.</span> <span class="nav-text">版型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-2"><span class="nav-number">4.1.</span> <span class="nav-text">Angular</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flutter-2"><span class="nav-number">4.2.</span> <span class="nav-text">Flutter</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#路由導覽"><span class="nav-number">5.</span> <span class="nav-text">路由導覽</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-3"><span class="nav-number">5.1.</span> <span class="nav-text">Angular</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flutter-3"><span class="nav-number">5.2.</span> <span class="nav-text">Flutter</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">6.</span> <span class="nav-text">後記</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-Jonny Huang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
+<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+      prettyPrint();
+  });
+</script>
+
+</body>
+</html>

@@ -114,7 +114,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/007/flutter_010.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/007/flutter_011.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/007/flutter_012.png">
-<meta property="og:updated_time" content="2019-06-14T05:01:31.407Z">
+<meta property="og:updated_time" content="2019-06-14T12:41:23.484Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dart：會用但不會講的運算子">
 <meta name="twitter:description" content="前言運算子(Operator)可以說是程式語言最重要的功能之一，但是回想起來一開始學程式時卻是有點痛苦的回憶，因為它跟我們所學的數學邏輯有點像又有些差異，好像懂但又說不出個所以然，最後的結果就是圖法煉鋼，多寫幾次程式慢慢有感覺的就“好像”懂了，但是有時候又會碰到無法解釋的邏輯，例如下面 JavaScript 的例子：   資料型別(Data Types)DateTime、bool、num、S">
@@ -352,7 +352,7 @@
               
                 <span class="post-meta-item-text">更新於</span>
               
-              <time title="更新於" itemprop="dateModified" datetime="2019-06-14T13:01:31+08:00">
+              <time title="更新於" itemprop="dateModified" datetime="2019-06-14T20:41:23+08:00">
                 2019/06/14
               </time>
             
@@ -412,7 +412,7 @@
 <blockquote>
 <p>嘗試把 <code>2</code> 改為字串，就會發現編譯器發出錯誤警告，原因很簡單 <code>+</code> 函式只允許傳入 num 型別，所以與其說 Dart 的強型別定義讓程式可以更加嚴謹，不如說 Dart 只提供相同型的運算函式，所以我們無法撰寫不同型別的運算。<br><img src="/images/flutter/007/flutter_007.png" alt="">  </p>
 </blockquote>
-<h2 id="變數-Variable"><a href="#變數-Variable" class="headerlink" title="變數 (Variable)"></a>變數 (Variable)</h2><p>上面提到我們無法得到回傳結果，如果把記憶體當作是一本筆記本，當我們運算 <code>1+2</code> 時它回傳的 <code>3</code> 其實有寫在這本筆記本內，只是當我們要取值時卻不知道它原本寫在哪一頁內，因此程式語言包含一種可以讓我們取值的機制-<strong>變數(Variable)</strong>，我們可以將變數想像成書籍的目錄頁，在目錄頁內會有章節名稱以其它所在的頁數。<br><img src="/images/flutter/007/flutter_008.png" alt=""><br>變數使用發式也是相同的，我們可以給予每個變數一個的名稱，然後用這個變數來紀錄資料的位置(頁數)，但是要怎麼紀錄呢？Dart 提供一個 <code>=</code> 的函式，可以協助我們<strong>將右邊資料所在的頁數寫入到左邊變數的頁次</strong>，接下來我們宣告一個 <code>a</code> 變數，並透過 <code>=</code> 將來右邊的 <code>1+2</code> 的回傳值寫入到左邊的 <code>a</code> 變數，接著將 <code>a</code> 帶入到 <code>print</code> 來輸出到畫面上，<code>print</code> 在讀取 <code>a</code> 這個變數時，Dart 會自動幫我們搜尋到 <code>a</code> 所對應的值 <code>3</code>，因此最後我們可以從畫面上看到一個 <code>3</code>。<br><img src="/images/flutter/007/flutter_009.png" alt="">  </p>
+<h2 id="變數-Variable"><a href="#變數-Variable" class="headerlink" title="變數 (Variable)"></a>變數 (Variable)</h2><p>上面提到我們無法得到回傳結果，如果把記憶體當作是一本筆記本，當我們運算 <code>1+2</code> 時它回傳的 <code>3</code> 其實有寫在這本筆記本內，只是當我們要取值時卻不知道它原本寫在哪一頁內，因此程式語言包含一種可以讓我們取值的機制-<strong>變數(Variable)</strong>，我們可以將變數想像成書籍的目錄頁，在目錄頁內會有章節名稱以其它所在的頁數。<br><img src="/images/flutter/007/flutter_008.png" alt=""><br>變數使用方式也是相同的，我們可以給予每個變數一個的名稱，然後用這個變數來紀錄資料的位置(頁數)，但是要怎麼紀錄呢？Dart 提供一個 <code>=</code> 的函式，可以協助我們<strong>將右邊資料所在的頁數寫入到左邊變數的頁次</strong>，接下來我們宣告一個 <code>a</code> 變數，並透過 <code>=</code> 將來右邊的 <code>1+2</code> 的回傳值寫入到左邊的 <code>a</code> 變數，接著將 <code>a</code> 帶入到 <code>print</code> 來輸出到畫面上，<code>print</code> 在讀取 <code>a</code> 這個變數時，Dart 會自動幫我們搜尋到 <code>a</code> 所對應的值 <code>3</code>，因此最後我們可以從畫面上看到一個 <code>3</code>。<br><img src="/images/flutter/007/flutter_009.png" alt="">  </p>
 <h1 id="運算子優先序-Operator-precedence"><a href="#運算子優先序-Operator-precedence" class="headerlink" title="運算子優先序 (Operator precedence)"></a>運算子優先序 (Operator precedence)</h1><p>Dart 是 Google 所開發的程式語言，後來由 ECMA 制定標準規範(ECMA-408)，我們可以從 <a href="https://www.ecma-international.org/publications/standards/Ecma-408.htm" target="_blank" rel="noopener">ECMA-408網站</a> 下載文件-<a href="https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-408.pdf" target="_blank" rel="noopener">ECMA-408.pdf</a>(目前版本為第4版)，開啟文件瀏覽到最後一個章節 <strong>20.2 Operator Precedence</strong>，我們可以看到一個運算子優先序的表格，內容如下：  </p>
 <table>
 <thead>
@@ -526,7 +526,7 @@
 <blockquote>
 <p>所以說程式處理順序不是一律由左至右，只是因為大部分的運算子的相依性都是由左至右，所以才容易有這種錯覺。  </p>
 </blockquote>
-<p>接下來我們在連續等號的邏輯，範例如下：<br><img src="/images/flutter/007/flutter_013.png" alt=""><br><code>a=b=c=5</code> 使用2個 <code>=</code>，因為優先性相等所以依照<strong>由右到左</strong>的原則處理。<br>首先執行 <code>c=5</code>，<code>c</code> 變數會被賦予一個值 <code>5</code>，接著運算函式會回傳 <code>5</code>，所以運算式就會變成 <code>a=b=5</code>。<br>接著執行 <code>b=5</code>，<code>b</code> 變數會被賦予一個值 <code>5</code>，接著運算函式會回傳 <code>5</code>，所以運算式就會變成 <code>a=5</code>。<br>最後執行 <code>a=5</code>，<code>a</code> 變數會被賦予一個值 <code>5</code>，接著運算函式會回傳 <code>5</code>，所以將 <code>a</code>、<code>b</code>、<code>c</code> 輸出時都會得到 <code>5</code> 的結果。<br><img src="/images/flutter/007/flutter_014.png" alt=""><br>接著我們把運算式改成 <code>a=b=c&gt;5</code>，並賦予 <code>c</code> 初始值 <code>1</code>，我們可以看到結果是 <code>a</code> 為 <code>false</code>、<code>b</code> 為 <code>false</code>、<code>c</code> 為 <code>5</code> 的結果，雖然看似有點奇怪，但是依照<strong>運算子優先序</strong>的邏輯來思考就會迎刃而解。<br><img src="/images/flutter/007/flutter_015.png" alt="">  </p>
+<p>接下來我們在連續等號的邏輯，範例如下：<br><img src="/images/flutter/007/flutter_013.png" alt=""><br><code>a=b=c=5</code> 使用2個 <code>=</code>，因為優先性相等所以依照<strong>由右到左</strong>的原則處理。<br>首先執行 <code>c=5</code>，<code>c</code> 變數會被賦予一個值 <code>5</code>，接著運算函式會回傳 <code>5</code>，所以運算式就會變成 <code>a=b=5</code>。<br>接著執行 <code>b=5</code>，<code>b</code> 變數會被賦予一個值 <code>5</code>，接著運算函式會回傳 <code>5</code>，所以運算式就會變成 <code>a=5</code>。<br>最後執行 <code>a=5</code>，<code>a</code> 變數會被賦予一個值 <code>5</code>，接著運算函式會回傳 <code>5</code>，所以將 <code>a</code>、<code>b</code>、<code>c</code> 輸出時都會得到 <code>5</code> 的結果。<br><img src="/images/flutter/007/flutter_014.png" alt=""><br>接著我們把運算式改成 <code>a=b=c&gt;5</code>，並賦予 <code>c</code> 初始值 <code>1</code>，我們可以看到結果是 <code>a</code> 為 <code>false</code>、<code>b</code> 為 <code>false</code>、<code>c</code> 為 <code>1</code> 的結果，雖然看似有點奇怪，但是依照<strong>運算子優先序</strong>的邏輯來思考就會迎刃而解。<br><img src="/images/flutter/007/flutter_015.png" alt="">  </p>
 <p>因為 Dart 的 <strong>嚴謹</strong>，所以我們很難寫出特殊的運算式，但是我們拿比較貼近 Dart 的 JavaScript 來看就會發現比較好玩的例子,以一開始的範例 <code>console.log(1&lt;2&lt;3)</code> 與 <code>console.log(3&gt;2&gt;1)</code>來說，<code>console.log</code> 與剛剛使用的 <code>print</code> 一樣，可以將值輸出到畫面上。<br>接著我們查詢 JavaScript 的<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Operator_Precedence" target="_blank" rel="noopener">運算子優先序</a>，可以看到當運算子優先性一樣時它處理順序是由左到右。<br><img src="/images/flutter/007/flutter_010.png" alt=""><br>我們先看 <code>1&lt;2&lt;3</code>，運算式使用2個 <code>&lt;</code>，因為優先性相等所以依照<strong>由左到右</strong>的原則處理。<br>首先先執行 <code>1&lt;2</code>，在此我們會得到一個 <code>true</code> 的布林值，因此運算式會變成 <code>true&lt;3</code>。<br>在 JavaScript 內當布林值與數值型別要比較時會先將布林值轉換為數值型別，<code>true</code> 會變成 <code>1</code>，<code>false</code> 會變成<code>0</code>，因此運算式會變成 <code>1&lt;3</code>。<br>最後由 <code>1&lt;3</code> 可以得到一個 <code>true</code> 的布林值。<br><img src="/images/flutter/007/flutter_011.png" alt=""><br>同樣的邏輯我們在思考 <code>3&gt;2&gt;1</code> 就可以發現為什麼會得到 <code>false</code> 的結過。<br><img src="/images/flutter/007/flutter_012.png" alt="">  </p>
 <h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>深入了解運算子就會發現概念很簡單但是事情變複雜了，最好的方式應該是避免些出易讀性不高的程式碼，因為別人在維護時不只很難理解，要是誤解可能衍生出不必要的 BUG。  </p>
 

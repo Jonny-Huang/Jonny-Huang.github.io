@@ -1,103 +1,32 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-tw">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-TW">
+<head>
   <meta charset="UTF-8">
-<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="Notification,push,ServiceWorker,Progressive Web App,PWA,Angular">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
-
-
-
-
-  <meta property="fb:admins" content="fb267234890438499">
-  <meta property="fb:app_id" content="267234890438499">
-
-
-
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
 <meta name="description" content="推送通知 (Push Notification)推送通知(Push Notification) 或者也可以稱作推播，有智慧手機的人我想應該非常熟悉，尤其是 App 盛行的時期幾乎每隻 App 都會有推送通知功能，這也是惡夢的開始，你會發覺在大半夜裏你的手機會三不五時地叫你起床，所以現在的手機幾乎都內建了勿擾模式，讓使用者可以設定每天的某個時段可以封鎖特定的訊息通知，甚至現在的系統都可以讓使用用決定">
-<meta name="keywords" content="Notification,push,ServiceWorker,Progressive Web App,PWA,Angular">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PWA 推送通知：ServiceWorker - push">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/21_pwa3/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
 <meta property="og:description" content="推送通知 (Push Notification)推送通知(Push Notification) 或者也可以稱作推播，有智慧手機的人我想應該非常熟悉，尤其是 App 盛行的時期幾乎每隻 App 都會有推送通知功能，這也是惡夢的開始，你會發覺在大半夜裏你的手機會三不五時地叫你起床，所以現在的手機幾乎都內建了勿擾模式，讓使用者可以設定每天的某個時段可以封鎖特定的訊息通知，甚至現在的系統都可以讓使用用決定">
-<meta property="og:locale" content="zh-tw">
+<meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_43.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_44.png">
@@ -126,656 +55,356 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_59.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_60.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-10-02T00:26:07.000Z">
+<meta property="article:published_time" content="2017-09-26T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-24T01:17:36.087Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="PWA">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PWA 推送通知：ServiceWorker - push">
-<meta name="twitter:description" content="推送通知 (Push Notification)推送通知(Push Notification) 或者也可以稱作推播，有智慧手機的人我想應該非常熟悉，尤其是 App 盛行的時期幾乎每隻 App 都會有推送通知功能，這也是惡夢的開始，你會發覺在大半夜裏你的手機會三不五時地叫你起床，所以現在的手機幾乎都內建了勿擾模式，讓使用者可以設定每天的某個時段可以封鎖特定的訊息通知，甚至現在的系統都可以讓使用用決定">
 <meta name="twitter:image" content="https://jonny-huang.github.io/images/download.png">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Jonny'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<link rel="canonical" href="https://jonny-huang.github.io/angular/training/21_pwa3/">
 
 
 
-  <link rel="canonical" href="https://jonny-huang.github.io/angular/training/21_pwa3/">
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;angular&#x2F;training&#x2F;21_pwa3&#x2F;&quot;,&quot;path&quot;:&quot;angular&#x2F;training&#x2F;21_pwa3&#x2F;&quot;,&quot;title&quot;:&quot;PWA 推送通知：ServiceWorker - push&quot;}</script>
 
-
-
-
-
-  <title>PWA 推送通知：ServiceWorker - push | Jonny Huang 的學習筆記</title>
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>PWA 推送通知：ServiceWorker - push | Jonny Huang 的學習筆記</title>
   
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '267234890438499',
-      xfbml      : true,
-      version    : 'v2.6'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/zh_tw/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-tw">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Jonny Huang 的學習筆記</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <h1 class="site-subtitle" itemprop="description">Angular、Flutter</h1>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首頁
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            目錄
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-flutter">
-          <a href="/flutter/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Flutter
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-angular">
-          <a href="/angular/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Angular
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-quotes">
-          <a href="/quotes/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br>
-            
-            欣雨露
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa-commenting fa-fw"></i>欣雨露</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A8%E9%80%81%E9%80%9A%E7%9F%A5-Push-Notification"><span class="nav-number">1.</span> <span class="nav-text">推送通知 (Push Notification)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99"><span class="nav-number">1.1.</span> <span class="nav-text">事前準備</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E7%9F%A5-Notification"><span class="nav-number">1.2.</span> <span class="nav-text">通知 (Notification)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%88%E6%AC%8A"><span class="nav-number">1.2.1.</span> <span class="nav-text">授權</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%8A%E6%81%AF%E9%A1%AF%E7%A4%BA"><span class="nav-number">1.2.2.</span> <span class="nav-text">訊息顯示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%B2%E9%9A%8E%E4%BA%92%E5%8B%95"><span class="nav-number">1.2.3.</span> <span class="nav-text">進階互動</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E9%80%81-Push"><span class="nav-number">1.3.</span> <span class="nav-text">推送 (Push)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99-1"><span class="nav-number">1.4.</span> <span class="nav-text">事前準備</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D-web-push"><span class="nav-number">1.4.1.</span> <span class="nav-text">安裝 web-push</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A2%E7%94%9F%E9%87%91%E9%91%B0"><span class="nav-number">1.4.2.</span> <span class="nav-text">產生金鑰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%82%E9%96%B1"><span class="nav-number">1.4.3.</span> <span class="nav-text">訂閱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%A3%E8%81%BD-ServiceWorker-%E7%9A%84-push-%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.4.4.</span> <span class="nav-text">監聽 ServiceWorker 的 push 事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E6%A4%8D%E8%87%B3-GitHub"><span class="nav-number">1.4.5.</span> <span class="nav-text">移植至 GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%8C%E5%8F%B0%E6%8E%A8%E9%80%81"><span class="nav-number">1.4.6.</span> <span class="nav-text">後台推送</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
     
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/21_pwa3/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Jonny Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Jonny Huang 的學習筆記">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PWA 推送通知：ServiceWorker - push
+        </h1>
 
-        
-        
-          <h2 class="post-title" itemprop="name headline">PWA 推送通知：ServiceWorker - push</h2>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/06/24 09:17:36" itemprop="dateModified" datetime="2021-06-24T09:17:36+08:00">2021/06/24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Training/" itemprop="url" rel="index"><span itemprop="name">Training</span></a>
+        </span>
+    </span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新於</span>
-              
-              <time title="更新於" itemprop="dateModified" datetime="2017-10-02T08:26:07+08:00">
-                2017/10/02
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Training/" itemprop="url" rel="index">
-                    <span itemprop="name">Training</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
+
     
-
+    
+    
     <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         <h1 id="推送通知-Push-Notification"><a href="#推送通知-Push-Notification" class="headerlink" title="推送通知 (Push Notification)"></a>推送通知 (Push Notification)</h1><p><strong>推送通知</strong>(<strong>Push Notification</strong>) 或者也可以稱作<strong>推播</strong>，有智慧手機的人我想應該非常熟悉，尤其是 App 盛行的時期幾乎每隻 App 都會有推送通知功能，這也是惡夢的開始，你會發覺在大半夜裏你的手機會三不五時地叫你起床，所以現在的手機幾乎都內建了勿擾模式，讓使用者可以設定每天的某個時段可以封鎖特定的訊息通知，甚至現在的系統都可以讓使用用決定 App 允許那些權限。  </p>
+<span id="more"></span>  
 <blockquote>
 <p><strong>推送通知</strong> 就像一把雙面刃，懂得善用它可以提升用戶體驗，反之，若濫用它則會讓使用者觀感不好。</p>
 </blockquote>
 <p>在本篇中筆者會將 <strong>推送通知</strong>(<strong>Push Notification</strong>) 分成 <strong>推送</strong>(<strong>Push</strong>) 與 <strong>通知</strong>(<strong>Notification</strong>) 來說明，<strong>推送</strong>指的是伺服器的後端程式與瀏覽器上的程式之間的溝通，而<strong>通知</strong>則是瀏覽器上的程式與使用者之間的溝通。  </p>
-<h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p>我們接續 <a href="/angular/training/20_pwa2/">PWA 替身術：ServiceWorker - caches</a> 的程式來當範例。<br><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-26.zip"><strong>first-app_2017-09-26.zip</strong></a>。  </p>
+<h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p>我們接續 <a href="/angular/training/20_pwa2/">PWA 替身術：ServiceWorker - caches</a> 的程式來當範例。  </p>
+<img src="/images/download.png" class="" width="36">[**first-app_2017-09-26.zip**](/uploads/first-app_2017-09-26.zip)。  
 <blockquote>
 <p>若要下載請記得先透過指令 <code>npm install</code> 來重新安裝 package。</p>
 </blockquote>
 <p>接著編輯 <code>src\sw.js</code>，取消 fetch 事件的 <code>console.log</code> 以免開發者工具的 Console 視窗太多 fetch 事件，同時也取消 <code>register_sw.js</code> 的快取。  </p>
-<pre><code>const cacheVersion = &#39;v2&#39;;
-const filesToCache = [
-  ...
-  &#39;polyfills.bundle.js&#39;,
-  &#x2F;&#x2F; &#39;register_sw.js&#39;,
-  &#39;styles.bundle.css&#39;,
-  ...
-];
-...
-self.addEventListener(&#39;fetch&#39;, event =&gt; {
-  &#x2F;&#x2F; console.log(&#39;[ServiceWorker] fetch&#39;, event.request);
-  event.respondWith(
-    ...
-  );
-});
-</code></pre>
-<p>再透過 <code>ng build --prod -oh</code> 指令來建置專案，預設會在專案目錄產生一個 <code>dist</code> 資料夾，並將編譯產生的檔案放在裡面，因為目前不會調整網站內容，所以我們改以 <code>dist</code> 當作專案資料夾來練習建立推送通知功能。<br><img src="/images/angular/training/pwa/pwa_43.png" alt="">  </p>
-<p>接下來我們嘗試改用 VS Code 的擴充功能 - <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank" rel="noopener">Live Server</a> 來執行網站。  </p>
+<figure class="highlight js"><figcaption><span>sw.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cacheVersion = <span class="string">&#x27;v2&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> filesToCache = [</span><br><span class="line">  ...</span><br><span class="line">  <span class="string">&#x27;polyfills.bundle.js&#x27;</span>,</span><br><span class="line">  <span class="comment">// &#x27;register_sw.js&#x27;,</span></span><br><span class="line">  <span class="string">&#x27;styles.bundle.css&#x27;</span>,</span><br><span class="line">  ...</span><br><span class="line">];</span><br><span class="line">...</span><br><span class="line">self.addEventListener(<span class="string">&#x27;fetch&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// console.log(&#x27;[ServiceWorker] fetch&#x27;, event.request);</span></span><br><span class="line">  event.respondWith(</span><br><span class="line">    ...</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>再透過 <code>ng build --prod -oh</code> 指令來建置專案，預設會在專案目錄產生一個 <code>dist</code> 資料夾，並將編譯產生的檔案放在裡面，因為目前不會調整網站內容，所以我們改以 <code>dist</code> 當作專案資料夾來練習建立推送通知功能。<br><img src="/images/angular/training/pwa/pwa_43.png" alt="img">  </p>
+<p>接下來我們嘗試改用 VS Code 的擴充功能 - <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">Live Server</a> 來執行網站。  </p>
 <blockquote>
-<p>當然也可以繼續沿用 Chrome 擴充功能-<a href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb" target="_blank" rel="noopener">Web Server for Chrome</a> 來執行。</p>
+<p>當然也可以繼續沿用 Chrome 擴充功能-<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb">Web Server for Chrome</a> 來執行。</p>
 </blockquote>
-<p><img src="/images/angular/training/pwa/pwa_44.png" alt=""><br>再來我們改以 <code>dist</code> 資料夾當根目錄來開啟 VS Code，先選取一個檔案，接著我們可以透過右鍵的功能選單-<strong>Open with Live Server</strong> 或是下方狀態列的 <strong>Go Live</strong> 來啟動 ，Live Server 會自動開啟瀏覽器並載入我們選擇的檔案。<br><img src="/images/angular/training/pwa/pwa_45.png" alt=""><br><img src="/images/angular/training/pwa/pwa_46.png" alt="">  </p>
+<p><img src="/images/angular/training/pwa/pwa_44.png" alt="img"><br>再來我們改以 <code>dist</code> 資料夾當根目錄來開啟 VS Code，先選取一個檔案，接著我們可以透過右鍵的功能選單-<strong>Open with Live Server</strong> 或是下方狀態列的 <strong>Go Live</strong> 來啟動 ，Live Server 會自動開啟瀏覽器並載入我們選擇的檔案。<br><img src="/images/angular/training/pwa/pwa_45.png" alt="img"><br><img src="/images/angular/training/pwa/pwa_46.png" alt="img">  </p>
 <blockquote>
-<p>不過要特別注意的是我們是<strong>直接編輯 <code>dist</code> 資料夾下的檔案</strong>，這是 Angular CLI 透過 <code>ng build</code> 建置專案時所產生的資料夾，每次建置前都會將 <code>dist</code> 給刪除，所以請記得<strong>務必將異動過的檔案複製回 <code>src</code> 資料夾下的對應位置</strong>。</p>
+<p>不過要特別注意的是我們是<strong>直接編輯 <code>dist</code> 資料夾下的檔案</strong>，這是 Angular CLI 透過 <code>ng build</code> 建置專案時所產生的資料夾，每次建置前都會將 <code>dist</code> 給刪除，所以請記得<strong>務必將異動過的檔案複製回 <code>src</code> 資料夾下的對應位置</strong>。  </p>
 </blockquote>
-<h2 id="通知-Notification"><a href="#通知-Notification" class="headerlink" title="通知 (Notification)"></a>通知 (Notification)</h2><p>不論是 Google Chrome 或是 Mozilla FireFox 最近的版本都已經允許使用者可以依不同網站賦予不同的權限。<br><img src="/images/angular/training/pwa/pwa_35.png" alt=""><br><img src="/images/angular/training/pwa/pwa_36.png" alt=""><br>由上圖可以看到通知的設定剛好對應到 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notification" target="_blank" rel="noopener">Notification API</a> 的 <code>permission</code> 屬性：  </p>
+<h2 id="通知-Notification"><a href="#通知-Notification" class="headerlink" title="通知 (Notification)"></a>通知 (Notification)</h2><p>不論是 Google Chrome 或是 Mozilla FireFox 最近的版本都已經允許使用者可以依不同網站賦予不同的權限。<br><img src="/images/angular/training/pwa/pwa_35.png" alt="img"><br><img src="/images/angular/training/pwa/pwa_36.png" alt="img"><br>由上圖可以看到通知的設定剛好對應到 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Notification">Notification API</a> 的 <code>permission</code> 屬性：  </p>
 <ul>
-<li><code>default</code>：使用者尚未給予任何權限 (因此不會顯示任何通知)</li>
-<li><code>granted</code>：使用者允許接收到網站的通知</li>
-<li><code>denied</code>：使用者拒絕接收網站的通知</li>
+<li><code>default</code>：使用者尚未給予任何權限 (因此不會顯示任何通知)  </li>
+<li><code>granted</code>：使用者允許接收到網站的通知  </li>
+<li><code>denied</code>：使用者拒絕接收網站的通知  </li>
 </ul>
 <h3 id="授權"><a href="#授權" class="headerlink" title="授權"></a>授權</h3><p>由 Notification API 可以知道我們可以透過 <code>Notification.requestPermission</code> 方法在瀏覽器界面上產生一個允許通知的請求視窗，讓使用者允許 Web App 可以啟用<strong>通知</strong>功能。<br><code>requestPermission</code> 方法只有在 <code>permission</code> 屬性為 <code>default</code> 才有效，我們可以看做網站第一次開啟時才會顯示，當使用者不論是選取選取 <strong>允許</strong>(<code>granted</code>) 或是 <strong>拒絕</strong>(<code>denied</code>)，後續請求視窗都不會再出現，我們開啟 <code>register_sw.js</code> 並加入 <code>requestPermission</code> 方法。</p>
-<pre><code>if (&#39;serviceWorker&#39; in navigator) {
-  navigator.serviceWorker.register(&#39;.&#x2F;sw.js&#39;)
-    .then(reg =&gt; {
-      &#x2F;&#x2F; registration worked
-      console.log(&#39;[Service Worker] Registration succeeded. Scope is &#39; + reg.scope);
-
-      if (&#39;Notification&#39; in window) {
-        console.log(&#39;Notification permission default status:&#39;, Notification.permission);
-        Notification.requestPermission(function (status) {
-          console.log(&#39;Notification permission status:&#39;, status);
-        });
-      }
-    }).catch(error =&gt; {
-      &#x2F;&#x2F; registration failed
-      console.log(&#39;[Service Worker] Registration failed with &#39; + error);
-    });
-}
-</code></pre>
+<figure class="highlight js"><figcaption><span>register_sw.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="string">&#x27;serviceWorker&#x27;</span> <span class="keyword">in</span> navigator) &#123;</span><br><span class="line">  navigator.serviceWorker.register(<span class="string">&#x27;./sw.js&#x27;</span>)</span><br><span class="line">    .then(<span class="function"><span class="params">reg</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// registration worked</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;[Service Worker] Registration succeeded. Scope is &#x27;</span> + reg.scope);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (<span class="string">&#x27;Notification&#x27;</span> <span class="keyword">in</span> <span class="built_in">window</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Notification permission default status:&#x27;</span>, Notification.permission);</span><br><span class="line">        Notification.requestPermission(<span class="function"><span class="keyword">function</span> (<span class="params">status</span>) </span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">&#x27;Notification permission status:&#x27;</span>, status);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// registration failed</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;[Service Worker] Registration failed with &#x27;</span> + error);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>因為 <strong>推送</strong>(<strong>Push</strong>) 需要透過 ServiceWorker 所以程式加在 ServiceWorker 判斷式內，以確保我們執行的瀏覽器同時支援 ServiceWorker 與 Notification。  </p>
 </blockquote>
-<p>開啟瀏覽器，可以發現目前 <code>permission</code> 屬性為 <code>default</code> 所以畫面上也出現顯示通知的詢問視窗。<br><img src="/images/angular/training/pwa/pwa_37.png" alt=""><br>若按下<strong>允許</strong>則 <code>permission</code> 屬性會改為 <code>granted</code>。<br><img src="/images/angular/training/pwa/pwa_38.png" alt=""><br>反之，按下<strong>拒絕</strong>則 <code>permission</code> 屬性會改為 <code>denied</code>。<br><img src="/images/angular/training/pwa/pwa_39.png" alt="">  </p>
-<p>但是不論選取為何，重新開啟網頁後由 Console 視窗可以看到 <code>requestPermission</code> 方法雖然會被呼叫，但是介面上卻不會出現請求視窗。<br><img src="/images/angular/training/pwa/pwa_40.png" alt=""><br><img src="/images/angular/training/pwa/pwa_41.png" alt="">  </p>
+<p>開啟瀏覽器，可以發現目前 <code>permission</code> 屬性為 <code>default</code> 所以畫面上也出現顯示通知的詢問視窗。<br><img src="/images/angular/training/pwa/pwa_37.png" alt="img"><br>若按下<strong>允許</strong>則 <code>permission</code> 屬性會改為 <code>granted</code>。<br><img src="/images/angular/training/pwa/pwa_38.png" alt="img"><br>反之，按下<strong>拒絕</strong>則 <code>permission</code> 屬性會改為 <code>denied</code>。<br><img src="/images/angular/training/pwa/pwa_39.png" alt="img">  </p>
+<p>但是不論選取為何，重新開啟網頁後由 Console 視窗可以看到 <code>requestPermission</code> 方法雖然會被呼叫，但是介面上卻不會出現請求視窗。<br><img src="/images/angular/training/pwa/pwa_40.png" alt="img"><br><img src="/images/angular/training/pwa/pwa_41.png" alt="img">  </p>
 <blockquote>
-<p>對於網站開發者而言會比較擔心的是使用者選取<strong>拒絕</strong>，因為這時候就必須讓使用者手動變更設定，這對大部分的人來說應該是比較困難的，這時候其實可以透過 <code>Notification.permission</code> 方法來確認授權狀態，若是<strong>拒絕</strong>(<code>denied</code>)我們可以在頁面適當的位置呈現變更通知權限的教學。<br><img src="/images/angular/training/pwa/pwa_42.png" alt=""></p>
+<p>對於網站開發者而言會比較擔心的是使用者選取<strong>拒絕</strong>，因為這時候就必須讓使用者手動變更設定，這對大部分的人來說應該是比較困難的，這時候其實可以透過 <code>Notification.permission</code> 方法來確認授權狀態，若是<strong>拒絕</strong>(<code>denied</code>)我們可以在頁面適當的位置呈現變更通知權限的教學。<br><img src="/images/angular/training/pwa/pwa_42.png" alt="img">  </p>
 </blockquote>
-<h3 id="訊息顯示"><a href="#訊息顯示" class="headerlink" title="訊息顯示"></a>訊息顯示</h3><p>上面我們處理了授權問題，接下來在使用者允許通知的前提下，我們開始實作如何在畫面上顯示訊息。<br>透過由 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification" target="_blank" rel="noopener">MDN</a> 上可以得知我們可以透過 <code>ServiceWorkerRegistration.showNotification()</code> 方法來呈現訊息，下面列常用的選擇性屬性。  </p>
+<h3 id="訊息顯示"><a href="#訊息顯示" class="headerlink" title="訊息顯示"></a>訊息顯示</h3><p>上面我們處理了授權問題，接下來在使用者允許通知的前提下，我們開始實作如何在畫面上顯示訊息。<br>透過由 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification">MDN</a> 上可以得知我們可以透過 <code>ServiceWorkerRegistration.showNotification()</code> 方法來呈現訊息，下面列常用的選擇性屬性。  </p>
 <table>
 <thead>
 <tr>
-<th style="text-align:center">屬性</th>
+<th align="center">屬性</th>
 <th>說明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">icon</td>
+<tbody><tr>
+<td align="center">icon</td>
 <td>圖示路徑</td>
 </tr>
 <tr>
-<td style="text-align:center">body</td>
+<td align="center">body</td>
 <td>內文文字</td>
 </tr>
 <tr>
-<td style="text-align:center">image</td>
+<td align="center">image</td>
 <td>內文圖片</td>
 </tr>
 <tr>
-<td style="text-align:center">requireInteraction</td>
+<td align="center">requireInteraction</td>
 <td><strong>false</strong>(預設)：自動關閉(Chrome 大約20秒後關閉)。  <strong>true</strong>：訊息一直顯示，直到使用者點擊或是按關閉按鈕才會消失。</td>
 </tr>
 <tr>
-<td style="text-align:center">data</td>
+<td align="center">data</td>
 <td>夾帶資料，讓我們可以在使用者在點擊時依照不同的參數資訊做不同的功能</td>
 </tr>
 <tr>
-<td style="text-align:center">actions</td>
+<td align="center">actions</td>
 <td>操作選單，可包含屬性有 <code>action</code>：操作識別名稱(程式可透過此設定值判斷使用者點選哪個選項)，<code>title</code>：選單標題，<code>icon</code>：選單圖示。</td>
 </tr>
-</tbody>
-</table>
+<tr>
+<td align="center"></td>
+<td></td>
+</tr>
+</tbody></table>
 <blockquote>
-<p>其餘屬性請查詢 MDN - <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification" target="_blank" rel="noopener">ServiceWorkerRegistration.showNotification()</a></p>
+<p>其餘屬性請查詢 MDN - <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification">ServiceWorkerRegistration.showNotification()</a></p>
 </blockquote>
 <p>我們開啟 <code>register_sw.js</code> 加入 <code>displayNotification</code> 方法，並在判斷 Notification 條件式之後去呼叫它，所以正常情況下當瀏覽器有支援而且使用者允許通知情況下網頁開啟後就會自動顯示，修改內容如下：  </p>
-<pre><code>if (&#39;serviceWorker&#39; in navigator) {
-  navigator.serviceWorker.register(&#39;.&#x2F;sw.js&#39;)
-    .then(reg =&gt; {
-      ...
-      if (&#39;Notification&#39; in window) {
-        ...
-        Notification.requestPermission(function (status) {
-          console.log(&#39;Notification permission status:&#39;, status);
-          displayNotification();
-        });
-      }
-
-      console.log(&#39;[Service Worker] register end&#39;);
-    }).catch(error =&gt; {
-      ...
-    });
-}
-
-function displayNotification() {
-  if (Notification.permission == &#39;granted&#39;) {
-    navigator.serviceWorker.getRegistration().then(reg =&gt; {
-      var options = {
-        icon: &#39;.&#x2F;assets&#x2F;images&#x2F;android_048.png&#39;,
-        body: &#39;歡迎加入 Angular 社群&#39;,
-        image: &#39;https:&#x2F;&#x2F;augt-forum-upload.s3-ap-southeast-1.amazonaws.com&#x2F;original&#x2F;1X&#x2F;6b3cd55281b7bedea101dc36a6ef24034806390b.png&#39;
-      };
-      reg.showNotification(&#39;Angular User Group Taiwan&#39;, options);
-      console.log(&#39;displayNotification&#39;);
-    });
-  }
-}
-</code></pre>
-<p>儲存後，開啟瀏覽器可以發現通知訊息已經出現，但是目前除了點擊訊息視窗右上方關閉按鈕外，點擊其他地方都無任何反應。<br><img src="/images/angular/training/pwa/pwa_47.gif" alt="">  </p>
+<figure class="highlight js"><figcaption><span>register_sw.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="string">&#x27;serviceWorker&#x27;</span> <span class="keyword">in</span> navigator) &#123;</span><br><span class="line">  navigator.serviceWorker.register(<span class="string">&#x27;./sw.js&#x27;</span>)</span><br><span class="line">    .then(<span class="function"><span class="params">reg</span> =&gt;</span> &#123;</span><br><span class="line">      ...</span><br><span class="line">      <span class="keyword">if</span> (<span class="string">&#x27;Notification&#x27;</span> <span class="keyword">in</span> <span class="built_in">window</span>) &#123;</span><br><span class="line">        ...</span><br><span class="line">        Notification.requestPermission(<span class="function"><span class="keyword">function</span> (<span class="params">status</span>) </span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">&#x27;Notification permission status:&#x27;</span>, status);</span><br><span class="line">          displayNotification();</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;[Service Worker] register end&#x27;</span>);</span><br><span class="line">    &#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">      ...</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">displayNotification</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (Notification.permission == <span class="string">&#x27;granted&#x27;</span>) &#123;</span><br><span class="line">    navigator.serviceWorker.getRegistration().then(<span class="function"><span class="params">reg</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">var</span> options = &#123;</span><br><span class="line">        <span class="attr">icon</span>: <span class="string">&#x27;./assets/images/android_048.png&#x27;</span>,</span><br><span class="line">        <span class="attr">body</span>: <span class="string">&#x27;歡迎加入 Angular 社群&#x27;</span>,</span><br><span class="line">        <span class="attr">image</span>: <span class="string">&#x27;https://augt-forum-upload.s3-ap-southeast-1.amazonaws.com/original/1X/6b3cd55281b7bedea101dc36a6ef24034806390b.png&#x27;</span></span><br><span class="line">      &#125;;</span><br><span class="line">      reg.showNotification(<span class="string">&#x27;Angular User Group Taiwan&#x27;</span>, options);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;displayNotification&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>儲存後，開啟瀏覽器可以發現通知訊息已經出現，但是目前除了點擊訊息視窗右上方關閉按鈕外，點擊其他地方都無任何反應。<br><img src="/images/angular/training/pwa/pwa_47.gif" alt="img">  </p>
 <blockquote>
 <p>雖然訊息視窗是透過 ServiceWorker 來呈現，但是其實我們仍然可以在前端網頁上透過 JavaScript 來呼叫，只是若要顯示的訊息與當前瀏覽器上正在進行的作業相關，那直接將訊息顯示在頁面內對使用者來說會更友善，不一定要透過通知視窗。</p>
 </blockquote>
 <p>接下來我們嘗試讓使用者在點擊訊息視窗後開啟一個頁面，我們將要開啟的網頁網址加到 <code>data</code> 屬性內。  </p>
-<pre><code>...
-function displayNotification() {
-  if (Notification.permission == &#39;granted&#39;) {
-    navigator.serviceWorker.getRegistration().then(reg =&gt; {
-      var options = {
-        icon: &#39;.&#x2F;assets&#x2F;images&#x2F;android_048.png&#39;,
-        body: &#39;歡迎加入 Angular 社群&#39;,
-        image: &#39;https:&#x2F;&#x2F;augt-forum-upload.s3-ap-southeast-1.amazonaws.com&#x2F;original&#x2F;1X&#x2F;6b3cd55281b7bedea101dc36a6ef24034806390b.png&#39;,
-        data: {
-          link: &#39;https:&#x2F;&#x2F;forum.angular.tw&#x2F;&#39;
-        }
-      };
-      ...
-    });
-  }
-}
-</code></pre>
+<figure class="highlight js"><figcaption><span>register_sw.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">displayNotification</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (Notification.permission == <span class="string">&#x27;granted&#x27;</span>) &#123;</span><br><span class="line">    navigator.serviceWorker.getRegistration().then(<span class="function"><span class="params">reg</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">var</span> options = &#123;</span><br><span class="line">        <span class="attr">icon</span>: <span class="string">&#x27;./assets/images/android_048.png&#x27;</span>,</span><br><span class="line">        <span class="attr">body</span>: <span class="string">&#x27;歡迎加入 Angular 社群&#x27;</span>,</span><br><span class="line">        <span class="attr">image</span>: <span class="string">&#x27;https://augt-forum-upload.s3-ap-southeast-1.amazonaws.com/original/1X/6b3cd55281b7bedea101dc36a6ef24034806390b.png&#x27;</span>,</span><br><span class="line">        <span class="attr">data</span>: &#123;</span><br><span class="line">          <span class="attr">link</span>: <span class="string">&#x27;https://forum.angular.tw/&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">      ...</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>接著編輯 <code>sw.js</code>，加入監聽 <code>notificationclick</code> 事件來接收 <code>data</code> 屬性所傳遞的資料。  </p>
-<pre><code>...
-self.addEventListener(&#39;fetch&#39;, event =&gt; {
-  ...
-});
-
-self.addEventListener(&#39;notificationclick&#39;, event =&gt; {
-  const notification = event.notification;
-  const action = event.action;
-  const link = notification.data.link;
-  if (action !== &#39;close&#39;) {
-    if (link) {
-      clients.openWindow(link);
-    }
-  }
-  notification.close();
-  console.log(&#39;notificationclick action is&#39;, action);
-})
-</code></pre>
-<p>重新開啟瀏覽器可以看到點擊後已經可以開啟網頁。<br><img src="/images/angular/training/pwa/pwa_48.gif" alt="">  </p>
+<figure class="highlight js"><figcaption><span>sw.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">self.addEventListener(<span class="string">&#x27;fetch&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">self.addEventListener(<span class="string">&#x27;notificationclick&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> notification = event.notification;</span><br><span class="line">  <span class="keyword">const</span> action = event.action;</span><br><span class="line">  <span class="keyword">const</span> link = notification.data.link;</span><br><span class="line">  <span class="keyword">if</span> (action !== <span class="string">&#x27;close&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (link) &#123;</span><br><span class="line">      clients.openWindow(link);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  notification.close();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;notificationclick action is&#x27;</span>, action);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>重新開啟瀏覽器可以看到點擊後已經可以開啟網頁。<br><img src="/images/angular/training/pwa/pwa_48.gif" alt="img">  </p>
 <h3 id="進階互動"><a href="#進階互動" class="headerlink" title="進階互動"></a>進階互動</h3><p>訊息視窗其實不只單單提供靜態資訊而已，其實還可以透過 <code>actions</code> 屬性加入選單功能與使用者互動，開啟 <code>register_sw.js</code> 將訊息視窗內容改為具有報名功能的活動宣傳，這邊順便加入 <code>requireInteraction: true</code> 設定以確保視窗不會自動消失。  </p>
-<pre><code>...
-function displayNotification() {
-  if (Notification.permission == &#39;granted&#39;) {
-    navigator.serviceWorker.getRegistration().then(reg =&gt; {
-      var options = {
-        icon: &#39;.&#x2F;assets&#x2F;images&#x2F;android_048.png&#39;,
-        body: &#39;Angular 測試工作坊 9月23日(六)&#39;,
-        image: &#39;https:&#x2F;&#x2F;scontent.ftpe7-1.fna.fbcdn.net&#x2F;v&#x2F;t31.0-8&#x2F;21273134_10156585628499554_8520027102111869914_o.jpg?oh=9d7bcbc999c161f5ce778e361a4b9ea4&amp;oe=5A47D9EE&#39;,
-        data: {
-          link: &#39;https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;&#39;,
-          link_ok: &#39;https:&#x2F;&#x2F;www.facebook.com&#x2F;events&#x2F;188912961650574&#x2F;?acontext=%7B%22ref%22%3A%224%22%2C%22feed_story_type%22%3A%22370%22%2C%22action_history%22%3A%22null%22%7D&#39;,
-          link_ng: &#39;https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;angularstudygroup&#x2F;&#39;
-        },
-        requireInteraction: true,
-        actions: [{
-            action: &#39;yes&#39;,
-            title: &#39;參加&#39;,
-            icon: &#39;.&#x2F;assets&#x2F;images&#x2F;img_ok.png&#39;
-          },
-          {
-            action: &#39;no&#39;,
-            title: &#39;不參加&#39;,
-            icon: &#39;.&#x2F;assets&#x2F;images&#x2F;img_ng.png&#39;
-          },
-        ]
-      };
-      reg.showNotification(&#39;線上 Angular 讀書會 活動&#39;, options);
-      console.log(&#39;displayNotification&#39;);
-    });
-  }
-}
-</code></pre>
+<figure class="highlight js"><figcaption><span>register_sw.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">displayNotification</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (Notification.permission == <span class="string">&#x27;granted&#x27;</span>) &#123;</span><br><span class="line">    navigator.serviceWorker.getRegistration().then(<span class="function"><span class="params">reg</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">var</span> options = &#123;</span><br><span class="line">        <span class="attr">icon</span>: <span class="string">&#x27;./assets/images/android_048.png&#x27;</span>,</span><br><span class="line">        <span class="attr">body</span>: <span class="string">&#x27;Angular 測試工作坊 9月23日(六)&#x27;</span>,</span><br><span class="line">        <span class="attr">image</span>: <span class="string">&#x27;https://scontent.ftpe7-1.fna.fbcdn.net/v/t31.0-8/21273134_10156585628499554_8520027102111869914_o.jpg?oh=9d7bcbc999c161f5ce778e361a4b9ea4&amp;oe=5A47D9EE&#x27;</span>,</span><br><span class="line">        <span class="attr">data</span>: &#123;</span><br><span class="line">          <span class="attr">link</span>: <span class="string">&#x27;https://www.facebook.com/groups/augularjs.tw/&#x27;</span>,</span><br><span class="line">          <span class="attr">link_ok</span>: <span class="string">&#x27;https://www.facebook.com/events/188912961650574/?acontext=%7B%22ref%22%3A%224%22%2C%22feed_story_type%22%3A%22370%22%2C%22action_history%22%3A%22null%22%7D&#x27;</span>,</span><br><span class="line">          <span class="attr">link_ng</span>: <span class="string">&#x27;https://www.facebook.com/groups/angularstudygroup/&#x27;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">requireInteraction</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">actions</span>: [&#123;</span><br><span class="line">            <span class="attr">action</span>: <span class="string">&#x27;yes&#x27;</span>,</span><br><span class="line">            <span class="attr">title</span>: <span class="string">&#x27;參加&#x27;</span>,</span><br><span class="line">            <span class="attr">icon</span>: <span class="string">&#x27;./assets/images/img_ok.png&#x27;</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">action</span>: <span class="string">&#x27;no&#x27;</span>,</span><br><span class="line">            <span class="attr">title</span>: <span class="string">&#x27;不參加&#x27;</span>,</span><br><span class="line">            <span class="attr">icon</span>: <span class="string">&#x27;./assets/images/img_ng.png&#x27;</span></span><br><span class="line">          &#125;,</span><br><span class="line">        ]</span><br><span class="line">      &#125;;</span><br><span class="line">      reg.showNotification(<span class="string">&#x27;線上 Angular 讀書會 活動&#x27;</span>, options);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;displayNotification&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>接著修改 <code>sw.js</code> 增加選單對應的處理。  </p>
-<pre><code>...
-self.addEventListener(&#39;fetch&#39;, event =&gt; {
-  ...
-});
-
-self.addEventListener(&#39;notificationclick&#39;, event =&gt; {
-  const notification = event.notification;
-  const action = event.action;
-  const link = notification.data.link;
-  const link_ok = notification.data.link_ok;
-  const link_ng = notification.data.link_ng;
-  switch (action) {
-    case &#39;yes&#39;:
-      if (link_ok) {
-        clients.openWindow(link_ok);
-      }
-      break;
-    case &#39;no&#39;:
-      if (link_ng) {
-        clients.openWindow(link_ng);
-      }
-      break;
-    case &#39;close&#39;:
-
-      break;
-    default:
-      if (link) {
-        clients.openWindow(link);
-      }
-      break;
-  }
-  notification.close();
-  console.log(&#39;notificationclick action is&#39;, action);
-})
-</code></pre>
+<figure class="highlight js"><figcaption><span>sw.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">self.addEventListener(<span class="string">&#x27;fetch&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">self.addEventListener(<span class="string">&#x27;notificationclick&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> notification = event.notification;</span><br><span class="line">  <span class="keyword">const</span> action = event.action;</span><br><span class="line">  <span class="keyword">const</span> link = notification.data.link;</span><br><span class="line">  <span class="keyword">const</span> link_ok = notification.data.link_ok;</span><br><span class="line">  <span class="keyword">const</span> link_ng = notification.data.link_ng;</span><br><span class="line">  <span class="keyword">switch</span> (action) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;yes&#x27;</span>:</span><br><span class="line">      <span class="keyword">if</span> (link_ok) &#123;</span><br><span class="line">        clients.openWindow(link_ok);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;no&#x27;</span>:</span><br><span class="line">      <span class="keyword">if</span> (link_ng) &#123;</span><br><span class="line">        clients.openWindow(link_ng);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;close&#x27;</span>:</span><br><span class="line"></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">if</span> (link) &#123;</span><br><span class="line">        clients.openWindow(link);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  notification.close();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;notificationclick action is&#x27;</span>, action);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>重新開啟瀏覽器可以看到點擊的各種效果：  </p>
 <ul>
-<li>選取 <strong>參加</strong> 則會開啟對應的活動頁面<br><img src="/images/angular/training/pwa/pwa_49.gif" alt=""></li>
-<li>選取 <strong>不參加</strong> 則會開啟讀書會網站<br><img src="/images/angular/training/pwa/pwa_50.gif" alt=""></li>
-<li>選取 <strong>圖片</strong> 則會開啟社團網站<br><img src="/images/angular/training/pwa/pwa_51.gif" alt=""></li>
-<li>選取 <strong>關閉</strong> 則只會關閉訊息視窗<br><img src="/images/angular/training/pwa/pwa_52.gif" alt=""></li>
+<li><p>選取 <strong>參加</strong> 則會開啟對應的活動頁面<br><img src="/images/angular/training/pwa/pwa_49.gif" alt="img">  </p>
+</li>
+<li><p>選取 <strong>不參加</strong> 則會開啟讀書會網站<br><img src="/images/angular/training/pwa/pwa_50.gif" alt="img">  </p>
+</li>
+<li><p>選取 <strong>圖片</strong> 則會開啟社團網站<br><img src="/images/angular/training/pwa/pwa_51.gif" alt="img">  </p>
+</li>
+<li><p>選取 <strong>關閉</strong> 則只會關閉訊息視窗<br><img src="/images/angular/training/pwa/pwa_52.gif" alt="img">  </p>
+</li>
 </ul>
 <blockquote>
-<p>參考資料：<br>MDN - <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/Notifications_API/Using_the_Notifications_API" target="_blank" rel="noopener">使用 Web Notifications</a>  </p>
+<p>參考資料：<br>MDN - <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/API/Notifications_API/Using_the_Notifications_API">使用 Web Notifications</a>  </p>
 </blockquote>
 <h2 id="推送-Push"><a href="#推送-Push" class="headerlink" title="推送 (Push)"></a>推送 (Push)</h2><p>以往為了獲得後端變更的最新資訊，前端往往需要透過使用者手動或是系統棟頻繁的不斷重複查詢來讓我們<strong>及早獲得資訊</strong>，這種被動式查詢不僅對於網路頻寬、伺服器資源都會占用持續且龐大的成本，因此如果有一種機制可以在後台伺服端資料改變當下主動通知前端，這不僅可以大大降低硬體成本，對於需要這些資訊的使用者更可以<strong>及時獲得資訊</strong>。<br><strong>推送</strong>(<strong>Push</strong>) 就是提供這種機制的功能，而這種功能已經不只在 App 上可以做到，現在連 Web 都可以實現。  </p>
 <h2 id="事前準備-1"><a href="#事前準備-1" class="headerlink" title="事前準備"></a>事前準備</h2><p>編輯 <code>register_sw.js</code>，將 <code>displayNotification</code> 方法註解起來，這樣前端就不會再顯示訊息視窗。</p>
-<pre><code>if (&#39;serviceWorker&#39; in navigator) {
-  navigator.serviceWorker.register(&#39;.&#x2F;sw.js&#39;)
-    .then(reg =&gt; {
-      ...
-      if (&#39;Notification&#39; in window) {
-        ...
-        Notification.requestPermission(function (status) {
-          console.log(&#39;Notification permission status:&#39;, status);
-          &#x2F;&#x2F; displayNotification();
-        });
-      }
-    ...
-}
-</code></pre>
+<figure class="highlight js"><figcaption><span>register_sw.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="string">&#x27;serviceWorker&#x27;</span> <span class="keyword">in</span> navigator) &#123;</span><br><span class="line">  navigator.serviceWorker.register(<span class="string">&#x27;./sw.js&#x27;</span>)</span><br><span class="line">    .then(<span class="function"><span class="params">reg</span> =&gt;</span> &#123;</span><br><span class="line">      ...</span><br><span class="line">      <span class="keyword">if</span> (<span class="string">&#x27;Notification&#x27;</span> <span class="keyword">in</span> <span class="built_in">window</span>) &#123;</span><br><span class="line">        ...</span><br><span class="line">        Notification.requestPermission(<span class="function"><span class="keyword">function</span> (<span class="params">status</span>) </span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">&#x27;Notification permission status:&#x27;</span>, status);</span><br><span class="line">          <span class="comment">// displayNotification();</span></span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3 id="安裝-web-push"><a href="#安裝-web-push" class="headerlink" title="安裝 web-push"></a>安裝 web-push</h3><p>開啟 fitst-app 專案，透過下列指令安裝 web-push。<br><code>npm install web-push</code>  </p>
 <blockquote>
-<p>參考資料：<a href="https://github.com/web-push-libs/web-push" target="_blank" rel="noopener">https://github.com/web-push-libs/web-push</a></p>
+<p>參考資料：<a target="_blank" rel="noopener" href="https://github.com/web-push-libs/web-push">https://github.com/web-push-libs/web-push</a></p>
 </blockquote>
-<h3 id="產生金鑰"><a href="#產生金鑰" class="headerlink" title="產生金鑰"></a>產生金鑰</h3><p>透過下列指令產生一組<strong>公鑰</strong>與<strong>私鑰</strong>，當然<strong>私鑰要保管好</strong>不能外流，這邊因為是測試用得所以將私鑰也呈現出來讓大家比較容易理解範例程式。<br><code>web-push generate-vapid-keys</code><br><img src="/images/angular/training/pwa/pwa_53.png" alt=""><br>公鑰:<code>BPkIUOIylNfWjC9MQ3_8oVx0MsaryiEaak1WyYWyqWp1-FuyQitttiMkdjvACkoEds94crwhyRIyVTyc2tVYICI</code><br>私鑰:<code>5ZwdOLmdJEmdsYcp-ERUtmMg328EKq7jMGSAn3nSBgM</code></p>
+<h3 id="產生金鑰"><a href="#產生金鑰" class="headerlink" title="產生金鑰"></a>產生金鑰</h3><p>透過下列指令產生一組<strong>公鑰</strong>與<strong>私鑰</strong>，當然<strong>私鑰要保管好</strong>不能外流，這邊因為是測試用得所以將私鑰也呈現出來讓大家比較容易理解範例程式。<br><code>web-push generate-vapid-keys</code><br><img src="/images/angular/training/pwa/pwa_53.png" alt="img"><br>公鑰:<code>BPkIUOIylNfWjC9MQ3_8oVx0MsaryiEaak1WyYWyqWp1-FuyQitttiMkdjvACkoEds94crwhyRIyVTyc2tVYICI</code><br>私鑰:<code>5ZwdOLmdJEmdsYcp-ERUtmMg328EKq7jMGSAn3nSBgM</code></p>
 <h3 id="訂閱"><a href="#訂閱" class="headerlink" title="訂閱"></a>訂閱</h3><p>接下來我們要透過 <code>ServiceWorkerRegistration.pushManager</code> 向推送伺服器發出請求，我們需要先將 base64 格式的公鑰轉換成 UInt8Array 格式，再連同 <code>userVisibleOnly: true</code> 參數一起發送至推送伺服器，伺服器會返回一組訂閱資訊(PushSubscription)，推送伺服器可以憑藉此資訊來聯繫瀏覽器，而瀏覽器也可以知道這是來自哪一個 Web App，至於其背後運作原理不再這裡討論，我們可以把它想成跟身分證一樣，我們可以透過身分證的地址找到所在位置，再透過姓名找到是哪一隻 App。</p>
 <blockquote>
-<p><strong>ServiceWorkerRegistration</strong> 可從註冊 ServiceWork 時的返回值取得實體。<br><img src="/images/angular/training/pwa/pwa_54.png" alt=""><br><code>userVisibleOnly: true</code>：表示允許推送到用戶端時顯示訊息。</p>
+<p><strong>ServiceWorkerRegistration</strong> 可從註冊 ServiceWork 時的返回值取得實體。<br><img src="/images/angular/training/pwa/pwa_54.png" alt="img"><br><code>userVisibleOnly: true</code>：表示允許推送到用戶端時顯示訊息。</p>
 </blockquote>
 <p>編輯 <code>register_sw.js</code>，加入註冊方法-<code>subscribeUser</code>。  </p>
-<pre><code>if (&#39;serviceWorker&#39; in navigator) {
-  navigator.serviceWorker.register(&#39;.&#x2F;sw.js&#39;)
-    .then(reg =&gt; {
-      ...
-      subscribeUser(reg);
-      ...
-    }).catch(error =&gt; {
-      ...
-    });
-}
-...
-const applicationServerPublicKey = `BPkIUOIylNfWjC9MQ3_8oVx0MsaryiEaak1WyYWyqWp1-FuyQitttiMkdjvACkoEds94crwhyRIyVTyc2tVYICI`;
-
-function urlB64ToUint8Array(base64String) {
-  const padding = &#39;=&#39;.repeat((4 - base64String.length % 4) % 4);
-  const base64 = (base64String + padding)
-    .replace(&#x2F;\-&#x2F;g, &#39;+&#39;)
-    .replace(&#x2F;_&#x2F;g, &#39;&#x2F;&#39;);
-
-  const rawData = window.atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
-
-  for (let i = 0; i &lt; rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
-  }
-  return outputArray;
-}
-
-function subscribeUser(swRegistration) {
-  const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
-  swRegistration.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: applicationServerKey
-    })
-    .then(subscription =&gt; {
-      console.log(&#39;User is subscribed&#39;);
-      console.log(JSON.stringify(subscription));
-    })
-    .catch(err =&gt; {
-      console.log(&#39;Failed to subscribe the user: &#39;, err);
-    });
-}
-</code></pre>
-<p>執行網頁，當註冊成功時透過 <code>console.log(JSON.stringify(subscription));</code> 可從開發人員工具查詢到 <code>subscription</code> 的訂閱資訊，正常情況下我們需要將這個資訊儲存到後台的資料庫，後續才可以用這個資訊透過推送伺服器來向瀏覽器發送訊息，眼尖的人可以發現它的 <code>endpoint</code> 資訊是網址而且是來自 <a href="https://fcm.googleapis.com/，其實它就是" target="_blank" rel="noopener">https://fcm.googleapis.com/，其實它就是</a> Google 的 FCM (Firebase Cloud Messaging)，這也表示我們中間是透過 FCM 來傳遞，所以客戶端與伺服端至少要能連結到這個外部服務平台，推送功能才能正常運行。<br><img src="/images/angular/training/pwa/pwa_55.png" alt="">  </p>
+<figure class="highlight js"><figcaption><span>register_sw.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="string">&#x27;serviceWorker&#x27;</span> <span class="keyword">in</span> navigator) &#123;</span><br><span class="line">  navigator.serviceWorker.register(<span class="string">&#x27;./sw.js&#x27;</span>)</span><br><span class="line">    .then(<span class="function"><span class="params">reg</span> =&gt;</span> &#123;</span><br><span class="line">      ...</span><br><span class="line">      subscribeUser(reg);</span><br><span class="line">      ...</span><br><span class="line">    &#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">      ...</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> applicationServerPublicKey = <span class="string">`BPkIUOIylNfWjC9MQ3_8oVx0MsaryiEaak1WyYWyqWp1-FuyQitttiMkdjvACkoEds94crwhyRIyVTyc2tVYICI`</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">urlB64ToUint8Array</span>(<span class="params">base64String</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> padding = <span class="string">&#x27;=&#x27;</span>.repeat((<span class="number">4</span> - base64String.length % <span class="number">4</span>) % <span class="number">4</span>);</span><br><span class="line">  <span class="keyword">const</span> base64 = (base64String + padding)</span><br><span class="line">    .replace(<span class="regexp">/\-/g</span>, <span class="string">&#x27;+&#x27;</span>)</span><br><span class="line">    .replace(<span class="regexp">/_/g</span>, <span class="string">&#x27;/&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> rawData = <span class="built_in">window</span>.atob(base64);</span><br><span class="line">  <span class="keyword">const</span> outputArray = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(rawData.length);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; rawData.length; ++i) &#123;</span><br><span class="line">    outputArray[i] = rawData.charCodeAt(i);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> outputArray;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">subscribeUser</span>(<span class="params">swRegistration</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);</span><br><span class="line">  swRegistration.pushManager.subscribe(&#123;</span><br><span class="line">      <span class="attr">userVisibleOnly</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">applicationServerKey</span>: applicationServerKey</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="params">subscription</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;User is subscribed&#x27;</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(subscription));</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;Failed to subscribe the user: &#x27;</span>, err);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>執行網頁，當註冊成功時透過 <code>console.log(JSON.stringify(subscription));</code> 可從開發人員工具查詢到 <code>subscription</code> 的訂閱資訊，正常情況下我們需要將這個資訊儲存到後台的資料庫，後續才可以用這個資訊透過推送伺服器來向瀏覽器發送訊息，眼尖的人可以發現它的 <code>endpoint</code> 資訊是網址而且是來自 <a target="_blank" rel="noopener" href="https://fcm.googleapis.com/%EF%BC%8C%E5%85%B6%E5%AF%A6%E5%AE%83%E5%B0%B1%E6%98%AF">https://fcm.googleapis.com/，其實它就是</a> Google 的 FCM (Firebase Cloud Messaging)，這也表示我們中間是透過 FCM 來傳遞，所以客戶端與伺服端至少要能連結到這個外部服務平台，推送功能才能正常運行。<br><img src="/images/angular/training/pwa/pwa_55.png" alt="img">  </p>
 <blockquote>
 <p>目前雖然我們可以從 FCM 取得 PushSubscription，但是依照筆者測試結果，因為我們是連結本機端網址(localhost)，所以這是一個無效的 PushSubscription，所以測試時必須將網頁架設在有實體IP的網站下。</p>
 </blockquote>
 <h3 id="監聽-ServiceWorker-的-push-事件"><a href="#監聽-ServiceWorker-的-push-事件" class="headerlink" title="監聽 ServiceWorker 的 push 事件"></a>監聽 ServiceWorker 的 push 事件</h3><p>當伺服器推送訊息給瀏覽器時，我們可以從 ServiceWorker 的 push 事件取得相關資訊，因此我們在這個事件內去抓取回傳過來的資訊並透過訊息通知視窗顯示出來，開啟 <code>sw.js</code> 修改如下：  </p>
-<pre><code>...
-self.addEventListener(&#39;push&#39;, event =&gt; {
-  console.log(&#39;[Service Worker] Push Received.&#39;);
-  let title = &#39;Server Push&#39;;
-  let options = {
-    body: &#39;push TEST&#39;,
-    icon: &#39;.&#x2F;assets&#x2F;images&#x2F;android_048.png&#39;
-  };
-  if (event.data) {
-    options = event.data.json();
-    title = options.title;
-  }
-
-  event.waitUntil(self.registration.showNotification(title, options));
-});</code></pre>
-<h3 id="移植至-GitHub"><a href="#移植至-GitHub" class="headerlink" title="移植至 GitHub"></a>移植至 GitHub</h3><p>如前面提到在本機端(localhost)的環境下所得到的 PushSubscription 會是無效的，因此筆者暫時先將網頁上傳至 GitHub，因為 GitHub 本身又是 HTTPS，剛好又符合 ServiceWorker 要求，所以當作臨時的 demo 環境應該不錯，測試網址如下：<br><a href="https://jonny-huang.github.io/demo/first-app/index.html">https://jonny-huang.github.io/demo/first-app/index.html</a><br><img src="/images/angular/training/pwa/pwa_56.png" alt=""><br>由開發者工具可以取得 PushSubscription 資訊如下:</p>
-<pre><code>{
-  endpoint: &quot;https:&#x2F;&#x2F;fcm.googleapis.com&#x2F;fcm&#x2F;send&#x2F;fwNbCkZtyr0:APA91bF-tttRSH0KBHuZ3lGehkd7kcNzWOfAVTKeXp4cYUURgq2bEkTkCtLQAvrzDZ7q_N7on0ved-Ss9SGLRYGm61D2rkmPe2R2EUnLn7s1y7Fwrjts2I-qM94SQINyJA4VBV5spTdy&quot;,
-  expirationTime: null,
-  keys: {
-    p256dh: &quot;BEClFpLV0UV65m9wtmPxLVN6kIUTrALuRlUANPySm3eSXXArabumm4aziX4tPYefRtDaGpqL8SxwyyJlc9BvJzA=&quot;,
-    auth: &quot;I4qBuGIBj1pUVbT4sQnHEg==&quot;
-  }
-}</code></pre>
-<h3 id="後台推送"><a href="#後台推送" class="headerlink" title="後台推送"></a>後台推送</h3><p>開啟 first-app 專案，在專案目錄建立一個 <code>server</code> 資料夾，並在裡面建立一個 <code>push.ts</code> 檔案。<br><img src="/images/angular/training/pwa/pwa_57.png" alt=""><br>接下來我們透過 web-push 來推送訊息，程式可參考 <a href="https://github.com/web-push-libs/web-push" target="_blank" rel="noopener">GitHub</a> 範例，重點是：</p>
+<figure class="highlight js"><figcaption><span>sw.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">self.addEventListener(<span class="string">&#x27;push&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;[Service Worker] Push Received.&#x27;</span>);</span><br><span class="line">  <span class="keyword">let</span> title = <span class="string">&#x27;Server Push&#x27;</span>;</span><br><span class="line">  <span class="keyword">let</span> options = &#123;</span><br><span class="line">    <span class="attr">body</span>: <span class="string">&#x27;push TEST&#x27;</span>,</span><br><span class="line">    <span class="attr">icon</span>: <span class="string">&#x27;./assets/images/android_048.png&#x27;</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">if</span> (event.data) &#123;</span><br><span class="line">    options = event.data.json();</span><br><span class="line">    title = options.title;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  event.waitUntil(self.registration.showNotification(title, options));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="移植至-GitHub"><a href="#移植至-GitHub" class="headerlink" title="移植至 GitHub"></a>移植至 GitHub</h3><p>如前面提到在本機端(localhost)的環境下所得到的 PushSubscription 會是無效的，因此筆者暫時先將網頁上傳至 GitHub，因為 GitHub 本身又是 HTTPS，剛好又符合 ServiceWorker 要求，所以當作臨時的 demo 環境應該不錯，測試網址如下：<br><a href="https://jonny-huang.github.io/demo/first-app/index.html">https://jonny-huang.github.io/demo/first-app/index.html</a><br><img src="/images/angular/training/pwa/pwa_56.png" alt="img"><br>由開發者工具可以取得 PushSubscription 資訊如下:</p>
+<figure class="highlight json"><figcaption><span>PushSubscription.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  endpoint: <span class="string">&quot;https://fcm.googleapis.com/fcm/send/fwNbCkZtyr0:APA91bF-tttRSH0KBHuZ3lGehkd7kcNzWOfAVTKeXp4cYUURgq2bEkTkCtLQAvrzDZ7q_N7on0ved-Ss9SGLRYGm61D2rkmPe2R2EUnLn7s1y7Fwrjts2I-qM94SQINyJA4VBV5spTdy&quot;</span>,</span><br><span class="line">  expirationTime: <span class="literal">null</span>,</span><br><span class="line">  keys: &#123;</span><br><span class="line">    p256dh: <span class="string">&quot;BEClFpLV0UV65m9wtmPxLVN6kIUTrALuRlUANPySm3eSXXArabumm4aziX4tPYefRtDaGpqL8SxwyyJlc9BvJzA=&quot;</span>,</span><br><span class="line">    auth: <span class="string">&quot;I4qBuGIBj1pUVbT4sQnHEg==&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="後台推送"><a href="#後台推送" class="headerlink" title="後台推送"></a>後台推送</h3><p>開啟 first-app 專案，在專案目錄建立一個 <code>server</code> 資料夾，並在裡面建立一個 <code>push.ts</code> 檔案。<br><img src="/images/angular/training/pwa/pwa_57.png" alt="img"><br>接下來我們透過 web-push 來推送訊息，程式可參考 <a target="_blank" rel="noopener" href="https://github.com/web-push-libs/web-push">GitHub</a> 範例，重點是：</p>
 <ul>
 <li>呼叫 <code>setVapidDetails</code> 方法，並帶入公鑰與私鑰。</li>
 <li>取得要推波對象的 PushSubscription。</li>
@@ -783,459 +412,68 @@ self.addEventListener(&#39;push&#39;, event =&gt; {
 <li>透過 <code>sendNotification</code> 推送訊息。</li>
 </ul>
 <p><code>push.ts</code> 檔程式如下：</p>
-<pre><code>import * as webpush from &#39;web-push&#39;;
+<figure class="highlight ts"><figcaption><span>push.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> webpush <span class="keyword">from</span> <span class="string">&#x27;web-push&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> vapidKeys = &#123;</span><br><span class="line">  <span class="attr">publicKey</span>: <span class="string">&#x27;BPkIUOIylNfWjC9MQ3_8oVx0MsaryiEaak1WyYWyqWp1-FuyQitttiMkdjvACkoEds94crwhyRIyVTyc2tVYICI&#x27;</span>,</span><br><span class="line">  <span class="attr">privateKey</span>: <span class="string">&#x27;5ZwdOLmdJEmdsYcp-ERUtmMg328EKq7jMGSAn3nSBgM&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> webPush = webpush;</span><br><span class="line"></span><br><span class="line">webPush.setVapidDetails(</span><br><span class="line">  <span class="string">&#x27;mailto:denhuang@gmail.com&#x27;</span>,</span><br><span class="line">  vapidKeys.publicKey,</span><br><span class="line">  vapidKeys.privateKey</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> options = &#123;</span><br><span class="line">  <span class="attr">icon</span>: <span class="string">&#x27;assets/images/android_048.png&#x27;</span>,</span><br><span class="line">  <span class="attr">body</span>: <span class="string">&#x27;Angular 測試工作坊 9月23日(六)&#x27;</span>,</span><br><span class="line">  <span class="attr">image</span>: <span class="string">&#x27;https://scontent.ftpe7-1.fna.fbcdn.net/v/t31.0-8/21273134_10156585628499554_8520027102111869914_o.jpg?oh=9d7bcbc999c161f5ce778e361a4b9ea4&amp;oe=5A47D9EE&#x27;</span>,</span><br><span class="line">  <span class="attr">data</span>: &#123;</span><br><span class="line">    <span class="attr">link</span>: <span class="string">&#x27;https://www.facebook.com/groups/augularjs.tw/&#x27;</span>,</span><br><span class="line">    <span class="attr">link_ok</span>: <span class="string">&#x27;https://www.facebook.com/events/188912961650574/?acontext=%7B%22ref%22%3A%224%22%2C%22feed_story_type%22%3A%22370%22%2C%22action_history%22%3A%22null%22%7D&#x27;</span>,</span><br><span class="line">    <span class="attr">link_ng</span>: <span class="string">&#x27;https://www.facebook.com/groups/angularstudygroup/&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">requireInteraction</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">actions</span>: [&#123;</span><br><span class="line">    <span class="attr">action</span>: <span class="string">&#x27;yes&#x27;</span>,</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&#x27;參加&#x27;</span>,</span><br><span class="line">    <span class="attr">icon</span>: <span class="string">&#x27;./assets/images/img_ok.png&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">action</span>: <span class="string">&#x27;no&#x27;</span>,</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&#x27;不參加&#x27;</span>,</span><br><span class="line">    <span class="attr">icon</span>: <span class="string">&#x27;./assets/images/img_ng.png&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> subscription = &#123;</span><br><span class="line">  <span class="attr">endpoint</span>: <span class="string">&#x27;https://fcm.googleapis.com/fcm/send/fwNbCkZtyr0:APA91bF-tttRSH0KBHuZ3lGehkd7kcNzWOfAVTKeXp4cYUURgq2bEkTkCtLQAvrzDZ7q_N7on0ved-Ss9SGLRYGm61D2rkmPe2R2EUnLn7s1y7Fwrjts2I-qM94SQINyJA4VBV5spTdy&#x27;</span>,</span><br><span class="line">  <span class="attr">expirationTime</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">keys</span>: &#123;</span><br><span class="line">    <span class="attr">p256dh</span>: <span class="string">&#x27;BEClFpLV0UV65m9wtmPxLVN6kIUTrALuRlUANPySm3eSXXArabumm4aziX4tPYefRtDaGpqL8SxwyyJlc9BvJzA=&#x27;</span>,</span><br><span class="line">    <span class="attr">auth</span>: <span class="string">&#x27;I4qBuGIBj1pUVbT4sQnHEg==&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">webPush.sendNotification(subscription, <span class="built_in">JSON</span>.stringify(options));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>接著我們在 <code>package.json</code> 的 <code>scripts</code> 增加 <code>&quot;push&quot;: &quot;ts-node ./server/push.ts&quot;</code> 指令。<br><img src="/images/angular/training/pwa/pwa_58.png" alt="img"><br>桌面上至少開啟一個瀏覽器，瀏覽器可以是任意網頁，這時候我們只要在專案目錄下執行 <code>npm run push</code>，就可發現桌面會出現通知訊息視窗。<br><img src="/images/angular/training/pwa/pwa_59.png" alt="img"><br>雖然看起來結果一樣，但是這次是由後端推送訊息，而且瀏覽器並不需要開啟我們開發的網站。<br><img src="/images/angular/training/pwa/pwa_60.gif" alt="img">  </p>
+<img src="/images/download.png" class="" width="36">[**first-app_2017-09-29.zip**](/uploads/first-app_2017-09-29.zip)  
 
-const vapidKeys = {
-  publicKey: &#39;BPkIUOIylNfWjC9MQ3_8oVx0MsaryiEaak1WyYWyqWp1-FuyQitttiMkdjvACkoEds94crwhyRIyVTyc2tVYICI&#39;,
-  privateKey: &#39;5ZwdOLmdJEmdsYcp-ERUtmMg328EKq7jMGSAn3nSBgM&#39;
-};
-const webPush = webpush;
-
-webPush.setVapidDetails(
-  &#39;mailto:denhuang@gmail.com&#39;,
-  vapidKeys.publicKey,
-  vapidKeys.privateKey
-);
-
-const options = {
-  icon: &#39;assets&#x2F;images&#x2F;android_048.png&#39;,
-  body: &#39;Angular 測試工作坊 9月23日(六)&#39;,
-  image: &#39;https:&#x2F;&#x2F;scontent.ftpe7-1.fna.fbcdn.net&#x2F;v&#x2F;t31.0-8&#x2F;21273134_10156585628499554_8520027102111869914_o.jpg?oh=9d7bcbc999c161f5ce778e361a4b9ea4&amp;oe=5A47D9EE&#39;,
-  data: {
-    link: &#39;https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;&#39;,
-    link_ok: &#39;https:&#x2F;&#x2F;www.facebook.com&#x2F;events&#x2F;188912961650574&#x2F;?acontext=%7B%22ref%22%3A%224%22%2C%22feed_story_type%22%3A%22370%22%2C%22action_history%22%3A%22null%22%7D&#39;,
-    link_ng: &#39;https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;angularstudygroup&#x2F;&#39;
-  },
-  requireInteraction: true,
-  actions: [{
-    action: &#39;yes&#39;,
-    title: &#39;參加&#39;,
-    icon: &#39;.&#x2F;assets&#x2F;images&#x2F;img_ok.png&#39;
-  },
-  {
-    action: &#39;no&#39;,
-    title: &#39;不參加&#39;,
-    icon: &#39;.&#x2F;assets&#x2F;images&#x2F;img_ng.png&#39;
-  },
-  ]
-};
-
-const subscription = {
-  endpoint: &#39;https:&#x2F;&#x2F;fcm.googleapis.com&#x2F;fcm&#x2F;send&#x2F;fwNbCkZtyr0:APA91bF-tttRSH0KBHuZ3lGehkd7kcNzWOfAVTKeXp4cYUURgq2bEkTkCtLQAvrzDZ7q_N7on0ved-Ss9SGLRYGm61D2rkmPe2R2EUnLn7s1y7Fwrjts2I-qM94SQINyJA4VBV5spTdy&#39;,
-  expirationTime: null,
-  keys: {
-    p256dh: &#39;BEClFpLV0UV65m9wtmPxLVN6kIUTrALuRlUANPySm3eSXXArabumm4aziX4tPYefRtDaGpqL8SxwyyJlc9BvJzA=&#39;,
-    auth: &#39;I4qBuGIBj1pUVbT4sQnHEg==&#39;
-  }
-};
-
-webPush.sendNotification(subscription, JSON.stringify(options));
-</code></pre>
-<p>接著我們在 <code>package.json</code> 的 <code>scripts</code> 增加 <code>&quot;push&quot;: &quot;ts-node ./server/push.ts&quot;</code> 指令。<br><img src="/images/angular/training/pwa/pwa_58.png" alt=""><br>桌面上至少開啟一個瀏覽器，瀏覽器可以是任意網頁，這時候我們只要在專案目錄下執行 <code>npm run push</code>，就可發現桌面會出現通知訊息視窗。<br><img src="/images/angular/training/pwa/pwa_59.png" alt=""><br>雖然看起來結果一樣，但是這次是由後端推送訊息，而且瀏覽器並不需要開啟我們開發的網站。<br><img src="/images/angular/training/pwa/pwa_60.gif" alt="">  </p>
-<p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-29.zip"><strong>first-app_2017-09-29.zip</strong></a>  </p>
-
-      
     </div>
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
+    
+    
+    
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/PWA/" rel="tag"># PWA</a>
-          
-        </div>
-      
-
-      
-      
-        <div class="post-widgets">
-        
-
-        
-          <div class="social-like">
-            
-
-            
-              <div class="fb_like">
-                <div class="fb-like" data-layout="button_count" data-share="true"></div>
-              </div>
-            
-          </div>
-        
-        </div>
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/angular/training/20_pwa2/" rel="next" title="PWA 替身術：ServiceWorker - caches">
-                <i class="fa fa-chevron-left"></i> PWA 替身術：ServiceWorker - caches
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/PWA/" rel="tag"># PWA</a>
           </div>
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/angular/training/22_angular_pwa/" rel="prev" title="既期待又怕受傷害：@angular/service-worker">
-                既期待又怕受傷害：@angular/service-worker <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/angular/training/19_pwa/" rel="prev" title="PWA 偽裝術：manifest.json">
+                  <i class="fa fa-chevron-left"></i> PWA 偽裝術：manifest.json
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/angular/training/20_pwa2/" rel="next" title="PWA 替身術：ServiceWorker - caches">
+                  PWA 替身術：ServiceWorker - caches <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-        </div>
-      
-
-      
-      
     </footer>
   </article>
+</div>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
 
 
-          </div>
-          
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Jonny Huang">
-          <p class="site-author-name" itemprop="name">Jonny Huang</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-           
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">66</span>
-                <span class="site-state-item-name">文章</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">分類</span>
-              
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">28</span>
-                <span class="site-state-item-name">標籤</span>
-              
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
-                  
-                    <i class="fa fa-fw fa-facebook-official"></i>
-                  
-                  Facebook
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>
-                  
-                  Email
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-block">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/flutter.tw/" title="Flutter Taiwan" target="_blank">Flutter Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#推送通知-Push-Notification"><span class="nav-number">1.</span> <span class="nav-text">推送通知 (Push Notification)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#事前準備"><span class="nav-number">1.1.</span> <span class="nav-text">事前準備</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通知-Notification"><span class="nav-number">1.2.</span> <span class="nav-text">通知 (Notification)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#授權"><span class="nav-number">1.2.1.</span> <span class="nav-text">授權</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#訊息顯示"><span class="nav-number">1.2.2.</span> <span class="nav-text">訊息顯示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#進階互動"><span class="nav-number">1.2.3.</span> <span class="nav-text">進階互動</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推送-Push"><span class="nav-number">1.3.</span> <span class="nav-text">推送 (Push)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事前準備-1"><span class="nav-number">1.4.</span> <span class="nav-text">事前準備</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝-web-push"><span class="nav-number">1.4.1.</span> <span class="nav-text">安裝 web-push</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#產生金鑰"><span class="nav-number">1.4.2.</span> <span class="nav-text">產生金鑰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#訂閱"><span class="nav-number">1.4.3.</span> <span class="nav-text">訂閱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#監聽-ServiceWorker-的-push-事件"><span class="nav-number">1.4.4.</span> <span class="nav-text">監聽 ServiceWorker 的 push 事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移植至-GitHub"><span class="nav-number">1.4.5.</span> <span class="nav-text">移植至 GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#後台推送"><span class="nav-number">1.4.6.</span> <span class="nav-text">後台推送</span></a></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
+<div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-Jonny Huang"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
 </div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
-</div>
-
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -1249,27 +487,6 @@ webPush.sendNotification(subscription, JSON.stringify(options));
 
 
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
-<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-      prettyPrint();
-  });
-</script>
 
 </body>
 </html>

@@ -1,0 +1,26 @@
+<hr>
+<p>title: Angular 基本運作流程<br>date: 2017-08-28<br>categories: Training<br>keywords:</p>
+<ul>
+<li>Angular<br>tags:</li>
+<li>Angular</li>
+</ul>
+<hr>
+<h1 id="運作流程"><a href="#運作流程" class="headerlink" title="運作流程"></a>運作流程</h1><p>從 <strong>.angular-cli.json</strong>檔內可以看到 index 屬性設定為 index.html，此為起始頁面，同時也是唯一頁面，因為 Angular 就是一個 SAP(Single Page Application)網站，所有頁面的切換與介面內容的改變都是透過 JavaScript 做即時的動態切換，另一個 main 屬性則設定 main.ts 為 JavaScript 起始的執行檔。<br><img src="/images/angular/training/operation/angular_operation_01.png" alt="img">  </p>
+<blockquote>
+<p>ts 檔為 <a href="https://www.typescriptlang.org/">TypeScript</a> 程式語言的編輯檔，編譯後會轉換成標準的 JavaScript 並產生對應的 js 檔，其屬於 JavaScript 的超集合，也就是說在 ts 檔內也可以直接撰寫 JavaScript，最大的差別在於 TypeScript 多了型別的宣告與判斷，也因此讓我們可以在開發時期就能避免型別誤判造成的bug。<br>若不習慣使用的人可以將所有變數宣告成 <code>any</code>，然後以習慣的 JavaScript 來撰寫，只是這樣就失去了 TypeScript 最強大的功能-型別檢查。  </p>
+</blockquote>
+<!-- more -->  
+
+<p>由此可知道正常運作下，我們對網站發出請求後網站會回傳 index.html，而在 index.html 內會包含 main.ts 的 JavaScript。<br><strong>流程：</strong><code>index.html</code> &gt; <code>main.ts</code><br>由之前 <code>ng build</code> 編譯所產生的 index.html 可以看到網頁載入了 main.bundle.js 網頁載入了。<br><img src="/images/angular/training/operation/angular_operation_02.png" alt="img"><br>開啟專案目錄下 <code>src\main.ts</code> 檔可以發現 Angular 將 <strong>AppModule</strong> 當作<strong>起始模組</strong>載入。<br><img src="/images/angular/training/operation/angular_operation_03.png" alt="img"><br><strong>流程：</strong><code>index.html</code> &gt; <code>main.ts</code> &gt; <code>app.module.ts</code>  </p>
+<blockquote>
+<p>Angular 是模組(NgModule)為基礎的高度元件化框架，可在模組內可以再包含模組，因此我們可以依功能將模組再分拆成數個小模組，以方便維護，只是Angular 在執行時只會有一個<strong>起始模組</strong>。<br>由此也可知道<strong>起始模組</strong>不一定是 <strong>AppModule</strong> ，只是一般而言除非有特殊需求，否則不會去變更它。</p>
+</blockquote>
+<p>由 <strong>AppModule</strong>(<code>src\app\app.module.ts</code>) 可看到在 @NgModule 內設定 bootstrap 屬性為 <strong>AppComponent</strong>，也就表示將 <strong>AppComponent</strong> 指定為<strong>起始元件</strong>。<br><img src="/images/angular/training/operation/angular_operation_04.png" alt="img"><br><strong>流程：</strong><code>index.html</code> &gt; <code>main.ts</code> &gt; <code>app.module.ts</code> &gt; <code>app.component.ts</code>  </p>
+<blockquote>
+<p>Angular 的介面呈現主要是透過元件(Component)來處理，而元件需依附於模組(NgModule)，因此正常會在<strong>起始模組</strong>去指定<strong>起始元件</strong>。<br><code>@expression</code> 是 TypeScript 的裝飾器，此種聲明可以將其附加到宣告的對象內，Angular 常用的裝飾器有 <code>@NgModule</code>、<code>@Component</code>、<code>@Injectable</code>、<code>@Directive</code>。</p>
+</blockquote>
+<p>開啟專案目錄下 <code>src\app\app.component.ts</code> 檔可以發現 <strong>AppComponent</strong> 這個類別宣告了一個 <code>@Component</code> 的裝飾器，所以 <strong>AppComponent</strong> 被視為一個 Angular Component。<br>在這個裝飾器內設定了一個 templateUrl 屬性值為 <code>&#39;./app.component.html&#39;</code>，表示此元件會以  <code>./app.component.html</code> 當作樣板輸出至介面上，另一個屬性 styleUrls 屬性值為 <code>[&#39;./app.component.scss&#39;]</code>，表示元件輸入的樣板會套用 <code>./app.component.scss</code> 樣式(中括號表示可以同時指定多個樣式)，最後一個屬性 selector 被指定為 <code>&#39;app-root&#39;</code> ，此屬性類似 CSS 的選擇器，會將網頁內的有包含 app-root 的 tag 都替換成 <code>./app.component.html</code>。<br><img src="/images/angular/training/operation/angular_operation_05.png" alt="img">  </p>
+<blockquote>
+<p>簡單的說就是 styleUrls 宣告的樣式會套用到 templateUrl 的樣板，而網頁內所有包含 selector 所指定的 tag 都會被替換成 templateUrl 樣板。<br>Angular 的路由機制(Router)也是類似此種抽換原理，這種單純在前端靠 JavaScript 不斷在做介面抽換的模式讓使用者在操作體驗上比起以往模式更加良好。</p>
+</blockquote>
+<p>開啟專案目錄下 <code>src\index.html</code> 檔可以發現內含一個 <code>app-root</code> tag，所以正常來說 Angular 在運作時就會被替換成 <code>app.component.html</code>。<br><img src="/images/angular/training/operation/angular_operation_06.png" alt="img"><br><img src="/images/angular/training/operation/angular_operation_07.png" alt="img"><br>透過 <code>ng serve</code> 來啟動專案，並透過瀏覽器開啟 <a href="http://localhost:4200/">http://localhost:4200/</a><br><img src="/images/angular/training/operation/angular_operation_08.png" alt="img"><br>從瀏覽器開發工具檢視，<code>app-root</code> tag 被插入了 <code>app.component.html</code>。<br><img src="/images/angular/training/operation/angular_operation_09.png" alt="img">  </p>

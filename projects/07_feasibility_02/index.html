@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="前言在上一篇 化繁為簡：01 資料庫篇 中，我們制定一些資料庫的設計規範，雖然會違背了正規理念，但是就開發過程或是後續維護其實對於沒經驗或是寫 Code 不嚴謹的程式設計師(沒錯!說的就是筆者自己)來說會比較友善，接下來我們開始摧殘後端，因為筆者以自己比較常使用 ASP.NET Core 來當範例如何建構一個好 debug 的後端(Web API)，因為網路上已有豐富的資源，所以我們只做重點">
+<meta property="og:type" content="article">
+<meta property="og:title" content="化繁為簡：02 後端篇(一)">
+<meta property="og:url" content="https://jonny-huang.github.io/projects/07_feasibility_02/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言在上一篇 化繁為簡：01 資料庫篇 中，我們制定一些資料庫的設計規範，雖然會違背了正規理念，但是就開發過程或是後續維護其實對於沒經驗或是寫 Code 不嚴謹的程式設計師(沒錯!說的就是筆者自己)來說會比較友善，接下來我們開始摧殘後端，因為筆者以自己比較常使用 ASP.NET Core 來當範例如何建構一個好 debug 的後端(Web API)，因為網路上已有豐富的資源，所以我們只做重點">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_001.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_002.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_003.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_004.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_006.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_007.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_005.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_008.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_009.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_010.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_011.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_012.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_013.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_014.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_018.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_015.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_017.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_016.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_019.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_020.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_022.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_021.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_023.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_024.png">
+<meta property="article:published_time" content="2021-06-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-25T04:02:08.823Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="Projects">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_001.png">
+
+
+<link rel="canonical" href="https://jonny-huang.github.io/projects/07_feasibility_02/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;projects&#x2F;07_feasibility_02&#x2F;&quot;,&quot;path&quot;:&quot;projects&#x2F;07_feasibility_02&#x2F;&quot;,&quot;title&quot;:&quot;化繁為簡：02 後端篇(一)&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>化繁為簡：02 後端篇(一) | Jonny Huang 的學習筆記</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa-commenting fa-fw"></i>欣雨露</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ASP-NET-Core"><span class="nav-number">2.</span> <span class="nav-text">ASP.NET Core</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AddDbContext"><span class="nav-number">2.1.</span> <span class="nav-text">AddDbContext</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Compression"><span class="nav-number">2.2.</span> <span class="nav-text">Compression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MemoryCache"><span class="nav-number">2.3.</span> <span class="nav-text">MemoryCache</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UseStaticFiles%E3%80%81UseDefaultFiles"><span class="nav-number">2.4.</span> <span class="nav-text">UseStaticFiles、UseDefaultFiles</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ResponseCaching"><span class="nav-number">2.5.</span> <span class="nav-text">ResponseCaching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Middleware"><span class="nav-number">2.6.</span> <span class="nav-text">Middleware</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Security-headers"><span class="nav-number">2.6.1.</span> <span class="nav-text">Security headers</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%8C%E8%A8%98"><span class="nav-number">3.</span> <span class="nav-text">後記</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/projects/07_feasibility_02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          化繁為簡：02 後端篇(一)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/06/25 12:02:08" itemprop="dateModified" datetime="2021-06-25T12:02:08+08:00">2021/06/25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Projects/" itemprop="url" rel="index"><span itemprop="name">Projects</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img src="/images/projects/feasibility/02/feasibility_02_001.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一篇 <a href="/projects/06_feasibility_01/">化繁為簡：01 資料庫篇</a> 中，我們制定一些資料庫的設計規範，雖然會違背了正規理念，但是就開發過程或是後續維護其實對於沒經驗或是寫 Code 不嚴謹的程式設計師(沒錯!說的就是筆者自己)來說會比較友善，接下來我們開始摧殘後端，因為筆者以自己比較常使用 ASP.NET Core 來當範例如何建構一個好 debug 的後端(Web API)，因為網路上已有豐富的資源，所以我們只做重點說明。  </p>
+<span id="more"></span>  
+
+<h1 id="ASP-NET-Core"><a href="#ASP-NET-Core" class="headerlink" title="ASP.NET Core"></a>ASP.NET Core</h1><p>由 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/aspnet/core/">ASP.NET Core</a> 比起 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/aspnet/mvc/">ASP.NET MVC</a> 來說除了增加<strong>相依性插入</strong>(<strong>Dependency Injection</strong>)之外差別最大的大概就是增加 Pipeline 的抽換模式，如果有使用 Node.js 上的 Express 架構來開發網頁應該就會很熟悉，它主要是讓我們後端系統從接收到瀏覽器所發出的請求(Request)到資料回復(Response)過程中可以很有彈性的插入各種功能，或者是說我們可以將整個資料處理步驟分拆成多個模組來降低程式複雜度。<br><img src="/images/projects/feasibility/02/feasibility_02_002.png" alt="img">  </p>
+<blockquote>
+<p>圖片來源：<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/aspnet/core/fundamentals/middleware/index/_static/request-delegate-pipeline.png?view=aspnetcore-5.0">Microsoft 官方說明網站</a></p>
+</blockquote>
+<p>一般 ASP.NET Core 專案建立後<code>Startup.cs</code> 會如下面結構，我們可以在 <code>ConfigureServices</code> 函式內將常用的提供服務的物件註冊到 <strong>服務容器</strong>(<code>services</code>) 內，這樣專案內的類別就可以透過建構函式插入方式取得該服務並拿來使用，預設已經註冊了 <code>AddControllers</code>，它會<strong>控制器</strong>(<strong>Controller</strong>)所需的服務。<br>而 <code>Configure</code> 函式則可以提供我們可以決定 Request 請求與 Response回復之間的處理方式，在此我們藉由插入一些<strong>中介軟體</strong>(<strong>Middleware</strong>)來達到我們期望的處理方式，要注意的是<strong>插入的先後</strong>會影響處理的<strong>順序姓</strong>。<br><img src="/images/projects/feasibility/02/feasibility_02_003.png" alt="img">  </p>
+<p>接下來我們來加入一些常用的服務與中介軟體：  </p>
+<h2 id="AddDbContext"><a href="#AddDbContext" class="headerlink" title="AddDbContext"></a>AddDbContext</h2><p>大部分的專案都來不開始用資料庫來存放資料，在 .NET 環境下我們使用它內建的 ORM 技術 Entity Framework Core 來存取資料，我們依所使用的資料庫安裝對應的套件，像筆者資料庫習慣使用 PostgresQL，就必須安裝 <code>Npgsql.EntityFrameworkCore.PostgreSQL</code>以及 <code>Microsoft.EntityFrameworkCore.Design</code>。<br><img src="/images/projects/feasibility/02/feasibility_02_004.png" alt="img">  </p>
+<blockquote>
+<p>如果你使用 VS Code 開發，那你可以自己在 <code>WebAPI.csproj</code> 內添加套件。<br><img src="/images/projects/feasibility/02/feasibility_02_006.png" alt="img"><br>或者是透過 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=aliasadidev.nugetpackagemanagergui">Nuget Package Manager GUI</a> 這個視覺化延伸模組來安裝套件。<br><img src="/images/projects/feasibility/02/feasibility_02_007.png" alt="img">  </p>
+</blockquote>
+<p>接著我們在 <code>appsettings.json</code> 內建立資料庫連線字串(這裡取名為 <code>CloudConnection</code>)。<br>再來透過 SDK 工具來建立資料模型，指令如下(<code>CloudContext</code> 指資料庫模型的名稱)：<br><code>dotnet ef dbcontext scaffold Name=CloudConnection Npgsql.EntityFrameworkCore.PostgreSQL -o Models -c CloudContext -f</code><br><img src="/images/projects/feasibility/02/feasibility_02_005.png" alt="img">  </p>
+<blockquote>
+<p>我們也可以直接使用<strong>連線參數</strong>當作參數，但是系統會發出警告，並要求我們移除(在資料模型物件的 <code>OnConfiguring</code> 函式內)。<br><code>dotnet ef dbcontext scaffold &quot;Host=192.168.10.10;Database=cloud;Pooling=true;Username=postgres;Password=P@ssw0rd&quot; Npgsql.EntityFrameworkCore.PostgreSQL -o Models -c CloudContext -f</code><br><img src="/images/projects/feasibility/02/feasibility_02_008.png" alt="img"><br>後續資料庫欄位有異動時可以再透過指令更新，只是要注意的是更新前SDK會先行編譯專案，如果編譯失敗就會終止，因此要先確保程式碼的完整性，或是先將未完成的程式碼註解起來。<br>如果資料表從資料庫移除，SDK並不會同步移除對應的資料表模型，我們須自行手動除，這是為了避免還有存取此資料表的程式碼未調整，若直接移除資料表模型會導致整個專案出錯而無法編譯。  </p>
+</blockquote>
+<p>最後我們在 <code>Startup.cs</code> 的 <code>ConfigureServices</code> 內 透過 <code>AddDbContext</code> 將資料模型加入到服務容器內。<br><img src="/images/projects/feasibility/02/feasibility_02_009.png" alt="img">  </p>
+<p>需要時只要在建構式內加入參數，系統會自動在服務容器內搜尋，將符合的物件帶回給我們，我們只要宣告一個類別層級的痊癒變數來儲存就可以在整個類別內使用。<br><img src="/images/projects/feasibility/02/feasibility_02_010.png" alt="img">  </p>
+<h2 id="Compression"><a href="#Compression" class="headerlink" title="Compression"></a>Compression</h2><p>資料壓縮也是很實用的功能，因為這代表同樣的頻寬下可以同時服務更多人，有些公司會有專屬的設備或是反向代理伺服器來處理，如果沒有的話可以在程式內加上這個功能，當然要注意的是檔案類型，字型、影片、音效檔可能就沒有壓縮效益而且耗費時間也較長。  </p>
+<blockquote>
+<p>如果你沒有 SSL 憑證或是憑證由是反向代理伺服器處理，那記得將 <code>app.UseHttpsRedirection();</code> 移除。  </p>
+</blockquote>
+<p><img src="/images/projects/feasibility/02/feasibility_02_011.png" alt="img">  </p>
+<p>筆者以 Angular 程式來看，前端靜態檔案大概都剩下 1/3 不到。<br><img src="/images/projects/feasibility/02/feasibility_02_012.png" alt="img"><br>壓縮後批次傳輸每次 2000 筆資料大約只佔 150kB(這也會跟每筆資料量的多寡有關)。<br><img src="/images/projects/feasibility/02/feasibility_02_013.gif" alt="img">  </p>
+<h2 id="MemoryCache"><a href="#MemoryCache" class="headerlink" title="MemoryCache"></a>MemoryCache</h2><p>快取也是一個很實用的功能，如果你仔細看上面批次傳輸就可以發現第一次傳2000筆資料時會停頓一下，這是因為我們第一次就將所有資料從資料庫抓取出來並並<strong>快取</strong>(<strong>Cache</strong>)起來，後須資料就直接從記憶體快取中抓取，不須經過資料庫，可以說是用空間換取時間，使用前一樣需要先註冊到服務容器內。<br><img src="/images/projects/feasibility/02/feasibility_02_014.png" alt="img">  </p>
+<h2 id="UseStaticFiles、UseDefaultFiles"><a href="#UseStaticFiles、UseDefaultFiles" class="headerlink" title="UseStaticFiles、UseDefaultFiles"></a>UseStaticFiles、UseDefaultFiles</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/aspnet/core/fundamentals/static-files?view=aspnetcore-5.0">UseStaticFiles</a> 提供網站靜態檔案(例如 <code>html</code>、<code>js</code>、<code>css</code>、<code>image</code>)的存放位置，預設是在專案下的 <code>wwwroot</code> 資料夾，因為這些檔案一般都是可以直接存取，所以正常都會放在路由(UseRouting)之前。  </p>
+<p><img src="/images/projects/feasibility/02/feasibility_02_018.png" alt="img">  </p>
+<blockquote>
+<p>因為筆者前端使用 Angular 開發，所以 <code>js</code> 與 <code>css</code> 檔案會異動比較頻繁，所以在開發階段甚至上線測試初期都會增加將取消瀏覽器快取的 Header 宣告，如果一般企業內部使用其實可以保留下來以確保用戶都使使用最新版本的系統。<br>而在 Angular 專案內，筆者也會修改 <code>angular.json</code> 設定檔，將編譯輸出路徑指定到 <code>wwwroot</code> 資料夾內，這樣佈署時就不會遺忘。<br><img src="/images/projects/feasibility/02/feasibility_02_015.png" alt="img">  </p>
+</blockquote>
+<p>此外，我們也可以將網址的路徑指對應到指定的資料夾，像筆者的說明文件會使用 MarkDown 格式(md 檔)編寫，並存在一個 <code>help</code> 資料夾內，透過 UseStaticFiles 設定就可以讓前端網站直接瀏覽觀看內容。<br><img src="/images/projects/feasibility/02/feasibility_02_017.png" alt="img">  </p>
+<blockquote>
+<p>因為說明文件(md 檔)正是編輯之後的異動性就不大了，所以這邊的 <code>no-cache</code> Header 系統上線的最後版本就會移除掉。  </p>
+</blockquote>
+<p><img src="/images/projects/feasibility/02/feasibility_02_016.png" alt="img">  </p>
+<p>當我們的網站是靜態頁面(有實體的 html 檔)時，我們就可以用到<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/aspnet/core/fundamentals/static-files?view=aspnetcore-5.0#serve-default-documents">UseDefaultFiles</a>，透過它我們瀏覽網站時，就可以不需要輸入完整的網址(包含網頁名稱)，它可以自動搜雲網站內的網頁，將符合規則的網頁回傳給瀏覽器，預設下，它會搜尋 <code>wwwroot</code> 內的 <code>default.htm</code>、<code>default.html</code>、<code>index.htm</code>、<code>index.html</code>。<br><img src="/images/projects/feasibility/02/feasibility_02_019.png" alt="img">  </p>
+<h2 id="ResponseCaching"><a href="#ResponseCaching" class="headerlink" title="ResponseCaching"></a>ResponseCaching</h2><p>從上述內容來看，應該不難看出筆者其實盡量避免使用用戶端(瀏覽器)快取，這不代表比這討厭它，而是筆者認為要善用它需要適當的調教，要考量的因素很多，例如：請求頻率、資料流大小、資料更新頻率，而許多因素會隨時間逐漸改變，因此筆者認為這比較適合會長期維運的專案，或是等有優化預算時再去調整，有興趣的可以參考 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/aspnet/core/performance/caching/middleware?view=aspnetcore-5.0">ASP.NET Core 中的回應快取中介軟體</a>，我們可以透過 <code>ResponseCaching</code> 來設定用戶端快取。  </p>
+<h2 id="Middleware"><a href="#Middleware" class="headerlink" title="Middleware"></a>Middleware</h2><p>除了使用現成的功能，我們也可以自己實作中介軟體，從官方文件<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/aspnet/core/fundamentals/middleware/?view=aspnetcore-5.0">ASP.NET Core 中介軟體</a>可以看到簡單的作法是在 <code>Configure</code> 內透過 <code>app.User</code> 來實作。<br><img src="/images/projects/feasibility/02/feasibility_02_020.png" alt="img"><br>不過這會讓裡面的程式碼過於膨脹，比較合理的做法是透過獨立的類別來處理。  </p>
+<h3 id="Security-headers"><a href="#Security-headers" class="headerlink" title="Security headers"></a>Security headers</h3><p>接下來我們來時做一個 <code>SecurityMiddleware</code>，主要功能是幫我們在 Header 加入<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">內容安全策略</a> (<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">Content Security Policy</a>) 來讓瀏覽器縮限存取規則，近一步提高網站安全性。  </p>
+<blockquote>
+<p>參考資料：<a target="_blank" rel="noopener" href="https://www.meziantou.net/security-headers-in-asp-net-core.htm">Security headers in ASP.NET Core</a>  </p>
+</blockquote>
+<p>首先我們建立一個 <code>SecurityMiddleware</code> 類別，並添加相關 Header，這邊筆者將 <strong>Content-Security-Policy</strong> 與 <strong>Feature-Policy</strong> 內容獨立成文字檔，接著為 <code>IApplicationBuilder</code> 添加一個擴充方法 <code>UseSecurityMiddleware</code>。</p>
+<figure class="highlight cs"><figcaption><span>SecurityMiddleware.cs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.IO;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"><span class="keyword">using</span> Microsoft.AspNetCore.Builder;</span><br><span class="line"><span class="keyword">using</span> Microsoft.AspNetCore.Http;</span><br><span class="line"><span class="keyword">using</span> Microsoft.Extensions.Primitives;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">WebAPI</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SecurityMiddleware</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> RequestDelegate _next;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">SecurityMiddleware</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">            RequestDelegate next,</span></span></span><br><span class="line"><span class="params"><span class="function">            Microsoft.Extensions.Configuration.IConfiguration config</span></span></span><br><span class="line"><span class="params"><span class="function">        </span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            _next = next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task <span class="title">Invoke</span>(<span class="params">HttpContext context</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            context.Response.Headers.Add(<span class="string">&quot;referrer-policy&quot;</span>, <span class="keyword">new</span> StringValues(<span class="string">&quot;strict-origin-when-cross-origin&quot;</span>));</span><br><span class="line">            context.Response.Headers.Add(<span class="string">&quot;x-content-type-options&quot;</span>, <span class="keyword">new</span> StringValues(<span class="string">&quot;nosniff&quot;</span>));</span><br><span class="line">            context.Response.Headers.Add(<span class="string">&quot;x-frame-options&quot;</span>, <span class="keyword">new</span> StringValues(<span class="string">&quot;DENY&quot;</span>));</span><br><span class="line">            context.Response.Headers.Add(<span class="string">&quot;X-Permitted-Cross-Domain-Policies&quot;</span>, <span class="keyword">new</span> StringValues(<span class="string">&quot;none&quot;</span>));</span><br><span class="line">            context.Response.Headers.Add(<span class="string">&quot;x-xss-protection&quot;</span>, <span class="keyword">new</span> StringValues(<span class="string">&quot;1; mode=block&quot;</span>));</span><br><span class="line">            <span class="built_in">string</span> fpFilePath = Path.Combine(Directory.GetCurrentDirectory(), <span class="string">&quot;data&quot;</span>, <span class="string">&quot;feature_policy.txt&quot;</span>);</span><br><span class="line">            <span class="keyword">if</span> (File.Exists(fpFilePath))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">string</span> fp = File.ReadAllText(fpFilePath);</span><br><span class="line">                <span class="keyword">if</span> (!<span class="built_in">string</span>.IsNullOrEmpty(fp))</span><br><span class="line">                &#123;</span><br><span class="line">                    fp = System.Text.RegularExpressions.Regex.Replace(fp, <span class="string">@&quot;[^\u001F-\u007F]+&quot;</span>, <span class="built_in">string</span>.Empty);</span><br><span class="line">                    context.Response.Headers.Add(<span class="string">&quot;Feature-Policy&quot;</span>, <span class="keyword">new</span> StringValues(fp));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">string</span> cspFilePath = Path.Combine(Directory.GetCurrentDirectory(), <span class="string">&quot;data&quot;</span>, <span class="string">&quot;content_security_policy.txt&quot;</span>);</span><br><span class="line">            <span class="keyword">if</span> (File.Exists(cspFilePath))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">string</span> scp = File.ReadAllText(cspFilePath);</span><br><span class="line">                <span class="keyword">if</span> (!<span class="built_in">string</span>.IsNullOrEmpty(scp))</span><br><span class="line">                &#123;</span><br><span class="line">                    scp = System.Text.RegularExpressions.Regex.Replace(scp, <span class="string">@&quot;[^\u001F-\u007F]+&quot;</span>, <span class="built_in">string</span>.Empty);</span><br><span class="line">                    context.Response.Headers.Add(<span class="string">&quot;Content-Security-Policy&quot;</span>, <span class="keyword">new</span> StringValues(scp));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">await</span> _next(context);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">Ext</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> IApplicationBuilder <span class="title">UseSecurityMiddleware</span>(<span class="params"><span class="keyword">this</span> IApplicationBuilder builder</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> builder.UseMiddleware&lt;SecurityMiddleware&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  
+
+<blockquote>
+<p>我們透過 <strong>Regex</strong> 將文字檔的特殊字元移除，否則在 Linux 環境運行會出問題。  </p>
+</blockquote>
+<p><code>content_security_policy.txt</code> 內容如下：</p>
+<figure class="highlight plaintext"><figcaption><span>content_security_policy.txt</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">base-uri &#x27;self&#x27;;</span><br><span class="line">default-src &#x27;self&#x27;;</span><br><span class="line">child-src &#x27;self&#x27;;</span><br><span class="line">connect-src &#x27;self&#x27;;</span><br><span class="line">font-src &#x27;self&#x27; data: fonts.gstatic.com;</span><br><span class="line">form-action &#x27;self&#x27;;</span><br><span class="line">frame-ancestors &#x27;self&#x27;;</span><br><span class="line">frame-src &#x27;self&#x27;;</span><br><span class="line">img-src &#x27;self&#x27;;</span><br><span class="line">manifest-src &#x27;self&#x27;;</span><br><span class="line">media-src &#x27;self&#x27;;</span><br><span class="line">object-src &#x27;self&#x27;;</span><br><span class="line">script-src &#x27;self&#x27; &#x27;unsafe-eval&#x27;;</span><br><span class="line">style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;;</span><br><span class="line">worker-src &#x27;self&#x27;;</span><br><span class="line">upgrade-insecure-requests;</span><br></pre></td></tr></table></figure>  
+
+<p><code>feature_policy.txt</code> 內容如下：  </p>
+<figure class="highlight plaintext"><figcaption><span>feature_policy.txt</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">accelerometer &#x27;none&#x27;;</span><br><span class="line">ambient-light-sensor &#x27;none&#x27;;</span><br><span class="line">autoplay &#x27;none&#x27;;</span><br><span class="line">battery &#x27;none&#x27;;</span><br><span class="line">camera &#x27;none&#x27;;</span><br><span class="line">display-capture &#x27;none&#x27;;</span><br><span class="line">document-domain &#x27;none&#x27;;</span><br><span class="line">encrypted-media &#x27;none&#x27;;</span><br><span class="line">execution-while-not-rendered &#x27;none&#x27;;</span><br><span class="line">execution-while-out-of-viewport &#x27;none&#x27;;</span><br><span class="line">gyroscope &#x27;none&#x27;;</span><br><span class="line">magnetometer &#x27;none&#x27;;</span><br><span class="line">microphone &#x27;none&#x27;;</span><br><span class="line">midi &#x27;none&#x27;;</span><br><span class="line">navigation-override &#x27;none&#x27;;</span><br><span class="line">payment &#x27;none&#x27;;</span><br><span class="line">picture-in-picture &#x27;none&#x27;;</span><br><span class="line">publickey-credentials-get &#x27;none&#x27;;</span><br><span class="line">sync-xhr &#x27;none&#x27;;</span><br><span class="line">usb &#x27;none&#x27;;</span><br><span class="line">wake-lock &#x27;none&#x27;;</span><br><span class="line">xr-spatial-tracking &#x27;none&#x27;;</span><br></pre></td></tr></table></figure>  
+
+<p>最後我們在 <code>Startup.cs</code> 的 <code>Configure</code> 內添加 <code>app.UseSecurityMiddleware();</code>。<br><img src="/images/projects/feasibility/02/feasibility_02_022.png" alt="img"><br>網站建置好後(也可以直接在 <code>wwwroot</code> 內建立一個簡單的 <code>index.html</code> 網頁來測試)，透過瀏覽器開啟就可以在開發者工具中看到所添加的 Header。<br><img src="/images/projects/feasibility/02/feasibility_02_021.png" alt="img">  </p>
+<blockquote>
+<p>添加 <strong>Content Security Policy</strong> 時請依實際需求調整，像筆者的 Angular 專案內使用 <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/ng2-pdf-viewer">ng2-pdf-viewer</a> 來瀏覽 PDF 檔案，他是透過 Mozilla 所開源的 <a target="_blank" rel="noopener" href="https://github.com/mozilla/pdf.js">PDF.js</a> 來處理，而因為 PDF.js 檔案較大，所以這一個 Package 其實運作時預設是透過 CDN 抓取 PDF.js 來避免專案編譯後過於肥大，筆者在客戶反映 PDF 無法預覽時才發現因為 CSP 規則不允許使用外部 js 檔造成的，解套方式一種是修該 CSP 規則，另一種就是將 PDF.js 變成網站內的資源檔，筆者選擇後者，做法如下：<br>設定 <code>angular.json</code>，將 <code>pdfjs-dist</code> 內的 <code>js</code> 。<br><img src="/images/projects/feasibility/02/feasibility_02_023.png" alt="img"><br>接著在 <code>AppComponent</code> 內修改全域變數 <code>pdfWorkerSrc</code> (這是 <strong>ng2-pdf-viewer</strong> 用來設定 PDF.js 來源位置的變數)，將它指定到資源檔內的 <code>js</code> 檔即可。<br><img src="/images/projects/feasibility/02/feasibility_02_024.png" alt="img">  </p>
+</blockquote>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>雖然標題為 <strong>化繁為簡</strong>，但是我現在在做的事情似乎都是把簡單的事情搞複雜，但是要整個專案開發快速，那我們前置作業就要先把一些繁瑣的事情集中處理，那後續開發就可以專注在商業邏輯上，例如對於只會用 .NET 開發 Windows 視窗程式的人，你要如何讓他能夠產生即戰力，如果你由無至有的完整教完，姑且不論他的吸收速來不來的及，對於目前專案來說很容易變成一個包袱，甚至會影響專案進度。但是如果我們可以給他一個制式化的框架，並制定基本的撰寫規則，讓他專注在邏輯處理(甚至不需要理解網頁技術的概念)，那他可能就可以直接在目前的專案上帶來效益。  </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Projects/" rel="tag"># Projects</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/projects/05_postgresql_00/" rel="prev" title="PostgreSQL 安裝、備份、還原">
+                  <i class="fa fa-chevron-left"></i> PostgreSQL 安裝、備份、還原
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/projects/08_feasibility_03/" rel="next" title="化繁為簡：03 後端篇(二)驗證">
+                  化繁為簡：03 後端篇(二)驗證 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

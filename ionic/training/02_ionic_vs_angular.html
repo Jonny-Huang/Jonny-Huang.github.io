@@ -1,0 +1,295 @@
+<hr>
+<p>title: Ionic vs. Angular<br>date: 2017-09-17 09:00<br>categories: Training<br>keywords:</p>
+<ul>
+<li>Ionic</li>
+<li>Angular<br>tags:</li>
+<li>Ionic</li>
+</ul>
+<hr>
+<h1 id="Ionic-與-Angular-比較"><a href="#Ionic-與-Angular-比較" class="headerlink" title="Ionic 與 Angular 比較"></a>Ionic 與 Angular 比較</h1><p>在<a href="/ionic/training/01_creating_first_project/">建立 Ionic 專案</a>中，我們練習了如何建立 Ionic，接下來對於 會開發 Angular 程式的人來說，最關注的應該就是 Ionic 跟 Angular 有什麼不同？要再多學些什麼？  </p>
+<!-- more -->  
+
+<h2 id="啟動流程"><a href="#啟動流程" class="headerlink" title="啟動流程"></a>啟動流程</h2><p>我們依照程式執行順序來比較一下差異：</p>
+<h3 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h3><p>從 Browser 或 WebView 第一個取得的就是 <code>index.html</code> 網頁，在裡面我們可以看到 Ionic 多載入了 <code>cordova.js</code>，就像之前說過的，我們可以看成 <strong>Ionic = Angular + Cordova</strong>，本篇我們比較的是 Ionic 的 Angular 部分跟標準 Angular 程式有什麼差異，不會涵蓋 Cordova。<br>另一個亮點就是載入了 <code>manifest.json</code> 以及一段被註解起來負責執行 service worker 的 JavaScript，專案目錄下也看到一個 service-worker.js 檔案，由此可見 Ionic 本身也考慮到 PWA (Progressive Web App) 的模式，Angular 目前要自己手動加入，但是未來的版本應該可以期待。</p>
+<p>{% codeblock index.html lang:html %}<br>// [Angular] index.html<br><!doctype html></p>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>FirstApp</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+  <app-root></app-root>
+</body>
+
+</html>
+
+<p>{% endcodeblock %}  </p>
+<p>{% codeblock index.html lang:html %}<br>// [Ionic] index.html<br><!doctype html></p>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ionic App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4e8ef7">
+
+  <!-- cordova.js required for cordova apps -->
+  <script src="cordova.js"></script>
+
+  <!-- un-comment this code to enable service worker
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('service worker installed'))
+        .catch(err => console.error('Error', err));
+    }
+  </script>-->
+
+  <link href="build/main.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <!-- Ionic's root component and where the app will load -->
+<p>  <ion-app></ion-app></p>
+  <!-- The polyfills js is generated during the build process -->
+  <script src="build/polyfills.js"></script>
+
+  <!-- The vendor js is generated during the build process
+       It contains all of the dependencies in node_modules -->
+  <script src="build/vendor.js"></script>
+
+  <!-- The main bundle js is generated during the build process -->
+  <script src="build/main.js"></script>
+
+</body>
+</html>
+
+<p>{% endcodeblock %}  </p>
+<blockquote>
+<p>對 Angular 來說我們是透過瀏覽器對某個網址所對應的 Server 發出 get 來取得網頁。<br>對 Ionic App 來說它是靠 Cordova 幫我們去將某個網頁載入到 WebView 控制項內，所以我們透過設定檔-<code>config.xml</code> 來預先告知 Cordova 程式開啟時要先載入哪個網頁。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_01.png" alt="img">  </p>
+</blockquote>
+<h3 id="main-ts"><a href="#main-ts" class="headerlink" title="main.ts"></a>main.ts</h3><p>在 Angular 專案中，我們可以透過設定檔-<code>.angular-cli.json</code> 看到會優先執行的 js 檔。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_02.png" alt="img"><br>而在 Ionic 則是直接宣告在網頁 <code>body</code> 的<strong>最後一行</strong>，因 Ionic 所有檔案都已經在本地端(手機內)了，所以不需要考慮延遲載入的需求，也因此它會先將其他組件優先載入，確保執行時所有組件都找的到。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_03.png" alt="img"><br>比較一下 <code>main.ts</code> 可以說是一樣的，因為他們都指定了 <strong>AppModule</strong> 為起始模組。</p>
+<blockquote>
+<p>當頁面資料過大時，其實有可能也需要<strong>延遲載入</strong>的機制來做緩衝，Ionic 3 也幫我們顧慮到了，它的實作方式非常簡單，簡單到你已經套用了<strong>延遲載入</strong>卻沒有發覺。</p>
+</blockquote>
+<p>{% codeblock main.ts lang:ts %}<br>// [Angular] main.ts<br>import { enableProdMode } from ‘@angular/core’;<br>import { platformBrowserDynamic } from ‘@angular/platform-browser-dynamic’;</p>
+<p>import { AppModule } from ‘./app/app.module’;<br>import { environment } from ‘./environments/environment’;<br>import ‘hammerjs’;</p>
+<p>if (environment.production) {<br>  enableProdMode();<br>}</p>
+<p>platformBrowserDynamic().bootstrapModule(AppModule);</p>
+<p>{% endcodeblock %}</p>
+<p>{% codeblock main.ts lang:ts %}<br>// [ionic] main.ts<br>import { platformBrowserDynamic } from ‘@angular/platform-browser-dynamic’;</p>
+<p>import { AppModule } from ‘./app.module’;</p>
+<p>platformBrowserDynamic().bootstrapModule(AppModule);</p>
+<p>{% endcodeblock %}</p>
+<h3 id="app-module-ts"><a href="#app-module-ts" class="headerlink" title="app.module.ts"></a>app.module.ts</h3><p>接著比較 <code>app.module.ts</code> 可以看到 Angular 在 <strong>起始模組</strong>(<strong>AppModule</strong>) 中透過 <code>bootstrap</code> 屬性指定了 <strong>AppComponent</strong> 為<strong>起始元件</strong>。</p>
+<p>{% codeblock app.module.ts lang:ts %}<br>// [Angular] src\app\app.module.ts<br>import { BrowserModule } from ‘@angular/platform-browser’;<br>import { NgModule } from ‘@angular/core’;</p>
+<p>import { AppRoutingModule } from ‘./app-routing.module’;<br>import { AppComponent } from ‘./app.component’;</p>
+<p>@NgModule({<br>  declarations: [AppComponent],<br>  imports: [<br>    BrowserModule,<br>    AppRoutingModule<br>  ],<br>  providers: [],<br>  bootstrap: [AppComponent]<br>})<br>export class AppModule { }</p>
+<p>{% endcodeblock %}</p>
+<p>而 Ionic 看起來似乎也透過 <code>bootstrap</code> 屬性指定了 <strong>IonicApp</strong>，不過仔細看一下 <strong>IonicApp</strong> 是來自 <code>ionic-angular</code>，查看一下它的原始碼，似乎 <strong>IonicApp</strong> 也不算是一個 Angular Component，而在 <code>imports</code> 屬性上發現 <strong>MyApp</strong> 這個 Component 不是直接被加入，而是多個 <code>IonicModule.forRoot(MyApp)</code> 將它註記成<strong>起始元件</strong>，我們可以 Ionic 的模組就此時開始介入。  </p>
+<blockquote>
+<p>開啟 <code>src\app\app.component.ts</code> 可以看到類別名稱就是 <strong>MyApp</strong>，在 Angular 專案內預設會是叫做 <strong>AppComponent</strong>。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_05.png" alt="img"><br>因為目前並沒有深入研究 <code>IonicModule.forRoot</code> 背後運作機制，所以不確定將它解釋成<strong>註記</strong>是否正確，目前只能確定 Ionic 起始內容是此方法所指定的 Component。</p>
+</blockquote>
+<p>{% codeblock app.module.ts lang:ts %}<br>// [Ionic] src\app\app.module.ts<br>import { NgModule, ErrorHandler } from ‘@angular/core’;<br>import { BrowserModule } from ‘@angular/platform-browser’;<br>import { IonicApp, IonicModule, IonicErrorHandler } from ‘ionic-angular’;<br>import { MyApp } from ‘./app.component’;</p>
+<p>import { AboutPage } from ‘../pages/about/about’;<br>import { ContactPage } from ‘../pages/contact/contact’;<br>import { HomePage } from ‘../pages/home/home’;<br>import { TabsPage } from ‘../pages/tabs/tabs’;</p>
+<p>import { StatusBar } from ‘@ionic-native/status-bar’;<br>import { SplashScreen } from ‘@ionic-native/splash-screen’;</p>
+<p>@NgModule({<br>  declarations: [<br>    MyApp,<br>    AboutPage,<br>    ContactPage,<br>    HomePage,<br>    TabsPage<br>  ],<br>  imports: [<br>    BrowserModule,<br>    IonicModule.forRoot(MyApp)<br>  ],<br>  bootstrap: [IonicApp],<br>  entryComponents: [<br>    MyApp,<br>    AboutPage,<br>    ContactPage,<br>    HomePage,<br>    TabsPage<br>  ],<br>  providers: [<br>    StatusBar,<br>    SplashScreen,<br>    {provide: ErrorHandler, useClass: IonicErrorHandler}<br>  ]<br>})<br>export class AppModule {}</p>
+<p>{% endcodeblock %}  </p>
+<p><img src="/images/ionic/training/vs_angular/ionic_vs_angular_04.png" alt="img">  </p>
+<h3 id="AppComponent-vs-MyApp"><a href="#AppComponent-vs-MyApp" class="headerlink" title="AppComponent vs. MyApp"></a>AppComponent vs. MyApp</h3><p>在 Angular 中透過 @Component 這個裝飾器為 <strong>AppComponent</strong> 加入了選擇器屬性-<code>selector</code>，Angular 會自動將網頁內含有該選擇器的 tag 替換成 <strong>AppComponent</strong> 的樣板。</p>
+<p>{% codeblock app.component.ts  lang:ts %}<br>// [Angular] src\app\app.component.ts<br>import { Component } from ‘@angular/core’;</p>
+<p>@Component({<br>  selector: ‘app-root’,<br>  templateUrl: ‘./app.component.html’,<br>  styleUrls: [‘./app.component.css’]<br>})<br>export class AppComponent {<br>}</p>
+<p>{% endcodeblock %}  </p>
+<p>切換到 Ionic 可以發現 <strong>MyApp</strong> 的 @Component 裝飾器竟然沒有設定 <code>selector</code> 屬性，由剛才的 <strong>AppModule</strong> 說道 <code>IonicModule.forRoot(MyApp)</code> 的這個方法，可以知道 Ionic 是透過直接明確指定類別的方式宣告<strong>起始元件</strong>。  </p>
+<p>{% codeblock app.component.ts lang:ts %}<br>// [Ionic] src\app\app.component.ts<br>import { Component } from ‘@angular/core’;<br>import { Platform } from ‘ionic-angular’;<br>import { StatusBar } from ‘@ionic-native/status-bar’;<br>import { SplashScreen } from ‘@ionic-native/splash-screen’;</p>
+<p>import { TabsPage } from ‘../pages/tabs/tabs’;</p>
+<p>@Component({<br>  templateUrl: ‘app.html’<br>})<br>export class MyApp {<br>  rootPage:any = TabsPage;</p>
+<p>  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {<br>    platform.ready().then(() =&gt; {<br>      // Okay, so the platform is ready and our plugins are available.<br>      // Here you can do any higher level native things you might need.<br>      statusBar.styleDefault();<br>      splashScreen.hide();<br>    });<br>  }<br>}</p>
+<p>{% endcodeblock %}  </p>
+<blockquote>
+<p>眼尖的人其實可以發現 Ionic 預設在 <strong>AppModule</strong> 內比 Angular 專案多設定了 <code>entryComponents</code> 屬性。<br>查詢 Angular 官網的 <a href="https://angular.io/guide/dynamic-component-loader">Dynamic Component Loader</a> 可以看到說明，但是說明感覺很籠統，目前看起來應該是說只要是透過 <code>ViewContainerRef.createComponent()</code> 來建立的元件都需要註冊到 <code>entryComponents</code>。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_06.png" alt="img">  </p>
+</blockquote>
+<blockquote>
+<p>從建構式內還可看到 <code>splashScreen.hide();</code>，Ionic 也提供給我們可以設定程式啟動的等待畫面。<br><code>statusBar.styleDefault();</code> 則是讓我們設定手機最上方的狀態列，例如我們希望 App 佔滿整個螢幕時可以把狀態列隱藏起來。  </p>
+</blockquote>
+<h3 id="Angular-路由-vs-Ionic-導覽"><a href="#Angular-路由-vs-Ionic-導覽" class="headerlink" title="Angular 路由 vs. Ionic 導覽"></a>Angular 路由 vs. Ionic 導覽</h3><p>開啟 Angular 專案 <code>src\app\app.component.html</code>，我們可以看到最後一行也是最重要的一行 <code>&lt;router-outlet&gt;&lt;/router-outlet&gt;</code>，Angular 的 <strong>路由模組</strong>(<strong>RouterModule</strong>) 就是透過這個 <strong>路由插座</strong>(<code>router-outlet</code>) 來插入符合路由規則的元件。</p>
+<p>{% codeblock app.component.html  lang:html %}<br>// [Angular] src\app\app.component.html</p>
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{title}}!
+  </h1>
+  <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+</div>
+<h2>Here are some links to help you start: </h2>
+<ul>
+  <li>
+    <h2><a target="_blank" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" href="https://blog.angular.io/">Angular blog</a></h2>
+  </li>
+</ul>
+
+<p><router-outlet></router-outlet></p>
+<p>{% endcodeblock %}</p>
+<p>再來看 Ionic 專案可以發現預設並沒有加入 <strong>路由模組</strong>，更沒有類似 <code>app-routing.module.ts</code> 可以設定路由規則的檔案，開啟 <code>src\app\app.html</code> 可以看到 Ionic 改用自己的導覽元件-<code>ion-nav</code>，並將 <code>root</code> 屬性指定給 <code>rootPage</code> 變數。</p>
+<p>{% codeblock app.html  lang:html %}<br>// [Ionic] src\app\app.html<br>&lt;ion-nav [root]=”rootPage”&gt;</ion-nav><br>{% endcodeblock %}</p>
+<p>再回過頭看看 <code>app.component.ts</code>，<code>rootPage</code> 變數被設定成 TabsPage Component。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_07.png" alt="img">  </p>
+<h2 id="NavController"><a href="#NavController" class="headerlink" title="NavController"></a>NavController</h2><p>從上面我們可以概略知道以往我們在 Angular 上很習慣的會利用路由模組來作<strong>頁面切換</strong>(Angular 屬於 SPA 程式，這邊的<strong>頁面</strong>不是只整個 HTML 版面，而是指主要操作區域)，而在 Ionic 上 卻是透過 <code>ion-nav</code> 來處理。<br>那 <code>ion-nav</code> 是什麼？</p>
+<p>{% blockquote Ionic <a href="http://ionicframework.com/docs/api/components/nav/Nav/">http://ionicframework.com/docs/api/components/nav/Nav/</a> Nav %}<br>ion-nav is the declarative component for a NavController.<br>{% endblockquote %}</p>
+<p>在查詢<a href="http://ionicframework.com/docs/api/navigation/NavController/">官方文件</a>可以知道 <strong>NavController</strong> 是導航控制器組件的基底類別，目前 <a href="http://ionicframework.com/docs/api/components/nav/Nav/">Nav</a> 和 <a href="http://ionicframework.com/docs/api/components/tabs/Tab/">Tab</a> 2個 Component 都繼承自它-<strong>NavControllerBase</strong>。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_08.png" alt="img"><br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_09.png" alt="img"><br>查詢 <strong>NavControllerBase</strong> 程式結構，我們可以看到一些導覽方法，例如：<code>push</code>、<code>pop</code>、<code>insert</code>、<code>remove</code>。  </p>
+<p>{% codeblock nav-controller-base.d.ts lang:ts %}<br>// [Ionic] node_modules\ionic-angular\navigation\nav-controller-base.d.ts<br>import { ComponentFactoryResolver, ComponentRef, ElementRef, ErrorHandler, EventEmitter, NgZone, Renderer, ViewContainerRef } from ‘@angular/core’;<br>…<br>/**</p>
+<ul>
+<li>@hidden</li>
+<li>This class is for internal use only. It is not exported publicly.</li>
+<li>/<br>export declare class NavControllerBase extends Ion implements NavController {<br>  parent: any;<br>  _app: App;<br>  config: Config;<br> …<br>  constructor(parent: any, _app: App, config: Config, plt: Platform, elementRef: ElementRef, _zone: NgZone, renderer: Renderer, _cfr: ComponentFactoryResolver, _gestureCtrl: GestureController, _trnsCtrl: TransitionController, _linker: DeepLinker, _domCtrl: DomController, _errHandler: ErrorHandler);<br>  push(page: any, params?: any, opts?: NavOptions, done?: TransitionDoneFn): Promise<any>;<br>  insert(insertIndex: number, page: any, params?: any, opts?: NavOptions, done?: TransitionDoneFn): Promise<any>;<br>  insertPages(insertIndex: number, insertPages: any[], opts?: NavOptions, done?: TransitionDoneFn): Promise<any>;<br>  pop(opts?: NavOptions, done?: TransitionDoneFn): Promise<any>;<br>  popTo(indexOrViewCtrl: any, opts?: NavOptions, done?: TransitionDoneFn): Promise<any>;<br>  popToRoot(opts?: NavOptions, done?: TransitionDoneFn): Promise<any>;<br>  popAll(): Promise&lt;any[]&gt;;<br>  remove(startIndex: number, removeCount?: number, opts?: NavOptions, done?: TransitionDoneFn): Promise<any>;<br>  removeView(viewController: ViewController, opts?: NavOptions, done?: TransitionDoneFn): Promise<any>;<br>  setRoot(pageOrViewCtrl: any, params?: any, opts?: NavOptions, done?: TransitionDoneFn): Promise<any>;<br>  setPages(viewControllers: any[], opts?: NavOptions, done?: TransitionDoneFn): Promise<any>;<br>  _queueTrns(ti: TransitionInstruction, done: TransitionDoneFn): Promise<boolean>;<br>  _success(result: NavResult, ti: TransitionInstruction): void;<br>  _failed(rejectReason: any, ti: TransitionInstruction): void;<br>  _fireError(rejectReason: any, ti: TransitionInstruction): void;<br>  _nextTrns(): boolean;<br>  _startTI(ti: TransitionInstruction): Promise<void>;<br>  _loadLazyLoading(ti: TransitionInstruction): Promise<void>;<br>  _getEnteringView(ti: TransitionInstruction, leavingView: ViewController): ViewController;<br>  _postViewInit(enteringView: ViewController, leavingView: ViewController, ti: TransitionInstruction): void;<br>  /**<ul>
+<li>DOM WRITE</li>
+<li>/<br>…<br>}</li>
+</ul>
+</li>
+</ul>
+<p>{% endcodeblock %}  </p>
+<p>其實這樣看起來 <strong>Nav</strong>(<code>ion-nav</code>) 與 <strong>Tab</strong>(<code>ion-tab</code>) 與 Angular 的 <strong>路由插座</strong>(<code>router-outlet</code>) 相比更加強大，因為它們本身就提供的頁面切換的方法，可以將它本身的 content 內容替換成我們指定的元件類別，當然這都是因為它們繼承了 NavControllerBase。  </p>
+<h2 id="Page"><a href="#Page" class="headerlink" title="Page"></a>Page</h2><p>與 Angular 一樣我們可以透過下列指令協助我們快速建立各種類型檔案：<br><code>ionic generate [&lt;type&gt;] [&lt;name&gt;]</code>  </p>
+<blockquote>
+<p><code>generate</code> 可以縮寫成 <code>g</code>。</p>
+</blockquote>
+<p>Ionic CLI 所提供的類型有：<code>component</code>, <code>directive</code>, <code>page</code>, <code>pipe</code>, <code>provider</code>, <code>tabs</code>，其中 <code>page</code> 與 <code>tabs</code> 是 Angular 所沒有的，所以我們就先建立一個 <code>page</code> 試試，指令如下：<br><code>ionic g page page1</code>  </p>
+<blockquote>
+<p>這邊筆者覺得 Angular CLI 做得比較好，因為 Angular CLI 會標示出建立那些檔案、修改那些檔案，Ionic CLI 目前只有一行成功訊息，這對於剛接觸的人可能會比較不親合。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_10.png" alt="img"></p>
+</blockquote>
+<p>我們可以看到 Ionic CLI 會依類型建立資料夾，並將新建的類型檔案放置到對應的資料夾下。Angular CLI 則是統一放置在 <code>src\app\</code> 下面。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_11.png" alt="img">  </p>
+<p>接著我們開啟 <code>src\pages\page1\page1.ts</code>，我們可以看到熟悉的裝飾器-<code>@Component</code>，也就是說 <code>page</code> 本質上還是 Angular Component。</p>
+<p>{% codeblock page1.ts lang:ts %}<br>// [Ionic] src\pages\page1\page1.ts<br>import { Component } from ‘@angular/core’;<br>import { IonicPage, NavController, NavParams } from ‘ionic-angular’;</p>
+<p>@IonicPage()<br>@Component({<br>  selector: ‘page-page1’,<br>  templateUrl: ‘page1.html’,<br>})<br>export class Page1Page {</p>
+<p>  constructor(public navCtrl: NavController, public navParams: NavParams) {<br>  }</p>
+<p>  ionViewDidLoad() {<br>    console.log(‘ionViewDidLoad Page1Page’);<br>  }</p>
+<p>}</p>
+<p>{% endcodeblock %}  </p>
+<p>比較一下可以發現 Ionic Page 多了一些東西：  </p>
+<ul>
+<li><p><code>NavController</code> 參數：我們已經知道 Ionic 是透過導覽模式來切換頁面，所以 Ionic CLI 貼心透過<strong>依賴注入</strong>(<strong>Dependency Injection</strong>，簡稱<strong>DI</strong>)的幫我們將 <strong>NavController</strong> 加到頁面類別內。</p>
+<blockquote>
+<p>我們可以看到 constructor 內的參數都多了存取修飾詞-<code>public</code>，此為 TypeScript 的語法糖，我們可以想成它會自動在 class 內建立一個同名的全域變數，並將值指向該變數，我們在其他方法內就可以直接透過 <code>this.navCtrl.xxx</code> 來使用 <strong>NavController</strong>。</p>
+</blockquote>
+</li>
+<li><p><code>ionViewDidLoad()</code>：就像我們透過 Angular CLI 來建立 Component 時它會幫我們增加 <code>ngOnInit()</code> 方法一樣，這些方法都牽涉到生命週期。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_12.png" alt="img"><br>查詢<a href="http://ionicframework.com/docs/api/navigation/NavController/">官方網站</a>可以看到 NavController Lifecycle events。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_13.png" alt="img">  </p>
+</li>
+<li><p><code>@IonicPage()</code> 裝飾器：開啟其他預先建立好的 page 可以發現既沒有 Module 檔案，class 內也沒加上 <code>@IonicPage()</code> 裝飾器。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_14.png" alt="img"><br>反過來看，這些預設的 page 卻跟 Angular Component 一樣被加入到 <strong>AppModule</strong> 的 <code>declarations</code>，也同時設定到 <code>entryComponents</code> 屬性。  </p>
+<blockquote>
+<p>Angular 的 Component 必須註冊到 NgModule 內才可以使用。  </p>
+</blockquote>
+<p><img src="/images/ionic/training/vs_angular/ionic_vs_angular_15.png" alt="img">  </p>
+</li>
+<li><p>page1.module.ts：開啟 <code>src\pages\page1\page1.module.ts</code> 可以看到這是一個 Angular Module，<br>而 <strong>Page1Page</strong> 被註冊到這個 <strong>NgModule</strong> 內。<br>{% codeblock page1.module.ts lang:ts %}<br>// [Ionic] src\pages\page1\page1.module.ts<br>import { NgModule } from ‘@angular/core’;<br>import { IonicPageModule } from ‘ionic-angular’;<br>import { Page1Page } from ‘./page1’;</p>
+</li>
+</ul>
+<p>@NgModule({<br>  declarations: [<br>    Page1Page,<br>  ],<br>  imports: [<br>    IonicPageModule.forChild(Page1Page)<br>  ],<br>})<br>export class Page1PageModule {}</p>
+<p>{% endcodeblock %}</p>
+<h3 id="延遲載入-Lazy-loaded"><a href="#延遲載入-Lazy-loaded" class="headerlink" title="延遲載入 (Lazy loaded)"></a>延遲載入 (Lazy loaded)</h3><p>接下來我們在 Home 的樣板上面加入一個按鈕，並在其點擊事件內透過 NavController 導覽至 Page1，開啟並編輯 <code>src\pages\home\home.html</code>。</p>
+<p>{% codeblock home.html lang:html %}<br>// [Ionic] src\pages\home\home.html<br><ion-header><br>  <ion-navbar><br>    <ion-title>Home</ion-title><br>  </ion-navbar><br></ion-header></p>
+<ion-content padding>
+  ...
+  <p>
+    Take a look at the <code>src/pages/</code> directory to add or change tabs,
+    update any existing page or create new pages.
+  </p>
+  <button ion-button (click)="navPage1()">Page 1</button>
+</ion-content>
+
+<p>{% endcodeblock %}</p>
+<p>接著編輯 <code>src\pages\home\home.ts</code>，要注意的是傳給 <code>navCtrl.push</code> 的參數是 <code>&#39;Page1Page&#39;</code> <strong>字串</strong>而不是 <code>Page1Page</code> 類別。  </p>
+<p>{% codeblock home.ts lang:ts %}<br>// [Ionic] src\pages\home\home.ts<br>import { Component } from ‘@angular/core’;<br>import { NavController } from ‘ionic-angular’;</p>
+<p>@Component({<br>  selector: ‘page-home’,<br>  templateUrl: ‘home.html’<br>})<br>export class HomePage {</p>
+<p>  constructor(public navCtrl: NavController) {</p>
+<p>  }</p>
+<p>  navPage1() {<br>    this.navCtrl.push(‘Page1Page’);<br>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<p>透過 <code>ionic serve</code> 來啟動專案，從瀏覽器上看頁面導覽效果已經出現了。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_16.png" alt="img"><br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_17.gif" alt="img"><br>做到這般看似正常，但是有點怪怪的，<strong>Page1Page</strong> 這個 Component 雖然註冊到了 <strong>Page1PageModule</strong> 這個 NgModule，但是 <strong>Page1PageModule</strong> 並沒有註冊到起始模組-<strong>AppModule</strong> 內，所以依照 Angular 的邏輯來推論，<strong>AppModule</strong> 並不認得 <strong>Page1Page</strong>，所以在載入時應該會出現錯誤，怎麼 Ionic 上卻沒有問題？<br>原來這就是 Ionic 的<strong>延遲載入</strong>機制，也就是說透過 Ionic CLI 來建立 <code>page</code> 時，它就會以<strong>延遲載入</strong>的架構來建立相關檔案，<strong>延遲載入</strong>的重點架構如下：  </p>
+<ul>
+<li><p>Component 類別必須加上 @IonicPage() 裝飾器。  </p>
+</li>
+<li><p>在 Component 路徑必須要有一個同名的 <code>&lt;component name&gt;.module.ts</code> 的 NgModule，只要名稱或路徑位置不對，CLI 編譯就會出錯，例如我們將 NgModule 改名為 <code>page2.module.ts</code>。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_18.png" alt="img">  </p>
+</li>
+<li><p>NgModule 內除了註冊 Component 外，還需再 <code>imports</code> 屬性內加入 <code>IonicPageModule.forChild(&lt;component&gt;)</code>。  </p>
+</li>
+<li></li>
+<li><p><strong>NavController</strong> 透過 <strong>字串</strong>(<strong>string</strong>) 來指定要導覽到該頁面，如果將字串改成 Component 的類別執行導覽時就會出現錯誤。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_19.png" alt="img"></p>
+</li>
+</ul>
+<p>反過來說如果我們不要使用<strong>延遲載入</strong>的話要如何調整，如同剛剛修改的 <code>home.ts</code>。  </p>
+<p>{% codeblock home.ts lang:ts %}<br>// [Ionic] src\pages\home\home.ts<br>import { Component } from ‘@angular/core’;<br>import { NavController } from ‘ionic-angular’;<br>import { Page1Page } from ‘../page1/page1’;</p>
+<p>@Component({<br>  selector: ‘page-home’,<br>  templateUrl: ‘home.html’<br>})<br>export class HomePage {</p>
+<p>  constructor(public navCtrl: NavController) {</p>
+<p>  }</p>
+<p>  navPage1() {<br>    this.navCtrl.push(Page1Page);<br>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<ul>
+<li>當 Component 已經有對應的 ngModule (page1.module.ts) 時，我們可以直接將該 Module 註冊到啟動模組內，或是啟動模組的延伸模組，將 <code>src\app\app.module.ts</code> 修改如下，再重新執行專案，應該就會正常。</li>
+</ul>
+<p>{% codeblock app.module.ts lang:ts %}<br>// [Ionic] src\app\app.module.ts<br>import { NgModule, ErrorHandler } from ‘@angular/core’;<br>…<br>import { Page1PageModule } from ‘../pages/page1/page1.module’;</p>
+<p>@NgModule({<br>  declarations: [<br>    …<br>  ],<br>  imports: [<br>    BrowserModule,<br>    IonicModule.forRoot(MyApp),<br>    Page1PageModule<br>   ],<br>  bootstrap: [IonicApp],<br>  entryComponents: [<br>    …<br>  ],<br>  providers: [<br>    …<br>  ]<br>})<br>export class AppModule {}</p>
+<p>{% endcodeblock %}</p>
+<ul>
+<li>當 Component 沒有對應的 ngModule 時，那就要跟預設的 page 一樣，將 Component 註冊到啟動模組的 <code>declarations</code> 以及 <code>entryComponents</code> 屬性內，將 <code>src\app\app.module.ts</code> 修改如下，再重新執行專案，應該同樣可以正常運作。</li>
+</ul>
+<p>{% codeblock app.module.ts lang:ts %}<br>// [Ionic] src\app\app.module.ts<br>import { NgModule, ErrorHandler } from ‘@angular/core’;<br>…<br>import { Page1Page } from ‘../pages/page1/page1’;</p>
+<p>@NgModule({<br>  declarations: [<br>    …<br>    TabsPage,<br>    Page1Page<br>  ],<br>  imports: [<br>    BrowserModule,<br>    IonicModule.forRoot(MyApp)<br>   ],<br>  bootstrap: [IonicApp],<br>  entryComponents: [<br>    …<br>    TabsPage,<br>    Page1Page<br>  ],<br>  providers: [<br>    …<br>  ]<br>})<br>export class AppModule {}</p>
+<p>{% endcodeblock %}</p>
+<p>其實如果仔細觀察，沒有<strong>延遲載入</strong>時頁面切換會有滑動效果，反之則沒有，在設計上這一點可能也要考量一下，例如操作功能的切換頁面可能透過延遲載入比較適合，因為我們大部分會透過 tabs 或是 menu 選單來做切換，但是同一個功能內的頁面切換不要透過延遲載入比較適合，因為上下頁面切換的滑動效果會讓整個功能比較有整體感。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_20.gif" alt="img">  </p>
+<blockquote>
+<p>參考文件：<a href="http://blog.ionic.io/ionic-and-lazy-loading-pt-1/">Ionic and Lazy Loading Pt 1</a></p>
+</blockquote>
+<h3 id="後進先出-LIFO：Last-In-First-Out"><a href="#後進先出-LIFO：Last-In-First-Out" class="headerlink" title="後進先出 (LIFO：Last In First Out)"></a>後進先出 (LIFO：Last In First Out)</h3><p>我們先修改 page1 樣板，加入 input 輸入方塊，一個導覽按鈕，點擊時會再次導覽回 page1，一個導覽返回鈕，接著在類別內加入一個 page_length 屬性並給予 NavController 目前頁面堆疊數量，最後再透過<strong>嵌入繫結</strong>方式繫結到樣板上。</p>
+<blockquote>
+<p>Ionic 的 Component 都已經預先載入了，所以可以直接使用。</p>
+</blockquote>
+<p>{% codeblock page1.html lang:html %}<br>// [Ionic] src\pages\page1\page1.html<br><ion-header></p>
+<pre><code>&lt;ion-navbar&gt;
+  &lt;ion-title&gt;page1&lt;/ion-title&gt;
+&lt;/ion-navbar&gt;
+</code></pre>
+  </ion-header>
+
+
+  <ion-content padding>
+    Page Length：{{ page_length }}
+    <hr>
+    <ion-item>
+      <ion-label fixed>Value：</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+    <button ion-button (click)="navCtrl.push('Page1Page')">Page 1</button>
+    <button ion-button (click)="navCtrl.pop()">Back</button>
+  </ion-content>
+
+<p>{% endcodeblock %}</p>
+<p>{% codeblock page1.ts lang:ts %}<br>// [Ionic] src\pages\page1\page1.ts<br>import { Component } from ‘@angular/core’;<br>import { IonicPage, NavController, NavParams } from ‘ionic-angular’;</p>
+<p>@IonicPage()<br>@Component({<br>  selector: ‘page-page1’,<br>  templateUrl: ‘page1.html’,<br>})<br>export class Page1Page {<br>  page_length = 0;<br>  constructor(public navCtrl: NavController, public navParams: NavParams) {<br>  }</p>
+<p>  ionViewDidLoad() {<br>    console.log(‘ionViewDidLoad Page1Page’);<br>    this.page_length = this.navCtrl.length();<br>  }</p>
+<p>}</p>
+<p>{% endcodeblock %}</p>
+<p>啟動專案並透過瀏覽器操作。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_21.gif" alt="img"><br>由上面的操作，我們可以看到我們每次呼叫 <code>push</code> 方法時，Ionic 會在產生一個全新的 page1 並且取代目前頁面，從 <code>page_length</code> 屬性也可以印證 <code>NavController</code> 紀錄的頁面確實增加了，當呼叫 <code>pop</code> 方法時，可以發現 Ionic 會移除目前頁面並顯示上一頁面內容，我們也可以看到之前頁面的內容都會被保留下來。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_22.png" alt="img"><br>我們可以假想 <code>NavController</code> 就像一個大箱子，每次 <code>push</code> 時就會放入一本新書，每次 <code>pop</code> 時就會取出最上面的一本書，我們能看得的書永遠是最後一本，因為它會被放在最上層，下層的書都會被遮住，網頁上看到的 page 也是一樣是最後載入的 page，所以我們可以說這是一種<strong>後進先出</strong>(<strong>Last In First Out</strong>)的堆疊模式，最後進去的會最先出來。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_23.png" alt="img"><br>了解這種模式之後，可以發現它會衍生出一些問題：  </p>
+<ul>
+<li><p>占用記憶體：每個頁面都需要用到記憶體來保存狀態，因此如果堆疊越多層也代表記憶體占用越多。  </p>
+</li>
+<li><p>重複的頁面：我們在某個頁面更新資料後，在後續導覽過程不小心導覽到比較舊的歷史頁面，對使用者來說會以為資料沒更新成功。  </p>
+</li>
+</ul>
+<p>因此在設計上可以參考一些<strong>網站導航</strong>的設計原則，例如階層不要太多可能3~5層，不同功能盡量避免可以直接切換，讓導覽途徑是樹枝展狀的階層圖，而不是交錯複雜的網狀圖。  </p>
+<p>{% img /images/download.png 36 %}<a href="/uploads/ionic-first-app_2017-09-19.zip"><strong>ionic-first-app_2017-09-19.zip</strong></a>  </p>

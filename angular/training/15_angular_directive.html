@@ -1,0 +1,181 @@
+<hr>
+<p>title: Angular 指令 &amp; 資料繫結<br>date: 2017-09-12 10:00<br>categories: Training<br>keywords:</p>
+<ul>
+<li>Angular</li>
+<li>ngIf</li>
+<li>ngFor</li>
+<li>ngStyle</li>
+<li>interpolation</li>
+<li>Property Binding</li>
+<li>Directive</li>
+<li>Binding<br>tags:</li>
+<li>Angular</li>
+<li>Binding</li>
+<li>Directive</li>
+</ul>
+<hr>
+<h1 id="指令-Directive-amp-資料繫結-Binding"><a href="#指令-Directive-amp-資料繫結-Binding" class="headerlink" title="指令 (Directive) &amp; 資料繫結 (Binding)"></a>指令 (Directive) &amp; 資料繫結 (Binding)</h1><p>在 <a href="/angular/training/14_angular_ui_clarity_design_system/">Angular UI：Clarity Design System</a> 中，透過修改 <code>tslint.json</code> 檔的 <code>component-selector</code> 屬性來讓我們可以自訂元件 <code>selector</code> 屬性，現在同樣的來調整 first-app 專案，將 employee 資料夾內的元件改成 <code>emp</code> 開頭，將 home 資料夾內的元件改成 <code>home</code> 開頭。<br>修改 <code>tslint.json</code> 的 <code>component-selector</code> 設定。  </p>
+<!-- more -->  
+<p><img src="/images/angular/training/directive/angular_directive_01.png" alt="img"><br>調整相關元件的 <code>selector</code> 屬性。<br><img src="/images/angular/training/directive/angular_directive_02.png" alt="img">  </p>
+<p>{% codeblock lang:ts %}<br>// src\app\employee\address-book\address-book.component.ts<br>@Component({<br>  selector: ‘emp-address-book’,<br>  …</p>
+<p>// src\app\employee\calendar\calendar.component.ts<br>@Component({<br>  selector: ‘emp-calendar’,<br>  …</p>
+<p>// src\app\employee\file\file.component.ts<br>@Component({<br>  selector: ‘emp-file’,<br>  …</p>
+<p>// src\app\employee\leave\leave.component.ts<br>@Component({<br>  selector: ‘emp-leave’,<br>  …</p>
+<p>// src\app\employee\logbook\logbook.component.ts<br>@Component({<br>  selector: ‘emp-logbook’,<br>  …</p>
+<p>// src\app\employee\reimburse\reimburse.component.ts<br>@Component({<br>  selector: ‘emp-reimburse’,<br>  …</p>
+<p>// src\app\employee\to-do-list\to-do-list.component.ts<br>@Component({<br>  selector: ‘emp-to-do-list’,<br>  …</p>
+<p>// src\app\home\aside\aside.component.ts<br>@Component({<br>  selector: ‘home-aside’,<br>  …</p>
+<p>// src\app\home\header\header.component.ts<br>@Component({<br>  selector: ‘home-header’,<br>  …</p>
+<p>// src\app\home\home.component.ts<br>@Component({<br>  selector: ‘home’,<br>  …</p>
+<p>{% endcodeblock %}</p>
+<p>修改 <code>src\app\home\home.component.html</code>，將 <code>app-header</code> 改為 <code>home-header</code>，<code>app-aside</code> 改為 <code>home-aside</code>。  </p>
+<p>{% codeblock home.component.html lang:html %}</p>
+<div fxFill fxLayout="column" class="layout">
+  <div class="header" fxLayout="row">
+    <home-header fxFlex (sidenavClick)="sidenav.open()"></home-header>
+  </div>
+  <div fxFlex fxLayout="row" class="main">
+    <div fxFlex="200px" class="aside" fxHide.xs>
+      <home-aside (menuClick)="sidenav.close()"></home-aside>
+    </div>
+    <md-sidenav-container fxFlex>
+      <md-sidenav #sidenav mode="over" class="aside" fxHide fxShow.xs>
+        <home-aside fxFlex="200px" (menuClick)="sidenav.close()"></home-aside>
+      </md-sidenav>
+      <div fxFlex class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </md-sidenav-container>
+  </div>
+</div>
+
+<p>{% endcodeblock %}</p>
+<h2 id="編輯行事曆"><a href="#編輯行事曆" class="headerlink" title="編輯行事曆"></a>編輯行事曆</h2><p>其實網路上已經有一些 Angular 版本的元件可以套用，不過這邊我們練習如何用簡單的方式就可以做出一個雛形。<br>開啟 <code>src\app\custom-material.module.ts</code> 加入 <a href="https://material.angular.io/components/card/examples"><strong>MdCardModule</strong></a>。  </p>
+<p>{% codeblock custom-material.module.ts lang:ts %}<br>import { NgModule } from ‘@angular/core’;<br>import { FlexLayoutModule } from ‘@angular/flex-layout’;<br>import {<br>  MdIconModule,<br>  MdButtonModule,<br>  MdListModule,<br>  MdToolbarModule,<br>  MdTooltipModule,<br>  MdSidenavModule,<br>  MdCardModule<br>} from ‘@angular/material’;</p>
+<p>@NgModule({<br>  imports: [<br>    FlexLayoutModule,<br>    MdIconModule,<br>    MdButtonModule,<br>    MdListModule,<br>    MdToolbarModule,<br>    MdTooltipModule,<br>    MdSidenavModule,<br>    MdCardModule<br>  ],<br>  exports: [<br>    FlexLayoutModule,<br>    MdIconModule,<br>    MdButtonModule,<br>    MdListModule,<br>    MdToolbarModule,<br>    MdTooltipModule,<br>    MdSidenavModule,<br>    MdCardModule<br>  ]<br>})<br>export class CustomMaterialModule { }</p>
+<p>{% endcodeblock %}</p>
+<p>開啟 <code>src\app\employee\employee.module.ts</code>，將 <strong>CustomMaterialModule</strong> 註冊到裡面。  </p>
+<p>{% codeblock employee.module.ts lang:ts %}<br>import { NgModule } from ‘@angular/core’;<br>import { CommonModule } from ‘@angular/common’;<br>import { CalendarComponent } from ‘./calendar/calendar.component’;<br>import { AddressBookComponent } from ‘./address-book/address-book.component’;<br>import { LogbookComponent } from ‘./logbook/logbook.component’;<br>import { ToDoListComponent } from ‘./to-do-list/to-do-list.component’;<br>import { FileComponent } from ‘./file/file.component’;<br>import { LeaveComponent } from ‘./leave/leave.component’;<br>import { ReimburseComponent } from ‘./reimburse/reimburse.component’;<br>import { EmployeeRoutingModule } from ‘./employee-routing.module’;<br>import { CustomMaterialModule } from ‘../custom-material.module’;</p>
+<p>@NgModule({<br>  imports: [<br>    CommonModule,<br>    EmployeeRoutingModule,<br>    CustomMaterialModule<br>  ],<br>  declarations: [<br>    CalendarComponent,<br>    AddressBookComponent,<br>    LogbookComponent,<br>    ToDoListComponent,<br>    FileComponent,<br>    LeaveComponent,<br>    ReimburseComponent<br>  ]<br>})<br>export class EmployeeModule { }</p>
+<p>{% endcodeblock %}</p>
+<p>開啟 <code>src\app\employee\calendar\calendar.component.html</code>，加入 card 元件，以及月份切換按鈕。 </p>
+<p>{% codeblock calendar.component.html lang:html %}<br><md-card><br>  <md-card-header><br>    <md-card-title>行事曆</md-card-title><br>    <md-card-subtitle><br>      <h1>2017 年 9 月</h1><br>    </md-card-subtitle><br>  </md-card-header><br>  <md-card-content><br>  </md-card-content><br>  <md-card-actions><br>    <button md-button>上個月</button><br>    <button md-button>本月</button><br>    <button md-button>下個月</button><br>  </md-card-actions><br></md-card></p>
+<p>{% endcodeblock %}</p>
+<p>執行專案，從瀏覽器上可以看到最外層的卡片效果。<br><img src="/images/angular/training/directive/angular_directive_03.png" alt="img">  </p>
+<h2 id="Binding：內嵌繫結-interpolation"><a href="#Binding：內嵌繫結-interpolation" class="headerlink" title="Binding：內嵌繫結 (interpolation)"></a>Binding：內嵌繫結 (interpolation)</h2><p>在 <a href="/angular/training/13_angular_event/">Angular 事件</a> 中，我們學會 <strong>事件繫結</strong>，透過 <strong>小括號</strong>(<code>( event )</code>) 的方式讓前端樣板狀態變更時可以通知後端元件。<br>接下來我們希望畫面上的月份可以透過程式動態修改，所以我們利用 Angular 提供的另一種資料繫結模式-<strong>內嵌繫結</strong> (<strong>interpolation</strong>)，我們可以透過2個大括號(<code>{{ variable }}</code>)方式將元件所對應 ts 檔的變數嵌入到樣板上。  </p>
+<blockquote>
+<p>若是私有(private)變數則無法存取，若變數沒有加上存取修飾詞，那預設值就是 public。</p>
+</blockquote>
+<p>開啟 <code>src\app\employee\calendar\calendar.component.ts</code>，加入變數 <code>selectedMonth</code>，並提供<strong>方法</strong>將日期轉成文字格式給 <code>selectedMonth</code>。 </p>
+<p>{% codeblock calendar.component.ts lang:ts %}<br>import { Component, OnInit } from ‘@angular/core’;</p>
+<p>@Component({<br>  selector: ‘emp-calendar’,<br>  templateUrl: ‘./calendar.component.html’,<br>  styleUrls: [‘./calendar.component.scss’]<br>})<br>export class CalendarComponent implements OnInit {<br>  selectedDay: Date;<br>  selectedMonth = ‘’;<br>  constructor() { }</p>
+<p>  ngOnInit() {<br>    this.getToday();<br>  }<br>  getToday() {<br>    this.selectedDay = new Date();<br>    this.getDay();<br>  }<br>  getDay() {<br>    let year = this.selectedDay.getFullYear();<br>    let month = this.selectedDay.getMonth();<br>    month++;<br>    // month為13時表示隔年的1月。<br>    if (month === 13) {<br>      month = 1;<br>      year++;<br>    }<br>    this.selectedMonth = <code>${year} 年 ${month} 月</code>;<br>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<blockquote>
+<p>TypeScript 在宣告變數時必須給定<a href="https://www.typescriptlang.org/docs/handbook/basic-types.html">型別</a>，例如：boolean、number、string、any、…，格式是在變數後面加上冒號(<code>:</code>)再加上型別，但是如果有給初始值時可以省略，因為 TypeScript 會自動依初始值來推斷變數的型別，後續程式邏輯若給予的值與型別不符時就會出現警告。<br>TypeScript 最終還是會編譯成 JavaScript，它主要是提供了<strong>開發時期</strong>的型別檢查。<br><code>any</code> 算是比較特殊的型別，代表它可以是任意型別，當變數設成 <code>any</code> 時，我們可以視為 TypeScript 就不會做檢查，當變數的值可能為不同型別時可以使用，但是宣告成 <code>any</code> 也代表失去 TypeScript 的檢核機制，建議盡量避免使用。<br>在 function 內宣告變數時，TypeScript 預設會建議你用 <code>const</code> 宣告，如果值會改變時則用 <code>let</code>。</p>
+</blockquote>
+<p>修改 <code>calendar.component.html</code>，套用 <code>selectedMonth</code> 變數。</p>
+<p>{% codeblock calendar.component.html lang:html %}<br><md-card><br>  <md-card-header><br>    <md-card-title>行事曆</md-card-title><br>    <md-card-subtitle><br>      <h1>{ {selectedMonth} }</h1><br>    </md-card-subtitle><br>  </md-card-header><br>  <md-card-content><br>  </md-card-content><br>  <md-card-actions><br>    <button md-button>上個月</button><br>    <button md-button>本月</button><br>    <button md-button>下個月</button><br>  </md-card-actions><br></md-card></p>
+<p>{% endcodeblock %}</p>
+<p>從瀏覽器上看不出改變，但是月份已經用變數取代。<br><img src="/images/angular/training/directive/angular_directive_03.png" alt="img">  </p>
+<h2 id="加入月份切換功能"><a href="#加入月份切換功能" class="headerlink" title="加入月份切換功能"></a>加入月份切換功能</h2><p>修改 <code>calendar.component.html</code>，為切換按鈕加入事件，並透過 <strong>事件繫結</strong> 綁定。</p>
+<p>{% codeblock calendar.component.html lang:html %}<br><md-card><br>  <md-card-header><br>    <md-card-title>行事曆</md-card-title><br>    <md-card-subtitle><br>      <h1>{ {selectedMonth} }</h1><br>    </md-card-subtitle><br>  </md-card-header><br>  <md-card-content><br>  </md-card-content><br>  <md-card-actions><br>    &lt;button md-button (click)=”getDay(-1)”&gt;上個月</button><br>    &lt;button md-button (click)=”getToday()”&gt;本月</button><br>    &lt;button md-button (click)=”getDay(1)”&gt;下個月</button><br>  </md-card-actions><br></md-card></p>
+<p>{% endcodeblock %}</p>
+<p>修改 <code>calendar.component.ts</code> 實作對應的方法。  </p>
+<p>{% codeblock calendar.component.ts lang:ts %}<br>import { Component, OnInit } from ‘@angular/core’;</p>
+<p>@Component({<br>  selector: ‘emp-calendar’,<br>  templateUrl: ‘./calendar.component.html’,<br>  styleUrls: [‘./calendar.component.scss’]<br>})<br>export class CalendarComponent implements OnInit {<br>  selectedDay: Date;<br>  selectedMonth = ‘’;<br>  constructor() { }</p>
+<p>  ngOnInit() {<br>    this.getToday();<br>  }<br>  getToday() {<br>    this.selectedDay = new Date();<br>    this.getDay(0);<br>  }</p>
+<p>  getDay(addDMonth: number) {<br>    let year = this.selectedDay.getFullYear();<br>    let month = this.selectedDay.getMonth() + addDMonth;<br>    const dt = new Date(year, month, 1);<br>    year = dt.getFullYear();<br>    month = dt.getMonth();</p>
+<pre><code>this.selectedDay = new Date(year, month, 1);
+month++;
+// month為13時表示隔年的1月。
+if (month === 13) {
+  month = 1;
+  year++;
+}
+this.selectedMonth = `${year} 年 ${month} 月`;
+</code></pre>
+<p>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<blockquote>
+<p><code>ngOnInit</code> 是 Angular <a href="https://angular.io/guide/lifecycle-hooks"><strong>生命週期</strong></a> 衍生的事件，它會發生在第一次繫結資料發生變動(ngOnChanges)之後。<br><img src="/images/angular/training/directive/angular_directive_04.png" alt="img">  </p>
+</blockquote>
+<p>從瀏覽器來看，月份切換已經有效果了<br><img src="/images/angular/training/directive/angular_directive_05.gif" alt="img">  </p>
+<h2 id="加入-Grid-List"><a href="#加入-Grid-List" class="headerlink" title="加入 Grid List"></a>加入 Grid List</h2><p>開啟 <code>src\app\custom-material.module.ts</code> 加入 <a href="https://material.angular.io/components/grid-list/examples"><strong>MdGridListModule</strong></a>。  </p>
+<p>{% codeblock custom-material.module.ts lang:ts %}<br>import { NgModule } from ‘@angular/core’;<br>import { FlexLayoutModule } from ‘@angular/flex-layout’;<br>import {<br>  MdIconModule,<br>  …<br>  MdCardModule,<br>  MdGridListModule<br>} from ‘@angular/material’;</p>
+<p>@NgModule({<br>  imports: [<br>    FlexLayoutModule,<br>    …<br>    MdCardModule,<br>    MdGridListModule<br>  ],<br>  exports: [<br>    FlexLayoutModule,<br>    …<br>    MdCardModule,<br>    MdGridListModule<br>  ]<br>})<br>export class CustomMaterialModule { }</p>
+<p>{% endcodeblock %}</p>
+<p>修改 <code>calendar.component.html</code>，加入 Grid List。</p>
+<p>{% codeblock calendar.component.html lang:html %}<br><md-card><br>  <md-card-header><br>    <md-card-title>行事曆</md-card-title><br>    <md-card-subtitle><br>      <h1>{ {selectedMonth} }</h1><br>    </md-card-subtitle><br>  </md-card-header><br>  <md-card-content><br>    <md-grid-list cols="7" rowHeight="68px"><br>      <md-grid-tile>日</md-grid-tile><br>      <md-grid-tile>一</md-grid-tile><br>      <md-grid-tile>二</md-grid-tile><br>      <md-grid-tile>三</md-grid-tile><br>      <md-grid-tile>四</md-grid-tile><br>      <md-grid-tile>五</md-grid-tile><br>      <md-grid-tile>六</md-grid-tile><br>      <md-grid-tile>1</md-grid-tile><br>      <md-grid-tile>2</md-grid-tile><br>      <md-grid-tile>3</md-grid-tile><br>      <md-grid-tile>4</md-grid-tile><br>      <md-grid-tile>5</md-grid-tile><br>      <md-grid-tile>6</md-grid-tile><br>      <md-grid-tile>7</md-grid-tile><br>      <md-grid-tile>8</md-grid-tile><br>      <md-grid-tile>9</md-grid-tile><br>      <md-grid-tile>10</md-grid-tile><br>      <md-grid-tile>11</md-grid-tile><br>      <md-grid-tile>12</md-grid-tile><br>      <md-grid-tile>13</md-grid-tile><br>      <md-grid-tile>14</md-grid-tile><br>      <md-grid-tile>15</md-grid-tile><br>      <md-grid-tile>16</md-grid-tile><br>      <md-grid-tile>17</md-grid-tile><br>      <md-grid-tile>18</md-grid-tile><br>      <md-grid-tile>19</md-grid-tile><br>      <md-grid-tile>20</md-grid-tile><br>      <md-grid-tile>21</md-grid-tile><br>      <md-grid-tile>22</md-grid-tile><br>      <md-grid-tile>23</md-grid-tile><br>      <md-grid-tile>24</md-grid-tile><br>      <md-grid-tile>25</md-grid-tile><br>      <md-grid-tile>26</md-grid-tile><br>      <md-grid-tile>27</md-grid-tile><br>      <md-grid-tile>28</md-grid-tile><br>      <md-grid-tile>29</md-grid-tile><br>      <md-grid-tile>30</md-grid-tile><br>      <md-grid-tile>31</md-grid-tile><br>    </md-grid-list><br>  </md-card-content><br>  <md-card-actions><br>    &lt;button md-button (click)=”getDay(-1)”&gt;上個月</button><br>    &lt;button md-button (click)=”getToday()”&gt;本月</button><br>    &lt;button md-button (click)=”getDay(1)”&gt;下個月</button><br>  </md-card-actions><br></md-card></p>
+<p>{% endcodeblock %}</p>
+<p>從瀏覽器來看，行事曆的效果已經出現了<br><img src="/images/angular/training/directive/angular_directive_06.png" alt="img">  </p>
+<blockquote>
+<p>從<a href="https://material.angular.io/components/grid-list/api">API文件</a>來看，<strong>MdGridListModule</strong> 與 HTML 的 Table 功能類似。<br><strong>MdGridList</strong> 提供一個 <code>cols</code> 的屬性，當內容項目-<strong>MdGridTile</strong> 超過其數值時就會自動換行，我們設定 <code>7</code> 是因為一個禮拜有7天。<br><strong>MdGridTile</strong> 則提供 <code>rowspan</code>、<code>colspan</code> 可以設定所占用的 <strong>列數</strong> 與 <strong>欄位數</strong>，這邊因為都是占用1單位，所以不設定。</p>
+</blockquote>
+<h2 id="Directive：-ngFor"><a href="#Directive：-ngFor" class="headerlink" title="Directive：*ngFor"></a>Directive：*ngFor</h2><p>Angular 提供一個樣板指令-*<strong>ngFor</strong>，讓我們可以依照陣列物件重複產生樣板語法，同時將資料嵌入到樣板內。<br>修改 <code>calendar.component.ts</code>，加入星期的陣列變數-<strong>dayHeaders</strong>。  </p>
+<p>{% codeblock calendar.component.ts lang:ts %}<br>import { Component, OnInit } from ‘@angular/core’;</p>
+<p>@Component({<br>  selector: ‘emp-calendar’,<br>  templateUrl: ‘./calendar.component.html’,<br>  styleUrls: [‘./calendar.component.scss’]<br>})<br>export class CalendarComponent implements OnInit {<br>  selectedDay: Date;<br>  selectedMonth = ‘’;<br>  dayHeaders = [‘日’, ‘一’, ‘二’, ‘三’, ‘四’, ‘五’, ‘六’];<br>  constructor() { }<br>  …<br>{% endcodeblock %}</p>
+<p>修改 <code>calendar.component.html</code>，透過 <em><strong>ngFor</strong> 指令來巡覽 <code>dayHeaders</code> 陣列，並宣告一個 變數(<code>header</code>) 來承接其值，最後再透過</em>*內嵌繫結**將 <code>header</code> 嵌入到樣板內。</p>
+<p>{% codeblock calendar.component.html lang:html %}<br><md-card><br>  <md-card-header><br>    <md-card-title>行事曆</md-card-title><br>    <md-card-subtitle><br>      <h1>{ {selectedMonth} }</h1><br>    </md-card-subtitle><br>  </md-card-header><br>  <md-card-content><br>    <md-grid-list cols="7" rowHeight="68px"><br>      &lt;md-grid-tile *ngFor=”let header of dayHeaders”&gt;<br>        <h3>{ {header} }</h3><br>      </md-grid-tile><br>      <md-grid-tile>1</md-grid-tile><br>      …<br>{% endcodeblock %}  </p>
+<p>從瀏覽器上看不出改變，但是星期已經用變數取代。<br><img src="/images/angular/training/directive/angular_directive_06.png" alt="img">  </p>
+<blockquote>
+<p><code>*ngFor</code> 本身還提供下列變數可使用：<br><code>index</code> (number)：表示目前資料在陣列中的索引值。<br><code>first</code> (boolean)：表示目前資料是否為第一筆。<br><code>last</code> (boolean)：表示目前資料是否為最後一筆。<br><code>even</code> (boolean)：表示目前資料的索引值是否為偶數筆。<br><code>odd</code> (boolean)：表示目前資料的索引值是否為奇數筆。<br>但是上述變數不可直接使用，必須另行宣告變數來承接。<br>例如：我們宣告一個變數 <code>i</code> 來承接 <code>index</code> 索引值，並將 <code>i</code> 嵌入到星期變數前面。<br><img src="/images/angular/training/directive/angular_directive_07.png" alt="img"><br><img src="/images/angular/training/directive/angular_directive_08.png" alt="img">  </p>
+</blockquote>
+<h2 id="Directive：NgStyle"><a href="#Directive：NgStyle" class="headerlink" title="Directive：NgStyle"></a>Directive：NgStyle</h2><p>Angular 提供一個類似 <code>style</code> tag 的指令-<code>[ngStyle]</code>，最大的差異就是 <code>[ngStyle]</code> 所設定CSS的屬性值可以是變數、方法，也就是我們可以動態改變值。<br>修改 <code>calendar.component.ts</code>，加入星期的顏色陣列變數-<strong>dayColors</strong>。  </p>
+<p>{% codeblock calendar.component.ts lang:ts %}<br>import { Component, OnInit } from ‘@angular/core’;</p>
+<p>@Component({<br>  selector: ‘emp-calendar’,<br>  templateUrl: ‘./calendar.component.html’,<br>  styleUrls: [‘./calendar.component.scss’]<br>})<br>export class CalendarComponent implements OnInit {<br>  selectedDay: Date;<br>  selectedMonth = ‘’;<br>  dayHeaders = [‘日’, ‘一’, ‘二’, ‘三’, ‘四’, ‘五’, ‘六’];<br>  dayColors = [‘red’, ‘white’, ‘white’, ‘white’, ‘white’, ‘white’, ‘green’];<br>  constructor() { }<br>  …<br>{% endcodeblock %}</p>
+<p>開啟 <code>calendar.component.html</code>，加入 <code>ngStyle</code> 將文字顏色來源指向 <strong>dayColors</strong>。</p>
+<p>{% codeblock calendar.component.html lang:html %}<br><md-card><br>  <md-card-header><br>    <md-card-title>行事曆</md-card-title><br>    <md-card-subtitle><br>      <h1>{ {selectedMonth} }</h1><br>    </md-card-subtitle><br>  </md-card-header><br>  <md-card-content><br>    <md-grid-list cols="7" rowHeight="68px"><br>      &lt;md-grid-tile *ngFor=”let header of dayHeaders; let i = index”<br>        [ngStyle]=”{‘color’: dayColors[i]}”&gt;<br>        <h3>{ {header} }</h3><br>      </md-grid-tile><br>      <md-grid-tile>1</md-grid-tile><br>      …<br>{% endcodeblock %}</p>
+<p>從瀏覽器上可以看到星期日變成紅色、星期六變成綠色。<br><img src="/images/angular/training/directive/angular_directive_09.png" alt="img"><br>接下來就是將日期改為動態產生，開啟 <code>calendar.component.ts</code>，新增 <code>days</code> 陣列變數，在 <code>getDay(addDMonth)</code> 方法內將選取月份的日期與星期都填入 <code>days</code> 內。  </p>
+<p>{% codeblock calendar.component.ts lang:ts %}<br>…<br>export class CalendarComponent implements OnInit {<br>  selectedDay: Date;<br>  selectedMonth = ‘’;<br>  dayHeaders = [‘日’, ‘一’, ‘二’, ‘三’, ‘四’, ‘五’, ‘六’];<br>  dayColors = [‘red’, ‘white’, ‘white’, ‘white’, ‘white’, ‘white’, ‘green’];<br>  days = [];<br>  constructor() { }<br>  …<br>  getDay(addDMonth: number) {<br>    let year = this.selectedDay.getFullYear();<br>    let month = this.selectedDay.getMonth() + addDMonth;<br>    const dt = new Date(year, month, 1);<br>    year = dt.getFullYear();<br>    month = dt.getMonth();</p>
+<pre><code>const _days = [];
+for (let day = 1; day &lt;= 31; day++) {
+  const time = new Date(year, month, day);
+  if (time.getMonth() &gt; month) {
+    break;
+  }
+  const d: any = {
+    day: day,
+    week: time.getDay()
+  };
+  _days.push(d);
+}
+this.days = [..._days];
+
+this.selectedDay = new Date(year, month, 1);
+month++;
+// month為13時表示隔年的1月。
+if (month === 13) {
+  month = 1;
+  year++;
+}
+this.selectedMonth = `${year} 年 ${month} 月`;
+</code></pre>
+<p>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<p>開啟 <code>calendar.component.html</code>，加入 <code>ngStyle</code> 將文字顏色來源指向 <strong>dayColors</strong>。</p>
+<p>{% codeblock calendar.component.html lang:html %}<br>…<br>  <md-card-content><br>    <md-grid-list cols="7" rowHeight="68px"><br>      &lt;md-grid-tile *ngFor=”let header of dayHeaders; let i = index”<br>        [ngStyle]=”{‘color’: dayColors[i]}”&gt;<br>        <h3>{{header}}</h3><br>      </md-grid-tile><br>      &lt;md-grid-tile *ngFor=”let item of days”<br>        [ngStyle]=”{‘color’: dayColors[item.week]}”&gt;<br>        <span>{{item.day}}</span><br>      </md-grid-tile><br>    </md-grid-list><br>  …<br>{% endcodeblock %}</p>
+<p>從瀏覽器上可以看到日期為星期日與星期六的顏色都改變了，但是位置不對，2017/9/1 應該是禮拜五。<br><img src="/images/angular/training/directive/angular_directive_10.png" alt="img">  </p>
+<h2 id="Binding：屬性繫結-Property-Binding"><a href="#Binding：屬性繫結-Property-Binding" class="headerlink" title="Binding：屬性繫結 (Property Binding)"></a>Binding：屬性繫結 (Property Binding)</h2><p>上面提到的 <strong>內嵌繫結</strong> 可以將後端元件類別變數輸出到前端樣板，但是它最終會轉換成文字，如果我們需要繫結對象是樣板元素的屬性時可能就會不適用，因此 Angular 提供另一種資料繫結模式-<strong>屬性繫結</strong>，我們可以在目標屬性上加上 <strong>中括號</strong>(<code>[ property ]</code>) 來表示資料來源是來自元件類別。  </p>
+<blockquote>
+<p><strong>屬性繫結</strong> 的資料如果是字串，可以在值外面加上單引號來表示值為字串。</p>
+</blockquote>
+<p>我們在每月1號的 <code>md-grid-tile</code> 前面再插入一個 <code>md-grid-tile</code>，並透過 <code>colspan</code> 屬性將1號推擠到對應的星期。<br>開啟 <code>calendar.component.ts</code>，新增 <code>lastMonth_colspan</code> 變數，在 <code>getDay(addDMonth)</code> 方法內計算需要偏移的天數。  </p>
+<p>{% codeblock calendar.component.ts lang:ts %}<br>…<br>export class CalendarComponent implements OnInit {<br>  selectedDay: Date;<br>  selectedMonth = ‘’;<br>  dayHeaders = [‘日’, ‘一’, ‘二’, ‘三’, ‘四’, ‘五’, ‘六’];<br>  dayColors = [‘red’, ‘white’, ‘white’, ‘white’, ‘white’, ‘white’, ‘green’];<br>  days = [];<br>  lastMonth_colspan = 0;<br>  constructor() { }<br>  …<br>  getDay(addDMonth: number) {<br>    let year = this.selectedDay.getFullYear();<br>    let month = this.selectedDay.getMonth() + addDMonth;<br>    const dt = new Date(year, month, 1);<br>    year = dt.getFullYear();<br>    month = dt.getMonth();</p>
+<pre><code>this.lastMonth_colspan = new Date(year, month, 1).getDay();
+const _days = [];
+...
+</code></pre>
+<p>{% endcodeblock %}</p>
+<p>開啟 <code>calendar.component.html</code>，加入一個 <code>md-grid-tile</code>，並透過<strong>屬性繫結</strong>將 <code>colspan</code> 屬性繫結至 <code>lastMonth_colspan</code> 變數。</p>
+<p>{% codeblock calendar.component.html lang:html %}<br>…<br>  <md-card-content><br>    <md-grid-list cols="7" rowHeight="68px"><br>      &lt;md-grid-tile *ngFor=”let header of dayHeaders; let i = index”<br>        [ngStyle]=”{‘color’: dayColors[i]}”&gt;<br>        <h3>{{header}}</h3><br>      </md-grid-tile><br>      &lt;md-grid-tile [colspan]=”lastMonth_colspan”&gt;</md-grid-tile><br>      &lt;md-grid-tile *ngFor=”let item of days”<br>        [ngStyle]=”{‘color’: dayColors[item.week]}”&gt;<br>        <span>{{item.day}}</span><br>      </md-grid-tile><br>    </md-grid-list><br>  …<br>{% endcodeblock %}</p>
+<p>從瀏覽器上看起來應該都是正常。<br><img src="/images/angular/training/directive/angular_directive_11.png" alt="img">  </p>
+<h2 id="Directive：-ngFor-1"><a href="#Directive：-ngFor-1" class="headerlink" title="Directive：*ngFor"></a>Directive：*ngFor</h2><p>我們切換到下個月(2017/10)問題就出現了，原本 2017/10/1 應該是星期日，但是卻被移到星期六。<br><img src="/images/angular/training/directive/angular_directive_12.png" alt="img"><br>當 <code>lastMonth_colspan = 0</code> 時表示不需要推移，因此應該移除日期前的 <code>md-grid-tile</code>，Angular 提供一個便捷的樣板指令-*<strong>ngFor</strong>，當後面的判斷式為 <code>true</code> 時該樣板元素會顯示，當值為 <code>false</code> 時該樣板元素會被移除。<br>開啟 <code>calendar.component.html</code>，添加 *<strong>ngFor</strong> 判斷式。</p>
+<p>{% codeblock calendar.component.html lang:html %}<br>…<br>  <md-card-content><br>    <md-grid-list cols="7" rowHeight="68px"><br>      &lt;md-grid-tile *ngFor=”let header of dayHeaders; let i = index”<br>        [ngStyle]=”{‘color’: dayColors[i]}”&gt;<br>        <h3>{{header}}</h3><br>      </md-grid-tile><br>      &lt;md-grid-tile [colspan]=”lastMonth_colspan” *ngIf=”lastMonth_colspan”&gt;</md-grid-tile><br>      …<br>{% endcodeblock %}</p>
+<p>從瀏覽器上看起來 2017/10 月份行事曆應該就正常。<br><img src="/images/angular/training/directive/angular_directive_13.png" alt="img"><br>最後我們在 <code>src\app\employee\calendar\calendar.component.scss</code> 加上一點 CSS 樣式，並套用到 <code>calendar.component.html</code>。  </p>
+<p>{% codeblock calendar.component.scss lang:scss %}<br>.day {<br>  border: solid 1px DimGray;<br>  .text {<br>    position: absolute;<br>    top: 4px;<br>    right: 8px;<br>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<p>{% codeblock calendar.component.html lang:html %}<br><md-card><br>  <md-card-header><br>    <md-card-title>行事曆</md-card-title><br>    <md-card-subtitle><br>      <h1>{{selectedMonth}}</h1><br>    </md-card-subtitle><br>  </md-card-header><br>  <md-card-content><br>    <md-grid-list cols="7" rowHeight="68px"><br>      &lt;md-grid-tile *ngFor=”let header of dayHeaders; let i = index”<br>        [ngStyle]=”{‘color’: dayColors[i]}”&gt;<br>        <h3>{{header}}</h3><br>      </md-grid-tile><br>      &lt;md-grid-tile [colspan]=”lastMonth_colspan” *ngIf=”lastMonth_colspan”&gt;</md-grid-tile><br>      &lt;md-grid-tile *ngFor=”let item of days”<br>        [ngStyle]=”{‘color’: dayColors[item.week]}” class=”day”&gt;<br>        <span class="text">{{item.day}}</span><br>      </md-grid-tile><br>    </md-grid-list><br>  </md-card-content><br>  <md-card-actions><br>    &lt;button md-button (click)=”getDay(-1)”&gt;上個月</button><br>    &lt;button md-button (click)=”getToday()”&gt;本月</button><br>    &lt;button md-button (click)=”getDay(1)”&gt;下個月</button><br>  </md-card-actions><br></md-card></p>
+<p>{% endcodeblock %}</p>
+<p>執行專案，從瀏覽器上操作應該都正常了。<br><img src="/images/angular/training/directive/angular_directive_14.gif" alt="img">  </p>
+<p>{% img /images/download.png 36 %}<a href="/uploads/first-app_2017-09-12.zip"><strong>first-app_2017-09-12.zip</strong></a>  </p>

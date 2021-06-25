@@ -1,0 +1,101 @@
+<hr>
+<p>title: 你或許看過四不像，但是你聽過四很像嗎？：NgRx<br>date: 2018-06-25<br>categories: Training<br>keywords:</p>
+<ul>
+<li>NgRx</li>
+<li>RxJS</li>
+<li>Angular<br>tags:</li>
+<li>RxJS</li>
+</ul>
+<hr>
+<p><img src="/images/angular/training/ngrx/ngrx_logo.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 <a href="/angular/training/30_rxjs_5/">別太在意包裝上的照片與實物之間的差異：RxJS</a> 我們透過原始碼可以了解 RxJS 對於監控對象提供了3種<strong>狀態</strong>(<code>next</code>、<code>error</code>、<code>complete</code>)的通知功能。<br><img src="/images/angular/training/ngrx/ngrx_001.png" alt="img"><br>我們可以透過時做 Observer 介面來決定3種狀態發生時要做什麼處理，而 Subscriber 除了可以決定要做什麼事情之外，還可以決定要如何通知別人，所以如果我們不需要提供通知功能只要實作 Observer 介面即可。<br>那 NgRx 是什麼東西？在做什麼事？上網搜尋得到的答案大概就是 Angular 版的 Redux Pattern。<br><code>NgRx = Redux + RxJS + Angular</code><br>同時應該也會看到許多類似下圖的圖解。<br><img src="/images/angular/training/ngrx/ngrx_002.png" alt="img">  </p>
+<!-- more -->  
+
+<h1 id="Store"><a href="#Store" class="headerlink" title="Store"></a>Store</h1><p>從 <a href="http://ngrx.github.io/">NgRx 官方頁面</a> 可以看到需多功能，其中 <strong>Store</strong> 大概是最常用也是最實用的功能，因此本篇就以略懂 RxJS 的角度來看看 NgRx 的 Store 在做什麼。  </p>
+<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><p>我們開啟 <a href="https://github.com/ngrx/platform/blob/master/docs/store/README.md">@ngrx/store</a> 說明頁面，來看看它的教學，首先就是安裝套件，我們可以在專案目錄下透過下列指令來安裝：<br><code>npm install @ngrx/store</code>  </p>
+<h2 id="建立-Reducer"><a href="#建立-Reducer" class="headerlink" title="建立 Reducer"></a>建立 Reducer</h2><p>接著建立一個 Reducer 函式-<strong>counterReducer</strong>，由範例可以大概了解它會傳入2個參數 <code>state</code>、<code>action</code>，並<strong>依 <code>action.type</code> 回傳處理後的 state 值</strong>。<br>{% codeblock counter.ts lang:ts %}<br>import { Action } from ‘@ngrx/store’;</p>
+<p>export const INCREMENT = ‘INCREMENT’;<br>export const DECREMENT = ‘DECREMENT’;<br>export const RESET = ‘RESET’;</p>
+<p>const initialState = 0;</p>
+<p>export function counterReducer(state: number = initialState, action: Action) {<br>  switch (action.type) {<br>    case INCREMENT:<br>      return state + 1;</p>
+<pre><code>case DECREMENT:
+  return state - 1;
+
+case RESET:
+  return 0;
+
+default:
+  return state;
+</code></pre>
+<p>  }<br>}<br>{% endcodeblock %}</p>
+<h2 id="註冊-StoreModule"><a href="#註冊-StoreModule" class="headerlink" title="註冊 StoreModule"></a>註冊 StoreModule</h2><p>接著我們可以看到它在 AppModule 內透過 StoreModule.forRoot 將 StoreModule 註冊成 SharedModule，並同時帶入 counterReducer。  </p>
+<blockquote>
+<p>StoreModule 提供了 <code>forRoot</code>、<code>forFeature</code> 2種方法。<br>參考資料：<a href="https://poychang.github.io/use-forroot-to-provide-services-in-angular-shared-module/">使用 forRoot() 幫助 SharedModule 提供單一實例服務</a> - Poy Chang</p>
+</blockquote>
+<p>{% codeblock app.module.ts lang:ts %}<br>import { NgModule } from ‘@angular/core’;<br>import { StoreModule } from ‘@ngrx/store’;<br>import { counterReducer } from ‘./counter’;</p>
+<p>@NgModule({<br>  imports: [StoreModule.forRoot({ count: counterReducer })],<br>})<br>export class AppModule {}<br>{% endcodeblock %}</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>最後我們從使用範例上可以看到它做了幾件事情：  </p>
+<ul>
+<li><p>透過 DI 注入 一個具有 AppState 物件的 Store。  </p>
+</li>
+<li><p>在 button 的 click 事件內透過 <code>dispatch</code> 方法傳送具有 <code>type</code> 屬性的物件，<br>可以看到這些 type 的值剛好對應到 counterReducer 內的 action.type，<br>所以我們應該是傳送一個 Action 物件。  </p>
+</li>
+<li><p>宣告一個 Observable<number> 型別的屬性 count$ 來接收 <code>store.pipe(select(&#39;count&#39;))</code>，<br>因為使用了 RxJS 的 <code>pipe</code> 方法，所以 <code>select</code> 應該是一種 Operator，<br>最後再將 count$ 綁定到樣板上並透過 Angular 的 <a href="https://angular.io/api/common/AsyncPipe">AsyncPipe</a> 來抓取資料。  </p>
+</li>
+</ul>
+<p>{% codeblock my-counter.component.ts lang:ts %}<br>import { Component } from ‘@angular/core’;<br>import { Store, select } from ‘@ngrx/store’;<br>import { Observable } from ‘rxjs’;<br>import { INCREMENT, DECREMENT, RESET } from ‘./counter’;</p>
+<p>interface AppState {<br>  count: number;<br>}</p>
+<p>@Component({<br>  selector: ‘app-my-counter’,<br>  template: <code>    &lt;button (click)=&quot;increment()&quot;&gt;Increment&lt;/button&gt;     &lt;div&gt;Current Count: { { count$ | async } }&lt;/div&gt;     &lt;button (click)=&quot;decrement()&quot;&gt;Decrement&lt;/button&gt;     &lt;button (click)=&quot;reset()&quot;&gt;Reset Counter&lt;/button&gt;  </code>,<br>})<br>export class MyCounterComponent {<br>  count$: Observable<number>;</p>
+<p>  constructor(private store: Store<AppState>) {<br>    this.count$ = store.pipe(select(‘count’));<br>  }</p>
+<p>  increment() {<br>    this.store.dispatch({ type: INCREMENT });<br>  }</p>
+<p>  decrement() {<br>    this.store.dispatch({ type: DECREMENT });<br>  }</p>
+<p>  reset() {<br>    this.store.dispatch({ type: RESET });<br>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><p>我們重新在整理一下，我們實作了一個 counterReducer 並將它註冊到 NgRx 的 Store 內，接著我們會在 Component 上來呼叫它。<br><img src="/images/angular/training/ngrx/ngrx_003.png" alt="img"><br>我們在點擊 Increment 按鈕時透過 Store 的 <code>dispatch</code> 方法傳送一個 <code>type: INCREMENT</code> 的 Action 物件。<br><img src="/images/angular/training/ngrx/ngrx_004.png" alt="img">  </p>
+<blockquote>
+<p>從 NgRx 原始碼可以得知 <strong>Action</strong> 是一個只有 <code>type</code> 屬性的介面。<br>{% codeblock my-counter.component.ts lang:ts %}<br>export interface Action {<br>  type: string;<br>}<br>{% endcodeblock %}</p>
+</blockquote>
+<p>Store 內部會自行找到我們所建立的 counterReducer 並將 Action 值傳遞給它。<br><img src="/images/angular/training/ngrx/ngrx_005.png" alt="img"><br>接著執行 counterReducer 函式，依照所傳入的 action.type 做處理並回傳新的 State。<br><img src="/images/angular/training/ngrx/ngrx_006.png" alt="img"><br>Store 會接收到 counterReducer 函式所回傳的 State。<br><img src="/images/angular/training/ngrx/ngrx_007.png" alt="img"><br>在 Component 上 透過 Store.select 方法來取得 State 目前所需要的資料。<br><img src="/images/angular/training/ngrx/ngrx_008.png" alt="img">  </p>
+<h1 id="原始碼"><a href="#原始碼" class="headerlink" title="原始碼"></a>原始碼</h1><p>我們可以從 GitHub 網站下載 <a href="https://github.com/ngrx/platform">NgRx 原始碼</a>，查看 <code>\modules\store\src\store.ts</code> 可以看到 NgRx 的 Store 類別實作了 RxJS 的 Observer 介面並繼承 Observable 類別，而 ActionsSubject 底層就是透過 BehaviorSubject 來包裝 Action，最特別的就是範例所使用的 <strong><code>dispatch</code> 方法其實就是呼叫 <code>next</code> 方法</strong>。<br>Store 對應 Observer 介面的3個方法(<code>next</code>、<code>error</code>、<code>complete</code>)也只觸發 BehaviorSubject 所對應的方法，本質上比較像 Subscriber，因為它並沒有決定要做什麼事。<br>{% codeblock store.ts lang:ts %}<br>@Injectable()<br>export class Store<T> extends Observable<T> implements Observer<Action> {<br>  constructor(<br>    state$: StateObservable,<br>    private actionsObserver: ActionsSubject,<br>    private reducerManager: ReducerManager<br>  ) {<br>    super();<br>    this.source = state$;<br>  }</p>
+<p>  dispatch<V extends Action = Action>(action: V) {<br>    this.actionsObserver.next(action);<br>  }</p>
+<p>  next(action: Action) {<br>    this.actionsObserver.next(action);<br>  }</p>
+<p>  error(err: any) {<br>    this.actionsObserver.error(err);<br>  }</p>
+<p>  complete() {<br>    this.actionsObserver.complete();<br>  }<br>}</p>
+<p>export class ActionsSubject extends BehaviorSubject<Action> implements OnDestroy {</p>
+<p>}<br>{% endcodeblock %}</p>
+<h2 id="select-就是-RxJS-Operator"><a href="#select-就是-RxJS-Operator" class="headerlink" title="select 就是 RxJS Operator"></a>select 就是 RxJS Operator</h2><p>接著觀察 select 方法相關程式碼，如果有研究過 RxJS Operator 的原始碼應該可以發現 select 就是 NgRx 自己實作的 RxJS Operator，我們可以看到最關鍵的 selectOperator 函式：</p>
+<ul>
+<li>當傳入的參數是 <code>string</code> 時它會使用 RxJS 的 <code>pluck</code> Operator。</li>
+<li>當傳入的參數是 <code>function</code> 時它會使用 RxJS 的 <code>map</code> Operator。</li>
+<li>最後一律透過 RxJS 的 <code>distinctUntilChanged</code> 再篩選一次，也就是當 <code>dispatch</code>(<code>next</code>) 傳入的值與之前一樣時就不會回應。</li>
+</ul>
+<p>{% codeblock store.ts lang:ts %}<br>@Injectable()<br>export class Store<T> extends Observable<T> implements Observer<Action> {<br>  lift<R>(operator: Operator&lt;T, R&gt;): Store<R> {<br>    const store = new Store<R>(this, this.actionsObserver, this.reducerManager);<br>    store.operator = operator;</p>
+<pre><code>return store;
+</code></pre>
+<p>  }</p>
+<p>  select(<br>    pathOrMapFn: ((state: T) =&gt; any) | string,<br>    …paths: string[]<br>  ): Observable<any> {<br>    return select.call(null, pathOrMapFn, …paths)(this);<br>  }<br>}</p>
+<p>export function select&lt;T, K&gt;(<br>  pathOrMapFn: ((state: T) =&gt; any) | string,<br>  …paths: string[]<br>) {<br>  return function selectOperator(source$: Observable<T>): Observable<K> {<br>    let mapped$: Observable<any>;</p>
+<pre><code>if (typeof pathOrMapFn === &#39;string&#39;) {
+  mapped$ = source$.pipe(pluck(pathOrMapFn, ...paths));
+} else if (typeof pathOrMapFn === &#39;function&#39;) {
+  mapped$ = source$.pipe(map(pathOrMapFn));
+} else {
+  throw new TypeError(
+    `Unexpected type &#39;${typeof pathOrMapFn}&#39; in select operator,` +
+      ` expected &#39;string&#39; or &#39;function&#39;`
+  );
+}
+
+return mapped$.pipe(distinctUntilChanged());
+</code></pre>
+<p>  };<br>}<br>{% endcodeblock %}</p>
+<h1 id="腦補時間"><a href="#腦補時間" class="headerlink" title="腦補時間"></a>腦補時間</h1><p>雖然還沒仔細研究底層運作，但是就目前認知，大概可以推想出可能的運作模式，NgRx 會透過 RxJS 的 Subject 來監看     <code>action</code> 與 <code>state</code>，我們可以透過 <code>dispatch</code> 方法來觸發 Subject(負責監看 Action) 的 <code>next</code> 方法，Store 會透過訂閱，再發生 <code>next</code> 時幫我們去呼叫我們所撰寫的 Reducer 方法，接著將回傳值透過 <code>next</code> 塞入 Subject(負責監看 State)內，最後 NgRx 再對外提供一個已經訂閱 Subject(負責監看 State) 的 Select Operator，而我們則透過訂閱這個 Subject 來取得對應 Action 的資料。<br><img src="/images/angular/training/ngrx/ngrx_009.png" alt="img">  </p>
+<ul>
+<li>Action 就像是 RxJS 的通知，只是 RxJS 只有3種狀態 <code>next</code>、<code>error</code>、<code>complete</code>，而 NgRx 可以讓我們自訂多種狀態，Action 應該是取自 UML：活動圖(activity diagram)，代表一個執行<strong>動作</strong>，其實我們也可以當成是”事件”或是”操作狀態”。</li>
+<li>State 雖然說是狀態，但是筆者認為比較像資料結構，我們將所有 Action 發生時所會用到的資料都訂定在 State 內，</li>
+<li>Reducer 就像是 RxJS 的 Subscriber，決定當狀態改變時要做什麼事情，只是它也像是一個轉換器，負責將 Action 轉換成對應的 State 資料。</li>
+<li>Reducer 傳入的 state 參數應該是指 Action 發生之前的資料狀態，而我們最後會在回傳新的 state 值，雖然沒有硬性規定，但是理論上 Reducer 應當回傳相同結構的 state 類別，因此除非真的會回傳不同類別，否則最好 利用 TypeScript  強制訂定回傳結構。</li>
+<li>Action 至少要包含 <code>type</code> 屬性，代表我們還可以帶入其他資料，所以 Reducer 不是只能單純判斷 <code>type</code> 屬性，使用 <code>type</code> 屬性主要是配合 Redux 風格。</li>
+<li>select 就是 RxJS Operator，它會回傳的就是透過 Observable 打包的 State 資料，所以我們可以直接在樣板上透過 <code>async</code> 來訂閱資料，或是我們自己訂閱(subscribe)，當然我們還可以先透過 RxJS Operator 再加工處理。</li>
+<li>Store 繼承自 <code>Observable&lt;T&gt;</code>，這個 <code>T</code> 只的就是 state 類別，所以如果 select 不符合你的需求，那就直接訂閱 Store 物件，自己處理。</li>
+</ul>
+<h1 id="四很像"><a href="#四很像" class="headerlink" title="四很像"></a>四很像</h1><p>看過 NgRx Store 的程式碼後聯想起漫畫 <a href="https://zh.wikipedia.org/zh-tw/HUNTER%C3%97HUNTER">HUNTER×HUNTER</a> 內雲古對小傑說的一句話。<br><img src="/images/angular/training/ngrx/ngrx_010.png" alt="img"><br>將所有學到的技能一次同時展現就會變成很厲害的絕招，沒錯，Store 可以說是將 RxJS 的分散的功能都整合在一起，我們可以將 Component 內的操作都建立對應的 Action，並將相關邏輯處理都包再 Reducer 內，這樣整個 class 就會更加乾淨。<br>還有別忘了 Store 同時也是個 SharedModule，只要畫面上所有有訂閱的 Component 都可以即時收到通知，例如將登入、登出封裝到 Store，我們在登入成功後將使用者資訊儲存到 State 內，這樣有訂閱的 Component 就可以檢查權限是否足夠，相對的，收到登出通知時 Component 可以決定是否關閉畫面。</p>

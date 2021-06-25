@@ -1,1059 +1,348 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-tw">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-TW">
+<head>
   <meta charset="UTF-8">
-<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="Angular,Service">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
-
-
-
-
-  <meta property="fb:admins" content="fb267234890438499">
-  <meta property="fb:app_id" content="267234890438499">
-
-
-
-<meta name="description" content="服務(Service)隨著功能的增加邏輯也會相對越來越複雜，上帝對象(God object)就會油然而生，維護性也會越來越困難，所以程式碼(TypeScript)以及樣板(HTML)的切割工作就會變得很重要，對於程式碼來說最常見的方式就是將資料邏輯與介面操作給分割開來。Angular 提供了一個可重複使用程式代碼的機制-服務(Service)，Service 類別內所宣告的 屬性 與 方法 可以讓">
-<meta name="keywords" content="Angular,Service">
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="服務(Service)隨著功能的增加邏輯也會相對越來越複雜，上帝對象(God object)就會油然而生，維護性也會越來越困難，所以程式碼(TypeScript)以及樣板(HTML)的切割工作就會變得很重要，對於程式碼來說最常見的方式就是將資料邏輯與介面操作給分割開來。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular 服務">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/17_angular_service/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="服務(Service)隨著功能的增加邏輯也會相對越來越複雜，上帝對象(God object)就會油然而生，維護性也會越來越困難，所以程式碼(TypeScript)以及樣板(HTML)的切割工作就會變得很重要，對於程式碼來說最常見的方式就是將資料邏輯與介面操作給分割開來。Angular 提供了一個可重複使用程式代碼的機制-服務(Service)，Service 類別內所宣告的 屬性 與 方法 可以讓">
-<meta property="og:locale" content="zh-tw">
+<meta property="og:description" content="服務(Service)隨著功能的增加邏輯也會相對越來越複雜，上帝對象(God object)就會油然而生，維護性也會越來越困難，所以程式碼(TypeScript)以及樣板(HTML)的切割工作就會變得很重要，對於程式碼來說最常見的方式就是將資料邏輯與介面操作給分割開來。">
+<meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/service/angular_service_01.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/binding/angular_binding_12.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-14T10:07:46.000Z">
+<meta property="article:published_time" content="2017-09-14T02:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-24T01:14:34.174Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="Angular">
+<meta property="article:tag" content="Service">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Angular 服務">
-<meta name="twitter:description" content="服務(Service)隨著功能的增加邏輯也會相對越來越複雜，上帝對象(God object)就會油然而生，維護性也會越來越困難，所以程式碼(TypeScript)以及樣板(HTML)的切割工作就會變得很重要，對於程式碼來說最常見的方式就是將資料邏輯與介面操作給分割開來。Angular 提供了一個可重複使用程式代碼的機制-服務(Service)，Service 類別內所宣告的 屬性 與 方法 可以讓">
 <meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/service/angular_service_01.png">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Jonny'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<link rel="canonical" href="https://jonny-huang.github.io/angular/training/17_angular_service/">
 
 
 
-  <link rel="canonical" href="https://jonny-huang.github.io/angular/training/17_angular_service/">
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;angular&#x2F;training&#x2F;17_angular_service&#x2F;&quot;,&quot;path&quot;:&quot;angular&#x2F;training&#x2F;17_angular_service&#x2F;&quot;,&quot;title&quot;:&quot;Angular 服務&quot;}</script>
 
-
-
-
-
-  <title>Angular 服務 | Jonny Huang 的學習筆記</title>
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>Angular 服務 | Jonny Huang 的學習筆記</title>
   
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '267234890438499',
-      xfbml      : true,
-      version    : 'v2.6'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/zh_tw/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-tw">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Jonny Huang 的學習筆記</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <h1 class="site-subtitle" itemprop="description">Angular、Flutter</h1>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首頁
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            目錄
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-flutter">
-          <a href="/flutter/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Flutter
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-angular">
-          <a href="/angular/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Angular
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-quotes">
-          <a href="/quotes/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br>
-            
-            欣雨露
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa-commenting fa-fw"></i>欣雨露</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%8D%E5%8B%99-Service"><span class="nav-number">1.</span> <span class="nav-text">服務(Service)</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
     
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/17_angular_service/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Jonny Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Jonny Huang 的學習筆記">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Angular 服務
+        </h1>
 
-        
-        
-          <h2 class="post-title" itemprop="name headline">Angular 服務</h2>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/06/24 09:14:34" itemprop="dateModified" datetime="2021-06-24T09:14:34+08:00">2021/06/24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Training/" itemprop="url" rel="index"><span itemprop="name">Training</span></a>
+        </span>
+    </span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新於</span>
-              
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-14T18:07:46+08:00">
-                2017/09/14
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Training/" itemprop="url" rel="index">
-                    <span itemprop="name">Training</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
+
     
-
+    
+    
     <div class="post-body" itemprop="articleBody">
+        <h1 id="服務-Service"><a href="#服務-Service" class="headerlink" title="服務(Service)"></a>服務(Service)</h1><p>隨著功能的增加邏輯也會相對越來越複雜，<strong>上帝對象</strong>(<strong>God object</strong>)就會油然而生，維護性也會越來越困難，所以程式碼(TypeScript)以及樣板(HTML)的切割工作就會變得很重要，對於程式碼來說最常見的方式就是將資料邏輯與介面操作給分割開來。  </p>
+<span id="more"></span>  
 
-      
-      
-
-      
-        <h1 id="服務-Service"><a href="#服務-Service" class="headerlink" title="服務(Service)"></a>服務(Service)</h1><p>隨著功能的增加邏輯也會相對越來越複雜，<strong>上帝對象</strong>(<strong>God object</strong>)就會油然而生，維護性也會越來越困難，所以程式碼(TypeScript)以及樣板(HTML)的切割工作就會變得很重要，對於程式碼來說最常見的方式就是將資料邏輯與介面操作給分割開來。<br>Angular 提供了一個可重複使用程式代碼的機制-<strong>服務</strong>(<strong>Service</strong>)，Service 類別內所宣告的 <strong>屬性</strong> 與 <strong>方法</strong> 可以讓不同類別使用，建立指令如下：<br><code>ng generate service [name]</code>  </p>
+<p>Angular 提供了一個可重複使用程式代碼的機制-<strong>服務</strong>(<strong>Service</strong>)，Service 類別內所宣告的 <strong>屬性</strong> 與 <strong>方法</strong> 可以讓不同類別使用，建立指令如下：<br><code>ng generate service [name]</code>  </p>
 <blockquote>
-<p><code>generate</code>：可以縮寫成 <code>g</code>。<br><code>service</code>：可以縮寫成 <code>s</code>。<br><code>--flat</code>：參數可以使 CLI 不要建立資料夾。<br>相關指令可以參考<a href="https://github.com/angular/angular-cli/wiki/generate-service" target="_blank" rel="noopener">官網文件</a></p>
+<p><code>generate</code>：可以縮寫成 <code>g</code>。<br><code>service</code>：可以縮寫成 <code>s</code>。<br><code>--flat</code>：參數可以使 CLI 不要建立資料夾。<br>相關指令可以參考<a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki/generate-service">官網文件</a></p>
 </blockquote>
-<p>首先我們在 <code>src\app\</code> 路徑下建立一個 <code>service</code> 資料夾。<br><img src="/images/angular/training/service/angular_service_01.png" alt=""><br>接下來透過下列指令建立 <strong>CalendarService</strong>：<br><code>ng g s service\calendar --flat</code><br>開啟 <code>src\app\service\calendar.service.ts</code>，可以發現這個類別加入了一個 <code>@Injectable()</code> 裝飾器。</p>
-<pre><code>import { Injectable } from &#39;@angular&#x2F;core&#39;;
-
-@Injectable()
-export class CalendarService {
-
-  constructor() { }
-
-}
-</code></pre>
+<p>首先我們在 <code>src\app\</code> 路徑下建立一個 <code>service</code> 資料夾。<br><img src="/images/angular/training/service/angular_service_01.png" alt="img"><br>接下來透過下列指令建立 <strong>CalendarService</strong>：<br><code>ng g s service\calendar --flat</code><br>開啟 <code>src\app\service\calendar.service.ts</code>，可以發現這個類別加入了一個 <code>@Injectable()</code> 裝飾器。</p>
+<figure class="highlight ts"><figcaption><span>calendar.service.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">CalendarService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>接下來將 <strong>CalendarService</strong> 註冊到 NgModule 內，我們可以假想每次註冊都會產生一個實體，如果將服務註冊到多個模組內，這不僅會浪費更多記憶體，如果服務本身會暫存資料，當不同元件對應的到不同服務實體時，元件對服務所做的資料異動都會造成資料不同步的問題，這邊我們直接註冊在起始模組-<strong>AppModule</strong> 內。  </p>
 <blockquote>
 <p>註冊 <strong>Component</strong> 時是加到 <strong>@NgModule</strong> 的 <code>declarations</code> 屬性。<br>註冊 <strong>Module</strong> 時是加到 <strong>@NgModule</strong> 的 <code>imports</code> 屬性。<br>註冊 <strong>Service</strong> 時是加到 <strong>@NgModule</strong> 的 <code>providers</code> 屬性或者是 <strong>@Component</strong> 的 <code>providers</code> 屬性。</p>
 </blockquote>
 <p>編輯 <code>src\app\app.module.ts</code>。</p>
-<pre><code>import { BrowserAnimationsModule } from &#39;@angular&#x2F;platform-browser&#x2F;animations&#39;;
-...
-import { CalendarService } from &#39;.&#x2F;service&#x2F;calendar.service&#39;;
-
-@NgModule({
-  declarations: [
-    ...
-  ],
-  imports: [
-    ...
-  ],
-  providers: [CalendarService],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-</code></pre>
+<figure class="highlight ts"><figcaption><span>app.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; BrowserAnimationsModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/platform-browser/animations&#x27;</span>;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">import</span> &#123; CalendarService &#125; <span class="keyword">from</span> <span class="string">&#x27;./service/calendar.service&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">declarations</span>: [</span><br><span class="line">    ...</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">imports</span>: [</span><br><span class="line">    ...</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">providers</span>: [CalendarService],</span><br><span class="line">  <span class="attr">bootstrap</span>: [AppComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppModule</span> </span>&#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p><strong>服務</strong> 也可以註冊到 <strong>元件</strong> 內，只是這時就代表這個實體被該元件所獨佔，一般來說除非是該服務確實只給特定元件使用否則建議都註冊到模組內，接下來我們會透過<strong>依賴注入</strong>(<strong>DI</strong> = <strong>Dependency Injection</strong>)來存取服務，存取方式也很簡單，只要在建構函式加入所需服務類別的參數即可。<br>編輯 <code>src\app\employee\calendar\calendar.component.ts</code>，在建構式內加上 <code>_calendarService</code> 參數，並宣告一個全域變數 <code>calendarService</code> 來承接。</p>
-<pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
-import { CalendarService } from &#39;..&#x2F;..&#x2F;service&#x2F;calendar.service&#39;;
-
-@Component({
-  selector: &#39;emp-calendar&#39;,
-  templateUrl: &#39;.&#x2F;calendar.component.html&#39;,
-  styleUrls: [&#39;.&#x2F;calendar.component.scss&#39;]
-})
-export class CalendarComponent implements OnInit {
-  ...
-  private calendarService: CalendarService;
-  constructor(_calendarService: CalendarService) {
-    this.calendarService = _calendarService;
-  }
-  ...
-}
-</code></pre>
+<figure class="highlight ts"><figcaption><span>calendar.component.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component, OnInit &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CalendarService &#125; <span class="keyword">from</span> <span class="string">&#x27;../../service/calendar.service&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;emp-calendar&#x27;</span>,</span><br><span class="line">  <span class="attr">templateUrl</span>: <span class="string">&#x27;./calendar.component.html&#x27;</span>,</span><br><span class="line">  <span class="attr">styleUrls</span>: [<span class="string">&#x27;./calendar.component.scss&#x27;</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">CalendarComponent</span> <span class="title">implements</span> <span class="title">OnInit</span> </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">private</span> calendarService: CalendarService;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">_calendarService: CalendarService</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.calendarService = _calendarService;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>如果 <code>calendarService</code> 存取修飾詞改為 <code>public</code> 時，則元件樣板(<code>calendar.component.html</code>)也可以引用該變數。</p>
 </blockquote>
 <p>TypeScript 提供一個更簡潔的語法糖，直接在建構式參數前加入存取修飾詞，TypeScript 會自動幫我們建立一個同名的全域變數，因此我們修改如下：  </p>
-<pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
-import { CalendarService } from &#39;..&#x2F;..&#x2F;service&#x2F;calendar.service&#39;;
-
-@Component({
-  selector: &#39;emp-calendar&#39;,
-  templateUrl: &#39;.&#x2F;calendar.component.html&#39;,
-  styleUrls: [&#39;.&#x2F;calendar.component.scss&#39;]
-})
-export class CalendarComponent implements OnInit {
-  ...
-  constructor(private calendarService: CalendarService) { }
-  ...
-}
-</code></pre>
+<figure class="highlight ts"><figcaption><span>calendar.component.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component, OnInit &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CalendarService &#125; <span class="keyword">from</span> <span class="string">&#x27;../../service/calendar.service&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;emp-calendar&#x27;</span>,</span><br><span class="line">  <span class="attr">templateUrl</span>: <span class="string">&#x27;./calendar.component.html&#x27;</span>,</span><br><span class="line">  <span class="attr">styleUrls</span>: [<span class="string">&#x27;./calendar.component.scss&#x27;</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">CalendarComponent</span> <span class="title">implements</span> <span class="title">OnInit</span> </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> calendarService: CalendarService</span>)</span> &#123; &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>接下來我們將 <strong>CalendarComponent</strong> 的程式碼複製到 <code>src\app\service\calendar.service.ts</code>。</p>
-<pre><code>import { Injectable } from &#39;@angular&#x2F;core&#39;;
-
-@Injectable()
-export class CalendarService {
-  selectedDay: Date;
-  selectedMonth = &#39;&#39;;
-  dayHeaders = [&#39;日&#39;, &#39;一&#39;, &#39;二&#39;, &#39;三&#39;, &#39;四&#39;, &#39;五&#39;, &#39;六&#39;];
-  dayColors = [&#39;red&#39;, &#39;white&#39;, &#39;white&#39;, &#39;white&#39;, &#39;white&#39;, &#39;white&#39;, &#39;green&#39;];
-  days = [];
-  lastMonth_colspan = 0;
-  selectedItem: any;
-  constructor() { }
-
-  getToday() {
-    this.selectedDay = new Date();
-    this.getDay();
-  }
-
-  getDay(addDMonth: number = 0) {
-    let year = this.selectedDay.getFullYear();
-    let month = this.selectedDay.getMonth() + addDMonth;
-    const dt = new Date(year, month, 1);
-    year = dt.getFullYear();
-    month = dt.getMonth();
-
-    const maxDay = new Date(year, month + 1, 0).getDate();
-    const newDay = this.selectedDay.getDate();
-    this.selectedDay = new Date(year, month, (newDay &lt; maxDay) ? newDay : maxDay);
-    const dayNumber = this.selectedDay.getDate();
-    this.lastMonth_colspan = new Date(year, month, 1).getDay();
-    const _days = [];
-    for (let day = 1; day &lt;= 31; day++) {
-      const time = new Date(year, month, day);
-      if (time.getMonth() &gt; month) {
-        break;
-      }
-      const isSelected = time.getDate() === dayNumber;
-      const d: any = {
-        isSelected: isSelected,
-        datetime: time,
-        day: day,
-        week: time.getDay()
-      };
-      if (isSelected) {
-        this.selectedItem = d;
-      }
-      _days.push(d);
-    }
-    this.days = [..._days];
-    month++;
-    &#x2F;&#x2F; month為13時表示隔年的1月。
-    if (month === 13) {
-      month = 1;
-      year++;
-    }
-    this.selectedMonth = `${year} 年 ${month} 月`;
-    this.getNote();
-  }
-
-  selectdDay(item: any) {
-    if (this.selectedItem) {
-      this.selectedItem.isSelected = false;
-    }
-    item.isSelected = true;
-    this.selectedItem = item;
-    this.selectedDay = item.datetime;
-  }
-
-  getNote() {
-    if (this.days.length &gt; 0) {
-      const d = Math.floor(Math.random() * 28);
-      this.days.forEach(item =&gt; {
-        const notes = [];
-        if (item.week !== 0 &amp;&amp; item.week !== 6) {
-          if (item.week === 1) {
-            notes.push({ type: 1, subject: &#39;8:00 每周會議&#39; });
-          }
-          let b = Math.random() &gt;= 0.5;
-          if (b) {
-            notes.push({ type: 2, subject: &#39;XXX客戶拜訪&#39; });
-          }
-          b = Math.random() &gt;= 0.5;
-          if (b) {
-            notes.push({ type: 3, subject: &#39;專案討論&#39; });
-          }
-          if (item.day === d) {
-            notes.push({ type: 4, subject: &#39;部門聚餐&#39; });
-          }
-        }
-        item.notes = notes;
-      });
-
-    }
-  }
-}
-</code></pre>
+<figure class="highlight ts"><figcaption><span>calendar.service.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">CalendarService</span> </span>&#123;</span><br><span class="line">  <span class="attr">selectedDay</span>: <span class="built_in">Date</span>;</span><br><span class="line">  selectedMonth = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  dayHeaders = [<span class="string">&#x27;日&#x27;</span>, <span class="string">&#x27;一&#x27;</span>, <span class="string">&#x27;二&#x27;</span>, <span class="string">&#x27;三&#x27;</span>, <span class="string">&#x27;四&#x27;</span>, <span class="string">&#x27;五&#x27;</span>, <span class="string">&#x27;六&#x27;</span>];</span><br><span class="line">  dayColors = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;white&#x27;</span>, <span class="string">&#x27;white&#x27;</span>, <span class="string">&#x27;white&#x27;</span>, <span class="string">&#x27;white&#x27;</span>, <span class="string">&#x27;white&#x27;</span>, <span class="string">&#x27;green&#x27;</span>];</span><br><span class="line">  days = [];</span><br><span class="line">  lastMonth_colspan = <span class="number">0</span>;</span><br><span class="line">  selectedItem: <span class="built_in">any</span>;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">getToday</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.selectedDay = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    <span class="built_in">this</span>.getDay();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">getDay</span>(<span class="params">addDMonth: <span class="built_in">number</span> = <span class="number">0</span></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> year = <span class="built_in">this</span>.selectedDay.getFullYear();</span><br><span class="line">    <span class="keyword">let</span> month = <span class="built_in">this</span>.selectedDay.getMonth() + addDMonth;</span><br><span class="line">    <span class="keyword">const</span> dt = <span class="keyword">new</span> <span class="built_in">Date</span>(year, month, <span class="number">1</span>);</span><br><span class="line">    year = dt.getFullYear();</span><br><span class="line">    month = dt.getMonth();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> maxDay = <span class="keyword">new</span> <span class="built_in">Date</span>(year, month + <span class="number">1</span>, <span class="number">0</span>).getDate();</span><br><span class="line">    <span class="keyword">const</span> newDay = <span class="built_in">this</span>.selectedDay.getDate();</span><br><span class="line">    <span class="built_in">this</span>.selectedDay = <span class="keyword">new</span> <span class="built_in">Date</span>(year, month, (newDay &lt; maxDay) ? newDay : maxDay);</span><br><span class="line">    <span class="keyword">const</span> dayNumber = <span class="built_in">this</span>.selectedDay.getDate();</span><br><span class="line">    <span class="built_in">this</span>.lastMonth_colspan = <span class="keyword">new</span> <span class="built_in">Date</span>(year, month, <span class="number">1</span>).getDay();</span><br><span class="line">    <span class="keyword">const</span> _days = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> day = <span class="number">1</span>; day &lt;= <span class="number">31</span>; day++) &#123;</span><br><span class="line">      <span class="keyword">const</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>(year, month, day);</span><br><span class="line">      <span class="keyword">if</span> (time.getMonth() &gt; month) &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">const</span> isSelected = time.getDate() === dayNumber;</span><br><span class="line">      <span class="keyword">const</span> d: <span class="built_in">any</span> = &#123;</span><br><span class="line">        <span class="attr">isSelected</span>: isSelected,</span><br><span class="line">        <span class="attr">datetime</span>: time,</span><br><span class="line">        <span class="attr">day</span>: day,</span><br><span class="line">        <span class="attr">week</span>: time.getDay()</span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="keyword">if</span> (isSelected) &#123;</span><br><span class="line">        <span class="built_in">this</span>.selectedItem = d;</span><br><span class="line">      &#125;</span><br><span class="line">      _days.push(d);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">this</span>.days = [..._days];</span><br><span class="line">    month++;</span><br><span class="line">    <span class="comment">// month為13時表示隔年的1月。</span></span><br><span class="line">    <span class="keyword">if</span> (month === <span class="number">13</span>) &#123;</span><br><span class="line">      month = <span class="number">1</span>;</span><br><span class="line">      year++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">this</span>.selectedMonth = <span class="string">`<span class="subst">$&#123;year&#125;</span> 年 <span class="subst">$&#123;month&#125;</span> 月`</span>;</span><br><span class="line">    <span class="built_in">this</span>.getNote();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">selectdDay</span>(<span class="params">item: <span class="built_in">any</span></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.selectedItem) &#123;</span><br><span class="line">      <span class="built_in">this</span>.selectedItem.isSelected = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    item.isSelected = <span class="literal">true</span>;</span><br><span class="line">    <span class="built_in">this</span>.selectedItem = item;</span><br><span class="line">    <span class="built_in">this</span>.selectedDay = item.datetime;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">getNote</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.days.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> d = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">28</span>);</span><br><span class="line">      <span class="built_in">this</span>.days.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> notes = [];</span><br><span class="line">        <span class="keyword">if</span> (item.week !== <span class="number">0</span> &amp;&amp; item.week !== <span class="number">6</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span> (item.week === <span class="number">1</span>) &#123;</span><br><span class="line">            notes.push(&#123; <span class="attr">type</span>: <span class="number">1</span>, <span class="attr">subject</span>: <span class="string">&#x27;8:00 每周會議&#x27;</span> &#125;);</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">let</span> b = <span class="built_in">Math</span>.random() &gt;= <span class="number">0.5</span>;</span><br><span class="line">          <span class="keyword">if</span> (b) &#123;</span><br><span class="line">            notes.push(&#123; <span class="attr">type</span>: <span class="number">2</span>, <span class="attr">subject</span>: <span class="string">&#x27;XXX客戶拜訪&#x27;</span> &#125;);</span><br><span class="line">          &#125;</span><br><span class="line">          b = <span class="built_in">Math</span>.random() &gt;= <span class="number">0.5</span>;</span><br><span class="line">          <span class="keyword">if</span> (b) &#123;</span><br><span class="line">            notes.push(&#123; <span class="attr">type</span>: <span class="number">3</span>, <span class="attr">subject</span>: <span class="string">&#x27;專案討論&#x27;</span> &#125;);</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">if</span> (item.day === d) &#123;</span><br><span class="line">            notes.push(&#123; <span class="attr">type</span>: <span class="number">4</span>, <span class="attr">subject</span>: <span class="string">&#x27;部門聚餐&#x27;</span> &#125;);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        item.notes = notes;</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>修改 <code>calendar.component.ts</code>，將方法內的邏輯都清空改呼叫 <strong>CalendarService</strong> 所對應的同名方法，並將 <code>calendarService</code> 存取修飾詞改成 <code>public</code>，以便將樣板(<code>calendar.component.html</code>)的資料來源都指向到 <strong>CalendarService</strong>。</p>
-<pre><code>import { Component, OnInit } from &#39;@angular&#x2F;core&#39;;
-import { CalendarService } from &#39;..&#x2F;..&#x2F;service&#x2F;calendar.service&#39;;
-
-@Component({
-  selector: &#39;emp-calendar&#39;,
-  templateUrl: &#39;.&#x2F;calendar.component.html&#39;,
-  styleUrls: [&#39;.&#x2F;calendar.component.scss&#39;]
-})
-export class CalendarComponent implements OnInit {
-  constructor(public calendarService: CalendarService) { }
-
-  ngOnInit() {
-    this.getToday();
-  }
-
-  getToday() {
-    this.calendarService.getToday();
-  }
-
-  getDay(addDMonth: number = 0) {
-    this.calendarService.getDay(addDMonth);
-  }
-
-  selectdDay(item: any) {
-    this.calendarService.selectdDay(item);
-  }
-
-}
-</code></pre>
-<pre><code>&lt;div fxLayout=&quot;row&quot; fxLayout.xs=&quot;column&quot;&gt;
-  &lt;div fxFlex=&quot;70&quot; fxFlex.xs&gt;
-    &lt;md-card&gt;
-      &lt;md-card-header&gt;
-        &lt;md-card-title&gt;行事曆&lt;&#x2F;md-card-title&gt;
-        &lt;md-card-subtitle&gt;
-          &lt;h1&gt;{ {calendarService.selectedMonth} }&lt;&#x2F;h1&gt;
-        &lt;&#x2F;md-card-subtitle&gt;
-      &lt;&#x2F;md-card-header&gt;
-      &lt;md-card-content&gt;
-        &lt;md-grid-list cols=&quot;7&quot; rowHeight=&quot;68px&quot;&gt;
-          &lt;md-grid-tile *ngFor=&quot;let header of calendarService.dayHeaders; let i = index&quot; [ngStyle]=&quot;{&#39;color&#39;: calendarService.dayColors[i]}&quot;&gt;
-            &lt;h3&gt;{ {header} }&lt;&#x2F;h3&gt;
-          &lt;&#x2F;md-grid-tile&gt;
-          &lt;md-grid-tile [colspan]=&quot;calendarService.lastMonth_colspan&quot; *ngIf=&quot;calendarService.lastMonth_colspan&quot;&gt;&lt;&#x2F;md-grid-tile&gt;
-          &lt;md-grid-tile *ngFor=&quot;let item of calendarService.days&quot; [ngStyle]=&quot;{&#39;color&#39;: calendarService.dayColors[item.week]}&quot; class=&quot;day&quot; (click)=&quot;selectdDay(item)&quot;&gt;
-            &lt;div fxFill *ngIf=&quot;item.isSelected&quot; class=&quot;selected&quot;&gt;&lt;&#x2F;div&gt;
-            &lt;span class=&quot;text&quot;&gt;{ {item.day} }&lt;&#x2F;span&gt;
-            &lt;div fxFill fxLayout=&quot;row&quot; fxLayoutAlign=&quot;start end&quot; class=&quot;note&quot;&gt;
-                &lt;ng-container *ngFor=&quot;let note of item.notes&quot;&gt;
-                    &lt;ng-container [ngSwitch]=&quot;note.type&quot;&gt;
-                        &lt;md-icon *ngSwitchCase=&quot;1&quot;&gt;assessment&lt;&#x2F;md-icon&gt;
-                        &lt;md-icon *ngSwitchCase=&quot;2&quot;&gt;directions_run&lt;&#x2F;md-icon&gt;
-                        &lt;md-icon *ngSwitchCase=&quot;3&quot;&gt;forum&lt;&#x2F;md-icon&gt;
-                        &lt;md-icon *ngSwitchCase=&quot;4&quot;&gt;local_dining&lt;&#x2F;md-icon&gt;
-                        &lt;md-icon *ngSwitchDefault=&quot;&quot;&gt;alarm&lt;&#x2F;md-icon&gt;
-                    &lt;&#x2F;ng-container&gt;
-                &lt;&#x2F;ng-container&gt;
-            &lt;&#x2F;div&gt;
-          &lt;&#x2F;md-grid-tile&gt;
-        &lt;&#x2F;md-grid-list&gt;
-      &lt;&#x2F;md-card-content&gt;
-      &lt;md-card-actions&gt;
-        &lt;button md-button (click)=&quot;getDay(-1)&quot;&gt;上個月&lt;&#x2F;button&gt;
-        &lt;button md-button (click)=&quot;getToday()&quot;&gt;本月&lt;&#x2F;button&gt;
-        &lt;button md-button (click)=&quot;getDay(1)&quot;&gt;下個月&lt;&#x2F;button&gt;
-      &lt;&#x2F;md-card-actions&gt;
-    &lt;&#x2F;md-card&gt;
-  &lt;&#x2F;div&gt;
-  &lt;div fxFlex&gt;
-    &lt;md-card&gt;
-      &lt;md-card-content&gt;
-        &lt;h1&gt;{ {calendarService.selectedDay | date:&#39;yyyy&#x2F;MM&#x2F;dd&#39;} }&lt;&#x2F;h1&gt;
-        &lt;md-divider&gt;&lt;&#x2F;md-divider&gt;
-        &lt;md-list&gt;
-          &lt;md-list-item *ngFor=&quot;let item of calendarService.selectedItem.notes; let i = index&quot;&gt;
-            { {i+1} }. { {item.subject} }
-          &lt;&#x2F;md-list-item&gt;
-        &lt;&#x2F;md-list&gt;
-      &lt;&#x2F;md-card-content&gt;
-    &lt;&#x2F;md-card&gt;
-  &lt;&#x2F;div&gt;
-&lt;&#x2F;div&gt;
-</code></pre>
-<p>執行專案，從瀏覽器查看沒有任何改變，但是我們可以看到 <code>calendar.component.ts</code> 變得非常乾淨，沒幾行程式碼。<br><img src="/images/angular/training/binding/angular_binding_12.gif" alt="">  </p>
+<figure class="highlight ts"><figcaption><span>calendar.component.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component, OnInit &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CalendarService &#125; <span class="keyword">from</span> <span class="string">&#x27;../../service/calendar.service&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;emp-calendar&#x27;</span>,</span><br><span class="line">  <span class="attr">templateUrl</span>: <span class="string">&#x27;./calendar.component.html&#x27;</span>,</span><br><span class="line">  <span class="attr">styleUrls</span>: [<span class="string">&#x27;./calendar.component.scss&#x27;</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">CalendarComponent</span> <span class="title">implements</span> <span class="title">OnInit</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">public</span> calendarService: CalendarService</span>)</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">ngOnInit</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.getToday();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">getToday</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.calendarService.getToday();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">getDay</span>(<span class="params">addDMonth: <span class="built_in">number</span> = <span class="number">0</span></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.calendarService.getDay(addDMonth);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">selectdDay</span>(<span class="params">item: <span class="built_in">any</span></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.calendarService.selectdDay(item);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>calendar.component.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">fxLayout</span>=<span class="string">&quot;row&quot;</span> <span class="attr">fxLayout.xs</span>=<span class="string">&quot;column&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">fxFlex</span>=<span class="string">&quot;70&quot;</span> <span class="attr">fxFlex.xs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">md-card</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">md-card-header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">md-card-title</span>&gt;</span>行事曆<span class="tag">&lt;/<span class="name">md-card-title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">md-card-subtitle</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123; &#123;calendarService.selectedMonth&#125; &#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">md-card-subtitle</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">md-card-header</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">md-card-content</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">md-grid-list</span> <span class="attr">cols</span>=<span class="string">&quot;7&quot;</span> <span class="attr">rowHeight</span>=<span class="string">&quot;68px&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">md-grid-tile</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let header of calendarService.dayHeaders; let i = index&quot;</span> [<span class="attr">ngStyle</span>]=<span class="string">&quot;&#123;&#x27;color&#x27;: calendarService.dayColors[i]&#125;&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123; &#123;header&#125; &#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">md-grid-tile</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">md-grid-tile</span> [<span class="attr">colspan</span>]=<span class="string">&quot;calendarService.lastMonth_colspan&quot;</span> *<span class="attr">ngIf</span>=<span class="string">&quot;calendarService.lastMonth_colspan&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">md-grid-tile</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">md-grid-tile</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let item of calendarService.days&quot;</span> [<span class="attr">ngStyle</span>]=<span class="string">&quot;&#123;&#x27;color&#x27;: calendarService.dayColors[item.week]&#125;&quot;</span> <span class="attr">class</span>=<span class="string">&quot;day&quot;</span> (<span class="attr">click</span>)=<span class="string">&quot;selectdDay(item)&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">fxFill</span> *<span class="attr">ngIf</span>=<span class="string">&quot;item.isSelected&quot;</span> <span class="attr">class</span>=<span class="string">&quot;selected&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;text&quot;</span>&gt;</span>&#123; &#123;item.day&#125; &#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">fxFill</span> <span class="attr">fxLayout</span>=<span class="string">&quot;row&quot;</span> <span class="attr">fxLayoutAlign</span>=<span class="string">&quot;start end&quot;</span> <span class="attr">class</span>=<span class="string">&quot;note&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">ng-container</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let note of item.notes&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">ng-container</span> [<span class="attr">ngSwitch</span>]=<span class="string">&quot;note.type&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">md-icon</span> *<span class="attr">ngSwitchCase</span>=<span class="string">&quot;1&quot;</span>&gt;</span>assessment<span class="tag">&lt;/<span class="name">md-icon</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">md-icon</span> *<span class="attr">ngSwitchCase</span>=<span class="string">&quot;2&quot;</span>&gt;</span>directions_run<span class="tag">&lt;/<span class="name">md-icon</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">md-icon</span> *<span class="attr">ngSwitchCase</span>=<span class="string">&quot;3&quot;</span>&gt;</span>forum<span class="tag">&lt;/<span class="name">md-icon</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">md-icon</span> *<span class="attr">ngSwitchCase</span>=<span class="string">&quot;4&quot;</span>&gt;</span>local_dining<span class="tag">&lt;/<span class="name">md-icon</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">md-icon</span> *<span class="attr">ngSwitchDefault</span>=<span class="string">&quot;&quot;</span>&gt;</span>alarm<span class="tag">&lt;/<span class="name">md-icon</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">ng-container</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">ng-container</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">md-grid-tile</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">md-grid-list</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">md-card-content</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">md-card-actions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">md-button</span> (<span class="attr">click</span>)=<span class="string">&quot;getDay(-1)&quot;</span>&gt;</span>上個月<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">md-button</span> (<span class="attr">click</span>)=<span class="string">&quot;getToday()&quot;</span>&gt;</span>本月<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">md-button</span> (<span class="attr">click</span>)=<span class="string">&quot;getDay(1)&quot;</span>&gt;</span>下個月<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">md-card-actions</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">md-card</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">fxFlex</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">md-card</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">md-card-content</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123; &#123;calendarService.selectedDay | date:&#x27;yyyy/MM/dd&#x27;&#125; &#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">md-divider</span>&gt;</span><span class="tag">&lt;/<span class="name">md-divider</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">md-list</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">md-list-item</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let item of calendarService.selectedItem.notes; let i = index&quot;</span>&gt;</span></span><br><span class="line">            &#123; &#123;i+1&#125; &#125;. &#123; &#123;item.subject&#125; &#125;</span><br><span class="line">          <span class="tag">&lt;/<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">md-list</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">md-card-content</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">md-card</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>執行專案，從瀏覽器查看沒有任何改變，但是我們可以看到 <code>calendar.component.ts</code> 變得非常乾淨，沒幾行程式碼。<br><img src="/images/angular/training/binding/angular_binding_12.gif" alt="img">  </p>
 <blockquote>
 <p>上面程式移植方式其實不是很好，因為跟 <strong>CalendarComponent</strong> 樣板有關的邏輯與變數都被移並移植到 <strong>CalendarService</strong>，這樣就會失去服務可共用的特性，在這邊主要是演繹如何簡化元件類別程式碼的複雜度。</p>
 </blockquote>
-<p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-14.zip"><strong>first-app_2017-09-14.zip</strong></a>  </p>
+<img src="/images/download.png" class="" width="36">[**first-app_2017-09-14.zip**](/uploads/first-app_2017-09-14.zip)  
 
-      
     </div>
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
+    
+    
+    
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Angular/" rel="tag"># Angular</a>
-          
-            <a href="/tags/Service/" rel="tag"># Service</a>
-          
-        </div>
-      
-
-      
-      
-        <div class="post-widgets">
-        
-
-        
-          <div class="social-like">
-            
-
-            
-              <div class="fb_like">
-                <div class="fb-like" data-layout="button_count" data-share="true"></div>
-              </div>
-            
-          </div>
-        
-        </div>
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/angular/training/16_angular_binding/" rel="next" title="Angular 單向繫結">
-                <i class="fa fa-chevron-left"></i> Angular 單向繫結
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/Angular/" rel="tag"># Angular</a>
+              <a href="/tags/Service/" rel="tag"># Service</a>
           </div>
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/ionic/training/00_development_environment/" rel="prev" title="Ionic 開發環境">
-                Ionic 開發環境 <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/angular/training/16_angular_binding/" rel="prev" title="Angular 單向繫結">
+                  <i class="fa fa-chevron-left"></i> Angular 單向繫結
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/ionic/training/00_development_environment/" rel="next" title="Ionic 開發環境">
+                  Ionic 開發環境 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-        </div>
-      
-
-      
-      
     </footer>
   </article>
+</div>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
 
 
-          </div>
-          
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Jonny Huang">
-          <p class="site-author-name" itemprop="name">Jonny Huang</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-           
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">66</span>
-                <span class="site-state-item-name">文章</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">分類</span>
-              
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">28</span>
-                <span class="site-state-item-name">標籤</span>
-              
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
-                  
-                    <i class="fa fa-fw fa-facebook-official"></i>
-                  
-                  Facebook
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>
-                  
-                  Email
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-block">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/flutter.tw/" title="Flutter Taiwan" target="_blank">Flutter Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#服務-Service"><span class="nav-number">1.</span> <span class="nav-text">服務(Service)</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
+<div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-Jonny Huang"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
 </div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
-</div>
-
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -1067,27 +356,6 @@ export class CalendarComponent implements OnInit {
 
 
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
-<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-      prettyPrint();
-  });
-</script>
 
 </body>
 </html>

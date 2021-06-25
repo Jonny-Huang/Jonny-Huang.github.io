@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="前言近年來在軟體開發領域可以說是必修課程越來越多，只會寫程式的人(Coder)似乎不能再稱作程式設計師(Programmer)，一些比較有制度的公司也會透過教育訓練來提升軟體品質，但是就專案類型的公司似乎很難進化，因為不論是新技術或是新架構的導入都會有很多問題要突破，例如：人員流動率、專案交期，有些專案甚至是接案後才開始找人，所以很多新東西都變成遙不可及的理想甚至是幻想，今天筆者分享一些委屈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="化繁為簡：01 資料庫篇">
+<meta property="og:url" content="https://jonny-huang.github.io/projects/06_feasibility_01/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言近年來在軟體開發領域可以說是必修課程越來越多，只會寫程式的人(Coder)似乎不能再稱作程式設計師(Programmer)，一些比較有制度的公司也會透過教育訓練來提升軟體品質，但是就專案類型的公司似乎很難進化，因為不論是新技術或是新架構的導入都會有很多問題要突破，例如：人員流動率、專案交期，有些專案甚至是接案後才開始找人，所以很多新東西都變成遙不可及的理想甚至是幻想，今天筆者分享一些委屈">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/01/feasibility_001.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/01/feasibility_002.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/01/feasibility_003.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/01/feasibility_004.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/01/feasibility_005.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/01/feasibility_006.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/01/feasibility_007.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/01/feasibility_008.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/01/feasibility_009.gif">
+<meta property="article:published_time" content="2021-06-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-25T03:23:50.667Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="Projects">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/projects/feasibility/01/feasibility_001.png">
+
+
+<link rel="canonical" href="https://jonny-huang.github.io/projects/06_feasibility_01/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;projects&#x2F;06_feasibility_01&#x2F;&quot;,&quot;path&quot;:&quot;projects&#x2F;06_feasibility_01&#x2F;&quot;,&quot;title&quot;:&quot;化繁為簡：01 資料庫篇&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>化繁為簡：01 資料庫篇 | Jonny Huang 的學習筆記</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa-commenting fa-fw"></i>欣雨露</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E5%BA%AB"><span class="nav-number">2.</span> <span class="nav-text">資料庫</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%82%99%E4%BB%BD%E3%80%81%E9%82%84%E5%8E%9F"><span class="nav-number">2.1.</span> <span class="nav-text">備份、還原</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%8C%E8%A8%98"><span class="nav-number">3.</span> <span class="nav-text">後記</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/projects/06_feasibility_01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          化繁為簡：01 資料庫篇
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/06/25 11:23:50" itemprop="dateModified" datetime="2021-06-25T11:23:50+08:00">2021/06/25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Projects/" itemprop="url" rel="index"><span itemprop="name">Projects</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img src="/images/projects/feasibility/01/feasibility_001.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近年來在軟體開發領域可以說是必修課程越來越多，只會寫程式的人(Coder)似乎不能再稱作<strong>程式設計師</strong>(Programmer)，一些比較有制度的公司也會透過教育訓練來提升軟體品質，但是就專案類型的公司似乎很難進化，因為不論是新技術或是新架構的導入都會有很多問題要突破，例如：人員流動率、專案交期，有些專案甚至是接案後才開始找人，所以很多<strong>新東西</strong>都變成遙不可及的理想甚至是幻想，今天筆者分享一些<strong>委屈求全</strong>的經驗。  </p>
+<span id="more"></span>  
+
+<h1 id="資料庫"><a href="#資料庫" class="headerlink" title="資料庫"></a>資料庫</h1><p>筆者這幾年除非客戶指定，否則資料庫幾乎都使用 <a target="_blank" rel="noopener" href="https://www.postgresql.org/">PostgreSQL</a>，它在<a target="_blank" rel="noopener" href="https://db-engines.com/en/">DB-Engines</a>穩居第四，最重要的是<strong>免費的</strong>，而且功能十分齊全，對於經費有限的專案來說是不錯的選擇。<br><img src="/images/projects/feasibility/01/feasibility_002.png" alt="img">  </p>
+<p>接下來我們針對資料庫的表單設計做出一些規範：  </p>
+<ul>
+<li><p><strong>主鍵(Primary Key)到底是要用 數值 還是 UUID？</strong><br>  數值型別擁有較好的搜尋效能，但是如果需要資料移轉或是合併時主鍵重複的問題會讓人非常痛苦，UUID 在資料移轉上有著很大的方便，因為要發生重複機率很低，但是它的可讀性可以說是零，所以最簡單的方式就是兩者都並存，筆者會將 id 設為數值型別並設為主鍵，另外增設一個 uid 型別為 UUID，重點記得<strong>加入索引</strong>(<strong>Index</strong>)來增加搜尋效能，程式在查詢時會以 uid 當作條件來查詢。<br>  <img src="/images/projects/feasibility/01/feasibility_003.png" alt="img">  </p>
+<blockquote>
+<p>以往筆者 id 都會使用 integer(4 bytes)，但是少數的資料表的筆數在未來有機會超出，所以一勞永逸的辦法就是統一使用 bigint(8 bytes)，規則越少學習或移轉成本才會越低。<br><img src="/images/projects/feasibility/01/feasibility_004.png" alt="img"><br>當然有些客戶會自訂PK欄位規則(例如年、月、日加流水號)，這邊筆者建議就增設欄位來紀錄即可，把它當作一個普通欄位來對待，甚至不一定要設定唯一性(Unique Key)，如果保資料庫只能透過後端程式來存取，我們只要在後端程式新增及修改時去檢核是否有重複，因為客戶制定的編碼規則一般不會太長，最容易發生的就是流水號不足，所以<strong>真的</strong>拿客戶訂的PK當資料表的PK，無疑是放置一顆未爆彈。  </p>
+</blockquote>
+</li>
+<li><p><strong>要不要加關聯性(Relation)？</strong><br>  大部分的表單其實都是 Master-Detail 架構，主表下面會有多筆明細資料，所以加上關聯性似乎是必要動作，資料庫內的資料本來就應該要很嚴謹，但是筆者已經好幾年都沒有在資料表內加入過關聯性了，因為現在系統開發過程資料表的設計都是程式設計師一起包辦，所以欄位異動一般會很頻繁，關聯性很容易在開發階段造成測試困擾，真的有需要最後再加吧！(當然補上關聯性代表還要再花時間測試)。  </p>
+</li>
+<li><p><strong>誤刪資料怎麼辦？</strong><br>  一般系統的資料處理作業在儲存錢幾乎都會有一些再次確認的動作，最常見的就是彈出確認對話方塊，但是對於已經習慣系統操作的人來說其實效用不大，機會都會連續點過去，所以最可怕的是使用者誤刪資料而且還無法重建。<br>  <img src="/images/projects/feasibility/01/feasibility_005.png" alt="img"><br>  因此最好的辦法就是不要刪除資料，客戶所謂的刪除資料，其實就是系統上不要再看到這一筆資料，筆者便在資料表上增加一個布林值欄位 disable，當它為 true 時表示被刪除，所以後須所有查詢都必須增加 disable 為 false 的條件。<br>  <img src="/images/projects/feasibility/01/feasibility_006.png" alt="img"><br>  此外還增加 created_by、created_date、removed_by、removed_date 欄位來紀錄修改以及刪除人員與時間，u.有些資料庫會有 modified_by、modified_date 表示異動人員，但是筆者認為如果真的需要歷史紀錄，那就不單單只需要知道是誰修改資料就好，而是應該包含資料異動內容，這時候比較方便的做法就是建立一個結構相似的資料表(因為要記錄修改歷程，所以同一筆資料可能會在歷史紀錄表內有多筆，亦即原始PK會重複)，每次資料新增或是修改時就寫一份到歷史記料表內，這樣就可以查詢完整的異動歷程，所以筆者的 created_by、created_date 欄位是代表最後異動人員與時間。  </p>
+<blockquote>
+<p>好吧！其實是修改成 modified_by、modified_date 的工程比較費時，所以…懶。  </p>
+</blockquote>
+<p>  如果你後端跟筆者一樣透過 .NET 開發並起資料庫透過 Entity Framework 處理，那我們可以透過複寫資料庫模型(DbContext)的 <strong>OnModelCreating</strong> 幫我們自動增加 disable 為 true，這樣我們查詢時就不需要再特別加入條件。  </p>
+  <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnModelCreating</span>(<span class="params">ModelBuilder modelBuilder</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">base</span>.OnModelCreating(modelBuilder);</span><br><span class="line">    <span class="keyword">foreach</span> (<span class="keyword">var</span> entityType <span class="keyword">in</span> modelBuilder.Model.GetEntityTypes()</span><br><span class="line">                .Where(e =&gt; <span class="keyword">typeof</span>(IRowDisable).IsAssignableFrom(e.ClrType)))</span><br><span class="line">    &#123;</span><br><span class="line">        modelBuilder.Entity(entityType.ClrType).Property&lt;<span class="built_in">bool</span>&gt;(<span class="string">&quot;Disable&quot;</span>);</span><br><span class="line">        <span class="keyword">var</span> parameter = Expression.Parameter(entityType.ClrType, <span class="string">&quot;e&quot;</span>);</span><br><span class="line">        <span class="keyword">var</span> body = Expression.Equal(</span><br><span class="line">                    Expression.Call(<span class="keyword">typeof</span>(EF), <span class="keyword">nameof</span>(EF.Property), <span class="keyword">new</span>[] &#123; <span class="keyword">typeof</span>(<span class="built_in">bool</span>) &#125;, parameter, Expression.Constant(<span class="string">&quot;Disable&quot;</span>)),</span><br><span class="line">                    Expression.Constant(<span class="literal">false</span>));</span><br><span class="line">        modelBuilder.Entity(entityType.ClrType).HasQueryFilter(Expression.Lambda(body, parameter));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  </li>
+<li><p><strong>是否允許空值(Null)？</strong><br>  Null 最大的影響就是會把程式的運算式搞掛，大部分的<strong>運算子</strong>都無法處理 null 值，所以欄位允許 null 就意味著程式在處理資料前需要先判斷是否為 null，在座對應的處理，所以省工的方法就是欄位不允許 null 並給定預設值，這樣可以減少程式碼的判斷式，同時也提高程式可讀性(邏輯越少越容易理解)，當然有些欄位可能無法避免需要允許 null，例如筆者建立的 removed_date 欄位表示刪除時間，因此在資料移除前會用 null 表示，這部分可以透過規範或說明來提醒開發人員。<br>  <img src="/images/projects/feasibility/01/feasibility_007.png" alt="img">  </p>
+<blockquote>
+<p>筆者過去會使用 1900/01/01 來表示未給值的日期，然後在程式內將年(Year)小於 2000 的日期清除，不過這等於是特殊處理，淺規則越多維護也越不方便。  </p>
+</blockquote>
+</li>
+<li><p><strong>重要欄位避開常用詞彙</strong><br>  不得不說這是筆者的偏見，這一樣是資料整合問題，移轉舊資料或是匯入外部資料似乎都是系統導入無可避免的步驟，整合過程有些欄位需要加工處理，例如編號規則改變，我們需要將既有資料的編號轉換成新的編碼規則再存入系統，比較保險的做法就是會加開欄位來儲存原始編號，這時候會有同性質的欄位命名問題，以往我們會以新系統為主，將舊資料的欄位改成其他別名，但是系統資料介接是很常遇到的狀況，當就資料庫被新資料庫替代之後，相關的介接程式，這時候容易會發生水土不服的狀況，那些介接程式所對應的系統無法配合新的規則，額外的討論協調就無法避免，所以有些常用欄位筆者會用冷門的名稱命名，例如用 code 表示編(單)號，notes 表示備註欄，用 removed 來做刪除紀錄。  </p>
+<p>  <img src="/images/projects/feasibility/01/feasibility_008.png" alt="img">  </p>
+<blockquote>
+<p>過往經驗很多資料介接的小程式都是<strong>免費</strong>的，驗收前工程師被”拗”著做，既然是不用錢的，所以對資料庫處理的所有 SQL 語法幾乎都會直接寫死在程式內，而這種小程式最容易發生無法修改的問題，要嘛廠商報天價連本帶利的要回來，要嘛程式碼找不到。  </p>
+</blockquote>
+</li>
+<li><p><strong>是否要用預存程序(Stored Procedure)？</strong><br>  用與不用都有人支持，因為各有利弊，筆者則是站在不建議使用的立場，因為使用預存程序也代表你的部分資料處理邏輯被切割出來，它會變成一個黑盒子，相對地，修改預存程序當下很難知道會影響多少系統，如果沒有相關文件或說明記錄，有時候就會建立一個新的預存程序，讓資料庫存在多個版本。<br>  現在也有一些程式設計師沒有學過資料庫的 SQL 語法而是直接透過 ORM 技術來做資料交換，比較成熟的 ORM 技術甚至當你資料庫遷移到另一套資料庫系統上時，它可以讓你僅需調整部分設定就可以無痛(理論上)移轉，而預存程序的移轉就不見得能夠直接相容，你可能需要透過一些軟體工具甚至手動調整。  </p>
+</li>
+</ul>
+<h2 id="備份、還原"><a href="#備份、還原" class="headerlink" title="備份、還原"></a>備份、還原</h2><p>“不怕一萬、就怕萬一”，以往筆者其實都沒有在意這件事情，知道資料庫有備份還原功能，但是從來都沒有去玩過，心中都是抱著出問題時在求助於 Google 大神，但是現在這種網路發達時代，惡意的駭客入侵、勒索病毒事件層出不窮，所以如何快速還原系統就變得很重要，因為這可能會是攸關公司營運的問題。<br>所以對於自己系統所使用的資料庫，應該至少把備份還原的操作方式或是指令記錄在專案的說明文件內，筆者每天進辦公室第一件事就是備份資料庫，並把備份檔複製一份到 NAS 上。<br><img src="/images/projects/feasibility/01/feasibility_009.gif" alt="img">  </p>
+<blockquote>
+<p>PostgreSQL 也可透過視覺化工具 pgAdmin 來執行備份與還原，有興趣的可以參考上一篇：<a href="/projects/05_postgresql_00/">PostgreSQL 安裝、備份、還原</a>。  </p>
+</blockquote>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>不知道現在還有多少人聽過<strong>資料庫管理師</strong>(<strong>Database Administrator, 簡稱DBA</strong>)，感覺起來大概只剩金融業、物流業或是電商平台這類資料增長快速的領域會有專屬的 DBA 之外，很多都是 MIS 兼任，出問題負責通知廠商，因為資料庫也都是由承接專案的廠商自行規劃，而大部分的開發商都是由負責的程式設計師自行發揮，也就導致現在開發又區分為 Code First 與 Database First，因此會使用資料庫進階功能的機會越來越少(使用的越多代表可以接手的人也就越少)，對不少程式設計師來說資料庫跟 Excel 差不多，僅是用來存放資料而已。  </p>
+<p>如果你有著新鮮的肝，那就盡力讓好還要更好，努力朝<strong>理想方案</strong>前進，因為任何的偷工減料都是有相應的代價。如果需要帶領參差不齊的團隊完成專案，那麼你往往只能從一堆不好的方案中挑選<strong>可行方案</strong>，所以看開一點，換個角度想想，你的可行方案已經幫助客戶向前一小步了，雖然距離理想還很遙遠，但是至少不是停留在原地，據說，賈伯斯一開始是想要推出 iPad 的，只是因為當時的觸控技術無法符合預期，在無奈之下只能妥協先推出小尺寸的 iPhone，如今觸控技術已經十分成熟了，但是 iPhone 依然是 Apple 最大的營收來源，反過來說，如果當時強制推出 iPad，那 Apple 一樣有辦法跟現在一樣強大嗎？沒人能保證吧！  </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Projects/" rel="tag"># Projects</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/flutter/flutter_008/" rel="prev" title="Flutter：由 TextField 來看 Widget 如何保留狀態">
+                  <i class="fa fa-chevron-left"></i> Flutter：由 TextField 來看 Widget 如何保留狀態
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/projects/05_postgresql_00/" rel="next" title="PostgreSQL 安裝、備份、還原">
+                  PostgreSQL 安裝、備份、還原 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

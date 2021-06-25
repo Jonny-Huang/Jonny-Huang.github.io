@@ -1,527 +1,287 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-tw">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-TW">
+<head>
   <meta charset="UTF-8">
-<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="RxJS,Angular">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
-
-
-
-
-  <meta property="fb:admins" content="fb267234890438499">
-  <meta property="fb:app_id" content="267234890438499">
-
-
-
-<meta name="description" content="前言隨著 GitHub 的盛行，越來越多的技術都走向開源，研究原始碼可以讓我們了解相關技術運作原理，藉以修正認知上的落差，畢竟官方文件雖然豐富，但是很多概念難以透過文字描述就可以理解，另一個好處就是學習這些大神的技術。以上說明都不是本篇的重點，要知道，看完程式碼是賢人，看懂程式碼是神人，這都不是筆者這種”閒”人可以做到的，所以我們只挑選簡單的部分來協助我們更容易的理解 RxJS。    我們可以到">
-<meta name="keywords" content="RxJS,Angular">
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="前言隨著 GitHub 的盛行，越來越多的技術都走向開源，研究原始碼可以讓我們了解相關技術運作原理，藉以修正認知上的落差，畢竟官方文件雖然豐富，但是很多概念難以透過文字描述就可以理解，另一個好處就是學習這些大神的技術。以上說明都不是本篇的重點，要知道，看完程式碼是賢人，看懂程式碼是神人，這都不是筆者這種”閒”人可以做到的，所以我們只挑選簡單的部分來協助我們更容易的理解 RxJS。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="別太在意包裝上的照片與實物之間的差異：RxJS">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/30_rxjs_5/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="前言隨著 GitHub 的盛行，越來越多的技術都走向開源，研究原始碼可以讓我們了解相關技術運作原理，藉以修正認知上的落差，畢竟官方文件雖然豐富，但是很多概念難以透過文字描述就可以理解，另一個好處就是學習這些大神的技術。以上說明都不是本篇的重點，要知道，看完程式碼是賢人，看懂程式碼是神人，這都不是筆者這種”閒”人可以做到的，所以我們只挑選簡單的部分來協助我們更容易的理解 RxJS。    我們可以到">
-<meta property="og:locale" content="zh-tw">
+<meta property="og:description" content="前言隨著 GitHub 的盛行，越來越多的技術都走向開源，研究原始碼可以讓我們了解相關技術運作原理，藉以修正認知上的落差，畢竟官方文件雖然豐富，但是很多概念難以透過文字描述就可以理解，另一個好處就是學習這些大神的技術。以上說明都不是本篇的重點，要知道，看完程式碼是賢人，看懂程式碼是神人，這都不是筆者這種”閒”人可以做到的，所以我們只挑選簡單的部分來協助我們更容易的理解 RxJS。">
+<meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_046.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_047.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_048.png">
-<meta property="og:updated_time" content="2018-06-22T14:55:01.000Z">
+<meta property="article:published_time" content="2018-06-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-24T01:23:09.592Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="RxJS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="別太在意包裝上的照片與實物之間的差異：RxJS">
-<meta name="twitter:description" content="前言隨著 GitHub 的盛行，越來越多的技術都走向開源，研究原始碼可以讓我們了解相關技術運作原理，藉以修正認知上的落差，畢竟官方文件雖然豐富，但是很多概念難以透過文字描述就可以理解，另一個好處就是學習這些大神的技術。以上說明都不是本篇的重點，要知道，看完程式碼是賢人，看懂程式碼是神人，這都不是筆者這種”閒”人可以做到的，所以我們只挑選簡單的部分來協助我們更容易的理解 RxJS。    我們可以到">
 <meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_046.png">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Jonny'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<link rel="canonical" href="https://jonny-huang.github.io/angular/training/30_rxjs_5/">
 
 
 
-  <link rel="canonical" href="https://jonny-huang.github.io/angular/training/30_rxjs_5/">
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;angular&#x2F;training&#x2F;30_rxjs_5&#x2F;&quot;,&quot;path&quot;:&quot;angular&#x2F;training&#x2F;30_rxjs_5&#x2F;&quot;,&quot;title&quot;:&quot;別太在意包裝上的照片與實物之間的差異：RxJS&quot;}</script>
 
-
-
-
-
-  <title>別太在意包裝上的照片與實物之間的差異：RxJS | Jonny Huang 的學習筆記</title>
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>別太在意包裝上的照片與實物之間的差異：RxJS | Jonny Huang 的學習筆記</title>
   
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '267234890438499',
-      xfbml      : true,
-      version    : 'v2.6'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/zh_tw/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-tw">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Jonny Huang 的學習筆記</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <h1 class="site-subtitle" itemprop="description">Angular、Flutter</h1>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首頁
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            目錄
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-flutter">
-          <a href="/flutter/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Flutter
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-angular">
-          <a href="/angular/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Angular
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-quotes">
-          <a href="/quotes/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br>
-            
-            欣雨露
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa-commenting fa-fw"></i>欣雨露</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Observer-%E5%8F%AA%E6%98%AF%E4%B8%80%E5%80%8B%E4%BB%8B%E9%9D%A2"><span class="nav-number">2.</span> <span class="nav-text">Observer 只是一個介面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Observable-%E5%8F%AA%E9%97%9C%E5%BF%83%E8%A8%82%E9%96%B1%E8%88%87%E5%8F%96%E6%B6%88"><span class="nav-number">3.</span> <span class="nav-text">Observable 只關心訂閱與取消</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Operator-Function%EF%BC%9AMap"><span class="nav-number">4.</span> <span class="nav-text">Operator Function：Map</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%8C%85%E6%A9%9F%EF%BC%9Alift"><span class="nav-number">4.1.</span> <span class="nav-text">打包機：lift</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Operator-%E5%8F%AA%E5%81%9A%E8%A8%82%E9%96%B1"><span class="nav-number">4.2.</span> <span class="nav-text">Operator 只做訂閱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subscriber-%E5%B0%B1%E6%98%AF-Observer"><span class="nav-number">4.3.</span> <span class="nav-text">Subscriber 就是 Observer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OperatorSubscriber-%E6%89%8D%E6%98%AF%E9%87%8D%E9%BB%9E"><span class="nav-number">4.4.</span> <span class="nav-text">OperatorSubscriber 才是重點</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#next-%E4%B8%A6%E4%B8%8D%E4%B8%80%E5%AE%9A%E8%A6%81%E6%8E%A5-next%EF%BC%9ASingle"><span class="nav-number">5.</span> <span class="nav-text">next 並不一定要接 next：Single</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#retry-%EF%BC%9A%E7%82%BA%E4%BB%80%E9%BA%BC%E7%99%BC%E7%94%9F%E9%8C%AF%E8%AA%A4-error-%E5%BE%8C%E9%82%84%E5%8F%AF%E4%BB%A5%E7%B9%BC%E7%BA%8C%E9%80%9A%E7%9F%A5%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">retry ：為什麼發生錯誤(error)後還可以繼續通知？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Subject-%E4%B8%8D%E5%8F%AA%E6%98%AF%E6%8F%90%E4%BE%9B%E7%B5%A6%E5%A4%9A%E5%80%8B-Observer-%E8%A8%82%E9%96%B1"><span class="nav-number">7.</span> <span class="nav-text">Subject 不只是提供給多個 Observer 訂閱</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BehaviorSubject"><span class="nav-number">7.1.</span> <span class="nav-text">BehaviorSubject</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%8C%E8%A8%98"><span class="nav-number">8.</span> <span class="nav-text">後記</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
     
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/30_rxjs_5/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Jonny Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Jonny Huang 的學習筆記">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          別太在意包裝上的照片與實物之間的差異：RxJS
+        </h1>
 
-        
-        
-          <h2 class="post-title" itemprop="name headline">別太在意包裝上的照片與實物之間的差異：RxJS</h2>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/06/24 09:23:09" itemprop="dateModified" datetime="2021-06-24T09:23:09+08:00">2021/06/24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Training/" itemprop="url" rel="index"><span itemprop="name">Training</span></a>
+        </span>
+    </span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新於</span>
-              
-              <time title="更新於" itemprop="dateModified" datetime="2018-06-22T22:55:01+08:00">
-                2018/06/22
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Training/" itemprop="url" rel="index">
-                    <span itemprop="name">Training</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
+
     
-
+    
+    
     <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>隨著 GitHub 的盛行，越來越多的技術都走向開源，研究原始碼可以讓我們了解相關技術運作原理，藉以修正認知上的落差，畢竟官方文件雖然豐富，但是很多概念難以透過文字描述就可以理解，另一個好處就是學習這些大神的技術。<br>以上說明都不是本篇的重點，要知道，<strong>看完</strong>程式碼是賢人，<strong>看懂</strong>程式碼是神人，這都不是筆者這種”閒”人可以做到的，所以我們只挑選簡單的部分來協助我們更容易的理解 RxJS。  </p>
+<span id="more"></span>  
+
 <blockquote>
-<p>我們可以到 GitHub 網站下載 <a href="https://github.com/ReactiveX/RxJS" target="_blank" rel="noopener">RxJS 原始碼</a></p>
+<p>我們可以到 GitHub 網站下載 <a target="_blank" rel="noopener" href="https://github.com/ReactiveX/RxJS">RxJS 原始碼</a></p>
 </blockquote>
-<h1 id="Observer-只是一個介面"><a href="#Observer-只是一個介面" class="headerlink" title="Observer 只是一個介面"></a>Observer 只是一個介面</h1><p>開啟 <code>rxjs\src\internal\types.ts</code>，可以發現 <strong>Observer</strong> 是一個 <strong>interface</strong>，所以說<strong>只要具備 <code>next</code>、<code>error</code>、<code>complete</code> 3個方法的物件都可以稱為 Observer</strong>。<br><pre><code>export interface Observer&lt;T&gt; {
-  closed?: boolean;
-  next: (value: T) =&gt; void;
-  error: (err: any) =&gt; void;
-  complete: () =&gt; void;
-}</code></pre></p>
+<h1 id="Observer-只是一個介面"><a href="#Observer-只是一個介面" class="headerlink" title="Observer 只是一個介面"></a>Observer 只是一個介面</h1><p>開啟 <code>rxjs\src\internal\types.ts</code>，可以發現 <strong>Observer</strong> 是一個 <strong>interface</strong>，所以說<strong>只要具備 <code>next</code>、<code>error</code>、<code>complete</code> 3個方法的物件都可以稱為 Observer</strong>。  </p>
+<figure class="highlight ts"><figcaption><span>types.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> Observer&lt;T&gt; &#123;</span><br><span class="line">  closed?: <span class="built_in">boolean</span>;</span><br><span class="line">  next: <span class="function">(<span class="params">value: T</span>) =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">  error: <span class="function">(<span class="params">err: <span class="built_in">any</span></span>) =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">  complete: <span class="function">() =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>由介面可以知道只有 <code>next</code> 與 <code>error</code> 可以接收到參數，我們也可以知道 <strong>Observer 的責任只決定當發生 <code>next</code>、<code>error</code>、<code>complete</code> 時要做什麼</strong>，什麼時候發生？誰來通知它？這些都不知道。</p>
-<h1 id="Observable-只關心訂閱與取消"><a href="#Observable-只關心訂閱與取消" class="headerlink" title="Observable 只關心訂閱與取消"></a>Observable 只關心訂閱與取消</h1><p>開啟 <code>rxjs\src\internal\Observable.ts</code>，可以看到 <strong>Observable</strong> 會實作 <strong>Subscribable</strong> ，而這個介面只有提供 Observer 訂閱(subscribe) 的功能，透過 subscribe 可以在得到一個具有 取消訂閱(unsubscribe) 的物件。<br><pre><code>export class Observable&lt;T&gt; implements Subscribable&lt;T&gt; {
-
-}
-
-export interface Subscribable&lt;T&gt; {
-  subscribe(observerOrNext?: PartialObserver&lt;T&gt; | ((value: T) =&gt; void),
-            error?: (error: any) =&gt; void,
-            complete?: () =&gt; void): Unsubscribable;
-}
-
-export interface Unsubscribable {
-  unsubscribe(): void;
-}</code></pre></p>
+<h1 id="Observable-只關心訂閱與取消"><a href="#Observable-只關心訂閱與取消" class="headerlink" title="Observable 只關心訂閱與取消"></a>Observable 只關心訂閱與取消</h1><p>開啟 <code>rxjs\src\internal\Observable.ts</code>，可以看到 <strong>Observable</strong> 會實作 <strong>Subscribable</strong> ，而這個介面只有提供 Observer 訂閱(subscribe) 的功能，透過 subscribe 可以在得到一個具有 取消訂閱(unsubscribe) 的物件。  </p>
+<figure class="highlight ts"><figcaption><span>Observable.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Observable</span>&lt;<span class="title">T</span>&gt; <span class="title">implements</span> <span class="title">Subscribable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> Subscribable&lt;T&gt; &#123;</span><br><span class="line">  subscribe(observerOrNext?: PartialObserver&lt;T&gt; | (<span class="function">(<span class="params">value: T</span>) =&gt;</span> <span class="built_in">void</span>),</span><br><span class="line">            error?: <span class="function">(<span class="params">error: <span class="built_in">any</span></span>) =&gt;</span> <span class="built_in">void</span>,</span><br><span class="line">            complete?: <span class="function">() =&gt;</span> <span class="built_in">void</span>): Unsubscribable;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> Unsubscribable &#123;</span><br><span class="line">  unsubscribe(): <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Observable 透過 <code>subscribe</code> 來與 Observer 建立連結，也就是說我們可以<strong>透過 Observable 知道通知對象</strong>。</p>
-<h1 id="Operator-Function：Map"><a href="#Operator-Function：Map" class="headerlink" title="Operator Function：Map"></a>Operator Function：Map</h1><p>到目前為止我們還不知道 RxJS 的主動通知機制，我們透過 Map 這個最常使用的 RxJS Operator 來研究，開啟 <code>rxjs\src\internal\operators\map.ts</code>，可以看到 <strong>map</strong> 只是一個 Function，它最終會呼叫並回傳 Observable 的 <strong>lift</strong> 方法。<br><pre><code>export function map&lt;T, R&gt;(project: (value: T, index: number) =&gt; R, thisArg?: any): OperatorFunction&lt;T, R&gt; {
-  return function mapOperation(source: Observable&lt;T&gt;): Observable&lt;R&gt; {
-    if (typeof project !== &#39;function&#39;) {
-      throw new TypeError(&#39;argument is not a function. Are you looking for `mapTo()`?&#39;);
-    }
-    return source.lift(new MapOperator(project, thisArg));
-  };
-}</code></pre></p>
-<h2 id="打包機：lift"><a href="#打包機：lift" class="headerlink" title="打包機：lift"></a>打包機：lift</h2><p>回去查閱 Observable 內的 <code>lift</code> 方法，可以看到 <code>lift</code> 會建立一個新的 Observable 來包裝目前的 Observable 與 Operator 物件。<br><pre><code>export class Observable&lt;T&gt; implements Subscribable&lt;T&gt; {
-  lift&lt;R&gt;(operator: Operator&lt;T, R&gt;): Observable&lt;R&gt; {
-    const observable = new Observable&lt;R&gt;();
-    observable.source = this;
-    observable.operator = operator;
-    return observable;
-  }
-}</code></pre></p>
-<p><code>lift</code> 就像俄羅斯套娃的生產工廠，<strong>每串接一個 RxJS Operator Function 就會多包一層 Observable</strong>，當然我們也可以知道 Observable 的 <code>source</code> 屬性代表上一層 Observable，<code>operator</code> 代表目前要處理的事情。<br><img src="/images/angular/training/rxjs/rxjs_046.png" alt="">  </p>
-<h2 id="Operator-只做訂閱"><a href="#Operator-只做訂閱" class="headerlink" title="Operator 只做訂閱"></a>Operator 只做訂閱</h2><p>上面我們可以看到 Map 函式會傳遞一個 MapOperator 物件給 <code>lift</code> 函式，而這個 Operator 物件主要時做一個 <code>call</code> 方法。<br><pre><code>export class MapOperator&lt;T, R&gt; implements Operator&lt;T, R&gt; {
-  constructor(private project: (value: T, index: number) =&gt; R, private thisArg: any) {
-  }
-
-  call(subscriber: Subscriber&lt;R&gt;, source: any): any {
-    return source.subscribe(new MapSubscriber(subscriber, this.project, this.thisArg));
-  }
-}
-
-export interface Operator&lt;T, R&gt; {
-  call(subscriber: Subscriber&lt;R&gt;, source: any): TeardownLogic;
-}</code></pre></p>
+<h1 id="Operator-Function：Map"><a href="#Operator-Function：Map" class="headerlink" title="Operator Function：Map"></a>Operator Function：Map</h1><p>到目前為止我們還不知道 RxJS 的主動通知機制，我們透過 Map 這個最常使用的 RxJS Operator 來研究，開啟 <code>rxjs\src\internal\operators\map.ts</code>，可以看到 <strong>map</strong> 只是一個 Function，它最終會呼叫並回傳 Observable 的 <strong>lift</strong> 方法。  </p>
+<figure class="highlight ts"><figcaption><span>map.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">map</span>&lt;<span class="title">T</span>, <span class="title">R</span>&gt;(<span class="params">project: (value: T, index: <span class="built_in">number</span>) =&gt; R, thisArg?: <span class="built_in">any</span></span>): <span class="title">OperatorFunction</span>&lt;<span class="title">T</span>, <span class="title">R</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">mapOperation</span>(<span class="params">source: Observable&lt;T&gt;</span>): <span class="title">Observable</span>&lt;<span class="title">R</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> project !== <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">&#x27;argument is not a function. Are you looking for `mapTo()`?&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> source.lift(<span class="keyword">new</span> MapOperator(project, thisArg));</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="打包機：lift"><a href="#打包機：lift" class="headerlink" title="打包機：lift"></a>打包機：lift</h2><p>回去查閱 Observable 內的 <code>lift</code> 方法，可以看到 <code>lift</code> 會建立一個新的 Observable 來包裝目前的 Observable 與 Operator 物件。</p>
+<figure class="highlight ts"><figcaption><span>Observable.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Observable</span>&lt;<span class="title">T</span>&gt; <span class="title">implements</span> <span class="title">Subscribable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">  lift&lt;R&gt;(operator: Operator&lt;T, R&gt;): Observable&lt;R&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> observable = <span class="keyword">new</span> Observable&lt;R&gt;();</span><br><span class="line">    observable.source = <span class="built_in">this</span>;</span><br><span class="line">    observable.operator = operator;</span><br><span class="line">    <span class="keyword">return</span> observable;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>lift</code> 就像俄羅斯套娃的生產工廠，<strong>每串接一個 RxJS Operator Function 就會多包一層 Observable</strong>，當然我們也可以知道 Observable 的 <code>source</code> 屬性代表上一層 Observable，<code>operator</code> 代表目前要處理的事情。<br><img src="/images/angular/training/rxjs/rxjs_046.png" alt="img">  </p>
+<h2 id="Operator-只做訂閱"><a href="#Operator-只做訂閱" class="headerlink" title="Operator 只做訂閱"></a>Operator 只做訂閱</h2><p>上面我們可以看到 Map 函式會傳遞一個 MapOperator 物件給 <code>lift</code> 函式，而這個 Operator 物件主要時做一個 <code>call</code> 方法。</p>
+<figure class="highlight ts"><figcaption><span>Observable.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">MapOperator</span>&lt;<span class="title">T</span>, <span class="title">R</span>&gt; <span class="title">implements</span> <span class="title">Operator</span>&lt;<span class="title">T</span>, <span class="title">R</span>&gt; </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> project: (value: T, index: <span class="built_in">number</span>) =&gt; R, <span class="keyword">private</span> thisArg: <span class="built_in">any</span></span>)</span> &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  call(subscriber: Subscriber&lt;R&gt;, source: <span class="built_in">any</span>): <span class="built_in">any</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> source.subscribe(<span class="keyword">new</span> MapSubscriber(subscriber, <span class="built_in">this</span>.project, <span class="built_in">this</span>.thisArg));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> Operator&lt;T, R&gt; &#123;</span><br><span class="line">  call(subscriber: Subscriber&lt;R&gt;, source: <span class="built_in">any</span>): TeardownLogic;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>再看看 MapOperator 內的 <code>call</code> 方法竟然只是呼叫 Observable 的訂閱(subscribe)，所以 RxJS 程式內的 Operator 物件與我們平常講的 Operator Function 是不一樣的東西，我們知道 <code>subscribe</code> 只接收 Observer，所以 MapSubscriber 應該實作了 Observer 介面。</p>
 <h2 id="Subscriber-就是-Observer"><a href="#Subscriber-就是-Observer" class="headerlink" title="Subscriber 就是 Observer"></a>Subscriber 就是 Observer</h2><p>從原始碼可以看到 MapSubscriber 繼承自 Subscriber 類別，而 Subscriber 實作了 Observer 介面，比較特別的是 <code>next</code>、<code>error</code>、<code>complete</code> 只管<strong>流程規則</strong>：</p>
 <ul>
 <li>只要 <code>isStopped</code> 屬性為 <code>true</code> 所有方法都停止動作。  </li>
 <li><code>error</code>、<code>complete</code> 方法會將 <code>isStopped</code> 屬性設定為 <code>true</code>。</li>
 </ul>
-<p>由此可知為什麼 Observer 一旦觸發 <code>error</code>、<code>complete</code> 方法之後就不會再收到任何回應。<br><code>destination</code> 是指後下一個 Observer，可想而知這是外層 Observable 所 <code>subscribe</code> 的對象(Observer)。<br><code>next</code>、<code>error</code>、<code>complete</code> 剛好分別還有對應的方法 <code>_next</code>、<code>_error</code>、<code>_complete</code>，這3個方法<strong>預設</strong>直接呼叫下一個 Observer 所對應的方法，只是 <code>_error</code>、<code>_complete</code> <strong>預設</strong>同時會取消訂閱(unsubscribe)。<br><pre><code>class MapSubscriber&lt;T, R&gt; extends Subscriber&lt;T&gt; {
-
-}
-
-export class Subscriber&lt;T&gt; extends Subscription implements Observer&lt;T&gt; {
-
-  protected isStopped: boolean = false;
-  protected destination: PartialObserver&lt;any&gt;;
- 
-  next(value?: T): void {
-    if (!this.isStopped) {
-      this._next(value);
-    }
-  }
-
-  error(err?: any): void {
-    if (!this.isStopped) {
-      this.isStopped = true;
-      this._error(err);
-    }
-  }
-
-  complete(): void {
-    if (!this.isStopped) {
-      this.isStopped = true;
-      this._complete();
-    }
-  }
-
-  protected _next(value: T): void {
-    this.destination.next(value);
-  }
-
-  protected _error(err: any): void {
-    this.destination.error(err);
-    this.unsubscribe();
-  }
-
-  protected _complete(): void {
-    this.destination.complete();
-    this.unsubscribe();
-  }
-}</code></pre></p>
+<p>由此可知為什麼 Observer 一旦觸發 <code>error</code>、<code>complete</code> 方法之後就不會再收到任何回應。<br><code>destination</code> 是指後下一個 Observer，可想而知這是外層 Observable 所 <code>subscribe</code> 的對象(Observer)。<br><code>next</code>、<code>error</code>、<code>complete</code> 剛好分別還有對應的方法 <code>_next</code>、<code>_error</code>、<code>_complete</code>，這3個方法<strong>預設</strong>直接呼叫下一個 Observer 所對應的方法，只是 <code>_error</code>、<code>_complete</code> <strong>預設</strong>同時會取消訂閱(unsubscribe)。  </p>
+<figure class="highlight ts"><figcaption><span>Observable.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MapSubscriber</span>&lt;<span class="title">T</span>, <span class="title">R</span>&gt; <span class="keyword">extends</span> <span class="title">Subscriber</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Subscriber</span>&lt;<span class="title">T</span>&gt; <span class="keyword">extends</span> <span class="title">Subscription</span> <span class="title">implements</span> <span class="title">Observer</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> isStopped: <span class="built_in">boolean</span> = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">protected</span> destination: PartialObserver&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line"> </span><br><span class="line">  next(value?: T): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">this</span>.isStopped) &#123;</span><br><span class="line">      <span class="built_in">this</span>._next(value);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  error(err?: <span class="built_in">any</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">this</span>.isStopped) &#123;</span><br><span class="line">      <span class="built_in">this</span>.isStopped = <span class="literal">true</span>;</span><br><span class="line">      <span class="built_in">this</span>._error(err);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  complete(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">this</span>.isStopped) &#123;</span><br><span class="line">      <span class="built_in">this</span>.isStopped = <span class="literal">true</span>;</span><br><span class="line">      <span class="built_in">this</span>._complete();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> _next(value: T): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.destination.next(value);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> _error(err: <span class="built_in">any</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.destination.error(err);</span><br><span class="line">    <span class="built_in">this</span>.unsubscribe();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> _complete(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.destination.complete();</span><br><span class="line">    <span class="built_in">this</span>.unsubscribe();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>不論透過 Subscriber 建構式(constructor)或是靜態方法 <code>create</code> 都會將所傳入的 Observer 物件透過 SafeSubscriber 類別<strong>轉換成 Subscriber 物件</strong>，但是我們可以將他們視為同一個物件來思考。</p>
 </blockquote>
-<h2 id="OperatorSubscriber-才是重點"><a href="#OperatorSubscriber-才是重點" class="headerlink" title="OperatorSubscriber 才是重點"></a>OperatorSubscriber 才是重點</h2><p>回來觀看 MapSubscriber 原始碼，可以看到它繼承 Subscriber 類別並覆寫 <code>_next</code> 方法，也就是當上一個 Observer 觸發 <code>next</code> 方法時，我們同時會得到最新的值，接著透過外部設定的函式 <code>project</code> 處理轉換新的值，並傳遞給下一個 Observer 的 <code>next</code> 方法。<br><pre><code>class MapSubscriber&lt;T, R&gt; extends Subscriber&lt;T&gt; {
-  count: number = 0;
-  private thisArg: any;
-
-  constructor(destination: Subscriber&lt;R&gt;,
-              private project: (value: T, index: number) =&gt; R,
-              thisArg: any) {
-    super(destination);
-    this.thisArg = thisArg || this;
-  }
-
-  &#x2F;&#x2F; NOTE: This looks unoptimized, but it&#39;s actually purposefully NOT
-  &#x2F;&#x2F; using try&#x2F;catch optimizations.
-  protected _next(value: T) {
-    let result: any;
-    try {
-      result = this.project.call(this.thisArg, value, this.count++);
-    } catch (err) {
-      this.destination.error(err);
-      return;
-    }
-    this.destination.next(result);
-  }
-}</code></pre></p>
+<h2 id="OperatorSubscriber-才是重點"><a href="#OperatorSubscriber-才是重點" class="headerlink" title="OperatorSubscriber 才是重點"></a>OperatorSubscriber 才是重點</h2><p>回來觀看 MapSubscriber 原始碼，可以看到它繼承 Subscriber 類別並覆寫 <code>_next</code> 方法，也就是當上一個 Observer 觸發 <code>next</code> 方法時，我們同時會得到最新的值，接著透過外部設定的函式 <code>project</code> 處理轉換新的值，並傳遞給下一個 Observer 的 <code>next</code> 方法。  </p>
+<figure class="highlight ts"><figcaption><span>Observable.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MapSubscriber</span>&lt;<span class="title">T</span>, <span class="title">R</span>&gt; <span class="keyword">extends</span> <span class="title">Subscriber</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">  <span class="attr">count</span>: <span class="built_in">number</span> = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">private</span> thisArg: <span class="built_in">any</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">destination: Subscriber&lt;R&gt;,</span></span></span><br><span class="line"><span class="params"><span class="function">              <span class="keyword">private</span> project: (value: T, index: <span class="built_in">number</span>) =&gt; R,</span></span></span><br><span class="line"><span class="params"><span class="function">              thisArg: <span class="built_in">any</span></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>(destination);</span><br><span class="line">    <span class="built_in">this</span>.thisArg = thisArg || <span class="built_in">this</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// <span class="doctag">NOTE:</span> This looks unoptimized, but it&#x27;s actually purposefully NOT</span></span><br><span class="line">  <span class="comment">// using try/catch optimizations.</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="function"><span class="title">_next</span>(<span class="params">value: T</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> result: <span class="built_in">any</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      result = <span class="built_in">this</span>.project.call(<span class="built_in">this</span>.thisArg, value, <span class="built_in">this</span>.count++);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      <span class="built_in">this</span>.destination.error(err);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">this</span>.destination.next(result);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>由此可知 OperatorSubscriber 可以說就是 RxJS Operator 最核心的部分，因為它決定很多事情：  </p>
 <ul>
 <li>資料流程規則 (<code>next</code>、<code>error</code>、<code>complete</code>)</li>
@@ -529,563 +289,93 @@ export class Subscriber&lt;T&gt; extends Subscription implements Observer&lt;T&g
 <li>決定處理後要呼叫下一個 Observer 的哪一個方法</li>
 </ul>
 <p>所以其實我們也可以自己建立 Operator Function，重點就是先繼承 Subscriber 類別。</p>
-<h1 id="next-並不一定要接-next：Single"><a href="#next-並不一定要接-next：Single" class="headerlink" title="next 並不一定要接 next：Single"></a>next 並不一定要接 next：Single</h1><p>開啟 <code>rxjs\src\internal\operators\single.ts</code>，直接觀看最下面的 SingleSubscriber 類別，可以看到第2次傳值時會呼叫下一個 Observer 的 <code>error</code> 方法。<br><code>this.destination.error(&#39;Sequence contains more than one element&#39;);</code><br><pre><code>class SingleSubscriber&lt;T&gt; extends Subscriber&lt;T&gt; {
-  private seenValue: boolean = false;
-  private singleValue: T;
-  private index: number = 0;
-
-  private applySingleValue(value: T): void {
-    if (this.seenValue) {
-      this.destination.error(&#39;Sequence contains more than one element&#39;);
-    } else {
-      this.seenValue = true;
-      this.singleValue = value;
-    }
-  }
-
-  protected _next(value: T): void {
-    const index = this.index++;
-
-    if (this.predicate) {
-      this.tryNext(value, index);
-    } else {
-      this.applySingleValue(value);
-    }
-  }
-
-  private tryNext(value: T, index: number): void {
-    try {
-      if (this.predicate(value, index, this.source)) {
-        this.applySingleValue(value);
-      }
-    } catch (err) {
-      this.destination.error(err);
-    }
-  }
-
-  protected _complete(): void {
-    const destination = this.destination;
-
-    if (this.index &gt; 0) {
-      destination.next(this.seenValue ? this.singleValue : undefined);
-      destination.complete();
-    } else {
-      destination.error(new EmptyError);
-    }
-  }
-}</code></pre></p>
-<p>比較特別的是從 <code>_complete</code> 可以看到如果收到一個值之後就完成(complete)，下一個 Observer 是會收到 <code>next</code> 與 <code>complete</code> 的，這是從官網的彈珠圖所看不出來的情境。<br><img src="/images/angular/training/rxjs/rxjs_047.png" alt="">  </p>
+<h1 id="next-並不一定要接-next：Single"><a href="#next-並不一定要接-next：Single" class="headerlink" title="next 並不一定要接 next：Single"></a>next 並不一定要接 next：Single</h1><p>開啟 <code>rxjs\src\internal\operators\single.ts</code>，直接觀看最下面的 SingleSubscriber 類別，可以看到第2次傳值時會呼叫下一個 Observer 的 <code>error</code> 方法。<br><code>this.destination.error(&#39;Sequence contains more than one element&#39;);</code>  </p>
+<figure class="highlight ts"><figcaption><span>Observable.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingleSubscriber</span>&lt;<span class="title">T</span>&gt; <span class="keyword">extends</span> <span class="title">Subscriber</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> seenValue: <span class="built_in">boolean</span> = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">private</span> singleValue: T;</span><br><span class="line">  <span class="keyword">private</span> index: <span class="built_in">number</span> = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> applySingleValue(value: T): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.seenValue) &#123;</span><br><span class="line">      <span class="built_in">this</span>.destination.error(<span class="string">&#x27;Sequence contains more than one element&#x27;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.seenValue = <span class="literal">true</span>;</span><br><span class="line">      <span class="built_in">this</span>.singleValue = value;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> _next(value: T): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> index = <span class="built_in">this</span>.index++;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.predicate) &#123;</span><br><span class="line">      <span class="built_in">this</span>.tryNext(value, index);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.applySingleValue(value);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> tryNext(value: T, <span class="attr">index</span>: <span class="built_in">number</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">this</span>.predicate(value, index, <span class="built_in">this</span>.source)) &#123;</span><br><span class="line">        <span class="built_in">this</span>.applySingleValue(value);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      <span class="built_in">this</span>.destination.error(err);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> _complete(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> destination = <span class="built_in">this</span>.destination;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.index &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      destination.next(<span class="built_in">this</span>.seenValue ? <span class="built_in">this</span>.singleValue : <span class="literal">undefined</span>);</span><br><span class="line">      destination.complete();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      destination.error(<span class="keyword">new</span> EmptyError);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>比較特別的是從 <code>_complete</code> 可以看到如果收到一個值之後就完成(complete)，下一個 Observer 是會收到 <code>next</code> 與 <code>complete</code> 的，這是從官網的彈珠圖所看不出來的情境。<br><img src="/images/angular/training/rxjs/rxjs_047.png" alt="img">  </p>
 <blockquote>
 <p>從 SingleSubscriber 類別其實我們只能認知第2次以後的 <code>next</code> 都會呼叫下一個 Observer 的 <code>error</code>，若沒有先了解底層 Subscriber 的流程規則，其實有可能會誤認為後續都會觸發 <code>error</code>。</p>
 </blockquote>
-<h1 id="retry-：為什麼發生錯誤-error-後還可以繼續通知？"><a href="#retry-：為什麼發生錯誤-error-後還可以繼續通知？" class="headerlink" title="retry ：為什麼發生錯誤(error)後還可以繼續通知？"></a>retry ：為什麼發生錯誤(error)後還可以繼續通知？</h1><p>從官網彈珠圖來看 <a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-retry" target="_blank" rel="noopener">retry</a> 怎麼會再發生 <code>error</code> 之後還可以繼續收到通知，這不是違反規則嗎？<br><img src="/images/angular/training/rxjs/rxjs_048.png" alt=""><br>開啟 <code>rxjs\src\internal\operators\retry.ts</code>，可以看到它覆寫了 <code>error</code> 而不是 <code>_error</code>，而它所做的事情就是<strong>重新訂閱</strong>，沒錯它先取消目前訂閱，接著還原自己的屬性參數，最後再從新訂閱。<br><pre><code>class RetrySubscriber&lt;T&gt; extends Subscriber&lt;T&gt; {
-  constructor(destination: Subscriber&lt;any&gt;,
-              private count: number,
-              private source: Observable&lt;T&gt;) {
-    super(destination);
-  }
-  error(err: any) {
-    if (!this.isStopped) {
-      const { source, count } = this;
-      if (count === 0) {
-        return super.error(err);
-      } else if (count &gt; -1) {
-        this.count = count - 1;
-      }
-      source.subscribe(this._unsubscribeAndRecycle());
-    }
-  }
-}
-
-export class Subscriber&lt;T&gt; extends Subscription implements Observer&lt;T&gt; {
-  _unsubscribeAndRecycle(): Subscriber&lt;T&gt; {
-    const { _parent, _parents } = this;
-    this._parent = null;
-    this._parents = null;
-    this.unsubscribe();
-    this.closed = false;
-    this.isStopped = false;
-    this._parent = _parent;
-    this._parents = _parents;
-    return this;
-  }
-}</code></pre>  </p>
+<h1 id="retry-：為什麼發生錯誤-error-後還可以繼續通知？"><a href="#retry-：為什麼發生錯誤-error-後還可以繼續通知？" class="headerlink" title="retry ：為什麼發生錯誤(error)後還可以繼續通知？"></a>retry ：為什麼發生錯誤(error)後還可以繼續通知？</h1><p>從官網彈珠圖來看 <a target="_blank" rel="noopener" href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-retry">retry</a> 怎麼會再發生 <code>error</code> 之後還可以繼續收到通知，這不是違反規則嗎？<br><img src="/images/angular/training/rxjs/rxjs_048.png" alt="img"><br>開啟 <code>rxjs\src\internal\operators\retry.ts</code>，可以看到它覆寫了 <code>error</code> 而不是 <code>_error</code>，而它所做的事情就是<strong>重新訂閱</strong>，沒錯它先取消目前訂閱，接著還原自己的屬性參數，最後再從新訂閱。  </p>
+<figure class="highlight ts"><figcaption><span>retry.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RetrySubscriber</span>&lt;<span class="title">T</span>&gt; <span class="keyword">extends</span> <span class="title">Subscriber</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">destination: Subscriber&lt;<span class="built_in">any</span>&gt;,</span></span></span><br><span class="line"><span class="params"><span class="function">              <span class="keyword">private</span> count: <span class="built_in">number</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">              <span class="keyword">private</span> source: Observable&lt;T&gt;</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>(destination);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">error</span>(<span class="params">err: <span class="built_in">any</span></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">this</span>.isStopped) &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; source, count &#125; = <span class="built_in">this</span>;</span><br><span class="line">      <span class="keyword">if</span> (count === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">super</span>.error(err);</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (count &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">this</span>.count = count - <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      source.subscribe(<span class="built_in">this</span>._unsubscribeAndRecycle());</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Subscriber</span>&lt;<span class="title">T</span>&gt; <span class="keyword">extends</span> <span class="title">Subscription</span> <span class="title">implements</span> <span class="title">Observer</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">  _unsubscribeAndRecycle(): Subscriber&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; _parent, _parents &#125; = <span class="built_in">this</span>;</span><br><span class="line">    <span class="built_in">this</span>._parent = <span class="literal">null</span>;</span><br><span class="line">    <span class="built_in">this</span>._parents = <span class="literal">null</span>;</span><br><span class="line">    <span class="built_in">this</span>.unsubscribe();</span><br><span class="line">    <span class="built_in">this</span>.closed = <span class="literal">false</span>;</span><br><span class="line">    <span class="built_in">this</span>.isStopped = <span class="literal">false</span>;</span><br><span class="line">    <span class="built_in">this</span>._parent = _parent;</span><br><span class="line">    <span class="built_in">this</span>._parents = _parents;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  
 <blockquote>
-<p>如果看到複寫 <code>next</code>、<code>error</code>、<code>complete</code> 其實就代表<strong>有機會</strong>改變流程規則，當然大原則之下其實都是遵循規則的，會修改往往是為了達到某些需求，例如：<a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-repeat" target="_blank" rel="noopener">repeat</a> 它做的事情跟 retry 一樣，只是它是改變 <code>complete</code>。</p>
+<p>如果看到複寫 <code>next</code>、<code>error</code>、<code>complete</code> 其實就代表<strong>有機會</strong>改變流程規則，當然大原則之下其實都是遵循規則的，會修改往往是為了達到某些需求，例如：<a target="_blank" rel="noopener" href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-repeat">repeat</a> 它做的事情跟 retry 一樣，只是它是改變 <code>complete</code>。</p>
 </blockquote>
-<h1 id="Subject-不只是提供給多個-Observer-訂閱"><a href="#Subject-不只是提供給多個-Observer-訂閱" class="headerlink" title="Subject 不只是提供給多個 Observer 訂閱"></a>Subject 不只是提供給多個 Observer 訂閱</h1><p>在 <a href="/angular/training/26_rxjs/">每個醫師身邊都應該要有個白衣天使：RxJS</a> 內我們最後提到 Subject 就跟 Observable 一樣，只是它可以提供給多個 Observer 同時訂閱，可以說是 Observable 的強化版，但是從原始碼(<code>rxjs\src\internal\Subject.ts</code>)來看它還有另一個更強大的功能，可以後續由我們自己來觸發 <code>next</code>、<code>error</code>、<code>complete</code>。<br><pre><code>export class Subject&lt;T&gt; extends Observable&lt;T&gt; implements SubscriptionLike {
-
-observers: Observer&lt;T&gt;[] = [];
-next(value?: T) {
-    if (!this.isStopped) {
-     ...
-      for (let i = 0; i &lt; len; i++) {
-        copy[i].next(value);
-      }
-    }
-  }
-
-  error(err: any) {
-    ...
-    for (let i = 0; i &lt; len; i++) {
-      copy[i].error(err);
-    }
-    this.observers.length = 0;
-  }
-
-  complete() {
-     ...
-    for (let i = 0; i &lt; len; i++) {
-      copy[i].complete();
-    }
-    this.observers.length = 0;
-  }
-}</code></pre>  </p>
+<h1 id="Subject-不只是提供給多個-Observer-訂閱"><a href="#Subject-不只是提供給多個-Observer-訂閱" class="headerlink" title="Subject 不只是提供給多個 Observer 訂閱"></a>Subject 不只是提供給多個 Observer 訂閱</h1><p>在 <a href="/angular/training/26_rxjs/">每個醫師身邊都應該要有個白衣天使：RxJS</a> 內我們最後提到 Subject 就跟 Observable 一樣，只是它可以提供給多個 Observer 同時訂閱，可以說是 Observable 的強化版，但是從原始碼(<code>rxjs\src\internal\Subject.ts</code>)來看它還有另一個更強大的功能，可以後續由我們自己來觸發 <code>next</code>、<code>error</code>、<code>complete</code>。  </p>
+<figure class="highlight ts"><figcaption><span>retry.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Subject</span>&lt;<span class="title">T</span>&gt; <span class="keyword">extends</span> <span class="title">Observable</span>&lt;<span class="title">T</span>&gt; <span class="title">implements</span> <span class="title">SubscriptionLike</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="attr">observers</span>: Observer&lt;T&gt;[] = [];</span><br><span class="line"><span class="function"><span class="title">next</span>(<span class="params">value?: T</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">this</span>.isStopped) &#123;</span><br><span class="line">     ...</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">        copy[i].next(value);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">error</span>(<span class="params">err: <span class="built_in">any</span></span>)</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">      copy[i].error(err);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">this</span>.observers.length = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">complete</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">     ...</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">      copy[i].complete();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">this</span>.observers.length = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  
 <p>在使用 Observable 類別時，其實我們必須是先將 <code>next</code>、<code>error</code>、<code>complete</code> 規則擬定好，如果條件多時會讓程式邏輯會變得很複雜，而 Subject 直接提供 <code>next</code>、<code>error</code>、<code>complete</code> 方法，讓我們可以事後依各種狀況來觸發對應的方法，當原始資料來源是我們自己產生時，透過 Subject 封裝應該會比 Observable 有彈性。  </p>
-<h2 id="BehaviorSubject"><a href="#BehaviorSubject" class="headerlink" title="BehaviorSubject"></a>BehaviorSubject</h2><p>BehaviorSubject 應該是 Subject 中最方便的，從原始碼(<code>rxjs\src\internal\BehaviorSubject.ts</code>)來了解它的特性，我們看到它繼承了 Subject 類別，比較特別的是它提供初始值設定，我們可以建立時同時給一個初始值，而起既使沒有訂閱，我們也可以透過 <code>getValue</code> 方法抓取目前最新的值，另一個特點就是一旦訂閱馬上可以透過 <code>next</code> 收到目前的值。<br><pre><code>export class BehaviorSubject&lt;T&gt; extends Subject&lt;T&gt; {
-
-  constructor(private _value: T) {
-    super();
-  }
-
-  get value(): T {
-    return this.getValue();
-  }
-
-  &#x2F;** @deprecated This is an internal implementation detail, do not use. *&#x2F;
-  _subscribe(subscriber: Subscriber&lt;T&gt;): Subscription {
-    const subscription = super._subscribe(subscriber);
-    if (subscription &amp;&amp; !(&lt;SubscriptionLike&gt;subscription).closed) {
-      subscriber.next(this._value);
-    }
-    return subscription;
-  }
-
-  getValue(): T {
-    if (this.hasError) {
-      throw this.thrownError;
-    } else if (this.closed) {
-      throw new ObjectUnsubscribedError();
-    } else {
-      return this._value;
-    }
-  }
-
-  next(value: T): void {
-    super.next(this._value = value);
-  }
-}</code></pre> </p>
+<h2 id="BehaviorSubject"><a href="#BehaviorSubject" class="headerlink" title="BehaviorSubject"></a>BehaviorSubject</h2><p>BehaviorSubject 應該是 Subject 中最方便的，從原始碼(<code>rxjs\src\internal\BehaviorSubject.ts</code>)來了解它的特性，我們看到它繼承了 Subject 類別，比較特別的是它提供初始值設定，我們可以建立時同時給一個初始值，而起既使沒有訂閱，我們也可以透過 <code>getValue</code> 方法抓取目前最新的值，另一個特點就是一旦訂閱馬上可以透過 <code>next</code> 收到目前的值。 </p>
+<figure class="highlight ts"><figcaption><span>BehaviorSubject.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">BehaviorSubject</span>&lt;<span class="title">T</span>&gt; <span class="keyword">extends</span> <span class="title">Subject</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> _value: T</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">get</span> <span class="title">value</span>(): <span class="title">T</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.getValue();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/** <span class="doctag">@deprecated </span>This is an internal implementation detail, do not use. */</span></span><br><span class="line">  _subscribe(subscriber: Subscriber&lt;T&gt;): Subscription &#123;</span><br><span class="line">    <span class="keyword">const</span> subscription = <span class="built_in">super</span>._subscribe(subscriber);</span><br><span class="line">    <span class="keyword">if</span> (subscription &amp;&amp; !(&lt;SubscriptionLike&gt;subscription).closed) &#123;</span><br><span class="line">      subscriber.next(<span class="built_in">this</span>._value);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> subscription;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getValue(): T &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.hasError) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="built_in">this</span>.thrownError;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">this</span>.closed) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> ObjectUnsubscribedError();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">this</span>._value;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  next(value: T): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>.next(<span class="built_in">this</span>._value = value);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  
 <h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>看到目前的感想就是<br><strong>做事的只有 Subscriber</strong><br>它決定了：  </p>
 <ul>
-<li>透過 <code>next</code> 正常傳值時要作什麼處理？</li>
-<li>收到 <code>error</code> 錯誤時要如何因應？</li>
-<li>收到 <code>complete</code> 完成通知之後要做什麼？</li>
-<li>以上處理完之後是否要通知下一個 Subscriber？要用什麼方法通知？通知什麼訊息？</li>
+<li><p>透過 <code>next</code> 正常傳值時要作什麼處理？  </p>
+</li>
+<li><p>收到 <code>error</code> 錯誤時要如何因應？  </p>
+</li>
+<li><p>收到 <code>complete</code> 完成通知之後要做什麼？  </p>
+</li>
+<li><p>以上處理完之後是否要通知下一個 Subscriber？要用什麼方法通知？通知什麼訊息？  </p>
+</li>
 </ul>
-<p><strong>Observable 其實是幫我們將 Subscriber 串接起來。</strong></p>
+<p><strong>Observable 其實是幫我們將 Subscriber 串接起來。</strong>  </p>
 
-      
     </div>
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
+    
+    
+    
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/RxJS/" rel="tag"># RxJS</a>
-          
-        </div>
-      
-
-      
-      
-        <div class="post-widgets">
-        
-
-        
-          <div class="social-like">
-            
-
-            
-              <div class="fb_like">
-                <div class="fb-like" data-layout="button_count" data-share="true"></div>
-              </div>
-            
-          </div>
-        
-        </div>
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/quotes/quotes_005/" rel="next" title="團隊合作">
-                <i class="fa fa-chevron-left"></i> 團隊合作
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/RxJS/" rel="tag"># RxJS</a>
           </div>
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/angular/training/31_ngrx_1/" rel="prev" title="你或許看過四不像，但是你聽過四很像嗎？：NgRx">
-                你或許看過四不像，但是你聽過四很像嗎？：NgRx <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/quotes/quotes_005/" rel="prev" title="團隊合作">
+                  <i class="fa fa-chevron-left"></i> 團隊合作
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/angular/training/31_ngrx_1/" rel="next" title="你或許看過四不像，但是你聽過四很像嗎？：NgRx">
+                  你或許看過四不像，但是你聽過四很像嗎？：NgRx <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-        </div>
-      
-
-      
-      
     </footer>
   </article>
+</div>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
 
 
-          </div>
-          
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Jonny Huang">
-          <p class="site-author-name" itemprop="name">Jonny Huang</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-           
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">66</span>
-                <span class="site-state-item-name">文章</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">分類</span>
-              
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">28</span>
-                <span class="site-state-item-name">標籤</span>
-              
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
-                  
-                    <i class="fa fa-fw fa-facebook-official"></i>
-                  
-                  Facebook
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>
-                  
-                  Email
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-block">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/flutter.tw/" title="Flutter Taiwan" target="_blank">Flutter Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Observer-只是一個介面"><span class="nav-number">2.</span> <span class="nav-text">Observer 只是一個介面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Observable-只關心訂閱與取消"><span class="nav-number">3.</span> <span class="nav-text">Observable 只關心訂閱與取消</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Operator-Function：Map"><span class="nav-number">4.</span> <span class="nav-text">Operator Function：Map</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#打包機：lift"><span class="nav-number">4.1.</span> <span class="nav-text">打包機：lift</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Operator-只做訂閱"><span class="nav-number">4.2.</span> <span class="nav-text">Operator 只做訂閱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subscriber-就是-Observer"><span class="nav-number">4.3.</span> <span class="nav-text">Subscriber 就是 Observer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OperatorSubscriber-才是重點"><span class="nav-number">4.4.</span> <span class="nav-text">OperatorSubscriber 才是重點</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#next-並不一定要接-next：Single"><span class="nav-number">5.</span> <span class="nav-text">next 並不一定要接 next：Single</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#retry-：為什麼發生錯誤-error-後還可以繼續通知？"><span class="nav-number">6.</span> <span class="nav-text">retry ：為什麼發生錯誤(error)後還可以繼續通知？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Subject-不只是提供給多個-Observer-訂閱"><span class="nav-number">7.</span> <span class="nav-text">Subject 不只是提供給多個 Observer 訂閱</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BehaviorSubject"><span class="nav-number">7.1.</span> <span class="nav-text">BehaviorSubject</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">8.</span> <span class="nav-text">後記</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
+<div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-Jonny Huang"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
 </div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
-</div>
-
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -1099,27 +389,6 @@ next(value?: T) {
 
 
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
-<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-      prettyPrint();
-  });
-</script>
 
 </body>
 </html>

@@ -1,0 +1,72 @@
+<hr>
+<p>title: 學會 Angular 後，就只能寫前端程式嗎？：Nest<br>date: 2017-10-16 08:00<br>categories: Training<br>keywords:</p>
+<ul>
+<li>Nest</li>
+<li>Angular<br>tags:</li>
+<li>Nest</li>
+</ul>
+<hr>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我們都知道 Angular 是一個純前端的網頁框架，學習上也比其他框架多了些許的門檻，甚至也需要我們改變開發模式，說白一點，很多地方無法用過去的經驗來套用，我想這也是許多人抗拒學習的因素，當然對於開始使用的人來說，會逐漸了解這些代價的犧牲是為了解決過去開發上會遇到的許多問題，相對報酬來說得到的會比失去的還多，最近筆者就看到一個具有 Angular 風格的後端框架-<strong>Nest</strong>，對於已經會 Angular 的人來說，這應該是一個報酬率很高的投資。  </p>
+<!-- more -->  
+
+<h1 id="安裝-Nest-CLI"><a href="#安裝-Nest-CLI" class="headerlink" title="安裝 Nest CLI"></a>安裝 Nest CLI</h1><p><img src="/images/angular/training/nest/nest.png" alt="img">  </p>
+<blockquote>
+<p>官方網站：<a href="https://docs.nestjs.com/">https://docs.nestjs.com</a><br>GitHub：<a href="https://github.com/nestjs/nest">https://github.com/nestjs/nest</a></p>
+</blockquote>
+<p>透過下列指令建立 Nest CLI：<br><code>npm i -g @nestjs/cli</code><br><img src="/images/angular/training/nest/nest_01.png" alt="img">  </p>
+<p>透過 <code>nest -h</code> 可以看到跟 Angular CLI 一樣是透過 <code>new</code> 參數來建立專案，透過 <code>generate</code> (縮寫：<code>g</code>) 來建立相關的資源檔案。<br><img src="/images/angular/training/nest/nest_02.png" alt="img"><br>透過下列指令建立 Nest 專案：<br><code>nest new demo-nest</code><br><img src="/images/angular/training/nest/nest_03.png" alt="img"><br>透過 IDE 編輯工具(筆者是使用 Visual Studio Code) 開啟專案，可以發現並沒有 node_modules 資料夾，也就是預設 Nest CLI 並不會安裝 <code>package.json</code> 內的 package 套件。<br><img src="/images/angular/training/nest/nest_04.png" alt="img"><br>所以我們先透過 <code>npm i</code> 指令安裝套件。<br><img src="/images/angular/training/nest/nest_05.png" alt="img">  </p>
+<h1 id="執行專案"><a href="#執行專案" class="headerlink" title="執行專案"></a>執行專案</h1><p>開啟說明檔 <code>README.md</code> 也可以看到我們必須先執行安裝指令。<br><img src="/images/angular/training/nest/nest_06.png" alt="img"><br>若依 <code>README.md</code> 的指令 <code>npm run start</code> 來啟動專案會發生錯誤。<br><img src="/images/angular/training/nest/nest_07.png" alt="img"><br>開啟 <code>package.json</code> 可以看到 <code>start</code> 只是單純透過 Node.js 來執行 index.js，並不會先將 TypeScript 檔案編譯成 JavaScript。<br><img src="/images/angular/training/nest/nest_08.png" alt="img"><br>所以我們改用 <code>npm run serve</code> 來啟動專案，預設連接埠為 <strong>3000</strong>。<br><img src="/images/angular/training/nest/nest_09.png" alt="img">  </p>
+<blockquote>
+<p>開啟 <code>src\app\server.ts</code> 可以看到預設是將連接埠是寫死在程式內，所以後續佈署在正式環境時需要再調整。<br><img src="/images/angular/training/nest/nest_13.png" alt="img"></p>
+</blockquote>
+<p>透過瀏覽器開啟 <a href="http://localhost:3000/%EF%BC%8C%E9%9B%96%E7%84%B6%E6%B2%92%E6%9C%89%E4%BB%BB%E4%BD%95%E5%8A%9F%E8%83%BD%E4%BD%86%E6%98%AF%E7%B3%BB%E7%B5%B1%E5%B7%B2%E7%B6%93%E8%83%BD%E6%AD%A3%E5%B8%B8%E9%81%8B%E4%BD%9C%E3%80%82">http://localhost:3000/，雖然沒有任何功能但是系統已經能正常運作。</a><br><img src="/images/angular/training/nest/nest_10.png" alt="img">  </p>
+<h1 id="建立-Web-API"><a href="#建立-Web-API" class="headerlink" title="建立 Web API"></a>建立 Web API</h1><p>我們可以透過指令 <code>nest generate controller &lt;assetName&gt;</code> 來建立 controller 提供資料交換的對外接口。</p>
+<blockquote>
+<p><code>generate</code> 可以縮寫為 <code>g</code>。</p>
+</blockquote>
+<p>接下來就直接透過 <code>nest g controller users</code> 來建立一個 <strong>UsersController</strong>。<br><img src="/images/angular/training/nest/nest_11.png" alt="img">  </p>
+<blockquote>
+<p>我們可以看到 controller 預設會建立在 <code>src\app\controllers\</code> 資料夾下，並依 controllers 名稱建立資料夾，同時在內部建立 controller 檔以及 controller 的單元測試檔，最後再將 controller 註冊到 <strong>ApplicationModule</strong>，這個步驟跟 Angular CLI 在建立 Component 的步驟可以說是十分雷同。<br><img src="/images/angular/training/nest/nest_12.png" alt="img"> </p>
+</blockquote>
+<p>可以看到 <code>src\app\controllers\users\users.controller.ts</code> 預設是空的，只是類別包含一個 <code>@Controller()</code> 的裝飾器。  </p>
+<p>{% codeblock users.controller.ts lang:ts %}<br>import {Controller} from ‘@nestjs/common’;</p>
+<p>@Controller()<br>export class UsersController {<br>    constructor() {}<br>}</p>
+<p>{% endcodeblock %}</p>
+<p>打開 <code>src\app\app.module.ts</code> 可以看到 <strong>UsersController</strong> 被註冊到 <strong>ApplicationModule</strong> 內，就跟 Angular Component 必須加到 NgMoudle 內一樣。</p>
+<p>{% codeblock app.module.ts lang:ts %}<br>import { Module } from ‘@nestjs/common’;<br>import {UsersController} from ‘./controllers/users/users.controller’;</p>
+<p>@Module({<br>  controllers: [<br>    UsersController<br>  ]<br>})<br>export class ApplicationModule { }<br>{% endcodeblock %}</p>
+<p>在 <strong>Nest</strong> 內已經將 HTTP Method 都變成裝飾器，我們可以在 controller 內的方法上加上允許的 HTTP Method 就可以讓該方法對外溝通。<br><img src="/images/angular/training/nest/nest_14.png" alt="img"><br>接下來參考官方說明在 <strong>UsersController</strong> 內加入一 HTTP Get 方法：</p>
+<p>{% codeblock users.controller.ts lang:ts %}<br>import { Controller, Get, Res, HttpStatus } from ‘@nestjs/common’;</p>
+<p>@Controller(‘users’)<br>export class UsersController {<br>    constructor() { }</p>
+<pre><code>@Get(&#39;find&#39;)
+find() {
+    return &#39;張三&#39;;
+}
+
+@Get(&#39;findAll&#39;)
+findAll( @Res() res) {
+    res.status(HttpStatus.OK).json([&#39;張三&#39;, &#39;李四&#39;, &#39;老五&#39;]);
+}
+</code></pre>
+<p>}</p>
+<p>{% endcodeblock %}</p>
+<p>透過 <code>npm run serve</code> 啟動專案，並瀏覽對應的 API，可以看到回應的結果。<br><img src="/images/angular/training/nest/nest_15.png" alt="img"><br><img src="/images/angular/training/nest/nest_16.png" alt="img">  </p>
+<h1 id="備註"><a href="#備註" class="headerlink" title="備註"></a>備註</h1><p>其實 <strong>Nest</strong> 底層是透過 <a href="http://expressjs.com/">Express</a> 來運作，透過他的封裝讓我們可以簡單的開發後端程式。 </p>
+<blockquote>
+<p><strong>Nest</strong> 也提供了 WebSocket 而它的底層也是直接使用熱門的 <strong>socket.io</strong>。</p>
+</blockquote>
+<p>對於學過的 Angular 的人來說官方文件應該不會有太大的門檻，但是若要全部功能都演練一遍也不是短時間可以完成的，所以筆者初略看過後先說明自己的感想，後續有機會再做詳細說明。  </p>
+<ul>
+<li>Nest 並不是直接套用 Angular 的架構，而是引用 Angular 架構上的優點來封裝 Express 與 socket.io。</li>
+<li><a href="https://docs.nestjs.com/controllers">Controller</a> 可以看到 Angular Component 的影子。  </li>
+<li><a href="https://docs.nestjs.com/components">Component</a> 可以看到 Angular Service 的影子。  </li>
+<li><a href="https://docs.nestjs.com/modules">Module</a> 可以看到 Angular NgModule 的影子。  </li>
+<li><a href="https://docs.nestjs.com/pipes">Pipe</a>、<a href="https://docs.nestjs.com/guards">Guard</a> 甚至 <a href="https://docs.nestjs.com/advanced/dependency-injection">DI</a> 都有 Angular 上的特質。  </li>
+<li><a href="https://docs.nestjs.com/middlewares">Middleware</a> 讓我們可以攔截訊息做額外處理。  </li>
+<li>在資料庫介接部分官方推薦使用 <a href="https://github.com/typeorm/typeorm">TypeORM</a>。</li>
+<li>官方範例：<a href="https://github.com/nestjs/nest/tree/master/examples">https://github.com/nestjs/nest/tree/master/examples</a></li>
+</ul>
+<blockquote>
+<p>中文翻譯：<a href="https://exlley.gitbooks.io/nest-js/">https://exlley.gitbooks.io/nest-js/</a></p>
+</blockquote>
+<p>PS：有接觸過的人希望您也可以在社團上分享經驗，感謝。  </p>

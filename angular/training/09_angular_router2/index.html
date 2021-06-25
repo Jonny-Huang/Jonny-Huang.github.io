@@ -1,103 +1,32 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-tw">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-TW">
+<head>
   <meta charset="UTF-8">
-<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="Angular,Router,Routing">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
-
-
-
-
-  <meta property="fb:admins" content="fb267234890438499">
-  <meta property="fb:app_id" content="267234890438499">
-
-
-
-<meta name="description" content="子路由 (Child Routing)在 Angular UI：Angular Flex-Layout 我們透過 ng g m home --routing 建立 HomeModule，因為多加了 --routing 參數，所以 CLI 多幫我們建立一個路由模組 home-routing.module.ts。   import { NgModule } from &amp;#39;@angular&amp;#x2">
-<meta name="keywords" content="Angular,Router,Routing">
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="子路由 (Child Routing)在 Angular UI：Angular Flex-Layout 我們透過 ng g m home --routing 建立 HomeModule，因為多加了 --routing 參數，所以 CLI 多幫我們建立一個路由模組 home-routing.module.ts。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular 子路由">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/09_angular_router2/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="子路由 (Child Routing)在 Angular UI：Angular Flex-Layout 我們透過 ng g m home --routing 建立 HomeModule，因為多加了 --routing 參數，所以 CLI 多幫我們建立一個路由模組 home-routing.module.ts。   import { NgModule } from &amp;#39;@angular&amp;#x2">
-<meta property="og:locale" content="zh-tw">
+<meta property="og:description" content="子路由 (Child Routing)在 Angular UI：Angular Flex-Layout 我們透過 ng g m home --routing 建立 HomeModule，因為多加了 --routing 參數，所以 CLI 多幫我們建立一個路由模組 home-routing.module.ts。">
+<meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_29.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/router/angular_router_06.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/router/angular_router_07.png">
@@ -107,1047 +36,328 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/router/angular_router_11.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/router/angular_router_12.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-05T03:16:12.000Z">
+<meta property="article:published_time" content="2017-09-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-24T01:06:10.638Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="Angular">
+<meta property="article:tag" content="Router">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Angular 子路由">
-<meta name="twitter:description" content="子路由 (Child Routing)在 Angular UI：Angular Flex-Layout 我們透過 ng g m home --routing 建立 HomeModule，因為多加了 --routing 參數，所以 CLI 多幫我們建立一個路由模組 home-routing.module.ts。   import { NgModule } from &amp;#39;@angular&amp;#x2">
 <meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/ui/angular_ui_29.png">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Jonny'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<link rel="canonical" href="https://jonny-huang.github.io/angular/training/09_angular_router2/">
 
 
 
-  <link rel="canonical" href="https://jonny-huang.github.io/angular/training/09_angular_router2/">
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;angular&#x2F;training&#x2F;09_angular_router2&#x2F;&quot;,&quot;path&quot;:&quot;angular&#x2F;training&#x2F;09_angular_router2&#x2F;&quot;,&quot;title&quot;:&quot;Angular 子路由&quot;}</script>
 
-
-
-
-
-  <title>Angular 子路由 | Jonny Huang 的學習筆記</title>
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>Angular 子路由 | Jonny Huang 的學習筆記</title>
   
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '267234890438499',
-      xfbml      : true,
-      version    : 'v2.6'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/zh_tw/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-tw">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Jonny Huang 的學習筆記</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <h1 class="site-subtitle" itemprop="description">Angular、Flutter</h1>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首頁
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            目錄
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-flutter">
-          <a href="/flutter/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Flutter
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-angular">
-          <a href="/angular/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Angular
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-quotes">
-          <a href="/quotes/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br>
-            
-            欣雨露
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa-commenting fa-fw"></i>欣雨露</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%90%E8%B7%AF%E7%94%B1-Child-Routing"><span class="nav-number">1.</span> <span class="nav-text">子路由 (Child Routing)</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
     
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/09_angular_router2/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Jonny Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Jonny Huang 的學習筆記">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Angular 子路由
+        </h1>
 
-        
-        
-          <h2 class="post-title" itemprop="name headline">Angular 子路由</h2>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/06/24 09:06:10" itemprop="dateModified" datetime="2021-06-24T09:06:10+08:00">2021/06/24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Training/" itemprop="url" rel="index"><span itemprop="name">Training</span></a>
+        </span>
+    </span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新於</span>
-              
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-05T11:16:12+08:00">
-                2017/09/05
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Training/" itemprop="url" rel="index">
-                    <span itemprop="name">Training</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
+
     
-
+    
+    
     <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         <h1 id="子路由-Child-Routing"><a href="#子路由-Child-Routing" class="headerlink" title="子路由 (Child Routing)"></a>子路由 (Child Routing)</h1><p>在 <a href="/angular/training/08_angular_ui-flex_layout/">Angular UI：Angular Flex-Layout</a> 我們透過 <code>ng g m home --routing</code> 建立 <strong>HomeModule</strong>，因為多加了 <code>--routing</code> 參數，所以 CLI 多幫我們建立一個路由模組 <code>home-routing.module.ts</code>。  </p>
-<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
-import { Routes, RouterModule } from &#39;@angular&#x2F;router&#39;;
+<span id="more"></span>  
 
-const routes: Routes = [];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class HomeRoutingModule { }
-</code></pre>
+<figure class="highlight ts"><figcaption><span>home-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/router&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes: Routes = [];</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [RouterModule.forChild(routes)],</span><br><span class="line">  <span class="attr">exports</span>: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeRoutingModule</span> </span>&#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>比較一下 <code>arc\app\app-routing.module.ts</code>。  </p>
-<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
-import { Routes, RouterModule } from &#39;@angular&#x2F;router&#39;;
-import { Page1Component } from &#39;.&#x2F;page1&#x2F;page1.component&#39;;
-import { Page2Component } from &#39;.&#x2F;page2.component&#39;;
-import { Page3Component } from &#39;.&#x2F;page3.component&#39;;
-import { Page404Component } from &#39;.&#x2F;page404&#x2F;page404.component&#39;;
-import { Opt1Component } from &#39;.&#x2F;operation&#x2F;opt1&#x2F;opt1.component&#39;;
-import { HomeComponent } from &#39;.&#x2F;home&#x2F;home.component&#39;;
-
-const routes: Routes = [
-  { path: &#39;&#39;, redirectTo: &#39;home&#39;, pathMatch: &#39;full&#39; },
-  { path: &#39;home&#39;, component: HomeComponent },
-  { path: &#39;p1&#39;, component: Page1Component },
-  { path: &#39;p2&#39;, component: Page2Component },
-  { path: &#39;p3&#39;, component: Page3Component },
-  { path: &#39;opt1&#39;, component: Opt1Component },
-  { path: &#39;404&#39;, component: Page404Component },
-  { path: &#39;**&#39;, redirectTo: &#39;404&#39; }
-];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
-</code></pre>
+<figure class="highlight ts"><figcaption><span>app-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Page1Component &#125; <span class="keyword">from</span> <span class="string">&#x27;./page1/page1.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Page2Component &#125; <span class="keyword">from</span> <span class="string">&#x27;./page2.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Page3Component &#125; <span class="keyword">from</span> <span class="string">&#x27;./page3.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Page404Component &#125; <span class="keyword">from</span> <span class="string">&#x27;./page404/page404.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Opt1Component &#125; <span class="keyword">from</span> <span class="string">&#x27;./operation/opt1/opt1.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HomeComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./home/home.component&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes: Routes = [</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;&#x27;</span>, <span class="attr">redirectTo</span>: <span class="string">&#x27;home&#x27;</span>, <span class="attr">pathMatch</span>: <span class="string">&#x27;full&#x27;</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;home&#x27;</span>, <span class="attr">component</span>: HomeComponent &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;p1&#x27;</span>, <span class="attr">component</span>: Page1Component &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;p2&#x27;</span>, <span class="attr">component</span>: Page2Component &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;p3&#x27;</span>, <span class="attr">component</span>: Page3Component &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;opt1&#x27;</span>, <span class="attr">component</span>: Opt1Component &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;404&#x27;</span>, <span class="attr">component</span>: Page404Component &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;**&#x27;</span>, <span class="attr">redirectTo</span>: <span class="string">&#x27;404&#x27;</span> &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [RouterModule.forRoot(routes)],</span><br><span class="line">  <span class="attr">exports</span>: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppRoutingModule</span> </span>&#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>可以發現 <strong>AppRoutingModule</strong> 是透過 <code>RouterModule.forRoot(routes)</code> 匯入，而 <strong>HomeRoutingModule</strong> 是透過 <code>RouterModule.forChild(routes)</code> 匯入，Angular 在執行時只有一個根路由當作起點，相關其他路由會子路由的身分以附加到根路由內。<br><strong>HomeRoutingModule</strong> 因為先被匯入到 <strong>HomeModule</strong>，而 <strong>HomeModule</strong> 又被匯入到 <strong>AppModule</strong>，所以 <strong>HomeRoutingModule</strong> 的路由規則才會被偵測到。  </p>
-<p>嘗試把 <strong>AppModule</strong> 內的路由規則 <code>{ path: &#39;home&#39;, component: HomeComponent }</code> 移至 <strong>HomeRoutingModule</strong>，並取消萬用路由規則。  </p>
-<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
-import { Routes, RouterModule } from &#39;@angular&#x2F;router&#39;;
-import { Page1Component } from &#39;.&#x2F;page1&#x2F;page1.component&#39;;
-import { Page2Component } from &#39;.&#x2F;page2.component&#39;;
-import { Page3Component } from &#39;.&#x2F;page3.component&#39;;
-import { Page404Component } from &#39;.&#x2F;page404&#x2F;page404.component&#39;;
-import { Opt1Component } from &#39;.&#x2F;operation&#x2F;opt1&#x2F;opt1.component&#39;;
-&#x2F;&#x2F; import { HomeComponent } from &#39;.&#x2F;home&#x2F;home.component&#39;;
-
-const routes: Routes = [
-  { path: &#39;&#39;, redirectTo: &#39;home&#39;, pathMatch: &#39;full&#39; },
-  &#x2F;&#x2F; { path: &#39;home&#39;, component: HomeComponent },
-  { path: &#39;p1&#39;, component: Page1Component },
-  { path: &#39;p2&#39;, component: Page2Component },
-  { path: &#39;p3&#39;, component: Page3Component },
-  { path: &#39;opt1&#39;, component: Opt1Component },
-  { path: &#39;404&#39;, component: Page404Component },
-  &#x2F;&#x2F; { path: &#39;**&#39;, redirectTo: &#39;404&#39; }
-];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
-</code></pre>
-<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
-import { Routes, RouterModule } from &#39;@angular&#x2F;router&#39;;
-import { HomeComponent } from &#39;.&#x2F;home.component&#39;;
-
-const routes: Routes = [
-  { path: &#39;home&#39;, component: HomeComponent }
-];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class HomeRoutingModule { }
-</code></pre>
+<p>嘗試把 <strong>AppModule</strong> 內的路由規則 <code>&#123; path: &#39;home&#39;, component: HomeComponent &#125;</code> 移至 <strong>HomeRoutingModule</strong>，並取消萬用路由規則。  </p>
+<figure class="highlight ts"><figcaption><span>app-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Page1Component &#125; <span class="keyword">from</span> <span class="string">&#x27;./page1/page1.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Page2Component &#125; <span class="keyword">from</span> <span class="string">&#x27;./page2.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Page3Component &#125; <span class="keyword">from</span> <span class="string">&#x27;./page3.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Page404Component &#125; <span class="keyword">from</span> <span class="string">&#x27;./page404/page404.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Opt1Component &#125; <span class="keyword">from</span> <span class="string">&#x27;./operation/opt1/opt1.component&#x27;</span>;</span><br><span class="line"><span class="comment">// import &#123; HomeComponent &#125; from &#x27;./home/home.component&#x27;;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes: Routes = [</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;&#x27;</span>, <span class="attr">redirectTo</span>: <span class="string">&#x27;home&#x27;</span>, <span class="attr">pathMatch</span>: <span class="string">&#x27;full&#x27;</span> &#125;,</span><br><span class="line">  <span class="comment">// &#123; path: &#x27;home&#x27;, component: HomeComponent &#125;,</span></span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;p1&#x27;</span>, <span class="attr">component</span>: Page1Component &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;p2&#x27;</span>, <span class="attr">component</span>: Page2Component &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;p3&#x27;</span>, <span class="attr">component</span>: Page3Component &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;opt1&#x27;</span>, <span class="attr">component</span>: Opt1Component &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;404&#x27;</span>, <span class="attr">component</span>: Page404Component &#125;,</span><br><span class="line">  <span class="comment">// &#123; path: &#x27;**&#x27;, redirectTo: &#x27;404&#x27; &#125;</span></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [RouterModule.forRoot(routes)],</span><br><span class="line">  <span class="attr">exports</span>: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppRoutingModule</span> </span>&#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight ts"><figcaption><span>home-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HomeComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./home.component&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes: Routes = [</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;home&#x27;</span>, <span class="attr">component</span>: HomeComponent &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [RouterModule.forChild(routes)],</span><br><span class="line">  <span class="attr">exports</span>: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeRoutingModule</span> </span>&#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>執行後會看到結果沒有任何該便，這意味的 Angular 會幫我們將所有路由合併，並依序比對路由規則，所以也表示子路由加入的順序也會影響比對結果，只是正常情況下路由規格的條件(<code>path</code> 屬性)不應該重複。  </p>
 <blockquote>
 <p>因為目前的路由模組是透過 Angular 幫我們整合，正常情況下它會以根路由為主，在依子路由模組加入的順序依次加進去，所以如果根路由包含了萬用路由的規則，那路由規則比對時可能就會在此就被攔截，後續路由規則可能就會不再比對。</p>
 </blockquote>
-<p><img src="/images/angular/training/ui/angular_ui_29.png" alt=""><br>如上圖所示，一般我們可能會在 Aside 區塊會列出一些系統的功能選單，等點選功能選單後 Content 區塊會將該功能的操作介面呈現出來。  </p>
-<p>先在 Aside 區塊加入一些功能項目，因為會使用到 <a href="https://material.angular.io/components/list/api" target="_blank" rel="noopener"><strong>MdListModule</strong></a>、<a href="https://material.angular.io/components/button/api" target="_blank" rel="noopener"><strong>MdButtonModule</strong></a>、<a href="https://material.angular.io/components/icon/api" target="_blank" rel="noopener"><strong>MdIconModule</strong></a>，所以開啟 <code>src\app\custom-material.module.ts</code> 將缺少的模組補上。  </p>
-<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
-import { FlexLayoutModule } from &#39;@angular&#x2F;flex-layout&#39;;
-import {
-  MdIconModule,
-  MdButtonModule,
-  MdListModule
-} from &#39;@angular&#x2F;material&#39;;
-
-@NgModule({
-  imports: [
-    FlexLayoutModule,
-    MdIconModule,
-    MdButtonModule,
-    MdListModule
-  ],
-  exports: [
-    FlexLayoutModule,
-    MdIconModule,
-    MdButtonModule,
-    MdListModule
-  ]
-})
-export class CustomMaterialModule { }
-</code></pre>
+<p><img src="/images/angular/training/ui/angular_ui_29.png" alt="img"><br>如上圖所示，一般我們可能會在 Aside 區塊會列出一些系統的功能選單，等點選功能選單後 Content 區塊會將該功能的操作介面呈現出來。  </p>
+<p>先在 Aside 區塊加入一些功能項目，因為會使用到 <a target="_blank" rel="noopener" href="https://material.angular.io/components/list/api"><strong>MdListModule</strong></a>、<a target="_blank" rel="noopener" href="https://material.angular.io/components/button/api"><strong>MdButtonModule</strong></a>、<a target="_blank" rel="noopener" href="https://material.angular.io/components/icon/api"><strong>MdIconModule</strong></a>，所以開啟 <code>src\app\custom-material.module.ts</code> 將缺少的模組補上。  </p>
+<figure class="highlight ts"><figcaption><span>custom-material.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; FlexLayoutModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/flex-layout&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  MdIconModule,</span><br><span class="line">  MdButtonModule,</span><br><span class="line">  MdListModule</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/material&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [</span><br><span class="line">    FlexLayoutModule,</span><br><span class="line">    MdIconModule,</span><br><span class="line">    MdButtonModule,</span><br><span class="line">    MdListModule</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">exports</span>: [</span><br><span class="line">    FlexLayoutModule,</span><br><span class="line">    MdIconModule,</span><br><span class="line">    MdButtonModule,</span><br><span class="line">    MdListModule</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomMaterialModule</span> </span>&#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>開啟 <code>src\app\home\aside\aside.component.html</code> 並加入下列功能清單。  </p>
-<pre><code>&lt;md-list&gt;
-  &lt;h3 md-subheader&gt;員工專區&lt;&#x2F;h3&gt;
-  &lt;button md-button routerLink=&quot;&quot;&gt;
-    &lt;md-list-item&gt;
-      &lt;md-icon md-list-icon&gt;today&lt;&#x2F;md-icon&gt;
-      &lt;h4 md-line&gt;行 事 曆&lt;&#x2F;h4&gt;
-    &lt;&#x2F;md-list-item&gt;
-  &lt;&#x2F;button&gt;
-  &lt;button md-button routerLink=&quot;&quot;&gt;
-    &lt;md-list-item&gt;
-      &lt;md-icon md-list-icon&gt;contact_phone&lt;&#x2F;md-icon&gt;
-      &lt;h4 md-line&gt;通 訊 錄&lt;&#x2F;h4&gt;
-    &lt;&#x2F;md-list-item&gt;
-  &lt;&#x2F;button&gt;
-  &lt;button md-button routerLink=&quot;&quot;&gt;
-    &lt;md-list-item&gt;
-      &lt;md-icon md-list-icon&gt;border_color&lt;&#x2F;md-icon&gt;
-      &lt;h4 md-line&gt;工作日誌&lt;&#x2F;h4&gt;
-    &lt;&#x2F;md-list-item&gt;
-  &lt;&#x2F;button&gt;
-  &lt;button md-button routerLink=&quot;&quot;&gt;
-    &lt;md-list-item&gt;
-      &lt;md-icon md-list-icon&gt;playlist_add_check&lt;&#x2F;md-icon&gt;
-      &lt;h4 md-line&gt;待辦事項&lt;&#x2F;h4&gt;
-    &lt;&#x2F;md-list-item&gt;
-  &lt;&#x2F;button&gt;
-  &lt;button md-button routerLink=&quot;&quot;&gt;
-    &lt;md-list-item&gt;
-      &lt;md-icon md-list-icon&gt;cloud_download&lt;&#x2F;md-icon&gt;
-      &lt;h4 md-line&gt;檔案下載&lt;&#x2F;h4&gt;
-    &lt;&#x2F;md-list-item&gt;
-  &lt;&#x2F;button&gt;
-  &lt;button md-button routerLink=&quot;&quot;&gt;
-    &lt;md-list-item&gt;
-      &lt;md-icon md-list-icon&gt;weekend&lt;&#x2F;md-icon&gt;
-      &lt;h4 md-line&gt;請  假&lt;&#x2F;h4&gt;
-    &lt;&#x2F;md-list-item&gt;
-  &lt;&#x2F;button&gt;
-  &lt;button md-button routerLink=&quot;&quot;&gt;
-    &lt;md-list-item&gt;
-      &lt;md-icon md-list-icon&gt;attach_money&lt;&#x2F;md-icon&gt;
-      &lt;h4 md-line&gt;差旅報支&lt;&#x2F;h4&gt;
-    &lt;&#x2F;md-list-item&gt;
-  &lt;&#x2F;button&gt;
-&lt;&#x2F;md-list&gt;
-</code></pre>
-<p>開啟瀏覽器查看結果。<br><img src="/images/angular/training/router/angular_router_06.gif" alt=""><br>但是縮小視窗高度時會發現因為視窗高度小於內容高度所以最右邊出現滾動條(scrollbar)，但是正常來說我們比較期望滾動條出現在 Aside 區塊，Header 區塊不會因為往下拖拉被隱藏起來，而是始終都能顯示在最上面。<br><img src="/images/angular/training/router/angular_router_07.png" alt=""><br>開啟 <code>src\styles.scss</code>，將 <code>html</code>、<code>body</code>加入隱藏滾動，並另外建立一個 <code>scrollbar</code> 的樣式，可以到  <strong>CodePen</strong> 搜尋<a href="https://codepen.io/GhostRider/pen/GHaFw" target="_blank" rel="noopener">範例</a>。  </p>
-<pre><code>html,
-body {
-  height: 100%;
-  margin: 0px;
-  overflow-y: hidden;
-}
-
-.scrollbar {
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding-bottom: 48px;
-}
-.scrollbar::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.8);
-  border-radius: 10px;
-  background-color: transparent;
-}
-.scrollbar::-webkit-scrollbar {
-  width: 12px;
-  background-color: transparent;
-}
-.scrollbar::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.8);
-  background-color: transparent;
-}
-
-&#x2F;* Angular Material2 Themes *&#x2F;
-&#x2F;&#x2F; @import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;deeppurple-amber.css&quot;;
-&#x2F;&#x2F; @import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;indigo-pink.css&quot;;
-@import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;pink-bluegrey.css&quot;;
-&#x2F;&#x2F; @import &quot;~@angular&#x2F;material&#x2F;prebuilt-themes&#x2F;purple-green.css&quot;;
-</code></pre>
+<figure class="highlight html"><figcaption><span>aside.component.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">md-list</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span> <span class="attr">md-subheader</span>&gt;</span>員工專區<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">md-button</span> <span class="attr">routerLink</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">md-icon</span> <span class="attr">md-list-icon</span>&gt;</span>today<span class="tag">&lt;/<span class="name">md-icon</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h4</span> <span class="attr">md-line</span>&gt;</span>行 事 曆<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">md-button</span> <span class="attr">routerLink</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">md-icon</span> <span class="attr">md-list-icon</span>&gt;</span>contact_phone<span class="tag">&lt;/<span class="name">md-icon</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h4</span> <span class="attr">md-line</span>&gt;</span>通 訊 錄<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">md-button</span> <span class="attr">routerLink</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">md-icon</span> <span class="attr">md-list-icon</span>&gt;</span>border_color<span class="tag">&lt;/<span class="name">md-icon</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h4</span> <span class="attr">md-line</span>&gt;</span>工作日誌<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">md-button</span> <span class="attr">routerLink</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">md-icon</span> <span class="attr">md-list-icon</span>&gt;</span>playlist_add_check<span class="tag">&lt;/<span class="name">md-icon</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h4</span> <span class="attr">md-line</span>&gt;</span>待辦事項<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">md-button</span> <span class="attr">routerLink</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">md-icon</span> <span class="attr">md-list-icon</span>&gt;</span>cloud_download<span class="tag">&lt;/<span class="name">md-icon</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h4</span> <span class="attr">md-line</span>&gt;</span>檔案下載<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">md-button</span> <span class="attr">routerLink</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">md-icon</span> <span class="attr">md-list-icon</span>&gt;</span>weekend<span class="tag">&lt;/<span class="name">md-icon</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h4</span> <span class="attr">md-line</span>&gt;</span>請  假<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">md-button</span> <span class="attr">routerLink</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">md-icon</span> <span class="attr">md-list-icon</span>&gt;</span>attach_money<span class="tag">&lt;/<span class="name">md-icon</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h4</span> <span class="attr">md-line</span>&gt;</span>差旅報支<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">md-list</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>開啟瀏覽器查看結果。<br><img src="/images/angular/training/router/angular_router_06.gif" alt="img"><br>但是縮小視窗高度時會發現因為視窗高度小於內容高度所以最右邊出現滾動條(scrollbar)，但是正常來說我們比較期望滾動條出現在 Aside 區塊，Header 區塊不會因為往下拖拉被隱藏起來，而是始終都能顯示在最上面。<br><img src="/images/angular/training/router/angular_router_07.png" alt="img"><br>開啟 <code>src\styles.scss</code>，將 <code>html</code>、<code>body</code>加入隱藏滾動，並另外建立一個 <code>scrollbar</code> 的樣式，可以到  <strong>CodePen</strong> 搜尋<a target="_blank" rel="noopener" href="https://codepen.io/GhostRider/pen/GHaFw">範例</a>。  </p>
+<figure class="highlight scss"><figcaption><span>styles.scss</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>,</span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">overflow-y</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.scrollbar</span> &#123;</span><br><span class="line">  <span class="attribute">overflow-x</span>: hidden;</span><br><span class="line">  <span class="attribute">overflow-y</span>: auto;</span><br><span class="line">  <span class="attribute">padding-bottom</span>: <span class="number">48px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.scrollbar</span>::-webkit-scrollbar-track &#123;</span><br><span class="line">  -webkit-box-shadow: inset <span class="number">0</span> <span class="number">0</span> <span class="number">6px</span> rgba(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.8</span>);</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: transparent;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.scrollbar</span>::-webkit-scrollbar &#123;</span><br><span class="line">  width: <span class="number">12px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: transparent;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.scrollbar</span>::-webkit-scrollbar-thumb &#123;</span><br><span class="line">  border-radius: <span class="number">10px</span>;</span><br><span class="line">  -webkit-<span class="attribute">box-shadow</span>: inset <span class="number">0</span> <span class="number">0</span> <span class="number">6px</span> rgba(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.8</span>);</span><br><span class="line">  <span class="attribute">background-color</span>: transparent;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Angular Material2 Themes */</span></span><br><span class="line"><span class="comment">// @import &quot;~@angular/material/prebuilt-themes/deeppurple-amber.css&quot;;</span></span><br><span class="line"><span class="comment">// @import &quot;~@angular/material/prebuilt-themes/indigo-pink.css&quot;;</span></span><br><span class="line"><span class="keyword">@import</span> <span class="string">&quot;~@angular/material/prebuilt-themes/pink-bluegrey.css&quot;</span>;</span><br><span class="line"><span class="comment">// @import &quot;~@angular/material/prebuilt-themes/purple-green.css&quot;;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>開啟 <code>src\app\home\home.component.html</code>，在 Aside 區塊所屬的 <code>div</code> 加入 <code>scrollbar</code> 樣式。  </p>
-<pre><code>&lt;div fxFill fxLayout=&quot;column&quot; class=&quot;layout&quot;&gt;
-  &lt;div fxFlex=&quot;68px&quot; class=&quot;header&quot;&gt;
-    &lt;app-header&gt;&lt;&#x2F;app-header&gt;
-  &lt;&#x2F;div&gt;
-  &lt;div fxFlex fxLayout=&quot;row&quot; class=&quot;main&quot;&gt;
-    &lt;div fxFlex=&quot;200px&quot; class=&quot;aside scrollbar&quot;&gt;
-      &lt;app-aside&gt;&lt;&#x2F;app-aside&gt;
-    &lt;&#x2F;div&gt;
-    &lt;div fxFlex class=&quot;content&quot;&gt;Content&lt;&#x2F;div&gt;
-  &lt;&#x2F;div&gt;
-&lt;&#x2F;div&gt;
-</code></pre>
-<p><img src="/images/angular/training/router/angular_router_08.png" alt=""><br>接下來我們需要的是點選功能選單之後 Content 區塊會切換成該選單的介面，因為外面的 <strong>HomeModule</strong> 樣板會被保留下來，只有 Content 區塊需要切換。<br>依序建立各功能對應的元件：<br><code>ng g c home\calendar</code><br><code>ng g c home\addressBook</code><br><code>ng g c home\logbook</code><br><code>ng g c home\toDoList</code><br><code>ng g c home\file</code><br><code>ng g c home\leave</code><br><code>ng g c home\eimburse</code><br><img src="/images/angular/training/router/angular_router_09.png" alt=""><br>開啟 <code>src\app\home\home.component.html</code>，在 Content 區塊內插入第二層的 <code>router-outlet</code>。  </p>
-<pre><code>&lt;div fxFill fxLayout=&quot;column&quot; class=&quot;layout&quot;&gt;
-  &lt;div fxFlex=&quot;68px&quot; class=&quot;header&quot;&gt;
-    &lt;app-header&gt;&lt;&#x2F;app-header&gt;
-  &lt;&#x2F;div&gt;
-  &lt;div fxFlex fxLayout=&quot;row&quot; class=&quot;main&quot;&gt;
-    &lt;div fxFlex=&quot;200px&quot; class=&quot;aside scrollbar&quot;&gt;
-      &lt;app-aside&gt;&lt;&#x2F;app-aside&gt;
-    &lt;&#x2F;div&gt;
-    &lt;div fxFlex class=&quot;content&quot;&gt;
-      &lt;router-outlet&gt;&lt;&#x2F;router-outlet&gt;
-    &lt;&#x2F;div&gt;
-  &lt;&#x2F;div&gt;
-&lt;&#x2F;div&gt;
-</code></pre>
-<p>開啟 <code>src\app\home\home-routing.module.ts</code>，依照剛所產生的元件建立對應的路由規則，比較不同的是這次的路由規則是建立在 <code>home</code> 這個路由規則的 <code>children</code> 屬性內。</p>
-<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
-import { Routes, RouterModule } from &#39;@angular&#x2F;router&#39;;
-import { HomeComponent } from &#39;.&#x2F;home.component&#39;;
-import { CalendarComponent } from &#39;.&#x2F;calendar&#x2F;calendar.component&#39;;
-import { AddressBookComponent } from &#39;.&#x2F;address-book&#x2F;address-book.component&#39;;
-import { FileComponent } from &#39;.&#x2F;file&#x2F;file.component&#39;;
-import { LeaveComponent } from &#39;.&#x2F;leave&#x2F;leave.component&#39;;
-import { LogbookComponent } from &#39;.&#x2F;logbook&#x2F;logbook.component&#39;;
-import { ReimburseComponent } from &#39;.&#x2F;reimburse&#x2F;reimburse.component&#39;;
-import { ToDoListComponent } from &#39;.&#x2F;to-do-list&#x2F;to-do-list.component&#39;;
-
-const routes: Routes = [
-  {
-    path: &#39;home&#39;, component: HomeComponent, children: [
-      { path: &#39;address-book&#39;, component: AddressBookComponent },
-      { path: &#39;calendar&#39;, component: CalendarComponent },
-      { path: &#39;file&#39;, component: FileComponent },
-      { path: &#39;leave&#39;, component: LeaveComponent },
-      { path: &#39;logbook&#39;, component: LogbookComponent },
-      { path: &#39;reimburse&#39;, component: ReimburseComponent },
-      { path: &#39;to-do-list&#39;, component: ToDoListComponent },
-    ]
-  }
-];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class HomeRoutingModule { }
-</code></pre>
+<figure class="highlight html"><figcaption><span>home.component.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">fxFill</span> <span class="attr">fxLayout</span>=<span class="string">&quot;column&quot;</span> <span class="attr">class</span>=<span class="string">&quot;layout&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">fxFlex</span>=<span class="string">&quot;68px&quot;</span> <span class="attr">class</span>=<span class="string">&quot;header&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">app-header</span>&gt;</span><span class="tag">&lt;/<span class="name">app-header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">fxFlex</span> <span class="attr">fxLayout</span>=<span class="string">&quot;row&quot;</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">fxFlex</span>=<span class="string">&quot;200px&quot;</span> <span class="attr">class</span>=<span class="string">&quot;aside scrollbar&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">app-aside</span>&gt;</span><span class="tag">&lt;/<span class="name">app-aside</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">fxFlex</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span>Content<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="/images/angular/training/router/angular_router_08.png" alt="img"><br>接下來我們需要的是點選功能選單之後 Content 區塊會切換成該選單的介面，因為外面的 <strong>HomeModule</strong> 樣板會被保留下來，只有 Content 區塊需要切換。<br>依序建立各功能對應的元件：<br><code>ng g c home\calendar</code><br><code>ng g c home\addressBook</code><br><code>ng g c home\logbook</code><br><code>ng g c home\toDoList</code><br><code>ng g c home\file</code><br><code>ng g c home\leave</code><br><code>ng g c home\eimburse</code><br><img src="/images/angular/training/router/angular_router_09.png" alt="img"><br>開啟 <code>src\app\home\home.component.html</code>，在 Content 區塊內插入第二層的 <code>router-outlet</code>。  </p>
+<figure class="highlight html"><figcaption><span>home.component.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">fxFill</span> <span class="attr">fxLayout</span>=<span class="string">&quot;column&quot;</span> <span class="attr">class</span>=<span class="string">&quot;layout&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">fxFlex</span>=<span class="string">&quot;68px&quot;</span> <span class="attr">class</span>=<span class="string">&quot;header&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">app-header</span>&gt;</span><span class="tag">&lt;/<span class="name">app-header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">fxFlex</span> <span class="attr">fxLayout</span>=<span class="string">&quot;row&quot;</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">fxFlex</span>=<span class="string">&quot;200px&quot;</span> <span class="attr">class</span>=<span class="string">&quot;aside scrollbar&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">app-aside</span>&gt;</span><span class="tag">&lt;/<span class="name">app-aside</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">fxFlex</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-outlet</span>&gt;</span><span class="tag">&lt;/<span class="name">router-outlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>開啟 <code>src\app\home\home-routing.module.ts</code>，依照剛所產生的元件建立對應的路由規則，比較不同的是這次的路由規則是建立在 <code>home</code> 這個路由規則的 <code>children</code> 屬性內。  </p>
+<figure class="highlight ts"><figcaption><span>home-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HomeComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./home.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CalendarComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./calendar/calendar.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AddressBookComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./address-book/address-book.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; FileComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./file/file.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; LeaveComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./leave/leave.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; LogbookComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./logbook/logbook.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ReimburseComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./reimburse/reimburse.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ToDoListComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./to-do-list/to-do-list.component&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes: Routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;home&#x27;</span>, <span class="attr">component</span>: HomeComponent, <span class="attr">children</span>: [</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;address-book&#x27;</span>, <span class="attr">component</span>: AddressBookComponent &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;calendar&#x27;</span>, <span class="attr">component</span>: CalendarComponent &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;file&#x27;</span>, <span class="attr">component</span>: FileComponent &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;leave&#x27;</span>, <span class="attr">component</span>: LeaveComponent &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;logbook&#x27;</span>, <span class="attr">component</span>: LogbookComponent &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;reimburse&#x27;</span>, <span class="attr">component</span>: ReimburseComponent &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;to-do-list&#x27;</span>, <span class="attr">component</span>: ToDoListComponent &#125;,</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [RouterModule.forChild(routes)],</span><br><span class="line">  <span class="attr">exports</span>: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeRoutingModule</span> </span>&#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>符合現在所設的路由規則的導覽路徑前面必包含 <code>home</code> 路徑，因為必須先滿足 <code>path:&#39;home&#39;</code> 這條路由規則才有機會繼續比對 <code>children</code> 內的路由規則。<br><code>children</code> 內的路由規則也是可以再加上子路由規則(<code>children</code>)，如此可以一層一層的延伸下去。  </p>
 </blockquote>
 <p>開啟 <code>src\app\home\aside\aside.component.html</code> 並在各功能選單加入 <code>routerLink</code>。  </p>
-<pre><code>&lt;md-list&gt;
-  &lt;h3 md-subheader&gt;員工專區&lt;&#x2F;h3&gt;
-  &lt;button md-button routerLink=&quot;.&#x2F;calendar&quot;&gt;
-    &lt;md-list-item&gt;
-      &lt;md-icon md-list-icon&gt;today&lt;&#x2F;md-icon&gt;
-      &lt;h4 md-line&gt;行 事 曆&lt;&#x2F;h4&gt;
-    &lt;&#x2F;md-list-item&gt;
-  &lt;&#x2F;button&gt;
-  &lt;button md-button routerLink=&quot;.&#x2F;address-book&quot;&gt;
-    &lt;md-list-item&gt;
-      &lt;md-icon md-list-icon&gt;contact_phone&lt;&#x2F;md-icon&gt;
-      &lt;h4 md-line&gt;通 訊 錄&lt;&#x2F;h4&gt;
-    &lt;&#x2F;md-list-item&gt;
-  &lt;&#x2F;button&gt;
-  &lt;button md-button routerLink=&quot;.&#x2F;logbook&quot;&gt;
-    &lt;md-list-item&gt;
-      &lt;md-icon md-list-icon&gt;border_color&lt;&#x2F;md-icon&gt;
-      &lt;h4 md-line&gt;工作日誌&lt;&#x2F;h4&gt;
-    &lt;&#x2F;md-list-item&gt;
-  &lt;&#x2F;button&gt;
-  &lt;button md-button routerLink=&quot;.&#x2F;to-do-list&quot;&gt;
-    &lt;md-list-item&gt;
-      &lt;md-icon md-list-icon&gt;playlist_add_check&lt;&#x2F;md-icon&gt;
-      &lt;h4 md-line&gt;待辦事項&lt;&#x2F;h4&gt;
-    &lt;&#x2F;md-list-item&gt;
-  &lt;&#x2F;button&gt;
-  &lt;button md-button routerLink=&quot;.&#x2F;file&quot;&gt;
-    &lt;md-list-item&gt;
-      &lt;md-icon md-list-icon&gt;cloud_download&lt;&#x2F;md-icon&gt;
-      &lt;h4 md-line&gt;檔案下載&lt;&#x2F;h4&gt;
-    &lt;&#x2F;md-list-item&gt;
-  &lt;&#x2F;button&gt;
-  &lt;button md-button routerLink=&quot;.&#x2F;leave&quot;&gt;
-    &lt;md-list-item&gt;
-      &lt;md-icon md-list-icon&gt;weekend&lt;&#x2F;md-icon&gt;
-      &lt;h4 md-line&gt;請  假&lt;&#x2F;h4&gt;
-    &lt;&#x2F;md-list-item&gt;
-  &lt;&#x2F;button&gt;
-  &lt;button md-button routerLink=&quot;.&#x2F;reimburse&quot;&gt;
-    &lt;md-list-item&gt;
-      &lt;md-icon md-list-icon&gt;attach_money&lt;&#x2F;md-icon&gt;
-      &lt;h4 md-line&gt;差旅報支&lt;&#x2F;h4&gt;
-    &lt;&#x2F;md-list-item&gt;
-  &lt;&#x2F;button&gt;
-&lt;&#x2F;md-list&gt;
-</code></pre>
-<p>開啟瀏覽器查看結果，Content 區塊應該就能依所選的功能選單出現對應的元件。<br><img src="/images/angular/training/router/angular_router_10.gif" alt=""><br>不過預設情況下Content 區塊會是空白，因此可以設定某個功能為預設功能，我們以待辦事項當作預設功能為例。  </p>
-<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
-import { Routes, RouterModule } from &#39;@angular&#x2F;router&#39;;
-import { HomeComponent } from &#39;.&#x2F;home.component&#39;;
-import { CalendarComponent } from &#39;.&#x2F;calendar&#x2F;calendar.component&#39;;
-import { AddressBookComponent } from &#39;.&#x2F;address-book&#x2F;address-book.component&#39;;
-import { FileComponent } from &#39;.&#x2F;file&#x2F;file.component&#39;;
-import { LeaveComponent } from &#39;.&#x2F;leave&#x2F;leave.component&#39;;
-import { LogbookComponent } from &#39;.&#x2F;logbook&#x2F;logbook.component&#39;;
-import { ReimburseComponent } from &#39;.&#x2F;reimburse&#x2F;reimburse.component&#39;;
-import { ToDoListComponent } from &#39;.&#x2F;to-do-list&#x2F;to-do-list.component&#39;;
-
-const routes: Routes = [
-  {
-    path: &#39;home&#39;, component: HomeComponent, children: [
-      { path: &#39;&#39;, redirectTo: &#39;to-do-list&#39;, pathMatch: &#39;full&#39; },
-      { path: &#39;address-book&#39;, component: AddressBookComponent },
-      { path: &#39;calendar&#39;, component: CalendarComponent },
-      { path: &#39;file&#39;, component: FileComponent },
-      { path: &#39;leave&#39;, component: LeaveComponent },
-      { path: &#39;logbook&#39;, component: LogbookComponent },
-      { path: &#39;reimburse&#39;, component: ReimburseComponent },
-      { path: &#39;to-do-list&#39;, component: ToDoListComponent }
-    ]
-  }
-];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class HomeRoutingModule { }
-</code></pre>
-<p>重新執行應該可以發現預設會被導引到 <code>\home\to-do-list\</code>。<br>最後我們可以看到輕 <strong>請假</strong> 功能選單的選取效果明顯寬度比較窄，所以可以直接修改 <code>src\app\home\aside\aside.component.scss</code>，將寬度放大。<br><img src="/images/angular/training/router/angular_router_11.png" alt="">  </p>
-<pre><code>button {
-  width: 200px;
-}
-</code></pre>
-<p><img src="/images/angular/training/router/angular_router_12.gif" alt="">  </p>
+<figure class="highlight html"><figcaption><span>aside.component.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">md-list</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span> <span class="attr">md-subheader</span>&gt;</span>員工專區<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">md-button</span> <span class="attr">routerLink</span>=<span class="string">&quot;./calendar&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">md-icon</span> <span class="attr">md-list-icon</span>&gt;</span>today<span class="tag">&lt;/<span class="name">md-icon</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h4</span> <span class="attr">md-line</span>&gt;</span>行 事 曆<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">md-button</span> <span class="attr">routerLink</span>=<span class="string">&quot;./address-book&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">md-icon</span> <span class="attr">md-list-icon</span>&gt;</span>contact_phone<span class="tag">&lt;/<span class="name">md-icon</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h4</span> <span class="attr">md-line</span>&gt;</span>通 訊 錄<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">md-button</span> <span class="attr">routerLink</span>=<span class="string">&quot;./logbook&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">md-icon</span> <span class="attr">md-list-icon</span>&gt;</span>border_color<span class="tag">&lt;/<span class="name">md-icon</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h4</span> <span class="attr">md-line</span>&gt;</span>工作日誌<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">md-button</span> <span class="attr">routerLink</span>=<span class="string">&quot;./to-do-list&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">md-icon</span> <span class="attr">md-list-icon</span>&gt;</span>playlist_add_check<span class="tag">&lt;/<span class="name">md-icon</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h4</span> <span class="attr">md-line</span>&gt;</span>待辦事項<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">md-button</span> <span class="attr">routerLink</span>=<span class="string">&quot;./file&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">md-icon</span> <span class="attr">md-list-icon</span>&gt;</span>cloud_download<span class="tag">&lt;/<span class="name">md-icon</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h4</span> <span class="attr">md-line</span>&gt;</span>檔案下載<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">md-button</span> <span class="attr">routerLink</span>=<span class="string">&quot;./leave&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">md-icon</span> <span class="attr">md-list-icon</span>&gt;</span>weekend<span class="tag">&lt;/<span class="name">md-icon</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h4</span> <span class="attr">md-line</span>&gt;</span>請  假<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">md-button</span> <span class="attr">routerLink</span>=<span class="string">&quot;./reimburse&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">md-icon</span> <span class="attr">md-list-icon</span>&gt;</span>attach_money<span class="tag">&lt;/<span class="name">md-icon</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h4</span> <span class="attr">md-line</span>&gt;</span>差旅報支<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">md-list-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">md-list</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>開啟瀏覽器查看結果，Content 區塊應該就能依所選的功能選單出現對應的元件。<br><img src="/images/angular/training/router/angular_router_10.gif" alt="img"><br>不過預設情況下Content 區塊會是空白，因此可以設定某個功能為預設功能，我們以待辦事項當作預設功能為例。  </p>
+<figure class="highlight ts"><figcaption><span>home-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HomeComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./home.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CalendarComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./calendar/calendar.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AddressBookComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./address-book/address-book.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; FileComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./file/file.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; LeaveComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./leave/leave.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; LogbookComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./logbook/logbook.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ReimburseComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./reimburse/reimburse.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ToDoListComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./to-do-list/to-do-list.component&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes: Routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;home&#x27;</span>, <span class="attr">component</span>: HomeComponent, <span class="attr">children</span>: [</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;&#x27;</span>, <span class="attr">redirectTo</span>: <span class="string">&#x27;to-do-list&#x27;</span>, <span class="attr">pathMatch</span>: <span class="string">&#x27;full&#x27;</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;address-book&#x27;</span>, <span class="attr">component</span>: AddressBookComponent &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;calendar&#x27;</span>, <span class="attr">component</span>: CalendarComponent &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;file&#x27;</span>, <span class="attr">component</span>: FileComponent &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;leave&#x27;</span>, <span class="attr">component</span>: LeaveComponent &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;logbook&#x27;</span>, <span class="attr">component</span>: LogbookComponent &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;reimburse&#x27;</span>, <span class="attr">component</span>: ReimburseComponent &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;to-do-list&#x27;</span>, <span class="attr">component</span>: ToDoListComponent &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [RouterModule.forChild(routes)],</span><br><span class="line">  <span class="attr">exports</span>: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeRoutingModule</span> </span>&#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>重新執行應該可以發現預設會被導引到 <code>\home\to-do-list\</code>。<br>最後我們可以看到輕 <strong>請假</strong> 功能選單的選取效果明顯寬度比較窄，所以可以直接修改 <code>src\app\home\aside\aside.component.scss</code>，將寬度放大。<br><img src="/images/angular/training/router/angular_router_11.png" alt="img">  </p>
+<figure class="highlight scss"><figcaption><span>aside.component.scss</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">button</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="/images/angular/training/router/angular_router_12.gif" alt="img">  </p>
 <blockquote>
 <p>Angular 的 Component 除了會幫我們把 JavaScript 隔離好避免元件之間互相汙染外，每個元件也可以透過獨立的樣式檔各式調整，但是要注意 CSS 的特性，如果元件內還有其他元件也會同時受影響，比較好的做法是透過 CSS class 來套版。</p>
 </blockquote>
-<p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-03.zip"><strong>first-app_2017-09-03.zip</strong></a>  </p>
+<img src="/images/download.png" class="" width="36">[**first-app_2017-09-03.zip**](/uploads/first-app_2017-09-03.zip)  
 
-      
     </div>
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
+    
+    
+    
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Angular/" rel="tag"># Angular</a>
-          
-            <a href="/tags/Router/" rel="tag"># Router</a>
-          
-        </div>
-      
-
-      
-      
-        <div class="post-widgets">
-        
-
-        
-          <div class="social-like">
-            
-
-            
-              <div class="fb_like">
-                <div class="fb-like" data-layout="button_count" data-share="true"></div>
-              </div>
-            
-          </div>
-        
-        </div>
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/angular/training/08_angular_ui-flex_layout/" rel="next" title="Angular UI：Angular Flex-Layout">
-                <i class="fa fa-chevron-left"></i> Angular UI：Angular Flex-Layout
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/Angular/" rel="tag"># Angular</a>
+              <a href="/tags/Router/" rel="tag"># Router</a>
           </div>
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/angular/training/10_angular_module2/" rel="prev" title="Angular 模組化">
-                Angular 模組化 <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/angular/training/08_angular_ui-flex_layout/" rel="prev" title="Angular UI：Angular Flex-Layout">
+                  <i class="fa fa-chevron-left"></i> Angular UI：Angular Flex-Layout
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/angular/training/10_angular_module2/" rel="next" title="Angular 模組化">
+                  Angular 模組化 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-        </div>
-      
-
-      
-      
     </footer>
   </article>
+</div>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
 
 
-          </div>
-          
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Jonny Huang">
-          <p class="site-author-name" itemprop="name">Jonny Huang</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-           
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">66</span>
-                <span class="site-state-item-name">文章</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">分類</span>
-              
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">28</span>
-                <span class="site-state-item-name">標籤</span>
-              
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
-                  
-                    <i class="fa fa-fw fa-facebook-official"></i>
-                  
-                  Facebook
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>
-                  
-                  Email
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-block">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/flutter.tw/" title="Flutter Taiwan" target="_blank">Flutter Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#子路由-Child-Routing"><span class="nav-number">1.</span> <span class="nav-text">子路由 (Child Routing)</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
+<div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-Jonny Huang"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
 </div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
-</div>
-
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -1161,27 +371,6 @@ export class HomeRoutingModule { }
 
 
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
-<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-      prettyPrint();
-  });
-</script>
 
 </body>
 </html>

@@ -1,0 +1,28 @@
+<hr>
+<p>title: Angular 導航<br>date: 2017-08-31 10:00<br>categories: Training<br>keywords:</p>
+<ul>
+<li>Angular</li>
+<li>Navigation</li>
+<li>Router</li>
+<li>Routing<br>tags:</li>
+<li>Angular</li>
+<li>Router</li>
+</ul>
+<hr>
+<h1 id="導航-Navigation"><a href="#導航-Navigation" class="headerlink" title="導航 (Navigation)"></a>導航 (Navigation)</h1><p>在 <a href="/angular/training/04_angular_router/">Angular 路由器</a> 我們學會透過改變導覽路徑來切換內容，但是一般使用者不會透過修改網址來切換功能，正常情況下應該透過點選操作來切換內容。  </p>
+<!-- more -->  
+<h2 id="RouterLink"><a href="#RouterLink" class="headerlink" title="RouterLink"></a>RouterLink</h2><p>Angular 提供一個很便利的功能-<strong>RouterLink</strong>，讓我個不需再撰寫程式碼可以直接在樣板內直接設定連結對象。  </p>
+<h3 id="練習加入-RouterLink"><a href="#練習加入-RouterLink" class="headerlink" title="練習加入 RouterLink"></a>練習加入 RouterLink</h3><p>修改 <code>src\app\app.component.html</code>，分別加入超連結 <code>a</code>、按鈕 <code>button</code>、標籤 <code>span</code>，並分別設定 <code>routerLink</code> 屬性對應到路由規則的 <code>p1</code>、<code>p2</code>、<code>p3</code>。  </p>
+<blockquote>
+<p>routerLink 屬性加入 <code>/</code> 來表示相對路徑。</p>
+</blockquote>
+<p>{% codeblock app.component.html lang:html %}<br><a routerLink="/p1">Page 1</a><br><button routerLink="/p2">Page 2</button><br><span routerLink="/p3">Page 3</span></p>
+<hr>
+<router-outlet></router-outlet>
+
+<p>{% endcodeblock %}</p>
+<p>啟動服務來測試會發現 Angular 會很智能依不同的 html tag 做出適當的執行模式，所以連 <code>span</code> 都可以透過滑鼠點擊的方式來觸發路由導覽。<br><img src="/images/angular/training/navigation/angular_navigation_01.gif" alt="img">  </p>
+<blockquote>
+<p>Angular Router 其實還有非常多強大而實用的功能，後續再思考一些適合的使用情境來練習。</p>
+</blockquote>
+<p>{% img /images/download.png 36 %}<a href="/uploads/first-app_2017-08-31.zip"><strong>first-app_2017-08-31.zip</strong></a>  </p>

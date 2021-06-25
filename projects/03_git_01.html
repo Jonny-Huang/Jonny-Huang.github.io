@@ -1,0 +1,119 @@
+<hr>
+<p>title: 易學難精：Git 簡單的部分(一)<br>date: 2018-05-17<br>categories: Projects<br>keywords:</p>
+<ul>
+<li>Git</li>
+<li>Projects<br>tags:</li>
+<li>Git</li>
+</ul>
+<hr>
+<p><img src="/images/projects/git/git_000.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>說到 git 就很容易聯想到 SVN(Subversion 簡稱)，因為同樣都是在做版本控制，所以也常常被拿來比較，同時聯想到的就是錯綜複雜的時間線圖。<br><img src="/images/projects/git/git_002.png" alt="img"><br>接著我們就像物流中心的調度員一樣開始監控每台配送車的”配送路線”，當然不令人意外的客戶需要的”貨品”常常有出入，買A貨給B貨、東西少了(功能)、東西多了(Bug)，最重要的是哪個環節出錯不知道。<br><img src="/images/projects/git/git_003.png" alt="img"><br>查詢維基百科就可以發現它把 <a href="https://zh.wikipedia.org/wiki/Git">git</a> 定位在”軟體”，而把 <a href="https://zh.wikipedia.org/wiki/Subversion">SVN</a> 定位在”系統”，所以 SVN 無庸置疑的應該比 git 強大很多，但是現今 git 似乎快成為版控的唯一代名詞了(問了周遭朋友幾乎都只想到 git)。<br><img src="/images/projects/git/git_004.png" alt="img"><br>網路上其實已經有很多專業的教學文章，例如：<a href="https://git-scm.com/book/zh/v2">官網文件</a>、<a href="https://github.com/doggy8088/Learn-Git-in-30-days/blob/master/zh-tw/README.md">30 天精通 Git 版本控管</a>，所以我們不在此討論如何使用 git，而是研究一下 git 在做什麼？  </p>
+<!-- more -->  
+
+<h1 id="環境設置"><a href="#環境設置" class="headerlink" title="環境設置"></a>環境設置</h1><p>因為筆者電腦是 Windows 10，所以就以 Windows 當作測試環境。  </p>
+<h2 id="安裝-Chocolatey"><a href="#安裝-Chocolatey" class="headerlink" title="安裝 Chocolatey"></a>安裝 Chocolatey</h2><p><img src="/images/projects/git/git_001.png" alt="img"><br>開啟 <a href="https://chocolatey.org/">Chocolatey 官網</a>從標題就可以知道它是一個在 Windows 上的套件(軟體)管理工具，各種常見的軟體幾乎都可以透過它來快速安裝。<br>從<a href="https://chocolatey.org/install">安裝說明頁面</a>可以看到我們必須以<strong>系統管理員</strong>身分開啟 PowerShell 並執行下列指令就可以安裝完成。<br><code>Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;))</code><br><img src="/images/projects/git/git_005.png" alt="img">  </p>
+<p>主要指令如下<br><code>choco install [package name]</code>：安裝套件。<br><code>choco upgrade [package name]</code>：升級套件。<br><code>choco uninstall [package name]</code>：移除套件。  </p>
+<blockquote>
+<p>可以透過 <code>choco upgrade chocolatey</code> 指令來升級 Chocolatey，透過 <code>-y</code> 參數來同意安裝過程的執行動作。</p>
+</blockquote>
+<p>我們可以透過搜尋功能來找我們需要的軟體以及對應的安裝指令。<br><img src="/images/projects/git/git_006.png" alt="img">  </p>
+<h2 id="安裝軟體"><a href="#安裝軟體" class="headerlink" title="安裝軟體"></a>安裝軟體</h2><p>接著我們便利用 Chocolatey 來安裝軟體，例如筆者透過下列指令一次安裝完 <a href="https://git-scm.com/">git</a>、<a href="https://tortoisegit.org/">TortoiseGit</a>、<a href="https://github.com/dahlbyk/posh-git">posh-git</a>、<a href="http://cmder.net/">Cmder</a>、<a href="https://code.visualstudio.com/">Visual Studio Code</a>。<br><code>choco install git tortoisegit poshgit cmder visualstudiocode -y</code><br><img src="/images/projects/git/git_007.png" alt="img"><br>跟我們一般安裝模式一樣，Chocolatey 所安裝的軟體也可以透過控制台來移除。<br><img src="/images/projects/git/git_008.png" alt="img"><br>對於一些本身就不是標準的安裝軟體(如：Cmder、posh-git)則會被安裝到 <code>C:\tools</code> 資料夾內。<br><img src="/images/projects/git/git_009.png" alt="img"><br><a href="https://git-scm.com/"><strong>git</strong></a>：必要安裝軟體。<br><a href="https://tortoisegit.org/"><strong>TortoiseGit</strong></a>：git 的 <a href="https://git-scm.com/download/gui/windows">GUI 工具</a>，有很多同類產品，選擇一套即可，TortoiseGit 也提供<a href="https://tortoisegit.org/download/">中文語系套件</a>可以安裝。<br><img src="/images/projects/git/git_011.png" alt="img"><br><a href="https://github.com/dahlbyk/posh-git"><strong>posh-git</strong></a>：可以讓我們在 PowerShell 下看到目前目錄的 git 版控狀態。<br><img src="/images/projects/git/git_010.png" alt="img"><br><a href="http://cmder.net/"><strong>Cmder</strong></a>：可以讓我們執行 PowerShell、Cmd(命令提示字元)、bash 的強大工具。<br><img src="/images/projects/git/git_012.png" alt="img">  </p>
+<blockquote>
+<p>筆者比較喜歡安裝 <a href="https://github.com/AmrEldib/cmder-powerline-prompt">Cmder-powerline-prompt</a> 並透過 Cmder 來執行 Cmd。<br><img src="/images/projects/git/git_013.png" alt="img">  </p>
+</blockquote>
+<p><a href="https://code.visualstudio.com/"><strong>Visual Studio Code</strong></a>：簡稱 VS Code，強大的文字編輯器，支援 git 版控操作。  </p>
+<h1 id="git-版本控制"><a href="#git-版本控制" class="headerlink" title="git 版本控制"></a>git 版本控制</h1><p>由筆者比較不熟悉 git 所以後續操作會以 GUI 工具 <strong>TortoiseGit</strong> 為主，減少初期學習時間，當然我們也會盡可能地加入對應的指令操作。  </p>
+<h2 id="建立全域的帳號-name、email"><a href="#建立全域的帳號-name、email" class="headerlink" title="建立全域的帳號 (name、email)"></a>建立全域的帳號 (name、email)</h2><p>git 在版控儲存時同時會記錄帳號資訊，因此必須先設定，我們可以透過 TortoiseGit 來設定，在桌面或是檔案總管內按滑鼠右鍵，選擇 TortoiseGit =&gt; 設定 =&gt; Git 即可到編輯頁面，輸入後按確定儲存設定。<br><img src="/images/projects/git/git_014.png" alt="img">  </p>
+<blockquote>
+<p>也可透過指令 <code>git config --global user.name [name]</code>、<code>git config --global user.email [email]</code> 來設定。<br><img src="/images/projects/git/git_015.png" alt="img"></p>
+</blockquote>
+<h2 id="版本庫-Repository"><a href="#版本庫-Repository" class="headerlink" title="版本庫 (Repository)"></a>版本庫 (Repository)</h2><p>首先建立一個測試用資料夾，在此筆者取名為 <code>demo_git</code>，接著我們利用 TortoiseGit 功能選單來建立 Repository，建立好之後可以發現資料夾圖示改變了。<br><img src="/images/projects/git/git_016.png" alt="img"><br>我們可以從 TortoiseGit 設定頁面了解各種版控過程的狀態所對應的圖示，同時這代表這個資料夾納入版控，相反的如果檔案或是資料夾不是相關圖示就表示沒有納入版控。<br><img src="/images/projects/git/git_017.png" alt="img"><br>開啟資料夾可以發現 git 幫你建立一個 <code>.git</code> 的<strong>隱藏</strong>資料夾，這也就是 Repository，所有的版控資訊都會紀錄在此資料夾內，也就是說當你不想版控時，把 <code>.git</code> 資料夾刪除掉即可，前提是要<strong>先確認你目前的版本是你所需要的最終版本</strong>。<br><img src="/images/projects/git/git_018.png" alt="img">  </p>
+<blockquote>
+<p>也可以透過指令 <code>git init</code> 來建立 Repository。<br><img src="/images/projects/git/git_019.png" alt="img"><br>或者使用 VS Code 來建立。<br><img src="/images/projects/git/git_020.png" alt="img"><br>VS Code 預設會隱藏 <code>.git</code> 資料夾，我們可以透過設定來取消隱藏。<br><img src="/images/projects/git/git_021.png" alt="img">  </p>
+</blockquote>
+<h2 id="預設分支-master-HEAD"><a href="#預設分支-master-HEAD" class="headerlink" title="預設分支 (master HEAD)"></a>預設分支 (master HEAD)</h2><p>不論是透過 TortoiseGit 功能選單或是 Cmder 都可以發現多了一個 “<strong>master</strong>“ 的詞彙，這個 master 便是 我們所講的 HEAD。<br><img src="/images/projects/git/git_022.png" alt="img"><br>在此我們先不解釋 HEAD 的功能，只要了解到 git 在建立 Repository 時會順便幫我們建立一個名叫 master 的 HEAD，這句話是對的，但同時也是錯的，對的是我們從工具上來看確實有 master，錯的是 git 如果建立 HEAD 時會在 <code>.git\refs\heads\</code> 資料夾下建立同名的檔案，這時候才算真正存在的 HEAD，但是目前我們瀏覽資料夾發現目前沒有任何檔案，也就是說目前沒有任何 HEAD。<br><img src="/images/projects/git/git_023.png" alt="img"><br>那 master 這個 HEAD 是怎麼出現的，系統內定的嗎？說對了一半，我們開啟 <code>\.git\HEAD</code> 檔案就可以發現這邊會記錄目前所參考的 HEAD 就是 master。<br><img src="/images/projects/git/git_024.png" alt="img"><br>我們嘗試修改成另一個不存在的 HEAD <code>master1</code>，可以發現不論是 Cmder 或是 TortoiseGit 都會顯示目前的 HEAD 為 master1，也就是說 git 預設會以 <code>\.git\HEAD</code> 所指定的 HEAD 當作目前所在的 HEAD，但是不會檢查此 HEAD 是否有效，後續再演練切換分支時可以再看看是否會跟著改變。<br><img src="/images/projects/git/git_025.png" alt="img">  </p>
+<blockquote>
+<p>強烈建議：所有操作都應該透過合法的工具(git 指令或 GUI 工具) 來處理，切勿自行手動修改，在此的調整單純是為了驗證。</p>
+</blockquote>
+<p>由此可知 <strong><code>git init</code> 會在建立 <code>\.git\HEAD</code> 同時將它指定到名為 master 的 HEAD，但是並不會建立這個 HEAD</strong>。  </p>
+<h2 id="提交-Commit"><a href="#提交-Commit" class="headerlink" title="提交 (Commit)"></a>提交 (Commit)</h2><p>Commit 說是版控最重要的功能也不為過，因為所有的版控軟體(系統)都有這個功能，所以有些公司會要求員工下班前先 Commit 一次，甚至拿來當成工作日誌，資深的前輩也會提醒”有拜有保佑(有提交就有救)”，做任何危險動作之前先提交，Commit 簡而言之就是<strong>將需要版控的檔案備份起來</strong>，每一次 Commit 就會建立一個目前狀態的紀錄，這份紀錄會保存當下檔案的”版本(內容)”，隨著時間的推移我們會對文件的內容作調整，而版本控制就是讓我們可以比較甚至還原過去的內容(版本)。<br>接下來我們便來嘗試透過 TortoiseGit 來 Commit，但是輸入訊息紀錄後卻發現無法 Commit，怎麼第一步就踢到鐵板。<br><img src="/images/projects/git/git_026.png" alt="img"><br>改透過指令 <code>git commit -m [message]</code> 或是 VS Code 就可以發現原來在沒有<strong>任何變更</strong>的情況下，git 預設是不允許 Commit，因為目前的版本跟上一次版本一樣，。<br><img src="/images/projects/git/git_027.png" alt="img"><br><img src="/images/projects/git/git_028.png" alt="img"><br>當然我們也可以強制提交，只要勾選”只輸入訊息”(從提示訊息可以知道就是多帶入一個參數 <code>--allow-empty</code>)就可以完成 Commit(提交訊息會出現一組7位的英數字 <code>fe42787</code>)。<br><img src="/images/projects/git/git_029.png" alt="img"><br>從官方文件可以看到原來 git 是透過與”父提交(Parent Commit)”比較來判斷有無變更，但是 git 怎麼確認哪一個是 Parent Commit？<br><img src="/images/projects/git/git_030.png" alt="img">  </p>
+<blockquote>
+<p><code>commit</code> 詳細指令請參閱：<a href="https://git-scm.com/docs/git-commit">https://git-scm.com/docs/git-commit</a>  </p>
+</blockquote>
+<p>我們重新檢視 <code>\.git\refs\heads\</code> 資料夾發現多了一個 master 的檔案，也就是說 master HEAD 這時候真正被建立起來了，查看內容可以發現包含一組40碼的英數字 <code>fe42787d9357684ef05ce87362a7e3b5c86aa543</code>，而且湊巧的前7碼與剛才 Commit 完成訊息的7碼一樣。<br><img src="/images/projects/git/git_031.png" alt="img"><br>更厲害的是我們開啟 <code>\.git\objects\</code> 發現多了一些資料夾，打開裡面的 <code>fe</code> 可以看到有一個38碼的檔案 <code>42787d9357684ef05ce87362a7e3b5c86aa543</code>，我們把2碼的資料夾名稱再加上38碼的檔案名稱拼起來竟然跟 <code>\.git\refs\heads\master</code> 內容一致，很顯然的這一切都是有關聯的存在。<br><img src="/images/projects/git/git_032.png" alt="img">  </p>
+<h2 id="物件-Object"><a href="#物件-Object" class="headerlink" title="物件 (Object)"></a>物件 (Object)</h2><p>git 其實會將特定的<strong>資料</strong>保存在 <code>\.git\objects\</code> 內，保存方式是將資料的<strong>內容</strong>以 SHA-1 雜湊演算成一個<strong>40個十六進制的雜湊值</strong>，並以前2碼當作資料夾後38當作檔名的方式儲存，SHA-1 雜湊演算對於不同的內容(那怕是多一個空白)都會產生不同的雜湊值，所以可以確保所有不同的資料都可以被儲存。  </p>
+<blockquote>
+<p><a href="https://www.ithome.com.tw/news/112347">史上第一例！Google破解SHA1實現碰撞攻擊</a>：科學家花了2年的時間才能發生”刻意”的碰撞，所以正常情況下，我們可以視為不會發生。</p>
+</blockquote>
+<h3 id="commit-類型"><a href="#commit-類型" class="headerlink" title="commit 類型"></a>commit 類型</h3><p>接著我們可以透過 TortoiseGit 查看日誌，可以發現 Commit 許多資訊。<br><img src="/images/projects/git/git_033.png" alt="img"><br><img src="/images/projects/git/git_034.png" alt="img"><br>不過想要真正了解儲存哪些資訊就必須透過指令 <code>git cat-file</code> 來查閱。<br><code>git cat-file -t &lt;object&gt;</code>：透過 <code>-t</code> 參數可以查詢 Object 的類型，我們可以看到 <code>fe42787</code> 的類型是 “commit”。<br><code>git cat-file -p &lt;object&gt;</code>：透過 <code>-t</code> 參數可以查詢 Object 的內容，我們可以看到這個 commit 類型內容包含：<strong>tree 物件及其對應的雜湊值，作者資訊(名稱、郵件、日期)、提交者資訊(名稱、郵件、提交日期)、Commit 的訊息</strong>。<br><img src="/images/projects/git/git_035.png" alt="img">  </p>
+<blockquote>
+<p>git 再須帶入 object(雜湊演) 時可以只要帶入前4碼(或以上)的數列即可。</p>
+</blockquote>
+<h3 id="tree-類型"><a href="#tree-類型" class="headerlink" title="tree 類型"></a>tree 類型</h3><p>不意外的 tree 類型也存在於 <code>\.git\objects\</code> 內。<br><img src="/images/projects/git/git_036.png" alt="img"><br>目前查看 <code>4b825dc</code> 只能確定它是一個內容空白的 tree 類型。<br><img src="/images/projects/git/git_037.png" alt="img"><br>接下來我們模擬一些需要版控的檔案，建立一個 1.txt，一個內含 a1.txt 的 a 資料夾，一個空白的 b 資料夾。<br><img src="/images/projects/git/git_038.png" alt="img"><br>接著透過 TortoiseGit 來將檔案加入版控，可以發現加入完成時可以發現檔案圖示也變成 git 相關圖示，其實訊息視窗還同時提供 “提交(Commit)” 功能，也就是這些剛加入版控的<strong>檔案”內容”還沒被儲存起來</strong>，目前的動作只是將要檔案狀態記錄在位於 <code>\.git\index</code> 的索引檔(Index)內，<br><img src="/images/projects/git/git_039.png" alt="img"><br>我們現在 Commit 時就會發現因為<strong>狀態有變更</strong>，所以提交按鈕可以直接點選。<br><img src="/images/projects/git/git_040.png" alt="img"><br>但是我們發現 master HEAD 所對應的 commit 類型由原本的 <code>fe42787</code> 變更成 <code>ca206d2</code>，查看日誌也確實改變了。<br><img src="/images/projects/git/git_041.png" alt="img"><br><img src="/images/projects/git/git_044.png" alt="img">  </p>
+<blockquote>
+<p>我們也可以透過指令 <code>git add [file name]</code> 將要納入版控的檔案逐一加入，或是直接使用 <code>git add .</code> 讓 git 幫我們把未加入版控的檔案都加進來，接著透過 Commit 指令來提交。<br><img src="/images/projects/git/git_043.png" alt="img"><br>或者利用 VS Code 提交功能來處理，它提交前景是我們那些檔案未納入版控並協助我們處理。<br><img src="/images/projects/git/git_042.png" alt="img">  </p>
+</blockquote>
+<p>接著我們透過指令來查詢 <code>ca206d2</code> 內容，可以發現 tree 也由原本的 <code>4b825dc</code> 變成 <code>4083cde</code>。<br><img src="/images/projects/git/git_045.png" alt="img"><br>查詢 <code>4083cde</code> 資訊可以看到裡面記錄著檔案 1.txt 以及資料夾 a 的資訊，我們可以看到 a 資料夾又是一個 tree 類型，查詢該雜湊值 <code> 2bda749</code> 資訊，不難想像它就包含著 a 資料夾內的 a1.txt 的資訊，所以我們可以說 tree 類型就是對應實體資料夾的類型，說它就是資料夾其實也不為過。<br><img src="/images/projects/git/git_046.png" alt="img"><br> tree 類型內容包含：<strong>關聯模式(associated mode)、物件類型、雜湊值、檔案名稱</strong>。  </p>
+<h3 id="blob-類型"><a href="#blob-類型" class="headerlink" title="blob 類型"></a>blob 類型</h3><p>查詢 1.txt (<code>aa75558</code>)、a1.txt(<code>3502cc3</code>) 的資訊不難發現 blob 類型就是原始檔案的內容，注意<strong>只有內容，沒有檔名</strong>，檔名被彙整到上層的 tree 類型。<br><img src="/images/projects/git/git_047.png" alt="img">  </p>
+<h2 id="反向思考"><a href="#反向思考" class="headerlink" title="反向思考"></a>反向思考</h2><p>比較前後差異可以得一個很<strong>複雜</strong>的示意圖，可以發現<strong>雜湊值</strong>是整個串聯的關鍵，但是 Commit 一次幾乎所有的雜湊值都變更了。<br><img src="/images/projects/git/git_048.png" alt="img"><br><code>commit</code>、<code>tree</code>、<code>blob</code> 都是 git 的 Object，都儲存在 <code>\.git\objects\</code> 內，還記得它的規則嗎？<br><strong>先將要儲存的內容透過 SHA-1 雜湊演算出雜湊值，再以這個雜湊值當作檔名來儲存。</strong><br>接下來我們一步一步說明，這個邏輯與實際運作模式會有所出入，但是筆者覺得比較容易理解：  </p>
+<ul>
+<li>1.因為我們增加了檔案，git 會由內而外的逐一將檔案儲存到 <code>\.git\objects\</code>，當然到的最上層的 tree 時<strong>內容勢必會變更</strong>。  </li>
+<li>2.因為內容變更所以 git 會演算初不一樣的雜湊值 <code>4083cde</code>。  </li>
+<li>3.接著以 <code>4083cde</code> 為檔名(前2碼為資料夾)，將新的 tree 內容儲存在 <code>\.git\objects\</code>。  </li>
+<li>4.最後再修正 commit <code>fe42787</code> 所對應的 tree。  </li>
+</ul>
+<p><img src="/images/projects/git/git_049.png" alt="img">  </p>
+<ul>
+<li>1.承上，變更了 commit 內的 tree。  </li>
+<li>2.因為 commit 內容變更所以 git 會演算初不一樣的雜湊值 <code>ca206d2</code>。  </li>
+<li>3.接著以 <code>ca206d2</code> 為檔名(前2碼為資料夾)，將新的 commit 內容儲存在 <code>\.git\objects\</code>。  </li>
+<li>4.最後再修正 HEAD <code>master</code> 所對應的 commit。  </li>
+</ul>
+<p><img src="/images/projects/git/git_050.png" alt="img">  </p>
+<p>所以 Commit 其實不是在建立新的版本，它只是在<strong>儲存檔案以及修正雜湊值</strong>，只是當我們檔案內容或是結構變更時會造成演算出來的雜湊值與原先的布一樣，所以間接影響到 Commit 內容的修正，而 Commit 內容的變更又在影響到 HEAD 內容的修正，所以最終會讓我們感覺每一次的 Commit 都會產生一個新的版本(雜湊值)。  </p>
+<p>內容變更就會產生新的雜湊值，所以我們只要了解 git 內每個檔案類型儲存那些資料就可以了解它影響的層面。  </p>
+<table>
+<thead>
+<tr>
+<th>類型</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HEAD</td>
+<td>commit 雜湊值</td>
+</tr>
+<tr>
+<td>commit</td>
+<td>tree 雜湊值、作者名稱、作者郵件、發布日期、提交者名稱、提交者郵件、提交日期、commit 訊息</td>
+</tr>
+<tr>
+<td>tree</td>
+<td>tree 或 blob 的 關聯模式(associated mode)、物件類型、雜湊值、名稱</td>
+</tr>
+<tr>
+<td>blob</td>
+<td>實體檔案內容</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>官方繁體文件 <a href="https://git-scm.com/book/zh-tw/v2/%E9%96%8B%E5%A7%8B-Git-%E5%9F%BA%E7%A4%8E%E8%A6%81%E9%BB%9E">1.3 開始 - Git 基礎要點</a> 似乎翻譯有點錯誤，”Git 會根據檔案的內容<strong>和</strong>資料夾的結構來計算”，應該是”檔案的內容<strong>或</strong>資料夾的結構”，<strong>檔案的內容</strong>像是 commit、blob，<strong>料夾的結構</strong>則是 tree，但是其實都是指內容的變更。<br><img src="/images/projects/git/git_051.png" alt="img"><br><a href="https://git-scm.com/book/en/v2/Git-Internals-Git-Objects">英文版</a>跟<a href="https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-Git-%E5%9F%BA%E7%A1%80">簡體版</a>都是用<strong>或(or)</strong><br><img src="/images/projects/git/git_052.png" alt="img"><br><img src="/images/projects/git/git_053.png" alt="img">  </p>
+</blockquote>
+<h3 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h3><p>開啟 <code>\demo_git\a\</code>，我們將檔案 a1.txt 複製多份。<br><img src="/images/projects/git/git_054.png" alt="img"><br>將這些檔案加入版控並提交出去。<br><img src="/images/projects/git/git_055.png" alt="img"><br><img src="/images/projects/git/git_056.png" alt="img"><br>查詢 <code>\demo_git\a\</code> 對應的 tree 可以發現有趣的事，所有的檔案都對應到同一個雜湊值。<br><img src="/images/projects/git/git_057.png" alt="img"><br>如果你充滿疑惑，那應該是把 git 想複雜了，這些 txt 檔案的內容其實都一樣，在 git 內會以 blob 類型來儲存，而 blob 檔名的雜湊演算指計算檔案內容，並沒有實體檔名，所以才會對到同一個雜湊值，當然這也意味著在 git 內只會存一份檔案，也就是相同的內容只會有一份，所以 git 比起其他版控軟體相對儲存空間較小。  </p>
+<h1 id="線圖-Commit-History"><a href="#線圖-Commit-History" class="headerlink" title="線圖 (Commit History)"></a>線圖 (Commit History)</h1><p>眼尖的人應該發現在談論 commit 類型內容時有一行資料並沒有說明。<br><img src="/images/projects/git/git_058.png" alt="img"><br>這個 <code>parent</code> 其實就是**父提交(Parent Commit)**，就像之前說的，當 commit 內容有變更時，勢必會產生新的雜湊值，進而建立新的 commit，git 會先將目前 commit 的雜湊值加入到新的 commit 內容在做雜湊演算，因此就可以之前每個 commit 源自哪一個 commit。  </p>
+<h2 id="追朔"><a href="#追朔" class="headerlink" title="追朔"></a>追朔</h2><p>查詢 <code>\.git\refs\heads\master</code> 可以得知目前對應的 commit 為 <code>910d17e</code>。<br><img src="/images/projects/git/git_059.png" alt="img"><br>透過指令 <code>git cat-file -p 910d17e</code> 查詢內容，可以看到它源自另一個 commit <code>ca206d2</code>。<br><img src="/images/projects/git/git_060.png" alt="img"><br>透過指令 <code>git cat-file -p ca206d2</code> 查詢內容，可以看到它源自另一個 commit <code>fe42787</code>。<br><img src="/images/projects/git/git_061.png" alt="img"><br>透過指令 <code>git cat-file -p fe42787</code> 查詢內容，可以看到沒有任何 parent commit，也就是代表這是第一次 commit。<br><img src="/images/projects/git/git_062.png" alt="img"><br>最後打開 TortoiseGit 日誌來比較可以發現是一致的，也就說我們所看到的線圖是由後往前追朔，依照 HEAD 所記錄的 commit 當作起點，逐一往前搜尋 parent commit，一直到沒有 parent commit 為止，整個追朔過程與時間毫無關係，所以嚴格來說它不能算是 Timeline，只是因為因為現實上的時間之不可逆，所以造成 commit 與時間有著正向關係，因此說是 Timeline 也沒錯。<br><img src="/images/projects/git/git_063.png" alt="img">  </p>
+<h1 id="gitkeep-與-gitignore"><a href="#gitkeep-與-gitignore" class="headerlink" title=".gitkeep 與 .gitignore"></a>.gitkeep 與 .gitignore</h1><p>如果仔細看檔案總管的圖示或是在 Commit 過程有注意到有哪些變更就可以發現另一個問題，b 資料夾並沒有被納入版控，因為 git 預設並不會將空資料夾納入版控。<br><img src="/images/projects/git/git_064.png" alt="img"><br>如果希望將空資料夾加入版控，解決的方式其實就是加入一個檔案讓它不再是空資料夾，在習慣上我們會建立一個 <code>.gitkeep</code> 的空檔案來填塞，它並沒有任何特殊義務，只是名稱上容易理解。<br><img src="/images/projects/git/git_065.png" alt="img"><br>有強制加入的需求相對的就有強制不加入的需求，如果我們希望有些檔案或是資料夾不要納入版控，可以在加入一個檔案 <code>.gitignore</code>，並在內部編寫不希望納入版控的資料。<br>我們已 Angular 專案為例，透過 Angular CLI 所建立的專案預設會在 <code>\src\assets\</code> 內建立一個 <code>.gitkeep</code> 檔案，這樣 <code>assets</code> 資料夾就可以被自動納入版控，而在最外層資料夾又建立一個 <code>.gitignore</code> 檔案，預設已經加入許多要排除的檔案及資料夾，例如 <code>node_modules</code> 就是 Node.js 套件的存放路徑，因為這些套件本身就透過 npm 來管理，所以正常大家都不會將它納入版控。<br><img src="/images/projects/git/git_066.png" alt="img">  </p>
+<h1 id="建立新分支-Branch"><a href="#建立新分支-Branch" class="headerlink" title="建立新分支 (Branch)"></a>建立新分支 (Branch)</h1><p>接著利用 TortoiseGit 來建立一個 <code>h1</code> 的分支。<br><img src="/images/projects/git/git_067.png" alt="img"><br>從日誌可以看到 <code>h1</code> 分支被建立而且與 <code>master</code> 對應同一個 commit 雜湊值。<br><img src="/images/projects/git/git_068.png" alt="img"><br>所以建立分支時預設會複製當前的 HEAD 所對應的 commit 雜湊值當作新分支的預設 commit 雜湊值。<br><img src="/images/projects/git/git_069.png" alt="img">  </p>
+<blockquote>
+<p>也可以透過指令 <code>git branch [branch name]</code> 來建立新的分支。<br><img src="/images/projects/git/git_070.png" alt="img"><br>另一個比較不正式的做法就是自己在 <code>\.git\refs\heads\</code> 內建立一個檔案(這邊以 <code>h2</code> 為例)，並手動填入完整的 commit 雜湊值。<br><img src="/images/projects/git/git_071.png" alt="img">  </p>
+</blockquote>
+<h2 id="切換分支-checkout"><a href="#切換分支-checkout" class="headerlink" title="切換分支 (checkout)"></a>切換分支 (checkout)</h2><p>同樣的利用 TortoiseGit 來切換到 <code>h1</code> 分支。<br><img src="/images/projects/git/git_072.png" alt="img"><br>從日誌或是 Cmder 上都可以看到確實切換成 <code>h1</code>(TortoiseGit 會以紅色背景來表示目前分支)。<br><img src="/images/projects/git/git_073.png" alt="img">  </p>
+<blockquote>
+<p>也可以透過指令 <code>git checkout [branch name]</code> 來建立新的分支。<br><img src="/images/projects/git/git_074.png" alt="img">  </p>
+</blockquote>
+<h2 id="分道揚鑣"><a href="#分道揚鑣" class="headerlink" title="分道揚鑣"></a>分道揚鑣</h2><p>目前我們已經切換到 <code>h1</code> 分支，接著建立一個 <code>h1.txt</code> 檔案並 Commit 一次。<br><img src="/images/projects/git/git_075.png" alt="img"><br>從日誌可以看到 <code>h1</code> 所對應的 commit 已經改成 <code>976bfb2</code>，與 <code>master</code> 分支已經錯開。<br><img src="/images/projects/git/git_076.png" alt="img"><br>再次切換回 <code>master</code> 分支，可以發現 <code>h1.txt</code> 檔案不見了，確實恢復到 <code>master</code> 分支所對應 commit 的狀態。<br><img src="/images/projects/git/git_077.png" alt="img"><br>接著在這個 <code>master</code> 分支上建立一個 <code>master.txt</code> 檔案並 Commit 一次。<br><img src="/images/projects/git/git_078.png" alt="img"><br>從日誌發現 <code>h1</code> 分支不見了。<br><img src="/images/projects/git/git_079.png" alt="img"><br>勾選”所有分支”，這時 <code>h1</code> 分支才出現，但是線圖上 <code>master</code> 與 <code>h1</code> 確實開始出現”<strong>分支</strong>“了。<br><img src="/images/projects/git/git_080.png" alt="img">  </p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>這邊我們只提到一些最常使用的功能，並概略的說明它背後的運作模式，其他的進階功能很多也都是從這些基礎的概念演變而來的，後續有時間我們再陸續補充。  </p>

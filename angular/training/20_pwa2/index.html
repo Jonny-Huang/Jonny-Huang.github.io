@@ -1,103 +1,32 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-tw">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-TW">
+<head>
   <meta charset="UTF-8">
-<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="caches,ServiceWorker,Progressive Web App,PWA,Angular">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
-
-
-
-
-  <meta property="fb:admins" content="fb267234890438499">
-  <meta property="fb:app_id" content="267234890438499">
-
-
-
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
 <meta name="description" content="ServiceWorker在 PWA 偽裝術：manifest.json 我們透過 manifest.json 來讓 Web 可以在桌面上產生捷徑，並在執行時隱藏了不需要的網址列，讓外觀上跟一般 App 已無太大差異，接下來我們要解決 Web App 的另一大難題-離線機制，雖然說現在的系統幾乎都是透過網路與後端資料做即時交換，可說如果沒有網路的話過半數的 App 大概都會失去它的功用，但是與網頁">
-<meta name="keywords" content="caches,ServiceWorker,Progressive Web App,PWA,Angular">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PWA 替身術：ServiceWorker - caches">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/20_pwa2/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
 <meta property="og:description" content="ServiceWorker在 PWA 偽裝術：manifest.json 我們透過 manifest.json 來讓 Web 可以在桌面上產生捷徑，並在執行時隱藏了不需要的網址列，讓外觀上跟一般 App 已無太大差異，接下來我們要解決 Web App 的另一大難題-離線機制，雖然說現在的系統幾乎都是透過網路與後端資料做即時交換，可說如果沒有網路的話過半數的 App 大概都會失去它的功用，但是與網頁">
-<meta property="og:locale" content="zh-tw">
+<meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_23.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_28.png">
@@ -113,845 +42,341 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_33.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_34.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-10-02T03:10:12.000Z">
+<meta property="article:published_time" content="2017-09-26T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-24T01:16:06.921Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="PWA">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PWA 替身術：ServiceWorker - caches">
-<meta name="twitter:description" content="ServiceWorker在 PWA 偽裝術：manifest.json 我們透過 manifest.json 來讓 Web 可以在桌面上產生捷徑，並在執行時隱藏了不需要的網址列，讓外觀上跟一般 App 已無太大差異，接下來我們要解決 Web App 的另一大難題-離線機制，雖然說現在的系統幾乎都是透過網路與後端資料做即時交換，可說如果沒有網路的話過半數的 App 大概都會失去它的功用，但是與網頁">
 <meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/pwa/pwa_23.png">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Jonny'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<link rel="canonical" href="https://jonny-huang.github.io/angular/training/20_pwa2/">
 
 
 
-  <link rel="canonical" href="https://jonny-huang.github.io/angular/training/20_pwa2/">
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;angular&#x2F;training&#x2F;20_pwa2&#x2F;&quot;,&quot;path&quot;:&quot;angular&#x2F;training&#x2F;20_pwa2&#x2F;&quot;,&quot;title&quot;:&quot;PWA 替身術：ServiceWorker - caches&quot;}</script>
 
-
-
-
-
-  <title>PWA 替身術：ServiceWorker - caches | Jonny Huang 的學習筆記</title>
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>PWA 替身術：ServiceWorker - caches | Jonny Huang 的學習筆記</title>
   
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '267234890438499',
-      xfbml      : true,
-      version    : 'v2.6'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/zh_tw/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-tw">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Jonny Huang 的學習筆記</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <h1 class="site-subtitle" itemprop="description">Angular、Flutter</h1>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首頁
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            目錄
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-flutter">
-          <a href="/flutter/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Flutter
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-angular">
-          <a href="/angular/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Angular
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-quotes">
-          <a href="/quotes/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br>
-            
-            欣雨露
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa-commenting fa-fw"></i>欣雨露</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ServiceWorker"><span class="nav-number">1.</span> <span class="nav-text">ServiceWorker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%8B%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">運作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%BB%E5%86%8A"><span class="nav-number">1.1.1.</span> <span class="nav-text">註冊</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A0%E5%85%A5%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">加入事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9C%E6%85%8B%E5%BF%AB%E5%8F%96"><span class="nav-number">1.3.</span> <span class="nav-text">靜態快取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E5%8F%96%E7%89%88%E6%9C%AC"><span class="nav-number">1.4.</span> <span class="nav-text">快取版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API-%E5%BF%AB%E5%8F%96"><span class="nav-number">1.5.</span> <span class="nav-text">API 快取</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
     
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/20_pwa2/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Jonny Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Jonny Huang 的學習筆記">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PWA 替身術：ServiceWorker - caches
+        </h1>
 
-        
-        
-          <h2 class="post-title" itemprop="name headline">PWA 替身術：ServiceWorker - caches</h2>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/06/24 09:16:06" itemprop="dateModified" datetime="2021-06-24T09:16:06+08:00">2021/06/24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Training/" itemprop="url" rel="index"><span itemprop="name">Training</span></a>
+        </span>
+    </span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新於</span>
-              
-              <time title="更新於" itemprop="dateModified" datetime="2017-10-02T11:10:12+08:00">
-                2017/10/02
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Training/" itemprop="url" rel="index">
-                    <span itemprop="name">Training</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
+
     
-
+    
+    
     <div class="post-body" itemprop="articleBody">
+        <h1 id="ServiceWorker"><a href="#ServiceWorker" class="headerlink" title="ServiceWorker"></a>ServiceWorker</h1><p>在 <a href="/angular/training/19_pwa/">PWA 偽裝術：manifest.json</a> 我們透過 <code>manifest.json</code> 來讓 Web 可以在桌面上產生捷徑，並在執行時隱藏了不需要的網址列，讓外觀上跟一般 App 已無太大差異，接下來我們要解決 Web App 的另一大難題-<strong>離線機制</strong>，雖然說現在的系統幾乎都是透過網路與後端資料做即時交換，可說如果沒有網路的話過半數的 App 大概都會失去它的功用，但是與網頁不同的是在沒有網路狀態下仍然有畫面，而網頁則會顯示瀏覽器預設的警示畫面，相較之下對於一般使用者來說較不友善，而起好一點的 App 都會將網路下載下來的資訊儲存在本機端，當離線時雖然無法再與後端做資料交換，但是仍然可以提供之前獲取的資料，雖然 Web 也提供了離線儲存機制，但是扣除安全性不說，開發上就比較困難，尤其是使用者(或是瀏覽器擴充功能)還可以禁止相關功能。  </p>
+<span id="more"></span>  
 
-      
-      
-
-      
-        <h1 id="ServiceWorker"><a href="#ServiceWorker" class="headerlink" title="ServiceWorker"></a>ServiceWorker</h1><p>在 <a href="/angular/training/19_pwa/">PWA 偽裝術：manifest.json</a> 我們透過 <code>manifest.json</code> 來讓 Web 可以在桌面上產生捷徑，並在執行時隱藏了不需要的網址列，讓外觀上跟一般 App 已無太大差異，接下來我們要解決 Web App 的另一大難題-<strong>離線機制</strong>，雖然說現在的系統幾乎都是透過網路與後端資料做即時交換，可說如果沒有網路的話過半數的 App 大概都會失去它的功用，但是與網頁不同的是在沒有網路狀態下仍然有畫面，而網頁則會顯示瀏覽器預設的警示畫面，相較之下對於一般使用者來說較不友善，而起好一點的 App 都會將網路下載下來的資訊儲存在本機端，當離線時雖然無法再與後端做資料交換，但是仍然可以提供之前獲取的資料，雖然 Web 也提供了離線儲存機制，但是扣除安全性不說，開發上就比較困難，尤其是使用者(或是瀏覽器擴充功能)還可以禁止相關功能。<br><img src="/images/angular/training/pwa/pwa_23.png" alt=""><br><strong>ServiceWorker</strong> 是可以運行在瀏覽器後台的一種腳本，接下來我們要練習的是如何透過 ServiceWorker 的快取機制來解決網路離線時 Web App 會遇到的問題， ServiceWorker 到底在做什麼事？筆者可以說的就是 <strong>簾窺壁聽、偷天換日</strong>。  </p>
+<p><img src="/images/angular/training/pwa/pwa_23.png" alt="img"><br><strong>ServiceWorker</strong> 是可以運行在瀏覽器後台的一種腳本，接下來我們要練習的是如何透過 ServiceWorker 的快取機制來解決網路離線時 Web App 會遇到的問題， ServiceWorker 到底在做什麼事？筆者可以說的就是 <strong>簾窺壁聽、偷天換日</strong>。  </p>
 <h2 id="運作流程"><a href="#運作流程" class="headerlink" title="運作流程"></a>運作流程</h2><p>因為 <strong>ServiceWorker</strong> 可以監控前端的任何存取，所以被要求必須在 HTTPS 下運行，唯一例外是本機端，為了方便開發，<code>localhost</code> 也會被瀏覽器視為安全的傳輸，接下來我們開始逐步來實作 ServiceWorker。</p>
-<p>我們接續 <a href="/angular/training/19_pwa/">PWA 偽裝術：manifest.json</a> 的程式來當範例。<br><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-25.zip"><strong>first-app_2017-09-25.zip</strong></a>  </p>
+<p>我們接續 <a href="/angular/training/19_pwa/">PWA 偽裝術：manifest.json</a> 的程式來當範例。  </p>
+<img src="/images/download.png" class="" width="36">[**first-app_2017-09-25.zip**](/uploads/first-app_2017-09-25.zip)  
 <blockquote>
-<p>若要下載請記得先透過指令 <code>npm install</code> 來重新安裝 package。<br>這邊我們透過 <code>ng build --prod -oh</code> 指令來編譯，讓輸出檔名不會包含雜湊值。<br><code>-oh</code>:<code>--output-hashing</code> 縮寫。<br><img src="/images/angular/training/pwa/pwa_28.png" alt=""><br>參考文件：<br>MDN - <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers" target="_blank" rel="noopener">使用 Service Workers</a><br>Google Developers - <a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers" target="_blank" rel="noopener">Service Workers: an Introduction</a></p>
+<p>若要下載請記得先透過指令 <code>npm install</code> 來重新安裝 package。<br>這邊我們透過 <code>ng build --prod -oh</code> 指令來編譯，讓輸出檔名不會包含雜湊值。<br><code>-oh</code>:<code>--output-hashing</code> 縮寫。<br><img src="/images/angular/training/pwa/pwa_28.png" alt="img"><br>參考文件：<br>MDN - <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers">使用 Service Workers</a><br>Google Developers - <a target="_blank" rel="noopener" href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Workers: an Introduction</a></p>
 </blockquote>
 <h3 id="註冊"><a href="#註冊" class="headerlink" title="註冊"></a>註冊</h3><p>首先我們在專案目錄下建立 <code>sw.js</code> 當作 ServiceWorker 腳本，並建立一個 <code>register_sw.js</code> 負責註冊這個腳本，語法如下：  </p>
-<pre><code>if (&#39;serviceWorker&#39; in navigator) {
-  navigator.serviceWorker.register(&#39;.&#x2F;sw.js&#39;)
-    .then(reg =&gt; {
-      &#x2F;&#x2F; registration worked
-      console.log(&#39;[Service Worker] Registration succeeded. Scope is &#39; + reg.scope);
-    }).catch(error =&gt; {
-      &#x2F;&#x2F; registration failed
-      console.log(&#39;[Service Worker] Registration failed with &#39; + error);
-    });
-}
-</code></pre>
+<figure class="highlight js"><figcaption><span>register_sw.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="string">&#x27;serviceWorker&#x27;</span> <span class="keyword">in</span> navigator) &#123;</span><br><span class="line">  navigator.serviceWorker.register(<span class="string">&#x27;./sw.js&#x27;</span>)</span><br><span class="line">    .then(<span class="function"><span class="params">reg</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// registration worked</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;[Service Worker] Registration succeeded. Scope is &#x27;</span> + reg.scope);</span><br><span class="line">    &#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// registration failed</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;[Service Worker] Registration failed with &#x27;</span> + error);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>我們可以從 <a href="https://jakearchibald.github.io/isserviceworkerready/" target="_blank" rel="noopener">Is Serviceworker Ready？</a> 網站查看各家瀏覽器的支援度。</p>
+<p>我們可以從 <a target="_blank" rel="noopener" href="https://jakearchibald.github.io/isserviceworkerready/">Is Serviceworker Ready？</a> 網站查看各家瀏覽器的支援度。</p>
 </blockquote>
 <p>接著在 首頁(<code>index.html</code>) 內加入 <code>register_sw.js</code>。  </p>
-<pre><code>&lt;!doctype html&gt;
-&lt;html lang=&quot;zh&quot;&gt;
-...
-&lt;body oncontextmenu=&quot;return false&quot;&gt;
-  &lt;app-root&gt;&lt;&#x2F;app-root&gt;
-  &lt;script type=&quot;text&#x2F;javascript&quot; src=&quot;register_sw.js&quot;&gt;&lt;&#x2F;script&gt;
-&lt;&#x2F;body&gt;
-
-&lt;&#x2F;html&gt;
-</code></pre>
+<figure class="highlight html"><figcaption><span>index.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;zh&quot;</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">oncontextmenu</span>=<span class="string">&quot;return false&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">app-root</span>&gt;</span><span class="tag">&lt;/<span class="name">app-root</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;register_sw.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>我們也可以省略 <code>register_sw.js</code> 檔，直接將註冊語法寫在網頁內，不過不要將 <strong>ServiceWorker 腳本</strong>-<code>sw.js</code>(目前還是空白) 也移到網頁內，因為瀏覽器會在後台以獨立的執行緒(Thread)來運行 <code>sw.js</code>，這樣意味著 <strong>ServiceWorker 無法干預前端網頁內容</strong>。</p>
 </blockquote>
-<p>透過 Chrome 擴充功能-<a href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb" target="_blank" rel="noopener">Web Server for Chrome</a> 來執行，可以看到雖然 <code>sw.js</code> 是空白的，但是 ServiceWorker 已經在運行了。<br><img src="/images/angular/training/pwa/pwa_24.png" alt="">  </p>
+<p>透過 Chrome 擴充功能-<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb">Web Server for Chrome</a> 來執行，可以看到雖然 <code>sw.js</code> 是空白的，但是 ServiceWorker 已經在運行了。<br><img src="/images/angular/training/pwa/pwa_24.png" alt="img">  </p>
 <blockquote>
-<p>與<code>manifest.json</code> 一樣我們將 <code>register_sw.js</code> 與 <code>sw.js</code> 加到 <code>.angular-cli.json</code> 的 <code>assets</code>，這樣建置時才會一併複製。<br><img src="/images/angular/training/pwa/pwa_29.png" alt=""></p>
+<p>與<code>manifest.json</code> 一樣我們將 <code>register_sw.js</code> 與 <code>sw.js</code> 加到 <code>.angular-cli.json</code> 的 <code>assets</code>，這樣建置時才會一併複製。<br><img src="/images/angular/training/pwa/pwa_29.png" alt="img">  </p>
 </blockquote>
 <h2 id="加入事件"><a href="#加入事件" class="headerlink" title="加入事件"></a>加入事件</h2><p>開啟 <code>sw.js</code> 並加入3個事件：<code>install</code>(安裝)、<code>activate</code>(啟動)、<code>fetch</code>(存取)，並透過 <code>console.log</code> 來確認事件是否觸發。  </p>
-<pre><code>self.addEventListener(&#39;install&#39;, event =&gt; {
-  console.log(&#39;[ServiceWorker] Install&#39;);
-});
-
-self.addEventListener(&#39;activate&#39;, event =&gt; {
-  event.waitUntil(clients.claim());
-});
-
-self.addEventListener(&#39;fetch&#39;, event =&gt; {
-  console.log(&#39;[ServiceWorker] fetch&#39;, event.request);
-});
-</code></pre>
-<p>直接在原本的瀏覽器視窗重新整理，可以發現瀏覽器很聰明的發現 ServiceWorker 腳本(<code>sw.js</code>) 有變更過，因此多個一個 <strong>#251</strong> 的流水號，但是仔細觀看可以發現它的狀態是在等待被啟動，目前啟動的版本仍然是之前的版本，這是因為<br>當瀏覽器前端有運行這一支 Web 應用程式時，瀏覽器預設不會終止目前的腳本，腳本更新會等到不再需要 ServiceWorker 時(例如關閉目前的瀏覽器視窗)才會更新為新的腳本。<br><img src="/images/angular/training/pwa/pwa_25.png" alt=""><br>關閉目前瀏覽器視窗再用新的視窗開啟網頁，可以發現目前啟動 ServiceWork 其流水號為 <strong>#251</strong>，切換到 Console 視窗也可看到相關事件被觸發了。  </p>
+<figure class="highlight js"><figcaption><span>sw.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(<span class="string">&#x27;install&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;[ServiceWorker] Install&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">self.addEventListener(<span class="string">&#x27;activate&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  event.waitUntil(clients.claim());</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">self.addEventListener(<span class="string">&#x27;fetch&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;[ServiceWorker] fetch&#x27;</span>, event.request);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>直接在原本的瀏覽器視窗重新整理，可以發現瀏覽器很聰明的發現 ServiceWorker 腳本(<code>sw.js</code>) 有變更過，因此多個一個 <strong>#251</strong> 的流水號，但是仔細觀看可以發現它的狀態是在等待被啟動，目前啟動的版本仍然是之前的版本，這是因為<br>當瀏覽器前端有運行這一支 Web 應用程式時，瀏覽器預設不會終止目前的腳本，腳本更新會等到不再需要 ServiceWorker 時(例如關閉目前的瀏覽器視窗)才會更新為新的腳本。<br><img src="/images/angular/training/pwa/pwa_25.png" alt="img"><br>關閉目前瀏覽器視窗再用新的視窗開啟網頁，可以發現目前啟動 ServiceWork 其流水號為 <strong>#251</strong>，切換到 Console 視窗也可看到相關事件被觸發了。  </p>
 <blockquote>
-<p>如果希望異動過的程式能夠立即更新，可以在 <code>install</code> 事件內透過 <code>skipWaiting</code> 方法來立即啟用。<br><img src="/images/angular/training/pwa/pwa_61.png" alt=""><br>參考資料：MDN - <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/skipWaiting" target="_blank" rel="noopener">ServiceWorkerGlobalScope.skipWaiting()</a></p>
+<p>如果希望異動過的程式能夠立即更新，可以在 <code>install</code> 事件內透過 <code>skipWaiting</code> 方法來立即啟用。<br><img src="/images/angular/training/pwa/pwa_61.png" alt="img"><br>參考資料：MDN - <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/skipWaiting">ServiceWorkerGlobalScope.skipWaiting()</a></p>
 </blockquote>
-<p><img src="/images/angular/training/pwa/pwa_26.png" alt=""><br><img src="/images/angular/training/pwa/pwa_27.png" alt="">  </p>
+<p><img src="/images/angular/training/pwa/pwa_26.png" alt="img"><br><img src="/images/angular/training/pwa/pwa_27.png" alt="img">  </p>
 <blockquote>
-<p>由上圖也可以了解 ServiceWork 的處理順序為<br><code>install</code>(安裝) =&gt; <code>activate</code>(啟動) =&gt; <code>fetch</code>(存取)<br><code>install</code>、<code>activate</code> 只會觸發一次，<code>fetch</code> 則是只要前端對後台發出 request 就會觸發。</p>
+<p>由上圖也可以了解 ServiceWork 的處理順序為<br><code>install</code>(安裝) =&gt; <code>activate</code>(啟動) =&gt; <code>fetch</code>(存取)<br><code>install</code>、<code>activate</code> 只會觸發一次，<code>fetch</code> 則是只要前端對後台發出 request 就會觸發。  </p>
 </blockquote>
 <h2 id="靜態快取"><a href="#靜態快取" class="headerlink" title="靜態快取"></a>靜態快取</h2><p>開啟腳本(<code>src\sw.js</code>)，先建立檔案快取清單-<code>filesToCache</code>，並將要快取的檔案加入期內，接著在 <code>install</code> 事件內將快取清單加入至快取內。<br>接著在 <code>fetch</code> 事件內去透過 <code>respondWith</code> 方法來阻止瀏覽器使用預設存取模式，並比對快取是否有該 request 請求的資料，若有則直接從快取提取，否則就使用預設模式存取， 相關代碼如下：  </p>
-<pre><code>const cacheVersion = &#39;v1&#39;;
-const filesToCache = [
-  &#39;0.chunk.js&#39;,
-  &#39;favicon.ico&#39;,
-  &#39;index.html&#39;,
-  &#39;inline.bundle.js&#39;,
-  &#39;main.bundle.js&#39;,
-  &#39;polyfills.bundle.js&#39;,
-  &#39;register_sw.js&#39;,
-  &#39;styles.bundle.css&#39;,
-  &#39;vendor.bundle.js&#39;,
-  &#39;assets&#x2F;images&#x2F;android_048.png&#39;,
-  &#39;assets&#x2F;images&#x2F;android_057.png&#39;,
-  &#39;assets&#x2F;images&#x2F;android_072.png&#39;,
-  &#39;assets&#x2F;images&#x2F;android_076.png&#39;,
-  &#39;assets&#x2F;images&#x2F;android_096.png&#39;,
-  &#39;assets&#x2F;images&#x2F;android_114.png&#39;,
-  &#39;assets&#x2F;images&#x2F;android_120.png&#39;,
-  &#39;assets&#x2F;images&#x2F;android_144.png&#39;,
-  &#39;assets&#x2F;images&#x2F;android_152.png&#39;,
-  &#39;assets&#x2F;images&#x2F;android_167.png&#39;,
-  &#39;assets&#x2F;images&#x2F;android_180.png&#39;,
-  &#39;assets&#x2F;images&#x2F;android_192.png&#39;,
-  &#39;assets&#x2F;images&#x2F;android_512.png&#39;
-];
-
-self.addEventListener(&#39;install&#39;, event =&gt; {
-  console.log(&#39;[ServiceWorker] Install&#39;);
-  event.waitUntil(
-    caches.open(cacheVersion)
-    .then(cache =&gt; {
-      console.log(&#39;[ServiceWorker] Caching app shell&#39;);
-      return cache.addAll(filesToCache);
-    })
-  );
-});
-
-self.addEventListener(&#39;activate&#39;, event =&gt; {
-  console.log(&#39;[ServiceWorker] Activate&#39;);
-});
-
-self.addEventListener(&#39;fetch&#39;, event =&gt; {
-  console.log(&#39;[ServiceWorker] fetch&#39;, event.request);
-  event.respondWith(
-    caches.match(event.request)
-    .then(response =&gt; response || fetch(event.request))
-  );
-});
-</code></pre>
-<p>開啟瀏覽器 ServerWork 的離線(Offline)選項或者直接停用 Web Server，重新整理後可以發現網頁依然存在，基本的離線機制已經完成了。<br><img src="/images/angular/training/pwa/pwa_30.png" alt=""><br><img src="/images/angular/training/pwa/pwa_31.png" alt="">  </p>
+<figure class="highlight js"><figcaption><span>sw.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cacheVersion = <span class="string">&#x27;v1&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> filesToCache = [</span><br><span class="line">  <span class="string">&#x27;0.chunk.js&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;favicon.ico&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;index.html&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;inline.bundle.js&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;main.bundle.js&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;polyfills.bundle.js&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;register_sw.js&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;styles.bundle.css&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;vendor.bundle.js&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;assets/images/android_048.png&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;assets/images/android_057.png&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;assets/images/android_072.png&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;assets/images/android_076.png&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;assets/images/android_096.png&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;assets/images/android_114.png&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;assets/images/android_120.png&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;assets/images/android_144.png&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;assets/images/android_152.png&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;assets/images/android_167.png&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;assets/images/android_180.png&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;assets/images/android_192.png&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;assets/images/android_512.png&#x27;</span></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">self.addEventListener(<span class="string">&#x27;install&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;[ServiceWorker] Install&#x27;</span>);</span><br><span class="line">  event.waitUntil(</span><br><span class="line">    caches.open(cacheVersion)</span><br><span class="line">    .then(<span class="function"><span class="params">cache</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;[ServiceWorker] Caching app shell&#x27;</span>);</span><br><span class="line">      <span class="keyword">return</span> cache.addAll(filesToCache);</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">self.addEventListener(<span class="string">&#x27;activate&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;[ServiceWorker] Activate&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">self.addEventListener(<span class="string">&#x27;fetch&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;[ServiceWorker] fetch&#x27;</span>, event.request);</span><br><span class="line">  event.respondWith(</span><br><span class="line">    caches.match(event.request)</span><br><span class="line">    .then(<span class="function"><span class="params">response</span> =&gt;</span> response || fetch(event.request))</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>開啟瀏覽器 ServerWork 的離線(Offline)選項或者直接停用 Web Server，重新整理後可以發現網頁依然存在，基本的離線機制已經完成了。<br><img src="/images/angular/training/pwa/pwa_30.png" alt="img"><br><img src="/images/angular/training/pwa/pwa_31.png" alt="img">  </p>
 <h2 id="快取版本"><a href="#快取版本" class="headerlink" title="快取版本"></a>快取版本</h2><p>在 <code>sw.js</code> 內的最上方我們宣告了一個常數當作快取名稱<br><code>const cacheVersion = &#39;v1&#39;;</code><br>到目前為止我們只做到將資料加到快取內，但是我們可能會隨著功能的變更讓網站結構調整，當然快取清單也必然會配合修改，這時候就會發生快取可能會殘留舊有而不需要的資料，或者是快取累計的資料過於龐大，因此我們需要一個方式可以移除這些不必要的資料。  </p>
 <blockquote>
-<p>我們可以透過開發者工具來查看目前快取的資料。<br><img src="/images/angular/training/pwa/pwa_32.png" alt=""></p>
+<p>我們可以透過開發者工具來查看目前快取的資料。<br><img src="/images/angular/training/pwa/pwa_32.png" alt="img"></p>
 </blockquote>
 <p>在這邊我們以最簡單的方式來處理，當快取規則與以往不同時我們透過變更 <code>cacheVersion</code> 來產生全新的快取區域，並將就的快取直接刪除。<br>開啟腳本並在 <code>activate</code> 事件添加刪除快取的程式碼，並將快取版本(<code>cacheVersion</code>)改為 <code>v2</code>。  </p>
-<pre><code>const cacheVersion = &#39;v2&#39;;
-const filesToCache = [
-  ...
-];
-...
-self.addEventListener(&#39;activate&#39;, event =&gt; {
-  console.log(&#39;[ServiceWorker] Activate&#39;);
-  event.waitUntil(
-    caches.keys()
-    .then(keyList =&gt; {
-      return Promise.all(keyList.map(key =&gt; {
-        if (key !== cacheVersion) {
-          return caches.delete(key);
-        }
-      }));
-    })
-  );
-});
-...</code></pre>
-<p>重新執行，可以發現快取名稱已經變成 <code>v2</code>，而原本的 <code>v1</code> 已經被移除了。<br><img src="/images/angular/training/pwa/pwa_33.png" alt="">  </p>
-<h2 id="API-快取"><a href="#API-快取" class="headerlink" title="API 快取"></a>API 快取</h2><p>因為筆者目前沒有建立 WebAPI 環境，所以在此不做練習，但是我們可以參考 MDN 網站 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers" target="_blank" rel="noopener">使用 Service Workers</a> 的範例，由範例程式碼可以看到它的作法與我們上面的方法類似，當快取內沒有相關資料時就改從網路去後台抓取，差別就在於它抓取資料後會先存入快取內，這樣下次就可以直接從快取提取資料。<br><img src="/images/angular/training/pwa/pwa_34.png" alt="">  </p>
-<p>目前的機制看起來與其說我們在建立快取，不如說更像在實作一個 Web App 專屬的代理伺服器(Proxy Server)，最重要的是這種架構讓<strong>開發人員可以專注在連線模式的系統運作，完全不需要思考離線的問題</strong>。<br>但是目前也衍生出一些問題：</p>
+<figure class="highlight js"><figcaption><span>sw.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cacheVersion = <span class="string">&#x27;v2&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> filesToCache = [</span><br><span class="line">  ...</span><br><span class="line">];</span><br><span class="line">...</span><br><span class="line">self.addEventListener(<span class="string">&#x27;activate&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;[ServiceWorker] Activate&#x27;</span>);</span><br><span class="line">  event.waitUntil(</span><br><span class="line">    caches.keys()</span><br><span class="line">    .then(<span class="function"><span class="params">keyList</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Promise</span>.all(keyList.map(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (key !== cacheVersion) &#123;</span><br><span class="line">          <span class="keyword">return</span> caches.delete(key);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;));</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>重新執行，可以發現快取名稱已經變成 <code>v2</code>，而原本的 <code>v1</code> 已經被移除了。<br><img src="/images/angular/training/pwa/pwa_33.png" alt="img">  </p>
+<h2 id="API-快取"><a href="#API-快取" class="headerlink" title="API 快取"></a>API 快取</h2><p>因為筆者目前沒有建立 WebAPI 環境，所以在此不做練習，但是我們可以參考 MDN 網站 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers">使用 Service Workers</a> 的範例，由範例程式碼可以看到它的作法與我們上面的方法類似，當快取內沒有相關資料時就改從網路去後台抓取，差別就在於它抓取資料後會先存入快取內，這樣下次就可以直接從快取提取資料。<br><img src="/images/angular/training/pwa/pwa_34.png" alt="img">  </p>
+<p>目前的機制看起來與其說我們在建立快取，不如說更像在實作一個 Web App 專屬的代理伺服器(Proxy Server)，最重要的是這種架構讓<strong>開發人員可以專注在連線模式的系統運作，完全不需要思考離線的問題</strong>。<br>但是目前也衍生出一些問題：  </p>
 <ul>
-<li>有些 API 雖然參數一樣，但是在不同時間會回傳不一樣的內容，例如：最新消息，系統公告…等等，這時候若都從快取抓取資料便會讓使用者有資料沒有更新的假象，因此我們需要另一個機制，在有網路時透過網路去後端抓取資料，當離線時才改從快取讀取資料。</li>
-<li>我們不只有查詢需求，還有對資料作新增、修改、刪除的問題，雖然可以藉由快取讓離線時仍然有畫面，但是對於資料異動又要如何處理？</li>
-<li>就像大部分人常用的 Line ，這種由後端伺服器主動推撥訊息至用戶端的模式又要如何在 Web 上達到？</li>
+<li><p>有些 API 雖然參數一樣，但是在不同時間會回傳不一樣的內容，例如：最新消息，系統公告…等等，這時候若都從快取抓取資料便會讓使用者有資料沒有更新的假象，因此我們需要另一個機制，在有網路時透過網路去後端抓取資料，當離線時才改從快取讀取資料。  </p>
+</li>
+<li><p>我們不只有查詢需求，還有對資料作新增、修改、刪除的問題，雖然可以藉由快取讓離線時仍然有畫面，但是對於資料異動又要如何處理？  </p>
+</li>
+<li><p>就像大部分人常用的 Line ，這種由後端伺服器主動推撥訊息至用戶端的模式又要如何在 Web 上達到？</p>
+</li>
 </ul>
 <p>這些議題後續有機會再做討論。  </p>
-<p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-26.zip"><strong>first-app_2017-09-26.zip</strong></a>  </p>
+<img src="/images/download.png" class="" width="36">[**first-app_2017-09-26.zip**](/uploads/first-app_2017-09-26.zip)  
 
-      
     </div>
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
+    
+    
+    
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/PWA/" rel="tag"># PWA</a>
-          
-        </div>
-      
-
-      
-      
-        <div class="post-widgets">
-        
-
-        
-          <div class="social-like">
-            
-
-            
-              <div class="fb_like">
-                <div class="fb-like" data-layout="button_count" data-share="true"></div>
-              </div>
-            
-          </div>
-        
-        </div>
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/angular/training/19_pwa/" rel="next" title="PWA 偽裝術：manifest.json">
-                <i class="fa fa-chevron-left"></i> PWA 偽裝術：manifest.json
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/PWA/" rel="tag"># PWA</a>
           </div>
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/angular/training/21_pwa3/" rel="prev" title="PWA 推送通知：ServiceWorker - push">
-                PWA 推送通知：ServiceWorker - push <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/angular/training/21_pwa3/" rel="prev" title="PWA 推送通知：ServiceWorker - push">
+                  <i class="fa fa-chevron-left"></i> PWA 推送通知：ServiceWorker - push
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/angular/training/22_angular_pwa/" rel="next" title="既期待又怕受傷害：@angular/service-worker">
+                  既期待又怕受傷害：@angular/service-worker <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-        </div>
-      
-
-      
-      
     </footer>
   </article>
+</div>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
 
 
-          </div>
-          
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Jonny Huang">
-          <p class="site-author-name" itemprop="name">Jonny Huang</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-           
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">66</span>
-                <span class="site-state-item-name">文章</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">分類</span>
-              
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">28</span>
-                <span class="site-state-item-name">標籤</span>
-              
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
-                  
-                    <i class="fa fa-fw fa-facebook-official"></i>
-                  
-                  Facebook
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>
-                  
-                  Email
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-block">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/flutter.tw/" title="Flutter Taiwan" target="_blank">Flutter Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ServiceWorker"><span class="nav-number">1.</span> <span class="nav-text">ServiceWorker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#運作流程"><span class="nav-number">1.1.</span> <span class="nav-text">運作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#註冊"><span class="nav-number">1.1.1.</span> <span class="nav-text">註冊</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入事件"><span class="nav-number">1.2.</span> <span class="nav-text">加入事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#靜態快取"><span class="nav-number">1.3.</span> <span class="nav-text">靜態快取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快取版本"><span class="nav-number">1.4.</span> <span class="nav-text">快取版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API-快取"><span class="nav-number">1.5.</span> <span class="nav-text">API 快取</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
+<div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-Jonny Huang"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
 </div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
-</div>
-
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -965,27 +390,6 @@ self.addEventListener(&#39;activate&#39;, event =&gt; {
 
 
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
-<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-      prettyPrint();
-  });
-</script>
 
 </body>
 </html>

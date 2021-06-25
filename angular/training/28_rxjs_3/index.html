@@ -1,103 +1,32 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-tw">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-TW">
+<head>
   <meta charset="UTF-8">
-<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="RxJS,Angular">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
-
-
-
-
-  <meta property="fb:admins" content="fb267234890438499">
-  <meta property="fb:app_id" content="267234890438499">
-
-
-
-<meta name="description" content="elementAt：只發出單個值，這個值位於源 Observable 的發送序列中的指定 index 處。內定這種事情偶而會遇到，當我們被當作砲灰時只能看開一點，我們一開始就搞錯了他們的需求。   last：返回的 Observable 只發出由源 Observable 發出的最後一個值。它可以接收一個可選的 predicate 函式作為 參數，如果傳入 predicate 的話則傳送的不是源 O">
-<meta name="keywords" content="RxJS,Angular">
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="elementAt：只發出單個值，這個值位於源 Observable 的發送序列中的指定 index 處。內定這種事情偶而會遇到，當我們被當作砲灰時只能看開一點，我們一開始就搞錯了他們的需求。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="彈珠圖塗鴉篇(二)：RxJS">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/28_rxjs_3/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="elementAt：只發出單個值，這個值位於源 Observable 的發送序列中的指定 index 處。內定這種事情偶而會遇到，當我們被當作砲灰時只能看開一點，我們一開始就搞錯了他們的需求。   last：返回的 Observable 只發出由源 Observable 發出的最後一個值。它可以接收一個可選的 predicate 函式作為 參數，如果傳入 predicate 的話則傳送的不是源 O">
-<meta property="og:locale" content="zh-tw">
+<meta property="og:description" content="elementAt：只發出單個值，這個值位於源 Observable 的發送序列中的指定 index 處。內定這種事情偶而會遇到，當我們被當作砲灰時只能看開一點，我們一開始就搞錯了他們的需求。">
+<meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_030.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_031.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_032.png">
@@ -113,690 +42,300 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_042.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_043.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_044.png">
-<meta property="og:updated_time" content="2018-06-08T06:15:33.000Z">
+<meta property="article:published_time" content="2018-06-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-24T01:21:09.789Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="RxJS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="彈珠圖塗鴉篇(二)：RxJS">
-<meta name="twitter:description" content="elementAt：只發出單個值，這個值位於源 Observable 的發送序列中的指定 index 處。內定這種事情偶而會遇到，當我們被當作砲灰時只能看開一點，我們一開始就搞錯了他們的需求。   last：返回的 Observable 只發出由源 Observable 發出的最後一個值。它可以接收一個可選的 predicate 函式作為 參數，如果傳入 predicate 的話則傳送的不是源 O">
 <meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_030.png">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Jonny'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<link rel="canonical" href="https://jonny-huang.github.io/angular/training/28_rxjs_3/">
 
 
 
-  <link rel="canonical" href="https://jonny-huang.github.io/angular/training/28_rxjs_3/">
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;angular&#x2F;training&#x2F;28_rxjs_3&#x2F;&quot;,&quot;path&quot;:&quot;angular&#x2F;training&#x2F;28_rxjs_3&#x2F;&quot;,&quot;title&quot;:&quot;彈珠圖塗鴉篇(二)：RxJS&quot;}</script>
 
-
-
-
-
-  <title>彈珠圖塗鴉篇(二)：RxJS | Jonny Huang 的學習筆記</title>
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>彈珠圖塗鴉篇(二)：RxJS | Jonny Huang 的學習筆記</title>
   
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '267234890438499',
-      xfbml      : true,
-      version    : 'v2.6'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/zh_tw/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-tw">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Jonny Huang 的學習筆記</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <h1 class="site-subtitle" itemprop="description">Angular、Flutter</h1>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首頁
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            目錄
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-flutter">
-          <a href="/flutter/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Flutter
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-angular">
-          <a href="/angular/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Angular
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-quotes">
-          <a href="/quotes/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br>
-            
-            欣雨露
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa-commenting fa-fw"></i>欣雨露</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
     
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/28_rxjs_3/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Jonny Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Jonny Huang 的學習筆記">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          彈珠圖塗鴉篇(二)：RxJS
+        </h1>
 
-        
-        
-          <h2 class="post-title" itemprop="name headline">彈珠圖塗鴉篇(二)：RxJS</h2>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/06/24 09:21:09" itemprop="dateModified" datetime="2021-06-24T09:21:09+08:00">2021/06/24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Training/" itemprop="url" rel="index"><span itemprop="name">Training</span></a>
+        </span>
+    </span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新於</span>
-              
-              <time title="更新於" itemprop="dateModified" datetime="2018-06-08T14:15:33+08:00">
-                2018/06/08
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Training/" itemprop="url" rel="index">
-                    <span itemprop="name">Training</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
+
     
-
+    
+    
     <div class="post-body" itemprop="articleBody">
+        <p><a target="_blank" rel="noopener" href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-elementAt"><strong>elementAt</strong></a>：只發出單個值，這個值位於源 Observable 的發送序列中的指定 index 處。<br><strong>內定</strong>這種事情偶而會遇到，當我們被當作砲灰時只能看開一點，我們一開始就搞錯了他們的需求。<br><img src="/images/angular/training/rxjs/rxjs_030.png" alt="img">  </p>
+<span id="more"></span>  
+<p><a target="_blank" rel="noopener" href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-last"><strong>last</strong></a>：返回的 Observable 只發出由源 Observable 發出的最後一個值。它可以接收一個可選的 predicate 函式作為 參數，如果傳入 predicate 的話則傳送的不是源 Observable 的最後一項，而是發出源 Observable 中 滿足 predicate 函式的最後一項。<br>好吧！有些老闆習慣在會議上只會問最後是成功還是失敗，過程不是重點，但換個角度想，只要不放棄，你有很多失敗的機會，這會讓你更接近成功。<br><img src="/images/angular/training/rxjs/rxjs_031.png" alt="img">  </p>
+<p><a target="_blank" rel="noopener" href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-sampleTime"><strong>sampleTime</strong></a>：在週期時間間隔內發出源 Observable 發出的最新值。<br>工作日誌就是每日下班前填寫當天最後的結果。<br><img src="/images/angular/training/rxjs/rxjs_032.png" alt="img">  </p>
+<p><a target="_blank" rel="noopener" href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-sample"><strong>sample</strong></a>：發出源 Observable 最新發出的值當另一個 notifier Observable傳送時。<br>你知道的，責任制的下班時間會比較不固定。<br><img src="/images/angular/training/rxjs/rxjs_033.png" alt="img">  </p>
+<p><a target="_blank" rel="noopener" href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-single"><strong>single</strong></a>：該 Observable 發出源 Observable 所發出的值中匹配指定 predicate 函式的單個項。 如果源 Observable 發出多於1個資料項或者沒有發出資料項, 分別以 IllegalArgumentException 和 NoSuchElementException 進行通知。<br><strong>一胎化政策</strong>關心的重點是第二個什麼時候出現。<br><img src="/images/angular/training/rxjs/rxjs_034.png" alt="img">  </p>
+<p><a target="_blank" rel="noopener" href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-skip"><strong>skip</strong></a>：返回一個 Observable， 該 Observable 跳過源 Observable 發出的前N個值(N = count)。<br>聽過一種說法嗎？在加油站看到油罐車正在補給時，你可以先讓後面的車先加油，因為補給過程會把原本沉澱在儲油槽底下的雜質又給攪和起來，但是雜質沉澱需要的時間比你想像的還要久，所以擔心的話，換一家加油站吧，不然就是隔天再加。<br><img src="/images/angular/training/rxjs/rxjs_035.png" alt="img">  </p>
+<p><a target="_blank" rel="noopener" href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-skipUntil"><strong>skipUntil</strong></a>：返回一個 Observable，該 Observable 會跳過源 Observable 發出的值直到第二個 Observable 開始傳送。<br>比賽是分秒必爭，但是要是在裁判鳴槍前偷跑就不會列入排名。<br><img src="/images/angular/training/rxjs/rxjs_036.png" alt="img">  </p>
+<p><a target="_blank" rel="noopener" href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-take"><strong>take</strong></a>：只發出源 Observable 最初發出的的N個值 (N = count)。<br>現實是殘酷的，能夠站上頒獎台的只有優先通過終點的那幾位，不過我們還是給所有的參賽者熱烈的掌聲吧！<br><img src="/images/angular/training/rxjs/rxjs_037.png" alt="img">  </p>
+<p><a target="_blank" rel="noopener" href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-takeLast"><strong>takeLast</strong></a>：只發出源 Observable 最後發出的的N個值 (N = count)。<br>有看過經典的電影<strong>報告班長</strong>嗎？沒錯，你們最後幾個要倒大楣了！<br><img src="/images/angular/training/rxjs/rxjs_038.png" alt="img">  </p>
+<p><a target="_blank" rel="noopener" href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-takeUntil"><strong>takeUntil</strong></a>：發出源 Observable 發出的值，直到 notifier Observable 發出值。<br>你要知道遲到是不能再進考場的，所以除了提早到之外，記得准考證也要帶。<br><img src="/images/angular/training/rxjs/rxjs_039.png" alt="img">  </p>
+<p><a target="_blank" rel="noopener" href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-takeWhile"><strong>takeWhile</strong></a>：發出在源 Observable 中滿足 predicate 函式的每個值，並且一旦出現不滿足 predicate 的值就立即完成。<br>如果當店家辦發放禮物的活動時，一般都有固定的數量，當你沒拿到時那就開心的購物吧！不跟他們爭得面紅耳赤。<br><img src="/images/angular/training/rxjs/rxjs_040.png" alt="img">  </p>
+<p><a target="_blank" rel="noopener" href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-concat"><strong>concat</strong></a>：建立一個輸出 Observable，它在當前 Observable 之後順序地發出每個給定的輸入 Observable 中的所有值。<br>如果你訂不到機票又急著出國，你可以直接到機場排補位，當然這是等到正常報到時間截止之後才會輪到你，當然還要剩餘座位夠多妳才上的了飛機。<br><img src="/images/angular/training/rxjs/rxjs_041.png" alt="img">  </p>
+<p><a target="_blank" rel="noopener" href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-merge"><strong>merge</strong></a>：建立一個輸出 Observable ，它可以同時發出每個給定的輸入 Observable 中的所有值。<br>這是一般人認知的購票系統，不論用什麼方式購買，先搶先贏，但是，實務上一般都採用保留票數來避免同一個座位被重複購買。<br><img src="/images/angular/training/rxjs/rxjs_042.png" alt="img">  </p>
+<p><a target="_blank" rel="noopener" href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-startWith"><strong>startWith</strong></a>：返回的 Observable 會先發出作為參數指定的項，然後再發出由源 Observable 所發出的項。<br>公司在辦員工旅遊時一般還是會請旅行社派導遊帶隊，當然再算乘車座位跟機票時別漏算了他。<br><img src="/images/angular/training/rxjs/rxjs_043.png" alt="img">  </p>
+<p><a target="_blank" rel="noopener" href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-switch"><strong>switch</strong></a>：透過只訂閱最新發出的內部 Observable ，將高階 Observable 轉換成一階 Observable 。<br>接力賽就是交棒後換人跑。<br><img src="/images/angular/training/rxjs/rxjs_044.png" alt="img">  </p>
 
-      
-      
-
-      
-        <p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-elementAt" target="_blank" rel="noopener"><strong>elementAt</strong></a>：只發出單個值，這個值位於源 Observable 的發送序列中的指定 index 處。<br><strong>內定</strong>這種事情偶而會遇到，當我們被當作砲灰時只能看開一點，我們一開始就搞錯了他們的需求。<br><img src="/images/angular/training/rxjs/rxjs_030.png" alt="">  </p>
-<p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-last" target="_blank" rel="noopener"><strong>last</strong></a>：返回的 Observable 只發出由源 Observable 發出的最後一個值。它可以接收一個可選的 predicate 函式作為 參數，如果傳入 predicate 的話則傳送的不是源 Observable 的最後一項，而是發出源 Observable 中 滿足 predicate 函式的最後一項。<br>好吧！有些老闆習慣在會議上只會問最後是成功還是失敗，過程不是重點，但換個角度想，只要不放棄，你有很多失敗的機會，這會讓你更接近成功。<br><img src="/images/angular/training/rxjs/rxjs_031.png" alt="">  </p>
-<p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-sampleTime" target="_blank" rel="noopener"><strong>sampleTime</strong></a>：在週期時間間隔內發出源 Observable 發出的最新值。<br>工作日誌就是每日下班前填寫當天最後的結果。<br><img src="/images/angular/training/rxjs/rxjs_032.png" alt="">  </p>
-<p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-sample" target="_blank" rel="noopener"><strong>sample</strong></a>：發出源 Observable 最新發出的值當另一個 notifier Observable傳送時。<br>你知道的，責任制的下班時間會比較不固定。<br><img src="/images/angular/training/rxjs/rxjs_033.png" alt="">  </p>
-<p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-single" target="_blank" rel="noopener"><strong>single</strong></a>：該 Observable 發出源 Observable 所發出的值中匹配指定 predicate 函式的單個項。 如果源 Observable 發出多於1個資料項或者沒有發出資料項, 分別以 IllegalArgumentException 和 NoSuchElementException 進行通知。<br><strong>一胎化政策</strong>關心的重點是第二個什麼時候出現。<br><img src="/images/angular/training/rxjs/rxjs_034.png" alt="">  </p>
-<p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-skip" target="_blank" rel="noopener"><strong>skip</strong></a>：返回一個 Observable， 該 Observable 跳過源 Observable 發出的前N個值(N = count)。<br>聽過一種說法嗎？在加油站看到油罐車正在補給時，你可以先讓後面的車先加油，因為補給過程會把原本沉澱在儲油槽底下的雜質又給攪和起來，但是雜質沉澱需要的時間比你想像的還要久，所以擔心的話，換一家加油站吧，不然就是隔天再加。<br><img src="/images/angular/training/rxjs/rxjs_035.png" alt="">  </p>
-<p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-skipUntil" target="_blank" rel="noopener"><strong>skipUntil</strong></a>：返回一個 Observable，該 Observable 會跳過源 Observable 發出的值直到第二個 Observable 開始傳送。<br>比賽是分秒必爭，但是要是在裁判鳴槍前偷跑就不會列入排名。<br><img src="/images/angular/training/rxjs/rxjs_036.png" alt="">  </p>
-<p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-take" target="_blank" rel="noopener"><strong>take</strong></a>：只發出源 Observable 最初發出的的N個值 (N = count)。<br>現實是殘酷的，能夠站上頒獎台的只有優先通過終點的那幾位，不過我們還是給所有的參賽者熱烈的掌聲吧！<br><img src="/images/angular/training/rxjs/rxjs_037.png" alt="">  </p>
-<p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-takeLast" target="_blank" rel="noopener"><strong>takeLast</strong></a>：只發出源 Observable 最後發出的的N個值 (N = count)。<br>有看過經典的電影<strong>報告班長</strong>嗎？沒錯，你們最後幾個要倒大楣了！<br><img src="/images/angular/training/rxjs/rxjs_038.png" alt="">  </p>
-<p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-takeUntil" target="_blank" rel="noopener"><strong>takeUntil</strong></a>：發出源 Observable 發出的值，直到 notifier Observable 發出值。<br>你要知道遲到是不能再進考場的，所以除了提早到之外，記得准考證也要帶。<br><img src="/images/angular/training/rxjs/rxjs_039.png" alt="">  </p>
-<p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-takeWhile" target="_blank" rel="noopener"><strong>takeWhile</strong></a>：發出在源 Observable 中滿足 predicate 函式的每個值，並且一旦出現不滿足 predicate 的值就立即完成。<br>如果當店家辦發放禮物的活動時，一般都有固定的數量，當你沒拿到時那就開心的購物吧！不跟他們爭得面紅耳赤。<br><img src="/images/angular/training/rxjs/rxjs_040.png" alt="">  </p>
-<p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-concat" target="_blank" rel="noopener"><strong>concat</strong></a>：建立一個輸出 Observable，它在當前 Observable 之後順序地發出每個給定的輸入 Observable 中的所有值。<br>如果你訂不到機票又急著出國，你可以直接到機場排補位，當然這是等到正常報到時間截止之後才會輪到你，當然還要剩餘座位夠多妳才上的了飛機。<br><img src="/images/angular/training/rxjs/rxjs_041.png" alt="">  </p>
-<p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-merge" target="_blank" rel="noopener"><strong>merge</strong></a>：建立一個輸出 Observable ，它可以同時發出每個給定的輸入 Observable 中的所有值。<br>這是一般人認知的購票系統，不論用什麼方式購買，先搶先贏，但是，實務上一般都採用保留票數來避免同一個座位被重複購買。<br><img src="/images/angular/training/rxjs/rxjs_042.png" alt="">  </p>
-<p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-startWith" target="_blank" rel="noopener"><strong>startWith</strong></a>：返回的 Observable 會先發出作為參數指定的項，然後再發出由源 Observable 所發出的項。<br>公司在辦員工旅遊時一般還是會請旅行社派導遊帶隊，當然再算乘車座位跟機票時別漏算了他。<br><img src="/images/angular/training/rxjs/rxjs_043.png" alt="">  </p>
-<p><a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-switch" target="_blank" rel="noopener"><strong>switch</strong></a>：透過只訂閱最新發出的內部 Observable ，將高階 Observable 轉換成一階 Observable 。<br>接力賽就是交棒後換人跑。<br><img src="/images/angular/training/rxjs/rxjs_044.png" alt="">  </p>
-
-      
     </div>
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
+    
+    
+    
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/RxJS/" rel="tag"># RxJS</a>
-          
-        </div>
-      
-
-      
-      
-        <div class="post-widgets">
-        
-
-        
-          <div class="social-like">
-            
-
-            
-              <div class="fb_like">
-                <div class="fb-like" data-layout="button_count" data-share="true"></div>
-              </div>
-            
-          </div>
-        
-        </div>
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/angular/training/27_rxjs_2/" rel="next" title="彈珠圖塗鴉篇(一)：RxJS">
-                <i class="fa fa-chevron-left"></i> 彈珠圖塗鴉篇(一)：RxJS
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/RxJS/" rel="tag"># RxJS</a>
           </div>
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/angular/training/29_rxjs_4/" rel="prev" title="Operators 聯想篇：RxJS">
-                Operators 聯想篇：RxJS <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/angular/training/27_rxjs_2/" rel="prev" title="彈珠圖塗鴉篇(一)：RxJS">
+                  <i class="fa fa-chevron-left"></i> 彈珠圖塗鴉篇(一)：RxJS
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/angular/training/29_rxjs_4/" rel="next" title="Operators 聯想篇：RxJS">
+                  Operators 聯想篇：RxJS <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-        </div>
-      
-
-      
-      
     </footer>
   </article>
+</div>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
 
 
-          </div>
-          
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Jonny Huang">
-          <p class="site-author-name" itemprop="name">Jonny Huang</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-           
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">66</span>
-                <span class="site-state-item-name">文章</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">分類</span>
-              
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">28</span>
-                <span class="site-state-item-name">標籤</span>
-              
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
-                  
-                    <i class="fa fa-fw fa-facebook-official"></i>
-                  
-                  Facebook
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>
-                  
-                  Email
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-block">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/flutter.tw/" title="Flutter Taiwan" target="_blank">Flutter Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
+<div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-Jonny Huang"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
 </div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
-</div>
-
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -810,27 +349,6 @@
 
 
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
-<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-      prettyPrint();
-  });
-</script>
 
 </body>
 </html>

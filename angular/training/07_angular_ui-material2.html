@@ -1,0 +1,149 @@
+<hr>
+<p>title: Angular UI：Angular Material2<br>date: 2017-09-01 10:00<br>categories: Training<br>keywords:</p>
+<ul>
+<li>Angular</li>
+<li>UI</li>
+<li>Material Design<br>tags:</li>
+<li>Angular</li>
+<li>UI</li>
+</ul>
+<hr>
+<h1 id="Material-Design-for-Angular"><a href="#Material-Design-for-Angular" class="headerlink" title="Material Design for Angular"></a>Material Design for Angular</h1><p>在 <a href="/angular/training/06_angular_module/">Angular 模組</a> 最後我們只加了幾行 CSS 樣式，由一開始練習至此感覺起來這種網頁效果十幾年前用記事本就可以做到了，那花時間學這個幹嘛？我們過去會的技術能不能繼續沿用下來？首當其衝的就是 <a href="https://jquery.com/">jQuery</a> for Angular 的問題。  </p>
+<!-- more -->  
+
+<blockquote>
+<p>其實筆者並沒用過 jQuery、Ajax，對於 JavaScript、CSS 也都是上網查詢別人寫好的範例來改，過去都是在開發視窗程式，網頁的經驗是停留在 ASP.NET 2.0 時代，利用 Visual Studio .NET，透過滑鼠拖拉產生千篇一律的畫面，再加上 C# 撰寫邏輯來產生網站。<br>說了這個多只是想告訴大家筆者是一個網路開發的初學者，站在這個角度來分享，身為後追者的我如何利用 Angular 來快速追趕上那些有多年開發經驗的人，至少能看到前方的車尾燈，畢竟在職場上客戶不會因為不同的資歷而有不同的評分標準，只會考慮誰能解決他的問題，老闆也不會讓你花幾年的時間慢慢磨練。<br>網路上其實已經有很多非常深入的文章，所以後續內容會著重在<strong>怎麼用</strong>以及如何<strong>善用 Angular 的優勢</strong>。</p>
+</blockquote>
+<p>我們開啟官方網站的資源頁面 <a href="https://angular.io/resources">https://angular.io/resources</a> 一開始提到過上面有推薦一些開發工具，今天我們要來看的是官方所推薦的模組化元件-<a href="https://github.com/angular/material2">Angular Material2</a>。<br><img src="/images/angular/training/ui/angular_ui_01.png" alt="img"><br>我們依照 <a href="https://material.angular.io/guide/getting-started">官方安裝教學步驟</a> 來安裝。  </p>
+<h2 id="安裝-Angular-Material-與-Angular-CDK"><a href="#安裝-Angular-Material-與-Angular-CDK" class="headerlink" title="安裝 Angular Material 與 Angular CDK"></a>安裝 Angular Material 與 Angular CDK</h2><p>透過下列指令來安裝<br><code>npm install --save @angular/material @angular/cdk</code><br><img src="/images/angular/training/ui/angular_ui_02.png" alt="img">  </p>
+<blockquote>
+<p>如果大家安裝有遇到權限不足的錯誤訊息，甚至出現要求以系統管理員身分重新安裝時，可以嘗試把專案內的 <code>package-lock.json</code> 檔刪除後再重新安裝試試，npm 5.0 增加了 lock 機制。<br><img src="/images/angular/training/ui/angular_ui_03.png" alt="img"></p>
+</blockquote>
+<h2 id="安裝-Angular-Animations-動畫模組"><a href="#安裝-Angular-Animations-動畫模組" class="headerlink" title="安裝 Angular Animations 動畫模組"></a>安裝 Angular Animations 動畫模組</h2><p>安裝指令<br><code>npm install --save @angular/animations</code>  </p>
+<blockquote>
+<p>目前筆者使用的 CLI 版本為 1.3.2，專案建置時便會同時安裝動畫模組，但是預設並沒有將模組註冊。</p>
+</blockquote>
+<p>將 動畫模組(<strong>BrowserAnimationsModule</strong>) 註冊到專案的 啟動模組(<strong>AppModule</strong>) 內。  </p>
+<p>{% codeblock app.module.ts lang:ts %}<br>import { BrowserAnimationsModule } from ‘@angular/platform-browser/animations’;<br>import { BrowserModule } from ‘@angular/platform-browser’;<br>import { NgModule } from ‘@angular/core’;</p>
+<p>import { AppRoutingModule } from ‘./app-routing.module’;<br>import { AppComponent } from ‘./app.component’;<br>import { Page1Component } from ‘./page1/page1.component’;<br>import { Page2Component } from ‘./page2.component’;<br>import { Page3Component } from ‘./page3.component’;<br>import { Page404Component } from ‘./page404/page404.component’;<br>import { OperationModule } from ‘./operation/operation.module’;</p>
+<p>@NgModule({<br>  declarations: [<br>    AppComponent,<br>    Page1Component,<br>    Page2Component,<br>    Page3Component,<br>    Page404Component<br>  ],<br>  imports: [<br>    BrowserModule,<br>    AppRoutingModule,<br>    BrowserAnimationsModule,<br>    OperationModule<br>  ],<br>  providers: [],<br>  bootstrap: [AppComponent]<br>})<br>export class AppModule { }</p>
+<p>{% endcodeblock %}</p>
+<h2 id="匯入要使用的元件模組"><a href="#匯入要使用的元件模組" class="headerlink" title="匯入要使用的元件模組"></a>匯入要使用的<strong>元件模組</strong></h2><p>說成 <strong>元件模組</strong> 是因為 <strong>Angular Material2</strong> 特別將每個元件(Component)都用一個獨立的模組(NgModule)包覆起來，這樣就不會連沒使用到的元件都一起打包到專案內，造成編譯後的檔案太大。<br>因為目前還沒決定要使用那些元件，所以暫時不先加入，後面有使用時再說明，但是官方文件提出一個很好的元件管理方式-建立一個模組來集中管理有用到的元件，有元件需要使用時再將它加入到該元件所依附的模組內。<br>執行下面安裝指令建立一個 <strong>CustomMaterialModule</strong>，帶上 <code>--flat</code> 參數讓 CLI 不要建立資料夾，因為不確定那些模組會使用，所以我們將檔案放置在最外層 <code>src\app</code> 底下。<br><code>ng g m customMaterial --flat</code><br><img src="/images/angular/training/ui/angular_ui_04.png" alt="img"></p>
+<blockquote>
+<p>文件下方特別提到元件模組需加入在 <strong>BrowserModule</strong> 之後，也就是使用時除了要註冊到模組的 <code>imports</code> 屬性，如果 <code>imports</code> 屬性包含 <strong>BrowserModule</strong> 時需要將 <strong>CustomMaterialModule</strong> 放置在它的後面。<br>由此也可說明 <code>imports</code> 屬性具有<strong>順序性</strong>，它會依序處理。</p>
+</blockquote>
+<h2 id="匯入樣式"><a href="#匯入樣式" class="headerlink" title="匯入樣式"></a>匯入樣式</h2><p>依官方文件將下列語法加到 <code>src\styles.scss</code> 內。<br><code>@import &quot;~@angular/material/prebuilt-themes/indigo-pink.css&quot;;</code><br>不過我們從此路徑去搜尋就會發現，<strong>Angular Material2</strong> 總共提供了下列幾種配色的樣式：<br><strong>deeppurple-amber.css</strong><br><strong>indigo-pink.css</strong><br><strong>pink-bluegrey.css</strong><br><strong>purple-green.css</strong><br><img src="/images/angular/training/ui/angular_ui_05.png" alt="img"><br>開啟 <code>src\styles.scss</code>，將所有樣式都先加入，並選擇一個，剩餘的都先註解起來。  </p>
+<p>{% codeblock styles.scss lang:scss %}<br>/* You can add global styles to this file, and also import other style files */</p>
+<p>/* Angular Material2 Themes */<br>// @import “<del>@angular/material/prebuilt-themes/deeppurple-amber.css”;<br>// @import “</del>@angular/material/prebuilt-themes/indigo-pink.css”;<br>@import “<del>@angular/material/prebuilt-themes/pink-bluegrey.css”;<br>// @import “</del>@angular/material/prebuilt-themes/purple-green.css”;</p>
+<p>P {<br>  border: 1px dashed red;<br>  margin: 8px;<br>}</p>
+<p>{% endcodeblock %}</p>
+<h2 id="安裝手勢操作的套件-HammerJS"><a href="#安裝手勢操作的套件-HammerJS" class="headerlink" title="安裝手勢操作的套件 HammerJS"></a>安裝手勢操作的套件 <a href="http://hammerjs.github.io/">HammerJS</a></h2><p>安裝指令如下：<br><code>npm install --save hammerjs</code><br><img src="/images/angular/training/ui/angular_ui_06.png" alt="img"><br>將 <code>hammerjs</code> import 到程式的<strong>進入點</strong>(entry point)，我們將下列語法加入至 <code>src\main.ts</code>。<br><code>import &#39;hammerjs&#39;;</code>  </p>
+<p>{% codeblock main.ts lang:ts %}<br>import { enableProdMode } from ‘@angular/core’;<br>import { platformBrowserDynamic } from ‘@angular/platform-browser-dynamic’;</p>
+<p>import { AppModule } from ‘./app/app.module’;<br>import { environment } from ‘./environments/environment’;<br>import ‘hammerjs’;</p>
+<p>if (environment.production) {<br>  enableProdMode();<br>}</p>
+<p>platformBrowserDynamic().bootstrapModule(AppModule);</p>
+<p>{% endcodeblock %}</p>
+<h2 id="選擇性-安裝圖示套件-Material-Icons"><a href="#選擇性-安裝圖示套件-Material-Icons" class="headerlink" title="(選擇性) 安裝圖示套件 Material Icons"></a>(選擇性) 安裝圖示套件 Material Icons</h2><p><strong>Angular Material2</strong> 的圖示元件為 <code>md-icon</code>，我們在 首頁(<code>src\index.html</code>) 加入下面連結。<br><code>&lt;link href=&quot;https://fonts.googleapis.com/icon?family=Material+Icons&quot; rel=&quot;stylesheet&quot;&gt;</code>  </p>
+<p>{% codeblock index.html lang:html %}<br><!doctype html></p>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>FirstApp</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <app-root></app-root>
+</body>
+
+</html>
+
+<p>{% endcodeblock %}</p>
+<h2 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h2><p>開啟 <a href="https://material.angular.io/components">https://material.angular.io/components</a> 頁面可以看到網頁展示了 <strong>Angular Material2</strong> 元件效果，同時也提供設定與使用說明。<br>以 <code>md-icon</code> 為例，選擇 <strong>Icon</strong> 元件頁籤，點選內容的 <strong>API</strong> 內容，可以看到該模組名稱為 <strong>MdIconModule</strong>，開起 <code>src\app\custom-material.module.ts</code> 並將 <strong>MdIconModule</strong> 加到  <code>imports</code> 以及 <code>exports</code> 屬性內。  </p>
+<p>{% codeblock custom-material.module.ts lang:ts %}<br>import { NgModule } from ‘@angular/core’;<br>import { MdIconModule } from ‘@angular/material’;</p>
+<p>@NgModule({<br>  imports: [MdIconModule],<br>  exports: [MdIconModule]<br>})<br>export class CustomMaterialModule { }</p>
+<p>{% endcodeblock %}</p>
+<p><strong>嘗試在 Page1Component 放入一些圖示：</strong><br>因為 <strong>Page1Component</strong> 使用 <strong>CustomMaterialModule</strong> 內的 <strong>MdIconModule</strong>，所以必須將 <strong>CustomMaterialModule</strong> 註冊到 <strong>Page1Component</strong> 所屬的模組(<strong>AppModule</strong>)內，開啟並編輯 <code>src\app\app.module.ts</code>。  </p>
+<p>{% codeblock app.module.ts lang:ts %}<br>import { BrowserAnimationsModule } from ‘@angular/platform-browser/animations’;<br>import { BrowserModule } from ‘@angular/platform-browser’;<br>import { NgModule } from ‘@angular/core’;</p>
+<p>import { AppRoutingModule } from ‘./app-routing.module’;<br>import { AppComponent } from ‘./app.component’;<br>import { Page1Component } from ‘./page1/page1.component’;<br>import { Page2Component } from ‘./page2.component’;<br>import { Page3Component } from ‘./page3.component’;<br>import { Page404Component } from ‘./page404/page404.component’;<br>import { OperationModule } from ‘./operation/operation.module’;<br>import { CustomMaterialModule } from ‘./custom-material.module’;</p>
+<p>@NgModule({<br>  declarations: [<br>    AppComponent,<br>    Page1Component,<br>    Page2Component,<br>    Page3Component,<br>    Page404Component<br>  ],<br>  imports: [<br>    BrowserModule,<br>    AppRoutingModule,<br>    BrowserAnimationsModule,<br>    CustomMaterialModule,<br>    OperationModule<br>  ],<br>  providers: [],<br>  bootstrap: [AppComponent]<br>})<br>export class AppModule { }</p>
+<p>{% endcodeblock %}</p>
+<p>在 <code>src\app\page1\page1.component.html</code> 內加入一些圖示，如下面範例：  </p>
+<p>{% codeblock page1.component.htmls lang:html %}</p>
+<p>
+  page1 works!
+  <app-opt1></app-opt1>
+  <br>
+  <md-icon>home</md-icon>
+  <md-icon>done</md-icon>
+  <md-icon>delete</md-icon>
+  <md-icon>email</md-icon>
+</p>
+
+<p>{% endcodeblock %}</p>
+<p>執行並切到 Page1 頁籤時可以看到畫面上確實出現了圖示。<br><img src="/images/angular/training/ui/angular_ui_08.png" alt="img">  </p>
+<blockquote>
+<p>圖示及其名稱可參閱 <a href="https://material.io/icons/">https://material.io/icons/</a> 查詢</p>
+</blockquote>
+<h2 id="區域網路"><a href="#區域網路" class="headerlink" title="區域網路"></a>區域網路</h2><p>其實圖示是連結到 <strong><a href="https://fonts.googleapis.com/">https://fonts.googleapis.com/</a></strong> 網站來下載圖示檔，對於開放外部使用的網站來說可以減省傳輸流量，但是如果是在企業內部使用，有可能就不見得可以連結到外部網站，因此也我們需要能夠將圖示字型放置到所部屬的伺服器，以免網頁無法呈現圖示。  </p>
+<h3 id="方法1：下載圖示字型"><a href="#方法1：下載圖示字型" class="headerlink" title="方法1：下載圖示字型"></a>方法1：下載圖示字型</h3><p>開啟 <a href="https://google.github.io/material-design-icons/">https://google.github.io/material-design-icons/</a>，在網頁上提到官方提供圖示字型下載連結 <a href="https://github.com/google/material-design-icons/archive/master.zip"><strong>material-design-icons-master.zip</strong></a>。<br><img src="/images/angular/training/ui/angular_ui_09.png" alt="img"><br><img src="/images/angular/training/ui/angular_ui_10.png" alt="img"><br>解壓縮後將 <strong>iconfont</strong> 資料夾複製到 <code>src\assets</code> 資料夾下。<br><img src="/images/angular/training/ui/angular_ui_11.png" alt="img"><br>修改 <code>src\index.html</code> 內的連結路徑，重新執行圖示應該也可以正常顯示，但是圖示來源已經改成專案目錄。  </p>
+<p>{% codeblock index.html lang:html %}<br><!doctype html></p>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>FirstApp</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+  <link href="./assets/iconfont/material-icons.css" rel="stylesheet">
+</head>
+
+<body>
+  <app-root></app-root>
+</body>
+
+</html>
+
+<p>{% endcodeblock %}</p>
+<p><img src="/images/angular/training/ui/angular_ui_08.png" alt="img">  </p>
+<blockquote>
+<p>開啟 <code>.angular-cli.json</code> 可以從 apps 區塊內看到一個<code>assets</code> 的設定值，預設指定了 <strong>assets</strong> 資料夾與 <strong>favicon.ico</strong> 網站圖示，Angular CLI 在編譯時會將 <code>assets</code> 內所指定的檔案或資料夾全部複製到輸出路徑(<code>&quot;outDir&quot;: &quot;dist&quot;</code>)，因此我們可以將要連同網站一起佈署的檔案加進去，編譯時就會一起複製過去。<br><img src="/images/angular/training/ui/angular_ui_12.png" alt="img">  </p>
+</blockquote>
+<h3 id="方法2：透過-npm-安裝"><a href="#方法2：透過-npm-安裝" class="headerlink" title="方法2：透過 npm 安裝"></a>方法2：透過 npm 安裝</h3><p>透過下列指令安裝，安裝時等待時間會比較久<br><code>npm install --save material-design-icons</code><br><img src="/images/angular/training/ui/angular_ui_13.png" alt="img"><br>開啟 <code>src\styles.scss</code> 加入下列語法：<br><code>@import &#39;~material-design-icons/iconfont/material-icons.css&#39;;</code>  </p>
+<p>{% codeblock styles.scss lang:scss %}<br>/* You can add global styles to this file, and also import other style files */</p>
+<p>/* Angular Material2 Themes */<br>// @import “<del>@angular/material/prebuilt-themes/deeppurple-amber.css”;<br>// @import “</del>@angular/material/prebuilt-themes/indigo-pink.css”;<br>@import “<del>@angular/material/prebuilt-themes/pink-bluegrey.css”;<br>// @import “</del>@angular/material/prebuilt-themes/purple-green.css”;</p>
+<p>/* Material Design Icon */<br>@import ‘~material-design-icons/iconfont/material-icons.css’;</p>
+<p>P {<br>  border: 1px dashed red;<br>  margin: 8px;<br>}</p>
+<p>{% endcodeblock %}</p>
+<p>將 <code>src\index.html</code> 的連結拿掉後重新執行，正常應該圖示也會顯示。  </p>
+<p>{% codeblock index.html lang:html %}<br><!doctype html></p>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>FirstApp</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+  <link href="./assets/iconfont/material-icons.css" rel="stylesheet">
+</head>
+
+<body>
+  <app-root></app-root>
+</body>
+
+</html>
+
+<p>{% endcodeblock %}</p>
+<p><img src="/images/angular/training/ui/angular_ui_08.png" alt="img">  </p>
+<p>{% img /images/download.png 36 %}<a href="/uploads/first-app_2017-09-01.zip"><strong>first-app_2017-09-01.zip</strong></a>  </p>

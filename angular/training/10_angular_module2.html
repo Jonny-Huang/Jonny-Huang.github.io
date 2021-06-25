@@ -1,0 +1,53 @@
+<hr>
+<p>title: Angular 模組化<br>date: 2017-09-04 10:00<br>categories: Training<br>keywords:</p>
+<ul>
+<li>Angular</li>
+<li>NgModule</li>
+<li>Module<br>tags:</li>
+<li>Angular</li>
+<li>NgModule</li>
+</ul>
+<hr>
+<h1 id="模組化"><a href="#模組化" class="headerlink" title="模組化"></a>模組化</h1><p>在 <a href="/angular/training/06_angular_module/">Angular 模組</a> 我們練習先建立一個模組(NgModule)，然後在上面建立元件(Component)，今天我們試著反過來將既有的元件包覆到一個模組內。  </p>
+<!-- more -->  
+
+<h2 id="重整"><a href="#重整" class="headerlink" title="重整"></a>重整</h2><p>先將用不到的元件及模組刪除：Page<strong>x</strong>Component、Opt<strong>x</strong>Component、OperationModule，直接刪除檔案，再將把註冊相關元件的模組(<code>src\app\app.module.ts</code>、<code>src\app\app-routing.module.ts</code>)程式碼給移除。<br><img src="/images/angular/training/module/angular_module_13.png" alt="img">  </p>
+<p>{% codeblock app.module.ts lang:ts %}<br>import { BrowserAnimationsModule } from ‘@angular/platform-browser/animations’;<br>import { BrowserModule } from ‘@angular/platform-browser’;<br>import { NgModule } from ‘@angular/core’;</p>
+<p>import { AppRoutingModule } from ‘./app-routing.module’;<br>import { AppComponent } from ‘./app.component’;<br>import { Page404Component } from ‘./page404/page404.component’;<br>import { CustomMaterialModule } from ‘./custom-material.module’;<br>import { HomeModule } from ‘./home/home.module’;</p>
+<p>@NgModule({<br>  declarations: [<br>    AppComponent,<br>    Page404Component<br>  ],<br>  imports: [<br>    BrowserModule,<br>    AppRoutingModule,<br>    BrowserAnimationsModule,<br>    CustomMaterialModule,<br>    HomeModule<br>  ],<br>  providers: [],<br>  bootstrap: [AppComponent]<br>})<br>export class AppModule { }</p>
+<p>{% endcodeblock %}</p>
+<p>{% codeblock app-routing.module.ts lang:ts %}<br>import { NgModule } from ‘@angular/core’;<br>import { Routes, RouterModule } from ‘@angular/router’;<br>import { Page404Component } from ‘./page404/page404.component’;</p>
+<p>const routes: Routes = [<br>  { path: ‘’, redirectTo: ‘home’, pathMatch: ‘full’ },<br>  { path: ‘404’, component: Page404Component }<br>];</p>
+<p>@NgModule({<br>  imports: [RouterModule.forRoot(routes)],<br>  exports: [RouterModule]<br>})<br>export class AppRoutingModule { }</p>
+<p>{% endcodeblock %}</p>
+<p>因為 <code>src\app\app.component.html</code> 只有一行語法，所以直接將它併入 <code>src\app\app.component.ts</code>，相關的樣板檔(<code>app.component.scss</code>)以及測試檔(<code>app.component.spec.ts</code>)可以先移除，後續有需要時再加回來。  </p>
+<p>{% codeblock app.component.ts lang:ts %}<br>import { Component } from ‘@angular/core’;</p>
+<p>@Component({<br>  selector: ‘app-root’,<br>  template: <code>&lt;router-outlet&gt;&lt;/router-outlet&gt;</code><br>})<br>export class AppComponent { }</p>
+<p>{% endcodeblock %}</p>
+<p>整個專案應該會變乾淨很多。<br><img src="/images/angular/training/module/angular_module_14.png" alt="img">  </p>
+<h2 id="建立模組"><a href="#建立模組" class="headerlink" title="建立模組"></a>建立模組</h2><p>開始將在 <a href="/angular/training/09_angular_router2/">Angular 子路由</a> 所建立的功能元件都合併到一個模組內。<br><img src="/images/angular/training/router/angular_router_12.gif" alt="img"><br>透過 <code>ng g m employee</code> 建立一個 <strong>EmployeeModule</strong> 模組。<br><img src="/images/angular/training/module/angular_module_15.png" alt="img"><br>將相關模組移動到 <code>src\app\employee</code> 下面，在可以透過 VS Code 的檔案總管用滑鼠直接拖拉，並將相關元件註冊到 <code>src\app\employee\employee.module.ts</code>。<br><img src="/images/angular/training/module/angular_module_16.png" alt="img">  </p>
+<p>{% codeblock employee.module.ts lang:ts %}<br>import { NgModule } from ‘@angular/core’;<br>import { CommonModule } from ‘@angular/common’;<br>import { CalendarComponent } from ‘./calendar/calendar.component’;<br>import { AddressBookComponent } from ‘./address-book/address-book.component’;<br>import { LogbookComponent } from ‘./logbook/logbook.component’;<br>import { ToDoListComponent } from ‘./to-do-list/to-do-list.component’;<br>import { FileComponent } from ‘./file/file.component’;<br>import { LeaveComponent } from ‘./leave/leave.component’;<br>import { ReimburseComponent } from ‘./reimburse/reimburse.component’;</p>
+<p>@NgModule({<br>  imports: [<br>    CommonModule<br>  ],<br>  declarations: [<br>    CalendarComponent,<br>    AddressBookComponent,<br>    LogbookComponent,<br>    ToDoListComponent,<br>    FileComponent,<br>    LeaveComponent,<br>    ReimburseComponent<br>  ]<br>})<br>export class EmployeeModule { }</p>
+<p>{% endcodeblock %}</p>
+<p>再將相關元件從 <code>src\app\home\home.module.ts</code> 中移除參考，並將 <strong>EmployeeModule</strong> 註冊進來。  </p>
+<p>{% codeblock home.module.ts lang:ts %}<br>import { NgModule } from ‘@angular/core’;<br>import { CommonModule } from ‘@angular/common’;</p>
+<p>import { HomeRoutingModule } from ‘./home-routing.module’;<br>import { HomeComponent } from ‘./home.component’;<br>import { HeaderComponent } from ‘./header/header.component’;<br>import { AsideComponent } from ‘./aside/aside.component’;<br>import { CustomMaterialModule } from ‘../custom-material.module’;<br>import { EmployeeModule } from ‘../employee/employee.module’;</p>
+<p>@NgModule({<br>  imports: [<br>    CommonModule,<br>    HomeRoutingModule,<br>    CustomMaterialModule,<br>    EmployeeModule<br>  ],<br>  declarations: [<br>    HomeComponent,<br>    HeaderComponent,<br>    AsideComponent<br>  ]<br>})<br>export class HomeModule { }</p>
+<p>{% endcodeblock %}</p>
+<p>最後的問題大概就是 <strong>HomeRoutingModule</strong>(<code>src\app\home\home-routing.module.ts</code>) 的路由規則要如何處理？  </p>
+<p>{% codeblock home-routing.module.ts lang:ts %}<br>import { NgModule } from ‘@angular/core’;<br>import { Routes, RouterModule } from ‘@angular/router’;<br>import { HomeComponent } from ‘./home.component’;<br>import { CalendarComponent } from ‘./calendar/calendar.component’;<br>import { AddressBookComponent } from ‘./address-book/address-book.component’;<br>import { FileComponent } from ‘./file/file.component’;<br>import { LeaveComponent } from ‘./leave/leave.component’;<br>import { LogbookComponent } from ‘./logbook/logbook.component’;<br>import { ReimburseComponent } from ‘./reimburse/reimburse.component’;<br>import { ToDoListComponent } from ‘./to-do-list/to-do-list.component’;</p>
+<p>const routes: Routes = [<br>  {<br>    path: ‘home’, component: HomeComponent, children: [<br>      { path: ‘’, redirectTo: ‘to-do-list’, pathMatch: ‘full’ },<br>      { path: ‘address-book’, component: AddressBookComponent },<br>      { path: ‘calendar’, component: CalendarComponent },<br>      { path: ‘file’, component: FileComponent },<br>      { path: ‘leave’, component: LeaveComponent },<br>      { path: ‘logbook’, component: LogbookComponent },<br>      { path: ‘reimburse’, component: ReimburseComponent },<br>      { path: ‘to-do-list’, component: ToDoListComponent }<br>    ]<br>  }<br>];</p>
+<p>@NgModule({<br>  imports: [RouterModule.forChild(routes)],<br>  exports: [RouterModule]<br>})<br>export class HomeRoutingModule { }</p>
+<p>{% endcodeblock %}</p>
+<p>比較好的做法應該是將路由規則 <code>path:&#39;home&#39;</code> 下 <code>children</code> 屬性內的路由規則都移到 <code>src\app\employee\</code> 資料夾內，維護上會比較方便。<br>我們先在 employee 資料夾內建立一個存放路由規則的 ts 檔(<code>src\app\employee\employee.routing.ts</code>)，在將路由規則搬移至此，最後再將路由規則 export 出來。  </p>
+<p>{% codeblock employee.routing.ts lang:ts %}<br>import { Routes } from ‘@angular/router’;<br>import { AddressBookComponent } from ‘./address-book/address-book.component’;<br>import { CalendarComponent } from ‘./calendar/calendar.component’;<br>import { FileComponent } from ‘./file/file.component’;<br>import { LeaveComponent } from ‘./leave/leave.component’;<br>import { LogbookComponent } from ‘./logbook/logbook.component’;<br>import { ReimburseComponent } from ‘./reimburse/reimburse.component’;<br>import { ToDoListComponent } from ‘./to-do-list/to-do-list.component’;</p>
+<p>const routes: Routes = [<br>  { path: ‘’, redirectTo: ‘to-do-list’, pathMatch: ‘full’ },<br>  { path: ‘address-book’, component: AddressBookComponent },<br>  { path: ‘calendar’, component: CalendarComponent },<br>  { path: ‘file’, component: FileComponent },<br>  { path: ‘leave’, component: LeaveComponent },<br>  { path: ‘logbook’, component: LogbookComponent },<br>  { path: ‘reimburse’, component: ReimburseComponent },<br>  { path: ‘to-do-list’, component: ToDoListComponent }<br>];</p>
+<p>export const employeeRouter = routes;</p>
+<p>{% endcodeblock %}</p>
+<p>接下來將 employeeRouter 變數指派回 <code>src\app\home\home-routing.module.ts</code> 的 <code>children</code> 屬性。  </p>
+<p>{% codeblock home-routing.module.ts lang:ts %}<br>import { NgModule } from ‘@angular/core’;<br>import { Routes, RouterModule } from ‘@angular/router’;<br>import { HomeComponent } from ‘./home.component’;<br>import { employeeRouter } from ‘../employee/employee.routing’;</p>
+<p>const routes: Routes = [<br>  {<br>    path: ‘home’, component: HomeComponent, children: employeeRouter<br>  }<br>];</p>
+<p>@NgModule({<br>  imports: [RouterModule.forChild(routes)],<br>  exports: [RouterModule]<br>})<br>export class HomeRoutingModule { }</p>
+<p>{% endcodeblock %}</p>
+<p>觀看執行結果其實感覺不出差異，但是對於系統維護上來說會更加便利。<br><img src="/images/angular/training/router/angular_router_10.gif" alt="img">  </p>
+<p>{% img /images/download.png 36 %}<a href="/uploads/first-app_2017-09-04.zip"><strong>first-app_2017-09-04.zip</strong></a>  </p>

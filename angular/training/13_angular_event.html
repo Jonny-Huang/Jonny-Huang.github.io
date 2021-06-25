@@ -1,0 +1,94 @@
+<hr>
+<p>title: Angular 事件<br>date: 2017-09-07 10:00<br>categories: Training<br>keywords:</p>
+<ul>
+<li>Angular</li>
+<li>Output</li>
+<li>EventEmitter</li>
+<li>Event<br>tags:</li>
+<li>Angular</li>
+<li>Output</li>
+</ul>
+<hr>
+<h1 id="事件-EventEmitter"><a href="#事件-EventEmitter" class="headerlink" title="事件 (EventEmitter)"></a>事件 (EventEmitter)</h1><h2 id="事件繫結-Event-Binding"><a href="#事件繫結-Event-Binding" class="headerlink" title="事件繫結 (Event Binding)"></a>事件繫結 (Event Binding)</h2><p><strong>事件(Event)</strong> 可以說是一種<strong>狀態</strong>的描述，它提供一個主動通知的機制，讓我們可以在發生的當下去做一些額外的處理，例如：<strong>按下按鈕</strong>，這應該是我們最常用了事件，在點擊按鈕後我們可能儲存目前資訊、切換目前頁面、顯示額外訊息…等等。  </p>
+<!-- more -->  
+
+<p>在 <a href="/angular/training/12_angular_ui_header/">Angular UI：標題列</a> 我們從<a href="https://material.angular.io/components/sidenav/overview"><strong>官方範例</strong></a>一起複製了一段代碼-<code>(click)=&quot;sidenav.open()&quot;</code>，看起來就像是點擊事件，但是又跟 DOM 的點擊事件(<code>onclick</code>)比起來少了最前面的 <code>on</code> 多了小括弧。  </p>
+<blockquote>
+<p>Angular 內建透過指令(Directive)方式產生了相對應 DOM 事件的 <strong>偽事件</strong> (不是正確觀念，但是這樣說好像比較好理解)， 它本身會去監控 DOM 的事件，當 DOM 事件觸發時在去觸發對應的 <strong>偽事件</strong>，初期我們可以直接把它當作 DOM 事件來看待，只是寫法上稍做調整。<br><strong>小括號</strong> 其實是 Angular <strong>單向繫結</strong>(<strong>事件繫結</strong>)的語法，透過繫結方式讓 <strong>前端樣板</strong>(xxx**.component.html**) 的變化( <strong>偽事件</strong>的觸發) 可以反應回 <strong>後端元件</strong>(xxx**.component.ts**)。</p>
+</blockquote>
+<p><img src="/images/angular/training/event/angular_event_01.png" alt="img">  </p>
+<h2 id="建立自訂事件"><a href="#建立自訂事件" class="headerlink" title="建立自訂事件"></a>建立自訂事件</h2><p>我們在 <code>src\app\home\header\header.component.ts</code> 內宣告一個<strong>事件觸發器</strong>(<strong>EventEmitter</strong>)，並透過 <code>@Output()</code> 這個裝飾器將它提供給外部引用，並建立一個 sidenav_click 方法來觸發 <strong>EventEmitter</strong>。  </p>
+<blockquote>
+<p><code>@Output()</code> 可以加入別名參數，外部會引用到此別名，它會直接對應到原本的參數，預設別名與參數相同，一般除非是特別規畫過，否則直接使用預設值在維護上會比較方便。</p>
+</blockquote>
+<p>{% codeblock header.component.ts lang:ts %}<br>import { Component, OnInit, Output, EventEmitter} from ‘@angular/core’;</p>
+<p>@Component({<br>  selector: ‘app-header’,<br>  templateUrl: ‘./header.component.html’,<br>  styleUrls: [‘./header.component.scss’]<br>})<br>export class HeaderComponent implements OnInit {<br>  @Output() sidenavClick = new EventEmitter();</p>
+<p>  constructor() { }</p>
+<p>  ngOnInit() {<br>  }</p>
+<p>  sidenav_click() {<br>    this.sidenavClick.emit(null);<br>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<p>開啟 <code>src\app\home\header\header.component.html</code> 將 menu 按鈕複製過來，將 <code>click</code> 改連結到 <code>sidenav_click</code> 方法，這樣 <strong>HeaderComponent</strong> 就多了一個 <strong>sidenavClick</strong> 的事件。  </p>
+<p>{% codeblock header.component.html lang:html %}<br><md-toolbar color="primary"><br>  &lt;button md-icon-button (click)=”sidenav_click()” fxHide fxShow.xs&gt;<br>    <md-icon>menu</md-icon><br>  </button><br>  <span>Angular demo</span><br>  <span fxFlex></span><br>  <button md-icon-button mdTooltip="首頁" routerLink="/home"><br>    <md-icon>home</md-icon><br>  </button><br>  <button md-icon-button mdTooltip="設定"><br>    <md-icon>settings_input_component</md-icon><br>  </button><br>  <button md-icon-button mdTooltip="關於"><br>    <md-icon>info</md-icon><br>  </button><br></md-toolbar></p>
+<p>{% endcodeblock %}</p>
+<p>開啟 <code>src\app\home\home.component.html</code>，移除 menu 按鈕，並將 <code>sidenav.open()</code> 繫結至 <strong>HeaderComponent</strong> 的 <strong>sidenavClick</strong>。  </p>
+<p>{% codeblock home.component.html lang:html %}</p>
+<div fxFill fxLayout="column" class="layout">
+  <div class="header" fxLayout="row">
+    <!-- <button md-icon-button (click)="sidenav.open()" fxHide fxShow.xs>
+      <md-icon>menu</md-icon>
+    </button> -->
+    <app-header fxFlex (sidenavClick)="sidenav.open()"></app-header>
+  </div>
+  <div fxFlex fxLayout="row" class="main">
+    <div fxFlex="200px" class="aside" fxHide.xs>
+      <app-aside></app-aside>
+    </div>
+    <md-sidenav-container fxFlex>
+      <md-sidenav #sidenav mode="over" class="aside" fxHide fxShow.xs>
+        <app-aside fxFlex="200px"></app-aside>
+      </md-sidenav>
+      <div fxFlex class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </md-sidenav-container>
+  </div>
+</div>
+
+<p>{% endcodeblock %}</p>
+<p>以手機尺寸執行瀏覽器查看結果。<br><img src="/images/angular/training/event/angular_event_02.gif" alt="img">  </p>
+<p>同樣方式我們在 <strong>AsideComponent</strong> 元件內建立一個 <strong>menuClick</strong> 事件，並讓它在點選功能選單時觸發。  </p>
+<p>{% codeblock aside.component.ts lang:ts %}<br>import { Component, OnInit, Output, EventEmitter } from ‘@angular/core’;</p>
+<p>@Component({<br>  selector: ‘app-aside’,<br>  templateUrl: ‘./aside.component.html’,<br>  styleUrls: [‘./aside.component.scss’]<br>})<br>export class AsideComponent implements OnInit {<br>  @Output() menuClick = new EventEmitter();</p>
+<p>  constructor() { }</p>
+<p>  ngOnInit() {<br>  }</p>
+<p>  menu_click() {<br>    this.menuClick.emit(null);<br>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<p>{% codeblock aside.component.html lang:html %}<br><md-list><br>  <h3 md-subheader>員工專區</h3><br>  &lt;button md-button routerLink=”./calendar” (click)=”menu_click()”&gt;<br>    <md-list-item><br>      <md-icon md-list-icon>today</md-icon><br>      <h4 md-line>行 事 曆</h4><br>    </md-list-item><br>  </button><br>  &lt;button md-button routerLink=”./address-book” (click)=”menu_click()”&gt;<br>    <md-list-item><br>      <md-icon md-list-icon>contact_phone</md-icon><br>      <h4 md-line>通 訊 錄</h4><br>    </md-list-item><br>  </button><br>  &lt;button md-button routerLink=”./logbook” (click)=”menu_click()”&gt;<br>    <md-list-item><br>      <md-icon md-list-icon>border_color</md-icon><br>      <h4 md-line>工作日誌</h4><br>    </md-list-item><br>  </button><br>  &lt;button md-button routerLink=”./to-do-list” (click)=”menu_click()”&gt;<br>    <md-list-item><br>      <md-icon md-list-icon>playlist_add_check</md-icon><br>      <h4 md-line>待辦事項</h4><br>    </md-list-item><br>  </button><br>  &lt;button md-button routerLink=”./file” (click)=”menu_click()”&gt;<br>    <md-list-item><br>      <md-icon md-list-icon>cloud_download</md-icon><br>      <h4 md-line>檔案下載</h4><br>    </md-list-item><br>  </button><br>  &lt;button md-button routerLink=”./leave” (click)=”menu_click()”&gt;<br>    <md-list-item><br>      <md-icon md-list-icon>weekend</md-icon><br>      <h4 md-line>請  假</h4><br>    </md-list-item><br>  </button><br>  &lt;button md-button routerLink=”./reimburse” (click)=”menu_click()”&gt;<br>    <md-list-item><br>      <md-icon md-list-icon>attach_money</md-icon><br>      <h4 md-line>差旅報支</h4><br>    </md-list-item><br>  </button><br></md-list></p>
+<p>{% endcodeblock %}</p>
+<p>開啟 <code>src\app\home\home.component.html</code>，將 <code>sidenav.close()</code> 繫結至 <strong>AsideComponent</strong> 的 <strong>menuClick</strong>。  </p>
+<p>{% codeblock home.component.html lang:html %}</p>
+<div fxFill fxLayout="column" class="layout">
+  <div class="header" fxLayout="row">
+    <!-- <button md-icon-button (click)="sidenav.open()" fxHide fxShow.xs>
+      <md-icon>menu</md-icon>
+    </button> -->
+    <app-header fxFlex (sidenavClick)="sidenav.open()"></app-header>
+  </div>
+  <div fxFlex fxLayout="row" class="main">
+    <div fxFlex="200px" class="aside" fxHide.xs>
+      <app-aside (menuClick)="sidenav.close()"></app-aside>
+    </div>
+    <md-sidenav-container fxFlex>
+      <md-sidenav #sidenav mode="over" class="aside" fxHide fxShow.xs>
+        <app-aside fxFlex="200px" (menuClick)="sidenav.close()"></app-aside>
+      </md-sidenav>
+      <div fxFlex class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </md-sidenav-container>
+  </div>
+</div>
+
+<p>{% endcodeblock %}</p>
+<p>重新執行瀏覽器查看結果，現在點選功能選單時 sidenav 就會自己藏起來，整體效果應該跟一般手機APP操作差不多了。<br><img src="/images/angular/training/event/angular_event_03.gif" alt="img">  </p>
+<p>{% img /images/download.png 36 %}<a href="/uploads/first-app_2017-09-07.zip"><strong>first-app_2017-09-07.zip</strong></a>  </p>

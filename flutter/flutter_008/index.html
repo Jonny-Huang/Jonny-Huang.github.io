@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="前言在 Flutter 開發過程中，可以說大部分都環繞在 StatelessWidget 與 StatefulWidget 之間，無狀態的 StatelessWidget 主要是做一次性的建置(build)，Flutter 在建構這個 Widget 時會去呼叫 build 方法一次。最常使用的文件顯示 Widget - Text 便是 StatelessWidget，所以它在繪製完文字內容之">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter：由 TextField 來看 Widget 如何保留狀態">
+<meta property="og:url" content="https://jonny-huang.github.io/flutter/flutter_008/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言在 Flutter 開發過程中，可以說大部分都環繞在 StatelessWidget 與 StatefulWidget 之間，無狀態的 StatelessWidget 主要是做一次性的建置(build)，Flutter 在建構這個 Widget 時會去呼叫 build 方法一次。最常使用的文件顯示 Widget - Text 便是 StatelessWidget，所以它在繪製完文字內容之">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/008/flutter_000.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/008/flutter_001.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/008/flutter_002.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/008/flutter_003.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/008/flutter_004.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/008/flutter_005.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/008/flutter_006.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/flutter/008/flutter_007.png">
+<meta property="article:published_time" content="2019-07-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-24T00:48:59.760Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="Flutter">
+<meta property="article:tag" content="Dart">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/flutter/008/flutter_000.png">
+
+
+<link rel="canonical" href="https://jonny-huang.github.io/flutter/flutter_008/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;flutter&#x2F;flutter_008&#x2F;&quot;,&quot;path&quot;:&quot;flutter&#x2F;flutter_008&#x2F;&quot;,&quot;title&quot;:&quot;Flutter：由 TextField 來看 Widget 如何保留狀態&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>Flutter：由 TextField 來看 Widget 如何保留狀態 | Jonny Huang 的學習筆記</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa-commenting fa-fw"></i>欣雨露</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A5%9E%E5%A5%87%E7%9A%84-TextField"><span class="nav-number">2.</span> <span class="nav-text">神奇的 TextField</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TextEditingController"><span class="nav-number">2.1.</span> <span class="nav-text">TextEditingController</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/flutter/flutter_008/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Flutter：由 TextField 來看 Widget 如何保留狀態
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/06/24 08:48:59" itemprop="dateModified" datetime="2021-06-24T08:48:59+08:00">2021/06/24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img src="/images/flutter/008/flutter_000.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 Flutter 開發過程中，可以說大部分都環繞在 <strong>StatelessWidget</strong> 與 <strong>StatefulWidget</strong> 之間，<strong>無狀態</strong>的 StatelessWidget 主要是做一次性的建置(<code>build</code>)，Flutter 在建構這個 Widget 時會去呼叫 <strong>build</strong> 方法一次。<br><img src="/images/flutter/008/flutter_001.png" alt="img"><br>最常使用的文件顯示 Widget - <strong>Text</strong> 便是 StatelessWidget，所以它在繪製完文字內容之後便不能再修改。<br><img src="/images/flutter/008/flutter_002.png" alt="img"><br><strong>有狀態</strong>的 StatefulWidget 則是可以重複建置(<code>build</code>)，它將建置動作交由 State 來處理，State 這個類別還提供一個 <code>setState</code> 方法，透過這個方法可以驅使 Flutter 再次呼叫 State 的 <code>build</code> 方法來重新建置 Widget，因此我們可以在 State 內宣告類別層級的變數來<strong>儲存資料</strong>，當<code>build</code> 方法重新建立 Widget 時，再將資料回填到對應的屬性，藉此達到<strong>狀態保留</strong>的功能。<br><img src="/images/flutter/008/flutter_003.png" alt="img"><br>最常使用的文件編輯 Widget - <strong>TextField</strong> 便是 StatefulWidget，我們每多輸入一個文字它會重新建置一次，但是他可以保留之前的內容(狀態)並將新輸入的文字累加進去。<br><img src="/images/flutter/008/flutter_004.png" alt="img"><br>剛說到 <strong>Text</strong> 無法重新建置，所以當呈現的文字內容要變更時，一般都是透過外層的 <strong>StatelessWidget</strong> 直接重新建立，當然如果需要保留它的狀態也必須透過外部暫存。  </p>
+<span id="more"></span>  
+
+<h1 id="神奇的-TextField"><a href="#神奇的-TextField" class="headerlink" title="神奇的 TextField"></a>神奇的 TextField</h1><p>我們再進一步思考 State 的 <code>build</code> 方法會<strong>重新建置</strong> Widget，這意味著透過 <code>build</code> 方法所建立的 Widget 不論是 StatelessWidget 或是 StatefulWidget 都無法保留自己狀態，除非我們特別將狀態儲存起來。<br>所以我們從官網文件 <a target="_blank" rel="noopener" href="https://flutter.dev/docs/cookbook/forms/text-field-changes">Handle changes to a text field</a> 可以看到，要保留 TextField 的狀態方法可以宣告一個變數來儲存，並在 TextField 的 <code>onChanged</code> 事件內將目前的內容儲存到變數內。</p>
+<figure class="highlight dart"><figcaption><span>main.dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_MyHomePageState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">MyHomePage</span>&gt; </span>&#123;</span><br><span class="line">  <span class="built_in">String</span> data = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">var</span> input = TextField(</span><br><span class="line">      onChanged: onChanged: (text) =&gt; data = text,</span><br><span class="line">    );</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>或者透過 <strong>TextEditingController</strong> 來儲存。</p>
+<figure class="highlight dart"><figcaption><span>main.dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_MyHomePageState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">MyHomePage</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> myController = TextEditingController();</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">var</span> input = TextField(</span><br><span class="line">      controller: myController,</span><br><span class="line">    );</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>沒仔細想可能不會發現有些奇怪的地方，我們直接在專案預設範例內加入一個 TextField，而且不要幫它儲存任何狀態，主要程式碼如下：  </p>
+<figure class="highlight dart"><figcaption><span>main.dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_MyHomePageState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">MyHomePage</span>&gt; </span>&#123;</span><br><span class="line">  <span class="built_in">int</span> _counter = <span class="number">0</span>;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(widget.title),</span><br><span class="line">      ),</span><br><span class="line">      body: Center(</span><br><span class="line">        child: Column(</span><br><span class="line">          mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            Text(<span class="string">&#x27;<span class="subst">$_counter</span>&#x27;</span>),</span><br><span class="line">            TextField(),</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      floatingActionButton: FloatingActionButton(</span><br><span class="line">        onPressed: () =&gt; setState(() &#123;</span><br><span class="line">          _counter++;</span><br><span class="line">        &#125;),</span><br><span class="line">        tooltip: <span class="string">&#x27;Increment&#x27;</span>,</span><br><span class="line">        child: Icon(Icons.add),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因為 FloatingActionButton 在點擊時會呼叫 <code>setState</code> 方法，因此每次按它時就會執行 <code>build</code> 方法來重建 Widget，所以<strong>理論上</strong> TextField 內容會被清空，接下來我們直接執行測試看看。<br><img src="/images/flutter/008/flutter_005.gif" alt="img"><br>神奇的事情發生了，既使透過 <code>build</code> 重建 TextField，但是 TextField 的內容仍然被保留下來，看來 TextField 似乎是一個在規則外的特殊 Widget。  </p>
+<h2 id="TextEditingController"><a href="#TextEditingController" class="headerlink" title="TextEditingController"></a>TextEditingController</h2><p><strong>TextEditingController</strong> 跟我們使用變數來儲存內容有什麼差別，從原始碼可以知道 TextEditingController 繼承自 ValueNotifier<TextEditingValue>，而 <strong>TextEditingValue</strong> 除了儲存文字內容(<code>text</code>)之外還會多儲存其他狀態。<br><img src="/images/flutter/008/flutter_006.png" alt="img"><br>接著我們來從 TextField 的原始碼可以看到如下圖的關係：<br><img src="/images/flutter/008/flutter_007.png" alt="img">  </p>
+<ul>
+<li>State 內含 <code>widget</code> 屬性可以得知自己是由哪一個 StatelessWidget 所實作出來的，當然也可以藉此取得 StatelessWidget 的屬性。  </li>
+<li>_TextFieldState 也建立一個 TextEditingController 變數 <code>_controller</code>，以及一個 <code>_effectiveController</code> 屬性，這個屬性主要是回傳我們在建立 TextField 時給予的 <code>controller</code>，如果我們未給予值時則以 <code>_controller</code> 替代。  </li>
+</ul>
+<figure class="highlight dart"><figcaption><span>main.dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_TextFieldState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">TextField</span>&gt; <span class="title">with</span> <span class="title">AutomaticKeepAliveClientMixin</span> </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> initState() &#123;</span><br><span class="line">    <span class="keyword">super</span>.initState();</span><br><span class="line">    <span class="keyword">if</span> (widget.controller == <span class="keyword">null</span>)</span><br><span class="line">      _controller = TextEditingController();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> didUpdateWidget(TextField oldWidget) &#123;</span><br><span class="line">    <span class="keyword">super</span>.didUpdateWidget(oldWidget);</span><br><span class="line">    <span class="keyword">if</span> (widget.controller == <span class="keyword">null</span> &amp;&amp; oldWidget.controller != <span class="keyword">null</span>)</span><br><span class="line">      _controller = TextEditingController.fromValue(oldWidget.controller.value);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (widget.controller != <span class="keyword">null</span> &amp;&amp; oldWidget.controller == <span class="keyword">null</span>)</span><br><span class="line">      _controller = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">final</span> <span class="built_in">bool</span> isEnabled = widget.enabled ?? widget.decoration?.enabled ?? <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">final</span> <span class="built_in">bool</span> wasEnabled = oldWidget.enabled ?? oldWidget.decoration?.enabled ?? <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (wasEnabled &amp;&amp; !isEnabled) &#123;</span><br><span class="line">      _effectiveFocusNode.unfocus();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (_effectiveFocusNode.hasFocus &amp;&amp; widget.readOnly != oldWidget.readOnly) &#123;</span><br><span class="line">      <span class="keyword">if</span>(_effectiveController.selection.isCollapsed) &#123;</span><br><span class="line">        _showSelectionHandles = !widget.readOnly;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Flutter/" rel="tag"># Flutter</a>
+              <a href="/tags/Dart/" rel="tag"># Dart</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/flutter/flutter_007/" rel="prev" title="Dart：會用但不會講的運算子">
+                  <i class="fa fa-chevron-left"></i> Dart：會用但不會講的運算子
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/projects/06_feasibility_01/" rel="next" title="化繁為簡：01 資料庫篇">
+                  化繁為簡：01 資料庫篇 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

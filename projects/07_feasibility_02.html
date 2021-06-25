@@ -1,0 +1,108 @@
+<hr>
+<p>title: 化繁為簡：02 後端篇(一)<br>date: 2021-06-23<br>categories: Projects<br>keywords:</p>
+<ul>
+<li>Projects</li>
+<li>Angular</li>
+<li>.Net<br>tags:</li>
+<li>Projects</li>
+</ul>
+<hr>
+<p><img src="/images/projects/feasibility/02/feasibility_02_001.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一篇 <a href="/projects/06_feasibility_01/">化繁為簡：01 資料庫篇</a> 中，我們制定一些資料庫的設計規範，雖然會違背了正規理念，但是就開發過程或是後續維護其實對於沒經驗或是寫 Code 不嚴謹的程式設計師(沒錯!說的就是筆者自己)來說會比較友善，接下來我們開始摧殘後端，因為筆者以自己比較常使用 ASP.NET Core 來當範例如何建構一個好 debug 的後端(Web API)，因為網路上已有豐富的資源，所以我們只做重點說明。  </p>
+<!-- more -->  
+
+<h1 id="ASP-NET-Core"><a href="#ASP-NET-Core" class="headerlink" title="ASP.NET Core"></a>ASP.NET Core</h1><p>由 <a href="https://docs.microsoft.com/zh-tw/aspnet/core/">ASP.NET Core</a> 比起 <a href="https://docs.microsoft.com/zh-tw/aspnet/mvc/">ASP.NET MVC</a> 來說除了增加<strong>相依性插入</strong>(<strong>Dependency Injection</strong>)之外差別最大的大概就是增加 Pipeline 的抽換模式，如果有使用 Node.js 上的 Express 架構來開發網頁應該就會很熟悉，它主要是讓我們後端系統從接收到瀏覽器所發出的請求(Request)到資料回復(Response)過程中可以很有彈性的插入各種功能，或者是說我們可以將整個資料處理步驟分拆成多個模組來降低程式複雜度。<br><img src="/images/projects/feasibility/02/feasibility_02_002.png" alt="img">  </p>
+<blockquote>
+<p>圖片來源：<a href="https://docs.microsoft.com/zh-tw/aspnet/core/fundamentals/middleware/index/_static/request-delegate-pipeline.png?view=aspnetcore-5.0">Microsoft 官方說明網站</a></p>
+</blockquote>
+<p>一般 ASP.NET Core 專案建立後<code>Startup.cs</code> 會如下面結構，我們可以在 <code>ConfigureServices</code> 函式內將常用的提供服務的物件註冊到 <strong>服務容器</strong>(<code>services</code>) 內，這樣專案內的類別就可以透過建構函式插入方式取得該服務並拿來使用，預設已經註冊了 <code>AddControllers</code>，它會<strong>控制器</strong>(<strong>Controller</strong>)所需的服務。<br>而 <code>Configure</code> 函式則可以提供我們可以決定 Request 請求與 Response回復之間的處理方式，在此我們藉由插入一些<strong>中介軟體</strong>(<strong>Middleware</strong>)來達到我們期望的處理方式，要注意的是<strong>插入的先後</strong>會影響處理的<strong>順序姓</strong>。<br><img src="/images/projects/feasibility/02/feasibility_02_003.png" alt="img">  </p>
+<p>接下來我們來加入一些常用的服務與中介軟體：  </p>
+<h2 id="AddDbContext"><a href="#AddDbContext" class="headerlink" title="AddDbContext"></a>AddDbContext</h2><p>大部分的專案都來不開始用資料庫來存放資料，在 .NET 環境下我們使用它內建的 ORM 技術 Entity Framework Core 來存取資料，我們依所使用的資料庫安裝對應的套件，像筆者資料庫習慣使用 PostgresQL，就必須安裝 <code>Npgsql.EntityFrameworkCore.PostgreSQL</code>以及 <code>Microsoft.EntityFrameworkCore.Design</code>。<br><img src="/images/projects/feasibility/02/feasibility_02_004.png" alt="img">  </p>
+<blockquote>
+<p>如果你使用 VS Code 開發，那你可以自己在 <code>WebAPI.csproj</code> 內添加套件。<br><img src="/images/projects/feasibility/02/feasibility_02_006.png" alt="img"><br>或者是透過 <a href="https://marketplace.visualstudio.com/items?itemName=aliasadidev.nugetpackagemanagergui">Nuget Package Manager GUI</a> 這個視覺化延伸模組來安裝套件。<br><img src="/images/projects/feasibility/02/feasibility_02_007.png" alt="img">  </p>
+</blockquote>
+<p>接著我們在 <code>appsettings.json</code> 內建立資料庫連線字串(這裡取名為 <code>CloudConnection</code>)。<br>再來透過 SDK 工具來建立資料模型，指令如下(<code>CloudContext</code> 指資料庫模型的名稱)：<br><code>dotnet ef dbcontext scaffold Name=CloudConnection Npgsql.EntityFrameworkCore.PostgreSQL -o Models -c CloudContext -f</code><br><img src="/images/projects/feasibility/02/feasibility_02_005.png" alt="img">  </p>
+<blockquote>
+<p>我們也可以直接使用<strong>連線參數</strong>當作參數，但是系統會發出警告，並要求我們移除(在資料模型物件的 <code>OnConfiguring</code> 函式內)。<br><code>dotnet ef dbcontext scaffold &quot;Host=192.168.10.10;Database=cloud;Pooling=true;Username=postgres;Password=P@ssw0rd&quot; Npgsql.EntityFrameworkCore.PostgreSQL -o Models -c CloudContext -f</code><br><img src="/images/projects/feasibility/02/feasibility_02_008.png" alt="img"><br>後續資料庫欄位有異動時可以再透過指令更新，只是要注意的是更新前SDK會先行編譯專案，如果編譯失敗就會終止，因此要先確保程式碼的完整性，或是先將未完成的程式碼註解起來。<br>如果資料表從資料庫移除，SDK並不會同步移除對應的資料表模型，我們須自行手動除，這是為了避免還有存取此資料表的程式碼未調整，若直接移除資料表模型會導致整個專案出錯而無法編譯。  </p>
+</blockquote>
+<p>最後我們在 <code>Startup.cs</code> 的 <code>ConfigureServices</code> 內 透過 <code>AddDbContext</code> 將資料模型加入到服務容器內。<br><img src="/images/projects/feasibility/02/feasibility_02_009.png" alt="img">  </p>
+<p>需要時只要在建構式內加入參數，系統會自動在服務容器內搜尋，將符合的物件帶回給我們，我們只要宣告一個類別層級的痊癒變數來儲存就可以在整個類別內使用。<br><img src="/images/projects/feasibility/02/feasibility_02_010.png" alt="img">  </p>
+<h2 id="Compression"><a href="#Compression" class="headerlink" title="Compression"></a>Compression</h2><p>資料壓縮也是很實用的功能，因為這代表同樣的頻寬下可以同時服務更多人，有些公司會有專屬的設備或是反向代理伺服器來處理，如果沒有的話可以在程式內加上這個功能，當然要注意的是檔案類型，字型、影片、音效檔可能就沒有壓縮效益而且耗費時間也較長。  </p>
+<blockquote>
+<p>如果你沒有 SSL 憑證或是憑證由是反向代理伺服器處理，那記得將 <code>app.UseHttpsRedirection();</code> 移除。  </p>
+</blockquote>
+<p><img src="/images/projects/feasibility/02/feasibility_02_011.png" alt="img">  </p>
+<p>筆者以 Angular 程式來看，前端靜態檔案大概都剩下 1/3 不到。<br><img src="/images/projects/feasibility/02/feasibility_02_012.png" alt="img"><br>壓縮後批次傳輸每次 2000 筆資料大約只佔 150kB(這也會跟每筆資料量的多寡有關)。<br><img src="/images/projects/feasibility/02/feasibility_02_013.gif" alt="img">  </p>
+<h2 id="MemoryCache"><a href="#MemoryCache" class="headerlink" title="MemoryCache"></a>MemoryCache</h2><p>快取也是一個很實用的功能，如果你仔細看上面批次傳輸就可以發現第一次傳2000筆資料時會停頓一下，這是因為我們第一次就將所有資料從資料庫抓取出來並並<strong>快取</strong>(<strong>Cache</strong>)起來，後須資料就直接從記憶體快取中抓取，不須經過資料庫，可以說是用空間換取時間，使用前一樣需要先註冊到服務容器內。<br><img src="/images/projects/feasibility/02/feasibility_02_014.png" alt="img">  </p>
+<h2 id="UseStaticFiles、UseDefaultFiles"><a href="#UseStaticFiles、UseDefaultFiles" class="headerlink" title="UseStaticFiles、UseDefaultFiles"></a>UseStaticFiles、UseDefaultFiles</h2><p><a href="https://docs.microsoft.com/zh-tw/aspnet/core/fundamentals/static-files?view=aspnetcore-5.0">UseStaticFiles</a> 提供網站靜態檔案(例如 <code>html</code>、<code>js</code>、<code>css</code>、<code>image</code>)的存放位置，預設是在專案下的 <code>wwwroot</code> 資料夾，因為這些檔案一般都是可以直接存取，所以正常都會放在路由(UseRouting)之前。  </p>
+<p><img src="/images/projects/feasibility/02/feasibility_02_018.png" alt="img">  </p>
+<blockquote>
+<p>因為筆者前端使用 Angular 開發，所以 <code>js</code> 與 <code>css</code> 檔案會異動比較頻繁，所以在開發階段甚至上線測試初期都會增加將取消瀏覽器快取的 Header 宣告，如果一般企業內部使用其實可以保留下來以確保用戶都使使用最新版本的系統。<br>而在 Angular 專案內，筆者也會修改 <code>angular.json</code> 設定檔，將編譯輸出路徑指定到 <code>wwwroot</code> 資料夾內，這樣佈署時就不會遺忘。<br><img src="/images/projects/feasibility/02/feasibility_02_015.png" alt="img">  </p>
+</blockquote>
+<p>此外，我們也可以將網址的路徑指對應到指定的資料夾，像筆者的說明文件會使用 MarkDown 格式(md 檔)編寫，並存在一個 <code>help</code> 資料夾內，透過 UseStaticFiles 設定就可以讓前端網站直接瀏覽觀看內容。<br><img src="/images/projects/feasibility/02/feasibility_02_017.png" alt="img">  </p>
+<blockquote>
+<p>因為說明文件(md 檔)正是編輯之後的異動性就不大了，所以這邊的 <code>no-cache</code> Header 系統上線的最後版本就會移除掉。  </p>
+</blockquote>
+<p><img src="/images/projects/feasibility/02/feasibility_02_016.png" alt="img">  </p>
+<p>當我們的網站是靜態頁面(有實體的 html 檔)時，我們就可以用到<a href="https://docs.microsoft.com/zh-tw/aspnet/core/fundamentals/static-files?view=aspnetcore-5.0#serve-default-documents">UseDefaultFiles</a>，透過它我們瀏覽網站時，就可以不需要輸入完整的網址(包含網頁名稱)，它可以自動搜雲網站內的網頁，將符合規則的網頁回傳給瀏覽器，預設下，它會搜尋 <code>wwwroot</code> 內的 <code>default.htm</code>、<code>default.html</code>、<code>index.htm</code>、<code>index.html</code>。<br><img src="/images/projects/feasibility/02/feasibility_02_019.png" alt="img">  </p>
+<h2 id="ResponseCaching"><a href="#ResponseCaching" class="headerlink" title="ResponseCaching"></a>ResponseCaching</h2><p>從上述內容來看，應該不難看出筆者其實盡量避免使用用戶端(瀏覽器)快取，這不代表比這討厭它，而是筆者認為要善用它需要適當的調教，要考量的因素很多，例如：請求頻率、資料流大小、資料更新頻率，而許多因素會隨時間逐漸改變，因此筆者認為這比較適合會長期維運的專案，或是等有優化預算時再去調整，有興趣的可以參考 <a href="https://docs.microsoft.com/zh-tw/aspnet/core/performance/caching/middleware?view=aspnetcore-5.0">ASP.NET Core 中的回應快取中介軟體</a>，我們可以透過 <code>ResponseCaching</code> 來設定用戶端快取。  </p>
+<h2 id="Middleware"><a href="#Middleware" class="headerlink" title="Middleware"></a>Middleware</h2><p>除了使用現成的功能，我們也可以自己實作中介軟體，從官方文件<a href="https://docs.microsoft.com/zh-tw/aspnet/core/fundamentals/middleware/?view=aspnetcore-5.0">ASP.NET Core 中介軟體</a>可以看到簡單的作法是在 <code>Configure</code> 內透過 <code>app.User</code> 來實作。<br><img src="/images/projects/feasibility/02/feasibility_02_020.png" alt="img"><br>不過這會讓裡面的程式碼過於膨脹，比較合理的做法是透過獨立的類別來處理。  </p>
+<h3 id="Security-headers"><a href="#Security-headers" class="headerlink" title="Security headers"></a>Security headers</h3><p>接下來我們來時做一個 <code>SecurityMiddleware</code>，主要功能是幫我們在 Header 加入<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">內容安全策略</a> (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">Content Security Policy</a>) 來讓瀏覽器縮限存取規則，近一步提高網站安全性。  </p>
+<blockquote>
+<p>參考資料：<a href="https://www.meziantou.net/security-headers-in-asp-net-core.htm">Security headers in ASP.NET Core</a>  </p>
+</blockquote>
+<p>首先我們建立一個 <code>SecurityMiddleware</code> 類別，並添加相關 Header，這邊筆者將 <strong>Content-Security-Policy</strong> 與 <strong>Feature-Policy</strong> 內容獨立成文字檔，接著為 <code>IApplicationBuilder</code> 添加一個擴充方法 <code>UseSecurityMiddleware</code>。</p>
+<p>{% codeblock SecurityMiddleware.cs lang:cs %}<br>using System.IO;<br>using System.Threading.Tasks;<br>using Microsoft.AspNetCore.Builder;<br>using Microsoft.AspNetCore.Http;<br>using Microsoft.Extensions.Primitives;</p>
+<p>namespace WebAPI<br>{<br>    public class SecurityMiddleware<br>    {<br>        private readonly RequestDelegate _next;<br>        public SecurityMiddleware(<br>            RequestDelegate next,<br>            Microsoft.Extensions.Configuration.IConfiguration config<br>        )<br>        {<br>            _next = next;<br>        }</p>
+<pre><code>    public async Task Invoke(HttpContext context)
+    {
+        context.Response.Headers.Add(&quot;referrer-policy&quot;, new StringValues(&quot;strict-origin-when-cross-origin&quot;));
+        context.Response.Headers.Add(&quot;x-content-type-options&quot;, new StringValues(&quot;nosniff&quot;));
+        context.Response.Headers.Add(&quot;x-frame-options&quot;, new StringValues(&quot;DENY&quot;));
+        context.Response.Headers.Add(&quot;X-Permitted-Cross-Domain-Policies&quot;, new StringValues(&quot;none&quot;));
+        context.Response.Headers.Add(&quot;x-xss-protection&quot;, new StringValues(&quot;1; mode=block&quot;));
+        string fpFilePath = Path.Combine(Directory.GetCurrentDirectory(), &quot;data&quot;, &quot;feature_policy.txt&quot;);
+        if (File.Exists(fpFilePath))
+        {
+            string fp = File.ReadAllText(fpFilePath);
+            if (!string.IsNullOrEmpty(fp))
+            {
+                fp = System.Text.RegularExpressions.Regex.Replace(fp, @&quot;[^\u001F-\u007F]+&quot;, string.Empty);
+                context.Response.Headers.Add(&quot;Feature-Policy&quot;, new StringValues(fp));
+            }
+        }
+
+        string cspFilePath = Path.Combine(Directory.GetCurrentDirectory(), &quot;data&quot;, &quot;content_security_policy.txt&quot;);
+        if (File.Exists(cspFilePath))
+        {
+            string scp = File.ReadAllText(cspFilePath);
+            if (!string.IsNullOrEmpty(scp))
+            {
+                scp = System.Text.RegularExpressions.Regex.Replace(scp, @&quot;[^\u001F-\u007F]+&quot;, string.Empty);
+                context.Response.Headers.Add(&quot;Content-Security-Policy&quot;, new StringValues(scp));
+            }
+        }
+        await _next(context);
+    }
+}
+
+internal static partial class Ext
+{
+    internal static IApplicationBuilder UseSecurityMiddleware(this IApplicationBuilder builder)
+    {
+        return builder.UseMiddleware&lt;SecurityMiddleware&gt;();
+    }
+}
+</code></pre>
+<p>}<br>{% endcodeblock %}  </p>
+<blockquote>
+<p>我們透過 <strong>Regex</strong> 將文字檔的特殊字元移除，否則在 Linux 環境運行會出問題。  </p>
+</blockquote>
+<p><code>content_security_policy.txt</code> 內容如下：</p>
+<p>{% codeblock content_security_policy.txt lang:txt %}<br>base-uri ‘self’;<br>default-src ‘self’;<br>child-src ‘self’;<br>connect-src ‘self’;<br>font-src ‘self’ data: fonts.gstatic.com;<br>form-action ‘self’;<br>frame-ancestors ‘self’;<br>frame-src ‘self’;<br>img-src ‘self’;<br>manifest-src ‘self’;<br>media-src ‘self’;<br>object-src ‘self’;<br>script-src ‘self’ ‘unsafe-eval’;<br>style-src ‘self’ ‘unsafe-inline’;<br>worker-src ‘self’;<br>upgrade-insecure-requests;<br>{% endcodeblock %}  </p>
+<p><code>feature_policy.txt</code> 內容如下：<br>{% codeblock feature_policy.txt lang:txt %}<br>accelerometer ‘none’;<br>ambient-light-sensor ‘none’;<br>autoplay ‘none’;<br>battery ‘none’;<br>camera ‘none’;<br>display-capture ‘none’;<br>document-domain ‘none’;<br>encrypted-media ‘none’;<br>execution-while-not-rendered ‘none’;<br>execution-while-out-of-viewport ‘none’;<br>gyroscope ‘none’;<br>magnetometer ‘none’;<br>microphone ‘none’;<br>midi ‘none’;<br>navigation-override ‘none’;<br>payment ‘none’;<br>picture-in-picture ‘none’;<br>publickey-credentials-get ‘none’;<br>sync-xhr ‘none’;<br>usb ‘none’;<br>wake-lock ‘none’;<br>xr-spatial-tracking ‘none’;<br>{% endcodeblock %}  </p>
+<p>最後我們在 <code>Startup.cs</code> 的 <code>Configure</code> 內添加 <code>app.UseSecurityMiddleware();</code>。<br><img src="/images/projects/feasibility/02/feasibility_02_022.png" alt="img"><br>網站建置好後(也可以直接在 <code>wwwroot</code> 內建立一個簡單的 <code>index.html</code> 網頁來測試)，透過瀏覽器開啟就可以在開發者工具中看到所添加的 Header。<br><img src="/images/projects/feasibility/02/feasibility_02_021.png" alt="img">  </p>
+<blockquote>
+<p>添加 <strong>Content Security Policy</strong> 時請依實際需求調整，像筆者的 Angular 專案內使用 <a href="https://www.npmjs.com/package/ng2-pdf-viewer">ng2-pdf-viewer</a> 來瀏覽 PDF 檔案，他是透過 Mozilla 所開源的 <a href="https://github.com/mozilla/pdf.js">PDF.js</a> 來處理，而因為 PDF.js 檔案較大，所以這一個 Package 其實運作時預設是透過 CDN 抓取 PDF.js 來避免專案編譯後過於肥大，筆者在客戶反映 PDF 無法預覽時才發現因為 CSP 規則不允許使用外部 js 檔造成的，解套方式一種是修該 CSP 規則，另一種就是將 PDF.js 變成網站內的資源檔，筆者選擇後者，做法如下：<br>設定 <code>angular.json</code>，將 <code>pdfjs-dist</code> 內的 <code>js</code> 。<br><img src="/images/projects/feasibility/02/feasibility_02_023.png" alt="img"><br>接著在 <code>AppComponent</code> 內修改全域變數 <code>pdfWorkerSrc</code> (這是 <strong>ng2-pdf-viewer</strong> 用來設定 PDF.js 來源位置的變數)，將它指定到資源檔內的 <code>js</code> 檔即可。<br><img src="/images/projects/feasibility/02/feasibility_02_024.png" alt="img">  </p>
+</blockquote>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>雖然標題為 <strong>化繁為簡</strong>，但是我現在在做的事情似乎都是把簡單的事情搞複雜，但是要整個專案開發快速，那我們前置作業就要先把一些繁瑣的事情集中處理，那後續開發就可以專注在商業邏輯上，例如對於只會用 .NET 開發 Windows 視窗程式的人，你要如何讓他能夠產生即戰力，如果你由無至有的完整教完，姑且不論他的吸收速來不來的及，對於目前專案來說很容易變成一個包袱，甚至會影響專案進度。但是如果我們可以給他一個制式化的框架，並制定基本的撰寫規則，讓他專注在邏輯處理(甚至不需要理解網頁技術的概念)，那他可能就可以直接在目前的專案上帶來效益。  </p>

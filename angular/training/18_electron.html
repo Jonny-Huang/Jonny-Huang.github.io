@@ -1,0 +1,78 @@
+<hr>
+<p>title: Electron：跨平台的視窗應用程式<br>date: 2017-09-20 08:00<br>categories: Training<br>keywords:</p>
+<ul>
+<li>Angular</li>
+<li>Electron<br>tags:</li>
+<li>Electron</li>
+</ul>
+<hr>
+<h1 id="歷史"><a href="#歷史" class="headerlink" title="歷史"></a>歷史</h1><p>很多事情沒有經歷過就無法深刻體會，所以”感同身受”真的很難，但是軟體工程師是一個很特別的職務，尤其是與業務的隔閡，說給同業的朋友聽時，既使他沒遇過同樣的事情，但是也可以感同身受了解你的苦處。  </p>
+<!-- more -->  
+
+<p>Q業務：『客戶需要一個 Windows 程式。』  </p>
+<ul>
+<li>攻城獅：『沒問題。』  </li>
+<li>躬成屍：GAME OVER  </li>
+</ul>
+<p>Q業務：『客戶的老闆是用 MacBook，所以系統要能支援 Mac，麻煩你加一下。』  </p>
+<ul>
+<li>攻城獅：『沒問題。』  </li>
+<li>躬成屍：GAME OVER  </li>
+</ul>
+<p>Q業務：『客戶的產線主管希望操作員也可以直接重機台的電腦上使用系統，不過他們是用 Linux，你再花點時間改一下就好。』  </p>
+<ul>
+<li>攻城獅：『沒問題。』  </li>
+<li>躬成屍：GAME OVER  </li>
+</ul>
+<p>Q業務：『產線有些嵌入式電腦(ARM)，系統裝不起來，麻煩處理一下。』  </p>
+<ul>
+<li>攻城獅：『沒問題。』</li>
+<li>躬成屍：GAME OVER  </li>
+</ul>
+<p>當事情發生在別人身上時那是喜劇，你可以安慰他”撐過去就是你的”；<br>當事情發生在自己身上時那就變成悲劇，你可能會…<br><img src="/images/angular/training/electron/electron_01.png" alt="img">  </p>
+<h2 id="Electron"><a href="#Electron" class="headerlink" title="Electron"></a>Electron</h2><p>在 Node.js 興盛起來後<strong>全端工程師</strong>(<strong>Full Stack Developer</strong>)的議題又再被炒熱起來，因為透過 Node.js 讓原本侷限在前端的 JavaScript 變成可以開發後端程式，這讓門檻瞬間降低很多。<br>Node.js 為 JavaScript 提供一些 API 來替 JavaScript 與作業系統甚至硬體設備溝通，開發過 Ionic 或是 Cordova 程式的人應該就會發覺這跟 Cordova 在做的事情幾乎一樣。<br>在 Cordova 架構下，它前面透過 WebView 來呈顯網頁，後面提供一些 API 來與系統或硬體界接，中間則是讓我們用 JavaScript 撰寫邏輯，往前可以與前端網頁互動，往後可以與系統或硬體溝通，整個架構就像：<br><code>HTML(WebView) &lt;=&gt; JavaScript &lt;=&gt; API(Cordova) &lt;=&gt; OS、Hardware</code><br>那桌面系統是不是也有相同的方案？<br>我們開啟 <a href="https://electron.atom.io/">Electron 官方網站</a> 在網站內可以看到目前 Electron 最新版本為 1.7.6 版、Node 為 7.9.0 版、Chromium 為 58.0.3029.110 版、V8為 5.8.283.38 版，也就是說 1.7.6 版的 Electron 內含 7.9.0 版的 Node.js、58.0.3029.110 版的 Chromium，JavaScript 解析引擎為 5.8.283.38 版V8引擎。<br><img src="/images/angular/training/electron/electron_02.png" alt="img"><br>比對 Cordova 架構就會變成：<br><code>HTML(Chromium) &lt;=&gt; JavaScript &lt;=&gt; API(Node.js/V8) &lt;=&gt; OS、Hardware</code>  </p>
+<h2 id="前置準備"><a href="#前置準備" class="headerlink" title="前置準備"></a>前置準備</h2><p>我們需要一個純前端的 Web 程式，這邊我們拿之前練習到 <a href="/angular/training/17_angular_service/">Angular 服務</a> 的程式來當範例。<br>{% img /images/download.png 36 %}<a href="/uploads/first-app_2017-09-14.zip"><strong>first-app_2017-09-14.zip</strong></a>  </p>
+<blockquote>
+<p>若要下載請記得先透過指令 <code>npm install</code> 來重新安裝 package。</p>
+</blockquote>
+<p>透過 Angular CLI 指令 <code>ng build --prod</code> 來建置專案，預設專案會輸出到專案目錄下的 <code>dist</code> 資料夾內。<br><img src="/images/angular/training/electron/electron_03.png" alt="img">  </p>
+<h2 id="安裝-electron"><a href="#安裝-electron" class="headerlink" title="安裝 electron"></a>安裝 electron</h2><p>我們先建立一個資料夾 <code>desktopApp</code>，接著透過 <code>npm init</code> 來建立一個 <code>package.json</code> 檔，<code>entry point</code> 的設定值改成 <code>main.js</code>，因為這是 Electron 官方範本預設程式進入點。<br><img src="/images/angular/training/electron/electron_04.png" alt="img"><br>接著安裝 electron，指令如下：<br><code>npm install -d electron</code><br><img src="/images/angular/training/electron/electron_05.png" alt="img"><br>開啟 <code>package.json</code> 並在 <code>scripts</code> 插入新指令 <code>&quot;start&quot;: &quot;electron main.js&quot;</code>。</p>
+<p>{% codeblock package.json lang:json %}<br>{<br>  “name”: “desktopapp”,<br>  “version”: “1.0.0”,<br>  “description”: “”,<br>  “main”: “main.js”,<br>  “scripts”: {<br>    “test”: “echo &quot;Error: no test specified&quot; &amp;&amp; exit 1”,<br>    “start”: “electron main.js”<br>  },<br>  “author”: “”,<br>  “license”: “ISC”,<br>  “dependencies”: {<br>    “electron”: “^1.7.6”<br>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<p>再來將剛才建置好的 Angular 專案(dist 資料夾)複製到 desktopApp 資料夾內。<br><img src="/images/angular/training/electron/electron_06.png" alt="img">  </p>
+<h2 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a>main.js</h2><p>開啟官方在 GitHub 的 <a href="https://github.com/electron/electron-quick-start">electron-quick-start</a> 專案，將 main.js 複製到 desktopApp 資料夾內。<br><img src="/images/angular/training/electron/electron_07.png" alt="img">  </p>
+<h2 id="執行-electron"><a href="#執行-electron" class="headerlink" title="執行 electron"></a>執行 electron</h2><p>我們透過 <code>npm start</code> 來啟動，它會執行剛才加入的指令 <code>electron main.js</code>，它會開啟一個 electron 程式 並自動載入 <code>main.js</code>。<br><img src="/images/angular/training/electron/electron_08.png" alt="img"><br>不過目前畫面一片雪白，按 <code>F12</code> 也無法開啟開發人員工具，Electron 不是內含 Chromium 嗎？怎麼開不起來？<br><img src="/images/angular/training/electron/electron_09.png" alt="img"><br>檢視 <code>main.js</code>，原來預設開發人員工具沒有開啟，取消註解，重新執行就可以看到開發人員工具。<br>雖然仍然沒畫面，但是從開發人員工具可以知道是起始頁面(index.html)的路徑錯誤造成的。<br><img src="/images/angular/training/electron/electron_10.png" alt="img"><br><img src="/images/angular/training/electron/electron_11.png" alt="img"><br>開啟 <code>main.js</code>，修正起始頁面的路徑，順便可以調整預設視窗大小，重新執行。<br><img src="/images/angular/training/electron/electron_12.png" alt="img"><br>再次失敗畫面仍然沒出現，錯誤訊息顯示 index.html 內的 js 檔與 css 檔找不到，切換到 Elements 頁籤可以發現 index.html 確實被載入了，但是怎麼 js 檔與 css 檔找不到？<br><img src="/images/angular/training/electron/electron_13.png" alt="img"><br><img src="/images/angular/training/electron/electron_14.png" alt="img"><br>看一下存取路徑怎麼怪怪的。<br><img src="/images/angular/training/electron/electron_15.png" alt="img"><br>開啟 <code>dist\index.html</code> 將 <code>base</code> tag 的 href 屬性改成 <code>./</code>。<br><img src="/images/angular/training/electron/electron_16.png" alt="img"><br>重新執行就正常了。<br><img src="/images/angular/training/electron/electron_17.png" alt="img"><br>最後做一些 <code>main.js</code> 的設定微調。<br>關閉開發者工具：將 <code>mainWindow.webContents.openDevTools()</code> 註解起來。<br>隱藏主選單列：在 <code>createWindow</code> 方法內加入 <code>electron.Menu.setApplicationMenu(null);</code>。</p>
+<p>{% codeblock main.js lang:js %}<br>const electron = require(‘electron’)<br>// Module to control application life.<br>const app = electron.app<br>// Module to create native browser window.<br>const BrowserWindow = electron.BrowserWindow</p>
+<p>const path = require(‘path’)<br>const url = require(‘url’)</p>
+<p>// Keep a global reference of the window object, if you don’t, the window will<br>// be closed automatically when the JavaScript object is garbage collected.<br>let mainWindow</p>
+<p>function createWindow () {<br>  // Create the browser window.<br>  mainWindow = new BrowserWindow({width: 1200, height: 800})</p>
+<p>  electron.Menu.setApplicationMenu(null);</p>
+<p>  // and load the index.html of the app.<br>  mainWindow.loadURL(url.format({<br>    pathname: path.join(__dirname, ‘/dist/index.html’),<br>    protocol: ‘file:’,<br>    slashes: true<br>  }))</p>
+<p>  // Open the DevTools.<br>  // mainWindow.webContents.openDevTools()</p>
+<p>  // Emitted when the window is closed.<br>  mainWindow.on(‘closed’, function () {<br>    // Dereference the window object, usually you would store windows<br>    // in an array if your app supports multi windows, this is the time<br>    // when you should delete the corresponding element.<br>    mainWindow = null<br>  })<br>}</p>
+<p>// This method will be called when Electron has finished<br>// initialization and is ready to create browser windows.<br>// Some APIs can only be used after this event occurs.<br>app.on(‘ready’, createWindow)</p>
+<p>// Quit when all windows are closed.<br>app.on(‘window-all-closed’, function () {<br>  // On OS X it is common for applications and their menu bar<br>  // to stay active until the user quits explicitly with Cmd + Q<br>  if (process.platform !== ‘darwin’) {<br>    app.quit()<br>  }<br>})</p>
+<p>app.on(‘activate’, function () {<br>  // On OS X it’s common to re-create a window in the app when the<br>  // dock icon is clicked and there are no other windows open.<br>  if (mainWindow === null) {<br>    createWindow()<br>  }<br>})</p>
+<p>// In this file you can include the rest of your app’s specific main process<br>// code. You can also put them in separate files and require them here.</p>
+<p>{% endcodeblock %}</p>
+<p>重新執行，整體感覺已經跟一般桌面程式無異。<br><img src="/images/angular/training/electron/electron_18.gif" alt="img">  </p>
+<h2 id="佈署-electron"><a href="#佈署-electron" class="headerlink" title="佈署 electron"></a>佈署 electron</h2><p>最後當然是最重要的如何佈署到平台上，首先安裝 electron-packager 套件，指令如下：<br><code>npm install -d electron-packager</code><br><img src="/images/angular/training/electron/electron_19.png" alt="img"><br><strong>electron-packager</strong> 的語法如下：<br><code>electron-packager &lt;sourcedir&gt; &lt;appname&gt; --platform=&lt;platform&gt; --arch=&lt;arch&gt; [optional flags...]</code></p>
+<blockquote>
+<p><code>sourcedir</code>：表示來源資料夾，<code>.</code> 表示當前來源為資料夾。<br><code>appname</code>：輸出的執行檔名稱。<br><code>--platform</code>：表示要建置的平台，目前有：<code>linux</code>、<code>win32</code>、<code>darwin</code>,、<code>mas</code>、<code>all</code>。<br><code>--arch</code>：表示目前系統架構，選項有：<code>ia32</code>、<code>x64</code>、<code>armv7l</code>、<code>arm64</code>、<code>all</code>。  </p>
+<p>其他參數可參考 <a href="https://github.com/electron-userland/electron-packager/blob/master/docs/api.">官方文件</a>。</p>
+</blockquote>
+<h3 id="Window-64位元版本"><a href="#Window-64位元版本" class="headerlink" title="Window 64位元版本"></a>Window 64位元版本</h3><p>在 <code>package.json</code> 的 <code>scripts</code> 插入下列指令：<br><code>electron-packager . WinApp --platform=win32 --arch=x64</code><br><img src="/images/angular/training/electron/electron_20.png" alt="img"><br>執行 <code>npm run build_win</code> 來建置。<br><img src="/images/angular/training/electron/electron_21.png" alt="img"><br>編譯後可以看到專案資料夾內多了一個 <code>WinApp-win32-x64</code> 資料夾，資料夾內有一隻 <code>WinApp.exe</code>，執行後就會看到與剛才相同的操作介面。<br><img src="/images/angular/training/electron/electron_22.png" alt="img"><br><img src="/images/angular/training/electron/electron_23.png" alt="img"><br>我們打開 <code>WinApp-win32-x64\resources\app\</code> 資料夾其實可以發現程式都在裡面。<br><img src="/images/angular/training/electron/electron_24.png" alt="img"><br>如果不希望別人可以輕易看到程式碼，可以加上 <code>--asar</code> 參數，讓 electron-packager 幫你封裝起來。<br><code>&quot;build_win&quot;: &quot;electron-packager . WinApp --platform=win32 --arch=x64 --asar&quot;</code><br>重新編譯後就可以看到我們的程式被封裝成 <code>app.asar</code>。  </p>
+<blockquote>
+<p>如果資料夾已經存在，請先移除，否則請加上 <code>--overwrite</code> 參數來覆寫。<br><img src="/images/angular/training/electron/electron_25.png" alt="img"></p>
+</blockquote>
+<p><img src="/images/angular/training/electron/electron_26.png" alt="img">  </p>
+<h3 id="Linux-64位元版本"><a href="#Linux-64位元版本" class="headerlink" title="Linux 64位元版本"></a>Linux 64位元版本</h3><p>在 <code>package.json</code> 的 <code>scripts</code> 插入下列指令：<br><code>electron-packager . LinuxApp --platform=linux --arch=x64 --asar</code>，並透過指令 <code>npm run build_linux</code> 編譯。<br><img src="/images/angular/training/electron/electron_27.png" alt="img"><br><img src="/images/angular/training/electron/electron_28.png" alt="img"><br>將編譯所產生的 <code>LinuxApp-linux-x64</code> 資料夾複製至 Linux 64位元系統(筆者測試環境是 Ubuntu 17 64位元)，並執行 <code>LinuxApp</code>，可以看到跟 Winodws 一樣的結果。<br><img src="/images/angular/training/electron/electron_29.png" alt="img">  </p>
+<h3 id="Linux-ARM-版本"><a href="#Linux-ARM-版本" class="headerlink" title="Linux ARM 版本"></a>Linux ARM 版本</h3><p>在 <code>package.json</code> 的 <code>scripts</code> 插入下列指令：<br><code>electron-packager . ARMApp --platform=linux --arch=armv7l --asar</code>，並透過指令 <code>npm run build_arm</code> 編譯。<br><img src="/images/angular/training/electron/electron_30.png" alt="img"><br><img src="/images/angular/training/electron/electron_31.png" alt="img"><br>將編譯所產生的 <code>ARMApp-linux-armv7l</code> 資料夾複製至 Linux ARM 系統(筆者測試環境硬體是 Raspberry Pi 3，系統是 Raspbian)，並執行 <code>ARMApp</code>，可以看到跟 Winodws 一樣的結果。<br><img src="/images/angular/training/electron/electron_32.png" alt="img">  </p>
+<blockquote>
+<p>因為筆者沒有 Mac 所以在此不做測試，但是方法應該大同小異。  </p>
+</blockquote>
+<p>最後我們來回想最前面的需求：客戶需要一種能在任何桌面系統上執行的程式。<br>在以往我們可能每個平台都需要額外學習很多技術來支援，甚至每種平台都需要專屬的開發人員，在時程上跟後續維護都會增加很多成本。<br>Electron 可以幫我們解決不少問題，當然它也有一些限制以及缺點，沒有最好的方案，只有最可行的辦法。  </p>
+<blockquote>
+<p>筆者以前主要用 C# 開發 Windows 程式，那時在客戶那 demo 完系統後，最怕遇到客戶說：『你們的系統能不能在瀏覽器上執行。』，現在真的有跨多平台需求時，我們可以對老闆說：『老闆，你找人來開發 Web 平台，剩下平台我一個人搞定。』。</p>
+</blockquote>
+<p>{% img /images/download.png 36 %}<a href="/uploads/desktopApp_2017-09-20.zip"><strong>desktopApp_2017-09-20.zip</strong></a>  </p>

@@ -1,103 +1,32 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-tw">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-TW">
+<head>
   <meta charset="UTF-8">
-<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="Ionic,Angular">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
-
-
-
-
-  <meta property="fb:admins" content="fb267234890438499">
-  <meta property="fb:app_id" content="267234890438499">
-
-
-
-<meta name="description" content="Ionic 與 Angular 比較在建立 Ionic 專案中，我們練習了如何建立 Ionic，接下來對於 會開發 Angular 程式的人來說，最關注的應該就是 Ionic 跟 Angular 有什麼不同？要再多學些什麼？   啟動流程我們依照程式執行順序來比較一下差異： index.html從 Browser 或 WebView 第一個取得的就是 index.html 網頁，在裡面我們可以看到">
-<meta name="keywords" content="Ionic,Angular">
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Ionic 與 Angular 比較在建立 Ionic 專案中，我們練習了如何建立 Ionic，接下來對於 會開發 Angular 程式的人來說，最關注的應該就是 Ionic 跟 Angular 有什麼不同？要再多學些什麼？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ionic vs. Angular">
 <meta property="og:url" content="https://jonny-huang.github.io/ionic/training/02_ionic_vs_angular/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="Ionic 與 Angular 比較在建立 Ionic 專案中，我們練習了如何建立 Ionic，接下來對於 會開發 Angular 程式的人來說，最關注的應該就是 Ionic 跟 Angular 有什麼不同？要再多學些什麼？   啟動流程我們依照程式執行順序來比較一下差異： index.html從 Browser 或 WebView 第一個取得的就是 index.html 網頁，在裡面我們可以看到">
-<meta property="og:locale" content="zh-tw">
+<meta property="og:description" content="Ionic 與 Angular 比較在建立 Ionic 專案中，我們練習了如何建立 Ionic，接下來對於 會開發 Angular 程式的人來說，最關注的應該就是 Ionic 跟 Angular 有什麼不同？要再多學些什麼？">
+<meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://jonny-huang.github.io/images/ionic/training/vs_angular/ionic_vs_angular_01.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/ionic/training/vs_angular/ionic_vs_angular_02.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/ionic/training/vs_angular/ionic_vs_angular_03.png">
@@ -122,574 +51,275 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/ionic/training/vs_angular/ionic_vs_angular_22.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/ionic/training/vs_angular/ionic_vs_angular_23.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-19T07:52:43.000Z">
+<meta property="article:published_time" content="2017-09-17T01:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-25T03:23:04.647Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="Ionic">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ionic vs. Angular">
-<meta name="twitter:description" content="Ionic 與 Angular 比較在建立 Ionic 專案中，我們練習了如何建立 Ionic，接下來對於 會開發 Angular 程式的人來說，最關注的應該就是 Ionic 跟 Angular 有什麼不同？要再多學些什麼？   啟動流程我們依照程式執行順序來比較一下差異： index.html從 Browser 或 WebView 第一個取得的就是 index.html 網頁，在裡面我們可以看到">
 <meta name="twitter:image" content="https://jonny-huang.github.io/images/ionic/training/vs_angular/ionic_vs_angular_01.png">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Jonny'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<link rel="canonical" href="https://jonny-huang.github.io/ionic/training/02_ionic_vs_angular/">
 
 
 
-  <link rel="canonical" href="https://jonny-huang.github.io/ionic/training/02_ionic_vs_angular/">
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;ionic&#x2F;training&#x2F;02_ionic_vs_angular&#x2F;&quot;,&quot;path&quot;:&quot;ionic&#x2F;training&#x2F;02_ionic_vs_angular&#x2F;&quot;,&quot;title&quot;:&quot;Ionic vs. Angular&quot;}</script>
 
-
-
-
-
-  <title>Ionic vs. Angular | Jonny Huang 的學習筆記</title>
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>Ionic vs. Angular | Jonny Huang 的學習筆記</title>
   
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '267234890438499',
-      xfbml      : true,
-      version    : 'v2.6'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/zh_tw/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-tw">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Jonny Huang 的學習筆記</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <h1 class="site-subtitle" itemprop="description">Angular、Flutter</h1>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首頁
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            目錄
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-flutter">
-          <a href="/flutter/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Flutter
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-angular">
-          <a href="/angular/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Angular
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-quotes">
-          <a href="/quotes/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br>
-            
-            欣雨露
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa-commenting fa-fw"></i>欣雨露</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ionic-%E8%88%87-Angular-%E6%AF%94%E8%BC%83"><span class="nav-number">1.</span> <span class="nav-text">Ionic 與 Angular 比較</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%95%9F%E5%8B%95%E6%B5%81%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">啟動流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#index-html"><span class="nav-number">1.1.1.</span> <span class="nav-text">index.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-ts"><span class="nav-number">1.1.2.</span> <span class="nav-text">main.ts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#app-module-ts"><span class="nav-number">1.1.3.</span> <span class="nav-text">app.module.ts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AppComponent-vs-MyApp"><span class="nav-number">1.1.4.</span> <span class="nav-text">AppComponent vs. MyApp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Angular-%E8%B7%AF%E7%94%B1-vs-Ionic-%E5%B0%8E%E8%A6%BD"><span class="nav-number">1.1.5.</span> <span class="nav-text">Angular 路由 vs. Ionic 導覽</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NavController"><span class="nav-number">1.2.</span> <span class="nav-text">NavController</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Page"><span class="nav-number">1.3.</span> <span class="nav-text">Page</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%B6%E9%81%B2%E8%BC%89%E5%85%A5-Lazy-loaded"><span class="nav-number">1.3.1.</span> <span class="nav-text">延遲載入 (Lazy loaded)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%8C%E9%80%B2%E5%85%88%E5%87%BA-LIFO%EF%BC%9ALast-In-First-Out"><span class="nav-number">1.3.2.</span> <span class="nav-text">後進先出 (LIFO：Last In First Out)</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
     
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/ionic/training/02_ionic_vs_angular/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Jonny Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Jonny Huang 的學習筆記">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ionic vs. Angular
+        </h1>
 
-        
-        
-          <h2 class="post-title" itemprop="name headline">Ionic vs. Angular</h2>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/06/25 11:23:04" itemprop="dateModified" datetime="2021-06-25T11:23:04+08:00">2021/06/25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Training/" itemprop="url" rel="index"><span itemprop="name">Training</span></a>
+        </span>
+    </span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新於</span>
-              
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-19T15:52:43+08:00">
-                2017/09/19
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Training/" itemprop="url" rel="index">
-                    <span itemprop="name">Training</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
+
     
-
+    
+    
     <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         <h1 id="Ionic-與-Angular-比較"><a href="#Ionic-與-Angular-比較" class="headerlink" title="Ionic 與 Angular 比較"></a>Ionic 與 Angular 比較</h1><p>在<a href="/ionic/training/01_creating_first_project/">建立 Ionic 專案</a>中，我們練習了如何建立 Ionic，接下來對於 會開發 Angular 程式的人來說，最關注的應該就是 Ionic 跟 Angular 有什麼不同？要再多學些什麼？  </p>
+<span id="more"></span>  
+
 <h2 id="啟動流程"><a href="#啟動流程" class="headerlink" title="啟動流程"></a>啟動流程</h2><p>我們依照程式執行順序來比較一下差異：</p>
 <h3 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h3><p>從 Browser 或 WebView 第一個取得的就是 <code>index.html</code> 網頁，在裡面我們可以看到 Ionic 多載入了 <code>cordova.js</code>，就像之前說過的，我們可以看成 <strong>Ionic = Angular + Cordova</strong>，本篇我們比較的是 Ionic 的 Angular 部分跟標準 Angular 程式有什麼差異，不會涵蓋 Cordova。<br>另一個亮點就是載入了 <code>manifest.json</code> 以及一段被註解起來負責執行 service worker 的 JavaScript，專案目錄下也看到一個 service-worker.js 檔案，由此可見 Ionic 本身也考慮到 PWA (Progressive Web App) 的模式，Angular 目前要自己手動加入，但是未來的版本應該可以期待。</p>
-<pre><code>&#x2F;&#x2F; [Angular] index.html
-&lt;!doctype html&gt;
-&lt;html lang=&quot;en&quot;&gt;
+<figure class="highlight html"><figcaption><span>index.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// [Angular] index.html</span><br><span class="line"><span class="meta">&lt;!doctype <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>FirstApp<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">base</span> <span class="attr">href</span>=<span class="string">&quot;/&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;icon&quot;</span> <span class="attr">type</span>=<span class="string">&quot;image/x-icon&quot;</span> <span class="attr">href</span>=<span class="string">&quot;favicon.ico&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">app-root</span>&gt;</span><span class="tag">&lt;/<span class="name">app-root</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>  
 
-&lt;head&gt;
-  &lt;meta charset=&quot;utf-8&quot;&gt;
-  &lt;title&gt;FirstApp&lt;&#x2F;title&gt;
-  &lt;base href=&quot;&#x2F;&quot;&gt;
+<figure class="highlight html"><figcaption><span>index.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">// [Ionic] index.html</span><br><span class="line"><span class="meta">&lt;!doctype <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span> <span class="attr">dir</span>=<span class="string">&quot;ltr&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Ionic App<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;format-detection&quot;</span> <span class="attr">content</span>=<span class="string">&quot;telephone=no&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;msapplication-tap-highlight&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;icon&quot;</span> <span class="attr">type</span>=<span class="string">&quot;image/x-icon&quot;</span> <span class="attr">href</span>=<span class="string">&quot;assets/icon/favicon.ico&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;manifest&quot;</span> <span class="attr">href</span>=<span class="string">&quot;manifest.json&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;theme-color&quot;</span> <span class="attr">content</span>=<span class="string">&quot;#4e8ef7&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- cordova.js required for cordova apps --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;cordova.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- un-comment this code to enable service worker</span></span><br><span class="line"><span class="comment">  &lt;script&gt;</span></span><br><span class="line"><span class="comment">    if (&#x27;serviceWorker&#x27; in navigator) &#123;</span></span><br><span class="line"><span class="comment">      navigator.serviceWorker.register(&#x27;service-worker.js&#x27;)</span></span><br><span class="line"><span class="comment">        .then(() =&gt; console.log(&#x27;service worker installed&#x27;))</span></span><br><span class="line"><span class="comment">        .catch(err =&gt; console.error(&#x27;Error&#x27;, err));</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">  &lt;/script&gt;--&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;build/main.css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Ionic&#x27;s root component and where the app will load --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ion-app</span>&gt;</span><span class="tag">&lt;/<span class="name">ion-app</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- The polyfills js is generated during the build process --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;build/polyfills.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- The vendor js is generated during the build process</span></span><br><span class="line"><span class="comment">       It contains all of the dependencies in node_modules --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;build/vendor.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- The main bundle js is generated during the build process --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;build/main.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>  
 
-  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
-  &lt;link rel=&quot;icon&quot; type=&quot;image&#x2F;x-icon&quot; href=&quot;favicon.ico&quot;&gt;
-&lt;&#x2F;head&gt;
-
-&lt;body&gt;
-  &lt;app-root&gt;&lt;&#x2F;app-root&gt;
-&lt;&#x2F;body&gt;
-
-&lt;&#x2F;html&gt;
-</code></pre>
-<pre><code>&#x2F;&#x2F; [Ionic] index.html
-&lt;!doctype html&gt;
-&lt;html lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;
-&lt;head&gt;
-  &lt;meta charset=&quot;UTF-8&quot;&gt;
-  &lt;title&gt;Ionic App&lt;&#x2F;title&gt;
-  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;&gt;
-  &lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot;&gt;
-  &lt;meta name=&quot;msapplication-tap-highlight&quot; content=&quot;no&quot;&gt;
-
-  &lt;link rel=&quot;icon&quot; type=&quot;image&#x2F;x-icon&quot; href=&quot;assets&#x2F;icon&#x2F;favicon.ico&quot;&gt;
-  &lt;link rel=&quot;manifest&quot; href=&quot;manifest.json&quot;&gt;
-  &lt;meta name=&quot;theme-color&quot; content=&quot;#4e8ef7&quot;&gt;
-
-  &lt;!-- cordova.js required for cordova apps --&gt;
-  &lt;script src=&quot;cordova.js&quot;&gt;&lt;&#x2F;script&gt;
-
-  &lt;!-- un-comment this code to enable service worker
-  &lt;script&gt;
-    if (&#39;serviceWorker&#39; in navigator) {
-      navigator.serviceWorker.register(&#39;service-worker.js&#39;)
-        .then(() =&gt; console.log(&#39;service worker installed&#39;))
-        .catch(err =&gt; console.error(&#39;Error&#39;, err));
-    }
-  &lt;&#x2F;script&gt;--&gt;
-
-  &lt;link href=&quot;build&#x2F;main.css&quot; rel=&quot;stylesheet&quot;&gt;
-
-&lt;&#x2F;head&gt;
-&lt;body&gt;
-
-  &lt;!-- Ionic&#39;s root component and where the app will load --&gt;
-  &lt;ion-app&gt;&lt;&#x2F;ion-app&gt;
-
-  &lt;!-- The polyfills js is generated during the build process --&gt;
-  &lt;script src=&quot;build&#x2F;polyfills.js&quot;&gt;&lt;&#x2F;script&gt;
-
-  &lt;!-- The vendor js is generated during the build process
-       It contains all of the dependencies in node_modules --&gt;
-  &lt;script src=&quot;build&#x2F;vendor.js&quot;&gt;&lt;&#x2F;script&gt;
-
-  &lt;!-- The main bundle js is generated during the build process --&gt;
-  &lt;script src=&quot;build&#x2F;main.js&quot;&gt;&lt;&#x2F;script&gt;
-
-&lt;&#x2F;body&gt;
-&lt;&#x2F;html&gt;
-</code></pre>
 <blockquote>
-<p>對 Angular 來說我們是透過瀏覽器對某個網址所對應的 Server 發出 get 來取得網頁。<br>對 Ionic App 來說它是靠 Cordova 幫我們去將某個網頁載入到 WebView 控制項內，所以我們透過設定檔-<code>config.xml</code> 來預先告知 Cordova 程式開啟時要先載入哪個網頁。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_01.png" alt="">  </p>
+<p>對 Angular 來說我們是透過瀏覽器對某個網址所對應的 Server 發出 get 來取得網頁。<br>對 Ionic App 來說它是靠 Cordova 幫我們去將某個網頁載入到 WebView 控制項內，所以我們透過設定檔-<code>config.xml</code> 來預先告知 Cordova 程式開啟時要先載入哪個網頁。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_01.png" alt="img">  </p>
 </blockquote>
-<h3 id="main-ts"><a href="#main-ts" class="headerlink" title="main.ts"></a>main.ts</h3><p>在 Angular 專案中，我們可以透過設定檔-<code>.angular-cli.json</code> 看到會優先執行的 js 檔。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_02.png" alt=""><br>而在 Ionic 則是直接宣告在網頁 <code>body</code> 的<strong>最後一行</strong>，因 Ionic 所有檔案都已經在本地端(手機內)了，所以不需要考慮延遲載入的需求，也因此它會先將其他組件優先載入，確保執行時所有組件都找的到。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_03.png" alt=""><br>比較一下 <code>main.ts</code> 可以說是一樣的，因為他們都指定了 <strong>AppModule</strong> 為起始模組。</p>
+<h3 id="main-ts"><a href="#main-ts" class="headerlink" title="main.ts"></a>main.ts</h3><p>在 Angular 專案中，我們可以透過設定檔-<code>.angular-cli.json</code> 看到會優先執行的 js 檔。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_02.png" alt="img"><br>而在 Ionic 則是直接宣告在網頁 <code>body</code> 的<strong>最後一行</strong>，因 Ionic 所有檔案都已經在本地端(手機內)了，所以不需要考慮延遲載入的需求，也因此它會先將其他組件優先載入，確保執行時所有組件都找的到。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_03.png" alt="img"><br>比較一下 <code>main.ts</code> 可以說是一樣的，因為他們都指定了 <strong>AppModule</strong> 為起始模組。</p>
 <blockquote>
 <p>當頁面資料過大時，其實有可能也需要<strong>延遲載入</strong>的機制來做緩衝，Ionic 3 也幫我們顧慮到了，它的實作方式非常簡單，簡單到你已經套用了<strong>延遲載入</strong>卻沒有發覺。</p>
 </blockquote>
-<pre><code>&#x2F;&#x2F; [Angular] main.ts
-import { enableProdMode } from &#39;@angular&#x2F;core&#39;;
-import { platformBrowserDynamic } from &#39;@angular&#x2F;platform-browser-dynamic&#39;;
+<figure class="highlight ts"><figcaption><span>main.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [Angular] main.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; enableProdMode &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; platformBrowserDynamic &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/platform-browser-dynamic&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; AppModule &#125; <span class="keyword">from</span> <span class="string">&#x27;./app/app.module&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; environment &#125; <span class="keyword">from</span> <span class="string">&#x27;./environments/environment&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;hammerjs&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (environment.production) &#123;</span><br><span class="line">  enableProdMode();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">platformBrowserDynamic().bootstrapModule(AppModule);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight ts"><figcaption><span>main.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [ionic] main.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; platformBrowserDynamic &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/platform-browser-dynamic&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; AppModule &#125; <span class="keyword">from</span> <span class="string">&#x27;./app.module&#x27;</span>;</span><br><span class="line"></span><br><span class="line">platformBrowserDynamic().bootstrapModule(AppModule);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-import { AppModule } from &#39;.&#x2F;app&#x2F;app.module&#39;;
-import { environment } from &#39;.&#x2F;environments&#x2F;environment&#39;;
-import &#39;hammerjs&#39;;
-
-if (environment.production) {
-  enableProdMode();
-}
-
-platformBrowserDynamic().bootstrapModule(AppModule);
-</code></pre>
-<pre><code>&#x2F;&#x2F; [ionic] main.ts
-import { platformBrowserDynamic } from &#39;@angular&#x2F;platform-browser-dynamic&#39;;
-
-import { AppModule } from &#39;.&#x2F;app.module&#39;;
-
-platformBrowserDynamic().bootstrapModule(AppModule);
-</code></pre>
 <h3 id="app-module-ts"><a href="#app-module-ts" class="headerlink" title="app.module.ts"></a>app.module.ts</h3><p>接著比較 <code>app.module.ts</code> 可以看到 Angular 在 <strong>起始模組</strong>(<strong>AppModule</strong>) 中透過 <code>bootstrap</code> 屬性指定了 <strong>AppComponent</strong> 為<strong>起始元件</strong>。</p>
-<pre><code>&#x2F;&#x2F; [Angular] src\app\app.module.ts 
-import { BrowserModule } from &#39;@angular&#x2F;platform-browser&#39;;
-import { NgModule } from &#39;@angular&#x2F;core&#39;;
-
-import { AppRoutingModule } from &#39;.&#x2F;app-routing.module&#39;;
-import { AppComponent } from &#39;.&#x2F;app.component&#39;;
-
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-</code></pre>
+<figure class="highlight ts"><figcaption><span>app.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [Angular] src\app\app.module.ts </span></span><br><span class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/platform-browser&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; AppRoutingModule &#125; <span class="keyword">from</span> <span class="string">&#x27;./app-routing.module&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AppComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./app.component&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">declarations</span>: [AppComponent],</span><br><span class="line">  <span class="attr">imports</span>: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    AppRoutingModule</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">providers</span>: [],</span><br><span class="line">  <span class="attr">bootstrap</span>: [AppComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppModule</span> </span>&#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>而 Ionic 看起來似乎也透過 <code>bootstrap</code> 屬性指定了 <strong>IonicApp</strong>，不過仔細看一下 <strong>IonicApp</strong> 是來自 <code>ionic-angular</code>，查看一下它的原始碼，似乎 <strong>IonicApp</strong> 也不算是一個 Angular Component，而在 <code>imports</code> 屬性上發現 <strong>MyApp</strong> 這個 Component 不是直接被加入，而是多個 <code>IonicModule.forRoot(MyApp)</code> 將它註記成<strong>起始元件</strong>，我們可以 Ionic 的模組就此時開始介入。  </p>
 <blockquote>
-<p>開啟 <code>src\app\app.component.ts</code> 可以看到類別名稱就是 <strong>MyApp</strong>，在 Angular 專案內預設會是叫做 <strong>AppComponent</strong>。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_05.png" alt=""><br>因為目前並沒有深入研究 <code>IonicModule.forRoot</code> 背後運作機制，所以不確定將它解釋成<strong>註記</strong>是否正確，目前只能確定 Ionic 起始內容是此方法所指定的 Component。</p>
+<p>開啟 <code>src\app\app.component.ts</code> 可以看到類別名稱就是 <strong>MyApp</strong>，在 Angular 專案內預設會是叫做 <strong>AppComponent</strong>。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_05.png" alt="img"><br>因為目前並沒有深入研究 <code>IonicModule.forRoot</code> 背後運作機制，所以不確定將它解釋成<strong>註記</strong>是否正確，目前只能確定 Ionic 起始內容是此方法所指定的 Component。</p>
 </blockquote>
-<pre><code>&#x2F;&#x2F; [Ionic] src\app\app.module.ts 
-import { NgModule, ErrorHandler } from &#39;@angular&#x2F;core&#39;;
-import { BrowserModule } from &#39;@angular&#x2F;platform-browser&#39;;
-import { IonicApp, IonicModule, IonicErrorHandler } from &#39;ionic-angular&#39;;
-import { MyApp } from &#39;.&#x2F;app.component&#39;;
-
-import { AboutPage } from &#39;..&#x2F;pages&#x2F;about&#x2F;about&#39;;
-import { ContactPage } from &#39;..&#x2F;pages&#x2F;contact&#x2F;contact&#39;;
-import { HomePage } from &#39;..&#x2F;pages&#x2F;home&#x2F;home&#39;;
-import { TabsPage } from &#39;..&#x2F;pages&#x2F;tabs&#x2F;tabs&#39;;
-
-import { StatusBar } from &#39;@ionic-native&#x2F;status-bar&#39;;
-import { SplashScreen } from &#39;@ionic-native&#x2F;splash-screen&#39;;
-
-@NgModule({
-  declarations: [
-    MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp)
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
-})
-export class AppModule {}
-</code></pre>
-<p><img src="/images/ionic/training/vs_angular/ionic_vs_angular_04.png" alt="">  </p>
+<figure class="highlight ts"><figcaption><span>app.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [Ionic] src\app\app.module.ts </span></span><br><span class="line"><span class="keyword">import</span> &#123; NgModule, ErrorHandler &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/platform-browser&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; IonicApp, IonicModule, IonicErrorHandler &#125; <span class="keyword">from</span> <span class="string">&#x27;ionic-angular&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; MyApp &#125; <span class="keyword">from</span> <span class="string">&#x27;./app.component&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; AboutPage &#125; <span class="keyword">from</span> <span class="string">&#x27;../pages/about/about&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ContactPage &#125; <span class="keyword">from</span> <span class="string">&#x27;../pages/contact/contact&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HomePage &#125; <span class="keyword">from</span> <span class="string">&#x27;../pages/home/home&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; TabsPage &#125; <span class="keyword">from</span> <span class="string">&#x27;../pages/tabs/tabs&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; StatusBar &#125; <span class="keyword">from</span> <span class="string">&#x27;@ionic-native/status-bar&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; SplashScreen &#125; <span class="keyword">from</span> <span class="string">&#x27;@ionic-native/splash-screen&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">declarations</span>: [</span><br><span class="line">    MyApp,</span><br><span class="line">    AboutPage,</span><br><span class="line">    ContactPage,</span><br><span class="line">    HomePage,</span><br><span class="line">    TabsPage</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">imports</span>: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    IonicModule.forRoot(MyApp)</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">bootstrap</span>: [IonicApp],</span><br><span class="line">  <span class="attr">entryComponents</span>: [</span><br><span class="line">    MyApp,</span><br><span class="line">    AboutPage,</span><br><span class="line">    ContactPage,</span><br><span class="line">    HomePage,</span><br><span class="line">    TabsPage</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">providers</span>: [</span><br><span class="line">    StatusBar,</span><br><span class="line">    SplashScreen,</span><br><span class="line">    &#123;<span class="attr">provide</span>: ErrorHandler, <span class="attr">useClass</span>: IonicErrorHandler&#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppModule</span> </span>&#123;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>  
+<p><img src="/images/ionic/training/vs_angular/ionic_vs_angular_04.png" alt="img">  </p>
 <h3 id="AppComponent-vs-MyApp"><a href="#AppComponent-vs-MyApp" class="headerlink" title="AppComponent vs. MyApp"></a>AppComponent vs. MyApp</h3><p>在 Angular 中透過 @Component 這個裝飾器為 <strong>AppComponent</strong> 加入了選擇器屬性-<code>selector</code>，Angular 會自動將網頁內含有該選擇器的 tag 替換成 <strong>AppComponent</strong> 的樣板。</p>
-<pre><code>&#x2F;&#x2F; [Angular] src\app\app.component.ts
-import { Component } from &#39;@angular&#x2F;core&#39;;
+<figure class="highlight ts"><figcaption><span>app.component.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [Angular] src\app\app.component.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; Component &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;app-root&#x27;</span>,</span><br><span class="line">  <span class="attr">templateUrl</span>: <span class="string">&#x27;./app.component.html&#x27;</span>,</span><br><span class="line">  <span class="attr">styleUrls</span>: [<span class="string">&#x27;./app.component.css&#x27;</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppComponent</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>  
+<p>切換到 Ionic 可以發現 <strong>MyApp</strong> 的 @Component 裝飾器竟然沒有設定 <code>selector</code> 屬性，由剛才的 <strong>AppModule</strong> 說道 <code>IonicModule.forRoot(MyApp)</code> 的這個方法，可以知道 Ionic 是透過直接明確指定類別的方式宣告<strong>起始元件</strong>。  </p>
+<figure class="highlight ts"><figcaption><span>app.component.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [Ionic] src\app\app.component.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; Component &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Platform &#125; <span class="keyword">from</span> <span class="string">&#x27;ionic-angular&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; StatusBar &#125; <span class="keyword">from</span> <span class="string">&#x27;@ionic-native/status-bar&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; SplashScreen &#125; <span class="keyword">from</span> <span class="string">&#x27;@ionic-native/splash-screen&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; TabsPage &#125; <span class="keyword">from</span> <span class="string">&#x27;../pages/tabs/tabs&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  <span class="attr">templateUrl</span>: <span class="string">&#x27;app.html&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> </span>&#123;</span><br><span class="line">  <span class="attr">rootPage</span>:<span class="built_in">any</span> = TabsPage;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen</span>)</span> &#123;</span><br><span class="line">    platform.ready().then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// Okay, so the platform is ready and our plugins are available.</span></span><br><span class="line">      <span class="comment">// Here you can do any higher level native things you might need.</span></span><br><span class="line">      statusBar.styleDefault();</span><br><span class="line">      splashScreen.hide();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>  
 
-@Component({
-  selector: &#39;app-root&#39;,
-  templateUrl: &#39;.&#x2F;app.component.html&#39;,
-  styleUrls: [&#39;.&#x2F;app.component.css&#39;]
-})
-export class AppComponent {
-}
-</code></pre>
-<p>切換到 Ionic 可以發現 <strong>MyApp</strong> 的 @Component 裝飾器竟然沒有設定 <code>selector</code> 屬性，由剛才的 <strong>AppModule</strong> 說道 <code>IonicModule.forRoot(MyApp)</code> 的這個方法，可以知道 Ionic 是透過直接明確指定類別的方式宣告<strong>起始元件</strong>。</p>
-<pre><code>&#x2F;&#x2F; [Ionic] src\app\app.component.ts
-import { Component } from &#39;@angular&#x2F;core&#39;;
-import { Platform } from &#39;ionic-angular&#39;;
-import { StatusBar } from &#39;@ionic-native&#x2F;status-bar&#39;;
-import { SplashScreen } from &#39;@ionic-native&#x2F;splash-screen&#39;;
-
-import { TabsPage } from &#39;..&#x2F;pages&#x2F;tabs&#x2F;tabs&#39;;
-
-@Component({
-  templateUrl: &#39;app.html&#39;
-})
-export class MyApp {
-  rootPage:any = TabsPage;
-
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    platform.ready().then(() =&gt; {
-      &#x2F;&#x2F; Okay, so the platform is ready and our plugins are available.
-      &#x2F;&#x2F; Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
-  }
-}
-</code></pre>
 <blockquote>
-<p>眼尖的人其實可以發現 Ionic 預設在 <strong>AppModule</strong> 內比 Angular 專案多設定了 <code>entryComponents</code> 屬性。<br>查詢 Angular 官網的 <a href="https://angular.io/guide/dynamic-component-loader" target="_blank" rel="noopener">Dynamic Component Loader</a> 可以看到說明，但是說明感覺很籠統，目前看起來應該是說只要是透過 <code>ViewContainerRef.createComponent()</code> 來建立的元件都需要註冊到 <code>entryComponents</code>。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_06.png" alt="">  </p>
+<p>眼尖的人其實可以發現 Ionic 預設在 <strong>AppModule</strong> 內比 Angular 專案多設定了 <code>entryComponents</code> 屬性。<br>查詢 Angular 官網的 <a target="_blank" rel="noopener" href="https://angular.io/guide/dynamic-component-loader">Dynamic Component Loader</a> 可以看到說明，但是說明感覺很籠統，目前看起來應該是說只要是透過 <code>ViewContainerRef.createComponent()</code> 來建立的元件都需要註冊到 <code>entryComponents</code>。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_06.png" alt="img">  </p>
 </blockquote>
 <blockquote>
-<p>從建構式內還可看到 <code>splashScreen.hide();</code>，Ionic 也提供給我們可以設定程式啟動的等待畫面。<br><code>statusBar.styleDefault();</code> 則是讓我們設定手機最上方的狀態列，例如我們希望 App 佔滿整個螢幕時可以把狀態列隱藏起來。</p>
+<p>從建構式內還可看到 <code>splashScreen.hide();</code>，Ionic 也提供給我們可以設定程式啟動的等待畫面。<br><code>statusBar.styleDefault();</code> 則是讓我們設定手機最上方的狀態列，例如我們希望 App 佔滿整個螢幕時可以把狀態列隱藏起來。  </p>
 </blockquote>
 <h3 id="Angular-路由-vs-Ionic-導覽"><a href="#Angular-路由-vs-Ionic-導覽" class="headerlink" title="Angular 路由 vs. Ionic 導覽"></a>Angular 路由 vs. Ionic 導覽</h3><p>開啟 Angular 專案 <code>src\app\app.component.html</code>，我們可以看到最後一行也是最重要的一行 <code>&lt;router-outlet&gt;&lt;/router-outlet&gt;</code>，Angular 的 <strong>路由模組</strong>(<strong>RouterModule</strong>) 就是透過這個 <strong>路由插座</strong>(<code>router-outlet</code>) 來插入符合路由規則的元件。</p>
-<pre><code>&#x2F;&#x2F; [Angular] src\app\app.component.html
-&lt;!--The content below is only a placeholder and can be replaced.--&gt;
-&lt;div style=&quot;text-align:center&quot;&gt;
-  &lt;h1&gt;
-    Welcome to Ionic vs. Angular!
-  &lt;&#x2F;h1&gt;
-  &lt;img width=&quot;300&quot; src=&quot;data:image&#x2F;svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==&quot;&gt;
-&lt;&#x2F;div&gt;
-&lt;h2&gt;Here are some links to help you start: &lt;&#x2F;h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;h2&gt;&lt;a target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;angular.io&#x2F;tutorial&quot;&gt;Tour of Heroes&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
-  &lt;&#x2F;li&gt;
-  &lt;li&gt;
-    &lt;h2&gt;&lt;a target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;angular&#x2F;angular-cli&#x2F;wiki&quot;&gt;CLI Documentation&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
-  &lt;&#x2F;li&gt;
-  &lt;li&gt;
-    &lt;h2&gt;&lt;a target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;blog.angular.io&#x2F;&quot;&gt;Angular blog&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
-  &lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-
-&lt;router-outlet&gt;&lt;&#x2F;router-outlet&gt;
-</code></pre>
+<figure class="highlight html"><figcaption><span>app.component.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// [Angular] src\app\app.component.html</span><br><span class="line"><span class="comment">&lt;!--The content below is only a placeholder and can be replaced.--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;text-align:center&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">    Welcome to Ionic vs. Angular!</span><br><span class="line">  <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">width</span>=<span class="string">&quot;300&quot;</span> <span class="attr">src</span>=<span class="string">&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Here are some links to help you start: <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://angular.io/tutorial&quot;</span>&gt;</span>Tour of Heroes<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://github.com/angular/angular-cli/wiki&quot;</span>&gt;</span>CLI Documentation<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://blog.angular.io/&quot;</span>&gt;</span>Angular blog<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">router-outlet</span>&gt;</span><span class="tag">&lt;/<span class="name">router-outlet</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>再來看 Ionic 專案可以發現預設並沒有加入 <strong>路由模組</strong>，更沒有類似 <code>app-routing.module.ts</code> 可以設定路由規則的檔案，開啟 <code>src\app\app.html</code> 可以看到 Ionic 改用自己的導覽元件-<code>ion-nav</code>，並將 <code>root</code> 屬性指定給 <code>rootPage</code> 變數。</p>
-<pre><code>&#x2F;&#x2F; [Ionic] src\app\app.html
-&lt;ion-nav [root]=&quot;rootPage&quot;&gt;&lt;&#x2F;ion-nav&gt;</code></pre>
-<p>再回過頭看看 <code>app.component.ts</code>，<code>rootPage</code> 變數被設定成 TabsPage Component。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_07.png" alt="">  </p>
+<figure class="highlight html"><figcaption><span>app.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// [Ionic] src\app\app.html</span><br><span class="line"><span class="tag">&lt;<span class="name">ion-nav</span> [<span class="attr">root</span>]=<span class="string">&quot;rootPage&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">ion-nav</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>再回過頭看看 <code>app.component.ts</code>，<code>rootPage</code> 變數被設定成 TabsPage Component。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_07.png" alt="img">  </p>
 <h2 id="NavController"><a href="#NavController" class="headerlink" title="NavController"></a>NavController</h2><p>從上面我們可以概略知道以往我們在 Angular 上很習慣的會利用路由模組來作<strong>頁面切換</strong>(Angular 屬於 SPA 程式，這邊的<strong>頁面</strong>不是只整個 HTML 版面，而是指主要操作區域)，而在 Ionic 上 卻是透過 <code>ion-nav</code> 來處理。<br>那 <code>ion-nav</code> 是什麼？</p>
 <blockquote><p>ion-nav is the declarative component for a NavController.</p>
-<footer><strong>Ionic</strong><cite><a href="http://ionicframework.com/docs/api/components/nav/Nav/" target="_blank" rel="noopener">Nav</a></cite></footer></blockquote>
-<p>在查詢<a href="http://ionicframework.com/docs/api/navigation/NavController/" target="_blank" rel="noopener">官方文件</a>可以知道 <strong>NavController</strong> 是導航控制器組件的基底類別，目前 <a href="http://ionicframework.com/docs/api/components/nav/Nav/" target="_blank" rel="noopener">Nav</a> 和 <a href="http://ionicframework.com/docs/api/components/tabs/Tab/" target="_blank" rel="noopener">Tab</a> 2個 Component 都繼承自它-<strong>NavControllerBase</strong>。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_08.png" alt=""><br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_09.png" alt=""><br>查詢 <strong>NavControllerBase</strong> 程式結構，我們可以看到一些導覽方法，例如：<code>push</code>、<code>pop</code>、<code>insert</code>、<code>remove</code>。  </p>
-<pre><code>&#x2F;&#x2F; [Ionic] node_modules\ionic-angular\navigation\nav-controller-base.d.ts
-import { ComponentFactoryResolver, ComponentRef, ElementRef, ErrorHandler, EventEmitter, NgZone, Renderer, ViewContainerRef } from &#39;@angular&#x2F;core&#39;;
-...
-&#x2F;**
- * @hidden
- * This class is for internal use only. It is not exported publicly.
- *&#x2F;
-export declare class NavControllerBase extends Ion implements NavController {
-    parent: any;
-    _app: App;
-    config: Config;
-   ...
-    constructor(parent: any, _app: App, config: Config, plt: Platform, elementRef: ElementRef, _zone: NgZone, renderer: Renderer, _cfr: ComponentFactoryResolver, _gestureCtrl: GestureController, _trnsCtrl: TransitionController, _linker: DeepLinker, _domCtrl: DomController, _errHandler: ErrorHandler);
-    push(page: any, params?: any, opts?: NavOptions, done?: TransitionDoneFn): Promise&lt;any&gt;;
-    insert(insertIndex: number, page: any, params?: any, opts?: NavOptions, done?: TransitionDoneFn): Promise&lt;any&gt;;
-    insertPages(insertIndex: number, insertPages: any[], opts?: NavOptions, done?: TransitionDoneFn): Promise&lt;any&gt;;
-    pop(opts?: NavOptions, done?: TransitionDoneFn): Promise&lt;any&gt;;
-    popTo(indexOrViewCtrl: any, opts?: NavOptions, done?: TransitionDoneFn): Promise&lt;any&gt;;
-    popToRoot(opts?: NavOptions, done?: TransitionDoneFn): Promise&lt;any&gt;;
-    popAll(): Promise&lt;any[]&gt;;
-    remove(startIndex: number, removeCount?: number, opts?: NavOptions, done?: TransitionDoneFn): Promise&lt;any&gt;;
-    removeView(viewController: ViewController, opts?: NavOptions, done?: TransitionDoneFn): Promise&lt;any&gt;;
-    setRoot(pageOrViewCtrl: any, params?: any, opts?: NavOptions, done?: TransitionDoneFn): Promise&lt;any&gt;;
-    setPages(viewControllers: any[], opts?: NavOptions, done?: TransitionDoneFn): Promise&lt;any&gt;;
-    _queueTrns(ti: TransitionInstruction, done: TransitionDoneFn): Promise&lt;boolean&gt;;
-    _success(result: NavResult, ti: TransitionInstruction): void;
-    _failed(rejectReason: any, ti: TransitionInstruction): void;
-    _fireError(rejectReason: any, ti: TransitionInstruction): void;
-    _nextTrns(): boolean;
-    _startTI(ti: TransitionInstruction): Promise&lt;void&gt;;
-    _loadLazyLoading(ti: TransitionInstruction): Promise&lt;void&gt;;
-    _getEnteringView(ti: TransitionInstruction, leavingView: ViewController): ViewController;
-    _postViewInit(enteringView: ViewController, leavingView: ViewController, ti: TransitionInstruction): void;
-    &#x2F;**
-     * DOM WRITE
-     *&#x2F;
-    ...
-}
-</code></pre>
+<footer><strong>Ionic</strong><cite><a target="_blank" rel="noopener" href="http://ionicframework.com/docs/api/components/nav/Nav/">Nav</a></cite></footer></blockquote>
+<p>在查詢<a target="_blank" rel="noopener" href="http://ionicframework.com/docs/api/navigation/NavController/">官方文件</a>可以知道 <strong>NavController</strong> 是導航控制器組件的基底類別，目前 <a target="_blank" rel="noopener" href="http://ionicframework.com/docs/api/components/nav/Nav/">Nav</a> 和 <a target="_blank" rel="noopener" href="http://ionicframework.com/docs/api/components/tabs/Tab/">Tab</a> 2個 Component 都繼承自它-<strong>NavControllerBase</strong>。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_08.png" alt="img"><br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_09.png" alt="img"><br>查詢 <strong>NavControllerBase</strong> 程式結構，我們可以看到一些導覽方法，例如：<code>push</code>、<code>pop</code>、<code>insert</code>、<code>remove</code>。  </p>
+<figure class="highlight ts"><figcaption><span>nav-controller-base.d.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [Ionic] node_modules\ionic-angular\navigation\nav-controller-base.d.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; ComponentFactoryResolver, ComponentRef, ElementRef, ErrorHandler, EventEmitter, NgZone, Renderer, ViewContainerRef &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line">...</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@hidden</span></span></span><br><span class="line"><span class="comment"> * This class is for internal use only. It is not exported publicly.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">declare</span> <span class="class"><span class="keyword">class</span> <span class="title">NavControllerBase</span> <span class="keyword">extends</span> <span class="title">Ion</span> <span class="title">implements</span> <span class="title">NavController</span> </span>&#123;</span><br><span class="line">    <span class="attr">parent</span>: <span class="built_in">any</span>;</span><br><span class="line">    _app: App;</span><br><span class="line">    config: Config;</span><br><span class="line">   ...</span><br><span class="line">    <span class="title">constructor</span>(<span class="params">parent: <span class="built_in">any</span>, _app: App, config: Config, plt: Platform, elementRef: ElementRef, _zone: NgZone, renderer: Renderer, _cfr: ComponentFactoryResolver, _gestureCtrl: GestureController, _trnsCtrl: TransitionController, _linker: DeepLinker, _domCtrl: DomController, _errHandler: ErrorHandler</span>);</span><br><span class="line">    push(page: <span class="built_in">any</span>, params?: <span class="built_in">any</span>, opts?: NavOptions, done?: TransitionDoneFn): <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">    insert(insertIndex: <span class="built_in">number</span>, <span class="attr">page</span>: <span class="built_in">any</span>, params?: <span class="built_in">any</span>, opts?: NavOptions, done?: TransitionDoneFn): <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">    insertPages(insertIndex: <span class="built_in">number</span>, <span class="attr">insertPages</span>: <span class="built_in">any</span>[], opts?: NavOptions, done?: TransitionDoneFn): <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">    pop(opts?: NavOptions, done?: TransitionDoneFn): <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">    popTo(indexOrViewCtrl: <span class="built_in">any</span>, opts?: NavOptions, done?: TransitionDoneFn): <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">    popToRoot(opts?: NavOptions, done?: TransitionDoneFn): <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">    popAll(): <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>[]&gt;;</span><br><span class="line">    remove(startIndex: <span class="built_in">number</span>, removeCount?: <span class="built_in">number</span>, opts?: NavOptions, done?: TransitionDoneFn): <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">    removeView(viewController: ViewController, opts?: NavOptions, done?: TransitionDoneFn): <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">    setRoot(pageOrViewCtrl: <span class="built_in">any</span>, params?: <span class="built_in">any</span>, opts?: NavOptions, done?: TransitionDoneFn): <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">    setPages(viewControllers: <span class="built_in">any</span>[], opts?: NavOptions, done?: TransitionDoneFn): <span class="built_in">Promise</span>&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">    _queueTrns(ti: TransitionInstruction, <span class="attr">done</span>: TransitionDoneFn): <span class="built_in">Promise</span>&lt;<span class="built_in">boolean</span>&gt;;</span><br><span class="line">    _success(result: NavResult, <span class="attr">ti</span>: TransitionInstruction): <span class="built_in">void</span>;</span><br><span class="line">    _failed(rejectReason: <span class="built_in">any</span>, <span class="attr">ti</span>: TransitionInstruction): <span class="built_in">void</span>;</span><br><span class="line">    _fireError(rejectReason: <span class="built_in">any</span>, <span class="attr">ti</span>: TransitionInstruction): <span class="built_in">void</span>;</span><br><span class="line">    _nextTrns(): <span class="built_in">boolean</span>;</span><br><span class="line">    _startTI(ti: TransitionInstruction): <span class="built_in">Promise</span>&lt;<span class="built_in">void</span>&gt;;</span><br><span class="line">    _loadLazyLoading(ti: TransitionInstruction): <span class="built_in">Promise</span>&lt;<span class="built_in">void</span>&gt;;</span><br><span class="line">    _getEnteringView(ti: TransitionInstruction, <span class="attr">leavingView</span>: ViewController): ViewController;</span><br><span class="line">    _postViewInit(enteringView: ViewController, <span class="attr">leavingView</span>: ViewController, <span class="attr">ti</span>: TransitionInstruction): <span class="built_in">void</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * DOM WRITE</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>  
+
 <p>其實這樣看起來 <strong>Nav</strong>(<code>ion-nav</code>) 與 <strong>Tab</strong>(<code>ion-tab</code>) 與 Angular 的 <strong>路由插座</strong>(<code>router-outlet</code>) 相比更加強大，因為它們本身就提供的頁面切換的方法，可以將它本身的 content 內容替換成我們指定的元件類別，當然這都是因為它們繼承了 NavControllerBase。  </p>
 <h2 id="Page"><a href="#Page" class="headerlink" title="Page"></a>Page</h2><p>與 Angular 一樣我們可以透過下列指令協助我們快速建立各種類型檔案：<br><code>ionic generate [&lt;type&gt;] [&lt;name&gt;]</code>  </p>
 <blockquote>
@@ -697,644 +327,134 @@ export declare class NavControllerBase extends Ion implements NavController {
 </blockquote>
 <p>Ionic CLI 所提供的類型有：<code>component</code>, <code>directive</code>, <code>page</code>, <code>pipe</code>, <code>provider</code>, <code>tabs</code>，其中 <code>page</code> 與 <code>tabs</code> 是 Angular 所沒有的，所以我們就先建立一個 <code>page</code> 試試，指令如下：<br><code>ionic g page page1</code>  </p>
 <blockquote>
-<p>這邊筆者覺得 Angular CLI 做得比較好，因為 Angular CLI 會標示出建立那些檔案、修改那些檔案，Ionic CLI 目前只有一行成功訊息，這對於剛接觸的人可能會比較不親合。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_10.png" alt=""></p>
+<p>這邊筆者覺得 Angular CLI 做得比較好，因為 Angular CLI 會標示出建立那些檔案、修改那些檔案，Ionic CLI 目前只有一行成功訊息，這對於剛接觸的人可能會比較不親合。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_10.png" alt="img"></p>
 </blockquote>
-<p>我們可以看到 Ionic CLI 會依類型建立資料夾，並將新建的類型檔案放置到對應的資料夾下。Angular CLI 則是統一放置在 <code>src\app\</code> 下面。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_11.png" alt="">  </p>
+<p>我們可以看到 Ionic CLI 會依類型建立資料夾，並將新建的類型檔案放置到對應的資料夾下。Angular CLI 則是統一放置在 <code>src\app\</code> 下面。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_11.png" alt="img">  </p>
 <p>接著我們開啟 <code>src\pages\page1\page1.ts</code>，我們可以看到熟悉的裝飾器-<code>@Component</code>，也就是說 <code>page</code> 本質上還是 Angular Component。</p>
-<pre><code>&#x2F;&#x2F; [Ionic] src\pages\page1\page1.ts
-import { Component } from &#39;@angular&#x2F;core&#39;;
-import { IonicPage, NavController, NavParams } from &#39;ionic-angular&#39;;
+<figure class="highlight ts"><figcaption><span>page1.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [Ionic] src\pages\page1\page1.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; Component &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; IonicPage, NavController, NavParams &#125; <span class="keyword">from</span> <span class="string">&#x27;ionic-angular&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@IonicPage</span>()</span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;page-page1&#x27;</span>,</span><br><span class="line">  <span class="attr">templateUrl</span>: <span class="string">&#x27;page1.html&#x27;</span>,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Page1Page</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">public</span> navCtrl: NavController, <span class="keyword">public</span> navParams: NavParams</span>)</span> &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">ionViewDidLoad</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;ionViewDidLoad Page1Page&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>  
 
-@IonicPage()
-@Component({
-  selector: &#39;page-page1&#39;,
-  templateUrl: &#39;page1.html&#39;,
-})
-export class Page1Page {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-
-  ionViewDidLoad() {
-    console.log(&#39;ionViewDidLoad Page1Page&#39;);
-  }
-
-}
-</code></pre>
-<p>比較一下可以發現 Ionic Page 多了一些東西： </p>
+<p>比較一下可以發現 Ionic Page 多了一些東西：  </p>
 <ul>
 <li><p><code>NavController</code> 參數：我們已經知道 Ionic 是透過導覽模式來切換頁面，所以 Ionic CLI 貼心透過<strong>依賴注入</strong>(<strong>Dependency Injection</strong>，簡稱<strong>DI</strong>)的幫我們將 <strong>NavController</strong> 加到頁面類別內。</p>
 <blockquote>
 <p>我們可以看到 constructor 內的參數都多了存取修飾詞-<code>public</code>，此為 TypeScript 的語法糖，我們可以想成它會自動在 class 內建立一個同名的全域變數，並將值指向該變數，我們在其他方法內就可以直接透過 <code>this.navCtrl.xxx</code> 來使用 <strong>NavController</strong>。</p>
 </blockquote>
 </li>
-<li><p><code>ionViewDidLoad()</code>：就像我們透過 Angular CLI 來建立 Component 時它會幫我們增加 <code>ngOnInit()</code> 方法一樣，這些方法都牽涉到生命週期。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_12.png" alt=""><br>查詢<a href="http://ionicframework.com/docs/api/navigation/NavController/" target="_blank" rel="noopener">官方網站</a>可以看到 NavController Lifecycle events。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_13.png" alt="">  </p>
+<li><p><code>ionViewDidLoad()</code>：就像我們透過 Angular CLI 來建立 Component 時它會幫我們增加 <code>ngOnInit()</code> 方法一樣，這些方法都牽涉到生命週期。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_12.png" alt="img"><br>查詢<a target="_blank" rel="noopener" href="http://ionicframework.com/docs/api/navigation/NavController/">官方網站</a>可以看到 NavController Lifecycle events。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_13.png" alt="img">  </p>
 </li>
-<li><p><code>@IonicPage()</code> 裝飾器：開啟其他預先建立好的 page 可以發現既沒有 Module 檔案，class 內也沒加上 <code>@IonicPage()</code> 裝飾器。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_14.png" alt=""><br>反過來看，這些預設的 page 卻跟 Angular Component 一樣被加入到 <strong>AppModule</strong> 的 <code>declarations</code>，也同時設定到 <code>entryComponents</code> 屬性。  </p>
+<li><p><code>@IonicPage()</code> 裝飾器：開啟其他預先建立好的 page 可以發現既沒有 Module 檔案，class 內也沒加上 <code>@IonicPage()</code> 裝飾器。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_14.png" alt="img"><br>反過來看，這些預設的 page 卻跟 Angular Component 一樣被加入到 <strong>AppModule</strong> 的 <code>declarations</code>，也同時設定到 <code>entryComponents</code> 屬性。  </p>
 <blockquote>
-<p>Angular 的 Component 必須註冊到 NgModule 內才可以使用。 </p>
+<p>Angular 的 Component 必須註冊到 NgModule 內才可以使用。  </p>
 </blockquote>
-<p><img src="/images/ionic/training/vs_angular/ionic_vs_angular_15.png" alt="">  </p>
+<p><img src="/images/ionic/training/vs_angular/ionic_vs_angular_15.png" alt="img">  </p>
 </li>
-<li>page1.module.ts：開啟 <code>src\pages\page1\page1.module.ts</code> 可以看到這是一個 Angular Module，<br>而 <strong>Page1Page</strong> 被註冊到這個 <strong>NgModule</strong> 內。<pre><code>&#x2F;&#x2F; [Ionic] src\pages\page1\page1.module.ts
-import { NgModule } from &#39;@angular&#x2F;core&#39;;
-import { IonicPageModule } from &#39;ionic-angular&#39;;
-import { Page1Page } from &#39;.&#x2F;page1&#39;;
-
-@NgModule({
-  declarations: [
-    Page1Page,
-  ],
-  imports: [
-    IonicPageModule.forChild(Page1Page)
-  ],
-})
-export class Page1PageModule {}
-</code></pre>
-</li>
+<li><p>page1.module.ts：開啟 <code>src\pages\page1\page1.module.ts</code> 可以看到這是一個 Angular Module，<br>而 <strong>Page1Page</strong> 被註冊到這個 <strong>NgModule</strong> 內。</p>
+<figure class="highlight ts"><figcaption><span>page1.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [Ionic] src\pages\page1\page1.module.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; IonicPageModule &#125; <span class="keyword">from</span> <span class="string">&#x27;ionic-angular&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Page1Page &#125; <span class="keyword">from</span> <span class="string">&#x27;./page1&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">declarations</span>: [</span><br><span class="line">    Page1Page,</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">imports</span>: [</span><br><span class="line">    IonicPageModule.forChild(Page1Page)</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Page1PageModule</span> </span>&#123;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="延遲載入-Lazy-loaded"><a href="#延遲載入-Lazy-loaded" class="headerlink" title="延遲載入 (Lazy loaded)"></a>延遲載入 (Lazy loaded)</h3><p>接下來我們在 Home 的樣板上面加入一個按鈕，並在其點擊事件內透過 NavController 導覽至 Page1，開啟並編輯 <code>src\pages\home\home.html</code>。</p>
-<pre><code>&#x2F;&#x2F; [Ionic] src\pages\home\home.html
-&lt;ion-header&gt;
-  &lt;ion-navbar&gt;
-    &lt;ion-title&gt;Home&lt;&#x2F;ion-title&gt;
-  &lt;&#x2F;ion-navbar&gt;
-&lt;&#x2F;ion-header&gt;
-
-&lt;ion-content padding&gt;
-  ...
-  &lt;p&gt;
-    Take a look at the &lt;code&gt;src&#x2F;pages&#x2F;&lt;&#x2F;code&gt; directory to add or change tabs,
-    update any existing page or create new pages.
-  &lt;&#x2F;p&gt;
-  &lt;button ion-button (click)=&quot;navPage1()&quot;&gt;Page 1&lt;&#x2F;button&gt;
-&lt;&#x2F;ion-content&gt;
-</code></pre>
+<figure class="highlight html"><figcaption><span>home.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// [Ionic] src\pages\home\home.html</span><br><span class="line"><span class="tag">&lt;<span class="name">ion-header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-title</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">ion-title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ion-header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">ion-content</span> <span class="attr">padding</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    Take a look at the <span class="tag">&lt;<span class="name">code</span>&gt;</span>src/pages/<span class="tag">&lt;/<span class="name">code</span>&gt;</span> directory to add or change tabs,</span><br><span class="line">    update any existing page or create new pages.</span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">ion-button</span> (<span class="attr">click</span>)=<span class="string">&quot;navPage1()&quot;</span>&gt;</span>Page 1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>接著編輯 <code>src\pages\home\home.ts</code>，要注意的是傳給 <code>navCtrl.push</code> 的參數是 <code>&#39;Page1Page&#39;</code> <strong>字串</strong>而不是 <code>Page1Page</code> 類別。  </p>
-<pre><code>&#x2F;&#x2F; [Ionic] src\pages\home\home.ts
-import { Component } from &#39;@angular&#x2F;core&#39;;
-import { NavController } from &#39;ionic-angular&#39;;
-
-@Component({
-  selector: &#39;page-home&#39;,
-  templateUrl: &#39;home.html&#39;
-})
-export class HomePage {
-
-  constructor(public navCtrl: NavController) {
-
-  }
-
-  navPage1() {
-    this.navCtrl.push(&#39;Page1Page&#39;);
-  }
-}
-</code></pre>
-<p>透過 <code>ionic serve</code> 來啟動專案，從瀏覽器上看頁面導覽效果已經出現了。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_16.png" alt=""><br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_17.gif" alt=""><br>做到這般看似正常，但是有點怪怪的，<strong>Page1Page</strong> 這個 Component 雖然註冊到了 <strong>Page1PageModule</strong> 這個 NgModule，但是 <strong>Page1PageModule</strong> 並沒有註冊到起始模組-<strong>AppModule</strong> 內，所以依照 Angular 的邏輯來推論，<strong>AppModule</strong> 並不認得 <strong>Page1Page</strong>，所以在載入時應該會出現錯誤，怎麼 Ionic 上卻沒有問題？<br>原來這就是 Ionic 的<strong>延遲載入</strong>機制，也就是說透過 Ionic CLI 來建立 <code>page</code> 時，它就會以<strong>延遲載入</strong>的架構來建立相關檔案，<strong>延遲載入</strong>的重點架構如下：  </p>
+<figure class="highlight ts"><figcaption><span>home.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [Ionic] src\pages\home\home.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; Component &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; NavController &#125; <span class="keyword">from</span> <span class="string">&#x27;ionic-angular&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;page-home&#x27;</span>,</span><br><span class="line">  <span class="attr">templateUrl</span>: <span class="string">&#x27;home.html&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">HomePage</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">public</span> navCtrl: NavController</span>)</span> &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">navPage1</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.navCtrl.push(<span class="string">&#x27;Page1Page&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>透過 <code>ionic serve</code> 來啟動專案，從瀏覽器上看頁面導覽效果已經出現了。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_16.png" alt="img"><br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_17.gif" alt="img"><br>做到這般看似正常，但是有點怪怪的，<strong>Page1Page</strong> 這個 Component 雖然註冊到了 <strong>Page1PageModule</strong> 這個 NgModule，但是 <strong>Page1PageModule</strong> 並沒有註冊到起始模組-<strong>AppModule</strong> 內，所以依照 Angular 的邏輯來推論，<strong>AppModule</strong> 並不認得 <strong>Page1Page</strong>，所以在載入時應該會出現錯誤，怎麼 Ionic 上卻沒有問題？<br>原來這就是 Ionic 的<strong>延遲載入</strong>機制，也就是說透過 Ionic CLI 來建立 <code>page</code> 時，它就會以<strong>延遲載入</strong>的架構來建立相關檔案，<strong>延遲載入</strong>的重點架構如下：  </p>
 <ul>
-<li>Component 類別必須加上 @IonicPage() 裝飾器。</li>
-<li>在 Component 路徑必須要有一個同名的 <code>&lt;component name&gt;.module.ts</code> 的 NgModule，只要名稱或路徑位置不對，CLI 編譯就會出錯，例如我們將 NgModule 改名為 <code>page2.module.ts</code>。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_18.png" alt="">  </li>
-<li>NgModule 內除了註冊 Component 外，還需再 <code>imports</code> 屬性內加入 <code>IonicPageModule.forChild(&lt;component&gt;)</code>。  </li>
-<li><strong>NavController</strong> 透過 <strong>字串</strong>(<strong>string</strong>) 來指定要導覽到該頁面，如果將字串改成 Component 的類別執行導覽時就會出現錯誤。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_19.png" alt=""></li>
+<li><p>Component 類別必須加上 @IonicPage() 裝飾器。  </p>
+</li>
+<li><p>在 Component 路徑必須要有一個同名的 <code>&lt;component name&gt;.module.ts</code> 的 NgModule，只要名稱或路徑位置不對，CLI 編譯就會出錯，例如我們將 NgModule 改名為 <code>page2.module.ts</code>。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_18.png" alt="img">  </p>
+</li>
+<li><p>NgModule 內除了註冊 Component 外，還需再 <code>imports</code> 屬性內加入 <code>IonicPageModule.forChild(&lt;component&gt;)</code>。  </p>
+</li>
+<li></li>
+<li><p><strong>NavController</strong> 透過 <strong>字串</strong>(<strong>string</strong>) 來指定要導覽到該頁面，如果將字串改成 Component 的類別執行導覽時就會出現錯誤。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_19.png" alt="img"></p>
+</li>
 </ul>
 <p>反過來說如果我們不要使用<strong>延遲載入</strong>的話要如何調整，如同剛剛修改的 <code>home.ts</code>。  </p>
-<pre><code>&#x2F;&#x2F; [Ionic] src\pages\home\home.ts
-import { Component } from &#39;@angular&#x2F;core&#39;;
-import { NavController } from &#39;ionic-angular&#39;;
-import { Page1Page } from &#39;..&#x2F;page1&#x2F;page1&#39;;
-
-@Component({
-  selector: &#39;page-home&#39;,
-  templateUrl: &#39;home.html&#39;
-})
-export class HomePage {
-
-  constructor(public navCtrl: NavController) {
-
-  }
-
-  navPage1() {
-    this.navCtrl.push(Page1Page);
-  }
-}
-</code></pre>
+<figure class="highlight ts"><figcaption><span>home.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [Ionic] src\pages\home\home.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; Component &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; NavController &#125; <span class="keyword">from</span> <span class="string">&#x27;ionic-angular&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Page1Page &#125; <span class="keyword">from</span> <span class="string">&#x27;../page1/page1&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;page-home&#x27;</span>,</span><br><span class="line">  <span class="attr">templateUrl</span>: <span class="string">&#x27;home.html&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">HomePage</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">public</span> navCtrl: NavController</span>)</span> &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">navPage1</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.navCtrl.push(Page1Page);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <ul>
 <li>當 Component 已經有對應的 ngModule (page1.module.ts) 時，我們可以直接將該 Module 註冊到啟動模組內，或是啟動模組的延伸模組，將 <code>src\app\app.module.ts</code> 修改如下，再重新執行專案，應該就會正常。</li>
 </ul>
-<pre><code>&#x2F;&#x2F; [Ionic] src\app\app.module.ts 
-import { NgModule, ErrorHandler } from &#39;@angular&#x2F;core&#39;;
-...
-import { Page1PageModule } from &#39;..&#x2F;pages&#x2F;page1&#x2F;page1.module&#39;;
-
-@NgModule({
-  declarations: [
-    ...
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp),
-    Page1PageModule
-   ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    ...
-  ],
-  providers: [
-    ...
-  ]
-})
-export class AppModule {}
-</code></pre>
+<figure class="highlight ts"><figcaption><span>app.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [Ionic] src\app\app.module.ts </span></span><br><span class="line"><span class="keyword">import</span> &#123; NgModule, ErrorHandler &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">import</span> &#123; Page1PageModule &#125; <span class="keyword">from</span> <span class="string">&#x27;../pages/page1/page1.module&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">declarations</span>: [</span><br><span class="line">    ...</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">imports</span>: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    IonicModule.forRoot(MyApp),</span><br><span class="line">    Page1PageModule</span><br><span class="line">   ],</span><br><span class="line">  <span class="attr">bootstrap</span>: [IonicApp],</span><br><span class="line">  <span class="attr">entryComponents</span>: [</span><br><span class="line">    ...</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">providers</span>: [</span><br><span class="line">    ...</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppModule</span> </span>&#123;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <ul>
 <li>當 Component 沒有對應的 ngModule 時，那就要跟預設的 page 一樣，將 Component 註冊到啟動模組的 <code>declarations</code> 以及 <code>entryComponents</code> 屬性內，將 <code>src\app\app.module.ts</code> 修改如下，再重新執行專案，應該同樣可以正常運作。</li>
 </ul>
-<pre><code>&#x2F;&#x2F; [Ionic] src\app\app.module.ts 
-import { NgModule, ErrorHandler } from &#39;@angular&#x2F;core&#39;;
-...
-import { Page1Page } from &#39;..&#x2F;pages&#x2F;page1&#x2F;page1&#39;;
-
-@NgModule({
-  declarations: [
-    ...
-    TabsPage,
-    Page1Page
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp)
-   ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    ...
-    TabsPage,
-    Page1Page
-  ],
-  providers: [
-    ...
-  ]
-})
-export class AppModule {}
-</code></pre>
-<p>其實如果仔細觀察，沒有<strong>延遲載入</strong>時頁面切換會有滑動效果，反之則沒有，在設計上這一點可能也要考量一下，例如操作功能的切換頁面可能透過延遲載入比較適合，因為我們大部分會透過 tabs 或是 menu 選單來做切換，但是同一個功能內的頁面切換不要透過延遲載入比較適合，因為上下頁面切換的滑動效果會讓整個功能比較有整體感。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_20.gif" alt="">  </p>
+<figure class="highlight ts"><figcaption><span>app.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [Ionic] src\app\app.module.ts </span></span><br><span class="line"><span class="keyword">import</span> &#123; NgModule, ErrorHandler &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">import</span> &#123; Page1Page &#125; <span class="keyword">from</span> <span class="string">&#x27;../pages/page1/page1&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">declarations</span>: [</span><br><span class="line">    ...</span><br><span class="line">    TabsPage,</span><br><span class="line">    Page1Page</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">imports</span>: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    IonicModule.forRoot(MyApp)</span><br><span class="line">   ],</span><br><span class="line">  <span class="attr">bootstrap</span>: [IonicApp],</span><br><span class="line">  <span class="attr">entryComponents</span>: [</span><br><span class="line">    ...</span><br><span class="line">    TabsPage,</span><br><span class="line">    Page1Page</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">providers</span>: [</span><br><span class="line">    ...</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppModule</span> </span>&#123;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>其實如果仔細觀察，沒有<strong>延遲載入</strong>時頁面切換會有滑動效果，反之則沒有，在設計上這一點可能也要考量一下，例如操作功能的切換頁面可能透過延遲載入比較適合，因為我們大部分會透過 tabs 或是 menu 選單來做切換，但是同一個功能內的頁面切換不要透過延遲載入比較適合，因為上下頁面切換的滑動效果會讓整個功能比較有整體感。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_20.gif" alt="img">  </p>
 <blockquote>
-<p>參考文件：<a href="http://blog.ionic.io/ionic-and-lazy-loading-pt-1/" target="_blank" rel="noopener">Ionic and Lazy Loading Pt 1</a></p>
+<p>參考文件：<a target="_blank" rel="noopener" href="http://blog.ionic.io/ionic-and-lazy-loading-pt-1/">Ionic and Lazy Loading Pt 1</a></p>
 </blockquote>
 <h3 id="後進先出-LIFO：Last-In-First-Out"><a href="#後進先出-LIFO：Last-In-First-Out" class="headerlink" title="後進先出 (LIFO：Last In First Out)"></a>後進先出 (LIFO：Last In First Out)</h3><p>我們先修改 page1 樣板，加入 input 輸入方塊，一個導覽按鈕，點擊時會再次導覽回 page1，一個導覽返回鈕，接著在類別內加入一個 page_length 屬性並給予 NavController 目前頁面堆疊數量，最後再透過<strong>嵌入繫結</strong>方式繫結到樣板上。</p>
 <blockquote>
 <p>Ionic 的 Component 都已經預先載入了，所以可以直接使用。</p>
 </blockquote>
-<pre><code>&#x2F;&#x2F; [Ionic] src\pages\page1\page1.html 
-&lt;ion-header&gt;
-
-    &lt;ion-navbar&gt;
-      &lt;ion-title&gt;page1&lt;&#x2F;ion-title&gt;
-    &lt;&#x2F;ion-navbar&gt;
-
-  &lt;&#x2F;ion-header&gt;
-
-
-  &lt;ion-content padding&gt;
-    Page Length：
-    &lt;hr&gt;
-    &lt;ion-item&gt;
-      &lt;ion-label fixed&gt;Value：&lt;&#x2F;ion-label&gt;
-      &lt;ion-input type=&quot;text&quot; value=&quot;&quot;&gt;&lt;&#x2F;ion-input&gt;
-    &lt;&#x2F;ion-item&gt;
-    &lt;button ion-button (click)=&quot;navCtrl.push(&#39;Page1Page&#39;)&quot;&gt;Page 1&lt;&#x2F;button&gt;
-    &lt;button ion-button (click)=&quot;navCtrl.pop()&quot;&gt;Back&lt;&#x2F;button&gt;
-  &lt;&#x2F;ion-content&gt;
-</code></pre>
-<pre><code>&#x2F;&#x2F; [Ionic] src\pages\page1\page1.ts 
-import { Component } from &#39;@angular&#x2F;core&#39;;
-import { IonicPage, NavController, NavParams } from &#39;ionic-angular&#39;;
-
-@IonicPage()
-@Component({
-  selector: &#39;page-page1&#39;,
-  templateUrl: &#39;page1.html&#39;,
-})
-export class Page1Page {
-  page_length = 0;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-
-  ionViewDidLoad() {
-    console.log(&#39;ionViewDidLoad Page1Page&#39;);
-    this.page_length = this.navCtrl.length();
-  }
-
-}
-</code></pre>
-<p>啟動專案並透過瀏覽器操作。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_21.gif" alt=""><br>由上面的操作，我們可以看到我們每次呼叫 <code>push</code> 方法時，Ionic 會在產生一個全新的 page1 並且取代目前頁面，從 <code>page_length</code> 屬性也可以印證 <code>NavController</code> 紀錄的頁面確實增加了，當呼叫 <code>pop</code> 方法時，可以發現 Ionic 會移除目前頁面並顯示上一頁面內容，我們也可以看到之前頁面的內容都會被保留下來。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_22.png" alt=""><br>我們可以假想 <code>NavController</code> 就像一個大箱子，每次 <code>push</code> 時就會放入一本新書，每次 <code>pop</code> 時就會取出最上面的一本書，我們能看得的書永遠是最後一本，因為它會被放在最上層，下層的書都會被遮住，網頁上看到的 page 也是一樣是最後載入的 page，所以我們可以說這是一種<strong>後進先出</strong>(<strong>Last In First Out</strong>)的堆疊模式，最後進去的會最先出來。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_23.png" alt=""><br>了解這種模式之後，可以發現它會衍生出一些問題：  </p>
+<figure class="highlight html"><figcaption><span>page1.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// [Ionic] src\pages\page1\page1.html </span><br><span class="line"><span class="tag">&lt;<span class="name">ion-header</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ion-title</span>&gt;</span>page1<span class="tag">&lt;/<span class="name">ion-title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-navbar</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ion-header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">ion-content</span> <span class="attr">padding</span>&gt;</span></span><br><span class="line">    Page Length：</span><br><span class="line">    <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ion-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ion-label</span> <span class="attr">fixed</span>&gt;</span>Value：<span class="tag">&lt;/<span class="name">ion-label</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ion-input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">ion-input</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ion-item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">ion-button</span> (<span class="attr">click</span>)=<span class="string">&quot;navCtrl.push(&#x27;Page1Page&#x27;)&quot;</span>&gt;</span>Page 1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">ion-button</span> (<span class="attr">click</span>)=<span class="string">&quot;navCtrl.pop()&quot;</span>&gt;</span>Back<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ion-content</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight ts"><figcaption><span>page1.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [Ionic] src\pages\page1\page1.ts </span></span><br><span class="line"><span class="keyword">import</span> &#123; Component &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; IonicPage, NavController, NavParams &#125; <span class="keyword">from</span> <span class="string">&#x27;ionic-angular&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@IonicPage</span>()</span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;page-page1&#x27;</span>,</span><br><span class="line">  <span class="attr">templateUrl</span>: <span class="string">&#x27;page1.html&#x27;</span>,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Page1Page</span> </span>&#123;</span><br><span class="line">  page_length = <span class="number">0</span>;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">public</span> navCtrl: NavController, <span class="keyword">public</span> navParams: NavParams</span>)</span> &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">ionViewDidLoad</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;ionViewDidLoad Page1Page&#x27;</span>);</span><br><span class="line">    <span class="built_in">this</span>.page_length = <span class="built_in">this</span>.navCtrl.length();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>啟動專案並透過瀏覽器操作。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_21.gif" alt="img"><br>由上面的操作，我們可以看到我們每次呼叫 <code>push</code> 方法時，Ionic 會在產生一個全新的 page1 並且取代目前頁面，從 <code>page_length</code> 屬性也可以印證 <code>NavController</code> 紀錄的頁面確實增加了，當呼叫 <code>pop</code> 方法時，可以發現 Ionic 會移除目前頁面並顯示上一頁面內容，我們也可以看到之前頁面的內容都會被保留下來。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_22.png" alt="img"><br>我們可以假想 <code>NavController</code> 就像一個大箱子，每次 <code>push</code> 時就會放入一本新書，每次 <code>pop</code> 時就會取出最上面的一本書，我們能看得的書永遠是最後一本，因為它會被放在最上層，下層的書都會被遮住，網頁上看到的 page 也是一樣是最後載入的 page，所以我們可以說這是一種<strong>後進先出</strong>(<strong>Last In First Out</strong>)的堆疊模式，最後進去的會最先出來。<br><img src="/images/ionic/training/vs_angular/ionic_vs_angular_23.png" alt="img"><br>了解這種模式之後，可以發現它會衍生出一些問題：  </p>
 <ul>
-<li>占用記憶體：每個頁面都需要用到記憶體來保存狀態，因此如果堆疊越多層也代表記憶體占用越多。</li>
-<li>重複的頁面：我們在某個頁面更新資料後，在後續導覽過程不小心導覽到比較舊的歷史頁面，對使用者來說會以為資料沒更新成功。</li>
+<li><p>占用記憶體：每個頁面都需要用到記憶體來保存狀態，因此如果堆疊越多層也代表記憶體占用越多。  </p>
+</li>
+<li><p>重複的頁面：我們在某個頁面更新資料後，在後續導覽過程不小心導覽到比較舊的歷史頁面，對使用者來說會以為資料沒更新成功。  </p>
+</li>
 </ul>
 <p>因此在設計上可以參考一些<strong>網站導航</strong>的設計原則，例如階層不要太多可能3~5層，不同功能盡量避免可以直接切換，讓導覽途徑是樹枝展狀的階層圖，而不是交錯複雜的網狀圖。  </p>
-<p><img src="/images/download.png" width="36"><a href="/uploads/ionic-first-app_2017-09-19.zip"><strong>ionic-first-app_2017-09-19.zip</strong></a>  </p>
+<img src="/images/download.png" class="" width="36">[**ionic-first-app_2017-09-19.zip**](/uploads/ionic-first-app_2017-09-19.zip)  
 
-      
     </div>
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
+    
+    
+    
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Ionic/" rel="tag"># Ionic</a>
-          
-        </div>
-      
-
-      
-      
-        <div class="post-widgets">
-        
-
-        
-          <div class="social-like">
-            
-
-            
-              <div class="fb_like">
-                <div class="fb-like" data-layout="button_count" data-share="true"></div>
-              </div>
-            
-          </div>
-        
-        </div>
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/ionic/training/01_creating_first_project/" rel="next" title="建立 Ionic 專案">
-                <i class="fa fa-chevron-left"></i> 建立 Ionic 專案
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/Ionic/" rel="tag"># Ionic</a>
           </div>
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/angular/training/18_electron/" rel="prev" title="Electron：跨平台的視窗應用程式">
-                Electron：跨平台的視窗應用程式 <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ionic/training/01_creating_first_project/" rel="prev" title="建立 Ionic 專案">
+                  <i class="fa fa-chevron-left"></i> 建立 Ionic 專案
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/angular/training/18_electron/" rel="next" title="Electron：跨平台的視窗應用程式">
+                  Electron：跨平台的視窗應用程式 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-        </div>
-      
-
-      
-      
     </footer>
   </article>
+</div>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
 
 
-          </div>
-          
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Jonny Huang">
-          <p class="site-author-name" itemprop="name">Jonny Huang</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-           
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">66</span>
-                <span class="site-state-item-name">文章</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">分類</span>
-              
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">28</span>
-                <span class="site-state-item-name">標籤</span>
-              
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
-                  
-                    <i class="fa fa-fw fa-facebook-official"></i>
-                  
-                  Facebook
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>
-                  
-                  Email
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-block">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/flutter.tw/" title="Flutter Taiwan" target="_blank">Flutter Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ionic-與-Angular-比較"><span class="nav-number">1.</span> <span class="nav-text">Ionic 與 Angular 比較</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#啟動流程"><span class="nav-number">1.1.</span> <span class="nav-text">啟動流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#index-html"><span class="nav-number">1.1.1.</span> <span class="nav-text">index.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-ts"><span class="nav-number">1.1.2.</span> <span class="nav-text">main.ts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#app-module-ts"><span class="nav-number">1.1.3.</span> <span class="nav-text">app.module.ts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AppComponent-vs-MyApp"><span class="nav-number">1.1.4.</span> <span class="nav-text">AppComponent vs. MyApp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Angular-路由-vs-Ionic-導覽"><span class="nav-number">1.1.5.</span> <span class="nav-text">Angular 路由 vs. Ionic 導覽</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NavController"><span class="nav-number">1.2.</span> <span class="nav-text">NavController</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Page"><span class="nav-number">1.3.</span> <span class="nav-text">Page</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#延遲載入-Lazy-loaded"><span class="nav-number">1.3.1.</span> <span class="nav-text">延遲載入 (Lazy loaded)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#後進先出-LIFO：Last-In-First-Out"><span class="nav-number">1.3.2.</span> <span class="nav-text">後進先出 (LIFO：Last In First Out)</span></a></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
+<div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-Jonny Huang"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
 </div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
-</div>
-
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -1348,27 +468,6 @@ export class Page1Page {
 
 
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
-<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-      prettyPrint();
-  });
-</script>
 
 </body>
 </html>

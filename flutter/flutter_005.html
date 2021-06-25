@@ -1,0 +1,79 @@
+<hr>
+<p>title: 翻桌吧！Flutter for Desktop<br>date: 2019-05-20<br>categories: Flutter<br>keywords:</p>
+<ul>
+<li>Flutter</li>
+<li>Dart<br>tags:</li>
+<li>Flutter</li>
+<li>Dart</li>
+</ul>
+<hr>
+<p><img src="/images/flutter/005/flutter_000.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>自從 Google I/O 公開 <a href="https://flutter.dev/web">Flutter for Web</a> 之後大家便開始瘋狂測試，似乎都忘了它目前只是預覽版本，接下來大家另一個期待便是 Flutter 什麼時候開始支援桌面系統，今天剛好看到一篇令人心動的文章-<a href="https://medium.com/flutter-community/flutter-for-desktop-create-and-run-a-desktop-application-ebeb1604f1e0">Flutter for Desktop: Create and Run a Desktop Application</a>，這篇文章使用的是 Google 之前在 GitHub 上釋出的試驗性專案 <a href="https://github.com/google/flutter-desktop-embedding">flutter-desktop-embedding</a>，這也意味著目前官方的進度，接下來當然實機測試看看了。  </p>
+<!-- more -->  
+
+<h1 id="環境"><a href="#環境" class="headerlink" title="環境"></a>環境</h1><p>首先我們先下載 <a href="https://github.com/google/flutter-desktop-embedding">flutter-desktop-embedding</a> 專案，可以直接下載壓縮檔或是透過 Git 指令下載。<br><code>git clone https://github.com/google/flutter-desktop-embedding.git</code><br><img src="/images/flutter/005/flutter_015.png" alt="img"><br>開啟專案內的 <code>README.md</code> 可以看到各個開發需要的安裝的工具。<br><img src="/images/flutter/005/flutter_001.png" alt="img">  </p>
+<h2 id="Tools"><a href="#Tools" class="headerlink" title="Tools"></a>Tools</h2><p>You will need developer tools for your platform:  </p>
+<ul>
+<li><p>Linux: A recent version of GCC  </p>
+</li>
+<li><p>macOS: The current version of Xcode  </p>
+</li>
+<li><p>Windows: Visual Studio 2017 or 2019, including the “Desktop development with C++” workload.  </p>
+</li>
+</ul>
+<p>因為筆者是在 Windows 上所以需要安裝 Visual Studio 2017 以上的版本，特別要注意的是需要安裝 **使用 C++ 的桌面開發(Desktop development with C++)**。<br><img src="/images/flutter/005/flutter_002.png" alt="img">  </p>
+<blockquote>
+<p>若未安裝 **使用 C++ 的桌面開發(Desktop development with C++)**，執行時會出現找不到 vcvars64.bat 的錯誤。<br><img src="/images/flutter/005/flutter_003.png" alt="img">  </p>
+</blockquote>
+<h2 id="Flutter-SDK"><a href="#Flutter-SDK" class="headerlink" title="Flutter SDK"></a>Flutter SDK</h2><p>接下來我們開啟專案內的範例程式 <code>flutter-desktop-embedding\example\</code>，從 <code>pubspec.yaml</code> 內可以看到執行環境需要 Flutter SDK 1.5.9-pre.270 以上版本。<br><img src="/images/flutter/005/flutter_006.png" alt="img">  </p>
+<blockquote>
+<p>如果沒有修改，在下載 packages 時也會提醒。<br><img src="/images/flutter/005/flutter_009.png" alt="img">  </p>
+</blockquote>
+<p>如果版本太低可透過指令 <code>flutter upgrade</code> 來升級 SDK 版本，透過 <code>flutter --version</code> 可以查看目前的版本資訊，筆者目前版本為 <strong>1.6.1-pre.41</strong>。<br><img src="/images/flutter/005/flutter_011.png" alt="img"><br><img src="/images/flutter/005/flutter_010.png" alt="img">  </p>
+<h2 id="環境變數-ENABLE-FLUTTER-DESKTOP"><a href="#環境變數-ENABLE-FLUTTER-DESKTOP" class="headerlink" title="環境變數 ENABLE_FLUTTER_DESKTOP"></a>環境變數 ENABLE_FLUTTER_DESKTOP</h2><p>開啟範例程式的 README.md(<code>flutter-desktop-embedding\example\README.md</code>) 可以知道還需要新增一個環境變數 <code>ENABLE_FLUTTER_DESKTOP</code>，並將值設為 <code>true</code>。<br>{% codeblock README.md lang:md %}</p>
+<h3 id="Enable-Desktop-Support"><a href="#Enable-Desktop-Support" class="headerlink" title="Enable Desktop Support"></a>Enable Desktop Support</h3><p>The desktop support in the <code>flutter</code> tool is still highly experimental, and<br>must be enabled with an environment variable. Run the command below in the<br>terminal/console you will be using to build and run the example.</p>
+<p>On macOS or Linux:</p>
+<pre><code>export ENABLE_FLUTTER_DESKTOP=true
+</code></pre>
+<p>On Windows:</p>
+<ul>
+<li><p>PowerShell:</p>
+<pre><code>$env:ENABLE_FLUTTER_DESKTOP=&quot;true&quot;
+</code></pre>
+</li>
+<li><p>CMD:</p>
+<pre><code>set ENABLE_FLUTTER_DESKTOP=true
+</code></pre>
+<p>{% endcodeblock %}<br><img src="/images/flutter/005/flutter_004.png" alt="img"><br>透過指令 <code>flutter devices</code>，可以驗證是否連結成功。<br><img src="/images/flutter/005/flutter_005.png" alt="img">  </p>
+</li>
+</ul>
+<h1 id="執行"><a href="#執行" class="headerlink" title="執行"></a>執行</h1><p>接下來透過開啟終端機並切換到範例程式的路徑 <code>flutter-desktop-embedding\example</code>，最後透過指令 <code>flutter run</code> 來執行，效果如下：<br><img src="/images/flutter/005/flutter_008.gif" alt="img"><br>開啟 <code>main.dart</code> 可以看到其實與原本我們自己建立的專案幾乎一樣，比較明顯的是在呼叫 <code>runApp</code> 之前特別將執行的環境設為 <code>fuchsia</code>。<br>{% codeblock main.dart lang:dart %}<br>void main() {<br>  // See <a href="https://github.com/flutter/flutter/wiki/Desktop-shells#target-platform-override">https://github.com/flutter/flutter/wiki/Desktop-shells#target-platform-override</a><br>  debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;</p>
+<p>  runApp(new MyApp());<br>}<br>{% endcodeblock %}</p>
+<p>這主要是因為目前 <strong>TargetPlatform</strong> 只有 <code>android</code>、<code>fuchsia</code>、<code>iOS</code> 3種，目前桌面系統均無法識別，為了避免發生錯誤，所以暫時設定為 <code>fuchsia</code>，這樣也可避免將 Package 與 Android 或 iOS 相關的部分一起打包進來。<br><img src="/images/flutter/005/flutter_007.png" alt="img">  </p>
+<h2 id="範例二"><a href="#範例二" class="headerlink" title="範例二"></a>範例二</h2><p>與之前測試 <strong>Flutter for Web</strong> 時一樣，我們套用上一篇文章 <a href="/flutter/flutter_005/">Flutter 當我們黏在一起：Provider</a> 的範例。<br>我們用開發工具開啟範例專案，筆者是用 Visual Studio Code，並在 <code>pubspec.yaml</code> 內加入 <code>provider</code> 這個 package，儲存後透過 <code>flutter package get</code> 來下載(VS Code 儲存 <code>pubspec.yaml</code> 時會自動執行指令)。<br><img src="/images/flutter/005/flutter_012.png" alt="img"><br>接著將 <code>rx.dart</code> 複製到 <code>lib</code> 資料夾下。<br><img src="/images/flutter/005/flutter_013.png" alt="img"><br>最後將 <code>main.dart</code> 內 <strong>MaterialApp</strong> 的 <code>home</code> 改為 <strong>RxPage</strong>。<br><img src="/images/flutter/005/flutter_014.png" alt="img"><br>在透過指令 <code>flutter run</code> 重新執行，可以看到操作效果與 App 以及 Web 一樣。<br><img src="/images/flutter/005/flutter_015.gif" alt="img"><br>完整程式碼如下：<br>{% codeblock main.dart lang:dart %}<br>import ‘dart:io’ show Platform;</p>
+<p>import ‘package:flutter/foundation.dart’ show debugDefaultTargetPlatformOverride;<br>import ‘package:flutter/material.dart’;<br>import ‘package:provider/provider.dart’;<br>import ‘package:example_flutter/rx.dart’;</p>
+<p>final controller = StreamController<bool>();</p>
+<p>void main() {<br>  // See <a href="https://github.com/flutter/flutter/wiki/Desktop-shells#target-platform-override">https://github.com/flutter/flutter/wiki/Desktop-shells#target-platform-override</a><br>  debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;</p>
+<p>  runApp(new MyApp());<br>}</p>
+<p>class MyApp extends StatelessWidget {<br>  @override<br>  Widget build(BuildContext context) {<br>    return MaterialApp(<br>      title: ‘Flutter Demo’,<br>      theme: ThemeData(<br>        primarySwatch: Colors.blue,<br>        // See <a href="https://github.com/flutter/flutter/wiki/Desktop-shells#fonts">https://github.com/flutter/flutter/wiki/Desktop-shells#fonts</a><br>        fontFamily: ‘Roboto’,<br>      ),<br>      // home: MyHomePage(title: ‘Flutter Demo Home Page’),<br>      home: StreamProvider.value(<br>        initialData: false,<br>        stream: controller.stream,<br>        child: RxPage(),<br>      ),<br>    );<br>  }<br>}</p>
+<p>class RxPage extends StatefulWidget {<br>  @override<br>  _RxPageState createState() =&gt; _RxPageState();<br>}</p>
+<p>class _RxPageState extends State<RxPage> {</p>
+<p>  @override<br>  Widget build(BuildContext context) {<br>    List<Widget> list = <Widget>[];<br>    bool isLogin = Provider.of<bool>(context);<br>    if (isLogin) {<br>      list.add(UserAccountsDrawerHeader(<br>        accountEmail: Text(“<a href="mailto:&#106;&#111;&#110;&#x6e;&#x79;&#x68;&#117;&#x61;&#x6e;&#103;&#64;&#111;&#117;&#116;&#x6c;&#x6f;&#111;&#x6a;&#46;&#x63;&#111;&#109;">&#106;&#111;&#110;&#x6e;&#x79;&#x68;&#117;&#x61;&#x6e;&#103;&#64;&#111;&#117;&#116;&#x6c;&#x6f;&#111;&#x6a;&#46;&#x63;&#111;&#109;</a>“),<br>        accountName: Text(“Jonny”),<br>        currentAccountPicture: CircleAvatar(<br>          child: Text(“J”),<br>        ),<br>      ));<br>    } else {<br>      list.add(DrawerHeader(<br>        decoration: BoxDecoration(<br>          color: Colors.orange,<br>        ),<br>        child: Text(“Guest”),<br>      ));<br>    }<br>    list.add(ListTile(<br>      title: Text(isLogin ? “登出” : “登入”),<br>      trailing: Icon(Icons.exit_to_app),<br>      onTap: () {<br>        controller.add(!isLogin);<br>      },<br>    ));</p>
+<pre><code>return Scaffold(
+  appBar: AppBar(
+    title: Text(&#39;RxDart&#39;),
+  ),
+  drawer: Drawer(
+    child: ListView(
+      children: list,
+    ),
+  ),
+  body: Page1Page(),
+);
+</code></pre>
+<p>  }<br>}</p>
+<p>class Page1Page extends StatefulWidget {<br>  @override<br>  _Page1PageState createState() =&gt; _Page1PageState();<br>}</p>
+<p>class _Page1PageState extends State<Page1Page> {</p>
+<p>  @override<br>  Widget build(BuildContext context) {<br>    bool isLogin = Provider.of<bool>(context);<br>    return Scaffold(<br>      body: Container(<br>        color: isLogin ? Colors.green : Colors.grey,<br>        alignment: Alignment.center,<br>        child: MaterialButton(<br>          child: Text(isLogin ? “登出” : “登入”),<br>          onPressed: () {<br>            controller.add(!isLogin);<br>          },<br>        ),<br>      ),<br>    );<br>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>比起 Flutter for Web 的進度似乎還有點落後，但是我們可以看到 Flutter 移植到其他平台時修改幅度並不大，可以看的出來 Flutter 團隊不只是想讓 Flutter 只是可以在各種平台上執行而已，減少重工降低維護成本在實務應用上更加重要，這不論是對於公司還是個人來說應該都是很大的導入誘因。  </p>

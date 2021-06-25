@@ -1,0 +1,245 @@
+<hr>
+<p>title: Angular 單向繫結<br>date: 2017-09-13 10:00<br>categories: Training<br>keywords:</p>
+<ul>
+<li>Angular</li>
+<li>Binding</li>
+<li>interpolation</li>
+<li>Property Binding</li>
+<li>Directive<br>tags:</li>
+<li>Angular</li>
+<li>Binding</li>
+</ul>
+<hr>
+<h1 id="單向繫結-One-Way-Binding"><a href="#單向繫結-One-Way-Binding" class="headerlink" title="單向繫結(One-Way Binding)"></a>單向繫結(One-Way Binding)</h1><p>我們在 <a href="/angular/training/13_angular_event/">Angular 事件</a> 中演練了 <strong>事件繫結</strong> 的應用，在 <a href="/angular/training/15_angular_directive/">Angular 指令 &amp; 資料繫結</a> 中演練了 <strong>內嵌繫結</strong> 與 <strong>屬性繫結</strong>，這3種資料繫結方式正是 Angular 所提供的單向繫結，其差異如下：  </p>
+<!-- more -->  
+
+<ul>
+<li><p>當後端類別所繫結的 <strong>變數(或屬性)</strong> 發生變化時，會自動更新前端樣板的資料。<br><strong>內嵌繫結</strong> (<strong>interpolation</strong>)：在要遷入的地方加入雙大括號。<br><img src="/images/angular/training/binding/angular_binding_01.png" alt="img"><br><strong>屬性繫結</strong> (<strong>Property Binding</strong>)：在要繫結的屬性對象加上中括號。<br><img src="/images/angular/training/binding/angular_binding_02.png" alt="img">  </p>
+</li>
+<li><p>當前端樣板狀態發生變化時，可以主動觸發後端類別的方法(也可以直接嵌入程式邏輯)。<br><strong>事件繫結</strong> (<strong>Event Binding</strong>)：在要繫結的事件對象加上小括號。<br><img src="/images/angular/training/binding/angular_binding_03.png" alt="img">  </p>
+</li>
+</ul>
+<p>接下來我們開始建置行事曆的明細項目，並且活用繫結的特性讓我們可以減少透過程式邏輯來控制介面。  </p>
+<h2 id="TypeScript：預設值"><a href="#TypeScript：預設值" class="headerlink" title="TypeScript：預設值"></a>TypeScript：預設值</h2><p>開啟 <code>src\app\employee\calendar\calendar.component.ts</code>，賦予 <code>getDay</code> 方法參數 <code>addDMonth</code> 預設值 <code>0</code>，透過設定預設值的方式，讓我們在呼叫該方法時可以省略參數，也就是說當呼叫方法時若沒有帶入參數值則 TypeScript 自動帶入預設值。<br><img src="/images/angular/training/binding/angular_binding_04.png" alt="img">  </p>
+<blockquote>
+<p>後續會逐漸加入 TypeScript 的實用技巧，畢竟先學會 TypeScript，再比較 TypeScript 與 JavaScript 哪個比較好才有意義，這會比光看網路上別人的評論來決定還要準確，因為每個人的認知會都不同。</p>
+</blockquote>
+<h2 id="增加明細的顯示區塊"><a href="#增加明細的顯示區塊" class="headerlink" title="增加明細的顯示區塊"></a>增加明細的顯示區塊</h2><p>這便再次利用 Angular Flex-Layout 來幫我們切版，開啟 <code>src\app\employee\calendar\calendar.component.html</code> 外層加入 <code>div</code> tag 來分割，預設是水平排列(<code>fxLayout=&quot;row&quot;</code>)，但是考慮到手機尺寸，我們在加上 <code>fxLayout.xs=&quot;column&quot;，讓手機尺寸可以改為垂直排列。   行事曆的區塊在水平排列時會占用 70% (</code>fxFlex=”70”<code>)，而在垂直排列時則會依內容大小填入，因為 </code>fxLayout<code> 預設模式是填滿(</code>stretch`)，所以行事曆就會填滿整個寬度。  </p>
+<p>{% codeblock calendar.component.html lang:html %}</p>
+<div fxLayout="row" fxLayout.xs="column">
+  <div fxFlex="70" fxFlex.xs>
+    <md-card>
+      ...
+    </md-card>
+  </div>
+  <div fxFlex>
+    <md-card>
+      <md-card-content>
+        <h1>{ {selectedDay} }</h1>
+        <md-divider></md-divider>
+
+<pre><code>  &lt;/md-card-content&gt;
+&lt;/md-card&gt;
+</code></pre>
+  </div>
+</div>
+
+<p>{% endcodeblock %}</p>
+<p>用瀏覽器檢視可以看到桌機與手機的差異。<br><img src="/images/angular/training/binding/angular_binding_05.png" alt="img"><br><img src="/images/angular/training/binding/angular_binding_06.png" alt="img">  </p>
+<h2 id="通道-Pipe"><a href="#通道-Pipe" class="headerlink" title="通道 (Pipe)"></a>通道 (Pipe)</h2><p>Angular 提供許多 <strong>通道</strong>(<strong>Pipe</strong>) 讓我們可以對 <strong>內嵌繫結</strong> 的資料再進一步的轉換，很顯然明細區塊的 <code>selectedDay</code> 所顯示的結果並不是我們想要的，因此這邊我們利用 <a href="https://angular.io/api/common/DatePipe">DatePipe</a> 來將日期格式化成 <code>年/月/日</code>。</p>
+<p>{% codeblock calendar.component.html lang:html %}</p>
+<div fxLayout="row" fxLayout.xs="column">
+  ...
+  <div fxFlex>
+    <md-card>
+      <md-card-content>
+        <h1>{ {selectedDay | date:'yyyy/MM/dd'} }</h1>
+        <md-divider></md-divider>
+
+<pre><code>  &lt;/md-card-content&gt;
+&lt;/md-card&gt;
+</code></pre>
+  </div>
+</div>
+
+<p>{% endcodeblock %}</p>
+<p><img src="/images/angular/training/binding/angular_binding_07.png" alt="img">  </p>
+<blockquote>
+<p>Angular 目前提供的通道可以查詢 <a href="https://angular.io/api?type=pipe">API 文件</a><br><img src="/images/angular/training/binding/angular_binding_08.png" alt="img"><br>如果功能不敷使用其實我們也可以自己撰寫 Pipe。</p>
+</blockquote>
+<h2 id="日期選取效果"><a href="#日期選取效果" class="headerlink" title="日期選取效果"></a>日期選取效果</h2><p>接下來我們在行事曆樣板上的日期 元件(<code>md-grid-tile</code>) 加入點擊(<code>click</code>)的事件，並透過<strong>事件繫結</strong>來繫結到元件類別的 <code>selectdDay(item)</code> 方法。<br>接著在 <code>md-grid-tile</code>裡面再加上一個水藍色的 <code>div</code> 外框，並透過 *<strong>ngIf</strong> 指令來依照 <code>item</code> 的 <code>isSelected</code> 屬性決定是否顯示，接下來只要將選取到的日期所屬 <code>item</code> 的 <code>isSelected</code> 屬性改成 <code>true</code>，其餘改成 <code>false</code> 就可以呈現選取效果。<br>編輯 <code>calendar.component.html</code>。</p>
+<p>{% codeblock calendar.component.html lang:html %}</p>
+<div fxLayout="row" fxLayout.xs="column">
+  <div fxFlex="70" fxFlex.xs>
+    <md-card>
+      <md-card-header>
+        <md-card-title>行事曆</md-card-title>
+        <md-card-subtitle>
+          <h1>{ {selectedMonth} }</h1>
+        </md-card-subtitle>
+      </md-card-header>
+      <md-card-content>
+        <md-grid-list cols="7" rowHeight="68px">
+          <md-grid-tile *ngFor="let header of dayHeaders; let i = index" [ngStyle]="{'color': dayColors[i]}">
+            <h3>{ {header} }</h3>
+          </md-grid-tile>
+          <md-grid-tile [colspan]="lastMonth_colspan" *ngIf="lastMonth_colspan"></md-grid-tile>
+          <md-grid-tile *ngFor="let item of days"
+            [ngStyle]="{'color': dayColors[item.week]}"
+            class="day"
+            (click)="selectdDay(item)">
+            <div fxFill *ngIf="item.isSelected" class="selected">
+            </div>
+            <span class="text">{ {item.day} }</span>
+          </md-grid-tile>
+        </md-grid-list>
+      </md-card-content>
+      <md-card-actions>
+        <button md-button (click)="getDay(-1)">上個月</button>
+        <button md-button (click)="getToday()">本月</button>
+        <button md-button (click)="getDay(1)">下個月</button>
+      </md-card-actions>
+    </md-card>
+  </div>
+  <div fxFlex>
+    <md-card>
+      <md-card-content>
+        <h1>{ {selectedDay | date:'yyyy/MM/dd'} }</h1>
+        <md-divider></md-divider>
+
+<pre><code>  &lt;/md-card-content&gt;
+&lt;/md-card&gt;
+</code></pre>
+  </div>
+</div>
+
+<p>{% endcodeblock %}</p>
+<p>編輯 <code>calendar.component.scss</code>。</p>
+<p>{% codeblock calendar.component.scss lang:scss %}<br>.day {<br>  border: solid 1px DimGray;<br>  .text {<br>    position: absolute;<br>    top: 4px;<br>    right: 8px;<br>  }<br>  .selected {<br>    position: absolute;<br>    top: 0px;<br>    left: 0px;<br>    box-sizing: border-box;<br>    border: dashed 4px skyblue;<br>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<p>編輯 <code>calendar.component.ts</code>。</p>
+<p>{% codeblock calendar.component.ts lang:ts %}<br>import { Component, OnInit } from ‘@angular/core’;</p>
+<p>@Component({<br>  selector: ‘emp-calendar’,<br>  templateUrl: ‘./calendar.component.html’,<br>  styleUrls: [‘./calendar.component.scss’]<br>})<br>export class CalendarComponent implements OnInit {<br>  selectedDay: Date;<br>  selectedMonth = ‘’;<br>  dayHeaders = [‘日’, ‘一’, ‘二’, ‘三’, ‘四’, ‘五’, ‘六’];<br>  dayColors = [‘red’, ‘white’, ‘white’, ‘white’, ‘white’, ‘white’, ‘green’];<br>  days = [];<br>  lastMonth_colspan = 0;<br>  selectedItem: any;<br>  constructor() { }</p>
+<p>  ngOnInit() {<br>    this.getToday();<br>  }</p>
+<p>  getToday() {<br>    this.selectedDay = new Date();<br>    this.getDay();<br>  }</p>
+<p>  getDay(addDMonth: number = 0) {<br>    let year = this.selectedDay.getFullYear();<br>    let month = this.selectedDay.getMonth() + addDMonth;<br>    const dt = new Date(year, month, 1);<br>    year = dt.getFullYear();<br>    month = dt.getMonth();</p>
+<pre><code>const maxDay = new Date(year, month + 1, 0).getDate();
+const newDay = this.selectedDay.getDate();
+this.selectedDay = new Date(year, month, (newDay &lt; maxDay) ? newDay : maxDay);
+const dayNumber = this.selectedDay.getDate();
+this.lastMonth_colspan = new Date(year, month, 1).getDay();
+const _days = [];
+for (let day = 1; day &lt;= 31; day++) {
+  const time = new Date(year, month, day);
+  if (time.getMonth() &gt; month) {
+    break;
+  }
+  const isSelected = time.getDate() === dayNumber;
+  const d: any = {
+    isSelected: isSelected,
+    datetime: time,
+    day: day,
+    week: time.getDay()
+  };
+  if (isSelected) {
+    this.selectedItem = d;
+  }
+  _days.push(d);
+}
+this.days = [..._days];
+month++;
+// month為13時表示隔年的1月。
+if (month === 13) {
+  month = 1;
+  year++;
+}
+this.selectedMonth = `${year} 年 ${month} 月`;
+</code></pre>
+<p>  }</p>
+<p>  selectdDay(item: any) {<br>    if (this.selectedItem) {<br>      this.selectedItem.isSelected = false;<br>    }<br>    item.isSelected = true;<br>    this.selectedItem = item;<br>    this.selectedDay = item.datetime;<br>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<p>查看瀏覽器，選取效果已經出現。<br><img src="/images/angular/training/binding/angular_binding_09.gif" alt="img">  </p>
+<h2 id="模擬紀錄"><a href="#模擬紀錄" class="headerlink" title="模擬紀錄"></a>模擬紀錄</h2><p>接著我們在 <code>calendar.component.ts</code> 內建立一個讀取紀錄的方法-<code>getNote()</code>，並透過亂數函式來產生一些紀錄。  </p>
+<p>{% codeblock calendar.component.ts lang:ts %}<br>import { Component, OnInit } from ‘@angular/core’;</p>
+<p>@Component({<br>  selector: ‘emp-calendar’,<br>  templateUrl: ‘./calendar.component.html’,<br>  styleUrls: [‘./calendar.component.scss’]<br>})<br>export class CalendarComponent implements OnInit {<br>  …<br>  getDay(addDMonth: number = 0) {<br>    let year = this.selectedDay.getFullYear();<br>    …<br>    this.selectedMonth = <code>${year} 年 ${month} 月</code>;<br>    this.getNote();<br>  }</p>
+<p>  selectdDay(item: any) {<br>    …<br>  }</p>
+<p>  getNote() {<br>    if (this.days.length &gt; 0) {<br>      const d = Math.floor(Math.random() * 28);<br>      this.days.forEach(item =&gt; {<br>        const notes = [];<br>        if (item.week !== 0 &amp;&amp; item.week !== 6) {<br>          if (item.week === 1) {<br>            notes.push(‘8:00 每周會議’);<br>          }<br>          let b = Math.random() &gt;= 0.5;<br>          if (b) {<br>            notes.push(‘XXX客戶拜訪’);<br>          }<br>          b = Math.random() &gt;= 0.5;<br>          if (b) {<br>            notes.push(‘專案討論’);<br>          }<br>          if (item.day === d) {<br>            notes.push(‘部門聚餐’);<br>          }<br>        }<br>        item.notes = notes;<br>      });</p>
+<pre><code>}
+</code></pre>
+<p>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<p>編輯 <code>calendar.component.html</code>。</p>
+<p>{% codeblock calendar.component.html lang:html %}</p>
+<div fxLayout="row" fxLayout.xs="column">
+  <div fxFlex="70" fxFlex.xs>
+    ...
+  </div>
+  <div fxFlex>
+    <md-card>
+      <md-card-content>
+        <h1>{ {selectedDay | date:'yyyy/MM/dd'} }</h1>
+        <md-divider></md-divider>
+        <md-list>
+          <md-list-item *ngFor="let item of selectedItem.notes; let i = index">
+            {{i+1}}. {{item}}
+          </md-list-item>
+        </md-list>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>
+
+<p>{% endcodeblock %}</p>
+<p>查看瀏覽器，選取日期時右邊已經會出現紀錄。<br><img src="/images/angular/training/binding/angular_binding_10.gif" alt="img">  </p>
+<h2 id="Directive：-ngSwitch"><a href="#Directive：-ngSwitch" class="headerlink" title="Directive：[ngSwitch]"></a>Directive：[ngSwitch]</h2><p>之前我們使用了 <code>*ngFor</code>、<code>*ngIf</code> 指令，接下來我們練習另一個指令-<code>[ngSwitch]</code>，使用上跟程式語言的 switch 語法雷同，配合 <code>*ngSwitchCase</code> 與 <code>*ngSwitchDefault</code> 與條件式比對，將符合的值所對應的樣板顯示出來，比較特別的是 <strong>ngSwitch 是用中括號</strong>(<code>[ ]</code>)<strong>包起來</strong>，而不是在前面加上星號(<code>*</code>)。  </p>
+<p>首先我們修改 <code>calendar.component.ts</code> 內的 <strong>紀錄</strong>(<code>notes</code>) 的資料結構，將字串陣列改成物件陣列，原本字串的內容移至物件內的 <code>subject</code> 屬性，並再增加 <code>type</code> 屬性當作分類用途。  </p>
+<p>{% codeblock calendar.component.ts lang:ts %}<br>import { Component, OnInit } from ‘@angular/core’;</p>
+<p>@Component({<br>  selector: ‘emp-calendar’,<br>  templateUrl: ‘./calendar.component.html’,<br>  styleUrls: [‘./calendar.component.scss’]<br>})<br>export class CalendarComponent implements OnInit {<br>  …<br>  getNote() {<br>    if (this.days.length &gt; 0) {<br>      const d = Math.floor(Math.random() * 28);<br>      this.days.forEach(item =&gt; {<br>        const notes = [];<br>        if (item.week !== 0 &amp;&amp; item.week !== 6) {<br>          if (item.week === 1) {<br>            notes.push({ type: 1, subject: ‘8:00 每周會議’ });<br>          }<br>          let b = Math.random() &gt;= 0.5;<br>          if (b) {<br>            notes.push({ type: 2, subject: ‘XXX客戶拜訪’ });<br>          }<br>          b = Math.random() &gt;= 0.5;<br>          if (b) {<br>            notes.push({ type: 3, subject: ‘專案討論’ });<br>          }<br>          if (item.day === d) {<br>            notes.push({ type: 4, subject: ‘部門聚餐’ });<br>          }<br>        }<br>        item.notes = notes;<br>      });</p>
+<pre><code>}
+</code></pre>
+<p>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<p>接著編輯 <code>calendar.component.html</code>，透過 <code>[ngSwitch]</code> 指令來依紀錄分類顯示對應的圖示。</p>
+<p>{% codeblock calendar.component.html lang:html %}</p>
+<div fxLayout="row" fxLayout.xs="column">
+  <div fxFlex="70" fxFlex.xs>
+    <md-card>
+      ...
+      <md-card-content>
+        <md-grid-list cols="7" rowHeight="68px">
+          <md-grid-tile *ngFor="let header of dayHeaders; let i = index" [ngStyle]="{'color': dayColors[i]}">
+            <h3>{ {header} }</h3>
+          </md-grid-tile>
+          <md-grid-tile [colspan]="lastMonth_colspan" *ngIf="lastMonth_colspan"></md-grid-tile>
+          <md-grid-tile *ngFor="let item of days" [ngStyle]="{'color': dayColors[item.week]}" class="day" (click)="selectdDay(item)">
+            <div fxFill *ngIf="item.isSelected" class="selected"></div>
+            <span class="text">{ {item.day} }</span>
+            <div fxFill fxLayout="row" fxLayoutAlign="start end" class="note">
+                <ng-container *ngFor="let note of item.notes">
+                    <ng-container [ngSwitch]="note.type">
+                        <md-icon *ngSwitchCase="1">assessment</md-icon>
+                        <md-icon *ngSwitchCase="2">directions_run</md-icon>
+                        <md-icon *ngSwitchCase="3">forum</md-icon>
+                        <md-icon *ngSwitchCase="4">local_dining</md-icon>
+                        <md-icon *ngSwitchDefault="">alarm</md-icon>
+                    </ng-container>
+                </ng-container>
+            </div>
+          </md-grid-tile>
+        </md-grid-list>
+      </md-card-content>
+      ...
+    </md-card>
+  </div>
+  ...
+</div>
+
+<p>{% endcodeblock %}</p>
+<blockquote>
+<p><code>ng-container</code> 是一個比較特別的 tag，因為在執行時期它不會出現在樣板上，所以很適合拿來拆解過長的指令，例如我們需要在包含 <code>*ngFor</code> 指令的樣板元素內再加上 <code>*ngIf</code> 指令，以往方式可能將 <code>*ngFor</code> 往上拉一層並透過 <code>div</code> tag 包覆，但是會造成每個元素都多包一個 <code>div</code>，這不只會增加運算成本，<code>div</code> 還有機會被其他 CSS 樣式影響而造成版面效果與預期不同，這時如改用 <code>ng-container</code> 來替換，因為不會輸出成 tag 所以不會增加運算成本也不會受到 CSS 樣式影響。<br>檢視範例的內容可以發現最終只剩下 <code>md-icon</code> tag，綠色區塊是 <code>[ngSwitch]</code> 產生的樣板，但是最後輸出時會被標示成註解。<br><img src="/images/angular/training/binding/angular_binding_11.png" alt="img">  </p>
+</blockquote>
+<p>編輯 <code>calendar.component.scss</code>，增加 <strong>note</strong> 樣式。</p>
+<p>{% codeblock calendar.component.scss lang:scss %}<br>.day {<br>  border: solid 1px DimGray;<br>  .text {<br>    position: absolute;<br>    top: 4px;<br>    right: 8px;<br>  }<br>  .selected {<br>    position: absolute;<br>    top: 0px;<br>    left: 0px;<br>    box-sizing: border-box;<br>    border: dashed 4px skyblue;<br>  }<br>  .note {<br>    position: absolute;<br>    bottom: 4px;<br>    left: 4px;<br>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<p>查看瀏覽器，日期下方多了圖示。<br><img src="/images/angular/training/binding/angular_binding_12.gif" alt="img">  </p>
+<p>{% img /images/download.png 36 %}<a href="/uploads/first-app_2017-09-13.zip"><strong>first-app_2017-09-13.zip</strong></a>  </p>

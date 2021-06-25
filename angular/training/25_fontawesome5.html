@@ -1,0 +1,112 @@
+<hr>
+<p>title: 土法煉鋼的升級之路：Font Awesome 5<br>date: 2018-04-13<br>categories: Training<br>keywords:</p>
+<ul>
+<li>Font Awesome</li>
+<li>Angular<br>tags:</li>
+<li>Font Awesome</li>
+</ul>
+<hr>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="https://fontawesome.com/">Font Awesome</a> 可以說是最熱門的圖示之一，它除了開源外還提供了免費版本，最新的 Font Awesome 5 付費版本就有 1718 個圖示，免費版也有 991 個圖示，因此許多網頁版型都找的到它的蹤跡。<br><img src="/images/angular/training/fontawesome/fontawesome_01.png" alt="img">  </p>
+<blockquote>
+<p>由 Google 推出的 <a href="https://material.io/icons/">Material icons</a> 也是不錯的選擇，只是相對圖示較少。  </p>
+</blockquote>
+<!-- more -->  
+
+<h1 id="PrimeNG"><a href="#PrimeNG" class="headerlink" title="PrimeNG"></a>PrimeNG</h1><p><a href="https://www.primefaces.org/primeng/">PrimeNG</a> 是 Angular 上的知名 UI 元件(Component)，我們可以免費使用這些元件，當然您也可以付費購買他們的樣版，非常佛心的它是一次購買終身升級(應該吧)，會隨著 Angular 的更新腳步不斷釋出新版本，目前它的圖示是採用 Font Awesome 4，這是便使用它來測試升級到 Font Awesome 5 的結果。  </p>
+<blockquote>
+<p>有興趣使用 PrimeNG 的人可以先看看 <a href="https://www.youtube.com/watch?v=SkwEBL6U014&feature=youtu.be">Angular 線上讀書會：[無主題E10] PrimeNG</a>。</p>
+</blockquote>
+<p>首先先利用 Angular CLI 建立一個 Angular 專案，指令如下：<br><code>ng new demo-primeng</code><br><img src="/images/angular/training/fontawesome/fontawesome_02.png" alt="img">  </p>
+<p>接著我們參照官網 <a href="https://www.primefaces.org/primeng/#/setup">Get Started</a> 說明來加入 PrimeNG，由說明提示 Angular 4 開始多了動畫模組(BrowserAnimationsModule)來協助我們處理 CSS 動畫效果，如果需要可以加入到專案內。<br><img src="/images/angular/training/fontawesome/fontawesome_03.png" alt="img"><br>開啟 <code>src\app.module.ts</code>，並將 BrowserAnimationsModule 加入到 AppModule 內。<br><img src="/images/angular/training/fontawesome/fontawesome_06.png" alt="img">  </p>
+<blockquote>
+<p>現在的 Angular CLI 在建立專案時便會順便幫我們安裝 <code>@angular/animations</code>(忘記從哪一版開始)，如果專案沒有的話也可以自己透過 <code>npm install @angular/animations --save</code> 指令來安裝。</p>
+</blockquote>
+<p>接著便要求我們安裝 <code>primeng</code>、<code>font-awesome</code>，並載入相關的 CSS 樣式到 <code>.angular-cli.json</code> 內。<br><img src="/images/angular/training/fontawesome/fontawesome_08.png" alt="img"><br>因為我們要使用 Font Awesome 5，所以先安裝 <code>primeng</code>，指令如下：<br><code>npm install --save primeng</code><br><img src="/images/angular/training/fontawesome/fontawesome_04.png" alt="img"><br>接著開啟 <code>.angular-cli.json</code> 將說明頁的 css 路徑複製到 styles 內，由於我們未安裝 Font Awesome，因此便省略該連結。<br><img src="/images/angular/training/fontawesome/fontawesome_07.png" alt="img"><br>我們開起 <a href="https://fontawesome.com/">Font Awesome 首頁</a>下載免費版。<br><img src="/images/angular/training/fontawesome/fontawesome_10.png" alt="img"><br>將壓縮檔內的資料夾 web-fonts-with-css 複製到專案內的 assets，筆者只保留字型與 css，並將資料夾修改為 font-awesome。<br><img src="/images/angular/training/fontawesome/fontawesome_11.png" alt="img"><br>接著在首頁(<code>index.html</code>)加入連結。<br><img src="/images/angular/training/fontawesome/fontawesome_12.png" alt="img">  </p>
+<blockquote>
+<p>由 Font Awesome 官方文件 <a href="https://fontawesome.com/how-to-use/js-component-packages">JS Component Packages</a> 可以知道從第5版開始套件名稱改變了，免費版本安裝指令如下：<br><code>npm install --save @fortawesome/fontawesome-free-webfonts</code><br><img src="/images/angular/training/fontawesome/fontawesome_05.png" alt="img"></p>
+</blockquote>
+<p>開啟 <code>src\assets\font-awesome\fontawesome-all.css</code> 可以看到 <code>.fas</code>、<code>.far</code>、<code>.fal</code>、<code>.fab</code> 剛好對應到4種字型 <code>solid</code>、<code>regular</code>、<code>light</code>、<code>brands</code>(免費版沒有提供 <code>light</code>)，原本的 <code>fa</code> 也被保留下來，所以使用 Font Awesome 5 應該是沒有太大的問題。<br><img src="/images/angular/training/fontawesome/fontawesome_13.png" alt="img">  </p>
+<p>接著我們建立一個 <strong>SharedModule</strong>(<code>src\app\shared-primeng.module.ts</code>) 來存放與管理 PrimeNG 元件，筆者習慣一開始先將所有元件都匯入，最後階段再將沒有用到的元件給註解且來，避免開發過程中因為漏加元件而出錯。<br><img src="/images/angular/training/fontawesome/fontawesome_14.png" alt="img">  </p>
+<blockquote>
+<p>可參考 Angular Material 官方教學 <a href="https://material.angular.io/guide/getting-started">Getting started</a>，或者是 <a href="https://ithelp.ithome.com.tw/articles/10192517">[Angular Material完全攻略] Day 02 - 環境設定 &amp; 安裝 ＆ Hello World</a></p>
+</blockquote>
+<p>再來將 SharedModule 加入到 <strong>AppModule</strong>(<code>src\app\app.module.ts</code>) 內，我們便可以開始使用。<br><img src="/images/angular/training/fontawesome/fontawesome_15.png" alt="img">  </p>
+<h1 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h1><p>我們選擇一個元件說明頁面並將範例複製到專案內來測試，筆者選擇 <strong>InputGroup</strong>，剛好範例也使用到 Font Awesome 圖示。<br><img src="/images/angular/training/fontawesome/fontawesome_16.png" alt="img"><br>將範例複製到 <code>src\app\app.component.html</code> 內。  </p>
+<p>{% codeblock app.component.html lang:html %}</p>
+<h3 class="first">Addons</h3>
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+            <input type="text" pInputText placeholder="Username">
+        </div>
+    </div>
+
+<pre><code>&lt;div class=&quot;ui-g-12 ui-md-4&quot;&gt;
+    &lt;div class=&quot;ui-inputgroup&quot;&gt;
+        &lt;span class=&quot;ui-inputgroup-addon&quot;&gt;$&lt;/span&gt;
+        &lt;input type=&quot;text&quot; pInputText placeholder=&quot;Price&quot;&gt;
+        &lt;span class=&quot;ui-inputgroup-addon&quot;&gt;.00&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;ui-g-12 ui-md-4&quot;&gt;
+    &lt;div class=&quot;ui-inputgroup&quot;&gt;
+        &lt;span class=&quot;ui-inputgroup-addon&quot;&gt;www&lt;/span&gt;
+        &lt;input type=&quot;text&quot; pInputText placeholder=&quot;Website&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<p>{% endcodeblock %}</p>
+<p>我們透過 <code>ng serve</code> 來啟動專案，由瀏覽器觀看圖示也正常顯示，看來一切都沒問題。<br><img src="/images/angular/training/fontawesome/fontawesome_17.png" alt="img">  </p>
+<h2 id="Dialog"><a href="#Dialog" class="headerlink" title="Dialog"></a>Dialog</h2><p>沒問題的話當然就不會浪費這麼多唇舌說這麼多，我們開起 <a href="https://www.primefaces.org/primeng/#/dialog">Dialog 說明頁面</a> 將範例複製到專案內。<br><img src="/images/angular/training/fontawesome/fontawesome_18.png" alt="img"><br>開啟 <code>src\app\app.component.html</code> 並添加 Dialog 元件：</p>
+<p>{% codeblock app.component.html lang:html %}</p>
+<h3 class="first">Addons</h3>
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+            <input type="text" pInputText placeholder="Username">
+        </div>
+    </div>
+
+<pre><code>&lt;div class=&quot;ui-g-12 ui-md-4&quot;&gt;
+    &lt;div class=&quot;ui-inputgroup&quot;&gt;
+        &lt;span class=&quot;ui-inputgroup-addon&quot;&gt;$&lt;/span&gt;
+        &lt;input type=&quot;text&quot; pInputText placeholder=&quot;Price&quot;&gt;
+        &lt;span class=&quot;ui-inputgroup-addon&quot;&gt;.00&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;ui-g-12 ui-md-4&quot;&gt;
+    &lt;div class=&quot;ui-inputgroup&quot;&gt;
+        &lt;span class=&quot;ui-inputgroup-addon&quot;&gt;www&lt;/span&gt;
+        &lt;input type=&quot;text&quot; pInputText placeholder=&quot;Website&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<p>&lt;p-dialog header=”Title” [(visible)]=”display”&gt;<br>    Content<br></p-dialog></p>
+<p>&lt;button type=”text” (click)=”showDialog()” pButton icon=”fa-external-link-square” label=”Show”&gt;</button></p>
+<p>{% endcodeblock %}</p>
+<p>開啟 <code>src\app\app.component.ts</code> 並修改如下：</p>
+<p>{% codeblock app.component.ts lang:ts %}<br>import { Component } from ‘@angular/core’;</p>
+<p>@Component({<br>  selector: ‘app-root’,<br>  templateUrl: ‘./app.component.html’,<br>  styleUrls: [‘./app.component.css’]<br>})<br>export class AppComponent {<br>  display = false;<br>  showDialog() {<br>    this.display = true;<br>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<p>執行 <code>ng serve</code>，並開啟瀏覽器，看起來正常，點選按鈕後會彈出對話是方塊，不過按鈕的圖示(fa-external-link-square)怎麼不見了。<br><img src="/images/angular/training/fontawesome/fontawesome_19.png" alt="img"><br>連到 <a href="https://fontawesome.com/icons?d=gallery&q=external-link-square">Font Awesome 官網</a> 查詢發現 <code>external-link-square</code> 圖示怎麼好像變成付費版才有。<br><img src="/images/angular/training/fontawesome/fontawesome_20.png" alt="img"><br>再搜尋一下官方資料，從 <a href="https://fontawesome.com/how-to-use/upgrading-from-4">Upgrading from Version 4</a> 可以發現原來 Font Awesome 5 仍然保留 Font Awesome 4 的圖示，只是名稱改變了。<br><img src="/images/angular/training/fontawesome/fontawesome_21.png" alt="img"><br>開啟 <code>src\app\app.component.html</code> 並將圖示名稱<code>fa-external-link-square</code> 改成 <code>fa-external-link-square-alt</code>，重新執行後就發現圖示出現了。</p>
+<p>{% codeblock app.component.html lang:html %}<br>…<br>&lt;p-dialog header=”Title” [(visible)]=”display”&gt;<br>    Content<br></p-dialog></p>
+<p>&lt;button type=”text” (click)=”showDialog()” pButton icon=”fa-external-link-square-alt” label=”Show”&gt;</button></p>
+<p>{% endcodeblock %}</p>
+<p><img src="/images/angular/training/fontawesome/fontawesome_22.png" alt="img">  </p>
+<h2 id="Close"><a href="#Close" class="headerlink" title="Close"></a>Close</h2><p>從官方範例來看 Dialog 元件再標題列的右方還提供關閉按鈕，這還是蠻實用的功能，當然我們也可以自己在下方手動加入按鈕。<br><img src="/images/angular/training/fontawesome/fontawesome_23.png" alt="img"><br>從官方文件可以看到我們可以透過 <code>closable</code> 屬性來設定，但是預設值已經是 <code>true</code>，照理說應該會出現才對，難道是預設值變成 <code>false</code> 而文件未更新。<br><img src="/images/angular/training/fontawesome/fontawesome_24.png" alt="img"><br>開啟 <code>src\app\app.component.html</code> 並添加 <code>closable</code> 屬性。</p>
+<p>{% codeblock app.component.html lang:html %}<br>…<br>&lt;p-dialog header=”Title” [(visible)]=”display” [closable]=”true”&gt;<br>    Content<br></p-dialog><br>…<br>{% endcodeblock %}</p>
+<p>開啟網頁發現仍然沒有出現關閉按鈕。<br><img src="/images/angular/training/fontawesome/fontawesome_25.png" alt="img"><br>直接查看官方範例按鈕的內容，可以看到它是採用 <code>fa-close</code> 圖示。<br><img src="/images/angular/training/fontawesome/fontawesome_26.png" alt="img"><br>查看 <a href="https://fontawesome.com/how-to-use/upgrading-from-4">Upgrading from Version 4</a> 可以發現 <code>close</code> 被改成 <code>times</code>，而且既使付費版也沒有同名圖示。<br><img src="/images/angular/training/fontawesome/fontawesome_27.png" alt="img"><br><img src="/images/angular/training/fontawesome/fontawesome_28.png" alt="img"><br>問題來了，Dialog 元件並沒有提供修改圖示功能，難不成要降回 Font Awesome 4，或者同時載入 4、5，亦或修改原始碼。  </p>
+<blockquote>
+<p>官方提供的 <strong>Version 4 Shim (SVG with JavaScript only)</strong> 的升級模式，對於採用圖示字型(web-fonts-with-css)的樣版有可能會出現跑版問題。</p>
+</blockquote>
+<p>其實既然既然 Font Awesome 5 也有涵蓋 Font Awesome 4 的圖示，那我們所缺少的就是相關的 CSS 選擇器設定，我們開起 <code>src\assets\font-awesome\css\fontawesome-all.css</code>，搜尋 <code>fa-times</code> 便可以查出該選擇器。<br><img src="/images/angular/training/fontawesome/fontawesome_29.png" alt="img"><br>接著我們建立一個 <code>fontawesome-support-v4.css</code>，將 <code>fa-times</code> 選擇器複製到檔案內並將名稱改回 Font Awesome 4 的 <code>fa-close</code>。<br><img src="/images/angular/training/fontawesome/fontawesome_30.png" alt="img"><br>接著我們在 <code>index.html</code> 加入連結。<br><img src="/images/angular/training/fontawesome/fontawesome_31.png" alt="img"><br>開啟瀏覽器可以看到關閉按鈕圖示已經出現了。<br><img src="/images/angular/training/fontawesome/fontawesome_32.png" alt="img">  </p>
+<h1 id="修仙之路"><a href="#修仙之路" class="headerlink" title="修仙之路"></a>修仙之路</h1><p>既然結果可行，就索性把剩下的選擇器都給補上。<br><img src="/images/angular/training/fontawesome/fontawesome_33.png" alt="img"><br>接著我們把 <code>src\app\app.component.html</code> 恢復回官方範例。<br><img src="/images/angular/training/fontawesome/fontawesome_34.png" alt="img"><br>開啟瀏覽器可以發現一切正常。<br><img src="/images/angular/training/fontawesome/fontawesome_35.png" alt="img">  </p>
+<p>{% img /images/download.png 36 %}<a href="/uploads/fontawesome-support-v4.css"><strong>fontawesome-support-v4.css</strong></a><br><a href="/uploads/fontawesome-support-v4.min.css"><strong>fontawesome-support-v4.min.css</strong></a> </p>

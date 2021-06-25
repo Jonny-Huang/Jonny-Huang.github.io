@@ -1,103 +1,32 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-tw">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-TW">
+<head>
   <meta charset="UTF-8">
-<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="Angular,NgModule,Module">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
-
-
-
-
-  <meta property="fb:admins" content="fb267234890438499">
-  <meta property="fb:app_id" content="267234890438499">
-
-
-
-<meta name="description" content="模組化在 Angular 模組 我們練習先建立一個模組(NgModule)，然後在上面建立元件(Component)，今天我們試著反過來將既有的元件包覆到一個模組內。   重整先將用不到的元件及模組刪除：PagexComponent、OptxComponent、OperationModule，直接刪除檔案，再將把註冊相關元件的模組(src\app\app.module.ts、src\app\app">
-<meta name="keywords" content="Angular,NgModule,Module">
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="模組化在 Angular 模組 我們練習先建立一個模組(NgModule)，然後在上面建立元件(Component)，今天我們試著反過來將既有的元件包覆到一個模組內。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular 模組化">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/10_angular_module2/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="模組化在 Angular 模組 我們練習先建立一個模組(NgModule)，然後在上面建立元件(Component)，今天我們試著反過來將既有的元件包覆到一個模組內。   重整先將用不到的元件及模組刪除：PagexComponent、OptxComponent、OperationModule，直接刪除檔案，再將把註冊相關元件的模組(src\app\app.module.ts、src\app\app">
-<meta property="og:locale" content="zh-tw">
+<meta property="og:description" content="模組化在 Angular 模組 我們練習先建立一個模組(NgModule)，然後在上面建立元件(Component)，今天我們試著反過來將既有的元件包覆到一個模組內。">
+<meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/module/angular_module_13.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/module/angular_module_14.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/router/angular_router_12.gif">
@@ -105,885 +34,308 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/module/angular_module_16.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/router/angular_router_10.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/download.png">
-<meta property="og:updated_time" content="2017-09-05T06:53:39.000Z">
+<meta property="article:published_time" content="2017-09-04T02:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-24T01:06:40.698Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="Angular">
+<meta property="article:tag" content="NgModule">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Angular 模組化">
-<meta name="twitter:description" content="模組化在 Angular 模組 我們練習先建立一個模組(NgModule)，然後在上面建立元件(Component)，今天我們試著反過來將既有的元件包覆到一個模組內。   重整先將用不到的元件及模組刪除：PagexComponent、OptxComponent、OperationModule，直接刪除檔案，再將把註冊相關元件的模組(src\app\app.module.ts、src\app\app">
 <meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/module/angular_module_13.png">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Jonny'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<link rel="canonical" href="https://jonny-huang.github.io/angular/training/10_angular_module2/">
 
 
 
-  <link rel="canonical" href="https://jonny-huang.github.io/angular/training/10_angular_module2/">
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;angular&#x2F;training&#x2F;10_angular_module2&#x2F;&quot;,&quot;path&quot;:&quot;angular&#x2F;training&#x2F;10_angular_module2&#x2F;&quot;,&quot;title&quot;:&quot;Angular 模組化&quot;}</script>
 
-
-
-
-
-  <title>Angular 模組化 | Jonny Huang 的學習筆記</title>
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>Angular 模組化 | Jonny Huang 的學習筆記</title>
   
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '267234890438499',
-      xfbml      : true,
-      version    : 'v2.6'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/zh_tw/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-tw">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Jonny Huang 的學習筆記</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <h1 class="site-subtitle" itemprop="description">Angular、Flutter</h1>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首頁
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            目錄
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-flutter">
-          <a href="/flutter/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Flutter
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-angular">
-          <a href="/angular/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Angular
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-quotes">
-          <a href="/quotes/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br>
-            
-            欣雨露
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa-commenting fa-fw"></i>欣雨露</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E7%B5%84%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">模組化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E6%95%B4"><span class="nav-number">1.1.</span> <span class="nav-text">重整</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E6%A8%A1%E7%B5%84"><span class="nav-number">1.2.</span> <span class="nav-text">建立模組</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
     
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/10_angular_module2/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Jonny Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Jonny Huang 的學習筆記">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Angular 模組化
+        </h1>
 
-        
-        
-          <h2 class="post-title" itemprop="name headline">Angular 模組化</h2>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/06/24 09:06:40" itemprop="dateModified" datetime="2021-06-24T09:06:40+08:00">2021/06/24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Training/" itemprop="url" rel="index"><span itemprop="name">Training</span></a>
+        </span>
+    </span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新於</span>
-              
-              <time title="更新於" itemprop="dateModified" datetime="2017-09-05T14:53:39+08:00">
-                2017/09/05
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Training/" itemprop="url" rel="index">
-                    <span itemprop="name">Training</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
+
     
-
+    
+    
     <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         <h1 id="模組化"><a href="#模組化" class="headerlink" title="模組化"></a>模組化</h1><p>在 <a href="/angular/training/06_angular_module/">Angular 模組</a> 我們練習先建立一個模組(NgModule)，然後在上面建立元件(Component)，今天我們試著反過來將既有的元件包覆到一個模組內。  </p>
-<h2 id="重整"><a href="#重整" class="headerlink" title="重整"></a>重整</h2><p>先將用不到的元件及模組刪除：Page<strong>x</strong>Component、Opt<strong>x</strong>Component、OperationModule，直接刪除檔案，再將把註冊相關元件的模組(<code>src\app\app.module.ts</code>、<code>src\app\app-routing.module.ts</code>)程式碼給移除。<br><img src="/images/angular/training/module/angular_module_13.png" alt="">  </p>
-<pre><code>import { BrowserAnimationsModule } from &#39;@angular&#x2F;platform-browser&#x2F;animations&#39;;
-import { BrowserModule } from &#39;@angular&#x2F;platform-browser&#39;;
-import { NgModule } from &#39;@angular&#x2F;core&#39;;
+<span id="more"></span>  
 
-import { AppRoutingModule } from &#39;.&#x2F;app-routing.module&#39;;
-import { AppComponent } from &#39;.&#x2F;app.component&#39;;
-import { Page404Component } from &#39;.&#x2F;page404&#x2F;page404.component&#39;;
-import { CustomMaterialModule } from &#39;.&#x2F;custom-material.module&#39;;
-import { HomeModule } from &#39;.&#x2F;home&#x2F;home.module&#39;;
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    Page404Component
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    CustomMaterialModule,
-    HomeModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-</code></pre>
-<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
-import { Routes, RouterModule } from &#39;@angular&#x2F;router&#39;;
-import { Page404Component } from &#39;.&#x2F;page404&#x2F;page404.component&#39;;
-
-const routes: Routes = [
-  { path: &#39;&#39;, redirectTo: &#39;home&#39;, pathMatch: &#39;full&#39; },
-  { path: &#39;404&#39;, component: Page404Component }
-];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
-</code></pre>
+<h2 id="重整"><a href="#重整" class="headerlink" title="重整"></a>重整</h2><p>先將用不到的元件及模組刪除：Page<strong>x</strong>Component、Opt<strong>x</strong>Component、OperationModule，直接刪除檔案，再將把註冊相關元件的模組(<code>src\app\app.module.ts</code>、<code>src\app\app-routing.module.ts</code>)程式碼給移除。<br><img src="/images/angular/training/module/angular_module_13.png" alt="img">  </p>
+<figure class="highlight ts"><figcaption><span>app.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; BrowserAnimationsModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/platform-browser/animations&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/platform-browser&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; AppRoutingModule &#125; <span class="keyword">from</span> <span class="string">&#x27;./app-routing.module&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AppComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./app.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Page404Component &#125; <span class="keyword">from</span> <span class="string">&#x27;./page404/page404.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CustomMaterialModule &#125; <span class="keyword">from</span> <span class="string">&#x27;./custom-material.module&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HomeModule &#125; <span class="keyword">from</span> <span class="string">&#x27;./home/home.module&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">declarations</span>: [</span><br><span class="line">    AppComponent,</span><br><span class="line">    Page404Component</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">imports</span>: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    AppRoutingModule,</span><br><span class="line">    BrowserAnimationsModule,</span><br><span class="line">    CustomMaterialModule,</span><br><span class="line">    HomeModule</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">providers</span>: [],</span><br><span class="line">  <span class="attr">bootstrap</span>: [AppComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppModule</span> </span>&#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight ts"><figcaption><span>app-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Page404Component &#125; <span class="keyword">from</span> <span class="string">&#x27;./page404/page404.component&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes: Routes = [</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;&#x27;</span>, <span class="attr">redirectTo</span>: <span class="string">&#x27;home&#x27;</span>, <span class="attr">pathMatch</span>: <span class="string">&#x27;full&#x27;</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;404&#x27;</span>, <span class="attr">component</span>: Page404Component &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [RouterModule.forRoot(routes)],</span><br><span class="line">  <span class="attr">exports</span>: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppRoutingModule</span> </span>&#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>因為 <code>src\app\app.component.html</code> 只有一行語法，所以直接將它併入 <code>src\app\app.component.ts</code>，相關的樣板檔(<code>app.component.scss</code>)以及測試檔(<code>app.component.spec.ts</code>)可以先移除，後續有需要時再加回來。  </p>
-<pre><code>import { Component } from &#39;@angular&#x2F;core&#39;;
-
-@Component({
-  selector: &#39;app-root&#39;,
-  template: `&lt;router-outlet&gt;&lt;&#x2F;router-outlet&gt;`
-})
-export class AppComponent { }
-</code></pre>
-<p>整個專案應該會變乾淨很多。<br><img src="/images/angular/training/module/angular_module_14.png" alt="">  </p>
-<h2 id="建立模組"><a href="#建立模組" class="headerlink" title="建立模組"></a>建立模組</h2><p>開始將在 <a href="/angular/training/09_angular_router2/">Angular 子路由</a> 所建立的功能元件都合併到一個模組內。<br><img src="/images/angular/training/router/angular_router_12.gif" alt=""><br>透過 <code>ng g m employee</code> 建立一個 <strong>EmployeeModule</strong> 模組。<br><img src="/images/angular/training/module/angular_module_15.png" alt=""><br>將相關模組移動到 <code>src\app\employee</code> 下面，在可以透過 VS Code 的檔案總管用滑鼠直接拖拉，並將相關元件註冊到 <code>src\app\employee\employee.module.ts</code>。<br><img src="/images/angular/training/module/angular_module_16.png" alt="">  </p>
-<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
-import { CommonModule } from &#39;@angular&#x2F;common&#39;;
-import { CalendarComponent } from &#39;.&#x2F;calendar&#x2F;calendar.component&#39;;
-import { AddressBookComponent } from &#39;.&#x2F;address-book&#x2F;address-book.component&#39;;
-import { LogbookComponent } from &#39;.&#x2F;logbook&#x2F;logbook.component&#39;;
-import { ToDoListComponent } from &#39;.&#x2F;to-do-list&#x2F;to-do-list.component&#39;;
-import { FileComponent } from &#39;.&#x2F;file&#x2F;file.component&#39;;
-import { LeaveComponent } from &#39;.&#x2F;leave&#x2F;leave.component&#39;;
-import { ReimburseComponent } from &#39;.&#x2F;reimburse&#x2F;reimburse.component&#39;;
-
-@NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: [
-    CalendarComponent,
-    AddressBookComponent,
-    LogbookComponent,
-    ToDoListComponent,
-    FileComponent,
-    LeaveComponent,
-    ReimburseComponent
-  ]
-})
-export class EmployeeModule { }
-</code></pre>
+<figure class="highlight ts"><figcaption><span>app.component.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;app-root&#x27;</span>,</span><br><span class="line">  <span class="attr">template</span>: <span class="string">`&lt;router-outlet&gt;&lt;/router-outlet&gt;`</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppComponent</span> </span>&#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>整個專案應該會變乾淨很多。<br><img src="/images/angular/training/module/angular_module_14.png" alt="img">  </p>
+<h2 id="建立模組"><a href="#建立模組" class="headerlink" title="建立模組"></a>建立模組</h2><p>開始將在 <a href="/angular/training/09_angular_router2/">Angular 子路由</a> 所建立的功能元件都合併到一個模組內。<br><img src="/images/angular/training/router/angular_router_12.gif" alt="img"><br>透過 <code>ng g m employee</code> 建立一個 <strong>EmployeeModule</strong> 模組。<br><img src="/images/angular/training/module/angular_module_15.png" alt="img"><br>將相關模組移動到 <code>src\app\employee</code> 下面，在可以透過 VS Code 的檔案總管用滑鼠直接拖拉，並將相關元件註冊到 <code>src\app\employee\employee.module.ts</code>。<br><img src="/images/angular/training/module/angular_module_16.png" alt="img">  </p>
+<figure class="highlight ts"><figcaption><span>employee.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CommonModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/common&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CalendarComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./calendar/calendar.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AddressBookComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./address-book/address-book.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; LogbookComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./logbook/logbook.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ToDoListComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./to-do-list/to-do-list.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; FileComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./file/file.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; LeaveComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./leave/leave.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ReimburseComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./reimburse/reimburse.component&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [</span><br><span class="line">    CommonModule</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">declarations</span>: [</span><br><span class="line">    CalendarComponent,</span><br><span class="line">    AddressBookComponent,</span><br><span class="line">    LogbookComponent,</span><br><span class="line">    ToDoListComponent,</span><br><span class="line">    FileComponent,</span><br><span class="line">    LeaveComponent,</span><br><span class="line">    ReimburseComponent</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">EmployeeModule</span> </span>&#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>再將相關元件從 <code>src\app\home\home.module.ts</code> 中移除參考，並將 <strong>EmployeeModule</strong> 註冊進來。  </p>
-<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
-import { CommonModule } from &#39;@angular&#x2F;common&#39;;
-
-import { HomeRoutingModule } from &#39;.&#x2F;home-routing.module&#39;;
-import { HomeComponent } from &#39;.&#x2F;home.component&#39;;
-import { HeaderComponent } from &#39;.&#x2F;header&#x2F;header.component&#39;;
-import { AsideComponent } from &#39;.&#x2F;aside&#x2F;aside.component&#39;;
-import { CustomMaterialModule } from &#39;..&#x2F;custom-material.module&#39;;
-import { EmployeeModule } from &#39;..&#x2F;employee&#x2F;employee.module&#39;;
-
-@NgModule({
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    CustomMaterialModule,
-    EmployeeModule
-  ],
-  declarations: [
-    HomeComponent,
-    HeaderComponent,
-    AsideComponent
-  ]
-})
-export class HomeModule { }
-</code></pre>
+<figure class="highlight ts"><figcaption><span>home.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CommonModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/common&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; HomeRoutingModule &#125; <span class="keyword">from</span> <span class="string">&#x27;./home-routing.module&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HomeComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./home.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HeaderComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./header/header.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AsideComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./aside/aside.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CustomMaterialModule &#125; <span class="keyword">from</span> <span class="string">&#x27;../custom-material.module&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; EmployeeModule &#125; <span class="keyword">from</span> <span class="string">&#x27;../employee/employee.module&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [</span><br><span class="line">    CommonModule,</span><br><span class="line">    HomeRoutingModule,</span><br><span class="line">    CustomMaterialModule,</span><br><span class="line">    EmployeeModule</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">declarations</span>: [</span><br><span class="line">    HomeComponent,</span><br><span class="line">    HeaderComponent,</span><br><span class="line">    AsideComponent</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeModule</span> </span>&#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>最後的問題大概就是 <strong>HomeRoutingModule</strong>(<code>src\app\home\home-routing.module.ts</code>) 的路由規則要如何處理？  </p>
-<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
-import { Routes, RouterModule } from &#39;@angular&#x2F;router&#39;;
-import { HomeComponent } from &#39;.&#x2F;home.component&#39;;
-import { CalendarComponent } from &#39;.&#x2F;calendar&#x2F;calendar.component&#39;;
-import { AddressBookComponent } from &#39;.&#x2F;address-book&#x2F;address-book.component&#39;;
-import { FileComponent } from &#39;.&#x2F;file&#x2F;file.component&#39;;
-import { LeaveComponent } from &#39;.&#x2F;leave&#x2F;leave.component&#39;;
-import { LogbookComponent } from &#39;.&#x2F;logbook&#x2F;logbook.component&#39;;
-import { ReimburseComponent } from &#39;.&#x2F;reimburse&#x2F;reimburse.component&#39;;
-import { ToDoListComponent } from &#39;.&#x2F;to-do-list&#x2F;to-do-list.component&#39;;
-
-const routes: Routes = [
-  {
-    path: &#39;home&#39;, component: HomeComponent, children: [
-      { path: &#39;&#39;, redirectTo: &#39;to-do-list&#39;, pathMatch: &#39;full&#39; },
-      { path: &#39;address-book&#39;, component: AddressBookComponent },
-      { path: &#39;calendar&#39;, component: CalendarComponent },
-      { path: &#39;file&#39;, component: FileComponent },
-      { path: &#39;leave&#39;, component: LeaveComponent },
-      { path: &#39;logbook&#39;, component: LogbookComponent },
-      { path: &#39;reimburse&#39;, component: ReimburseComponent },
-      { path: &#39;to-do-list&#39;, component: ToDoListComponent }
-    ]
-  }
-];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class HomeRoutingModule { }
-</code></pre>
+<figure class="highlight ts"><figcaption><span>home-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HomeComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./home.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CalendarComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./calendar/calendar.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AddressBookComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./address-book/address-book.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; FileComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./file/file.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; LeaveComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./leave/leave.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; LogbookComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./logbook/logbook.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ReimburseComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./reimburse/reimburse.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ToDoListComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./to-do-list/to-do-list.component&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes: Routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;home&#x27;</span>, <span class="attr">component</span>: HomeComponent, <span class="attr">children</span>: [</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;&#x27;</span>, <span class="attr">redirectTo</span>: <span class="string">&#x27;to-do-list&#x27;</span>, <span class="attr">pathMatch</span>: <span class="string">&#x27;full&#x27;</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;address-book&#x27;</span>, <span class="attr">component</span>: AddressBookComponent &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;calendar&#x27;</span>, <span class="attr">component</span>: CalendarComponent &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;file&#x27;</span>, <span class="attr">component</span>: FileComponent &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;leave&#x27;</span>, <span class="attr">component</span>: LeaveComponent &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;logbook&#x27;</span>, <span class="attr">component</span>: LogbookComponent &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;reimburse&#x27;</span>, <span class="attr">component</span>: ReimburseComponent &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&#x27;to-do-list&#x27;</span>, <span class="attr">component</span>: ToDoListComponent &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [RouterModule.forChild(routes)],</span><br><span class="line">  <span class="attr">exports</span>: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeRoutingModule</span> </span>&#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>比較好的做法應該是將路由規則 <code>path:&#39;home&#39;</code> 下 <code>children</code> 屬性內的路由規則都移到 <code>src\app\employee\</code> 資料夾內，維護上會比較方便。<br>我們先在 employee 資料夾內建立一個存放路由規則的 ts 檔(<code>src\app\employee\employee.routing.ts</code>)，在將路由規則搬移至此，最後再將路由規則 export 出來。  </p>
-<pre><code>import { Routes } from &#39;@angular&#x2F;router&#39;;
-import { AddressBookComponent } from &#39;.&#x2F;address-book&#x2F;address-book.component&#39;;
-import { CalendarComponent } from &#39;.&#x2F;calendar&#x2F;calendar.component&#39;;
-import { FileComponent } from &#39;.&#x2F;file&#x2F;file.component&#39;;
-import { LeaveComponent } from &#39;.&#x2F;leave&#x2F;leave.component&#39;;
-import { LogbookComponent } from &#39;.&#x2F;logbook&#x2F;logbook.component&#39;;
-import { ReimburseComponent } from &#39;.&#x2F;reimburse&#x2F;reimburse.component&#39;;
-import { ToDoListComponent } from &#39;.&#x2F;to-do-list&#x2F;to-do-list.component&#39;;
-
-const routes: Routes = [
-  { path: &#39;&#39;, redirectTo: &#39;to-do-list&#39;, pathMatch: &#39;full&#39; },
-  { path: &#39;address-book&#39;, component: AddressBookComponent },
-  { path: &#39;calendar&#39;, component: CalendarComponent },
-  { path: &#39;file&#39;, component: FileComponent },
-  { path: &#39;leave&#39;, component: LeaveComponent },
-  { path: &#39;logbook&#39;, component: LogbookComponent },
-  { path: &#39;reimburse&#39;, component: ReimburseComponent },
-  { path: &#39;to-do-list&#39;, component: ToDoListComponent }
-];
-
-export const employeeRouter = routes;
-</code></pre>
+<figure class="highlight ts"><figcaption><span>employee.routing.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Routes &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AddressBookComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./address-book/address-book.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; CalendarComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./calendar/calendar.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; FileComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./file/file.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; LeaveComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./leave/leave.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; LogbookComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./logbook/logbook.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ReimburseComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./reimburse/reimburse.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ToDoListComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./to-do-list/to-do-list.component&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes: Routes = [</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;&#x27;</span>, <span class="attr">redirectTo</span>: <span class="string">&#x27;to-do-list&#x27;</span>, <span class="attr">pathMatch</span>: <span class="string">&#x27;full&#x27;</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;address-book&#x27;</span>, <span class="attr">component</span>: AddressBookComponent &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;calendar&#x27;</span>, <span class="attr">component</span>: CalendarComponent &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;file&#x27;</span>, <span class="attr">component</span>: FileComponent &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;leave&#x27;</span>, <span class="attr">component</span>: LeaveComponent &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;logbook&#x27;</span>, <span class="attr">component</span>: LogbookComponent &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;reimburse&#x27;</span>, <span class="attr">component</span>: ReimburseComponent &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;to-do-list&#x27;</span>, <span class="attr">component</span>: ToDoListComponent &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> employeeRouter = routes;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>接下來將 employeeRouter 變數指派回 <code>src\app\home\home-routing.module.ts</code> 的 <code>children</code> 屬性。  </p>
-<pre><code>import { NgModule } from &#39;@angular&#x2F;core&#39;;
-import { Routes, RouterModule } from &#39;@angular&#x2F;router&#39;;
-import { HomeComponent } from &#39;.&#x2F;home.component&#39;;
-import { employeeRouter } from &#39;..&#x2F;employee&#x2F;employee.routing&#39;;
+<figure class="highlight ts"><figcaption><span>home-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HomeComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./home.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; employeeRouter &#125; <span class="keyword">from</span> <span class="string">&#x27;../employee/employee.routing&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes: Routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;home&#x27;</span>, <span class="attr">component</span>: HomeComponent, <span class="attr">children</span>: employeeRouter</span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [RouterModule.forChild(routes)],</span><br><span class="line">  <span class="attr">exports</span>: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeRoutingModule</span> </span>&#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>觀看執行結果其實感覺不出差異，但是對於系統維護上來說會更加便利。<br><img src="/images/angular/training/router/angular_router_10.gif" alt="img">  </p>
+<img src="/images/download.png" class="" width="36">[**first-app_2017-09-04.zip**](/uploads/first-app_2017-09-04.zip)  
 
-const routes: Routes = [
-  {
-    path: &#39;home&#39;, component: HomeComponent, children: employeeRouter
-  }
-];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class HomeRoutingModule { }
-</code></pre>
-<p>觀看執行結果其實感覺不出差異，但是對於系統維護上來說會更加便利。<br><img src="/images/angular/training/router/angular_router_10.gif" alt="">  </p>
-<p><img src="/images/download.png" width="36"><a href="/uploads/first-app_2017-09-04.zip"><strong>first-app_2017-09-04.zip</strong></a>  </p>
-
-      
     </div>
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
+    
+    
+    
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Angular/" rel="tag"># Angular</a>
-          
-            <a href="/tags/NgModule/" rel="tag"># NgModule</a>
-          
-        </div>
-      
-
-      
-      
-        <div class="post-widgets">
-        
-
-        
-          <div class="social-like">
-            
-
-            
-              <div class="fb_like">
-                <div class="fb-like" data-layout="button_count" data-share="true"></div>
-              </div>
-            
-          </div>
-        
-        </div>
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/angular/training/09_angular_router2/" rel="next" title="Angular 子路由">
-                <i class="fa fa-chevron-left"></i> Angular 子路由
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/Angular/" rel="tag"># Angular</a>
+              <a href="/tags/NgModule/" rel="tag"># NgModule</a>
           </div>
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/angular/training/11_angular_lazy_loading/" rel="prev" title="Angular 延遲載入">
-                Angular 延遲載入 <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/angular/training/09_angular_router2/" rel="prev" title="Angular 子路由">
+                  <i class="fa fa-chevron-left"></i> Angular 子路由
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/angular/training/11_angular_lazy_loading/" rel="next" title="Angular 延遲載入">
+                  Angular 延遲載入 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-        </div>
-      
-
-      
-      
     </footer>
   </article>
+</div>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
 
 
-          </div>
-          
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Jonny Huang">
-          <p class="site-author-name" itemprop="name">Jonny Huang</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-           
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">66</span>
-                <span class="site-state-item-name">文章</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">分類</span>
-              
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">28</span>
-                <span class="site-state-item-name">標籤</span>
-              
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
-                  
-                    <i class="fa fa-fw fa-facebook-official"></i>
-                  
-                  Facebook
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>
-                  
-                  Email
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-block">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/flutter.tw/" title="Flutter Taiwan" target="_blank">Flutter Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#模組化"><span class="nav-number">1.</span> <span class="nav-text">模組化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#重整"><span class="nav-number">1.1.</span> <span class="nav-text">重整</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立模組"><span class="nav-number">1.2.</span> <span class="nav-text">建立模組</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
+<div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-Jonny Huang"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
 </div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
-</div>
-
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -997,27 +349,6 @@ export class HomeRoutingModule { }
 
 
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
-<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-      prettyPrint();
-  });
-</script>
 
 </body>
 </html>

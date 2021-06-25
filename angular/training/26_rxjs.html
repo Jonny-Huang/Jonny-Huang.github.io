@@ -1,0 +1,26 @@
+<hr>
+<p>title: 每個醫師身邊都應該要有個白衣天使：RxJS<br>date: 2018-06-06<br>categories: Training<br>keywords:</p>
+<ul>
+<li>RxJS</li>
+<li>Angular<br>tags:</li>
+<li>RxJS</li>
+</ul>
+<hr>
+<p><img src="/images/angular/training/rxjs/rxjs_logo.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>RxJS 教學其實<a href="https://cn.rx.js.org/">RxJS官方文件</a>與<a href="https://ithelp.ithome.com.tw/users/20103367/ironman/1199">30 天精通 RxJS系列</a>都是不錯的資料，這也是大部分人會推薦的教學網站，要說<strong>好用</strong>的原因與例證大概都不難說明，但是要如何說的讓人<strong>想用</strong>？這讓我愣了一陣不知如何回答，”<strong>用過都說讚</strong>“是一個難以說服想要入門的人但卻是當時我想的到的答案，所以今天想了個看圖說故事的方法先把在門外觀望的人給騙進來。  </p>
+<!-- more -->  
+
+<blockquote>
+<p><a href="https://cn.rx.js.org/manual/overview.html">官方文件</a>很佛心的在一開始的入門頁面就將最精華的部份給呈現出來，但是好像有些人看到這邊就放棄了。<br><img src="/images/angular/training/rxjs/rxjs_000.png" alt="img">  </p>
+</blockquote>
+<h1 id="過去的江湖郎中"><a href="#過去的江湖郎中" class="headerlink" title="過去的江湖郎中"></a>過去的江湖郎中</h1><p>背著一個藥箱，只要一張桌子兩張板凳就可以幫人診脈看病，整個過程一手包辦，這就是古代戲劇內常見的江湖郎中，也因為要做的事情多，所以每天可以看的病人少。<br><img src="/images/angular/training/rxjs/rxjs_001.png" alt="img"><br>筆者習慣將自己比喻成醫師，我們會先幫<strong>病患</strong>(企業)做<strong>診斷</strong>(系統分析)，再開<strong>抓藥</strong>(開發系統)，最終解決病患的<strong>疾病</strong>(問題、需求)，只是我們與醫生最大的差異就在於病患最終會妥協於醫師的意見，因為這跟他們的生命有關，但是客戶時常要我們妥協於他們的想法，既使充滿不合理的邏輯，反正出了問題都是我們的責任。  </p>
+<h1 id="現在的醫院、診所"><a href="#現在的醫院、診所" class="headerlink" title="現在的醫院、診所"></a>現在的醫院、診所</h1><p>現代不論是到醫院或是診所看病，每個診間都會有一個護士，在醫生看診前她會先幫你量體溫、血壓，甚至詢問一些基本的問題(會不會過敏、有沒有家族病史)，有效率一點的護士會事先量測下一位病患，讓醫生可以不間斷的接續診斷，當然可以服務的病患相對也比較多。<br><img src="/images/angular/training/rxjs/rxjs_002.png" alt="img">  </p>
+<h1 id="超級護士-Observable"><a href="#超級護士-Observable" class="headerlink" title="超級護士 (Observable)"></a>超級護士 (Observable)</h1><p>其實護士還提供另一個優點<strong>主動告知</strong>，她會告訴醫生現在有病患需要診斷以及病患的基本狀況，而醫生只要在<strong>這個時間點</strong>去做診斷就好，RxJS 其中一個功能就是扮演這個護士，我們可以說病患的體溫、血壓是一種<strong>變數</strong>，以往我們(醫師)要自己主動量測才會知道目前的數值，甚至要定期量測才會知道這些數據是否改變，而透過護士我們除了可以得知現在的**狀態(值)<strong>外，還可知道狀態(值)的改變，所以我們可以說護士的功能是將</strong>原本單純的值包裝成一個可以被觀察的對象(Observable)<strong>，而醫生則是一個希望了解病患狀態的人，所以我們也可說他是一個</strong>觀察者(Observer)**。<br><img src="/images/angular/training/rxjs/rxjs_003.png" alt="img">  </p>
+<h1 id="半被動"><a href="#半被動" class="headerlink" title="半被動"></a>半被動</h1><p>在 RxJS 設計上我們可以說這個小護士有個特點就是半被動，我們必須告訴她要做，她才會開始去做，因此我們必須請她(Observable)將”狀態發生改變時告知我們來診斷(diagnose)”這件事情 <strong>紀錄(subscribe)</strong> 在 <strong>便條紙(subscriotion)</strong> 上，這樣她才會開始動作，當然如果我們希望她停止做這件事前只要將 便條紙(subscriotion) 給 <strong>撕下來(unsubscribe)</strong> 就可以讓她停止處理，換個角度來看這樣就不會一直耗費資源，所以說這是一種特點，而不是缺點。<br><img src="/images/angular/training/rxjs/rxjs_004.png" alt="img">  </p>
+<h1 id="專才小護士-Operators"><a href="#專才小護士-Operators" class="headerlink" title="專才小護士 (Operators)"></a>專才小護士 (Operators)</h1><p>使用 RxJS 另一個好處就是它提供了很多<strong>專才小護士</strong>，每個小護士可以幫我們處理特定的問題，她們可以針對我們原本護士(Observable)所要傳遞的內容再做進一步的處理，所以懂得善用她們才是重點，因為她們做得越多，那我們接收到的資訊就越精要。<br><img src="/images/angular/training/rxjs/rxjs_005.png" alt="img">  </p>
+<h2 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h2><p>我們假設有一位病患因為發燒住院，因此需要持續追蹤體溫，因此我們就指派一個護士(Observable)，當然我們就會每小時收到護士告知現在病患的體溫是多少。<br><img src="/images/angular/training/rxjs/rxjs_006.png" alt="img"><br>但是我們發現溫度是以華氏溫度來記錄，對於習慣看攝氏溫度的我們來說會非常不習慣，一個方式是我們自己每次收到體溫值時做換算，另一個辦法就是請一個小護士(map)幫我們換算，所以原本會由護士(Observable)直接通知我們，現在變成透過小護士(map)幫我們換算後再將資料交給我們。<br><img src="/images/angular/training/rxjs/rxjs_007.png" alt="img"><br>每個小時都被告知一次病患體溫其實也有點多，我們可能只需要再體溫有變化時再做診斷就可以，所以可以再請另一位小護士(distinctUntilChanged)幫忙，只要在體溫改變時通知我們就好，一天下來就只收到 14 次的通知。<br><img src="/images/angular/training/rxjs/rxjs_008.png" alt="img"><br>接著當體溫為正常溫度 37 度時，其實也不需要知會我們，當有發燒時再處理即可，所以我們可以透過第三位小護士(filter)再幫我們篩選一次，最後我們只收到 10 次通知。<br><img src="/images/angular/training/rxjs/rxjs_009.png" alt="img">  </p>
+<blockquote>
+<p>RxJS 6 增加一個 pipeable 操作符，可以將需要用到的操作符(Operators)給集中起來，從原始碼可以看到它就是使用 <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">Array.reduce()</a> 來逐一呼叫函式，並，並將每個函式的回傳值傳遞給下一個函式，所以 Operators 是有順序性的。<br><img src="/images/angular/training/rxjs/rxjs_010.png" alt="img">  </p>
+</blockquote>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>RxJS 所提供的<strong>小護士(Operators)</strong> 還有很多種，大部分其實常用的就是那幾種，當我們遇到很複雜的處理邏輯再到官網搜尋即可。  </p>
+<h2 id="護士長-Subject"><a href="#護士長-Subject" class="headerlink" title="護士長(Subject)"></a>護士長(Subject)</h2><p><strong>Observable</strong> 的限制就是通知對象只有一個觀察者，而 <strong>Subject</strong> 則是可以通知多個觀察者，所以如果 Observable 是護士的話，那 Subject 就是可以服務多個醫生的護士長，當然所有護士(Observable)做得到的事情護士長(Subject)也都做得到。<br><img src="/images/angular/training/rxjs/rxjs_011.png" alt="img">  </p>

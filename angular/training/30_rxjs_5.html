@@ -1,0 +1,108 @@
+<hr>
+<p>title: 別太在意包裝上的照片與實物之間的差異：RxJS<br>date: 2018-06-22<br>categories: Training<br>keywords:</p>
+<ul>
+<li>RxJS</li>
+<li>Angular<br>tags:</li>
+<li>RxJS</li>
+</ul>
+<hr>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>隨著 GitHub 的盛行，越來越多的技術都走向開源，研究原始碼可以讓我們了解相關技術運作原理，藉以修正認知上的落差，畢竟官方文件雖然豐富，但是很多概念難以透過文字描述就可以理解，另一個好處就是學習這些大神的技術。<br>以上說明都不是本篇的重點，要知道，<strong>看完</strong>程式碼是賢人，<strong>看懂</strong>程式碼是神人，這都不是筆者這種”閒”人可以做到的，所以我們只挑選簡單的部分來協助我們更容易的理解 RxJS。  </p>
+<!-- more -->  
+
+<blockquote>
+<p>我們可以到 GitHub 網站下載 <a href="https://github.com/ReactiveX/RxJS">RxJS 原始碼</a></p>
+</blockquote>
+<h1 id="Observer-只是一個介面"><a href="#Observer-只是一個介面" class="headerlink" title="Observer 只是一個介面"></a>Observer 只是一個介面</h1><p>開啟 <code>rxjs\src\internal\types.ts</code>，可以發現 <strong>Observer</strong> 是一個 <strong>interface</strong>，所以說<strong>只要具備 <code>next</code>、<code>error</code>、<code>complete</code> 3個方法的物件都可以稱為 Observer</strong>。<br>{% codeblock types.ts lang:ts %}<br>export interface Observer<T> {<br>  closed?: boolean;<br>  next: (value: T) =&gt; void;<br>  error: (err: any) =&gt; void;<br>  complete: () =&gt; void;<br>}<br>{% endcodeblock %}</p>
+<p>由介面可以知道只有 <code>next</code> 與 <code>error</code> 可以接收到參數，我們也可以知道 <strong>Observer 的責任只決定當發生 <code>next</code>、<code>error</code>、<code>complete</code> 時要做什麼</strong>，什麼時候發生？誰來通知它？這些都不知道。</p>
+<h1 id="Observable-只關心訂閱與取消"><a href="#Observable-只關心訂閱與取消" class="headerlink" title="Observable 只關心訂閱與取消"></a>Observable 只關心訂閱與取消</h1><p>開啟 <code>rxjs\src\internal\Observable.ts</code>，可以看到 <strong>Observable</strong> 會實作 <strong>Subscribable</strong> ，而這個介面只有提供 Observer 訂閱(subscribe) 的功能，透過 subscribe 可以在得到一個具有 取消訂閱(unsubscribe) 的物件。<br>{% codeblock Observable.ts lang:ts %}<br>export class Observable<T> implements Subscribable<T> {</p>
+<p>}</p>
+<p>export interface Subscribable<T> {<br>  subscribe(observerOrNext?: PartialObserver<T> | ((value: T) =&gt; void),<br>            error?: (error: any) =&gt; void,<br>            complete?: () =&gt; void): Unsubscribable;<br>}</p>
+<p>export interface Unsubscribable {<br>  unsubscribe(): void;<br>}<br>{% endcodeblock %}</p>
+<p>Observable 透過 <code>subscribe</code> 來與 Observer 建立連結，也就是說我們可以<strong>透過 Observable 知道通知對象</strong>。</p>
+<h1 id="Operator-Function：Map"><a href="#Operator-Function：Map" class="headerlink" title="Operator Function：Map"></a>Operator Function：Map</h1><p>到目前為止我們還不知道 RxJS 的主動通知機制，我們透過 Map 這個最常使用的 RxJS Operator 來研究，開啟 <code>rxjs\src\internal\operators\map.ts</code>，可以看到 <strong>map</strong> 只是一個 Function，它最終會呼叫並回傳 Observable 的 <strong>lift</strong> 方法。<br>{% codeblock map.ts lang:ts %}<br>export function map&lt;T, R&gt;(project: (value: T, index: number) =&gt; R, thisArg?: any): OperatorFunction&lt;T, R&gt; {<br>  return function mapOperation(source: Observable<T>): Observable<R> {<br>    if (typeof project !== ‘function’) {<br>      throw new TypeError(‘argument is not a function. Are you looking for <code>mapTo()</code>?’);<br>    }<br>    return source.lift(new MapOperator(project, thisArg));<br>  };<br>}<br>{% endcodeblock %}</p>
+<h2 id="打包機：lift"><a href="#打包機：lift" class="headerlink" title="打包機：lift"></a>打包機：lift</h2><p>回去查閱 Observable 內的 <code>lift</code> 方法，可以看到 <code>lift</code> 會建立一個新的 Observable 來包裝目前的 Observable 與 Operator 物件。<br>{% codeblock Observable.ts lang:ts %}<br>export class Observable<T> implements Subscribable<T> {<br>  lift<R>(operator: Operator&lt;T, R&gt;): Observable<R> {<br>    const observable = new Observable<R>();<br>    observable.source = this;<br>    observable.operator = operator;<br>    return observable;<br>  }<br>}<br>{% endcodeblock %}</p>
+<p><code>lift</code> 就像俄羅斯套娃的生產工廠，<strong>每串接一個 RxJS Operator Function 就會多包一層 Observable</strong>，當然我們也可以知道 Observable 的 <code>source</code> 屬性代表上一層 Observable，<code>operator</code> 代表目前要處理的事情。<br><img src="/images/angular/training/rxjs/rxjs_046.png" alt="img">  </p>
+<h2 id="Operator-只做訂閱"><a href="#Operator-只做訂閱" class="headerlink" title="Operator 只做訂閱"></a>Operator 只做訂閱</h2><p>上面我們可以看到 Map 函式會傳遞一個 MapOperator 物件給 <code>lift</code> 函式，而這個 Operator 物件主要時做一個 <code>call</code> 方法。<br>{% codeblock Observable.ts lang:ts %}<br>export class MapOperator&lt;T, R&gt; implements Operator&lt;T, R&gt; {<br>  constructor(private project: (value: T, index: number) =&gt; R, private thisArg: any) {<br>  }</p>
+<p>  call(subscriber: Subscriber<R>, source: any): any {<br>    return source.subscribe(new MapSubscriber(subscriber, this.project, this.thisArg));<br>  }<br>}</p>
+<p>export interface Operator&lt;T, R&gt; {<br>  call(subscriber: Subscriber<R>, source: any): TeardownLogic;<br>}<br>{% endcodeblock %}</p>
+<p>再看看 MapOperator 內的 <code>call</code> 方法竟然只是呼叫 Observable 的訂閱(subscribe)，所以 RxJS 程式內的 Operator 物件與我們平常講的 Operator Function 是不一樣的東西，我們知道 <code>subscribe</code> 只接收 Observer，所以 MapSubscriber 應該實作了 Observer 介面。</p>
+<h2 id="Subscriber-就是-Observer"><a href="#Subscriber-就是-Observer" class="headerlink" title="Subscriber 就是 Observer"></a>Subscriber 就是 Observer</h2><p>從原始碼可以看到 MapSubscriber 繼承自 Subscriber 類別，而 Subscriber 實作了 Observer 介面，比較特別的是 <code>next</code>、<code>error</code>、<code>complete</code> 只管<strong>流程規則</strong>：</p>
+<ul>
+<li>只要 <code>isStopped</code> 屬性為 <code>true</code> 所有方法都停止動作。  </li>
+<li><code>error</code>、<code>complete</code> 方法會將 <code>isStopped</code> 屬性設定為 <code>true</code>。</li>
+</ul>
+<p>由此可知為什麼 Observer 一旦觸發 <code>error</code>、<code>complete</code> 方法之後就不會再收到任何回應。<br><code>destination</code> 是指後下一個 Observer，可想而知這是外層 Observable 所 <code>subscribe</code> 的對象(Observer)。<br><code>next</code>、<code>error</code>、<code>complete</code> 剛好分別還有對應的方法 <code>_next</code>、<code>_error</code>、<code>_complete</code>，這3個方法<strong>預設</strong>直接呼叫下一個 Observer 所對應的方法，只是 <code>_error</code>、<code>_complete</code> <strong>預設</strong>同時會取消訂閱(unsubscribe)。<br>{% codeblock Observable.ts lang:ts %}<br>class MapSubscriber&lt;T, R&gt; extends Subscriber<T> {</p>
+<p>}</p>
+<p>export class Subscriber<T> extends Subscription implements Observer<T> {</p>
+<p>  protected isStopped: boolean = false;<br>  protected destination: PartialObserver<any>;</p>
+<p>  next(value?: T): void {<br>    if (!this.isStopped) {<br>      this._next(value);<br>    }<br>  }</p>
+<p>  error(err?: any): void {<br>    if (!this.isStopped) {<br>      this.isStopped = true;<br>      this._error(err);<br>    }<br>  }</p>
+<p>  complete(): void {<br>    if (!this.isStopped) {<br>      this.isStopped = true;<br>      this._complete();<br>    }<br>  }</p>
+<p>  protected _next(value: T): void {<br>    this.destination.next(value);<br>  }</p>
+<p>  protected _error(err: any): void {<br>    this.destination.error(err);<br>    this.unsubscribe();<br>  }</p>
+<p>  protected _complete(): void {<br>    this.destination.complete();<br>    this.unsubscribe();<br>  }<br>}<br>{% endcodeblock %}</p>
+<blockquote>
+<p>不論透過 Subscriber 建構式(constructor)或是靜態方法 <code>create</code> 都會將所傳入的 Observer 物件透過 SafeSubscriber 類別<strong>轉換成 Subscriber 物件</strong>，但是我們可以將他們視為同一個物件來思考。</p>
+</blockquote>
+<h2 id="OperatorSubscriber-才是重點"><a href="#OperatorSubscriber-才是重點" class="headerlink" title="OperatorSubscriber 才是重點"></a>OperatorSubscriber 才是重點</h2><p>回來觀看 MapSubscriber 原始碼，可以看到它繼承 Subscriber 類別並覆寫 <code>_next</code> 方法，也就是當上一個 Observer 觸發 <code>next</code> 方法時，我們同時會得到最新的值，接著透過外部設定的函式 <code>project</code> 處理轉換新的值，並傳遞給下一個 Observer 的 <code>next</code> 方法。<br>{% codeblock Observable.ts lang:ts %}<br>class MapSubscriber&lt;T, R&gt; extends Subscriber<T> {<br>  count: number = 0;<br>  private thisArg: any;</p>
+<p>  constructor(destination: Subscriber<R>,<br>              private project: (value: T, index: number) =&gt; R,<br>              thisArg: any) {<br>    super(destination);<br>    this.thisArg = thisArg || this;<br>  }</p>
+<p>  // NOTE: This looks unoptimized, but it’s actually purposefully NOT<br>  // using try/catch optimizations.<br>  protected _next(value: T) {<br>    let result: any;<br>    try {<br>      result = this.project.call(this.thisArg, value, this.count++);<br>    } catch (err) {<br>      this.destination.error(err);<br>      return;<br>    }<br>    this.destination.next(result);<br>  }<br>}<br>{% endcodeblock %}</p>
+<p>由此可知 OperatorSubscriber 可以說就是 RxJS Operator 最核心的部分，因為它決定很多事情：  </p>
+<ul>
+<li>資料流程規則 (<code>next</code>、<code>error</code>、<code>complete</code>)</li>
+<li>資料的加工方式 (<code>_next</code>、<code>_error</code>、<code>_complete</code>)</li>
+<li>決定處理後要呼叫下一個 Observer 的哪一個方法</li>
+</ul>
+<p>所以其實我們也可以自己建立 Operator Function，重點就是先繼承 Subscriber 類別。</p>
+<h1 id="next-並不一定要接-next：Single"><a href="#next-並不一定要接-next：Single" class="headerlink" title="next 並不一定要接 next：Single"></a>next 並不一定要接 next：Single</h1><p>開啟 <code>rxjs\src\internal\operators\single.ts</code>，直接觀看最下面的 SingleSubscriber 類別，可以看到第2次傳值時會呼叫下一個 Observer 的 <code>error</code> 方法。<br><code>this.destination.error(&#39;Sequence contains more than one element&#39;);</code><br>{% codeblock Observable.ts lang:ts %}<br>class SingleSubscriber<T> extends Subscriber<T> {<br>  private seenValue: boolean = false;<br>  private singleValue: T;<br>  private index: number = 0;</p>
+<p>  private applySingleValue(value: T): void {<br>    if (this.seenValue) {<br>      this.destination.error(‘Sequence contains more than one element’);<br>    } else {<br>      this.seenValue = true;<br>      this.singleValue = value;<br>    }<br>  }</p>
+<p>  protected _next(value: T): void {<br>    const index = this.index++;</p>
+<pre><code>if (this.predicate) {
+  this.tryNext(value, index);
+} else {
+  this.applySingleValue(value);
+}
+</code></pre>
+<p>  }</p>
+<p>  private tryNext(value: T, index: number): void {<br>    try {<br>      if (this.predicate(value, index, this.source)) {<br>        this.applySingleValue(value);<br>      }<br>    } catch (err) {<br>      this.destination.error(err);<br>    }<br>  }</p>
+<p>  protected _complete(): void {<br>    const destination = this.destination;</p>
+<pre><code>if (this.index &gt; 0) {
+  destination.next(this.seenValue ? this.singleValue : undefined);
+  destination.complete();
+} else {
+  destination.error(new EmptyError);
+}
+</code></pre>
+<p>  }<br>}<br>{% endcodeblock %}</p>
+<p>比較特別的是從 <code>_complete</code> 可以看到如果收到一個值之後就完成(complete)，下一個 Observer 是會收到 <code>next</code> 與 <code>complete</code> 的，這是從官網的彈珠圖所看不出來的情境。<br><img src="/images/angular/training/rxjs/rxjs_047.png" alt="img">  </p>
+<blockquote>
+<p>從 SingleSubscriber 類別其實我們只能認知第2次以後的 <code>next</code> 都會呼叫下一個 Observer 的 <code>error</code>，若沒有先了解底層 Subscriber 的流程規則，其實有可能會誤認為後續都會觸發 <code>error</code>。</p>
+</blockquote>
+<h1 id="retry-：為什麼發生錯誤-error-後還可以繼續通知？"><a href="#retry-：為什麼發生錯誤-error-後還可以繼續通知？" class="headerlink" title="retry ：為什麼發生錯誤(error)後還可以繼續通知？"></a>retry ：為什麼發生錯誤(error)後還可以繼續通知？</h1><p>從官網彈珠圖來看 <a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-retry">retry</a> 怎麼會再發生 <code>error</code> 之後還可以繼續收到通知，這不是違反規則嗎？<br><img src="/images/angular/training/rxjs/rxjs_048.png" alt="img"><br>開啟 <code>rxjs\src\internal\operators\retry.ts</code>，可以看到它覆寫了 <code>error</code> 而不是 <code>_error</code>，而它所做的事情就是<strong>重新訂閱</strong>，沒錯它先取消目前訂閱，接著還原自己的屬性參數，最後再從新訂閱。<br>{% codeblock retry.ts lang:ts %}<br>class RetrySubscriber<T> extends Subscriber<T> {<br>  constructor(destination: Subscriber<any>,<br>              private count: number,<br>              private source: Observable<T>) {<br>    super(destination);<br>  }<br>  error(err: any) {<br>    if (!this.isStopped) {<br>      const { source, count } = this;<br>      if (count === 0) {<br>        return super.error(err);<br>      } else if (count &gt; -1) {<br>        this.count = count - 1;<br>      }<br>      source.subscribe(this._unsubscribeAndRecycle());<br>    }<br>  }<br>}</p>
+<p>export class Subscriber<T> extends Subscription implements Observer<T> {<br>  _unsubscribeAndRecycle(): Subscriber<T> {<br>    const { _parent, _parents } = this;<br>    this._parent = null;<br>    this._parents = null;<br>    this.unsubscribe();<br>    this.closed = false;<br>    this.isStopped = false;<br>    this._parent = _parent;<br>    this._parents = _parents;<br>    return this;<br>  }<br>}<br>{% endcodeblock %}  </p>
+<blockquote>
+<p>如果看到複寫 <code>next</code>、<code>error</code>、<code>complete</code> 其實就代表<strong>有機會</strong>改變流程規則，當然大原則之下其實都是遵循規則的，會修改往往是為了達到某些需求，例如：<a href="https://cn.rx.js.org/class/es6/Observable.js~Observable.html#instance-method-repeat">repeat</a> 它做的事情跟 retry 一樣，只是它是改變 <code>complete</code>。</p>
+</blockquote>
+<h1 id="Subject-不只是提供給多個-Observer-訂閱"><a href="#Subject-不只是提供給多個-Observer-訂閱" class="headerlink" title="Subject 不只是提供給多個 Observer 訂閱"></a>Subject 不只是提供給多個 Observer 訂閱</h1><p>在 <a href="/angular/training/26_rxjs/">每個醫師身邊都應該要有個白衣天使：RxJS</a> 內我們最後提到 Subject 就跟 Observable 一樣，只是它可以提供給多個 Observer 同時訂閱，可以說是 Observable 的強化版，但是從原始碼(<code>rxjs\src\internal\Subject.ts</code>)來看它還有另一個更強大的功能，可以後續由我們自己來觸發 <code>next</code>、<code>error</code>、<code>complete</code>。<br>{% codeblock retry.ts lang:ts %}<br>export class Subject<T> extends Observable<T> implements SubscriptionLike {</p>
+<p>observers: Observer<T>[] = [];<br>next(value?: T) {<br>    if (!this.isStopped) {<br>     …<br>      for (let i = 0; i &lt; len; i++) {<br>        copy[i].next(value);<br>      }<br>    }<br>  }</p>
+<p>  error(err: any) {<br>    …<br>    for (let i = 0; i &lt; len; i++) {<br>      copy[i].error(err);<br>    }<br>    this.observers.length = 0;<br>  }</p>
+<p>  complete() {<br>     …<br>    for (let i = 0; i &lt; len; i++) {<br>      copy[i].complete();<br>    }<br>    this.observers.length = 0;<br>  }<br>}<br>{% endcodeblock %}  </p>
+<p>在使用 Observable 類別時，其實我們必須是先將 <code>next</code>、<code>error</code>、<code>complete</code> 規則擬定好，如果條件多時會讓程式邏輯會變得很複雜，而 Subject 直接提供 <code>next</code>、<code>error</code>、<code>complete</code> 方法，讓我們可以事後依各種狀況來觸發對應的方法，當原始資料來源是我們自己產生時，透過 Subject 封裝應該會比 Observable 有彈性。  </p>
+<h2 id="BehaviorSubject"><a href="#BehaviorSubject" class="headerlink" title="BehaviorSubject"></a>BehaviorSubject</h2><p>BehaviorSubject 應該是 Subject 中最方便的，從原始碼(<code>rxjs\src\internal\BehaviorSubject.ts</code>)來了解它的特性，我們看到它繼承了 Subject 類別，比較特別的是它提供初始值設定，我們可以建立時同時給一個初始值，而起既使沒有訂閱，我們也可以透過 <code>getValue</code> 方法抓取目前最新的值，另一個特點就是一旦訂閱馬上可以透過 <code>next</code> 收到目前的值。<br>{% codeblock BehaviorSubject.ts lang:ts %}<br>export class BehaviorSubject<T> extends Subject<T> {</p>
+<p>  constructor(private _value: T) {<br>    super();<br>  }</p>
+<p>  get value(): T {<br>    return this.getValue();<br>  }</p>
+<p>  /** @deprecated This is an internal implementation detail, do not use. */<br>  _subscribe(subscriber: Subscriber<T>): Subscription {<br>    const subscription = super._subscribe(subscriber);<br>    if (subscription &amp;&amp; !(<SubscriptionLike>subscription).closed) {<br>      subscriber.next(this._value);<br>    }<br>    return subscription;<br>  }</p>
+<p>  getValue(): T {<br>    if (this.hasError) {<br>      throw this.thrownError;<br>    } else if (this.closed) {<br>      throw new ObjectUnsubscribedError();<br>    } else {<br>      return this._value;<br>    }<br>  }</p>
+<p>  next(value: T): void {<br>    super.next(this._value = value);<br>  }<br>}<br>{% endcodeblock %}  </p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>看到目前的感想就是<br><strong>做事的只有 Subscriber</strong><br>它決定了：  </p>
+<ul>
+<li><p>透過 <code>next</code> 正常傳值時要作什麼處理？  </p>
+</li>
+<li><p>收到 <code>error</code> 錯誤時要如何因應？  </p>
+</li>
+<li><p>收到 <code>complete</code> 完成通知之後要做什麼？  </p>
+</li>
+<li><p>以上處理完之後是否要通知下一個 Subscriber？要用什麼方法通知？通知什麼訊息？  </p>
+</li>
+</ul>
+<p><strong>Observable 其實是幫我們將 Subscriber 串接起來。</strong>  </p>

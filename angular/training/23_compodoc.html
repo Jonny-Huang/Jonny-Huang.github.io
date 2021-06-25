@@ -1,0 +1,170 @@
+<hr>
+<p>title: 你寫的文件別人看得懂嗎？：compodoc<br>date: 2017-10-15 08:00<br>categories: Training<br>keywords:</p>
+<ul>
+<li>compodoc</li>
+<li>Angular<br>tags:</li>
+<li>compodoc</li>
+</ul>
+<hr>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>對程式設計師來說撰寫程式應該是最花時間跟精力的事情，但是撰寫文件卻是一件不輸撰寫程式的工作，尤其是現在這種需求變更越來越頻繁、更新速度越來越快的時代，撰寫文件往往變成只是應付驗收用的工作，所以很多公司都是驗收前再開始撰寫，避免<strong>浪費人力跟時間</strong>，而這種敷衍的心態也造成系統上線(驗收)後隨著需求不斷的調整與增加，文件跟程式越來越不同步，甚至不再維護文件，所以承接別人的系統應該是程式設計師最討厭的事情。  </p>
+<!-- more -->  
+
+<h1 id="安裝-compodoc"><a href="#安裝-compodoc" class="headerlink" title="安裝 compodoc"></a>安裝 compodoc</h1><p><img src="/images/angular/training/compodoc/compodoc.png" alt="img">  </p>
+<blockquote>
+<p>官方網站：<a href="https://compodoc.github.io/website/">https://compodoc.github.io/website/</a><br>GitHub：<a href="https://github.com/compodoc/compodoc">https://github.com/compodoc/compodoc</a></p>
+</blockquote>
+<p><strong>compodoc</strong> 是一個能夠分析 Angular 程式碼並自動幫我們產生相關網頁文件的工具，透過它可以協助我們產生一份與程式碼同步的文件，接下來我們就直接來時做一次，首先當然就是安裝 <strong>compodoc</strong>，我們可以透過下列指令將其安裝在 Node.js 全域內供所有專案使用：<br><code>npm i -g @compodoc/compodoc</code><br>或者可以單純安裝到專案內：<br><code>npm i -d @compodoc/compodoc</code><br><img src="/images/angular/training/compodoc/compodoc_01.png" alt="img">  </p>
+<h1 id="產生文件"><a href="#產生文件" class="headerlink" title="產生文件"></a>產生文件</h1><p>接下來我們切換到 Angular 專案目錄下，並透過下列指令來產生文件：<br><code>compodoc -p src\tsconfig.app.json</code>  </p>
+<blockquote>
+</blockquote>
+<p><img src="/images/angular/training/compodoc/compodoc_02.png" alt="img"><br>我們可以看到 <strong>compodoc</strong> 會分析 Angular 專案的結構<br><img src="/images/angular/training/compodoc/compodoc_03.png" alt="img"><br>預設輸出路徑為 <code>documentation</code> 資料夾，可以透過 <code>-d [folder]</code> 參數修改位置<br><img src="/images/angular/training/compodoc/compodoc_04.png" alt="img"><br><img src="/images/angular/training/compodoc/compodoc_05.png" alt="img">  </p>
+<h1 id="執行"><a href="#執行" class="headerlink" title="執行"></a>執行</h1><p>我們可以透過指令 <code>compodoc -s</code> 來啟動內建的網頁伺服器，預設連接埠為 8080，可以透過 <code>-r [port]</code> 來修改。  </p>
+<blockquote>
+<p>依照官方文件來看 <code>-s</code> 參數應該也會建立網頁，不過目前並沒有效果。<br><img src="/images/angular/training/compodoc/compodoc_09.png" alt="img"></p>
+</blockquote>
+<p><img src="/images/angular/training/compodoc/compodoc_06.png" alt="img"><br>透過瀏覽器瀏覽 <a href="http://localhost:8080。">http://localhost:8080。</a><br><img src="/images/angular/training/compodoc/compodoc_07.png" alt="img">  </p>
+<blockquote>
+<p><strong>compodoc</strong> 產生的是靜態網頁文件，所以也可以直接用瀏覽器開啟。<br><img src="/images/angular/training/compodoc/compodoc_08.png" alt="img"></p>
+</blockquote>
+<p><strong>overview.html</strong><br>預設的 overview 頁面已經呈現此專案的基本架構<br><img src="/images/angular/training/compodoc/compodoc_10.png" alt="img"><br><strong>Modules</strong><br>RouterModule：路由模組<br><img src="/images/angular/training/compodoc/compodoc_13.png" alt="img"><br><img src="/images/angular/training/compodoc/compodoc_14.png" alt="img"><br>NgModule 夾帶的資料越多頁面也會呈現越多資訊<br><img src="/images/angular/training/compodoc/compodoc_11.png" alt="img"><br><img src="/images/angular/training/compodoc/compodoc_12.png" alt="img"><br><strong>Components</strong><br>Info：類別資訊<br><img src="/images/angular/training/compodoc/compodoc_15.png" alt="img"><br>Source：程式原始碼當然是原始的 TypeScript，而不是編譯過的 JavaScript<br><img src="/images/angular/training/compodoc/compodoc_16.png" alt="img"><br>Template：樣板原始碼<br><img src="/images/angular/training/compodoc/compodoc_17.png" alt="img"><br>DOM Tree<br><img src="/images/angular/training/compodoc/compodoc_18.png" alt="img"><br><strong>Routes</strong><br>完整的路由路徑<br><img src="/images/angular/training/compodoc/compodoc_19.png" alt="img">  </p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p><strong>compodoc</strong> 也支援 <a href="http://usejsdoc.org/">JSDoc</a> 註解，所以我們只要在程式碼做好適當註解，最後就可以一併輸出到文件上，這部分就須依賴大家自己建立良好的習慣，在程式撰寫同時務必加入註解，修改時也須注意註解說明是否需要調整，這樣只要一行指令就可產生一份具有專業水準的說明文件(網站)。  </p>
+<h1 id="附錄：主題樣式"><a href="#附錄：主題樣式" class="headerlink" title="附錄：主題樣式"></a>附錄：主題樣式</h1><p>我們可以透過 <code>--theme [theme]</code> 參數來設定主題樣式，完整指令如下：<br><code>compodoc -p src\tsconfig.app.json --theme [theme]</code><br>目前提供主題樣式如下表：  </p>
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>gitbook</strong> (預設)</td>
+<td><img src="/images/angular/training/compodoc/compodoc_theme_gitbook.png" alt="img"></td>
+</tr>
+<tr>
+<td><strong>laravel</strong></td>
+<td><img src="/images/angular/training/compodoc/compodoc_theme_laravel.png" alt="img"></td>
+</tr>
+<tr>
+<td><strong>original</strong></td>
+<td><img src="/images/angular/training/compodoc/compodoc_theme_original.png" alt="img"></td>
+</tr>
+<tr>
+<td><strong>postmark</strong></td>
+<td><img src="/images/angular/training/compodoc/compodoc_theme_postmark.png" alt="img"></td>
+</tr>
+<tr>
+<td><strong>readthedocs</strong></td>
+<td><img src="/images/angular/training/compodoc/compodoc_theme_readthedocs.png" alt="img"></td>
+</tr>
+<tr>
+<td><strong>stripe</strong></td>
+<td><img src="/images/angular/training/compodoc/compodoc_theme_stripe.png" alt="img"></td>
+</tr>
+<tr>
+<td><strong>vagrant</strong></td>
+<td><img src="/images/angular/training/compodoc/compodoc_theme_vagrant.png" alt="img"></td>
+</tr>
+</tbody></table>
+<h1 id="附錄：參數表"><a href="#附錄：參數表" class="headerlink" title="附錄：參數表"></a>附錄：參數表</h1><table>
+<thead>
+<tr>
+<th>參數</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--help</code></td>
+<td>縮寫：<code>-h</code>，輸出使用信息</td>
+</tr>
+<tr>
+<td><code>--version</code></td>
+<td>縮寫：<code>-V</code>，輸出版本號</td>
+</tr>
+<tr>
+<td><code>--tsconfig [config]</code></td>
+<td>縮寫：<code>-p  [config]</code>，一個tsconfig.json文件</td>
+</tr>
+<tr>
+<td><code>--output [folder]</code></td>
+<td>縮寫：<code>-d [folder]</code>，存儲生成文檔的位置</td>
+</tr>
+<tr>
+<td><code>--extTheme [file]</code></td>
+<td>縮寫：<code>-y [file]</code>，套用外部主題</td>
+</tr>
+<tr>
+<td><code>--name [name]</code></td>
+<td>縮寫：<code>-n [name]</code>，文件標題</td>
+</tr>
+<tr>
+<td><code>--assetsFolder [folder]</code></td>
+<td>縮寫：<code>-a [folder]</code>，在建立在網頁文件同時也複製外部資源資料夾</td>
+</tr>
+<tr>
+<td><code>--open</code></td>
+<td>縮寫：<code>-o</code>，打開生成的文檔</td>
+</tr>
+<tr>
+<td><code>--silent</code></td>
+<td>縮寫：<code>-t</code>，在靜默模式下，日誌消息不會記錄在控制台中</td>
+</tr>
+<tr>
+<td><code>--serve</code></td>
+<td>縮寫：<code>-s</code>，服務生成的文檔，預設網址為 <a href="http://localhost:8080/">http://localhost:8080/</a></td>
+</tr>
+<tr>
+<td><code>--port [port]</code></td>
+<td>縮寫：<code>-r [port]</code>，更改預設網址的連接埠</td>
+</tr>
+<tr>
+<td><code>--watch</code></td>
+<td>縮寫：<code>-w</code>，啟動監看服務，當監看的檔案異動時自動重建網頁</td>
+</tr>
+<tr>
+<td><code>--theme [theme]</code></td>
+<td>選擇要套用的主題，預設為<code>gitbook</code>，可用主題有：<code>laravel</code>、<code>original</code>、<code>postmark</code>、<code>readthedocs</code>、<code>stripe</code>、<code>vagrant</code></td>
+</tr>
+<tr>
+<td><code>--name [name]</code></td>
+<td>縮寫：<code>-n [name]</code>，文件標題</td>
+</tr>
+<tr>
+<td>–hideGenerator</td>
+<td>隱藏網頁下方的 Compodoc 圖示</td>
+</tr>
+<tr>
+<td>–toggleMenuItems</td>
+<td>關閉默認項目，預設為 <code>all</code>，值：[ <code>modules</code>,<code>components</code>,<code>directives</code>,<code>classes</code>,<code>injectables</code>,<code>interfaces</code>,<code>pipes</code>,<code>additionalPages</code> ]</td>
+</tr>
+<tr>
+<td>–includes [path]</td>
+<td>引用外部 markdown 檔的路徑</td>
+</tr>
+<tr>
+<td>–includesName [name]</td>
+<td>外部標記文件的項目清單名稱，預設為”附加文檔”</td>
+</tr>
+<tr>
+<td>–coverageTest</td>
+<td>以閾值測試文檔覆蓋的命令，預設為 70</td>
+</tr>
+<tr>
+<td>–disableSourceCode</td>
+<td>不要添加原始碼</td>
+</tr>
+<tr>
+<td>–disableGraph</td>
+<td>禁用依賴圖的渲染</td>
+</tr>
+<tr>
+<td>–disableCoverage</td>
+<td>不要添加文檔覆蓋率報告</td>
+</tr>
+<tr>
+<td>–disablePrivateOrInternalSupport</td>
+<td>不要在生成的文檔中顯示 private，@internal 或 Angular 生命週期鉤子</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>參考資料：<a href="https://compodoc.github.io/website/guides/usage.html">https://compodoc.github.io/website/guides/usage.html</a>  </p>
+</blockquote>

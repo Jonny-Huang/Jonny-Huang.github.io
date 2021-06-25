@@ -1,0 +1,105 @@
+<hr>
+<p>title: Angular 子路由<br>date: 2017-09-03<br>categories: Training<br>keywords:</p>
+<ul>
+<li>Angular</li>
+<li>Router</li>
+<li>Routing<br>tags:</li>
+<li>Angular</li>
+<li>Router</li>
+</ul>
+<hr>
+<h1 id="子路由-Child-Routing"><a href="#子路由-Child-Routing" class="headerlink" title="子路由 (Child Routing)"></a>子路由 (Child Routing)</h1><p>在 <a href="/angular/training/08_angular_ui-flex_layout/">Angular UI：Angular Flex-Layout</a> 我們透過 <code>ng g m home --routing</code> 建立 <strong>HomeModule</strong>，因為多加了 <code>--routing</code> 參數，所以 CLI 多幫我們建立一個路由模組 <code>home-routing.module.ts</code>。  </p>
+<!-- more -->  
+
+<p>{% codeblock home-routing.module.ts lang:ts %}<br>import { NgModule } from ‘@angular/core’;<br>import { Routes, RouterModule } from ‘@angular/router’;</p>
+<p>const routes: Routes = [];</p>
+<p>@NgModule({<br>  imports: [RouterModule.forChild(routes)],<br>  exports: [RouterModule]<br>})<br>export class HomeRoutingModule { }</p>
+<p>{% endcodeblock %}</p>
+<p>比較一下 <code>arc\app\app-routing.module.ts</code>。  </p>
+<p>{% codeblock app-routing.module.ts lang:ts %}<br>import { NgModule } from ‘@angular/core’;<br>import { Routes, RouterModule } from ‘@angular/router’;<br>import { Page1Component } from ‘./page1/page1.component’;<br>import { Page2Component } from ‘./page2.component’;<br>import { Page3Component } from ‘./page3.component’;<br>import { Page404Component } from ‘./page404/page404.component’;<br>import { Opt1Component } from ‘./operation/opt1/opt1.component’;<br>import { HomeComponent } from ‘./home/home.component’;</p>
+<p>const routes: Routes = [<br>  { path: ‘’, redirectTo: ‘home’, pathMatch: ‘full’ },<br>  { path: ‘home’, component: HomeComponent },<br>  { path: ‘p1’, component: Page1Component },<br>  { path: ‘p2’, component: Page2Component },<br>  { path: ‘p3’, component: Page3Component },<br>  { path: ‘opt1’, component: Opt1Component },<br>  { path: ‘404’, component: Page404Component },<br>  { path: ‘**’, redirectTo: ‘404’ }<br>];</p>
+<p>@NgModule({<br>  imports: [RouterModule.forRoot(routes)],<br>  exports: [RouterModule]<br>})<br>export class AppRoutingModule { }</p>
+<p>{% endcodeblock %}</p>
+<p>可以發現 <strong>AppRoutingModule</strong> 是透過 <code>RouterModule.forRoot(routes)</code> 匯入，而 <strong>HomeRoutingModule</strong> 是透過 <code>RouterModule.forChild(routes)</code> 匯入，Angular 在執行時只有一個根路由當作起點，相關其他路由會子路由的身分以附加到根路由內。<br><strong>HomeRoutingModule</strong> 因為先被匯入到 <strong>HomeModule</strong>，而 <strong>HomeModule</strong> 又被匯入到 <strong>AppModule</strong>，所以 <strong>HomeRoutingModule</strong> 的路由規則才會被偵測到。  </p>
+<p>嘗試把 <strong>AppModule</strong> 內的路由規則 <code>{ path: &#39;home&#39;, component: HomeComponent }</code> 移至 <strong>HomeRoutingModule</strong>，並取消萬用路由規則。  </p>
+<p>{% codeblock app-routing.module.ts lang:ts %}<br>import { NgModule } from ‘@angular/core’;<br>import { Routes, RouterModule } from ‘@angular/router’;<br>import { Page1Component } from ‘./page1/page1.component’;<br>import { Page2Component } from ‘./page2.component’;<br>import { Page3Component } from ‘./page3.component’;<br>import { Page404Component } from ‘./page404/page404.component’;<br>import { Opt1Component } from ‘./operation/opt1/opt1.component’;<br>// import { HomeComponent } from ‘./home/home.component’;</p>
+<p>const routes: Routes = [<br>  { path: ‘’, redirectTo: ‘home’, pathMatch: ‘full’ },<br>  // { path: ‘home’, component: HomeComponent },<br>  { path: ‘p1’, component: Page1Component },<br>  { path: ‘p2’, component: Page2Component },<br>  { path: ‘p3’, component: Page3Component },<br>  { path: ‘opt1’, component: Opt1Component },<br>  { path: ‘404’, component: Page404Component },<br>  // { path: ‘**’, redirectTo: ‘404’ }<br>];</p>
+<p>@NgModule({<br>  imports: [RouterModule.forRoot(routes)],<br>  exports: [RouterModule]<br>})<br>export class AppRoutingModule { }</p>
+<p>{% endcodeblock %}</p>
+<p>{% codeblock home-routing.module.ts lang:ts %}<br>import { NgModule } from ‘@angular/core’;<br>import { Routes, RouterModule } from ‘@angular/router’;<br>import { HomeComponent } from ‘./home.component’;</p>
+<p>const routes: Routes = [<br>  { path: ‘home’, component: HomeComponent }<br>];</p>
+<p>@NgModule({<br>  imports: [RouterModule.forChild(routes)],<br>  exports: [RouterModule]<br>})<br>export class HomeRoutingModule { }</p>
+<p>{% endcodeblock %}</p>
+<p>執行後會看到結果沒有任何該便，這意味的 Angular 會幫我們將所有路由合併，並依序比對路由規則，所以也表示子路由加入的順序也會影響比對結果，只是正常情況下路由規格的條件(<code>path</code> 屬性)不應該重複。  </p>
+<blockquote>
+<p>因為目前的路由模組是透過 Angular 幫我們整合，正常情況下它會以根路由為主，在依子路由模組加入的順序依次加進去，所以如果根路由包含了萬用路由的規則，那路由規則比對時可能就會在此就被攔截，後續路由規則可能就會不再比對。</p>
+</blockquote>
+<p><img src="/images/angular/training/ui/angular_ui_29.png" alt="img"><br>如上圖所示，一般我們可能會在 Aside 區塊會列出一些系統的功能選單，等點選功能選單後 Content 區塊會將該功能的操作介面呈現出來。  </p>
+<p>先在 Aside 區塊加入一些功能項目，因為會使用到 <a href="https://material.angular.io/components/list/api"><strong>MdListModule</strong></a>、<a href="https://material.angular.io/components/button/api"><strong>MdButtonModule</strong></a>、<a href="https://material.angular.io/components/icon/api"><strong>MdIconModule</strong></a>，所以開啟 <code>src\app\custom-material.module.ts</code> 將缺少的模組補上。  </p>
+<p>{% codeblock custom-material.module.ts lang:ts %}<br>import { NgModule } from ‘@angular/core’;<br>import { FlexLayoutModule } from ‘@angular/flex-layout’;<br>import {<br>  MdIconModule,<br>  MdButtonModule,<br>  MdListModule<br>} from ‘@angular/material’;</p>
+<p>@NgModule({<br>  imports: [<br>    FlexLayoutModule,<br>    MdIconModule,<br>    MdButtonModule,<br>    MdListModule<br>  ],<br>  exports: [<br>    FlexLayoutModule,<br>    MdIconModule,<br>    MdButtonModule,<br>    MdListModule<br>  ]<br>})<br>export class CustomMaterialModule { }</p>
+<p>{% endcodeblock %}</p>
+<p>開啟 <code>src\app\home\aside\aside.component.html</code> 並加入下列功能清單。  </p>
+<p>{% codeblock aside.component.html lang:html %}<br><md-list><br>  <h3 md-subheader>員工專區</h3><br>  <button md-button routerLink=""><br>    <md-list-item><br>      <md-icon md-list-icon>today</md-icon><br>      <h4 md-line>行 事 曆</h4><br>    </md-list-item><br>  </button><br>  <button md-button routerLink=""><br>    <md-list-item><br>      <md-icon md-list-icon>contact_phone</md-icon><br>      <h4 md-line>通 訊 錄</h4><br>    </md-list-item><br>  </button><br>  <button md-button routerLink=""><br>    <md-list-item><br>      <md-icon md-list-icon>border_color</md-icon><br>      <h4 md-line>工作日誌</h4><br>    </md-list-item><br>  </button><br>  <button md-button routerLink=""><br>    <md-list-item><br>      <md-icon md-list-icon>playlist_add_check</md-icon><br>      <h4 md-line>待辦事項</h4><br>    </md-list-item><br>  </button><br>  <button md-button routerLink=""><br>    <md-list-item><br>      <md-icon md-list-icon>cloud_download</md-icon><br>      <h4 md-line>檔案下載</h4><br>    </md-list-item><br>  </button><br>  <button md-button routerLink=""><br>    <md-list-item><br>      <md-icon md-list-icon>weekend</md-icon><br>      <h4 md-line>請  假</h4><br>    </md-list-item><br>  </button><br>  <button md-button routerLink=""><br>    <md-list-item><br>      <md-icon md-list-icon>attach_money</md-icon><br>      <h4 md-line>差旅報支</h4><br>    </md-list-item><br>  </button><br></md-list></p>
+<p>{% endcodeblock %}</p>
+<p>開啟瀏覽器查看結果。<br><img src="/images/angular/training/router/angular_router_06.gif" alt="img"><br>但是縮小視窗高度時會發現因為視窗高度小於內容高度所以最右邊出現滾動條(scrollbar)，但是正常來說我們比較期望滾動條出現在 Aside 區塊，Header 區塊不會因為往下拖拉被隱藏起來，而是始終都能顯示在最上面。<br><img src="/images/angular/training/router/angular_router_07.png" alt="img"><br>開啟 <code>src\styles.scss</code>，將 <code>html</code>、<code>body</code>加入隱藏滾動，並另外建立一個 <code>scrollbar</code> 的樣式，可以到  <strong>CodePen</strong> 搜尋<a href="https://codepen.io/GhostRider/pen/GHaFw">範例</a>。  </p>
+<p>{% codeblock styles.scss lang:scss %}<br>html,<br>body {<br>  height: 100%;<br>  margin: 0px;<br>  overflow-y: hidden;<br>}</p>
+<p>.scrollbar {<br>  overflow-x: hidden;<br>  overflow-y: auto;<br>  padding-bottom: 48px;<br>}<br>.scrollbar::-webkit-scrollbar-track {<br>  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.8);<br>  border-radius: 10px;<br>  background-color: transparent;<br>}<br>.scrollbar::-webkit-scrollbar {<br>  width: 12px;<br>  background-color: transparent;<br>}<br>.scrollbar::-webkit-scrollbar-thumb {<br>  border-radius: 10px;<br>  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.8);<br>  background-color: transparent;<br>}</p>
+<p>/* Angular Material2 Themes */<br>// @import “<del>@angular/material/prebuilt-themes/deeppurple-amber.css”;<br>// @import “</del>@angular/material/prebuilt-themes/indigo-pink.css”;<br>@import “<del>@angular/material/prebuilt-themes/pink-bluegrey.css”;<br>// @import “</del>@angular/material/prebuilt-themes/purple-green.css”;</p>
+<p>{% endcodeblock %}</p>
+<p>開啟 <code>src\app\home\home.component.html</code>，在 Aside 區塊所屬的 <code>div</code> 加入 <code>scrollbar</code> 樣式。  </p>
+<p>{% codeblock home.component.html lang:html %}</p>
+<div fxFill fxLayout="column" class="layout">
+  <div fxFlex="68px" class="header">
+    <app-header></app-header>
+  </div>
+  <div fxFlex fxLayout="row" class="main">
+    <div fxFlex="200px" class="aside scrollbar">
+      <app-aside></app-aside>
+    </div>
+    <div fxFlex class="content">Content</div>
+  </div>
+</div>
+
+<p>{% endcodeblock %}</p>
+<p><img src="/images/angular/training/router/angular_router_08.png" alt="img"><br>接下來我們需要的是點選功能選單之後 Content 區塊會切換成該選單的介面，因為外面的 <strong>HomeModule</strong> 樣板會被保留下來，只有 Content 區塊需要切換。<br>依序建立各功能對應的元件：<br><code>ng g c home\calendar</code><br><code>ng g c home\addressBook</code><br><code>ng g c home\logbook</code><br><code>ng g c home\toDoList</code><br><code>ng g c home\file</code><br><code>ng g c home\leave</code><br><code>ng g c home\eimburse</code><br><img src="/images/angular/training/router/angular_router_09.png" alt="img"><br>開啟 <code>src\app\home\home.component.html</code>，在 Content 區塊內插入第二層的 <code>router-outlet</code>。  </p>
+<p>{% codeblock home.component.html lang:html %}</p>
+<div fxFill fxLayout="column" class="layout">
+  <div fxFlex="68px" class="header">
+    <app-header></app-header>
+  </div>
+  <div fxFlex fxLayout="row" class="main">
+    <div fxFlex="200px" class="aside scrollbar">
+      <app-aside></app-aside>
+    </div>
+    <div fxFlex class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<p>{% endcodeblock %}</p>
+<p>開啟 <code>src\app\home\home-routing.module.ts</code>，依照剛所產生的元件建立對應的路由規則，比較不同的是這次的路由規則是建立在 <code>home</code> 這個路由規則的 <code>children</code> 屬性內。  </p>
+<p>{% codeblock home-routing.module.ts lang:ts %}<br>import { NgModule } from ‘@angular/core’;<br>import { Routes, RouterModule } from ‘@angular/router’;<br>import { HomeComponent } from ‘./home.component’;<br>import { CalendarComponent } from ‘./calendar/calendar.component’;<br>import { AddressBookComponent } from ‘./address-book/address-book.component’;<br>import { FileComponent } from ‘./file/file.component’;<br>import { LeaveComponent } from ‘./leave/leave.component’;<br>import { LogbookComponent } from ‘./logbook/logbook.component’;<br>import { ReimburseComponent } from ‘./reimburse/reimburse.component’;<br>import { ToDoListComponent } from ‘./to-do-list/to-do-list.component’;</p>
+<p>const routes: Routes = [<br>  {<br>    path: ‘home’, component: HomeComponent, children: [<br>      { path: ‘address-book’, component: AddressBookComponent },<br>      { path: ‘calendar’, component: CalendarComponent },<br>      { path: ‘file’, component: FileComponent },<br>      { path: ‘leave’, component: LeaveComponent },<br>      { path: ‘logbook’, component: LogbookComponent },<br>      { path: ‘reimburse’, component: ReimburseComponent },<br>      { path: ‘to-do-list’, component: ToDoListComponent },<br>    ]<br>  }<br>];</p>
+<p>@NgModule({<br>  imports: [RouterModule.forChild(routes)],<br>  exports: [RouterModule]<br>})<br>export class HomeRoutingModule { }</p>
+<p>{% endcodeblock %}</p>
+<blockquote>
+<p>符合現在所設的路由規則的導覽路徑前面必包含 <code>home</code> 路徑，因為必須先滿足 <code>path:&#39;home&#39;</code> 這條路由規則才有機會繼續比對 <code>children</code> 內的路由規則。<br><code>children</code> 內的路由規則也是可以再加上子路由規則(<code>children</code>)，如此可以一層一層的延伸下去。  </p>
+</blockquote>
+<p>開啟 <code>src\app\home\aside\aside.component.html</code> 並在各功能選單加入 <code>routerLink</code>。  </p>
+<p>{% codeblock aside.component.html lang:html %}<br><md-list><br>  <h3 md-subheader>員工專區</h3><br>  <button md-button routerLink="./calendar"><br>    <md-list-item><br>      <md-icon md-list-icon>today</md-icon><br>      <h4 md-line>行 事 曆</h4><br>    </md-list-item><br>  </button><br>  <button md-button routerLink="./address-book"><br>    <md-list-item><br>      <md-icon md-list-icon>contact_phone</md-icon><br>      <h4 md-line>通 訊 錄</h4><br>    </md-list-item><br>  </button><br>  <button md-button routerLink="./logbook"><br>    <md-list-item><br>      <md-icon md-list-icon>border_color</md-icon><br>      <h4 md-line>工作日誌</h4><br>    </md-list-item><br>  </button><br>  <button md-button routerLink="./to-do-list"><br>    <md-list-item><br>      <md-icon md-list-icon>playlist_add_check</md-icon><br>      <h4 md-line>待辦事項</h4><br>    </md-list-item><br>  </button><br>  <button md-button routerLink="./file"><br>    <md-list-item><br>      <md-icon md-list-icon>cloud_download</md-icon><br>      <h4 md-line>檔案下載</h4><br>    </md-list-item><br>  </button><br>  <button md-button routerLink="./leave"><br>    <md-list-item><br>      <md-icon md-list-icon>weekend</md-icon><br>      <h4 md-line>請  假</h4><br>    </md-list-item><br>  </button><br>  <button md-button routerLink="./reimburse"><br>    <md-list-item><br>      <md-icon md-list-icon>attach_money</md-icon><br>      <h4 md-line>差旅報支</h4><br>    </md-list-item><br>  </button><br></md-list></p>
+<p>{% endcodeblock %}</p>
+<p>開啟瀏覽器查看結果，Content 區塊應該就能依所選的功能選單出現對應的元件。<br><img src="/images/angular/training/router/angular_router_10.gif" alt="img"><br>不過預設情況下Content 區塊會是空白，因此可以設定某個功能為預設功能，我們以待辦事項當作預設功能為例。  </p>
+<p>{% codeblock home-routing.module.ts lang:ts %}<br>import { NgModule } from ‘@angular/core’;<br>import { Routes, RouterModule } from ‘@angular/router’;<br>import { HomeComponent } from ‘./home.component’;<br>import { CalendarComponent } from ‘./calendar/calendar.component’;<br>import { AddressBookComponent } from ‘./address-book/address-book.component’;<br>import { FileComponent } from ‘./file/file.component’;<br>import { LeaveComponent } from ‘./leave/leave.component’;<br>import { LogbookComponent } from ‘./logbook/logbook.component’;<br>import { ReimburseComponent } from ‘./reimburse/reimburse.component’;<br>import { ToDoListComponent } from ‘./to-do-list/to-do-list.component’;</p>
+<p>const routes: Routes = [<br>  {<br>    path: ‘home’, component: HomeComponent, children: [<br>      { path: ‘’, redirectTo: ‘to-do-list’, pathMatch: ‘full’ },<br>      { path: ‘address-book’, component: AddressBookComponent },<br>      { path: ‘calendar’, component: CalendarComponent },<br>      { path: ‘file’, component: FileComponent },<br>      { path: ‘leave’, component: LeaveComponent },<br>      { path: ‘logbook’, component: LogbookComponent },<br>      { path: ‘reimburse’, component: ReimburseComponent },<br>      { path: ‘to-do-list’, component: ToDoListComponent }<br>    ]<br>  }<br>];</p>
+<p>@NgModule({<br>  imports: [RouterModule.forChild(routes)],<br>  exports: [RouterModule]<br>})<br>export class HomeRoutingModule { }</p>
+<p>{% endcodeblock %}</p>
+<p>重新執行應該可以發現預設會被導引到 <code>\home\to-do-list\</code>。<br>最後我們可以看到輕 <strong>請假</strong> 功能選單的選取效果明顯寬度比較窄，所以可以直接修改 <code>src\app\home\aside\aside.component.scss</code>，將寬度放大。<br><img src="/images/angular/training/router/angular_router_11.png" alt="img">  </p>
+<p>{% codeblock aside.component.scss lang:scss %}<br>button {<br>  width: 200px;<br>}</p>
+<p>{% endcodeblock %}</p>
+<p><img src="/images/angular/training/router/angular_router_12.gif" alt="img">  </p>
+<blockquote>
+<p>Angular 的 Component 除了會幫我們把 JavaScript 隔離好避免元件之間互相汙染外，每個元件也可以透過獨立的樣式檔各式調整，但是要注意 CSS 的特性，如果元件內還有其他元件也會同時受影響，比較好的做法是透過 CSS class 來套版。</p>
+</blockquote>
+<p>{% img /images/download.png 36 %}<a href="/uploads/first-app_2017-09-03.zip"><strong>first-app_2017-09-03.zip</strong></a>  </p>

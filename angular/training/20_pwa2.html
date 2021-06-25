@@ -1,0 +1,84 @@
+<hr>
+<p>title: PWA 替身術：ServiceWorker - caches<br>date: 2017-09-26 08:00<br>categories: Training<br>keywords:</p>
+<ul>
+<li>caches</li>
+<li>ServiceWorker</li>
+<li>Progressive Web App</li>
+<li>PWA</li>
+<li>Angular<br>tags:</li>
+<li>PWA</li>
+</ul>
+<hr>
+<h1 id="ServiceWorker"><a href="#ServiceWorker" class="headerlink" title="ServiceWorker"></a>ServiceWorker</h1><p>在 <a href="/angular/training/19_pwa/">PWA 偽裝術：manifest.json</a> 我們透過 <code>manifest.json</code> 來讓 Web 可以在桌面上產生捷徑，並在執行時隱藏了不需要的網址列，讓外觀上跟一般 App 已無太大差異，接下來我們要解決 Web App 的另一大難題-<strong>離線機制</strong>，雖然說現在的系統幾乎都是透過網路與後端資料做即時交換，可說如果沒有網路的話過半數的 App 大概都會失去它的功用，但是與網頁不同的是在沒有網路狀態下仍然有畫面，而網頁則會顯示瀏覽器預設的警示畫面，相較之下對於一般使用者來說較不友善，而起好一點的 App 都會將網路下載下來的資訊儲存在本機端，當離線時雖然無法再與後端做資料交換，但是仍然可以提供之前獲取的資料，雖然 Web 也提供了離線儲存機制，但是扣除安全性不說，開發上就比較困難，尤其是使用者(或是瀏覽器擴充功能)還可以禁止相關功能。  </p>
+<!-- more -->  
+
+<p><img src="/images/angular/training/pwa/pwa_23.png" alt="img"><br><strong>ServiceWorker</strong> 是可以運行在瀏覽器後台的一種腳本，接下來我們要練習的是如何透過 ServiceWorker 的快取機制來解決網路離線時 Web App 會遇到的問題， ServiceWorker 到底在做什麼事？筆者可以說的就是 <strong>簾窺壁聽、偷天換日</strong>。  </p>
+<h2 id="運作流程"><a href="#運作流程" class="headerlink" title="運作流程"></a>運作流程</h2><p>因為 <strong>ServiceWorker</strong> 可以監控前端的任何存取，所以被要求必須在 HTTPS 下運行，唯一例外是本機端，為了方便開發，<code>localhost</code> 也會被瀏覽器視為安全的傳輸，接下來我們開始逐步來實作 ServiceWorker。</p>
+<p>我們接續 <a href="/angular/training/19_pwa/">PWA 偽裝術：manifest.json</a> 的程式來當範例。<br>{% img /images/download.png 36 %}<a href="/uploads/first-app_2017-09-25.zip"><strong>first-app_2017-09-25.zip</strong></a>  </p>
+<blockquote>
+<p>若要下載請記得先透過指令 <code>npm install</code> 來重新安裝 package。<br>這邊我們透過 <code>ng build --prod -oh</code> 指令來編譯，讓輸出檔名不會包含雜湊值。<br><code>-oh</code>:<code>--output-hashing</code> 縮寫。<br><img src="/images/angular/training/pwa/pwa_28.png" alt="img"><br>參考文件：<br>MDN - <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers">使用 Service Workers</a><br>Google Developers - <a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Workers: an Introduction</a></p>
+</blockquote>
+<h3 id="註冊"><a href="#註冊" class="headerlink" title="註冊"></a>註冊</h3><p>首先我們在專案目錄下建立 <code>sw.js</code> 當作 ServiceWorker 腳本，並建立一個 <code>register_sw.js</code> 負責註冊這個腳本，語法如下：  </p>
+<p>{% codeblock register_sw.js lang:js %}<br>if (‘serviceWorker’ in navigator) {<br>  navigator.serviceWorker.register(‘./sw.js’)<br>    .then(reg =&gt; {<br>      // registration worked<br>      console.log(‘[Service Worker] Registration succeeded. Scope is ‘ + reg.scope);<br>    }).catch(error =&gt; {<br>      // registration failed<br>      console.log(‘[Service Worker] Registration failed with ‘ + error);<br>    });<br>}</p>
+<p>{% endcodeblock %}</p>
+<blockquote>
+<p>我們可以從 <a href="https://jakearchibald.github.io/isserviceworkerready/">Is Serviceworker Ready？</a> 網站查看各家瀏覽器的支援度。</p>
+</blockquote>
+<p>接著在 首頁(<code>index.html</code>) 內加入 <code>register_sw.js</code>。  </p>
+<p>{% codeblock index.html lang:html %}<br><!doctype html></p>
+<html lang="zh">
+...
+<body oncontextmenu="return false">
+  <app-root></app-root>
+  <script type="text/javascript" src="register_sw.js"></script>
+</body>
+
+</html>
+
+<p>{% endcodeblock %}</p>
+<blockquote>
+<p>我們也可以省略 <code>register_sw.js</code> 檔，直接將註冊語法寫在網頁內，不過不要將 <strong>ServiceWorker 腳本</strong>-<code>sw.js</code>(目前還是空白) 也移到網頁內，因為瀏覽器會在後台以獨立的執行緒(Thread)來運行 <code>sw.js</code>，這樣意味著 <strong>ServiceWorker 無法干預前端網頁內容</strong>。</p>
+</blockquote>
+<p>透過 Chrome 擴充功能-<a href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb">Web Server for Chrome</a> 來執行，可以看到雖然 <code>sw.js</code> 是空白的，但是 ServiceWorker 已經在運行了。<br><img src="/images/angular/training/pwa/pwa_24.png" alt="img">  </p>
+<blockquote>
+<p>與<code>manifest.json</code> 一樣我們將 <code>register_sw.js</code> 與 <code>sw.js</code> 加到 <code>.angular-cli.json</code> 的 <code>assets</code>，這樣建置時才會一併複製。<br><img src="/images/angular/training/pwa/pwa_29.png" alt="img">  </p>
+</blockquote>
+<h2 id="加入事件"><a href="#加入事件" class="headerlink" title="加入事件"></a>加入事件</h2><p>開啟 <code>sw.js</code> 並加入3個事件：<code>install</code>(安裝)、<code>activate</code>(啟動)、<code>fetch</code>(存取)，並透過 <code>console.log</code> 來確認事件是否觸發。  </p>
+<p>{% codeblock sw.js lang:js %}<br>self.addEventListener(‘install’, event =&gt; {<br>  console.log(‘[ServiceWorker] Install’);<br>});</p>
+<p>self.addEventListener(‘activate’, event =&gt; {<br>  event.waitUntil(clients.claim());<br>});</p>
+<p>self.addEventListener(‘fetch’, event =&gt; {<br>  console.log(‘[ServiceWorker] fetch’, event.request);<br>});</p>
+<p>{% endcodeblock %}</p>
+<p>直接在原本的瀏覽器視窗重新整理，可以發現瀏覽器很聰明的發現 ServiceWorker 腳本(<code>sw.js</code>) 有變更過，因此多個一個 <strong>#251</strong> 的流水號，但是仔細觀看可以發現它的狀態是在等待被啟動，目前啟動的版本仍然是之前的版本，這是因為<br>當瀏覽器前端有運行這一支 Web 應用程式時，瀏覽器預設不會終止目前的腳本，腳本更新會等到不再需要 ServiceWorker 時(例如關閉目前的瀏覽器視窗)才會更新為新的腳本。<br><img src="/images/angular/training/pwa/pwa_25.png" alt="img"><br>關閉目前瀏覽器視窗再用新的視窗開啟網頁，可以發現目前啟動 ServiceWork 其流水號為 <strong>#251</strong>，切換到 Console 視窗也可看到相關事件被觸發了。  </p>
+<blockquote>
+<p>如果希望異動過的程式能夠立即更新，可以在 <code>install</code> 事件內透過 <code>skipWaiting</code> 方法來立即啟用。<br><img src="/images/angular/training/pwa/pwa_61.png" alt="img"><br>參考資料：MDN - <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/skipWaiting">ServiceWorkerGlobalScope.skipWaiting()</a></p>
+</blockquote>
+<p><img src="/images/angular/training/pwa/pwa_26.png" alt="img"><br><img src="/images/angular/training/pwa/pwa_27.png" alt="img">  </p>
+<blockquote>
+<p>由上圖也可以了解 ServiceWork 的處理順序為<br><code>install</code>(安裝) =&gt; <code>activate</code>(啟動) =&gt; <code>fetch</code>(存取)<br><code>install</code>、<code>activate</code> 只會觸發一次，<code>fetch</code> 則是只要前端對後台發出 request 就會觸發。  </p>
+</blockquote>
+<h2 id="靜態快取"><a href="#靜態快取" class="headerlink" title="靜態快取"></a>靜態快取</h2><p>開啟腳本(<code>src\sw.js</code>)，先建立檔案快取清單-<code>filesToCache</code>，並將要快取的檔案加入期內，接著在 <code>install</code> 事件內將快取清單加入至快取內。<br>接著在 <code>fetch</code> 事件內去透過 <code>respondWith</code> 方法來阻止瀏覽器使用預設存取模式，並比對快取是否有該 request 請求的資料，若有則直接從快取提取，否則就使用預設模式存取， 相關代碼如下：  </p>
+<p>{% codeblock sw.js lang:js %}<br>const cacheVersion = ‘v1’;<br>const filesToCache = [<br>  ‘0.chunk.js’,<br>  ‘favicon.ico’,<br>  ‘index.html’,<br>  ‘inline.bundle.js’,<br>  ‘main.bundle.js’,<br>  ‘polyfills.bundle.js’,<br>  ‘register_sw.js’,<br>  ‘styles.bundle.css’,<br>  ‘vendor.bundle.js’,<br>  ‘assets/images/android_048.png’,<br>  ‘assets/images/android_057.png’,<br>  ‘assets/images/android_072.png’,<br>  ‘assets/images/android_076.png’,<br>  ‘assets/images/android_096.png’,<br>  ‘assets/images/android_114.png’,<br>  ‘assets/images/android_120.png’,<br>  ‘assets/images/android_144.png’,<br>  ‘assets/images/android_152.png’,<br>  ‘assets/images/android_167.png’,<br>  ‘assets/images/android_180.png’,<br>  ‘assets/images/android_192.png’,<br>  ‘assets/images/android_512.png’<br>];</p>
+<p>self.addEventListener(‘install’, event =&gt; {<br>  console.log(‘[ServiceWorker] Install’);<br>  event.waitUntil(<br>    caches.open(cacheVersion)<br>    .then(cache =&gt; {<br>      console.log(‘[ServiceWorker] Caching app shell’);<br>      return cache.addAll(filesToCache);<br>    })<br>  );<br>});</p>
+<p>self.addEventListener(‘activate’, event =&gt; {<br>  console.log(‘[ServiceWorker] Activate’);<br>});</p>
+<p>self.addEventListener(‘fetch’, event =&gt; {<br>  console.log(‘[ServiceWorker] fetch’, event.request);<br>  event.respondWith(<br>    caches.match(event.request)<br>    .then(response =&gt; response || fetch(event.request))<br>  );<br>});</p>
+<p>{% endcodeblock %}</p>
+<p>開啟瀏覽器 ServerWork 的離線(Offline)選項或者直接停用 Web Server，重新整理後可以發現網頁依然存在，基本的離線機制已經完成了。<br><img src="/images/angular/training/pwa/pwa_30.png" alt="img"><br><img src="/images/angular/training/pwa/pwa_31.png" alt="img">  </p>
+<h2 id="快取版本"><a href="#快取版本" class="headerlink" title="快取版本"></a>快取版本</h2><p>在 <code>sw.js</code> 內的最上方我們宣告了一個常數當作快取名稱<br><code>const cacheVersion = &#39;v1&#39;;</code><br>到目前為止我們只做到將資料加到快取內，但是我們可能會隨著功能的變更讓網站結構調整，當然快取清單也必然會配合修改，這時候就會發生快取可能會殘留舊有而不需要的資料，或者是快取累計的資料過於龐大，因此我們需要一個方式可以移除這些不必要的資料。  </p>
+<blockquote>
+<p>我們可以透過開發者工具來查看目前快取的資料。<br><img src="/images/angular/training/pwa/pwa_32.png" alt="img"></p>
+</blockquote>
+<p>在這邊我們以最簡單的方式來處理，當快取規則與以往不同時我們透過變更 <code>cacheVersion</code> 來產生全新的快取區域，並將就的快取直接刪除。<br>開啟腳本並在 <code>activate</code> 事件添加刪除快取的程式碼，並將快取版本(<code>cacheVersion</code>)改為 <code>v2</code>。  </p>
+<p>{% codeblock sw.js lang:js %}<br>const cacheVersion = ‘v2’;<br>const filesToCache = [<br>  …<br>];<br>…<br>self.addEventListener(‘activate’, event =&gt; {<br>  console.log(‘[ServiceWorker] Activate’);<br>  event.waitUntil(<br>    caches.keys()<br>    .then(keyList =&gt; {<br>      return Promise.all(keyList.map(key =&gt; {<br>        if (key !== cacheVersion) {<br>          return caches.delete(key);<br>        }<br>      }));<br>    })<br>  );<br>});<br>…<br>{% endcodeblock %}</p>
+<p>重新執行，可以發現快取名稱已經變成 <code>v2</code>，而原本的 <code>v1</code> 已經被移除了。<br><img src="/images/angular/training/pwa/pwa_33.png" alt="img">  </p>
+<h2 id="API-快取"><a href="#API-快取" class="headerlink" title="API 快取"></a>API 快取</h2><p>因為筆者目前沒有建立 WebAPI 環境，所以在此不做練習，但是我們可以參考 MDN 網站 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers">使用 Service Workers</a> 的範例，由範例程式碼可以看到它的作法與我們上面的方法類似，當快取內沒有相關資料時就改從網路去後台抓取，差別就在於它抓取資料後會先存入快取內，這樣下次就可以直接從快取提取資料。<br><img src="/images/angular/training/pwa/pwa_34.png" alt="img">  </p>
+<p>目前的機制看起來與其說我們在建立快取，不如說更像在實作一個 Web App 專屬的代理伺服器(Proxy Server)，最重要的是這種架構讓<strong>開發人員可以專注在連線模式的系統運作，完全不需要思考離線的問題</strong>。<br>但是目前也衍生出一些問題：  </p>
+<ul>
+<li><p>有些 API 雖然參數一樣，但是在不同時間會回傳不一樣的內容，例如：最新消息，系統公告…等等，這時候若都從快取抓取資料便會讓使用者有資料沒有更新的假象，因此我們需要另一個機制，在有網路時透過網路去後端抓取資料，當離線時才改從快取讀取資料。  </p>
+</li>
+<li><p>我們不只有查詢需求，還有對資料作新增、修改、刪除的問題，雖然可以藉由快取讓離線時仍然有畫面，但是對於資料異動又要如何處理？  </p>
+</li>
+<li><p>就像大部分人常用的 Line ，這種由後端伺服器主動推撥訊息至用戶端的模式又要如何在 Web 上達到？</p>
+</li>
+</ul>
+<p>這些議題後續有機會再做討論。  </p>
+<p>{% img /images/download.png 36 %}<a href="/uploads/first-app_2017-09-26.zip"><strong>first-app_2017-09-26.zip</strong></a>  </p>

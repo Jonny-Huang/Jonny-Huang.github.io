@@ -1,0 +1,144 @@
+<hr>
+<p>title: Dart：會用但不會講的運算子<br>date: 2019-06-14<br>categories: Flutter<br>keywords:</p>
+<ul>
+<li>Flutter</li>
+<li>Dart<br>tags:</li>
+<li>Flutter</li>
+<li>Dart</li>
+</ul>
+<hr>
+<p><img src="/images/flutter/007/flutter_000.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>**運算子(Operator)<strong>可以說是程式語言最重要的功能之一，但是回想起來一開始學程式時卻是有點痛苦的回憶，因為它跟我們所學的數學邏輯有點像又有些差異，好像懂但又說不出個所以然，最後的結果就是圖法煉鋼，多寫幾次程式慢慢有感覺的就</strong>“好像”**懂了，但是有時候又會碰到無法解釋的邏輯，例如下面 JavaScript 的例子：<br><img src="/images/flutter/007/flutter_001.png" alt="img">  </p>
+<!-- more -->  
+
+<h1 id="資料型別-Data-Types"><a href="#資料型別-Data-Types" class="headerlink" title="資料型別(Data Types)"></a>資料型別(Data Types)</h1><p>DateTime、bool、num、String 幾乎我們在開發過程中都一定會使用到，但是這些資料型別到底是什麼？<br>查看官方文件 <a href="https://api.flutter.dev/flutter/dart-core/dart-core-library.html">dart:core library</a> 可以發現其實它們都被歸在**類別(Class)**裡面。<br><img src="/images/flutter/007/flutter_005.png" alt="img"><br>點進每個資料型別的葉面就可以看到，在最上方就標明它們是類別物件，甚至連 <strong>Null</strong> 都是一個類別。<br><img src="/images/flutter/007/flutter_004.png" alt="img">  </p>
+<h2 id="運算子-Operator"><a href="#運算子-Operator" class="headerlink" title="運算子 (Operator)"></a>運算子 (Operator)</h2><p>那什麼是<strong>運算子(Operator)<strong>？以數值型別(num) 為例，目前我們可以知道它就是一個類別，觀看官方文件就可以看到頁面內有一個 <a href="https://api.flutter.dev/flutter/dart-core/num-class.html#operators">Operators</a> 的說明區段，再仔細一看就可以發現我們常用的運算子都列在上面。<br><img src="/images/flutter/007/flutter_003.png" alt="img"><br>從說明其實不難看出</strong>運算子其實就是函式</strong>，也就是說每種資料型別都是一個個 Class，而運算子就是這些 Class 內的 Function，現在開始回想我們所撰寫運算式到底是什麼？<br>我們以最常見的加法為例：<code>1+2</code>。<br>第一個 <code>1</code> 會判定為數值，所以會有個 num class 來儲存它。<br>第二個 <code>+</code> 會判定為 <code>1</code> 這個 Class 的加法 Function，它還需要一個 num 當作參數。<br>第三個 <code>2</code> 會判定為數值，所以也會有個 num class 來儲存它，同時它會被當作 <code>+</code> 的參數帶入計算。<br><img src="/images/flutter/007/flutter_002.png" alt="img"><br>在 <code>+</code> 函式內它會將自己這個類別(<code>1</code>)的值與參數類別(<code>2</code>)的值轉換成二進制，做完加總之後再將結果轉換成 num 型別並回傳，所以 <code>1+2</code> 我們會得到一個值為<code>3</code>的 num 型別，到這邊我們應該可以了解運算式就是不斷的拆解值並呼叫對應的函式來作處理，跟我們一般的數學運算觀念上不太一樣。<br>從 <a href="https://dartpad.dartlang.org/">DartPad</a> 上執行 Run 可以看到可以正常運行，只是看不到任何變化，因為我們不知道回傳的 <code>3</code> 放在哪裡。<br><img src="/images/flutter/007/flutter_006.png" alt="img">  </p>
+<blockquote>
+<p>嘗試把 <code>2</code> 改為字串，就會發現編譯器發出錯誤警告，原因很簡單 <code>+</code> 函式只允許傳入 num 型別，所以與其說 Dart 的強型別定義讓程式可以更加嚴謹，不如說 Dart 只提供相同型的運算函式，所以我們無法撰寫不同型別的運算。<br><img src="/images/flutter/007/flutter_007.png" alt="img">  </p>
+</blockquote>
+<h2 id="變數-Variable"><a href="#變數-Variable" class="headerlink" title="變數 (Variable)"></a>變數 (Variable)</h2><p>上面提到我們無法得到回傳結果，如果把記憶體當作是一本筆記本，當我們運算 <code>1+2</code> 時它回傳的 <code>3</code> 其實有寫在這本筆記本內，只是當我們要取值時卻不知道它原本寫在哪一頁內，因此程式語言包含一種可以讓我們取值的機制-<strong>變數(Variable)<strong>，我們可以將變數想像成書籍的目錄頁，在目錄頁內會有章節名稱以其它所在的頁數。<br><img src="/images/flutter/007/flutter_008.png" alt="img"><br>變數使用方式也是相同的，我們可以給予每個變數一個的名稱，然後用這個變數來紀錄資料的位置(頁數)，但是要怎麼紀錄呢？Dart 提供一個 <code>=</code> 的函式，可以協助我們</strong>將右邊資料所在的頁數寫入到左邊變數的頁次</strong>，接下來我們宣告一個 <code>a</code> 變數，並透過 <code>=</code> 將來右邊的 <code>1+2</code> 的回傳值寫入到左邊的 <code>a</code> 變數，接著將 <code>a</code> 帶入到 <code>print</code> 來輸出到畫面上，<code>print</code> 在讀取 <code>a</code> 這個變數時，Dart 會自動幫我們搜尋到 <code>a</code> 所對應的值 <code>3</code>，因此最後我們可以從畫面上看到一個 <code>3</code>。<br><img src="/images/flutter/007/flutter_009.png" alt="img">  </p>
+<h1 id="運算子優先序-Operator-precedence"><a href="#運算子優先序-Operator-precedence" class="headerlink" title="運算子優先序 (Operator precedence)"></a>運算子優先序 (Operator precedence)</h1><p>Dart 是 Google 所開發的程式語言，後來由 ECMA 制定標準規範(ECMA-408)，我們可以從 <a href="https://www.ecma-international.org/publications/standards/Ecma-408.htm">ECMA-408網站</a> 下載文件-<a href="https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-408.pdf">ECMA-408.pdf</a>(目前版本為第4版)，開啟文件瀏覽到最後一個章節 <strong>20.2 Operator Precedence</strong>，我們可以看到一個運算子優先序的表格，內容如下：  </p>
+<table>
+<thead>
+<tr>
+<th>運算子名稱</th>
+<th align="right">運算子</th>
+<th align="center">相依性</th>
+<th align="right">優先性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Unary postﬁx</td>
+<td align="right"><code>.</code>, <code>?.</code>, <code>e++</code>, <code>e–</code>, <code>e1[e2]</code>, <code>e1()</code>, <code>()</code></td>
+<td align="center">無</td>
+<td align="right">16</td>
+</tr>
+<tr>
+<td>Unary preﬁx</td>
+<td align="right"><code>-e</code>, <code>!e</code>, <code>˜e</code>, <code>++e</code>, <code>–e</code></td>
+<td align="center">無</td>
+<td align="right">15</td>
+</tr>
+<tr>
+<td>Multiplicative</td>
+<td align="right"><code>*</code>, <code>/</code>,<code>˜/</code>, <code>%</code></td>
+<td align="center">從左至右</td>
+<td align="right">14</td>
+</tr>
+<tr>
+<td>Additive</td>
+<td align="right"><code>+</code>, <code>-</code></td>
+<td align="center">從左至右</td>
+<td align="right">13</td>
+</tr>
+<tr>
+<td>Shift</td>
+<td align="right"><code>&lt;&lt;</code>, <code>&gt;&gt;</code></td>
+<td align="center">從左至右</td>
+<td align="right">12</td>
+</tr>
+<tr>
+<td>Bitwise AND</td>
+<td align="right"><code>&amp;</code></td>
+<td align="center">從左至右</td>
+<td align="right">11</td>
+</tr>
+<tr>
+<td>Bitwise XOR</td>
+<td align="right"><code>ˆ</code></td>
+<td align="center">從左至右</td>
+<td align="right">10</td>
+</tr>
+<tr>
+<td>Bitwise Or</td>
+<td align="right">&#124;</td>
+<td align="center">從左至右</td>
+<td align="right">9</td>
+</tr>
+<tr>
+<td>Relational</td>
+<td align="right"><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>as</code>, <code>is</code>, <code>is!</code></td>
+<td align="center">無</td>
+<td align="right">8</td>
+</tr>
+<tr>
+<td>Equality</td>
+<td align="right"><code>==</code>, <code>!=</code></td>
+<td align="center">無</td>
+<td align="right">7</td>
+</tr>
+<tr>
+<td>Logical AND</td>
+<td align="right"><code>&amp;&amp;</code></td>
+<td align="center">從左至右</td>
+<td align="right">6</td>
+</tr>
+<tr>
+<td>Logical Or</td>
+<td align="right">&#124;&#124;</td>
+<td align="center">從左至右</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td>If-null</td>
+<td align="right"><code>??</code></td>
+<td align="center">從左至右</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td>Conditional</td>
+<td align="right"><code>e1?</code> <code>e2:</code> <code>e3</code></td>
+<td align="center">從右至左</td>
+<td align="right">3</td>
+</tr>
+<tr>
+<td>Cascade</td>
+<td align="right"><code>..</code></td>
+<td align="center">從左至右</td>
+<td align="right">2</td>
+</tr>
+<tr>
+<td>Assignment</td>
+<td align="right"><code>=</code>, <code>*=</code>, <code>/=</code>, <code>+=</code>, <code>-=</code>, <code>&amp;=</code>, <code>ˆ=</code> etc.</td>
+<td align="center">從右至左</td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td></td>
+<td align="right"></td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td>上面除了列出 Dart 的運算子還多個<strong>優先性(Precedence)<strong>與</strong>相依性(Associativity)<strong>，</strong>優先性</strong>就像我們數學講的<strong>先乘除後加減</strong>，每一行程式碼都會先解析出所有的運算子，再依運算子的優先性依序處理，而當運算子優先性相同時則依<strong>相依性</strong>來決定運算的方向。</td>
+<td align="right"></td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>所以說程式處理順序不是一律由左至右，只是因為大部分的運算子的相依性都是由左至右，所以才容易有這種錯覺。  </p>
+</blockquote>
+<p>接下來我們在連續等號的邏輯，範例如下：<br><img src="/images/flutter/007/flutter_013.png" alt="img"><br><code>a=b=c=5</code> 使用2個 <code>=</code>，因為優先性相等所以依照<strong>由右到左</strong>的原則處理。<br>首先執行 <code>c=5</code>，<code>c</code> 變數會被賦予一個值 <code>5</code>，接著運算函式會回傳 <code>5</code>，所以運算式就會變成 <code>a=b=5</code>。<br>接著執行 <code>b=5</code>，<code>b</code> 變數會被賦予一個值 <code>5</code>，接著運算函式會回傳 <code>5</code>，所以運算式就會變成 <code>a=5</code>。<br>最後執行 <code>a=5</code>，<code>a</code> 變數會被賦予一個值 <code>5</code>，接著運算函式會回傳 <code>5</code>，所以將 <code>a</code>、<code>b</code>、<code>c</code> 輸出時都會得到 <code>5</code> 的結果。<br><img src="/images/flutter/007/flutter_014.png" alt="img"><br>接著我們把運算式改成 <code>a=b=c&gt;5</code>，並賦予 <code>c</code> 初始值 <code>1</code>，我們可以看到結果是 <code>a</code> 為 <code>false</code>、<code>b</code> 為 <code>false</code>、<code>c</code> 為 <code>1</code> 的結果，雖然看似有點奇怪，但是依照<strong>運算子優先序</strong>的邏輯來思考就會迎刃而解。<br><img src="/images/flutter/007/flutter_015.png" alt="img">  </p>
+<p>因為 Dart 的 <strong>嚴謹</strong>，所以我們很難寫出特殊的運算式，但是我們拿比較貼近 Dart 的 JavaScript 來看就會發現比較好玩的例子,以一開始的範例 <code>console.log(1&lt;2&lt;3)</code> 與 <code>console.log(3&gt;2&gt;1)</code>來說，<code>console.log</code> 與剛剛使用的 <code>print</code> 一樣，可以將值輸出到畫面上。<br>接著我們查詢 JavaScript 的<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Operator_Precedence">運算子優先序</a>，可以看到當運算子優先性一樣時它處理順序是由左到右。<br><img src="/images/flutter/007/flutter_010.png" alt="img"><br>我們先看 <code>1&lt;2&lt;3</code>，運算式使用2個 <code>&lt;</code>，因為優先性相等所以依照<strong>由左到右</strong>的原則處理。<br>首先先執行 <code>1&lt;2</code>，在此我們會得到一個 <code>true</code> 的布林值，因此運算式會變成 <code>true&lt;3</code>。<br>在 JavaScript 內當布林值與數值型別要比較時會先將布林值轉換為數值型別，<code>true</code> 會變成 <code>1</code>，<code>false</code> 會變成<code>0</code>，因此運算式會變成 <code>1&lt;3</code>。<br>最後由 <code>1&lt;3</code> 可以得到一個 <code>true</code> 的布林值。<br><img src="/images/flutter/007/flutter_011.png" alt="img"><br>同樣的邏輯我們在思考 <code>3&gt;2&gt;1</code> 就可以發現為什麼會得到 <code>false</code> 的結過。<br><img src="/images/flutter/007/flutter_012.png" alt="img">  </p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>深入了解運算子就會發現概念很簡單但是事情變複雜了，最好的方式應該是避免些出易讀性不高的程式碼，因為別人在維護時不只很難理解，要是誤解可能衍生出不必要的 BUG。  </p>

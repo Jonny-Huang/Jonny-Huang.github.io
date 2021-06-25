@@ -1,0 +1,118 @@
+<hr>
+<p>title: Dart 敗部復活賽：Flutter for Web<br>date: 2019-05-09<br>categories: Flutter<br>keywords:</p>
+<ul>
+<li>Flutter</li>
+<li>Dart<br>tags:</li>
+<li>Flutter</li>
+<li>Dart</li>
+</ul>
+<hr>
+<p><img src="/images/flutter/003/flutter_000.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Dart 一開始是由 Google 所推出的一種網頁程式語言，它改善了許多 JavaScript 的歷史包袱，但是很不幸的並沒有受到大眾的支持，反倒是 Microsoft 以 JavaScript 為基礎所發展的 TypeScript 因為原生支援 JavaScript，所以反而使用者日漸增長，不過 Dart 仍然持續默默的發展，在 Flutter 的加持下又重新受到大家的關注，如今 Flutter 藉由 Dart 可轉譯為 JavaScript 的特性，開始計畫性的侵蝕 Web App。  </p>
+<!-- more -->  
+
+<h1 id="建立專案"><a href="#建立專案" class="headerlink" title="建立專案"></a>建立專案</h1><p>伴隨著 Google I/O 2019 發布，Visual Studio Code 上的 Dart 與 Flutter 擴充功能也更新到 3.0 版，最大的特色就是增加 <code>Flutter：New Web Project</code> 指令，讓我們可以建立 Flutter 的 web 專案。  </p>
+<blockquote>
+<p>參考資料:<a href="http://dartcode.org/releases/v3-0/">http://dartcode.org/releases/v3-0/</a></p>
+</blockquote>
+<p>我們在 VS Code 內開啟命令選擇區，並透過 <code>Flutter：New Web Project</code> 來建立專案。<br><img src="/images/flutter/003/flutter_001.png" alt="img"><br>一開始會需要我們輸入專案名稱，這邊筆者使用 <strong>web</strong>。<br><img src="/images/flutter/003/flutter_002.png" alt="img"><br>接著選擇專案儲存路徑，這邊筆者選擇在 <code>D:\Demo</code> 資料夾內。<br><img src="/images/flutter/003/flutter_003.png" alt="img"><br>從 VS Code 的檔案總管可以看到專案結構跟開發 App 的專案雷同，會有一個 <code>lib</code> 資料夾讓我們存放所撰寫的 Dart 程式，以及一個 <code>web</code> 資料夾存放網頁，App 專案則是建立 <code>android</code> 與 <code>ios</code> 資料夾。<br><img src="/images/flutter/003/flutter_004.png" alt="img">  </p>
+<p>開啟專案設定檔 <strong>pubspec.yaml</strong> 可以看到引用的 package 會有差異。<br>pubspec.yaml<br>{% codeblock pubspec.yaml lang:yaml %}<br>    name: web<br>    description: An app built using Flutter for web</p>
+<pre><code>environment:
+# You must be using Flutter &gt;=1.5.0 or Dart &gt;=2.3.0
+sdk: &#39;&gt;=2.3.0-dev.0.1 &lt;3.0.0&#39;
+
+dependencies:
+flutter_web: any
+flutter_web_ui: any
+
+dev_dependencies:
+build_runner: ^1.4.0
+build_web_compilers: ^2.0.0
+pedantic: ^1.0.0
+
+dependency_overrides:
+flutter_web:
+    git:
+    url: https://github.com/flutter/flutter_web
+    path: packages/flutter_web
+flutter_web_ui:
+    git:
+    url: https://github.com/flutter/flutter_web
+    path: packages/flutter_web_ui
+</code></pre>
+<p>{% endcodeblock %}</p>
+<p>因為我們還沒安裝過相關的 package，所以我們可以直接利用開發工具提供的快捷鈕執行安裝，當然也可以自己手動執行 <code>flutter package get</code> 指令。<br><img src="/images/flutter/003/flutter_008.png" alt="img">  </p>
+<h2 id="執行"><a href="#執行" class="headerlink" title="執行"></a>執行</h2><p>最後我們透過指令 <code>webdev serve</code> 來啟動專案。  </p>
+<blockquote>
+<p>如果沒安裝過 webdev 可以透過下列指令安裝：<br><code>flutter packages pub global activate webdev</code><br>如果無法正常執行 <strong>webdev</strong>，可以參考上一篇文章(<a href="/flutter/flutter_002/">本是同根生：Dart 開發環境</a>)修改設定試試，或是下載 <a href="https://flutter.dev/docs/get-started/install">Dart SDK</a> 來安裝。  </p>
+</blockquote>
+<p><img src="/images/flutter/003/flutter_005.png" alt="img"><br>透過瀏覽器開啟 <strong><a href="http://localhost:8080/">http://localhost:8080</a></strong>，具有 Flutter App 風格的 <strong>Hello, World!</strong> 頁面就出現了。<br><img src="/images/flutter/003/flutter_006.png" alt="img">  </p>
+<h1 id="測試一"><a href="#測試一" class="headerlink" title="測試一"></a>測試一</h1><p>開啟 <code>lib\main.dart</code>，可以看到程式結果幾乎完全與 Flutter App 相同，最大的差別就是 <strong>material.dart</strong> 匯入位置改變了，由原本的<br><code>import &#39;package:flutter/material.dart&#39;;</code><br>變更為<br><code>import &#39;package:flutter_web/material.dart&#39;;</code><br><img src="/images/flutter/003/flutter_007.png" alt="img"><br>接下來我們直接將 Flutter App 預設的範例直接覆蓋上去，並修改 <code>material.dart</code> 的 import 路徑。<br>{% codeblock main.dart lang:dart %}<br>// import ‘package:flutter/material.dart’;<br>import ‘package:flutter_web/material.dart’;</p>
+<p>void main() =&gt; runApp(MyApp());</p>
+<p>class MyApp extends StatelessWidget {<br>  @override<br>  Widget build(BuildContext context) {<br>    return MaterialApp(<br>      title: ‘Flutter Demo’,<br>      theme: ThemeData(<br>        primarySwatch: Colors.blue,<br>      ),<br>      home: MyHomePage(title: ‘Flutter Demo Home Page’),<br>    );<br>  }<br>}</p>
+<p>class MyHomePage extends StatefulWidget {<br>  MyHomePage({Key key, this.title}) : super(key: key);</p>
+<p>  final String title;</p>
+<p>  @override<br>  _MyHomePageState createState() =&gt; _MyHomePageState();<br>}</p>
+<p>class _MyHomePageState extends State<MyHomePage> {<br>  int _counter = 0;</p>
+<p>  void _incrementCounter() {<br>    setState(() {<br>      _counter++;<br>    });<br>  }</p>
+<p>  @override<br>  Widget build(BuildContext context) {<br>    return Scaffold(<br>      appBar: AppBar(<br>        title: Text(widget.title),<br>      ),<br>      body: Center(<br>        child: Column(<br>          mainAxisAlignment: MainAxisAlignment.center,<br>          children: <Widget>[<br>            Text(<br>              ‘You have pushed the button this many times:’,<br>            ),<br>            Text(<br>              ‘$_counter’,<br>              style: Theme.of(context).textTheme.display1,<br>            ),<br>          ],<br>        ),<br>      ),<br>      floatingActionButton: FloatingActionButton(<br>        onPressed: _incrementCounter,<br>        tooltip: ‘Increment’,<br>        child: Icon(Icons.add),<br>      ),<br>    );<br>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<p>儲存 <code>lib\main.dart</code> 就可以發現 <strong>webdev</strong> 服務會自動編譯。<br><img src="/images/flutter/003/flutter_009.png" alt="img"><br>重新整理網頁可以發現跟 App 一樣，而且也可以正常操作。<br><img src="/images/flutter/003/flutter_010.gif" alt="img">  </p>
+<h2 id="Material-Icons"><a href="#Material-Icons" class="headerlink" title="Material Icons"></a>Material Icons</h2><p>從瀏覽器看起來整體效果一樣，但是仔細看就可以發現 <strong>icon</strong> 並沒有顯示出來，目前<a href="https://flutter.dev/web">官方網頁</a>也只有一頁說明，但是從 GitHub 官方範例卻可以找到說明。<br><a href="https://github.com/flutter/flutter_web/blob/master/examples/gallery/web/assets/README.md">flutter_web/examples/gallery/web/assets/README.md</a><br>{% codeblock README.md lang:md %}<br>Note: a reference to <code>MaterialIcons</code> is intentionally omitted because the<br>corresponding font is not included in this source.<br>If you add <code>MaterialIcons-Extended.ttf</code> to this directory, you can update<br><code>FontManifest.json</code> as follows:</p>
+<pre><code class="json">[
+    {
+        &quot;family&quot;: &quot;MaterialIcons&quot;,
+        &quot;fonts&quot;: [
+        {
+            &quot;asset&quot;: &quot;MaterialIcons-Extended.ttf&quot;
+        }
+        ]
+    },
+    {
+        &quot;family&quot;: &quot;GoogleSans&quot;,
+        &quot;fonts&quot;: [
+        {
+            &quot;asset&quot;: &quot;GoogleSans-Regular.ttf&quot;
+        }
+        ]
+    },
+    {
+        &quot;family&quot;: &quot;GalleryIcons&quot;,
+        &quot;fonts&quot;: [
+        {
+            &quot;asset&quot;: &quot;GalleryIcons.ttf&quot;
+        }
+        ]
+    }
+]
+</code></pre>
+<p>{% endcodeblock %}</p>
+<p>我們依說明在 <strong>web 資料夾</strong>內建立一個 <code>assets</code> 資料夾。<br><img src="/images/flutter/003/flutter_011.png" alt="img"><br>接著在其內建立一個 <code>FontManifest.json</code> 檔案，並加讓 <strong>MaterialIcons</strong>。<br>{% codeblock FontManifest.json lang:json %}<br>[<br>    {<br>        “family”: “MaterialIcons”,<br>        “fonts”: [<br>            {<br>                “asset”: “<a href="https://fonts.gstatic.com/s/materialicons/v42/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2&quot;">https://fonts.gstatic.com/s/materialicons/v42/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2&quot;</a><br>            }<br>        ]<br>    }<br>]<br>{% endcodeblock %}</p>
+<p>儲存檔案並重新整理網頁就可以發現右下角的按鈕已經可以顯示圖示了。<br><img src="/images/flutter/003/flutter_012.png" alt="img">  </p>
+<h1 id="測試二"><a href="#測試二" class="headerlink" title="測試二"></a>測試二</h1><p>接下來筆者嘗試將之前在 Flutter App 上使用 <a href="https://pub.dev/packages/rxdart">RxDart</a> 所做的範例移植到專案內，操作畫面如下：<br><img src="/images/flutter/003/flutter_017.gif" alt="img"><br>首先直接將檔案 <code>rx.dart</code> 複製到專案內，並修改 import 路徑。<br><img src="/images/flutter/003/flutter_013.png" alt="img"><br><code>rx.dart</code> 程式碼如下：<br>{% codeblock rx.dart lang:dart %}<br>import ‘dart:async’;<br>// import ‘package:flutter/material.dart’;<br>import ‘package:flutter_web/material.dart’;<br>import ‘package:rxdart/subjects.dart’;</p>
+<p>class RxPage extends StatefulWidget {<br>  @override<br>  _RxPageState createState() =&gt; _RxPageState();<br>}</p>
+<p>final subject = BehaviorSubject<bool>.seeded(false);</p>
+<p>class _RxPageState extends State<RxPage> {<br>  StreamSubscription subscription;<br>  bool isLogin = false;</p>
+<p>  @override<br>  void initState() {<br>    super.initState();<br>    subscription = subject.listen((value) {<br>      setState(() =&gt; isLogin = value);<br>    });<br>  }</p>
+<p>  @override<br>  void dispose() {<br>    subscription?.cancel();<br>    super.dispose();<br>  }</p>
+<p>  @override<br>  Widget build(BuildContext context) {<br>    List<Widget> list = <Widget>[];<br>    if (isLogin) {<br>      list.add(UserAccountsDrawerHeader(<br>        accountEmail: Text(“<a href="mailto:&#x6a;&#x6f;&#110;&#x6e;&#121;&#x68;&#x75;&#97;&#110;&#x67;&#x40;&#111;&#x75;&#x74;&#x6c;&#111;&#x6f;&#106;&#46;&#x63;&#x6f;&#109;">&#x6a;&#x6f;&#110;&#x6e;&#121;&#x68;&#x75;&#97;&#110;&#x67;&#x40;&#111;&#x75;&#x74;&#x6c;&#111;&#x6f;&#106;&#46;&#x63;&#x6f;&#109;</a>“),<br>        accountName: Text(“Jonny”),<br>        currentAccountPicture: CircleAvatar(<br>          child: Text(“J”),<br>        ),<br>      ));<br>    } else {<br>      list.add(DrawerHeader(<br>        decoration: BoxDecoration(<br>          color: Colors.orange,<br>        ),<br>        child: Text(“Guest”),<br>      ));<br>    }<br>    list.add(ListTile(<br>      title: Text(isLogin ? “登出” : “登入”),<br>      trailing: Icon(Icons.exit_to_app),<br>      onTap: () {<br>        subject.add(!isLogin);<br>      },<br>    ));</p>
+<pre><code>return Scaffold(
+  appBar: AppBar(
+    title: Text(&#39;RxDart&#39;),
+  ),
+  drawer: Drawer(
+    child: ListView(
+      children: list,
+    ),
+  ),
+  body: Page1Page(),
+);
+</code></pre>
+<p>  }<br>}</p>
+<p>class Page1Page extends StatefulWidget {<br>  @override<br>  _Page1PageState createState() =&gt; _Page1PageState();<br>}</p>
+<p>class _Page1PageState extends State<Page1Page> {<br>  StreamSubscription subscription;<br>  bool isLogin = false;<br>  @override<br>  void initState() {<br>    super.initState();<br>    subscription = subject.listen((value) {<br>      setState(() =&gt; isLogin = value);<br>    });<br>  }</p>
+<p>  @override<br>  void dispose() {<br>    subscription?.cancel();<br>    super.dispose();<br>  }</p>
+<p>  @override<br>  Widget build(BuildContext context) {<br>    return Scaffold(<br>      body: Container(<br>        color: isLogin ? Colors.green : Colors.grey,<br>        alignment: Alignment.center,<br>        child: MaterialButton(<br>          child: Text(isLogin ? “登出” : “登入”),<br>          onPressed: () =&gt; subject.add(!isLogin),<br>        ),<br>      ),<br>    );<br>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<p>接著因為需要用到 RxDart 這個 ，所以我們開啟 <code>pubspec.yaml</code> 並加入 rxdart package，在 VS Code 內只要儲存 pubspec.yaml 檔，它就會自動幫我們下載 package。<br><img src="/images/flutter/003/flutter_014.png" alt="img"><br>最後修改 <code>lib\main.dart</code>，將 <strong>首頁(home)</strong> 換成 <strong>RxPage</strong>。<br><img src="/images/flutter/003/flutter_015.png" alt="img"><br>因為有加入新的 package，所以需要重新執行 <code>webdev serve</code>，開啟網頁可以看到整體操作與 App 上的一樣。<br><img src="/images/flutter/003/flutter_016.gif" alt="img">  </p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>目前 Flutter for Web 還在測試階段，所以仍有可能做大幅度的調整，不過就目前進度來看可以說是大大超出筆者預期，完成度相當高，只要我們 Flutter 專案所使用的 package 本身也支援 web 移植上應該不會有太大瓶頸，當然如果 package 會使用到 Android 或 iOS 的 API 就需要額外處理，相對個其實我們現在開發 App 時就應該要順便考量到 Web 部分。 </p>

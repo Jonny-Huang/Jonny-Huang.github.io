@@ -1,103 +1,32 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-tw">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-TW">
+<head>
   <meta charset="UTF-8">
-<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="Docker">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
-
-
-
-
-  <meta property="fb:admins" content="fb267234890438499">
-  <meta property="fb:app_id" content="267234890438499">
-
-
-
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
 <meta name="description" content="前言上一篇 用 Docker 建立不同 Angular CLI 版本的開發環境 我們利用 Docker 將 Angular CLI 封裝在容器(Container)內，其實筆者一開始是想透過 Docker 來執行資料庫，因為我們可能因應客戶環境不同系統後端所對應的資料庫也不同，因此常常需要安裝不同類型的資料庫以便系統開發，不過如果本機端安裝多套資料庫除了增加 CPU 效能及記憶體的負擔外，相容性也">
-<meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用 Docker 建立多種資料庫的開發環境">
 <meta property="og:url" content="https://jonny-huang.github.io/docker/docker_02/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
 <meta property="og:description" content="前言上一篇 用 Docker 建立不同 Angular CLI 版本的開發環境 我們利用 Docker 將 Angular CLI 封裝在容器(Container)內，其實筆者一開始是想透過 Docker 來執行資料庫，因為我們可能因應客戶環境不同系統後端所對應的資料庫也不同，因此常常需要安裝不同類型的資料庫以便系統開發，不過如果本機端安裝多套資料庫除了增加 CPU 效能及記憶體的負擔外，相容性也">
-<meta property="og:locale" content="zh-tw">
+<meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/02/docker02_001.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/02/docker02_002.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/02/docker02_003.png">
@@ -147,305 +76,236 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/02/docker02_049.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/02/docker02_047.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/docker/02/docker02_048.png">
-<meta property="og:updated_time" content="2018-03-31T01:07:57.000Z">
+<meta property="article:published_time" content="2018-03-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-24T00:57:46.342Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="用 Docker 建立多種資料庫的開發環境">
-<meta name="twitter:description" content="前言上一篇 用 Docker 建立不同 Angular CLI 版本的開發環境 我們利用 Docker 將 Angular CLI 封裝在容器(Container)內，其實筆者一開始是想透過 Docker 來執行資料庫，因為我們可能因應客戶環境不同系統後端所對應的資料庫也不同，因此常常需要安裝不同類型的資料庫以便系統開發，不過如果本機端安裝多套資料庫除了增加 CPU 效能及記憶體的負擔外，相容性也">
 <meta name="twitter:image" content="https://jonny-huang.github.io/images/docker/02/docker02_001.png">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Jonny'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<link rel="canonical" href="https://jonny-huang.github.io/docker/docker_02/">
 
 
 
-  <link rel="canonical" href="https://jonny-huang.github.io/docker/docker_02/">
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;docker&#x2F;docker_02&#x2F;&quot;,&quot;path&quot;:&quot;docker&#x2F;docker_02&#x2F;&quot;,&quot;title&quot;:&quot;用 Docker 建立多種資料庫的開發環境&quot;}</script>
 
-
-
-
-
-  <title>用 Docker 建立多種資料庫的開發環境 | Jonny Huang 的學習筆記</title>
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>用 Docker 建立多種資料庫的開發環境 | Jonny Huang 的學習筆記</title>
   
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '267234890438499',
-      xfbml      : true,
-      version    : 'v2.6'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/zh_tw/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-tw">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Jonny Huang 的學習筆記</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <h1 class="site-subtitle" itemprop="description">Angular、Flutter</h1>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首頁
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            目錄
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-flutter">
-          <a href="/flutter/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Flutter
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-angular">
-          <a href="/angular/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Angular
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-quotes">
-          <a href="/quotes/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br>
-            
-            欣雨露
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa-commenting fa-fw"></i>欣雨露</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-for-Ubuntu"><span class="nav-number">2.</span> <span class="nav-text">Docker for Ubuntu</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Volume"><span class="nav-number">3.</span> <span class="nav-text">Volume</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E8%B3%87%E6%96%99%E5%BA%AB%EF%BC%9APostgreSQL"><span class="nav-number">4.</span> <span class="nav-text">建立資料庫：PostgreSQL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E8%A8%82%E6%A9%8B%E6%8E%A5%E5%99%A8%EF%BC%9ABridge"><span class="nav-number">5.</span> <span class="nav-text">自訂橋接器：Bridge</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E8%B3%87%E6%96%99%E5%BA%AB%EF%BC%9AMariaDB"><span class="nav-number">6.</span> <span class="nav-text">建立資料庫：MariaDB</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E8%B3%87%E6%96%99%E5%BA%AB%EF%BC%9AMicrosofr-SQL-Server-2017"><span class="nav-number">7.</span> <span class="nav-text">建立資料庫：Microsofr SQL Server 2017</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%8C%E8%A8%98"><span class="nav-number">8.</span> <span class="nav-text">後記</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
     
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/docker/docker_02/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Jonny Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Jonny Huang 的學習筆記">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          用 Docker 建立多種資料庫的開發環境
+        </h1>
 
-        
-        
-          <h2 class="post-title" itemprop="name headline">用 Docker 建立多種資料庫的開發環境</h2>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/06/24 08:57:46" itemprop="dateModified" datetime="2021-06-24T08:57:46+08:00">2021/06/24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Training/" itemprop="url" rel="index"><span itemprop="name">Training</span></a>
+        </span>
+    </span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新於</span>
-              
-              <time title="更新於" itemprop="dateModified" datetime="2018-03-31T09:07:57+08:00">
-                2018/03/31
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Training/" itemprop="url" rel="index">
-                    <span itemprop="name">Training</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
+
     
-
+    
+    
     <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上一篇 <a href="/docker/docker_01/">用 Docker 建立不同 Angular CLI 版本的開發環境</a> 我們利用 Docker 將 Angular CLI 封裝在容器(Container)內，其實筆者一開始是想透過 Docker 來執行資料庫，因為我們可能因應客戶環境不同系統後端所對應的資料庫也不同，因此常常需要安裝不同類型的資料庫以便系統開發，不過如果本機端安裝多套資料庫除了增加 CPU 效能及記憶體的負擔外，相容性也是個問題，以往比較快速的做法就是安裝虛擬機(Virtual Machine)，針對每個專案來建置對應的開發環境，不過，在測試過程在 Windows 環境遇到一些問題，所以就先擱置了。  </p>
-<h1 id="Docker-for-Ubuntu"><a href="#Docker-for-Ubuntu" class="headerlink" title="Docker for Ubuntu"></a>Docker for Ubuntu</h1><p>查閱 <a href="https://docs.docker.com/storage/storagedriver/select-storage-driver/" target="_blank" rel="noopener">Docker storage drivers</a> 可以看到 Docker 所支援的都是 Linux。<br><img src="/images/docker/02/docker02_001.png" alt=""><br>看起來官方也是建議 Windows 與 Mac 系統僅是合作開發環境使用。<br><img src="/images/docker/02/docker02_002.png" alt=""><br>所以在 Linux 環境執行應該還是首選，可以避免掉一些問題發生，對於 Windows 環境的人，可以直些利用 <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener">VirtualBox</a> 或是 <a href="https://www.vmware.com/tw/products/workstation-player/workstation-player-evaluation.html" target="_blank" rel="noopener">VMware Workstation Player</a> 來建置 Linux 的虛擬主機，筆者便是在 VM 上安裝 Ubuntu 17.10 來測試 Docker。<br><img src="/images/docker/02/docker02_003.png" alt=""><br>參考官方教學 <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/" target="_blank" rel="noopener">Get Docker CE for Ubuntu</a>，我們開啟終端機並依教學步驟安裝 Docker，首先先移除舊版 Docker，指令如下：<br><code>sudo apt-get remove docker docker-engine docker.io</code><br>因為全新的環境所以會出現找不到可移除的訊息。<br><img src="/images/docker/02/docker02_004.png" alt=""><br>接著先更新套件庫，指令如下：<br><code>sudo apt-get update</code><br><img src="/images/docker/02/docker02_005.png" alt=""><br>再來安裝 <code>apt-transport-https</code>、<code>ca-certificates</code>、<code>curl</code>、<code>software-properties-common</code>，指令如下：<br><code>sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y</code><br><img src="/images/docker/02/docker02_006.png" alt=""><br>安裝官方 GPG 金鑰，指令如下：<br><code>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</code><br><img src="/images/docker/02/docker02_007.png" alt="">  </p>
+<span id="more"></span>  
+
+<h1 id="Docker-for-Ubuntu"><a href="#Docker-for-Ubuntu" class="headerlink" title="Docker for Ubuntu"></a>Docker for Ubuntu</h1><p>查閱 <a target="_blank" rel="noopener" href="https://docs.docker.com/storage/storagedriver/select-storage-driver/">Docker storage drivers</a> 可以看到 Docker 所支援的都是 Linux。<br><img src="/images/docker/02/docker02_001.png" alt="img"><br>看起來官方也是建議 Windows 與 Mac 系統僅是合作開發環境使用。<br><img src="/images/docker/02/docker02_002.png" alt="img"><br>所以在 Linux 環境執行應該還是首選，可以避免掉一些問題發生，對於 Windows 環境的人，可以直些利用 <a target="_blank" rel="noopener" href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a> 或是 <a target="_blank" rel="noopener" href="https://www.vmware.com/tw/products/workstation-player/workstation-player-evaluation.html">VMware Workstation Player</a> 來建置 Linux 的虛擬主機，筆者便是在 VM 上安裝 Ubuntu 17.10 來測試 Docker。<br><img src="/images/docker/02/docker02_003.png" alt="img"><br>參考官方教學 <a target="_blank" rel="noopener" href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">Get Docker CE for Ubuntu</a>，我們開啟終端機並依教學步驟安裝 Docker，首先先移除舊版 Docker，指令如下：<br><code>sudo apt-get remove docker docker-engine docker.io</code><br>因為全新的環境所以會出現找不到可移除的訊息。<br><img src="/images/docker/02/docker02_004.png" alt="img"><br>接著先更新套件庫，指令如下：<br><code>sudo apt-get update</code><br><img src="/images/docker/02/docker02_005.png" alt="img"><br>再來安裝 <code>apt-transport-https</code>、<code>ca-certificates</code>、<code>curl</code>、<code>software-properties-common</code>，指令如下：<br><code>sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y</code><br><img src="/images/docker/02/docker02_006.png" alt="img"><br>安裝官方 GPG 金鑰，指令如下：<br><code>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</code><br><img src="/images/docker/02/docker02_007.png" alt="img">  </p>
 <blockquote>
-<p>可以透過指令 <code>sudo apt-key fingerprint 0EBFCD88</code> 來驗證指紋金鑰是否為<br><strong>9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88</strong>。<br><img src="/images/docker/02/docker02_008.png" alt="">  </p>
+<p>可以透過指令 <code>sudo apt-key fingerprint 0EBFCD88</code> 來驗證指紋金鑰是否為<br><strong>9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88</strong>。<br><img src="/images/docker/02/docker02_008.png" alt="img">  </p>
 </blockquote>
-<p>透過下列指令將 Docker 安裝網址加入套件庫來源。<br><code>sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&quot;</code><br><img src="/images/docker/02/docker02_009.png" alt="">  </p>
-<p>再次透過 <code>sudo apt-get update</code> 指令更新套件庫，並透過下列指令安裝 Docker 社群版。<br><code>sudo apt-get install docker-ce -y</code><br><img src="/images/docker/02/docker02_010.png" alt=""><br>我們可以透過 <code>docker -v</code> 來確認版本以及 Docker 是否可運行。<br><img src="/images/docker/02/docker02_011.png" alt="">  </p>
-<h1 id="Volume"><a href="#Volume" class="headerlink" title="Volume"></a>Volume</h1><p>Docker 的映像檔(Image) 可以說是由<strong>唯讀的容器(Container)</strong>堆疊而成，既然是唯讀就代表無法去修改上層的容器內容，我們只能在當前容器可讀寫區域去建立新檔案來取代既有檔案，這個好處就是大家再引用映像檔時不用怕因為有人竄改而導致自己的系統出問題，所以在引用映像檔時最好加上版本號(Tag Name)，當然相對的也會衍生出另一個問題，如果將資料庫封裝在容器來執行，這種會不斷修改檔案的程式不就很容易造成容器過度膨脹。  </p>
+<p>透過下列指令將 Docker 安裝網址加入套件庫來源。<br><code>sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&quot;</code><br><img src="/images/docker/02/docker02_009.png" alt="img">  </p>
+<p>再次透過 <code>sudo apt-get update</code> 指令更新套件庫，並透過下列指令安裝 Docker 社群版。<br><code>sudo apt-get install docker-ce -y</code><br><img src="/images/docker/02/docker02_010.png" alt="img"><br>我們可以透過 <code>docker -v</code> 來確認版本以及 Docker 是否可運行。<br><img src="/images/docker/02/docker02_011.png" alt="img">  </p>
+<h1 id="Volume"><a href="#Volume" class="headerlink" title="Volume"></a>Volume</h1><p>Docker 的映像檔(Image) 可以說是由**唯讀的容器(Container)**堆疊而成，既然是唯讀就代表無法去修改上層的容器內容，我們只能在當前容器可讀寫區域去建立新檔案來取代既有檔案，這個好處就是大家再引用映像檔時不用怕因為有人竄改而導致自己的系統出問題，所以在引用映像檔時最好加上版本號(Tag Name)，當然相對的也會衍生出另一個問題，如果將資料庫封裝在容器來執行，這種會不斷修改檔案的程式不就很容易造成容器過度膨脹。  </p>
 <blockquote>
 <p>大部分在 Docker Hub 上 Tag Name 都會使用版本號來做區別，當然這並不是鐵則，創作者也可能會隨時修正一些 Bug 但是卻沿用既有的 Tag Name，不過這種善意的調整大部分都不會修改既有的運行模式，因此盡量使用官方釋出版本或是下載率或評鑑高的映像檔是最保險的作法，因為這些映像檔幾乎都會在 GitHub 上釋出 Dockerfile，我們可以檢視修改的差異，甚至可以抓取舊版來還原原本的映像檔。</p>
 </blockquote>
@@ -453,506 +313,116 @@
 <blockquote>
 <p>因為我們並沒有要求容器啟動後要執行什麼程式，預設便會動關閉，所以我們加上 <code>-it</code> 參數來讓容器不要關閉，並讓我們可以連結通訊。</p>
 </blockquote>
-<p>執行後可以發現會回傳一組雜湊碼(hash codes) <code>3372e927b683xxxxdaa5</code>，此雜湊碼代表所建立容器的 Id。<br>我們可以使用 <code>docker container ls</code> 指令來檢視目前已經啟動的容器，即可發現剛剛所建立容器已經啟動(列表只會顯示 Container Id 前12碼)。<br>接著我們透過 <code>docker volume ls</code> 指令來檢視目前系統有哪些 Volume 被建立，可以發現目前由一組名稱為 <code>bf0f77d36932xxxx29ab</code> 的 Volume。<br><img src="/images/docker/02/docker02_012.png" alt=""><br>最後我們利用 <code>docker container inspect -f &#39;{ {json .Mounts } }&#39; c1</code> 指令來查看容器 <code>c1</code> 的構造資訊。</p>
+<p>執行後可以發現會回傳一組雜湊碼(hash codes) <code>3372e927b683xxxxdaa5</code>，此雜湊碼代表所建立容器的 Id。<br>我們可以使用 <code>docker container ls</code> 指令來檢視目前已經啟動的容器，即可發現剛剛所建立容器已經啟動(列表只會顯示 Container Id 前12碼)。<br>接著我們透過 <code>docker volume ls</code> 指令來檢視目前系統有哪些 Volume 被建立，可以發現目前由一組名稱為 <code>bf0f77d36932xxxx29ab</code> 的 Volume。<br><img src="/images/docker/02/docker02_012.png" alt="img"><br>最後我們利用 <code>docker container inspect -f &#39;&#123; &#123;json .Mounts &#125; &#125;&#39; c1</code> 指令來查看容器 <code>c1</code> 的構造資訊。</p>
 <blockquote>
 <p><code>--format</code>(縮寫 <code>-f</code>) 表示要輸入的內容格式，由於容器資訊很多，所以加上塞選條件讓它只顯示 <code>.Mounts</code> 的資訊(Mounts 儲存 Container 與 Volume 的聯結資訊)，再加上 <code>json</code> 讓它輸出成 JSON 格式。  </p>
 </blockquote>
-<p><img src="/images/docker/02/docker02_013.png" alt=""><br>格式化後結果如下，Container <code>c1</code> 掛載了 Volume <code>bf0f77d36932xxxx29ab</code>，並取代既有的 <code>home</code> 資料夾。 </p>
+<p><img src="/images/docker/02/docker02_013.png" alt="img"><br>格式化後結果如下，Container <code>c1</code> 掛載了 Volume <code>bf0f77d36932xxxx29ab</code>，並取代既有的 <code>home</code> 資料夾。 </p>
 <blockquote>
 <p>我們也可以發現 Docker 會在 <code>/var/lib/docker/volumes/</code> 目錄下以一組雜湊碼來建立一個內涵 <code>_data</code> 資料夾的資料夾，並當作 Volume 的存放位置，當我們沒有提供 Volume Name 時 Docker 便會將該雜湊碼當作 Volume 名稱。  </p>
 </blockquote>
-<pre><code>[
-    {
-        &quot;Type&quot;:&quot;volume&quot;,
-        &quot;Name&quot;:&quot;bf0f77d36932018bb09667867f1cfc755b61639ea5be001f3c975f38ed3c29ab&quot;,
-        &quot;Source&quot;:&quot;&#x2F;var&#x2F;lib&#x2F;docker&#x2F;volumes&#x2F;bf0f77d36932018bb09667867f1cfc755b61639ea5be001f3c975f38ed3c29ab&#x2F;_data&quot;,
-        &quot;Destination&quot;:&quot;&#x2F;home&quot;,
-        &quot;Driver&quot;:&quot;local&quot;,
-        &quot;Mode&quot;:&quot;&quot;,
-        &quot;RW&quot;:true,
-        &quot;Propagation&quot;:&quot;&quot;
-    }
-]</code></pre>
-<p>嘗試連結到容器內，並在 <code>home</code> 資料夾內建立一個名為 <code>abc</code> 的資料夾，檔案管理工具開啟 Volume 資料夾，可以發現確實產生了一個 <code>abc</code> 資料夾，以此可確認容器的 <code>home</code> 資料夾確實被 Volume 取代。<br><img src="/images/docker/02/docker02_014.png" alt="">  </p>
-<p>接下來我們同樣再次建議一個容器，只是這次我們提供 Volume Name <code>v2</code>，加入位置是在容器路徑之前，並使用 <code>:</code> 區隔，指令如下：<br><code>docker run --name &#39;c2&#39; -v &#39;v2&#39;:&#39;/home&#39; -it -d  alpine:3.6</code><br>這一次可以發現 Volume Name 不再是雜湊碼，而是我們給予的名稱 <code>v2</code>。<br><img src="/images/docker/02/docker02_015.png" alt=""><br>檢視容器 <code>c2</code> 資訊可以看到確實掛載 Volume ‘v2’。<br><img src="/images/docker/02/docker02_016.png" alt="">  </p>
-<pre><code>[
-    {
-        &quot;Type&quot;:&quot;volume&quot;,
-        &quot;Name&quot;:&quot;v2&quot;,
-        &quot;Source&quot;:&quot;&#x2F;var&#x2F;lib&#x2F;docker&#x2F;volumes&#x2F;v2&#x2F;_data&quot;,
-        &quot;Destination&quot;:&quot;&#x2F;home&quot;,
-        &quot;Driver&quot;:&quot;local&quot;,
-        &quot;Mode&quot;:&quot;z&quot;,
-        &quot;RW&quot;:true,
-        &quot;Propagation&quot;:&quot;&quot;
-    }
-]</code></pre>
-<p>接著我們改用本機端的實體路徑(/home/jonny/Public/v3)來取代 Volume Name，指令如下：<br><code>docker run --name &#39;c3&#39; -v &#39;/home/jonny/Public/v3&#39;:&#39;/home&#39; -it -d  alpine:3.6</code><br>可以發現這一次並沒有產生 Volume。<br><img src="/images/docker/02/docker02_017.png" alt=""><br>檢視容器 <code>c3</code> 資訊可以看到，<code>Type</code> 屬性不再是 <code>volume</code> 而是 <code>bind</code>，由此可知它是直接連結到本機資料夾。<br><img src="/images/docker/02/docker02_018.png" alt="">  </p>
-<pre><code>[
-    {
-        &quot;Type&quot;:&quot;bind&quot;,
-        &quot;Source&quot;:&quot;&#x2F;home&#x2F;jonny&#x2F;Public&#x2F;v3&quot;,
-        &quot;Destination&quot;:&quot;&#x2F;home&quot;,
-        &quot;Mode&quot;:&quot;&quot;,
-        &quot;RW&quot;:true,
-        &quot;Propagation&quot;:&quot;rprivate&quot;
-    }
-]</code></pre>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;Type&quot;</span>:<span class="string">&quot;volume&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;Name&quot;</span>:<span class="string">&quot;bf0f77d36932018bb09667867f1cfc755b61639ea5be001f3c975f38ed3c29ab&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;Source&quot;</span>:<span class="string">&quot;/var/lib/docker/volumes/bf0f77d36932018bb09667867f1cfc755b61639ea5be001f3c975f38ed3c29ab/_data&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;Destination&quot;</span>:<span class="string">&quot;/home&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;Driver&quot;</span>:<span class="string">&quot;local&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;Mode&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;RW&quot;</span>:<span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;Propagation&quot;</span>:<span class="string">&quot;&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>嘗試連結到容器內，並在 <code>home</code> 資料夾內建立一個名為 <code>abc</code> 的資料夾，檔案管理工具開啟 Volume 資料夾，可以發現確實產生了一個 <code>abc</code> 資料夾，以此可確認容器的 <code>home</code> 資料夾確實被 Volume 取代。<br><img src="/images/docker/02/docker02_014.png" alt="img">  </p>
+<p>接下來我們同樣再次建議一個容器，只是這次我們提供 Volume Name <code>v2</code>，加入位置是在容器路徑之前，並使用 <code>:</code> 區隔，指令如下：<br><code>docker run --name &#39;c2&#39; -v &#39;v2&#39;:&#39;/home&#39; -it -d  alpine:3.6</code><br>這一次可以發現 Volume Name 不再是雜湊碼，而是我們給予的名稱 <code>v2</code>。<br><img src="/images/docker/02/docker02_015.png" alt="img"><br>檢視容器 <code>c2</code> 資訊可以看到確實掛載 Volume ‘v2’。<br><img src="/images/docker/02/docker02_016.png" alt="img">  </p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;Type&quot;</span>:<span class="string">&quot;volume&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;Name&quot;</span>:<span class="string">&quot;v2&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;Source&quot;</span>:<span class="string">&quot;/var/lib/docker/volumes/v2/_data&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;Destination&quot;</span>:<span class="string">&quot;/home&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;Driver&quot;</span>:<span class="string">&quot;local&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;Mode&quot;</span>:<span class="string">&quot;z&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;RW&quot;</span>:<span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;Propagation&quot;</span>:<span class="string">&quot;&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>接著我們改用本機端的實體路徑(/home/jonny/Public/v3)來取代 Volume Name，指令如下：<br><code>docker run --name &#39;c3&#39; -v &#39;/home/jonny/Public/v3&#39;:&#39;/home&#39; -it -d  alpine:3.6</code><br>可以發現這一次並沒有產生 Volume。<br><img src="/images/docker/02/docker02_017.png" alt="img"><br>檢視容器 <code>c3</code> 資訊可以看到，<code>Type</code> 屬性不再是 <code>volume</code> 而是 <code>bind</code>，由此可知它是直接連結到本機資料夾。<br><img src="/images/docker/02/docker02_018.png" alt="img">  </p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;Type&quot;</span>:<span class="string">&quot;bind&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;Source&quot;</span>:<span class="string">&quot;/home/jonny/Public/v3&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;Destination&quot;</span>:<span class="string">&quot;/home&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;Mode&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;RW&quot;</span>:<span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;Propagation&quot;</span>:<span class="string">&quot;rprivate&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <p>筆者在 Windows 上便是在此出問題，當你建立資料庫的 Container 時，一般會將資料庫的資料儲存路徑給搬移出來方便，除了避免容器過度臃腫外也方便備份與救援，當我們透過建立 Volume 來存放時都是正常的，因為 Volume 其實是建立在 Hyper-V 內由 Docker 所產生的虛擬機內，但是當使用指定路徑(Windows 系統所在路徑)時就會出許多錯誤訊息(檔案建立失敗或是權限問題)，不知是否是 Windows 是採用 NTFS 檔案系統之故。  </p>
 <blockquote>
 <p>一般我們透過 <code>--volume</code> (縮寫：<code>-v</code>) 參數來掛載 Volume，我們可利用第3個參數加入 <code>ro</code> (ReadyOnly 表示唯讀)，讓所執行的 Container 只能讀取 Volume 的資料而沒有寫入的權限。<br>雖然官方建議改用 <code>--mount</code> 指令，不過因為相關文件不多，所以筆者先採用比較通用的舊版指令 <code>-v</code> 來執行。  </p>
 </blockquote>
-<h1 id="建立資料庫：PostgreSQL"><a href="#建立資料庫：PostgreSQL" class="headerlink" title="建立資料庫：PostgreSQL"></a>建立資料庫：PostgreSQL</h1><p>搜尋 Docker Hub，可以找到由官方釋除的 <a href="https://hub.docker.com/_/postgres/" target="_blank" rel="noopener">PostgreSQL</a> 映像檔，執行下列指令：<br><code>docker run --name &#39;PostgreSQL&#39; -v &#39;/home/jonny/Public/pgdata&#39;:&#39;/var/lib/postgresql/data&#39; -e &#39;POSTGRES_PASSWORD=X4w5s6y4dKEG&#39; -d -p 5432:5432 postgres:10.3-alpine</code>  </p>
+<h1 id="建立資料庫：PostgreSQL"><a href="#建立資料庫：PostgreSQL" class="headerlink" title="建立資料庫：PostgreSQL"></a>建立資料庫：PostgreSQL</h1><p>搜尋 Docker Hub，可以找到由官方釋除的 <a target="_blank" rel="noopener" href="https://hub.docker.com/_/postgres/">PostgreSQL</a> 映像檔，執行下列指令：<br><code>docker run --name &#39;PostgreSQL&#39; -v &#39;/home/jonny/Public/pgdata&#39;:&#39;/var/lib/postgresql/data&#39; -e &#39;POSTGRES_PASSWORD=X4w5s6y4dKEG&#39; -d -p 5432:5432 postgres:10.3-alpine</code>  </p>
 <blockquote>
 <p><code>-v &#39;/home/jonny/Public/pgdata&#39;:&#39;/var/lib/postgresql/data&#39;</code>：將容器內 PostgreSQL 資料庫儲存路徑移至外部。<br><code>-e &#39;POSTGRES_PASSWORD=X4w5s6y4dKEG&#39;</code>：設定預設帳號 <code>postgres</code> 的密碼為 <strong>X4w5s6y4dKEG</strong>。<br><code>-d</code>：讓容器再背景運行。<br><code>-p 5432:5432</code>：將容器的 5432 連接埠(port)與本機的 5432 連接埠綁定。  </p>
 </blockquote>
-<p><img src="/images/docker/02/docker02_019.png" alt=""><br>從檔案管理工具可以看到 PostgreSQL 相關資料確實被改寫到 <code>/home/jonny/Public/pgdata</code> 目錄下。<br><img src="/images/docker/02/docker02_020.png" alt="">  </p>
-<p>接著我們安裝 PostgreSQL 比較常用的管理工具 <strong>pgAdmin 4</strong>，從<a href="https://www.pgadmin.org/download/" target="_blank" rel="noopener">官方網址</a>可以看到他們已經提供 Docker 版本。<br><img src="/images/docker/02/docker02_021.png" alt=""><br>開啟 Docker Hub 連結(<a href="https://hub.docker.com/r/dpage/pgadmin4/" target="_blank" rel="noopener">dpage/pgadmin4</a>)，依文件說明加入對應的參數來執行，指令如下：<br><code>docker run --name &#39;pgAdmin4&#39; -e &#39;PGADMIN_DEFAULT_EMAIL=denhuang@gmail.com&#39; -e &#39;PGADMIN_DEFAULT_PASSWORD=X4w5s6y4dKEG&#39; -d -p 8081:80 dpage/pgadmin4</code>  </p>
+<p><img src="/images/docker/02/docker02_019.png" alt="img"><br>從檔案管理工具可以看到 PostgreSQL 相關資料確實被改寫到 <code>/home/jonny/Public/pgdata</code> 目錄下。<br><img src="/images/docker/02/docker02_020.png" alt="img">  </p>
+<p>接著我們安裝 PostgreSQL 比較常用的管理工具 <strong>pgAdmin 4</strong>，從<a target="_blank" rel="noopener" href="https://www.pgadmin.org/download/">官方網址</a>可以看到他們已經提供 Docker 版本。<br><img src="/images/docker/02/docker02_021.png" alt="img"><br>開啟 Docker Hub 連結(<a target="_blank" rel="noopener" href="https://hub.docker.com/r/dpage/pgadmin4/">dpage/pgadmin4</a>)，依文件說明加入對應的參數來執行，指令如下：<br><code>docker run --name &#39;pgAdmin4&#39; -e &#39;PGADMIN_DEFAULT_EMAIL=denhuang@gmail.com&#39; -e &#39;PGADMIN_DEFAULT_PASSWORD=X4w5s6y4dKEG&#39; -d -p 8081:80 dpage/pgadmin4</code>  </p>
 <blockquote>
 <p><code>-e &#39;PGADMIN_DEFAULT_EMAIL=denhuang@gmail.com&#39;</code>、<code>-e &#39;PGADMIN_DEFAULT_PASSWORD=X4w5s6y4dKEG&#39;</code>：註冊一組 pgAdmin4 的管理帳號，此帳號是開啟 pgAdmin4 的帳號，並非是 PostgreSQL 資料庫的帳號。<br><code>-p 8081:80</code>：將容器的 80 連接埠與本機的 8081 連接埠綁定。  </p>
 </blockquote>
-<p><img src="/images/docker/02/docker02_022.png" alt=""><br>目前架構如下：<br><img src="/images/docker/02/docker02_025.png" alt="">  </p>
-<p>瀏覽 <a href="http://localhost:8081/，出現登入畫面，這邊便是要輸入剛才註冊的帳號。" target="_blank" rel="noopener">http://localhost:8081/，出現登入畫面，這邊便是要輸入剛才註冊的帳號。</a><br><img src="/images/docker/02/docker02_023.png" alt=""><br>登入後便開始建立連線。<br><img src="/images/docker/02/docker02_024.png" alt=""><br>但是可以發現連結本機(localhost)的 PostgreSQL 資料庫會出現失敗。<br><img src="/images/docker/02/docker02_026.png" alt=""><br>這是因為 localhost 指的是 pgAdmin4 這個容器本身，而不是我們預想的 Ubuntu 本機。<br><img src="/images/docker/02/docker02_027.png" alt=""><br>改由 Ubuntu 本機的 IP (192.168.110.131) 就可以正常連線，這是因為我們在建立容器時已經將容器內部的連接埠與外部本機的連接埠綁定。<br><img src="/images/docker/02/docker02_028.png" alt=""><br><img src="/images/docker/02/docker02_029.png" alt=""><br>我們查詢容器 PostgreSQL 的網路設定，指令如下：<br><code>docker container inspect -f &#39;{ {json .NetworkSettings.Networks } }&#39; PostgreSQL</code><br><img src="/images/docker/02/docker02_030.png" alt="">  </p>
-<pre><code>{
-    &quot;bridge&quot;:{
-        &quot;IPAMConfig&quot;:null,
-        &quot;Links&quot;:null,
-        &quot;Aliases&quot;:null,
-        &quot;NetworkID&quot;:&quot;0268147797e66c0f0a4b46fa7a427cf905187b70383b3b95d49ff3375f732b9d&quot;,&quot;EndpointID&quot;:&quot;b712263bdd200999ccb6aabf08c86f8d3a90dfe2641a563d95628c9507099e23&quot;,
-        &quot;Gateway&quot;:&quot;172.17.0.1&quot;,
-        &quot;IPAddress&quot;:&quot;172.17.0.2&quot;,
-        &quot;IPPrefixLen&quot;:16,
-        &quot;IPv6Gateway&quot;:&quot;&quot;,
-        &quot;GlobalIPv6Address&quot;:&quot;&quot;,
-        &quot;GlobalIPv6PrefixLen&quot;:0,
-        &quot;MacAddress&quot;:&quot;02:42:ac:11:00:02&quot;,
-        &quot;DriverOpts&quot;:null
-    }
-}</code></pre>
-<p>可以看到容器的 IP 為 172.17.0.2，利用這組 IP 也可以連線。<br><img src="/images/docker/02/docker02_031.png" alt=""><br>這是因為 Docker 安裝時會建議一組 docker0 的橋接器，預設容器會透過它來通訊。<br><img src="/images/docker/02/docker02_032.png" alt=""><br><img src="/images/docker/02/docker02_033.png" alt="">  </p>
-<h1 id="自訂橋接器：Bridge"><a href="#自訂橋接器：Bridge" class="headerlink" title="自訂橋接器：Bridge"></a>自訂橋接器：Bridge</h1><p>既然預設已經有一個 docker0 的橋接器(bridge)了為什麼還要在自己建立一組，我們從官方網站可以查到自訂跟預設還是有差異，其中自訂的橋接器可以透過 Container Name 來彼此通訊。<br><img src="/images/docker/02/docker02_034.png" alt="">  </p>
+<p><img src="/images/docker/02/docker02_022.png" alt="img"><br>目前架構如下：<br><img src="/images/docker/02/docker02_025.png" alt="img">  </p>
+<p>瀏覽 <a target="_blank" rel="noopener" href="http://localhost:8081/%EF%BC%8C%E5%87%BA%E7%8F%BE%E7%99%BB%E5%85%A5%E7%95%AB%E9%9D%A2%EF%BC%8C%E9%80%99%E9%82%8A%E4%BE%BF%E6%98%AF%E8%A6%81%E8%BC%B8%E5%85%A5%E5%89%9B%E6%89%8D%E8%A8%BB%E5%86%8A%E7%9A%84%E5%B8%B3%E8%99%9F%E3%80%82">http://localhost:8081/，出現登入畫面，這邊便是要輸入剛才註冊的帳號。</a><br><img src="/images/docker/02/docker02_023.png" alt="img"><br>登入後便開始建立連線。<br><img src="/images/docker/02/docker02_024.png" alt="img"><br>但是可以發現連結本機(localhost)的 PostgreSQL 資料庫會出現失敗。<br><img src="/images/docker/02/docker02_026.png" alt="img"><br>這是因為 localhost 指的是 pgAdmin4 這個容器本身，而不是我們預想的 Ubuntu 本機。<br><img src="/images/docker/02/docker02_027.png" alt="img"><br>改由 Ubuntu 本機的 IP (192.168.110.131) 就可以正常連線，這是因為我們在建立容器時已經將容器內部的連接埠與外部本機的連接埠綁定。<br><img src="/images/docker/02/docker02_028.png" alt="img"><br><img src="/images/docker/02/docker02_029.png" alt="img"><br>我們查詢容器 PostgreSQL 的網路設定，指令如下：<br><code>docker container inspect -f &#39;&#123; &#123;json .NetworkSettings.Networks &#125; &#125;&#39; PostgreSQL</code><br><img src="/images/docker/02/docker02_030.png" alt="img">  </p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;bridge&quot;</span>:&#123;</span><br><span class="line">        <span class="attr">&quot;IPAMConfig&quot;</span>:<span class="literal">null</span>,</span><br><span class="line">        <span class="attr">&quot;Links&quot;</span>:<span class="literal">null</span>,</span><br><span class="line">        <span class="attr">&quot;Aliases&quot;</span>:<span class="literal">null</span>,</span><br><span class="line">        <span class="attr">&quot;NetworkID&quot;</span>:<span class="string">&quot;0268147797e66c0f0a4b46fa7a427cf905187b70383b3b95d49ff3375f732b9d&quot;</span>,<span class="attr">&quot;EndpointID&quot;</span>:<span class="string">&quot;b712263bdd200999ccb6aabf08c86f8d3a90dfe2641a563d95628c9507099e23&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;Gateway&quot;</span>:<span class="string">&quot;172.17.0.1&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;IPAddress&quot;</span>:<span class="string">&quot;172.17.0.2&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;IPPrefixLen&quot;</span>:<span class="number">16</span>,</span><br><span class="line">        <span class="attr">&quot;IPv6Gateway&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;GlobalIPv6Address&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;GlobalIPv6PrefixLen&quot;</span>:<span class="number">0</span>,</span><br><span class="line">        <span class="attr">&quot;MacAddress&quot;</span>:<span class="string">&quot;02:42:ac:11:00:02&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;DriverOpts&quot;</span>:<span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到容器的 IP 為 172.17.0.2，利用這組 IP 也可以連線。<br><img src="/images/docker/02/docker02_031.png" alt="img"><br>這是因為 Docker 安裝時會建議一組 docker0 的橋接器，預設容器會透過它來通訊。<br><img src="/images/docker/02/docker02_032.png" alt="img"><br><img src="/images/docker/02/docker02_033.png" alt="img">  </p>
+<h1 id="自訂橋接器：Bridge"><a href="#自訂橋接器：Bridge" class="headerlink" title="自訂橋接器：Bridge"></a>自訂橋接器：Bridge</h1><p>既然預設已經有一個 docker0 的橋接器(bridge)了為什麼還要在自己建立一組，我們從官方網站可以查到自訂跟預設還是有差異，其中自訂的橋接器可以透過 Container Name 來彼此通訊。<br><img src="/images/docker/02/docker02_034.png" alt="img">  </p>
 <blockquote>
-<p>參考資料：<a href="https://docs.docker.com/network/bridge/#differences-between-user-defined-bridges-and-the-default-bridge" target="_blank" rel="noopener">Differences between user-defined bridges and the default bridge</a></p>
+<p>參考資料：<a target="_blank" rel="noopener" href="https://docs.docker.com/network/bridge/#differences-between-user-defined-bridges-and-the-default-bridge">Differences between user-defined bridges and the default bridge</a></p>
 </blockquote>
 <p>透過下列指令建立一組新的橋接器。<br><code>docker network create -d bridge bridge-network</code>  </p>
 <blockquote>
 <p><code>-d</code>：<code>--driver</code> 的縮寫，表示驅動模式，目前我們是選用 Bridge Mode。<br>可以透過 <code>docker network ls</code> 查看 Docker 的網路清單。</p>
 </blockquote>
-<p><img src="/images/docker/02/docker02_035.png" alt=""><br>接著我們先移除既有的容器 PostgreSQL、pgAdmin4，並再次重新建立，建立過程多加入 <code>--network bridge-network</code> 參數。</p>
+<p><img src="/images/docker/02/docker02_035.png" alt="img"><br>接著我們先移除既有的容器 PostgreSQL、pgAdmin4，並再次重新建立，建立過程多加入 <code>--network bridge-network</code> 參數。</p>
 <blockquote>
-<p>可以透過 VS Code 快速移除。<br><img src="/images/docker/02/docker02_036.png" alt=""> </p>
+<p>可以透過 VS Code 快速移除。<br><img src="/images/docker/02/docker02_036.png" alt="img"> </p>
 </blockquote>
-<p>容器建立指令如下：<br><code>docker run --name &#39;PostgreSQL&#39; -v &#39;/home/jonny/Public/pgdata&#39;:&#39;/var/lib/postgresql/data&#39; -e &#39;POSTGRES_PASSWORD=X4w5s6y4dKEG&#39; -d -p 5432:5432 --network bridge-network postgres:10.3-alpine</code><br><code>docker run --name &#39;pgAdmin4&#39; -e &#39;PGADMIN_DEFAULT_EMAIL=denhuang@gmail.com&#39; -e &#39;PGADMIN_DEFAULT_PASSWORD=X4w5s6y4dKEG&#39; -d -p 8081:80 --network bridge-network dpage/pgadmin4</code><br><img src="/images/docker/02/docker02_037.png" alt=""><br>這一次我們利用容器名稱來連接，這種連接模式在開發測試過程似乎會比較方便，因為就好像是透過主機名稱連結遠端主機上。<br><img src="/images/docker/02/docker02_038.png" alt="">  </p>
-<h1 id="建立資料庫：MariaDB"><a href="#建立資料庫：MariaDB" class="headerlink" title="建立資料庫：MariaDB"></a>建立資料庫：MariaDB</h1><p>參考 Docker Hub 上的 <a href="https://hub.docker.com/_/mariadb/" target="_blank" rel="noopener">MariaDB 官方資訊</a>，我們可以建立 MariaDB 的容器，網路一樣透過加入 <code>--network bridge-network</code> 參數來加入到我們自訂的橋接器上，指令如下：<br><code>docker run --name &#39;Mariadb&#39; -v &#39;/home/jonny/Public/mysql&#39;:&#39;/var/lib/mysql&#39; -e &#39;MYSQL_ROOT_PASSWORD=admin&#39; -e &#39;MYSQL_USER=user&#39; -e &#39;MYSQL_PASSWORD=X4w5s6y4dKEG&#39; -d -p 3306:3306 --network bridge-network mariadb:10.3 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci</code><br>管理介面則安裝最常用的 phpMyAdmin，從<a href="https://hub.docker.com/r/phpmyadmin/phpmyadmin/" target="_blank" rel="noopener">官方文件</a> 得知我們可以設定預設連線主機，將 <code>PMA_HOST</code> 設定為資料庫的 Container Name <code>Mariadb</code>，連接埠則對應到 <code>8082</code>，完整指令如下：<br><code>docker run --name &#39;phpMyAdmin&#39; -v &#39;/home/jonny/Public/phpmyadmin/config.user.inc.php&#39;:&#39;/etc/phpmyadmin/config.user.inc.php&#39; -e &#39;PMA_HOST=Mariadb&#39; -e &#39;PMA_PORTS=3306&#39; -e &#39;PMA_USER=user&#39; -e &#39;PMA_PASSWORD=X4w5s6y4dKEG&#39; -p 8082:80 -d --network bridge-network phpmyadmin/phpmyadmin:4.7</code><br><img src="/images/docker/02/docker02_039.png" alt=""><br>開啟 <a href="http://localhost:8082/，便可開始操作資料庫。" target="_blank" rel="noopener">http://localhost:8082/，便可開始操作資料庫。</a><br><img src="/images/docker/02/docker02_040.png" alt=""><br>目前架構如下：<br><img src="/images/docker/02/docker02_041.png" alt="">  </p>
-<h1 id="建立資料庫：Microsofr-SQL-Server-2017"><a href="#建立資料庫：Microsofr-SQL-Server-2017" class="headerlink" title="建立資料庫：Microsofr SQL Server 2017"></a>建立資料庫：Microsofr SQL Server 2017</h1><p>微軟在 SQL Server 2017 推出了 Linux 版，同時也在 Docker Hub(<a href="https://hub.docker.com/r/microsoft/mssql-server-linux/" target="_blank" rel="noopener">microsoft/mssql-server-linux</a>) 上提供映像檔，比較特別的是我們須加入 <code>ACCEPT_EULA=Y</code> 參數代表我們已經同意授權模式，若不代 <code>MSSQL_PID</code> 參數預設就會安裝開發版(Developer)，完整指令如下：<br><code>docker run --name &#39;MSSQL2017&#39; -v &#39;/home/jonny/Public/mssql&#39;:&#39;/var/opt/mssql&#39; -e &#39;ACCEPT_EULA=Y&#39; -e &#39;MSSQL_SA_PASSWORD=X4w5s6y4dKEG&#39; -e &#39;MSSQL_PID=Developer&#39; -p 1433:1433 -d --network bridge-network microsoft/mssql-server-linux:2017-latest</code><br><img src="/images/docker/02/docker02_043.png" alt=""><br>因為 MSSQL 管理工具 SQL Server Management Studio(SSMS) 只有 Windows 版本，所以改從遠端的電腦(IP：192.168.110.1)連線測試。<br><img src="/images/docker/02/docker02_044.png" alt="">  </p>
+<p>容器建立指令如下：<br><code>docker run --name &#39;PostgreSQL&#39; -v &#39;/home/jonny/Public/pgdata&#39;:&#39;/var/lib/postgresql/data&#39; -e &#39;POSTGRES_PASSWORD=X4w5s6y4dKEG&#39; -d -p 5432:5432 --network bridge-network postgres:10.3-alpine</code><br><code>docker run --name &#39;pgAdmin4&#39; -e &#39;PGADMIN_DEFAULT_EMAIL=denhuang@gmail.com&#39; -e &#39;PGADMIN_DEFAULT_PASSWORD=X4w5s6y4dKEG&#39; -d -p 8081:80 --network bridge-network dpage/pgadmin4</code><br><img src="/images/docker/02/docker02_037.png" alt="img"><br>這一次我們利用容器名稱來連接，這種連接模式在開發測試過程似乎會比較方便，因為就好像是透過主機名稱連結遠端主機上。<br><img src="/images/docker/02/docker02_038.png" alt="img">  </p>
+<h1 id="建立資料庫：MariaDB"><a href="#建立資料庫：MariaDB" class="headerlink" title="建立資料庫：MariaDB"></a>建立資料庫：MariaDB</h1><p>參考 Docker Hub 上的 <a target="_blank" rel="noopener" href="https://hub.docker.com/_/mariadb/">MariaDB 官方資訊</a>，我們可以建立 MariaDB 的容器，網路一樣透過加入 <code>--network bridge-network</code> 參數來加入到我們自訂的橋接器上，指令如下：<br><code>docker run --name &#39;Mariadb&#39; -v &#39;/home/jonny/Public/mysql&#39;:&#39;/var/lib/mysql&#39; -e &#39;MYSQL_ROOT_PASSWORD=admin&#39; -e &#39;MYSQL_USER=user&#39; -e &#39;MYSQL_PASSWORD=X4w5s6y4dKEG&#39; -d -p 3306:3306 --network bridge-network mariadb:10.3 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci</code><br>管理介面則安裝最常用的 phpMyAdmin，從<a target="_blank" rel="noopener" href="https://hub.docker.com/r/phpmyadmin/phpmyadmin/">官方文件</a> 得知我們可以設定預設連線主機，將 <code>PMA_HOST</code> 設定為資料庫的 Container Name <code>Mariadb</code>，連接埠則對應到 <code>8082</code>，完整指令如下：<br><code>docker run --name &#39;phpMyAdmin&#39; -v &#39;/home/jonny/Public/phpmyadmin/config.user.inc.php&#39;:&#39;/etc/phpmyadmin/config.user.inc.php&#39; -e &#39;PMA_HOST=Mariadb&#39; -e &#39;PMA_PORTS=3306&#39; -e &#39;PMA_USER=user&#39; -e &#39;PMA_PASSWORD=X4w5s6y4dKEG&#39; -p 8082:80 -d --network bridge-network phpmyadmin/phpmyadmin:4.7</code><br><img src="/images/docker/02/docker02_039.png" alt="img"><br>開啟 <a target="_blank" rel="noopener" href="http://localhost:8082/%EF%BC%8C%E4%BE%BF%E5%8F%AF%E9%96%8B%E5%A7%8B%E6%93%8D%E4%BD%9C%E8%B3%87%E6%96%99%E5%BA%AB%E3%80%82">http://localhost:8082/，便可開始操作資料庫。</a><br><img src="/images/docker/02/docker02_040.png" alt="img"><br>目前架構如下：<br><img src="/images/docker/02/docker02_041.png" alt="img">  </p>
+<h1 id="建立資料庫：Microsofr-SQL-Server-2017"><a href="#建立資料庫：Microsofr-SQL-Server-2017" class="headerlink" title="建立資料庫：Microsofr SQL Server 2017"></a>建立資料庫：Microsofr SQL Server 2017</h1><p>微軟在 SQL Server 2017 推出了 Linux 版，同時也在 Docker Hub(<a target="_blank" rel="noopener" href="https://hub.docker.com/r/microsoft/mssql-server-linux/">microsoft/mssql-server-linux</a>) 上提供映像檔，比較特別的是我們須加入 <code>ACCEPT_EULA=Y</code> 參數代表我們已經同意授權模式，若不代 <code>MSSQL_PID</code> 參數預設就會安裝開發版(Developer)，完整指令如下：<br><code>docker run --name &#39;MSSQL2017&#39; -v &#39;/home/jonny/Public/mssql&#39;:&#39;/var/opt/mssql&#39; -e &#39;ACCEPT_EULA=Y&#39; -e &#39;MSSQL_SA_PASSWORD=X4w5s6y4dKEG&#39; -e &#39;MSSQL_PID=Developer&#39; -p 1433:1433 -d --network bridge-network microsoft/mssql-server-linux:2017-latest</code><br><img src="/images/docker/02/docker02_043.png" alt="img"><br>因為 MSSQL 管理工具 SQL Server Management Studio(SSMS) 只有 Windows 版本，所以改從遠端的電腦(IP：192.168.110.1)連線測試。<br><img src="/images/docker/02/docker02_044.png" alt="img">  </p>
 <blockquote>
-<p>筆者特別先清除本機上的映像檔，整個安裝過程由網路下載映像檔到整個安裝設定完成不用到2分鐘，以往那種費時的安裝過程現在已經沒有了。<br><img src="/images/docker/02/docker02_042.gif" alt="">  </p>
+<p>筆者特別先清除本機上的映像檔，整個安裝過程由網路下載映像檔到整個安裝設定完成不用到2分鐘，以往那種費時的安裝過程現在已經沒有了。<br><img src="/images/docker/02/docker02_042.gif" alt="img">  </p>
 </blockquote>
-<p>比較特別的是在建立資料庫時會出現錯誤，由錯誤訊息來看應該是與資料庫儲存路徑有關，大概是 SSMS 無法正確讀取 Linux 路徑，而又傳遞包含空值(null)儲存路徑的語法給資料庫，造成資料庫處理發生異常。<br><img src="/images/docker/02/docker02_045.png" alt=""><br>目前我們手動下語法來解決此問題，簡單的說就是不要指定儲存路徑讓資料庫使用預設路徑來建立，或者是傳遞<strong>正確的儲存路徑</strong>給資料庫。<br><img src="/images/docker/02/docker02_046.png" alt=""><br>目前架構如下：<br><img src="/images/docker/02/docker02_049.png" alt="">  </p>
-<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>我們可以透過指令 <code>docker stats</code> 來查看目前容器使用資源的狀況，可以發現既使3個資料庫都開啟的情況下，待機下也才耗費1G多的記憶體，CPU的資源也使用非常少，對於開發環境其實幫助很大，尤其我們還關閉不需要使用的資料庫，隨時依開發需求只啟用必要的資料庫，這種秒開秒關的方式應該很適合有點惰性的我。<br><img src="/images/docker/02/docker02_047.png" alt=""><br>我們從 <a href="https://store.docker.com/search?certification_status=certified&amp;q=oracle&amp;source=verified&amp;type=image" target="_blank" rel="noopener">Docker Store</a> 上其實也可看到企業版的 <a href="https://store.docker.com/images/oracle-database-enterprise-edition" target="_blank" rel="noopener">Oracle Database Enterprise Edition</a>、<a href="https://store.docker.com/images/mysql-enterprise-server" target="_blank" rel="noopener">MySQL Server Enterprise Edition</a>，在 <a href="https://db-engines.com/en/ranking" target="_blank" rel="noopener">DB-Engines</a> 排名上比較常見的資料庫應該都可以找到 Docker 的映像檔。<br><img src="/images/docker/02/docker02_048.png" alt=""><br>雖然筆者習慣將 <strong>Container</strong> 與 <strong>Volume</strong> 都給予名稱，但是若考量到系統佈署時就不見得很合適了，因為當主機上要執行的容器很多時可能會有名稱重複的問題，更不用說要叢集化管理多台主機時，給予名稱可能會增加平衡負載的困難，不過事事無絕對，如果事先討論制定好命名規則，對於中小型系統名稱可以更便於管理。</p>
+<p>比較特別的是在建立資料庫時會出現錯誤，由錯誤訊息來看應該是與資料庫儲存路徑有關，大概是 SSMS 無法正確讀取 Linux 路徑，而又傳遞包含空值(null)儲存路徑的語法給資料庫，造成資料庫處理發生異常。<br><img src="/images/docker/02/docker02_045.png" alt="img"><br>目前我們手動下語法來解決此問題，簡單的說就是不要指定儲存路徑讓資料庫使用預設路徑來建立，或者是傳遞<strong>正確的儲存路徑</strong>給資料庫。<br><img src="/images/docker/02/docker02_046.png" alt="img"><br>目前架構如下：<br><img src="/images/docker/02/docker02_049.png" alt="img">  </p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>我們可以透過指令 <code>docker stats</code> 來查看目前容器使用資源的狀況，可以發現既使3個資料庫都開啟的情況下，待機下也才耗費1G多的記憶體，CPU的資源也使用非常少，對於開發環境其實幫助很大，尤其我們還關閉不需要使用的資料庫，隨時依開發需求只啟用必要的資料庫，這種秒開秒關的方式應該很適合有點惰性的我。<br><img src="/images/docker/02/docker02_047.png" alt="img"><br>我們從 <a target="_blank" rel="noopener" href="https://store.docker.com/search?certification_status=certified&q=oracle&source=verified&type=image">Docker Store</a> 上其實也可看到企業版的 <a target="_blank" rel="noopener" href="https://store.docker.com/images/oracle-database-enterprise-edition">Oracle Database Enterprise Edition</a>、<a target="_blank" rel="noopener" href="https://store.docker.com/images/mysql-enterprise-server">MySQL Server Enterprise Edition</a>，在 <a target="_blank" rel="noopener" href="https://db-engines.com/en/ranking">DB-Engines</a> 排名上比較常見的資料庫應該都可以找到 Docker 的映像檔。<br><img src="/images/docker/02/docker02_048.png" alt="img"><br>雖然筆者習慣將 <strong>Container</strong> 與 <strong>Volume</strong> 都給予名稱，但是若考量到系統佈署時就不見得很合適了，因為當主機上要執行的容器很多時可能會有名稱重複的問題，更不用說要叢集化管理多台主機時，給予名稱可能會增加平衡負載的困難，不過事事無絕對，如果事先討論制定好命名規則，對於中小型系統名稱可以更便於管理。</p>
 
-      
     </div>
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
+    
+    
+    
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Docker/" rel="tag"># Docker</a>
-          
-        </div>
-      
-
-      
-      
-        <div class="post-widgets">
-        
-
-        
-          <div class="social-like">
-            
-
-            
-              <div class="fb_like">
-                <div class="fb-like" data-layout="button_count" data-share="true"></div>
-              </div>
-            
-          </div>
-        
-        </div>
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/docker/docker_01/" rel="next" title="用 Docker 建立不同 Angular CLI 版本的開發環境">
-                <i class="fa fa-chevron-left"></i> 用 Docker 建立不同 Angular CLI 版本的開發環境
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
           </div>
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/angular/training/25_fontawesome5/" rel="prev" title="土法煉鋼的升級之路：Font Awesome 5">
-                土法煉鋼的升級之路：Font Awesome 5 <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/docker/docker_01/" rel="prev" title="用 Docker 建立不同 Angular CLI 版本的開發環境">
+                  <i class="fa fa-chevron-left"></i> 用 Docker 建立不同 Angular CLI 版本的開發環境
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/angular/training/25_fontawesome5/" rel="next" title="土法煉鋼的升級之路：Font Awesome 5">
+                  土法煉鋼的升級之路：Font Awesome 5 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-        </div>
-      
-
-      
-      
     </footer>
   </article>
+</div>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
 
 
-          </div>
-          
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Jonny Huang">
-          <p class="site-author-name" itemprop="name">Jonny Huang</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-           
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">66</span>
-                <span class="site-state-item-name">文章</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">分類</span>
-              
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">28</span>
-                <span class="site-state-item-name">標籤</span>
-              
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
-                  
-                    <i class="fa fa-fw fa-facebook-official"></i>
-                  
-                  Facebook
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>
-                  
-                  Email
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-block">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/flutter.tw/" title="Flutter Taiwan" target="_blank">Flutter Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-for-Ubuntu"><span class="nav-number">2.</span> <span class="nav-text">Docker for Ubuntu</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Volume"><span class="nav-number">3.</span> <span class="nav-text">Volume</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立資料庫：PostgreSQL"><span class="nav-number">4.</span> <span class="nav-text">建立資料庫：PostgreSQL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自訂橋接器：Bridge"><span class="nav-number">5.</span> <span class="nav-text">自訂橋接器：Bridge</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立資料庫：MariaDB"><span class="nav-number">6.</span> <span class="nav-text">建立資料庫：MariaDB</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立資料庫：Microsofr-SQL-Server-2017"><span class="nav-number">7.</span> <span class="nav-text">建立資料庫：Microsofr SQL Server 2017</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">8.</span> <span class="nav-text">後記</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
+<div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-Jonny Huang"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
 </div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
-</div>
-
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -966,27 +436,6 @@
 
 
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
-<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-      prettyPrint();
-  });
-</script>
 
 </body>
 </html>

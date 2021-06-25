@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="下載 透過瀏覽器開啟官方網站 https:&#x2F;&#x2F;www.postgresql.org&#x2F;，點選 Download 下載按鈕。    選擇資料庫要安裝的平台，此處以 Microsoft Windows 作業系統為例，點選 Windows 按鈕。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PostgreSQL 安裝、備份、還原">
+<meta property="og:url" content="https://jonny-huang.github.io/projects/05_postgresql_00/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="下載 透過瀏覽器開啟官方網站 https:&#x2F;&#x2F;www.postgresql.org&#x2F;，點選 Download 下載按鈕。    選擇資料庫要安裝的平台，此處以 Microsoft Windows 作業系統為例，點選 Windows 按鈕。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_004.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_005.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_006.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_007.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_008.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_009.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_010.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_011.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_012.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_013.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_014.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_015.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_016.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_017.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_018.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_019.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_020.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_021.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_022.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_023.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_024.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_028.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_025.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_026.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_027.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_029.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_030.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_031.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_032.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_033.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_034.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_035.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_036.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_037.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_038.png">
+<meta property="article:published_time" content="2021-06-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-23T06:50:28.004Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="Projects">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/projects/postgresql/img_maintain_20210602_004.png">
+
+
+<link rel="canonical" href="https://jonny-huang.github.io/projects/05_postgresql_00/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;projects&#x2F;05_postgresql_00&#x2F;&quot;,&quot;path&quot;:&quot;projects&#x2F;05_postgresql_00&#x2F;&quot;,&quot;title&quot;:&quot;PostgreSQL 安裝、備份、還原&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>PostgreSQL 安裝、備份、還原 | Jonny Huang 的學習筆記</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa-commenting fa-fw"></i>欣雨露</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BC%89"><span class="nav-number">1.</span> <span class="nav-text">下載</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D"><span class="nav-number">2.</span> <span class="nav-text">安裝</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A8%AD%E5%AE%9A"><span class="nav-number">3.</span> <span class="nav-text">設定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%82%99%E4%BB%BD"><span class="nav-number">4.</span> <span class="nav-text">備份</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%82%84%E5%8E%9F"><span class="nav-number">5.</span> <span class="nav-text">還原</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/projects/05_postgresql_00/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PostgreSQL 安裝、備份、還原
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/06/23 14:50:28" itemprop="dateModified" datetime="2021-06-23T14:50:28+08:00">2021/06/23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Projects/" itemprop="url" rel="index"><span itemprop="name">Projects</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="下載"><a href="#下載" class="headerlink" title="下載"></a>下載</h1><ul>
+<li><p>透過瀏覽器開啟官方網站 <a target="_blank" rel="noopener" href="https://www.postgresql.org/">https://www.postgresql.org/</a>，點選 Download 下載按鈕。<br><img src="/images/projects/postgresql/img_maintain_20210602_004.png" alt="img">  </p>
+</li>
+<li><p>選擇資料庫要安裝的平台，此處以 Microsoft Windows 作業系統為例，點選 Windows 按鈕。<br><img src="/images/projects/postgresql/img_maintain_20210602_005.png" alt="img">  </p>
+</li>
+</ul>
+<span id="more"></span>  
+
+<ul>
+<li><p>點選 EDB 網站超連結。<br><img src="/images/projects/postgresql/img_maintain_20210602_006.png" alt="img">  </p>
+<blockquote>
+<p>EDB 全名 EnterpriseDB，是一家位於馬薩諸塞州的私營公司，提供基於開源數據庫 PostgreSQL 的軟件和服務，也是 PostgreSQL 最主要的維護者。  </p>
+</blockquote>
+</li>
+<li><p>選擇對應作業系統的安裝程式，在此選擇 Windows 64 位元版本。<br><img src="/images/projects/postgresql/img_maintain_20210602_007.png" alt="img">  </p>
+<blockquote>
+<p>PostgreSQL 從第 11 版開始不再提供 32 位元的安裝程式。  </p>
+</blockquote>
+</li>
+<li><p>下載期間你可以填寫問卷，協助他們統計改善，下載完成便可以執行安裝程式。<br><img src="/images/projects/postgresql/img_maintain_20210602_008.png" alt="img">  </p>
+</li>
+</ul>
+<h1 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h1><ul>
+<li><p>安裝過程大部分直接按<strong>下一步</strong>(<strong>Next</strong>)即可。<br><img src="/images/projects/postgresql/img_maintain_20210602_009.png" alt="img">  </p>
+</li>
+<li><p>設定安裝路徑，一般不需要修改，此路徑僅為資料庫<strong>程式</strong>安裝路徑，<strong>資料</strong>儲存位置後面步驟在設定。<br><img src="/images/projects/postgresql/img_maintain_20210602_010.png" alt="img">  </p>
+</li>
+<li><p>選擇要安裝的套件，<strong>PostgreSQL Server</strong>為資料庫程式，<strong>pgAdmin 4</strong>為資料庫視覺化管理工具，<strong>Command Line Tools</strong>為資料庫指令操作工具，正常可以全部安裝，直接點選下一步即可。<br><img src="/images/projects/postgresql/img_maintain_20210602_011.png" alt="img">  </p>
+</li>
+<li><p>選擇<strong>資料</strong>儲存路徑，此處建議可以設定在<strong>系統碟</strong>(<strong>C槽</strong>)以外的磁碟，避免如果作業系統要重新安裝時忘記備份資料，後面會提到如何使用<strong>pgAdmin 4</strong>來建立資料庫的備份檔，我們也可以透過此工具來還原資料庫。<br><img src="/images/projects/postgresql/img_maintain_20210602_012.png" alt="img">  </p>
+</li>
+<li><p>設定<strong>預設帳號</strong>(<strong>postgres</strong>)的密碼。<br><img src="/images/projects/postgresql/img_maintain_20210602_013.png" alt="img">  </p>
+</li>
+<li><p>設定<strong>連接埠</strong>(<strong>Port</strong>)，除非是5432 Port 已被佔用或是有其他資安考量，否則建置不要修改。<br><img src="/images/projects/postgresql/img_maintain_20210602_014.png" alt="img">  </p>
+<blockquote>
+<p>一般我可以透過 <strong>pg_hba.conf</strong> 設定縮限連線規格以增加安全性。<br>參考資料：<a target="_blank" rel="noopener" href="https://docs.postgresql.tw/server-administration/client-authentication/the-pg_hba.conf-file">20.1. 設定檔：pg_hba.conf</a>  </p>
+</blockquote>
+</li>
+<li><p>設定本地化規則，一般直接按下一步即可。<br><img src="/images/projects/postgresql/img_maintain_20210602_015.png" alt="img">  </p>
+</li>
+<li><p>最後安裝前會顯示之前步驟的相關測定，確認無誤之後按下一步。<br><img src="/images/projects/postgresql/img_maintain_20210602_016.png" alt="img">  </p>
+</li>
+<li><p>最終確認，按下一步就會開始安裝。<br><img src="/images/projects/postgresql/img_maintain_20210602_017.png" alt="img"><br><img src="/images/projects/postgresql/img_maintain_20210602_018.png" alt="img">  </p>
+</li>
+<li><p>安裝完成之後，會顯示是否要開啟 Stack Builder 來安裝其他套件，如果不需要可以取消勾選，按 Finish 完成安裝。<br><img src="/images/projects/postgresql/img_maintain_20210602_019.png" alt="img">  </p>
+<blockquote>
+<p>Stack Builder為PostgreSQL的套件管理工具，可以讓我們安裝資料庫額外的擴充套件，例如：PostGIS，PostGIS是PostgreSQL對於OpenGIS空間資料規範的擴充。  </p>
+</blockquote>
+</li>
+</ul>
+<h1 id="設定"><a href="#設定" class="headerlink" title="設定"></a>設定</h1><ul>
+<li><p>開啟 <strong>pgAdmin</strong>，第一次開啟時需要設定<strong>密碼</strong>，此處的密碼不是資料庫的連線密碼，而是<strong>pgAdmin</strong>這個管理工具的使用密碼。<br><img src="/images/projects/postgresql/img_maintain_20210602_020.png" alt="img">  </p>
+<blockquote>
+<p>因為使用管理工具會記錄所登入的資料庫連線參數，所以<strong>pgAdmin</strong>會強迫設定密碼，不能空白。<br><img src="/images/projects/postgresql/img_maintain_20210602_021.png" alt="img"><br>目前系統提供<strong>簡體中文</strong>的語言介面，有需要的可以切換。<br><img src="/images/projects/postgresql/img_maintain_20210602_022.png" alt="img">  </p>
+</blockquote>
+</li>
+<li><p>在瀏覽器內透過<strong>滑鼠右鍵</strong>開啟功能選單來創建新的資料庫連線。<br><img src="/images/projects/postgresql/img_maintain_20210602_023.png" alt="img">  </p>
+</li>
+<li><p>在<strong>連線</strong>頁籤內填入資料庫相關連線參數，無誤後按保存系統會在瀏覽器視窗建立新的資料庫連線。<br><img src="/images/projects/postgresql/img_maintain_20210602_024.png" alt="img">  </p>
+</li>
+</ul>
+<h1 id="備份"><a href="#備份" class="headerlink" title="備份"></a>備份</h1><ul>
+<li><p>選擇要備份的資料庫，按右鍵開啟功能選單，選擇<strong>備份</strong>開啟備份功能視窗。<br><img src="/images/projects/postgresql/img_maintain_20210602_028.png" alt="img">  </p>
+<blockquote>
+<p>目前安裝版本開啟時會出現找不到 <strong>pg_dump.exe</strong> 檔案的錯誤訊息，應該是因為安裝程式所附的<strong>pgAdmin</strong>安裝程式為 32 位元版本，而安裝程式本身是 64 位元版本，導致安裝不完整。<br><img src="/images/projects/postgresql/img_maintain_20210602_025.png" alt="img"><br>解決方式：<br>方法1：到 <strong>pgAdmin</strong> 官方網站 <a target="_blank" rel="noopener" href="https://www.pgadmin.org/">https://www.pgadmin.org/</a> 下載並安裝最新版本。<br><img src="/images/projects/postgresql/img_maintain_20210602_026.png" alt="img"><br>方法2：因為<strong>pg_dump.exe</strong>其實是<strong>PostgreSQL</strong>內建的備份程式，所以我們可以修改<strong>pgAdmin</strong> 的程式引用路徑，將其指向<strong>PostgreSQL</strong>的執行路徑。<br><img src="/images/projects/postgresql/img_maintain_20210602_027.png" alt="img">  </p>
+</blockquote>
+</li>
+<li><p>點選檔案路徑選擇按鈕，選擇備份檔要儲存的路徑，並加上備份檔檔名，按<strong>創建</strong>完成路徑設定。<br><img src="/images/projects/postgresql/img_maintain_20210602_029.png" alt="img">  </p>
+</li>
+<li><p>選擇腳色名稱後按<strong>備份</strong>，系統就會開始備份資料庫。<br><img src="/images/projects/postgresql/img_maintain_20210602_030.png" alt="img">  </p>
+<blockquote>
+<p>因為筆者都是使用<strong>預設帳號</strong>(<strong>postgres</strong>)建置資料庫，所以腳色名稱選擇<strong>postgres</strong>。  </p>
+</blockquote>
+</li>
+<li><p>備份過程會於右下方顯示相關資訊。<br><img src="/images/projects/postgresql/img_maintain_20210602_031.png" alt="img">  </p>
+<blockquote>
+<p>我們可以點選<strong>更多詳情</strong>來顯示更完整的資訊，包含所使用的<strong>備份指令</strong>。<br><img src="/images/projects/postgresql/img_maintain_20210602_032.png" alt="img">  </p>
+</blockquote>
+</li>
+</ul>
+<h1 id="還原"><a href="#還原" class="headerlink" title="還原"></a>還原</h1><ul>
+<li><p>建立新的資料庫，我們再還原目標的資料庫主機上點數據庫，並透過滑鼠右鍵開啟功能選單，選擇創建、數據庫，輸入資料庫名稱，如果是同一個資料庫主機時名稱不能原始資料庫相同，此處是將元端資料庫 cloud 還原到本機的資料庫內，按<strong>保存</strong>即會建立新的資料庫。<br><img src="/images/projects/postgresql/img_maintain_20210602_033.png" alt="img">  </p>
+</li>
+<li><p>在新資料庫 cloud 上用滑鼠右鍵開啟功能選單，選擇<strong>還原中</strong>開啟還原操作視窗。<br><img src="/images/projects/postgresql/img_maintain_20210602_034.png" alt="img">  </p>
+</li>
+<li><p>點選檔案路徑選擇按鈕，選取備份檔後按<strong>選擇</strong>按鈕關閉選擇視窗。<br><img src="/images/projects/postgresql/img_maintain_20210602_035.png" alt="img">  </p>
+</li>
+<li><p>選擇腳色名稱後按<strong>還原</strong>，系統就會開始還原資料庫。<br><img src="/images/projects/postgresql/img_maintain_20210602_036.png" alt="img">  </p>
+</li>
+<li><p>還原過程一樣會於右下方顯示相關資訊。<br><img src="/images/projects/postgresql/img_maintain_20210602_037.png" alt="img">  </p>
+</li>
+<li><p>還原完成後，就可以開始使用資料庫。<br><img src="/images/projects/postgresql/img_maintain_20210602_038.png" alt="img">  </p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Projects/" rel="tag"># Projects</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/projects/06_feasibility_01/" rel="prev" title="化繁為簡：01 資料庫篇">
+                  <i class="fa fa-chevron-left"></i> 化繁為簡：01 資料庫篇
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/projects/07_feasibility_02/" rel="next" title="化繁為簡：02 後端篇(一)">
+                  化繁為簡：02 後端篇(一) <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

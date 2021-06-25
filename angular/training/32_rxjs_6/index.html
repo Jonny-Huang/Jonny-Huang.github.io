@@ -1,103 +1,32 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-tw">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-TW">
+<head>
   <meta charset="UTF-8">
-<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="RxJS,Angular">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
-
-
-
-
-  <meta property="fb:admins" content="fb267234890438499">
-  <meta property="fb:app_id" content="267234890438499">
-
-
-
-<meta name="description" content="前言在 每個醫師身邊都應該要有個白衣天使：RxJS 最後只簡單的說明 Subject 與 Observable 最大差別就是允許多個觀察者(Observer)訂閱(subscribe)，今天就來做一個比較有感的範例。   Angular MaterialAngular Material 是 Google 專為 Angular 打造的視覺化元件，隨著 Angular 6 的發佈不只整合度更高，安裝與">
-<meta name="keywords" content="RxJS,Angular">
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="前言在 每個醫師身邊都應該要有個白衣天使：RxJS 最後只簡單的說明 Subject 與 Observable 最大差別就是允許多個觀察者(Observer)訂閱(subscribe)，今天就來做一個比較有感的範例。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一家烤肉萬家香，一家著火...：RxJS - Subject">
 <meta property="og:url" content="https://jonny-huang.github.io/angular/training/32_rxjs_6/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="前言在 每個醫師身邊都應該要有個白衣天使：RxJS 最後只簡單的說明 Subject 與 Observable 最大差別就是允許多個觀察者(Observer)訂閱(subscribe)，今天就來做一個比較有感的範例。   Angular MaterialAngular Material 是 Google 專為 Angular 打造的視覺化元件，隨著 Angular 6 的發佈不只整合度更高，安裝與">
-<meta property="og:locale" content="zh-tw">
+<meta property="og:description" content="前言在 每個醫師身邊都應該要有個白衣天使：RxJS 最後只簡單的說明 Subject 與 Observable 最大差別就是允許多個觀察者(Observer)訂閱(subscribe)，今天就來做一個比較有感的範例。">
+<meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_049.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_050.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_051.png">
@@ -121,866 +50,345 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_069.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_070.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_071.png">
-<meta property="og:updated_time" content="2018-08-06T09:40:55.000Z">
+<meta property="article:published_time" content="2018-08-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-24T01:24:59.446Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="RxJS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一家烤肉萬家香，一家著火...：RxJS - Subject">
-<meta name="twitter:description" content="前言在 每個醫師身邊都應該要有個白衣天使：RxJS 最後只簡單的說明 Subject 與 Observable 最大差別就是允許多個觀察者(Observer)訂閱(subscribe)，今天就來做一個比較有感的範例。   Angular MaterialAngular Material 是 Google 專為 Angular 打造的視覺化元件，隨著 Angular 6 的發佈不只整合度更高，安裝與">
 <meta name="twitter:image" content="https://jonny-huang.github.io/images/angular/training/rxjs/rxjs_049.png">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Jonny'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<link rel="canonical" href="https://jonny-huang.github.io/angular/training/32_rxjs_6/">
 
 
 
-  <link rel="canonical" href="https://jonny-huang.github.io/angular/training/32_rxjs_6/">
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;angular&#x2F;training&#x2F;32_rxjs_6&#x2F;&quot;,&quot;path&quot;:&quot;angular&#x2F;training&#x2F;32_rxjs_6&#x2F;&quot;,&quot;title&quot;:&quot;一家烤肉萬家香，一家著火...：RxJS - Subject&quot;}</script>
 
-
-
-
-
-  <title>一家烤肉萬家香，一家著火...：RxJS - Subject | Jonny Huang 的學習筆記</title>
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>一家烤肉萬家香，一家著火...：RxJS - Subject | Jonny Huang 的學習筆記</title>
   
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '267234890438499',
-      xfbml      : true,
-      version    : 'v2.6'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/zh_tw/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-tw">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Jonny Huang 的學習筆記</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <h1 class="site-subtitle" itemprop="description">Angular、Flutter</h1>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首頁
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            目錄
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-flutter">
-          <a href="/flutter/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Flutter
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-angular">
-          <a href="/angular/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Angular
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-quotes">
-          <a href="/quotes/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br>
-            
-            欣雨露
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa-commenting fa-fw"></i>欣雨露</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-Material"><span class="nav-number">1.1.</span> <span class="nav-text">Angular Material</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BehaviorSubject"><span class="nav-number">2.</span> <span class="nav-text">BehaviorSubject</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%99%BB%E5%85%A5%E3%80%81%E7%99%BB%E5%87%BA"><span class="nav-number">3.</span> <span class="nav-text">登入、登出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%81%B8%E5%96%AE"><span class="nav-number">4.</span> <span class="nav-text">選單</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8C%E5%A0%B4%E5%8A%A0%E6%98%A0%EF%BC%9ARxDart"><span class="nav-number">5.</span> <span class="nav-text">同場加映：RxDart</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
     
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/angular/training/32_rxjs_6/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Jonny Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Jonny Huang 的學習筆記">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一家烤肉萬家香，一家著火...：RxJS - Subject
+        </h1>
 
-        
-        
-          <h2 class="post-title" itemprop="name headline">一家烤肉萬家香，一家著火...：RxJS - Subject</h2>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/06/24 09:24:59" itemprop="dateModified" datetime="2021-06-24T09:24:59+08:00">2021/06/24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Training/" itemprop="url" rel="index"><span itemprop="name">Training</span></a>
+        </span>
+    </span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新於</span>
-              
-              <time title="更新於" itemprop="dateModified" datetime="2018-08-06T17:40:55+08:00">
-                2018/08/06
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Training/" itemprop="url" rel="index">
-                    <span itemprop="name">Training</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
+
     
-
+    
+    
     <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 <a href="/angular/training/26_rxjs/">每個醫師身邊都應該要有個白衣天使：RxJS</a> 最後只簡單的說明 Subject 與 Observable 最大差別就是允許多個觀察者(Observer)訂閱(subscribe)，今天就來做一個比較有感的範例。  </p>
-<h2 id="Angular-Material"><a href="#Angular-Material" class="headerlink" title="Angular Material"></a>Angular Material</h2><p><a href="https://material.angular.io/" target="_blank" rel="noopener">Angular Material</a> 是 Google 專為 Angular 打造的視覺化元件，隨著 Angular 6 的發佈不只整合度更高，安裝與設定上也更加方便。<br>首先我們透過 <a href="https://cli.angular.io/" target="_blank" rel="noopener">Angular CLI</a> 指令 <code>ng new demo-rx-subject</code> 快速幫我們建立一個名為 <strong>demo-rx-subject</strong> 的專案。<br><img src="/images/angular/training/rxjs/rxjs_049.png" alt=""><br>接著透過指令 <code>ng add @angular/material</code> 來安裝 Angular Material。<br><img src="/images/angular/training/rxjs/rxjs_050.png" alt=""><br>我們可以看到它異動了5的檔案：  </p>
+<span id="more"></span>  
+
+<h2 id="Angular-Material"><a href="#Angular-Material" class="headerlink" title="Angular Material"></a>Angular Material</h2><p><a target="_blank" rel="noopener" href="https://material.angular.io/">Angular Material</a> 是 Google 專為 Angular 打造的視覺化元件，隨著 Angular 6 的發佈不只整合度更高，安裝與設定上也更加方便。<br>首先我們透過 <a target="_blank" rel="noopener" href="https://cli.angular.io/">Angular CLI</a> 指令 <code>ng new demo-rx-subject</code> 快速幫我們建立一個名為 <strong>demo-rx-subject</strong> 的專案。<br><img src="/images/angular/training/rxjs/rxjs_049.png" alt="img"><br>接著透過指令 <code>ng add @angular/material</code> 來安裝 Angular Material。<br><img src="/images/angular/training/rxjs/rxjs_050.png" alt="img"><br>我們可以看到它異動了5的檔案：  </p>
 <ul>
-<li><strong>package.json</strong>：增加了 <code>@angular/material</code>、<code>@angular/cdk</code> 2個 package。<br>  <img src="/images/angular/training/rxjs/rxjs_051.png" alt="">  </li>
-<li><strong>angular.json</strong>：幫我們套用 <code>indigo-pink.css</code> 樣式。<br>  <img src="/images/angular/training/rxjs/rxjs_052.png" alt="">  <blockquote>
-<p>Angular Material 總共有4種樣式：<code>deeppurple-amber.css</code>、<code>indigo-pink.css</code>、<code>pink-bluegrey.css</code>、<code>indigo-pink.css</code><br><img src="/images/angular/training/rxjs/rxjs_053.png" alt="">  </p>
+<li><p><strong>package.json</strong>：增加了 <code>@angular/material</code>、<code>@angular/cdk</code> 2個 package。<br>  <img src="/images/angular/training/rxjs/rxjs_051.png" alt="img">  </p>
+</li>
+<li><p><strong>angular.json</strong>：幫我們套用 <code>indigo-pink.css</code> 樣式。<br>  <img src="/images/angular/training/rxjs/rxjs_052.png" alt="img">  </p>
+<blockquote>
+<p>Angular Material 總共有4種樣式：<code>deeppurple-amber.css</code>、<code>indigo-pink.css</code>、<code>pink-bluegrey.css</code>、<code>indigo-pink.css</code><br><img src="/images/angular/training/rxjs/rxjs_053.png" alt="img">  </p>
 </blockquote>
 </li>
-<li><strong>src/app/app.module.ts</strong>：加入動畫模組 <strong>BrowserAnimationsModule</strong>，Angular 6 專案建置時雖然會安裝此模組，但是預設不會套用。<br>  <img src="/images/angular/training/rxjs/rxjs_054.png" alt="">  </li>
-<li><strong>src/index.html</strong>：加入 <a href="https://material.io/tools/icons/" target="_blank" rel="noopener">Material Icons</a> 與 Roboto 字型。<br>  <img src="/images/angular/training/rxjs/rxjs_055.png" alt="">  </li>
-<li><strong>src/styles.css</strong>：套用輕量型的 CSS Reset 與加入 Roboto 字型。<br>  <img src="/images/angular/training/rxjs/rxjs_056.png" alt="">  <blockquote>
-<p>參考資料：<a href="https://meyerweb.com/eric/tools/css/reset/" target="_blank" rel="noopener">CSS Tools: Reset CSS</a>  </p>
+<li><p><strong>src/app/app.module.ts</strong>：加入動畫模組 <strong>BrowserAnimationsModule</strong>，Angular 6 專案建置時雖然會安裝此模組，但是預設不會套用。<br>  <img src="/images/angular/training/rxjs/rxjs_054.png" alt="img">  </p>
+</li>
+<li><p><strong>src/index.html</strong>：加入 <a target="_blank" rel="noopener" href="https://material.io/tools/icons/">Material Icons</a> 與 Roboto 字型。<br>  <img src="/images/angular/training/rxjs/rxjs_055.png" alt="img">  </p>
+</li>
+<li><p><strong>src/styles.css</strong>：套用輕量型的 CSS Reset 與加入 Roboto 字型。<br>  <img src="/images/angular/training/rxjs/rxjs_056.png" alt="img">  </p>
+<blockquote>
+<p>參考資料：<a target="_blank" rel="noopener" href="https://meyerweb.com/eric/tools/css/reset/">CSS Tools: Reset CSS</a>  </p>
 </blockquote>
 </li>
 </ul>
 <p>沒錯，過去需要自己設定的步驟，現在一行指令就完成。  </p>
-<p>Angular Material 第6版除了提供 Material Design 風格的元件之外，目前還提供 3個幾本版型：<strong>Navigation</strong>、<strong>Dashboard</strong>、<strong>Table</strong>，我們分別可以透過下列指令來建立：<br><strong>Navigation</strong>：<code>ng generate @angular/material:material-nav --name &lt;component-name&gt;</code><br><strong>Dashboard</strong>：<code>ng generate @angular/material:material-dashboard --name &lt;component-name&gt;</code><br><strong>Table</strong>：<code>ng generate @angular/material:material-table --name &lt;component-name&gt;</code><br>我們直接透過指令 <code>ng generate @angular/material:material-nav --name nav</code> 來建立一個選擇器名稱為 <strong>app-nav</strong> 的 NavComponent。<br><img src="/images/angular/training/rxjs/rxjs_057.png" alt=""><br>接著我們將 <code>src\app\app.component.html</code> 內容移除並加入 NavComponent，讓整個頁面只呈現這個元件。<br><img src="/images/angular/training/rxjs/rxjs_058.png" alt=""><br>最後再透過 cli 指令 <code>ng serve</code> 來啟動，並透過瀏覽器開啟 <a href="http://localhost:4200/" target="_blank" rel="noopener">http://localhost:4200/</a> ，便可看到一個現在很常見的導覽式框架。<br><img src="/images/angular/training/rxjs/rxjs_059.png" alt="">  </p>
+<p>Angular Material 第6版除了提供 Material Design 風格的元件之外，目前還提供 3個幾本版型：<strong>Navigation</strong>、<strong>Dashboard</strong>、<strong>Table</strong>，我們分別可以透過下列指令來建立：<br><strong>Navigation</strong>：<code>ng generate @angular/material:material-nav --name &lt;component-name&gt;</code><br><strong>Dashboard</strong>：<code>ng generate @angular/material:material-dashboard --name &lt;component-name&gt;</code><br><strong>Table</strong>：<code>ng generate @angular/material:material-table --name &lt;component-name&gt;</code><br>我們直接透過指令 <code>ng generate @angular/material:material-nav --name nav</code> 來建立一個選擇器名稱為 <strong>app-nav</strong> 的 NavComponent。<br><img src="/images/angular/training/rxjs/rxjs_057.png" alt="img"><br>接著我們將 <code>src\app\app.component.html</code> 內容移除並加入 NavComponent，讓整個頁面只呈現這個元件。<br><img src="/images/angular/training/rxjs/rxjs_058.png" alt="img"><br>最後再透過 cli 指令 <code>ng serve</code> 來啟動，並透過瀏覽器開啟 <a target="_blank" rel="noopener" href="http://localhost:4200/">http://localhost:4200/</a> ，便可看到一個現在很常見的導覽式框架。<br><img src="/images/angular/training/rxjs/rxjs_059.png" alt="img">  </p>
 <blockquote>
-<p>正常情況下，我們使用 Angular Material 的 Component 時，須將其所屬的 NgModule 匯入到我們要使用的 Component - <strong>NavComponent</strong> 所屬的 NgModule - <strong>AppModule</strong> 內，這邊我們透過指令建立 material-nav 時已經同步幫我們加入會用到的 NgModule。<br><img src="/images/angular/training/rxjs/rxjs_060.png" alt="">  </p>
+<p>正常情況下，我們使用 Angular Material 的 Component 時，須將其所屬的 NgModule 匯入到我們要使用的 Component - <strong>NavComponent</strong> 所屬的 NgModule - <strong>AppModule</strong> 內，這邊我們透過指令建立 material-nav 時已經同步幫我們加入會用到的 NgModule。<br><img src="/images/angular/training/rxjs/rxjs_060.png" alt="img">  </p>
 </blockquote>
-<h1 id="BehaviorSubject"><a href="#BehaviorSubject" class="headerlink" title="BehaviorSubject"></a>BehaviorSubject</h1><p>接下來我們透過 BehaviorSubject 實作一個簡單的登入、登出功能，我們先建立一個 User 的 interface，新增一個檔案 <code>src\app\modules\user.ts</code>，內容如下：<br><pre><code>export interface User {
-  email: string;
-  name: string;
-  isLogin: boolean;
-}</code></pre></p>
-<p>接著我們透過指令 <code>ng generate service globales</code> 來建立一個 GlobalesService 的 service。<br><img src="/images/angular/training/rxjs/rxjs_062.png" alt="">  </p>
+<h1 id="BehaviorSubject"><a href="#BehaviorSubject" class="headerlink" title="BehaviorSubject"></a>BehaviorSubject</h1><p>接下來我們透過 BehaviorSubject 實作一個簡單的登入、登出功能，我們先建立一個 User 的 interface，新增一個檔案 <code>src\app\modules\user.ts</code>，內容如下：  </p>
+<figure class="highlight ts"><figcaption><span>user.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> User &#123;</span><br><span class="line">  <span class="attr">email</span>: <span class="built_in">string</span>;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  isLogin: <span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接著我們透過指令 <code>ng generate service globales</code> 來建立一個 GlobalesService 的 service。<br><img src="/images/angular/training/rxjs/rxjs_062.png" alt="img">  </p>
 <blockquote>
-<p>因為我們不談論測試，所以筆者會將副檔名為 <code>.spec.ts</code> 的檔案都刪除。<br><img src="/images/angular/training/rxjs/rxjs_061.png" alt="">  </p>
+<p>因為我們不談論測試，所以筆者會將副檔名為 <code>.spec.ts</code> 的檔案都刪除。<br><img src="/images/angular/training/rxjs/rxjs_061.png" alt="img">  </p>
 </blockquote>
-<p>我們可以看到專案增加一個檔案 <code>src\app\globales.service.ts</code>，內容如下：<br><pre><code>import { Injectable } from &#39;@angular&#x2F;core&#39;;
-
-@Injectable({
-  providedIn: &#39;root&#39;
-})
-export class GlobalesService {
-
-  constructor() { }
-}
-</code></pre></p>
+<p>我們可以看到專案增加一個檔案 <code>src\app\globales.service.ts</code>，內容如下：  </p>
+<figure class="highlight ts"><figcaption><span>globales.service.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>(&#123;</span><br><span class="line">  <span class="attr">providedIn</span>: <span class="string">&#x27;root&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalesService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>在過去我們需要將 service 註冊到 NgModule 內的 providers 屬性才可使用，現在裝飾器 Injectable 增加了 providedIn 屬性，預設值為 <code>root</code> 表示該 service 會自動被註冊到根模組(AppModule)內，這應該算是單例模式的實作，讓整個專案共用同一個 service。  </p>
-<p>接著修改 GlobalesService，內容如下：<br><pre><code>import { Injectable } from &#39;@angular&#x2F;core&#39;;
-import { BehaviorSubject } from &#39;rxjs&#39;;
-import { User } from &#39;.&#x2F;models&#x2F;user&#39;;
-
-@Injectable({
-  providedIn: &#39;root&#39;
-})
-export class GlobalesService {
-  private guestUser: User = {
-    email: &#39;guest@abc.com&#39;,
-    name: &#39;Guest&#39;,
-    isLogin: false
-  };
-
-  subUser$ = new BehaviorSubject&lt;User&gt;(this.guestUser);
-
-  login(email: string, password: string): void {
-    const newUser: User = {
-      email: email,
-      name: &#39;Employee&#39;,
-      isLogin: true
-    };
-    this.subUser$.next(newUser);
-  }
-
-  logout(): void {
-    this.subUser$.next(this.guestUser);
-  }
-}
-</code></pre></p>
+<p>接著修改 GlobalesService，內容如下：  </p>
+<figure class="highlight ts"><figcaption><span>globales.service.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; BehaviorSubject &#125; <span class="keyword">from</span> <span class="string">&#x27;rxjs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; User &#125; <span class="keyword">from</span> <span class="string">&#x27;./models/user&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>(&#123;</span><br><span class="line">  <span class="attr">providedIn</span>: <span class="string">&#x27;root&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalesService</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> guestUser: User = &#123;</span><br><span class="line">    <span class="attr">email</span>: <span class="string">&#x27;guest@abc.com&#x27;</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;Guest&#x27;</span>,</span><br><span class="line">    <span class="attr">isLogin</span>: <span class="literal">false</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  subUser$ = <span class="keyword">new</span> BehaviorSubject&lt;User&gt;(<span class="built_in">this</span>.guestUser);</span><br><span class="line"></span><br><span class="line">  login(email: <span class="built_in">string</span>, <span class="attr">password</span>: <span class="built_in">string</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> newUser: User = &#123;</span><br><span class="line">      <span class="attr">email</span>: email,</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;Employee&#x27;</span>,</span><br><span class="line">      <span class="attr">isLogin</span>: <span class="literal">true</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="built_in">this</span>.subUser$.next(newUser);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  logout(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.subUser$.next(<span class="built_in">this</span>.guestUser);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>先宣告一個 實作介面 User 的物件 <strong>guestUser</strong> 用來表示未登入的使用者。<br>接著宣告一個 BehaviorSubject -  <strong>subUser$</strong> 來記錄當前使用者的狀態，我們同時給予一個初始值 guestUser，表示預設未登入。<br>最後我們在 login、logout 方法內透過呼叫 <strong>next</strong> 來替換 subUser$ 當前的狀態，後續主要以 <code>isLogin</code> 來判斷是否登入。 </p>
 <blockquote>
-<p>不論式 Observable 或是 Subject 都是透過 <code>next</code>、<code>error</code>、<code>complete</code> 方法來改變狀態，當呼叫同時就會去通知透過 subscribe 來訂閱的觀察者(Observer)。<br>BehaviorSubject 特別的地方在於只要一訂閱就會馬上收到通知，以及我們不一定要訂閱，只要透過 BehaviorSubject 的 <code>value</code> 屬性可以取得<strong>最後的值</strong>，透過 <code>getValue()</code> 方法就可以取得<strong>目前的狀態</strong>，getValue() 有可能會拋出異常。<br><img src="/images/angular/training/rxjs/rxjs_063.png" alt="">  </p>
+<p>不論式 Observable 或是 Subject 都是透過 <code>next</code>、<code>error</code>、<code>complete</code> 方法來改變狀態，當呼叫同時就會去通知透過 subscribe 來訂閱的觀察者(Observer)。<br>BehaviorSubject 特別的地方在於只要一訂閱就會馬上收到通知，以及我們不一定要訂閱，只要透過 BehaviorSubject 的 <code>value</code> 屬性可以取得<strong>最後的值</strong>，透過 <code>getValue()</code> 方法就可以取得<strong>目前的狀態</strong>，getValue() 有可能會拋出異常。<br><img src="/images/angular/training/rxjs/rxjs_063.png" alt="img">  </p>
 </blockquote>
-<h1 id="登入、登出"><a href="#登入、登出" class="headerlink" title="登入、登出"></a>登入、登出</h1><p>接著透過指令 <code>ng generate component toolbar</code> 來建立一個 ToolbarComponent，<br><img src="/images/angular/training/rxjs/rxjs_064.png" alt=""><br>接著修改 <code>src\app\toolbar\toolbar.component.ts</code>，內容如下：<br><pre><code>import { Component, OnInit, OnDestroy } from &#39;@angular&#x2F;core&#39;;
-import { GlobalesService } from &#39;.&#x2F;..&#x2F;globales.service&#39;;
-import { Subscription } from &#39;rxjs&#39;;
-import { User } from &#39;.&#x2F;..&#x2F;models&#x2F;user&#39;;
-
-@Component({
-  selector: &#39;app-toolbar&#39;,
-  templateUrl: &#39;.&#x2F;toolbar.component.html&#39;,
-  styleUrls: [&#39;.&#x2F;toolbar.component.css&#39;]
-})
-export class ToolbarComponent implements OnInit, OnDestroy {
-  subscription: Subscription;
-  user: User;
-  constructor(private globales: GlobalesService) { }
-
-  ngOnInit() {
-    this.subscription = this.globales.subUser$
-      .subscribe(next =&gt; this.user = next);
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
-  login(email, password): void {
-    this.globales.login(email, password);
-  }
-
-  logout(): void {
-    this.globales.logout();
-  }
-
-}
-</code></pre></p>
+<h1 id="登入、登出"><a href="#登入、登出" class="headerlink" title="登入、登出"></a>登入、登出</h1><p>接著透過指令 <code>ng generate component toolbar</code> 來建立一個 ToolbarComponent，<br><img src="/images/angular/training/rxjs/rxjs_064.png" alt="img"><br>接著修改 <code>src\app\toolbar\toolbar.component.ts</code>，內容如下：  </p>
+<figure class="highlight ts"><figcaption><span>toolbar.component.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component, OnInit, OnDestroy &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; GlobalesService &#125; <span class="keyword">from</span> <span class="string">&#x27;./../globales.service&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Subscription &#125; <span class="keyword">from</span> <span class="string">&#x27;rxjs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; User &#125; <span class="keyword">from</span> <span class="string">&#x27;./../models/user&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;app-toolbar&#x27;</span>,</span><br><span class="line">  <span class="attr">templateUrl</span>: <span class="string">&#x27;./toolbar.component.html&#x27;</span>,</span><br><span class="line">  <span class="attr">styleUrls</span>: [<span class="string">&#x27;./toolbar.component.css&#x27;</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">ToolbarComponent</span> <span class="title">implements</span> <span class="title">OnInit</span>, <span class="title">OnDestroy</span> </span>&#123;</span><br><span class="line">  <span class="attr">subscription</span>: Subscription;</span><br><span class="line">  user: User;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> globales: GlobalesService</span>)</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">ngOnInit</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.subscription = <span class="built_in">this</span>.globales.subUser$</span><br><span class="line">      .subscribe(<span class="function"><span class="params">next</span> =&gt;</span> <span class="built_in">this</span>.user = next);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ngOnDestroy(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.subscription.unsubscribe();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  login(email, password): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.globales.login(email, password);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  logout(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.globales.logout();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>先宣告一個 user 屬性來存放使用者的狀態。<br>接著在建構是透過 DI 注入來加入 GlobalesService，在 ngOnInit 方法(Angular 在建立此 Component 時會呼叫)內去訂閱 GlobalesService，並在收到 <code>next</code> 通知時將新的狀態寫入到 user，因為 BehaviorSubject 在訂閱同時就會馬上收到一次通知，所以我們不需要特別給 user 初始值。<br>接著在宣告一個 Subscription 來銜接 <code>subscribe</code> 的回傳值，因為我們必須透過此物件的 <code>unsubscribe</code> 方法來取消訂閱，接著時做 OnDestroy 介面，增加 ngOnDestroy 方法，此方法會在 Angular 摧毀此 Component 之前觸發，所以我們在此方法內來取消訂閱。<br>最後增加 login、logout 方法來呼叫 GlobalesService 內的對應方法，這種寫法感覺起來有點像非同步模式，我們呼叫 login、logout 方法時不會直接取得回傳值，而是透過 subscribe 方法來告訴我們狀態改變了。  </p>
 <blockquote>
 <p>BehaviorSubject 只要呼叫 <code>next</code>、<code>error</code>、<code>complete</code> 方法就會通知，它並不關心值的內容，所以值沒改變也會收到通知，這部分有需要我們要自己判斷，或是透過一些 Operators 來篩選通知。  </p>
 </blockquote>
-<p>接著修改 <code>src\app\toolbar\toolbar.component.html</code>，內容如下：<br><pre><code>&lt;ng-container *ngIf=&quot;user.isLogin; else tempLogin&quot;&gt;
-  &lt;span style=&quot;margin:12px; color: orange&quot;&gt;&lt;&#x2F;span&gt;
-  &lt;button mat-raised-button color=&quot;warn&quot; (click)=&quot;logout()&quot; style=&quot;margin:12px&quot;&gt;登出&lt;&#x2F;button&gt;
-&lt;&#x2F;ng-container&gt;
-&lt;ng-template #tempLogin&gt;
-  &lt;input matInput placeholder=&quot;Email&quot; style=&quot;margin:12px&quot; #email&gt;
-  &lt;input matInput placeholder=&quot;Password&quot; style=&quot;margin:12px&quot; #pwd type=&quot;password&quot;&gt;
-  &lt;button mat-raised-button color=&quot;accent&quot; (click)=&quot;login(email.value, pwd.value)&quot;&gt;登入&lt;&#x2F;button&gt;
-&lt;&#x2F;ng-template&gt;
-</code></pre></p>
+<p>接著修改 <code>src\app\toolbar\toolbar.component.html</code>，內容如下：  </p>
+<figure class="highlight html"><figcaption><span>toolbar.component.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ng-container</span> *<span class="attr">ngIf</span>=<span class="string">&quot;user.isLogin; else tempLogin&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">&quot;margin:12px; color: orange&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">mat-raised-button</span> <span class="attr">color</span>=<span class="string">&quot;warn&quot;</span> (<span class="attr">click</span>)=<span class="string">&quot;logout()&quot;</span> <span class="attr">style</span>=<span class="string">&quot;margin:12px&quot;</span>&gt;</span>登出<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ng-container</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ng-template</span> #<span class="attr">tempLogin</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">matInput</span> <span class="attr">placeholder</span>=<span class="string">&quot;Email&quot;</span> <span class="attr">style</span>=<span class="string">&quot;margin:12px&quot;</span> #<span class="attr">email</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">matInput</span> <span class="attr">placeholder</span>=<span class="string">&quot;Password&quot;</span> <span class="attr">style</span>=<span class="string">&quot;margin:12px&quot;</span> #<span class="attr">pwd</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">mat-raised-button</span> <span class="attr">color</span>=<span class="string">&quot;accent&quot;</span> (<span class="attr">click</span>)=<span class="string">&quot;login(email.value, pwd.value)&quot;</span>&gt;</span>登入<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ng-template</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>我們在登出狀態下顯示登入者的 Email 與登出按鈕，相反的，在登出狀態下則顯示 Email、Password 輸入框與登出按鈕，當然按鈕的 click 事件就會呼叫對應的方法。  </p>
-<p>接著我們開啟 <code>src\app\nav\nav.component.html</code>，因為 <code>mat-toolbar</code> 內的 menu 按鈕有事件處理，不方便整個抽換掉，所以改將 NavComponent 插入在其中。<br><img src="/images/angular/training/rxjs/rxjs_065.png" alt=""><br>透過 <code>ng serve</code> 執行，便可呈現登入登出效果。<br><img src="/images/angular/training/rxjs/rxjs_066.gif" alt="">  </p>
+<p>接著我們開啟 <code>src\app\nav\nav.component.html</code>，因為 <code>mat-toolbar</code> 內的 menu 按鈕有事件處理，不方便整個抽換掉，所以改將 NavComponent 插入在其中。<br><img src="/images/angular/training/rxjs/rxjs_065.png" alt="img"><br>透過 <code>ng serve</code> 執行，便可呈現登入登出效果。<br><img src="/images/angular/training/rxjs/rxjs_066.gif" alt="img">  </p>
 <p>到目前為止感覺是多此一舉，繞了一大圈將簡單的事情搞複雜，接下來我們就開始發揮它的效益。  </p>
-<h1 id="選單"><a href="#選單" class="headerlink" title="選單"></a>選單</h1><p>我們透過指令 <code>ng generate component menu-list</code> 新增一個 MenuListComponent。<br><img src="/images/angular/training/rxjs/rxjs_067.png" alt=""><br>開啟 <code>src\app\menu-list\menu-list.component.html</code>，加入動態選單功能，修改內容如下：<br><pre><code>&lt;mat-nav-list&gt;
-  &lt;a *ngFor=&quot;let item of menus&quot; mat-list-item href=&quot;#&quot;&gt;&lt;&#x2F;a&gt;
-&lt;&#x2F;mat-nav-list&gt;
-</code></pre></p>
-<p>接著修改 <code>src\app\toolbar\menu-list.component.ts</code>，內容如下：<br><pre><code>import { Component, OnInit, OnDestroy } from &#39;@angular&#x2F;core&#39;;
-import { GlobalesService } from &#39;.&#x2F;..&#x2F;globales.service&#39;;
-import { Subscription } from &#39;rxjs&#39;;
-import { User } from &#39;.&#x2F;..&#x2F;models&#x2F;user&#39;;
-
-@Component({
-  selector: &#39;app-menu-list&#39;,
-  templateUrl: &#39;.&#x2F;menu-list.component.html&#39;,
-  styleUrls: [&#39;.&#x2F;menu-list.component.css&#39;]
-})
-export class MenuListComponent implements OnInit, OnDestroy {
-  subscription: Subscription;
-  menus: string[];
-  constructor(private globales: GlobalesService) { }
-
-  ngOnInit() {
-    this.subscription = this.globales.subUser$
-      .subscribe(next =&gt; this.menus = this.getMenu(next));
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
-  getMenu(user: User): string[] {
-    if (user &amp;&amp; user.isLogin) {
-      return [&#39;系統通知&#39;, &#39;公司行事曆&#39;, &#39;待辦事項&#39;, &#39;員工通訊錄&#39;];
-    } else {
-      return [&#39;行事曆&#39;, &#39;備忘錄&#39;, &#39;通訊錄&#39;];
-    }
-  }
-
-}
-</code></pre></p>
+<h1 id="選單"><a href="#選單" class="headerlink" title="選單"></a>選單</h1><p>我們透過指令 <code>ng generate component menu-list</code> 新增一個 MenuListComponent。<br><img src="/images/angular/training/rxjs/rxjs_067.png" alt="img"><br>開啟 <code>src\app\menu-list\menu-list.component.html</code>，加入動態選單功能，修改內容如下：  </p>
+<figure class="highlight html"><figcaption><span>menu-list.component.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mat-nav-list</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let item of menus&quot;</span> <span class="attr">mat-list-item</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mat-nav-list</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>接著修改 <code>src\app\toolbar\menu-list.component.ts</code>，內容如下：  </p>
+<figure class="highlight ts"><figcaption><span>menu-list.component.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component, OnInit, OnDestroy &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; GlobalesService &#125; <span class="keyword">from</span> <span class="string">&#x27;./../globales.service&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Subscription &#125; <span class="keyword">from</span> <span class="string">&#x27;rxjs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; User &#125; <span class="keyword">from</span> <span class="string">&#x27;./../models/user&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;app-menu-list&#x27;</span>,</span><br><span class="line">  <span class="attr">templateUrl</span>: <span class="string">&#x27;./menu-list.component.html&#x27;</span>,</span><br><span class="line">  <span class="attr">styleUrls</span>: [<span class="string">&#x27;./menu-list.component.css&#x27;</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">MenuListComponent</span> <span class="title">implements</span> <span class="title">OnInit</span>, <span class="title">OnDestroy</span> </span>&#123;</span><br><span class="line">  <span class="attr">subscription</span>: Subscription;</span><br><span class="line">  menus: <span class="built_in">string</span>[];</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> globales: GlobalesService</span>)</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">ngOnInit</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.subscription = <span class="built_in">this</span>.globales.subUser$</span><br><span class="line">      .subscribe(<span class="function"><span class="params">next</span> =&gt;</span> <span class="built_in">this</span>.menus = <span class="built_in">this</span>.getMenu(next));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ngOnDestroy(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.subscription.unsubscribe();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getMenu(user: User): <span class="built_in">string</span>[] &#123;</span><br><span class="line">    <span class="keyword">if</span> (user &amp;&amp; user.isLogin) &#123;</span><br><span class="line">      <span class="keyword">return</span> [<span class="string">&#x27;系統通知&#x27;</span>, <span class="string">&#x27;公司行事曆&#x27;</span>, <span class="string">&#x27;待辦事項&#x27;</span>, <span class="string">&#x27;員工通訊錄&#x27;</span>];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> [<span class="string">&#x27;行事曆&#x27;</span>, <span class="string">&#x27;備忘錄&#x27;</span>, <span class="string">&#x27;通訊錄&#x27;</span>];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>基本上與 ToolbarComponent 做法一樣，差別只是在 subscribe 裡面，當收到 next 通知時去呼叫 getMenu，此方法是模擬利用使用者的狀態來顯示可以操作的功能。 </p>
-<p>測試效果如下：<br><img src="/images/angular/training/rxjs/rxjs_068.gif" alt=""><br>這種模式可以發現事情會變得很單純，ToolbarComponent 只處裡登入登出，不須理會登入登出會影響那些 Component，如果 Component 會需要因登入狀態不同而要調整時就自己訂閱 GlobalesService.subUser$ 就可以，當然對於 subUser$ 而言它也不會在意影響範圍，誰有訂閱它，它就通知誰，當然如果內容呈現效果差異很大時，我們可以建立不同的 Component，然後在收到通知時去切換 Component。  </p>
-<h1 id="同場加映：RxDart"><a href="#同場加映：RxDart" class="headerlink" title="同場加映：RxDart"></a>同場加映：RxDart</h1><p>這幾天最近也在研究 Flutter，發現 Dart 版的 Rx - RxDart 與 RxJS 除了名詞上有些差異外用法完全一樣，利用 RxDart 可以做出同樣的登入登出效果。<br><img src="/images/angular/training/rxjs/rxjs_069.gif" alt=""><br>我們在全域的類別宣告一個 BehaviorSubject，負責儲存 Login 狀態，這邊是透過 <code>seedValue</code> 屬性來設定初始值，RxJS 是呼叫 <code>next</code> 方法，這邊是使用 <code>add</code> 方法。<br><img src="/images/angular/training/rxjs/rxjs_070.png" alt=""><br>在 Flutter 的 UI 是由 Widget 組合而成，與 Angular 的 Component 概念一樣，我們一樣在元件建構時去訂閱，這邊訂閱的方法是 <code>listen</code>，會回傳 StreamSubscription 物件，一樣是透過此物件來取消訂閱，這邊取消訂閱的方法叫 <code>cancel</code>。<br><img src="/images/angular/training/rxjs/rxjs_071.png" alt=""><br>所以只要你弄懂 RxJS 的概念，很多地方都可以使用。 </p>
+<p>測試效果如下：<br><img src="/images/angular/training/rxjs/rxjs_068.gif" alt="img"><br>這種模式可以發現事情會變得很單純，ToolbarComponent 只處裡登入登出，不須理會登入登出會影響那些 Component，如果 Component 會需要因登入狀態不同而要調整時就自己訂閱 GlobalesService.subUser$ 就可以，當然對於 subUser$ 而言它也不會在意影響範圍，誰有訂閱它，它就通知誰，當然如果內容呈現效果差異很大時，我們可以建立不同的 Component，然後在收到通知時去切換 Component。  </p>
+<h1 id="同場加映：RxDart"><a href="#同場加映：RxDart" class="headerlink" title="同場加映：RxDart"></a>同場加映：RxDart</h1><p>這幾天最近也在研究 Flutter，發現 Dart 版的 Rx - RxDart 與 RxJS 除了名詞上有些差異外用法完全一樣，利用 RxDart 可以做出同樣的登入登出效果。<br><img src="/images/angular/training/rxjs/rxjs_069.gif" alt="img"><br>我們在全域的類別宣告一個 BehaviorSubject，負責儲存 Login 狀態，這邊是透過 <code>seedValue</code> 屬性來設定初始值，RxJS 是呼叫 <code>next</code> 方法，這邊是使用 <code>add</code> 方法。<br><img src="/images/angular/training/rxjs/rxjs_070.png" alt="img"><br>在 Flutter 的 UI 是由 Widget 組合而成，與 Angular 的 Component 概念一樣，我們一樣在元件建構時去訂閱，這邊訂閱的方法是 <code>listen</code>，會回傳 StreamSubscription 物件，一樣是透過此物件來取消訂閱，這邊取消訂閱的方法叫 <code>cancel</code>。<br><img src="/images/angular/training/rxjs/rxjs_071.png" alt="img"><br>所以只要你弄懂 RxJS 的概念，很多地方都可以使用。  </p>
 
-      
     </div>
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
+    
+    
+    
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/RxJS/" rel="tag"># RxJS</a>
-          
-        </div>
-      
-
-      
-      
-        <div class="post-widgets">
-        
-
-        
-          <div class="social-like">
-            
-
-            
-              <div class="fb_like">
-                <div class="fb-like" data-layout="button_count" data-share="true"></div>
-              </div>
-            
-          </div>
-        
-        </div>
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/flutter/flutter_001/" rel="next" title="用 VS Code 建置 Flutter 開發環境">
-                <i class="fa fa-chevron-left"></i> 用 VS Code 建置 Flutter 開發環境
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/RxJS/" rel="tag"># RxJS</a>
           </div>
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/docker/docker_03/" rel="prev" title="不合理的要求是磨練：Docker 架站">
-                不合理的要求是磨練：Docker 架站 <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/flutter/flutter_001/" rel="prev" title="用 VS Code 建置 Flutter 開發環境">
+                  <i class="fa fa-chevron-left"></i> 用 VS Code 建置 Flutter 開發環境
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/docker/docker_03/" rel="next" title="不合理的要求是磨練：Docker 架站">
+                  不合理的要求是磨練：Docker 架站 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-        </div>
-      
-
-      
-      
     </footer>
   </article>
+</div>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
 
 
-          </div>
-          
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Jonny Huang">
-          <p class="site-author-name" itemprop="name">Jonny Huang</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-           
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">66</span>
-                <span class="site-state-item-name">文章</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">分類</span>
-              
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">28</span>
-                <span class="site-state-item-name">標籤</span>
-              
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
-                  
-                    <i class="fa fa-fw fa-facebook-official"></i>
-                  
-                  Facebook
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>
-                  
-                  Email
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-block">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/flutter.tw/" title="Flutter Taiwan" target="_blank">Flutter Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-Material"><span class="nav-number">1.1.</span> <span class="nav-text">Angular Material</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BehaviorSubject"><span class="nav-number">2.</span> <span class="nav-text">BehaviorSubject</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#登入、登出"><span class="nav-number">3.</span> <span class="nav-text">登入、登出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#選單"><span class="nav-number">4.</span> <span class="nav-text">選單</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#同場加映：RxDart"><span class="nav-number">5.</span> <span class="nav-text">同場加映：RxDart</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
+<div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-Jonny Huang"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
 </div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
-</div>
-
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -994,27 +402,6 @@ export class MenuListComponent implements OnInit, OnDestroy {
 
 
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
-<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-      prettyPrint();
-  });
-</script>
 
 </body>
 </html>

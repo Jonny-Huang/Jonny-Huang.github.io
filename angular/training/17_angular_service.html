@@ -1,0 +1,156 @@
+<hr>
+<p>title: Angular 服務<br>date: 2017-09-14 10:00<br>categories: Training<br>keywords:</p>
+<ul>
+<li>Angular</li>
+<li>Service<br>tags:</li>
+<li>Angular</li>
+<li>Service</li>
+</ul>
+<hr>
+<h1 id="服務-Service"><a href="#服務-Service" class="headerlink" title="服務(Service)"></a>服務(Service)</h1><p>隨著功能的增加邏輯也會相對越來越複雜，<strong>上帝對象</strong>(<strong>God object</strong>)就會油然而生，維護性也會越來越困難，所以程式碼(TypeScript)以及樣板(HTML)的切割工作就會變得很重要，對於程式碼來說最常見的方式就是將資料邏輯與介面操作給分割開來。  </p>
+<!-- more -->  
+
+<p>Angular 提供了一個可重複使用程式代碼的機制-<strong>服務</strong>(<strong>Service</strong>)，Service 類別內所宣告的 <strong>屬性</strong> 與 <strong>方法</strong> 可以讓不同類別使用，建立指令如下：<br><code>ng generate service [name]</code>  </p>
+<blockquote>
+<p><code>generate</code>：可以縮寫成 <code>g</code>。<br><code>service</code>：可以縮寫成 <code>s</code>。<br><code>--flat</code>：參數可以使 CLI 不要建立資料夾。<br>相關指令可以參考<a href="https://github.com/angular/angular-cli/wiki/generate-service">官網文件</a></p>
+</blockquote>
+<p>首先我們在 <code>src\app\</code> 路徑下建立一個 <code>service</code> 資料夾。<br><img src="/images/angular/training/service/angular_service_01.png" alt="img"><br>接下來透過下列指令建立 <strong>CalendarService</strong>：<br><code>ng g s service\calendar --flat</code><br>開啟 <code>src\app\service\calendar.service.ts</code>，可以發現這個類別加入了一個 <code>@Injectable()</code> 裝飾器。</p>
+<p>{% codeblock calendar.service.ts lang:ts %}<br>import { Injectable } from ‘@angular/core’;</p>
+<p>@Injectable()<br>export class CalendarService {</p>
+<p>  constructor() { }</p>
+<p>}</p>
+<p>{% endcodeblock %}</p>
+<p>接下來將 <strong>CalendarService</strong> 註冊到 NgModule 內，我們可以假想每次註冊都會產生一個實體，如果將服務註冊到多個模組內，這不僅會浪費更多記憶體，如果服務本身會暫存資料，當不同元件對應的到不同服務實體時，元件對服務所做的資料異動都會造成資料不同步的問題，這邊我們直接註冊在起始模組-<strong>AppModule</strong> 內。  </p>
+<blockquote>
+<p>註冊 <strong>Component</strong> 時是加到 <strong>@NgModule</strong> 的 <code>declarations</code> 屬性。<br>註冊 <strong>Module</strong> 時是加到 <strong>@NgModule</strong> 的 <code>imports</code> 屬性。<br>註冊 <strong>Service</strong> 時是加到 <strong>@NgModule</strong> 的 <code>providers</code> 屬性或者是 <strong>@Component</strong> 的 <code>providers</code> 屬性。</p>
+</blockquote>
+<p>編輯 <code>src\app\app.module.ts</code>。</p>
+<p>{% codeblock app.module.ts lang:ts %}<br>import { BrowserAnimationsModule } from ‘@angular/platform-browser/animations’;<br>…<br>import { CalendarService } from ‘./service/calendar.service’;</p>
+<p>@NgModule({<br>  declarations: [<br>    …<br>  ],<br>  imports: [<br>    …<br>  ],<br>  providers: [CalendarService],<br>  bootstrap: [AppComponent]<br>})<br>export class AppModule { }</p>
+<p>{% endcodeblock %}</p>
+<p><strong>服務</strong> 也可以註冊到 <strong>元件</strong> 內，只是這時就代表這個實體被該元件所獨佔，一般來說除非是該服務確實只給特定元件使用否則建議都註冊到模組內，接下來我們會透過<strong>依賴注入</strong>(<strong>DI</strong> = <strong>Dependency Injection</strong>)來存取服務，存取方式也很簡單，只要在建構函式加入所需服務類別的參數即可。<br>編輯 <code>src\app\employee\calendar\calendar.component.ts</code>，在建構式內加上 <code>_calendarService</code> 參數，並宣告一個全域變數 <code>calendarService</code> 來承接。</p>
+<p>{% codeblock calendar.component.ts lang:ts %}<br>import { Component, OnInit } from ‘@angular/core’;<br>import { CalendarService } from ‘../../service/calendar.service’;</p>
+<p>@Component({<br>  selector: ‘emp-calendar’,<br>  templateUrl: ‘./calendar.component.html’,<br>  styleUrls: [‘./calendar.component.scss’]<br>})<br>export class CalendarComponent implements OnInit {<br>  …<br>  private calendarService: CalendarService;<br>  constructor(_calendarService: CalendarService) {<br>    this.calendarService = _calendarService;<br>  }<br>  …<br>}</p>
+<p>{% endcodeblock %}</p>
+<blockquote>
+<p>如果 <code>calendarService</code> 存取修飾詞改為 <code>public</code> 時，則元件樣板(<code>calendar.component.html</code>)也可以引用該變數。</p>
+</blockquote>
+<p>TypeScript 提供一個更簡潔的語法糖，直接在建構式參數前加入存取修飾詞，TypeScript 會自動幫我們建立一個同名的全域變數，因此我們修改如下：  </p>
+<p>{% codeblock calendar.component.ts lang:ts %}<br>import { Component, OnInit } from ‘@angular/core’;<br>import { CalendarService } from ‘../../service/calendar.service’;</p>
+<p>@Component({<br>  selector: ‘emp-calendar’,<br>  templateUrl: ‘./calendar.component.html’,<br>  styleUrls: [‘./calendar.component.scss’]<br>})<br>export class CalendarComponent implements OnInit {<br>  …<br>  constructor(private calendarService: CalendarService) { }<br>  …<br>}</p>
+<p>{% endcodeblock %}</p>
+<p>接下來我們將 <strong>CalendarComponent</strong> 的程式碼複製到 <code>src\app\service\calendar.service.ts</code>。</p>
+<p>{% codeblock calendar.service.ts lang:ts %}<br>import { Injectable } from ‘@angular/core’;</p>
+<p>@Injectable()<br>export class CalendarService {<br>  selectedDay: Date;<br>  selectedMonth = ‘’;<br>  dayHeaders = [‘日’, ‘一’, ‘二’, ‘三’, ‘四’, ‘五’, ‘六’];<br>  dayColors = [‘red’, ‘white’, ‘white’, ‘white’, ‘white’, ‘white’, ‘green’];<br>  days = [];<br>  lastMonth_colspan = 0;<br>  selectedItem: any;<br>  constructor() { }</p>
+<p>  getToday() {<br>    this.selectedDay = new Date();<br>    this.getDay();<br>  }</p>
+<p>  getDay(addDMonth: number = 0) {<br>    let year = this.selectedDay.getFullYear();<br>    let month = this.selectedDay.getMonth() + addDMonth;<br>    const dt = new Date(year, month, 1);<br>    year = dt.getFullYear();<br>    month = dt.getMonth();</p>
+<pre><code>const maxDay = new Date(year, month + 1, 0).getDate();
+const newDay = this.selectedDay.getDate();
+this.selectedDay = new Date(year, month, (newDay &lt; maxDay) ? newDay : maxDay);
+const dayNumber = this.selectedDay.getDate();
+this.lastMonth_colspan = new Date(year, month, 1).getDay();
+const _days = [];
+for (let day = 1; day &lt;= 31; day++) {
+  const time = new Date(year, month, day);
+  if (time.getMonth() &gt; month) {
+    break;
+  }
+  const isSelected = time.getDate() === dayNumber;
+  const d: any = {
+    isSelected: isSelected,
+    datetime: time,
+    day: day,
+    week: time.getDay()
+  };
+  if (isSelected) {
+    this.selectedItem = d;
+  }
+  _days.push(d);
+}
+this.days = [..._days];
+month++;
+// month為13時表示隔年的1月。
+if (month === 13) {
+  month = 1;
+  year++;
+}
+this.selectedMonth = `${year} 年 ${month} 月`;
+this.getNote();
+</code></pre>
+<p>  }</p>
+<p>  selectdDay(item: any) {<br>    if (this.selectedItem) {<br>      this.selectedItem.isSelected = false;<br>    }<br>    item.isSelected = true;<br>    this.selectedItem = item;<br>    this.selectedDay = item.datetime;<br>  }</p>
+<p>  getNote() {<br>    if (this.days.length &gt; 0) {<br>      const d = Math.floor(Math.random() * 28);<br>      this.days.forEach(item =&gt; {<br>        const notes = [];<br>        if (item.week !== 0 &amp;&amp; item.week !== 6) {<br>          if (item.week === 1) {<br>            notes.push({ type: 1, subject: ‘8:00 每周會議’ });<br>          }<br>          let b = Math.random() &gt;= 0.5;<br>          if (b) {<br>            notes.push({ type: 2, subject: ‘XXX客戶拜訪’ });<br>          }<br>          b = Math.random() &gt;= 0.5;<br>          if (b) {<br>            notes.push({ type: 3, subject: ‘專案討論’ });<br>          }<br>          if (item.day === d) {<br>            notes.push({ type: 4, subject: ‘部門聚餐’ });<br>          }<br>        }<br>        item.notes = notes;<br>      });</p>
+<pre><code>}
+</code></pre>
+<p>  }<br>}</p>
+<p>{% endcodeblock %}</p>
+<p>修改 <code>calendar.component.ts</code>，將方法內的邏輯都清空改呼叫 <strong>CalendarService</strong> 所對應的同名方法，並將 <code>calendarService</code> 存取修飾詞改成 <code>public</code>，以便將樣板(<code>calendar.component.html</code>)的資料來源都指向到 <strong>CalendarService</strong>。</p>
+<p>{% codeblock calendar.component.ts lang:ts %}<br>import { Component, OnInit } from ‘@angular/core’;<br>import { CalendarService } from ‘../../service/calendar.service’;</p>
+<p>@Component({<br>  selector: ‘emp-calendar’,<br>  templateUrl: ‘./calendar.component.html’,<br>  styleUrls: [‘./calendar.component.scss’]<br>})<br>export class CalendarComponent implements OnInit {<br>  constructor(public calendarService: CalendarService) { }</p>
+<p>  ngOnInit() {<br>    this.getToday();<br>  }</p>
+<p>  getToday() {<br>    this.calendarService.getToday();<br>  }</p>
+<p>  getDay(addDMonth: number = 0) {<br>    this.calendarService.getDay(addDMonth);<br>  }</p>
+<p>  selectdDay(item: any) {<br>    this.calendarService.selectdDay(item);<br>  }</p>
+<p>}</p>
+<p>{% endcodeblock %}</p>
+<p>{% codeblock calendar.component.html lang:html %}</p>
+<div fxLayout="row" fxLayout.xs="column">
+  <div fxFlex="70" fxFlex.xs>
+    <md-card>
+      <md-card-header>
+        <md-card-title>行事曆</md-card-title>
+        <md-card-subtitle>
+          <h1>{ {calendarService.selectedMonth} }</h1>
+        </md-card-subtitle>
+      </md-card-header>
+      <md-card-content>
+        <md-grid-list cols="7" rowHeight="68px">
+          <md-grid-tile *ngFor="let header of calendarService.dayHeaders; let i = index" [ngStyle]="{'color': calendarService.dayColors[i]}">
+            <h3>{ {header} }</h3>
+          </md-grid-tile>
+          <md-grid-tile [colspan]="calendarService.lastMonth_colspan" *ngIf="calendarService.lastMonth_colspan"></md-grid-tile>
+          <md-grid-tile *ngFor="let item of calendarService.days" [ngStyle]="{'color': calendarService.dayColors[item.week]}" class="day" (click)="selectdDay(item)">
+            <div fxFill *ngIf="item.isSelected" class="selected"></div>
+            <span class="text">{ {item.day} }</span>
+            <div fxFill fxLayout="row" fxLayoutAlign="start end" class="note">
+                <ng-container *ngFor="let note of item.notes">
+                    <ng-container [ngSwitch]="note.type">
+                        <md-icon *ngSwitchCase="1">assessment</md-icon>
+                        <md-icon *ngSwitchCase="2">directions_run</md-icon>
+                        <md-icon *ngSwitchCase="3">forum</md-icon>
+                        <md-icon *ngSwitchCase="4">local_dining</md-icon>
+                        <md-icon *ngSwitchDefault="">alarm</md-icon>
+                    </ng-container>
+                </ng-container>
+            </div>
+          </md-grid-tile>
+        </md-grid-list>
+      </md-card-content>
+      <md-card-actions>
+        <button md-button (click)="getDay(-1)">上個月</button>
+        <button md-button (click)="getToday()">本月</button>
+        <button md-button (click)="getDay(1)">下個月</button>
+      </md-card-actions>
+    </md-card>
+  </div>
+  <div fxFlex>
+    <md-card>
+      <md-card-content>
+        <h1>{ {calendarService.selectedDay | date:'yyyy/MM/dd'} }</h1>
+        <md-divider></md-divider>
+        <md-list>
+          <md-list-item *ngFor="let item of calendarService.selectedItem.notes; let i = index">
+            { {i+1} }. { {item.subject} }
+          </md-list-item>
+        </md-list>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>
+
+<p>{% endcodeblock %}</p>
+<p>執行專案，從瀏覽器查看沒有任何改變，但是我們可以看到 <code>calendar.component.ts</code> 變得非常乾淨，沒幾行程式碼。<br><img src="/images/angular/training/binding/angular_binding_12.gif" alt="img">  </p>
+<blockquote>
+<p>上面程式移植方式其實不是很好，因為跟 <strong>CalendarComponent</strong> 樣板有關的邏輯與變數都被移並移植到 <strong>CalendarService</strong>，這樣就會失去服務可共用的特性，在這邊主要是演繹如何簡化元件類別程式碼的複雜度。</p>
+</blockquote>
+<p>{% img /images/download.png 36 %}<a href="/uploads/first-app_2017-09-14.zip"><strong>first-app_2017-09-14.zip</strong></a>  </p>

@@ -1,0 +1,27 @@
+<hr>
+<p>title: Operators 聯想篇：RxJS<br>date: 2018-06-15<br>categories: Training<br>keywords:</p>
+<ul>
+<li>RxJS</li>
+<li>Angular<br>tags:</li>
+<li>RxJS</li>
+</ul>
+<hr>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>這幾天看到另一個問題：”<strong>看得懂官方文件，但是不知道怎麼用(Operators)。</strong>“<br>當然最好的辦法就是找一堆案例來說明，讓大家很容易理解與體會，這種重責大任當然不會落在筆者身上，畢竟使用過的 Operators 一隻手就數得出來，所以腦筋就動到資料處理的老大哥 <strong>SQL</strong> 身上，40年的演化讓它成為一個非常成熟的技術，查詢的能力當然是首屈一指。  </p>
+<!-- more -->  
+
+<h1 id="SQL-語法處理順序"><a href="#SQL-語法處理順序" class="headerlink" title="SQL 語法處理順序"></a>SQL 語法處理順序</h1><p>下面是一個非常常見的 SQL 查詢語法，透過產品主檔與訂單明細來查詢訂購數量大於10個的產品折扣前後的價格。<br>{% codeblock lang:sql %}<br>SELECT<br>    Name AS ProductName,<br>    NonDiscountSales = (OrderDetail.OrderQty * Product.UnitPrice),<br>    Discounts = ((OrderDetail.OrderQty * Product.UnitPrice) * Product.UnitPriceDiscount)<br>FROM<br>    Product<br>JOIN<br>    OrderDetail<br>    ON<br>        Product.ProductID = OrderDetail.ProductID<br>WHERE<br>    OrderDetail.OrderQty &gt; 10<br>ORDER BY<br>    ProductName;</p>
+<p>{% endcodeblock %}</p>
+<p>接著我們開始思考資料庫對於這段與法式如何執行的。  </p>
+<h2 id="FROM"><a href="#FROM" class="headerlink" title="FROM"></a>FROM</h2><p>我們要處理”某個資料”當然首先要知道它的資料來源在哪，這邊是指 <strong>產品主檔(Product)</strong> 這個資料表。<br>{% codeblock lang:sql %}<br>FROM<br>    Product</p>
+<p>{% endcodeblock %}</p>
+<p>對 RxJS 來說資料來源就是 <strong>Observable</strong>，可能是外部提供或者是由我們自己建立(<strong>create、from、of</strong>)。<br><img src="/images/angular/training/rxjs/rxjs_045.png" alt="img">  </p>
+<h2 id="JOIN"><a href="#JOIN" class="headerlink" title="JOIN"></a>JOIN</h2><p>接著有可能需要整合其他資料，這邊加入了 <strong>訂單明細(OrderDetail)</strong> 這個資料表。<br>{% codeblock lang:sql %}<br>JOIN<br>    OrderDetail<br>    ON<br>        Product.ProductID = OrderDetail.ProductID<br>{% endcodeblock %}</p>
+<p>對 RxJS 來說資料來源就是 <strong>merge、concat</strong> 系列語法來合併資料(Observable)。  </p>
+<h2 id="WHERE"><a href="#WHERE" class="headerlink" title="WHERE"></a>WHERE</h2><p>接下來就是篩選資料，這邊只要列出詢訂購數量大於10個的產品。<br>{% codeblock lang:sql %}<br>WHERE<br>    OrderDetail.OrderQty &gt; 10</p>
+<p>{% endcodeblock %}</p>
+<p>對 RxJS 來說就是利用 <strong>filter</strong> 來篩選資料(Observable)。  </p>
+<h2 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a>SELECT</h2><p>接下來就是轉換資料，將原始資料轉換成我們所需要的格式，這邊透過計算特定欄位列出了產品名稱與對應的售價與折扣價。<br>{% codeblock lang:sql %}<br>SELECT<br>    Name AS ProductName,<br>    NonDiscountSales = (OrderDetail.OrderQty * Product.UnitPrice),<br>    Discounts = ((OrderDetail.OrderQty * Product.UnitPrice) * Product.UnitPriceDiscount)</p>
+<p>{% endcodeblock %}</p>
+<p>對 RxJS 來說可以利用 <strong>map</strong> 來轉換輸出的資料。  </p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>像 <strong>first、last、skip、take</strong> 這一系列 Operators 會與 SQL TOP 語法相近。<br><strong>distinct</strong> 當然與 SQL 的 DISTINCT 一樣負責篩選掉重複的資料。<br>還有一些運算類型的，例如　<strong>count、max、min</strong>，其實也與 SQL 雷同。  </p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>其他的 Operators 我們可以透過彈珠圖來思考它的功能比較像 SQL 語法的哪一個類型，看不懂的就先跳過吧！因為既然無法理解那現階段你也不會想要使用它。　　<br>對於會 SQL 的人來說，其實透過 SQL 語法的觀念來思考要使用那些 Operators 應該是不錯的模式，因為除了容易聯想，這種邏輯順序的可讀性也較容易讓別人理解其用意，雖然不能解決所有的情境，但是對於大部分的需求來說應該都可以套用，當然可能會有效能問題，不過”<strong>優化</strong>“應該是等上手再去思考。  </p>

@@ -1,103 +1,32 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-tw">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-TW">
+<head>
   <meta charset="UTF-8">
-<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="Flutter,Dart">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
-
-
-
-
-  <meta property="fb:admins" content="fb267234890438499">
-  <meta property="fb:app_id" content="267234890438499">
-
-
-
-<meta name="description" content="前言依賴注入(Dependency Injection) 可以說是降低程式耦合度最簡單的方法，我們預先將某種”資源”注入到程式內，然後可以在任何地方自由提起該”資源”，完全不必理會這個資源在哪建立又放置在哪，我們只要知道有某種機制可以在我們需要時幫我們提取我們所需要的東西，接下來我們就嘗試如何在 Flutter 上做到該效果。   InheritedWidgetFlutter 提供一個有趣的">
-<meta name="keywords" content="Flutter,Dart">
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="前言依賴注入(Dependency Injection) 可以說是降低程式耦合度最簡單的方法，我們預先將某種”資源”注入到程式內，然後可以在任何地方自由提起該”資源”，完全不必理會這個資源在哪建立又放置在哪，我們只要知道有某種機制可以在我們需要時幫我們提取我們所需要的東西，接下來我們就嘗試如何在 Flutter 上做到該效果。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flutter 當我們黏在一起：Provider">
 <meta property="og:url" content="https://jonny-huang.github.io/flutter/flutter_004/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
-<meta property="og:description" content="前言依賴注入(Dependency Injection) 可以說是降低程式耦合度最簡單的方法，我們預先將某種”資源”注入到程式內，然後可以在任何地方自由提起該”資源”，完全不必理會這個資源在哪建立又放置在哪，我們只要知道有某種機制可以在我們需要時幫我們提取我們所需要的東西，接下來我們就嘗試如何在 Flutter 上做到該效果。   InheritedWidgetFlutter 提供一個有趣的">
-<meta property="og:locale" content="zh-tw">
+<meta property="og:description" content="前言依賴注入(Dependency Injection) 可以說是降低程式耦合度最簡單的方法，我們預先將某種”資源”注入到程式內，然後可以在任何地方自由提起該”資源”，完全不必理會這個資源在哪建立又放置在哪，我們只要知道有某種機制可以在我們需要時幫我們提取我們所需要的東西，接下來我們就嘗試如何在 Flutter 上做到該效果。">
+<meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/004/flutter_000.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/004/flutter_001.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/004/flutter_003.png">
@@ -114,1085 +43,328 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/004/flutter_012.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/004/flutter_015.gif">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/004/flutter_014.png">
-<meta property="og:updated_time" content="2019-05-20T03:29:00.721Z">
+<meta property="article:published_time" content="2019-05-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-25T03:23:55.768Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="Flutter">
+<meta property="article:tag" content="Dart">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Flutter 當我們黏在一起：Provider">
-<meta name="twitter:description" content="前言依賴注入(Dependency Injection) 可以說是降低程式耦合度最簡單的方法，我們預先將某種”資源”注入到程式內，然後可以在任何地方自由提起該”資源”，完全不必理會這個資源在哪建立又放置在哪，我們只要知道有某種機制可以在我們需要時幫我們提取我們所需要的東西，接下來我們就嘗試如何在 Flutter 上做到該效果。   InheritedWidgetFlutter 提供一個有趣的">
 <meta name="twitter:image" content="https://jonny-huang.github.io/images/flutter/004/flutter_000.png">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Jonny'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<link rel="canonical" href="https://jonny-huang.github.io/flutter/flutter_004/">
 
 
 
-  <link rel="canonical" href="https://jonny-huang.github.io/flutter/flutter_004/">
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;flutter&#x2F;flutter_004&#x2F;&quot;,&quot;path&quot;:&quot;flutter&#x2F;flutter_004&#x2F;&quot;,&quot;title&quot;:&quot;Flutter 當我們黏在一起：Provider&quot;}</script>
 
-
-
-
-
-  <title>Flutter 當我們黏在一起：Provider | Jonny Huang 的學習筆記</title>
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>Flutter 當我們黏在一起：Provider | Jonny Huang 的學習筆記</title>
   
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '267234890438499',
-      xfbml      : true,
-      version    : 'v2.6'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/zh_tw/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-tw">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Jonny Huang 的學習筆記</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <h1 class="site-subtitle" itemprop="description">Angular、Flutter</h1>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首頁
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            目錄
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-flutter">
-          <a href="/flutter/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Flutter
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-angular">
-          <a href="/angular/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Angular
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-quotes">
-          <a href="/quotes/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br>
-            
-            欣雨露
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa-commenting fa-fw"></i>欣雨露</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#InheritedWidget"><span class="nav-number">2.</span> <span class="nav-text">InheritedWidget</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B"><span class="nav-number">2.1.</span> <span class="nav-text">範例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Provider"><span class="nav-number">3.</span> <span class="nav-text">Provider</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B%E4%B8%80"><span class="nav-number">3.1.</span> <span class="nav-text">範例一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B%E4%BA%8C%EF%BC%9AStreamProvider"><span class="nav-number">3.2.</span> <span class="nav-text">範例二：StreamProvider</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%8C%E8%A8%98"><span class="nav-number">4.</span> <span class="nav-text">後記</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MultiProvider"><span class="nav-number">4.1.</span> <span class="nav-text">MultiProvider</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
     
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/flutter/flutter_004/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Jonny Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Jonny Huang 的學習筆記">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Flutter 當我們黏在一起：Provider
+        </h1>
 
-        
-        
-          <h2 class="post-title" itemprop="name headline">Flutter 當我們黏在一起：Provider</h2>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/06/25 11:23:55" itemprop="dateModified" datetime="2021-06-25T11:23:55+08:00">2021/06/25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a>
+        </span>
+    </span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新於</span>
-              
-              <time title="更新於" itemprop="dateModified" datetime="2019-05-20T11:29:00+08:00">
-                2019/05/20
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Flutter/" itemprop="url" rel="index">
-                    <span itemprop="name">Flutter</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
+
     
-
+    
+    
     <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p><img src="/images/flutter/004/flutter_000.png" alt="">  </p>
+        <p><img src="/images/flutter/004/flutter_000.png" alt="img">  </p>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>依賴注入(Dependency Injection)</strong> 可以說是降低程式耦合度最簡單的方法，我們預先將某種”資源”注入到程式內，然後可以在任何地方自由提起該”資源”，完全不必理會這個資源在哪建立又放置在哪，我們只要知道有某種機制可以在我們需要時幫我們提取我們所需要的東西，接下來我們就嘗試如何在 Flutter 上做到該效果。  </p>
-<h1 id="InheritedWidget"><a href="#InheritedWidget" class="headerlink" title="InheritedWidget"></a>InheritedWidget</h1><p>Flutter 提供一個有趣的 Widget - <strong>InheritedWidget</strong> 來協助我們傳遞資訊，我們可以看到<a href="https://docs.flutter.io/flutter/widgets/InheritedWidget-class.html" target="_blank" rel="noopener">官網的範例</a>如下：<br><img src="/images/flutter/004/flutter_001.png" alt=""><br><code>child</code> 表示原本要呈現的 <strong>Widget</strong>，<code>color</code> 表示要添加的<strong>資源</strong>，<code>updateShouldNotify</code> 方法主要是判斷是否要做變更通知，這邊主要是判斷所添加的<strong>資源</strong>是否有變化，簡單的說就是<strong>再利用一個 Widget 將原本的 Widget 與想要增加的額外資源綁在一起</strong>，這樣做跟直接將<strong>資源</strong>加到既有的 Widget 上有什麼差別呢？<br>在 <strong>BuildContext</strong> 提供了一個方法 <code>inheritFromWidgetOfExactType</code> 可以協助我們由目前的 Widget 所在的 Widget Tree 位置往上尋找第一個符合資源型態的資源，習慣上我們也會直接建立一個靜態的 <code>of</code> 方法來協助我們搜尋，這表示如果上層 Widget 已經有提供資源，我們可以直接利用 <code>of</code> 方法來抓取，不須重新建立，當然如果將資源綁在最上層(Root Widget)，這個資源就會變成一個全域性的資源，在這個 App 上的任何 Widget 都可以存取到。  </p>
-<h2 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h2><p>接下來我們建立一個範例來說明，首先建立一個名為 <strong>IWidget</strong> 的 InheritedWidget，並宣告一個字串型別的 <code>value</code> 屬性來模擬額外添加的資源，程式碼如下：<br><pre><code>class IWidget extends InheritedWidget {
-  final String value;
-  IWidget({@required this.value, Widget child}) : super(child: child);
+<span id="more"></span>  
 
-  static IWidget of(BuildContext context) {
-    return context.inheritFromWidgetOfExactType(IWidget);
-  }
+<h1 id="InheritedWidget"><a href="#InheritedWidget" class="headerlink" title="InheritedWidget"></a>InheritedWidget</h1><p>Flutter 提供一個有趣的 Widget - <strong>InheritedWidget</strong> 來協助我們傳遞資訊，我們可以看到<a target="_blank" rel="noopener" href="https://docs.flutter.io/flutter/widgets/InheritedWidget-class.html">官網的範例</a>如下：<br><img src="/images/flutter/004/flutter_001.png" alt="img"><br><code>child</code> 表示原本要呈現的 <strong>Widget</strong>，<code>color</code> 表示要添加的<strong>資源</strong>，<code>updateShouldNotify</code> 方法主要是判斷是否要做變更通知，這邊主要是判斷所添加的<strong>資源</strong>是否有變化，簡單的說就是<strong>再利用一個 Widget 將原本的 Widget 與想要增加的額外資源綁在一起</strong>，這樣做跟直接將<strong>資源</strong>加到既有的 Widget 上有什麼差別呢？<br>在 <strong>BuildContext</strong> 提供了一個方法 <code>inheritFromWidgetOfExactType</code> 可以協助我們由目前的 Widget 所在的 Widget Tree 位置往上尋找第一個符合資源型態的資源，習慣上我們也會直接建立一個靜態的 <code>of</code> 方法來協助我們搜尋，這表示如果上層 Widget 已經有提供資源，我們可以直接利用 <code>of</code> 方法來抓取，不須重新建立，當然如果將資源綁在最上層(Root Widget)，這個資源就會變成一個全域性的資源，在這個 App 上的任何 Widget 都可以存取到。  </p>
+<h2 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h2><p>接下來我們建立一個範例來說明，首先建立一個名為 <strong>IWidget</strong> 的 InheritedWidget，並宣告一個字串型別的 <code>value</code> 屬性來模擬額外添加的資源，程式碼如下：  </p>
+<figure class="highlight dart"><figcaption><span>main.dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IWidget</span> <span class="keyword">extends</span> <span class="title">InheritedWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> value;</span><br><span class="line">  IWidget(&#123;<span class="meta">@required</span> <span class="keyword">this</span>.value, Widget child&#125;) : <span class="keyword">super</span>(child: child);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> IWidget of(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> context.inheritFromWidgetOfExactType(IWidget);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">bool</span> updateShouldNotify(IWidget old) &#123;</span><br><span class="line">    <span class="keyword">return</span> old.value != value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  
 
-  @override
-  bool updateShouldNotify(IWidget old) {
-    return old.value != value;
-  }
-}</code></pre></p>
-<p>接著我們再增加一個名為 <strong>ValueWidget</strong> 的 StatelessWidget，他會去抓取 <strong>IWidget</strong> 的 <code>value</code> 屬性並透過 <strong>Text</strong> 呈現出來，在這邊我們增加 color 屬性<br>，藉以改變 Widget 的背景顏色，方便我們可以區分每個 Widget，並添加一個 <code>child</code> 屬性讓我們可以在 <strong>ValueWidget</strong> 裡面在放置其他 Widget，藉以模擬 Widget Tree 的階層特性，程式碼如下：<br><pre><code>class ValueWidget extends StatelessWidget {
-  final Widget child;
-  final Color color;
-  ValueWidget({Key key, this.color = Colors.white, this.child}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(8),
-      color: color,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: &lt;Widget&gt;[
-            if (IWidget.of(context) != null)
-              Text(&#39;value：${IWidget.of(context).value}&#39;)
-            else
-              Text(
-                &#39;value：null&#39;,
-              ),
-            if (child != null) child,
-          ],
-        ),
-      ),
-    );
-  }
-}</code></pre></p>
+<p>接著我們再增加一個名為 <strong>ValueWidget</strong> 的 StatelessWidget，他會去抓取 <strong>IWidget</strong> 的 <code>value</code> 屬性並透過 <strong>Text</strong> 呈現出來，在這邊我們增加 color 屬性<br>，藉以改變 Widget 的背景顏色，方便我們可以區分每個 Widget，並添加一個 <code>child</code> 屬性讓我們可以在 <strong>ValueWidget</strong> 裡面在放置其他 Widget，藉以模擬 Widget Tree 的階層特性，程式碼如下：  </p>
+<figure class="highlight dart"><figcaption><span>main.dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ValueWidget</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> Widget child;</span><br><span class="line">  <span class="keyword">final</span> Color color;</span><br><span class="line">  ValueWidget(&#123;Key key, <span class="keyword">this</span>.color = Colors.white, <span class="keyword">this</span>.child&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      padding: EdgeInsets.all(<span class="number">8</span>),</span><br><span class="line">      color: color,</span><br><span class="line">      child: Center(</span><br><span class="line">        child: Column(</span><br><span class="line">          mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            <span class="keyword">if</span> (IWidget.of(context) != <span class="keyword">null</span>)</span><br><span class="line">              Text(<span class="string">&#x27;value：<span class="subst">$&#123;IWidget.of(context).value&#125;</span>&#x27;</span>)</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">              Text(</span><br><span class="line">                <span class="string">&#x27;value：null&#x27;</span>,</span><br><span class="line">              ),</span><br><span class="line">            <span class="keyword">if</span> (child != <span class="keyword">null</span>) child,</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p><a href="https://github.com/dart-lang/sdk/blob/master/CHANGELOG.md" target="_blank" rel="noopener">Dart 2.2.2</a> 版增加 <strong>Collection if</strong> 與 <strong>Collection for</strong>，讓我們可以在集合物件內使用 <code>if</code> 與 <code>for</code>，要使用的話需修改 <code>pubspec.yaml</code> 內 SDK 的最低版本。<br><img src="/images/flutter/004/flutter_003.png" alt=""><br><img src="/images/flutter/004/flutter_004.png" alt="">  </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/dart-lang/sdk/blob/master/CHANGELOG.md">Dart 2.2.2</a> 版增加 <strong>Collection if</strong> 與 <strong>Collection for</strong>，讓我們可以在集合物件內使用 <code>if</code> 與 <code>for</code>，要使用的話需修改 <code>pubspec.yaml</code> 內 SDK 的最低版本。<br><img src="/images/flutter/004/flutter_003.png" alt="img"><br><img src="/images/flutter/004/flutter_004.png" alt="img">  </p>
 </blockquote>
-<p>接著我們建構一個 <strong>MyHomePage</strong> 的 Widget，在最外層放置一個 <strong>IWidget</strong>，並在裡面堆疊4層 <strong>ValueWidget</strong>，程式碼如下：<br><pre><code>class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: IWidget(
-        value: &#39;AAA&#39;,
-        child: ValueWidget(
-          color: Colors.grey,
-          child: ValueWidget(
-            color: Colors.orange,
-            child: ValueWidget(
-              color: Colors.blue,
-              child: ValueWidget(
-                color: Colors.green,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}</code></pre></p>
-<p>最後再將 <strong>MyHomePage</strong> 添加到專案預設的專案預設的 <strong>MyApp</strong> 內，完整程式如下：<br><pre><code>import &#39;package:flutter&#x2F;material.dart&#39;;
-
-void main() =&gt; runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: &#39;Flutter Demo&#39;,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        textTheme: TextTheme(
-          body1: TextStyle(fontSize: 30),
-        ),
-      ),
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: IWidget(
-        value: &#39;AAA&#39;,
-        child: ValueWidget(
-          color: Colors.grey,
-          child: ValueWidget(
-            color: Colors.orange,
-            child: ValueWidget(
-              color: Colors.blue,
-              child: ValueWidget(
-                color: Colors.green,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class IWidget extends InheritedWidget {
-  final String value;
-  IWidget({@required this.value, Widget child}) : super(child: child);
-
-  static IWidget of(BuildContext context) {
-    return context.inheritFromWidgetOfExactType(IWidget);
-  }
-
-  @override
-  bool updateShouldNotify(IWidget old) {
-    return old.value != value;
-  }
-}
-
-class ValueWidget extends StatelessWidget {
-  final Widget child;
-  final Color color;
-  ValueWidget({Key key, this.color = Colors.white, this.child}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(8),
-      color: color,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: &lt;Widget&gt;[
-            if (IWidget.of(context) != null)
-              Text(&#39;value：${IWidget.of(context).value}&#39;)
-            else
-              Text(
-                &#39;value：null&#39;,
-              ),
-            if (child != null) child,
-          ],
-        ),
-      ),
-    );
-  }
-}</code></pre></p>
-<p>執行專案可以看到如下的效果，不管哪一層的 <strong>ValueWidget</strong> 都可以輕鬆地透過 <code>IWidget.of(context).value</code> 來讀取到 <strong>IWidget</strong> 的 <code>value</code>。<br><img src="/images/flutter/004/flutter_002.png" alt=""><br>接著我們在第2層 <strong>ValueWidget</strong> 內先插入一個 <strong>IWidget</strong>，並設定 <code>value:BBB</code>。<br><pre><code>class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: IWidget(
-        value: &#39;AAA&#39;,
-        child: ValueWidget(
-          color: Colors.grey,
-          child: ValueWidget(
-            color: Colors.orange,
-            child: IWidget(
-              value: &#39;BBB&#39;,
-              child: ValueWidget(
-                color: Colors.blue,
-                child: ValueWidget(
-                  color: Colors.green,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}</code></pre></p>
-<p>儲存後透過 Flutter <strong>hot reload</strong> 機制可以馬上看到變化，由呈現的 <code>value</code> 可以知道所有的 <strong>ValueWidget</strong> 都會抓到離自己最近的 <strong>IWidget</strong>。<br><img src="/images/flutter/004/flutter_005.png" alt=""><br>接下來我們把最外層的 <strong>IWidget</strong> 拿掉。<br><pre><code>class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: ValueWidget(
-        color: Colors.grey,
-        child: ValueWidget(
-          color: Colors.orange,
-          child: IWidget(
-            value: &#39;BBB&#39;,
-            child: ValueWidget(
-              color: Colors.blue,
-              child: ValueWidget(
-                color: Colors.green,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}</code></pre></p>
-<p>我們可以看到最外2層的 <strong>ValueWidget</strong> 因為搜尋不到 <strong>IWidget</strong>，所以顯示為 <code>null</code>。<br><img src="/images/flutter/004/flutter_006.png" alt="">  </p>
-<h1 id="Provider"><a href="#Provider" class="headerlink" title="Provider"></a>Provider</h1><p>今年的 Google I/O 也提到 Flutter 的狀態管理議題 - <a href="https://www.youtube.com/watch?v=d_m5csmrf7I&amp;feature=youtu.be" target="_blank" rel="noopener">Pragmatic State Management in Flutter (Google I/O’19)</a>，有別於以往今年多介紹另一個 Package - <strong><a href="https://pub.dev/packages/provider" target="_blank" rel="noopener">Provider</a></strong>。<br><blockquote><p>A dependency injection system built with widgets for widgets. provider is mostly syntax sugar for InheritedWidget, to make common use-cases straightforward.</p>
-<footer><strong>pub.dev：</strong><cite><a href="https://pub.dev/packages/provider" target="_blank" rel="noopener">Provider</a></cite></footer></blockquote></p>
-<p>從說明頁面可以看到 <strong>Provider</strong> 提供了依賴注入(Dependency Injection)的功能，當然也直接講明他就是 <strong>InheritedWidget</strong> 語法糖，連到 GitHub 去看<a href="https://github.com/rrousselGit/provider/blob/master/lib/src/provider.dart" target="_blank" rel="noopener">provider.dart</a> 核心的原始碼，可以知道它確實繼承自 <strong>InheritedWidget</strong>，特別的是它提供泛型的宣告來指定所要添加的資源，並將資源的變數強制訂為 <code>value</code>，所以相同的我們可以透過 <code>of</code> 方法來取的 <code>value</code> 的資料。<br><pre><code>class _Provider&lt;T&gt; extends InheritedWidget {
-  const _Provider({
-    Key key,
-    @required this.value,
-    UpdateShouldNotify&lt;T&gt; updateShouldNotify,
-    Widget child,
-  })  : _updateShouldNotify = updateShouldNotify,
-        super(key: key, child: child);
-
-  final T value;
-  final UpdateShouldNotify&lt;T&gt; _updateShouldNotify;
-
-  @override
-  bool updateShouldNotify(_Provider&lt;T&gt; oldWidget) {
-    if (_updateShouldNotify != null) {
-      return _updateShouldNotify(oldWidget.value, value);
-    }
-    return oldWidget.value != value;
-  }
-}</code></pre></p>
-<h2 id="範例一"><a href="#範例一" class="headerlink" title="範例一"></a>範例一</h2><p>接下來我們將原本的範例修改為 <strong>Provider</strong> 版本，首先在 <code>pubspec.yaml</code> 內引用 provider。<br><img src="/images/flutter/004/flutter_007.png" alt="">  </p>
+<p>接著我們建構一個 <strong>MyHomePage</strong> 的 Widget，在最外層放置一個 <strong>IWidget</strong>，並在裡面堆疊4層 <strong>ValueWidget</strong>，程式碼如下：  </p>
+<figure class="highlight dart"><figcaption><span>main.dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHomePage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      body: IWidget(</span><br><span class="line">        value: <span class="string">&#x27;AAA&#x27;</span>,</span><br><span class="line">        child: ValueWidget(</span><br><span class="line">          color: Colors.grey,</span><br><span class="line">          child: ValueWidget(</span><br><span class="line">            color: Colors.orange,</span><br><span class="line">            child: ValueWidget(</span><br><span class="line">              color: Colors.blue,</span><br><span class="line">              child: ValueWidget(</span><br><span class="line">                color: Colors.green,</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  
+<p>最後再將 <strong>MyHomePage</strong> 添加到專案預設的專案預設的 <strong>MyApp</strong> 內，完整程式如下：  </p>
+<figure class="highlight dart"><figcaption><span>main.dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() =&gt; runApp(MyApp());</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">&#x27;Flutter Demo&#x27;</span>,</span><br><span class="line">      theme: ThemeData(</span><br><span class="line">        primarySwatch: Colors.blue,</span><br><span class="line">        textTheme: TextTheme(</span><br><span class="line">          body1: TextStyle(fontSize: <span class="number">30</span>),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      home: MyHomePage(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHomePage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      body: IWidget(</span><br><span class="line">        value: <span class="string">&#x27;AAA&#x27;</span>,</span><br><span class="line">        child: ValueWidget(</span><br><span class="line">          color: Colors.grey,</span><br><span class="line">          child: ValueWidget(</span><br><span class="line">            color: Colors.orange,</span><br><span class="line">            child: ValueWidget(</span><br><span class="line">              color: Colors.blue,</span><br><span class="line">              child: ValueWidget(</span><br><span class="line">                color: Colors.green,</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IWidget</span> <span class="keyword">extends</span> <span class="title">InheritedWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> value;</span><br><span class="line">  IWidget(&#123;<span class="meta">@required</span> <span class="keyword">this</span>.value, Widget child&#125;) : <span class="keyword">super</span>(child: child);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> IWidget of(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> context.inheritFromWidgetOfExactType(IWidget);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">bool</span> updateShouldNotify(IWidget old) &#123;</span><br><span class="line">    <span class="keyword">return</span> old.value != value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ValueWidget</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> Widget child;</span><br><span class="line">  <span class="keyword">final</span> Color color;</span><br><span class="line">  ValueWidget(&#123;Key key, <span class="keyword">this</span>.color = Colors.white, <span class="keyword">this</span>.child&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      padding: EdgeInsets.all(<span class="number">8</span>),</span><br><span class="line">      color: color,</span><br><span class="line">      child: Center(</span><br><span class="line">        child: Column(</span><br><span class="line">          mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            <span class="keyword">if</span> (IWidget.of(context) != <span class="keyword">null</span>)</span><br><span class="line">              Text(<span class="string">&#x27;value：<span class="subst">$&#123;IWidget.of(context).value&#125;</span>&#x27;</span>)</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">              Text(</span><br><span class="line">                <span class="string">&#x27;value：null&#x27;</span>,</span><br><span class="line">              ),</span><br><span class="line">            <span class="keyword">if</span> (child != <span class="keyword">null</span>) child,</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>執行專案可以看到如下的效果，不管哪一層的 <strong>ValueWidget</strong> 都可以輕鬆地透過 <code>IWidget.of(context).value</code> 來讀取到 <strong>IWidget</strong> 的 <code>value</code>。<br><img src="/images/flutter/004/flutter_002.png" alt="img"><br>接著我們在第2層 <strong>ValueWidget</strong> 內先插入一個 <strong>IWidget</strong>，並設定 <code>value:BBB</code>。  </p>
+<figure class="highlight dart"><figcaption><span>main.dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHomePage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      body: IWidget(</span><br><span class="line">        value: <span class="string">&#x27;AAA&#x27;</span>,</span><br><span class="line">        child: ValueWidget(</span><br><span class="line">          color: Colors.grey,</span><br><span class="line">          child: ValueWidget(</span><br><span class="line">            color: Colors.orange,</span><br><span class="line">            child: IWidget(</span><br><span class="line">              value: <span class="string">&#x27;BBB&#x27;</span>,</span><br><span class="line">              child: ValueWidget(</span><br><span class="line">                color: Colors.blue,</span><br><span class="line">                child: ValueWidget(</span><br><span class="line">                  color: Colors.green,</span><br><span class="line">                ),</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>儲存後透過 Flutter <strong>hot reload</strong> 機制可以馬上看到變化，由呈現的 <code>value</code> 可以知道所有的 <strong>ValueWidget</strong> 都會抓到離自己最近的 <strong>IWidget</strong>。<br><img src="/images/flutter/004/flutter_005.png" alt="img"><br>接下來我們把最外層的 <strong>IWidget</strong> 拿掉。  </p>
+<figure class="highlight dart"><figcaption><span>main.dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHomePage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      body: ValueWidget(</span><br><span class="line">        color: Colors.grey,</span><br><span class="line">        child: ValueWidget(</span><br><span class="line">          color: Colors.orange,</span><br><span class="line">          child: IWidget(</span><br><span class="line">            value: <span class="string">&#x27;BBB&#x27;</span>,</span><br><span class="line">            child: ValueWidget(</span><br><span class="line">              color: Colors.blue,</span><br><span class="line">              child: ValueWidget(</span><br><span class="line">                color: Colors.green,</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我們可以看到最外2層的 <strong>ValueWidget</strong> 因為搜尋不到 <strong>IWidget</strong>，所以顯示為 <code>null</code>。<br><img src="/images/flutter/004/flutter_006.png" alt="img">  </p>
+<h1 id="Provider"><a href="#Provider" class="headerlink" title="Provider"></a>Provider</h1><p>今年的 Google I/O 也提到 Flutter 的狀態管理議題 - <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=d_m5csmrf7I&feature=youtu.be">Pragmatic State Management in Flutter (Google I/O’19)</a>，有別於以往今年多介紹另一個 Package - **<a target="_blank" rel="noopener" href="https://pub.dev/packages/provider">Provider</a>**。  </p>
+<blockquote><p>A dependency injection system built with widgets for widgets. provider is mostly syntax sugar for InheritedWidget, to make common use-cases straightforward.</p>
+<footer><strong>pub.dev：</strong><cite><a target="_blank" rel="noopener" href="https://pub.dev/packages/provider">Provider</a></cite></footer></blockquote>
+<p>從說明頁面可以看到 <strong>Provider</strong> 提供了依賴注入(Dependency Injection)的功能，當然也直接講明他就是 <strong>InheritedWidget</strong> 語法糖，連到 GitHub 去看<a target="_blank" rel="noopener" href="https://github.com/rrousselGit/provider/blob/master/lib/src/provider.dart">provider.dart</a> 核心的原始碼，可以知道它確實繼承自 <strong>InheritedWidget</strong>，特別的是它提供泛型的宣告來指定所要添加的資源，並將資源的變數強制訂為 <code>value</code>，所以相同的我們可以透過 <code>of</code> 方法來取的 <code>value</code> 的資料。  </p>
+<figure class="highlight dart"><figcaption><span>provider.dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_Provider</span>&lt;<span class="title">T</span>&gt; <span class="keyword">extends</span> <span class="title">InheritedWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> _Provider(&#123;</span><br><span class="line">    Key key,</span><br><span class="line">    <span class="meta">@required</span> <span class="keyword">this</span>.value,</span><br><span class="line">    UpdateShouldNotify&lt;T&gt; updateShouldNotify,</span><br><span class="line">    Widget child,</span><br><span class="line">  &#125;)  : _updateShouldNotify = updateShouldNotify,</span><br><span class="line">        <span class="keyword">super</span>(key: key, child: child);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">final</span> T value;</span><br><span class="line">  <span class="keyword">final</span> UpdateShouldNotify&lt;T&gt; _updateShouldNotify;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">bool</span> updateShouldNotify(_Provider&lt;T&gt; oldWidget) &#123;</span><br><span class="line">    <span class="keyword">if</span> (_updateShouldNotify != <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> _updateShouldNotify(oldWidget.value, value);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> oldWidget.value != value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="範例一"><a href="#範例一" class="headerlink" title="範例一"></a>範例一</h2><p>接下來我們將原本的範例修改為 <strong>Provider</strong> 版本，首先在 <code>pubspec.yaml</code> 內引用 provider。<br><img src="/images/flutter/004/flutter_007.png" alt="img">  </p>
 <blockquote>
 <p>在 VS Code 內儲存時會自動幫我們執行<code>flutter package get</code> 指令，幫我們下載 package。</p>
 </blockquote>
-<p>接著將 <strong>MyHomePage</strong> 內的 <code>IWidget</code> 修改為 <code>Provider.value</code>。<br><pre><code>import &#39;package:provider&#x2F;provider.dart&#39;;
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Provider.value(
-        value: &#39;AAA&#39;,
-        child: ValueWidget(
-          color: Colors.grey,
-          child: ValueWidget(
-            color: Colors.orange,
-            child: Provider.value(
-              value: &#39;BBB&#39;,
-              child: ValueWidget(
-                color: Colors.blue,
-                child: ValueWidget(
-                  color: Colors.green,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}</code></pre></p>
-<p>在 <strong>ValueWidget</strong> 內將讀取方式由 <code>IWidget.of</code> 改為 <code>Provider.of&lt;String&gt;</code>。<br><pre><code>class ValueWidget extends StatelessWidget {
-  final Widget child;
-  final Color color;
-  ValueWidget({Key key, this.color = Colors.white, this.child}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(8),
-      color: color,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: &lt;Widget&gt;[
-            if (Provider.of&lt;String&gt;(context) != null)
-              Text(&#39;value：${Provider.of&lt;String&gt;(context)}&#39;)
-            else
-              Text(
-                &#39;value：null&#39;,
-              ),
-            if (child != null) child,
-          ],
-        ),
-      ),
-    );
-  }
-}</code></pre></p>
-<p>重新執行專案可以看到一樣的效果，只是 <strong>IWidget</strong> 被 <strong>Provider</strong> 替換掉了，也就是說其實 <strong>Provider</strong> 幫我們撰寫好 <strong>InheritedWidget</strong> 的部分。<br><img src="/images/flutter/004/flutter_008.png" alt="">  </p>
-<h2 id="範例二：StreamProvider"><a href="#範例二：StreamProvider" class="headerlink" title="範例二：StreamProvider"></a>範例二：StreamProvider</h2><p>在上一篇文章 <a href="/flutter/flutter_004/">Dart 敗部復活賽：Flutter for Web</a> 我們用 <a href="https://pub.dev/packages/rxdart" target="_blank" rel="noopener">RxDart</a> 這個 package 來做到跨 Widget 的同步通知，現在我們將它替換成 StreamController 來處理，並透過 Provider 的 Stream 版本 <strong><a href="https://pub.dev/documentation/provider/latest/provider/StreamProvider-class.html" target="_blank" rel="noopener">StreamProvider</a></strong> 來注入 StreamController。<br>首先在 <code>pubspec.yaml</code> 內引用 provider。<br><img src="/images/flutter/004/flutter_009.png" alt=""><br>接著在 <code>lib\rd.dart</code> 內 將全域變數的 <code>BehaviorSubject&lt;bool&gt;</code> 替換為 <code>StreamController&lt;bool&gt;</code>，並移除 Widget 內的 <code>StreamSubscription</code> 變數與 <code>initState</code>、<code>dispose</code> 方法，因為我們不需要在<strong>訂閱通知</strong>與<strong>取消訂閱通知</strong>。<br><img src="/images/flutter/004/flutter_010.png" alt=""><br>接著我們在需要取值得地方一樣透過 <code>Provider.of</code> 來讀取資料。<br><img src="/images/flutter/004/flutter_011.png" alt=""><br>接著將修改值的方法由 <code>subject.add</code> 替換為 <code>controller.add</code>。<br><img src="/images/flutter/004/flutter_013.png" alt=""><br>因為我們必須要在目前 Widget 之前(上一層)先注入才有辦法讀取到資料，所以我們直接在 <strong>MyApp</strong> 內的 <strong>RxPage</strong> 外邊包一層 <strong>StreamProvider</strong>。<br><img src="/images/flutter/004/flutter_012.png" alt=""><br>完整程式碼如下：<br><pre><code>import &#39;dart:async&#39;;
-import &#39;package:flutter&#x2F;material.dart&#39;;
-import &#39;package:provider&#x2F;provider.dart&#39;;
-
-final controller = StreamController&lt;bool&gt;();
-
-void main() =&gt; runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: &#39;Flutter Demo&#39;,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: StreamProvider.value(
-        initialData: false,
-        stream: controller.stream,
-        child: RxPage(),
-      ),
-    );
-  }
-}
-
-class RxPage extends StatefulWidget {
-  @override
-  _RxPageState createState() =&gt; _RxPageState();
-}
-
-class _RxPageState extends State&lt;RxPage&gt; {
-
-  @override
-  Widget build(BuildContext context) {
-    List&lt;Widget&gt; list = &lt;Widget&gt;[];
-    bool isLogin = Provider.of&lt;bool&gt;(context);
-    if (isLogin) {
-      list.add(UserAccountsDrawerHeader(
-        accountEmail: Text(&quot;jonnyhuang@outlooj.com&quot;),
-        accountName: Text(&quot;Jonny&quot;),
-        currentAccountPicture: CircleAvatar(
-          child: Text(&quot;J&quot;),
-        ),
-      ));
-    } else {
-      list.add(DrawerHeader(
-        decoration: BoxDecoration(
-          color: Colors.orange,
-        ),
-        child: Text(&quot;Guest&quot;),
-      ));
-    }
-    list.add(ListTile(
-      title: Text(isLogin ? &quot;登出&quot; : &quot;登入&quot;),
-      trailing: Icon(Icons.exit_to_app),
-      onTap: () {
-        controller.add(!isLogin);
-      },
-    ));
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(&#39;RxDart&#39;),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: list,
-        ),
-      ),
-      body: Page1Page(),
-    );
-  }
-}
-
-class Page1Page extends StatefulWidget {
-  @override
-  _Page1PageState createState() =&gt; _Page1PageState();
-}
-
-class _Page1PageState extends State&lt;Page1Page&gt; {
-
-  @override
-  Widget build(BuildContext context) {
-    bool isLogin = Provider.of&lt;bool&gt;(context);
-    return Scaffold(
-      body: Container(
-        color: isLogin ? Colors.green : Colors.grey,
-        alignment: Alignment.center,
-        child: MaterialButton(
-          child: Text(isLogin ? &quot;登出&quot; : &quot;登入&quot;),
-          onPressed: () {
-            controller.add(!isLogin);
-          },
-        ),
-      ),
-    );
-  }
-}
-</code></pre></p>
-<p>執行專案可以看到操作效果跟原來的一樣。<br><img src="/images/flutter/004/flutter_015.gif" alt="">  </p>
+<p>接著將 <strong>MyHomePage</strong> 內的 <code>IWidget</code> 修改為 <code>Provider.value</code>。  </p>
+<figure class="highlight dart"><figcaption><span>main.dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHomePage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      body: Provider.value(</span><br><span class="line">        value: <span class="string">&#x27;AAA&#x27;</span>,</span><br><span class="line">        child: ValueWidget(</span><br><span class="line">          color: Colors.grey,</span><br><span class="line">          child: ValueWidget(</span><br><span class="line">            color: Colors.orange,</span><br><span class="line">            child: Provider.value(</span><br><span class="line">              value: <span class="string">&#x27;BBB&#x27;</span>,</span><br><span class="line">              child: ValueWidget(</span><br><span class="line">                color: Colors.blue,</span><br><span class="line">                child: ValueWidget(</span><br><span class="line">                  color: Colors.green,</span><br><span class="line">                ),</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 <strong>ValueWidget</strong> 內將讀取方式由 <code>IWidget.of</code> 改為 <code>Provider.of&lt;String&gt;</code>。  </p>
+<figure class="highlight dart"><figcaption><span>main.dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ValueWidget</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> Widget child;</span><br><span class="line">  <span class="keyword">final</span> Color color;</span><br><span class="line">  ValueWidget(&#123;Key key, <span class="keyword">this</span>.color = Colors.white, <span class="keyword">this</span>.child&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      padding: EdgeInsets.all(<span class="number">8</span>),</span><br><span class="line">      color: color,</span><br><span class="line">      child: Center(</span><br><span class="line">        child: Column(</span><br><span class="line">          mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            <span class="keyword">if</span> (Provider.of&lt;<span class="built_in">String</span>&gt;(context) != <span class="keyword">null</span>)</span><br><span class="line">              Text(<span class="string">&#x27;value：<span class="subst">$&#123;Provider.of&lt;String&gt;(context)&#125;</span>&#x27;</span>)</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">              Text(</span><br><span class="line">                <span class="string">&#x27;value：null&#x27;</span>,</span><br><span class="line">              ),</span><br><span class="line">            <span class="keyword">if</span> (child != <span class="keyword">null</span>) child,</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重新執行專案可以看到一樣的效果，只是 <strong>IWidget</strong> 被 <strong>Provider</strong> 替換掉了，也就是說其實 <strong>Provider</strong> 幫我們撰寫好 <strong>InheritedWidget</strong> 的部分。<br><img src="/images/flutter/004/flutter_008.png" alt="img">  </p>
+<h2 id="範例二：StreamProvider"><a href="#範例二：StreamProvider" class="headerlink" title="範例二：StreamProvider"></a>範例二：StreamProvider</h2><p>在上一篇文章 <a href="/flutter/flutter_004/">Dart 敗部復活賽：Flutter for Web</a> 我們用 <a target="_blank" rel="noopener" href="https://pub.dev/packages/rxdart">RxDart</a> 這個 package 來做到跨 Widget 的同步通知，現在我們將它替換成 StreamController 來處理，並透過 Provider 的 Stream 版本 <strong><a target="_blank" rel="noopener" href="https://pub.dev/documentation/provider/latest/provider/StreamProvider-class.html">StreamProvider</a></strong> 來注入 StreamController。<br>首先在 <code>pubspec.yaml</code> 內引用 provider。<br><img src="/images/flutter/004/flutter_009.png" alt="img"><br>接著在 <code>lib\rd.dart</code> 內 將全域變數的 <code>BehaviorSubject&lt;bool&gt;</code> 替換為 <code>StreamController&lt;bool&gt;</code>，並移除 Widget 內的 <code>StreamSubscription</code> 變數與 <code>initState</code>、<code>dispose</code> 方法，因為我們不需要在<strong>訂閱通知</strong>與<strong>取消訂閱通知</strong>。<br><img src="/images/flutter/004/flutter_010.png" alt="img"><br>接著我們在需要取值得地方一樣透過 <code>Provider.of</code> 來讀取資料。<br><img src="/images/flutter/004/flutter_011.png" alt="img"><br>接著將修改值的方法由 <code>subject.add</code> 替換為 <code>controller.add</code>。<br><img src="/images/flutter/004/flutter_013.png" alt="img"><br>因為我們必須要在目前 Widget 之前(上一層)先注入才有辦法讀取到資料，所以我們直接在 <strong>MyApp</strong> 內的 <strong>RxPage</strong> 外邊包一層 <strong>StreamProvider</strong>。<br><img src="/images/flutter/004/flutter_012.png" alt="img"><br>完整程式碼如下：  </p>
+<figure class="highlight dart"><figcaption><span>main.dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:async&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> controller = StreamController&lt;<span class="built_in">bool</span>&gt;();</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() =&gt; runApp(MyApp());</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">&#x27;Flutter Demo&#x27;</span>,</span><br><span class="line">      theme: ThemeData(</span><br><span class="line">        primarySwatch: Colors.blue,</span><br><span class="line">      ),</span><br><span class="line">      home: StreamProvider.value(</span><br><span class="line">        initialData: <span class="keyword">false</span>,</span><br><span class="line">        stream: controller.stream,</span><br><span class="line">        child: RxPage(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RxPage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _RxPageState createState() =&gt; _RxPageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_RxPageState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">RxPage</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="built_in">List</span>&lt;Widget&gt; list = &lt;Widget&gt;[];</span><br><span class="line">    <span class="built_in">bool</span> isLogin = Provider.of&lt;<span class="built_in">bool</span>&gt;(context);</span><br><span class="line">    <span class="keyword">if</span> (isLogin) &#123;</span><br><span class="line">      list.add(UserAccountsDrawerHeader(</span><br><span class="line">        accountEmail: Text(<span class="string">&quot;jonnyhuang@outlooj.com&quot;</span>),</span><br><span class="line">        accountName: Text(<span class="string">&quot;Jonny&quot;</span>),</span><br><span class="line">        currentAccountPicture: CircleAvatar(</span><br><span class="line">          child: Text(<span class="string">&quot;J&quot;</span>),</span><br><span class="line">        ),</span><br><span class="line">      ));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      list.add(DrawerHeader(</span><br><span class="line">        decoration: BoxDecoration(</span><br><span class="line">          color: Colors.orange,</span><br><span class="line">        ),</span><br><span class="line">        child: Text(<span class="string">&quot;Guest&quot;</span>),</span><br><span class="line">      ));</span><br><span class="line">    &#125;</span><br><span class="line">    list.add(ListTile(</span><br><span class="line">      title: Text(isLogin ? <span class="string">&quot;登出&quot;</span> : <span class="string">&quot;登入&quot;</span>),</span><br><span class="line">      trailing: Icon(Icons.exit_to_app),</span><br><span class="line">      onTap: () &#123;</span><br><span class="line">        controller.add(!isLogin);</span><br><span class="line">      &#125;,</span><br><span class="line">    ));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">&#x27;RxDart&#x27;</span>),</span><br><span class="line">      ),</span><br><span class="line">      drawer: Drawer(</span><br><span class="line">        child: ListView(</span><br><span class="line">          children: list,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      body: Page1Page(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Page1Page</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _Page1PageState createState() =&gt; _Page1PageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_Page1PageState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">Page1Page</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="built_in">bool</span> isLogin = Provider.of&lt;<span class="built_in">bool</span>&gt;(context);</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      body: Container(</span><br><span class="line">        color: isLogin ? Colors.green : Colors.grey,</span><br><span class="line">        alignment: Alignment.center,</span><br><span class="line">        child: MaterialButton(</span><br><span class="line">          child: Text(isLogin ? <span class="string">&quot;登出&quot;</span> : <span class="string">&quot;登入&quot;</span>),</span><br><span class="line">          onPressed: () &#123;</span><br><span class="line">            controller.add(!isLogin);</span><br><span class="line">          &#125;,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>執行專案可以看到操作效果跟原來的一樣。<br><img src="/images/flutter/004/flutter_015.gif" alt="img">  </p>
 <h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>就如同官方說明一樣 <strong>Provider 是 InheritedWidget 的語法糖</strong>，當你了解到 InheritedWidget 的特性時也會明白 Provider 如何做到依賴注入，所以它不是要改變我們的程式架構，相反的在我們既有的撰寫模式下套用它可以讓程式變得更簡潔。  </p>
-<h2 id="MultiProvider"><a href="#MultiProvider" class="headerlink" title="MultiProvider"></a>MultiProvider</h2><p>就如同官網範例 <strong>MultiProvider</strong> 可以協助我們很方便的注入多個 Provider，但是每多註冊一個 Provider 就等於多一層 Widget，Widget 的成本很低，所以效能的差異是可以忽略的，不過如果利用 Dart DevTools 來看 Widget Tree 時應該就會有些抱怨，因為多了很多層，有時候我們可以將多個資源合併在一起來減少堆疊次數。<br><img src="/images/flutter/004/flutter_014.png" alt="">  </p>
+<h2 id="MultiProvider"><a href="#MultiProvider" class="headerlink" title="MultiProvider"></a>MultiProvider</h2><p>就如同官網範例 <strong>MultiProvider</strong> 可以協助我們很方便的注入多個 Provider，但是每多註冊一個 Provider 就等於多一層 Widget，Widget 的成本很低，所以效能的差異是可以忽略的，不過如果利用 Dart DevTools 來看 Widget Tree 時應該就會有些抱怨，因為多了很多層，有時候我們可以將多個資源合併在一起來減少堆疊次數。<br><img src="/images/flutter/004/flutter_014.png" alt="img">  </p>
 
-      
     </div>
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
+    
+    
+    
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Flutter/" rel="tag"># Flutter</a>
-          
-            <a href="/tags/Dart/" rel="tag"># Dart</a>
-          
-        </div>
-      
-
-      
-      
-        <div class="post-widgets">
-        
-
-        
-          <div class="social-like">
-            
-
-            
-              <div class="fb_like">
-                <div class="fb-like" data-layout="button_count" data-share="true"></div>
-              </div>
-            
-          </div>
-        
-        </div>
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/flutter/flutter_003/" rel="next" title="Dart 敗部復活賽：Flutter for Web">
-                <i class="fa fa-chevron-left"></i> Dart 敗部復活賽：Flutter for Web
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/Flutter/" rel="tag"># Flutter</a>
+              <a href="/tags/Dart/" rel="tag"># Dart</a>
           </div>
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/flutter/flutter_005/" rel="prev" title="翻桌吧！Flutter for Desktop">
-                翻桌吧！Flutter for Desktop <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/flutter/flutter_003/" rel="prev" title="Dart 敗部復活賽：Flutter for Web">
+                  <i class="fa fa-chevron-left"></i> Dart 敗部復活賽：Flutter for Web
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/flutter/flutter_005/" rel="next" title="翻桌吧！Flutter for Desktop">
+                  翻桌吧！Flutter for Desktop <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-        </div>
-      
-
-      
-      
     </footer>
   </article>
+</div>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
 
 
-          </div>
-          
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Jonny Huang">
-          <p class="site-author-name" itemprop="name">Jonny Huang</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-           
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">66</span>
-                <span class="site-state-item-name">文章</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">分類</span>
-              
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">28</span>
-                <span class="site-state-item-name">標籤</span>
-              
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
-                  
-                    <i class="fa fa-fw fa-facebook-official"></i>
-                  
-                  Facebook
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>
-                  
-                  Email
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-block">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/flutter.tw/" title="Flutter Taiwan" target="_blank">Flutter Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#InheritedWidget"><span class="nav-number">2.</span> <span class="nav-text">InheritedWidget</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#範例"><span class="nav-number">2.1.</span> <span class="nav-text">範例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Provider"><span class="nav-number">3.</span> <span class="nav-text">Provider</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#範例一"><span class="nav-number">3.1.</span> <span class="nav-text">範例一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#範例二：StreamProvider"><span class="nav-number">3.2.</span> <span class="nav-text">範例二：StreamProvider</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">4.</span> <span class="nav-text">後記</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MultiProvider"><span class="nav-number">4.1.</span> <span class="nav-text">MultiProvider</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
+<div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-Jonny Huang"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
 </div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
-</div>
-
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -1206,27 +378,6 @@ class _Page1PageState extends State&lt;Page1Page&gt; {
 
 
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
-<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-      prettyPrint();
-  });
-</script>
 
 </body>
 </html>

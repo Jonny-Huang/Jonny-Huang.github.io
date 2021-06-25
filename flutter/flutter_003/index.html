@@ -1,103 +1,32 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-tw">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-TW">
+<head>
   <meta charset="UTF-8">
-<meta name="msvalidate.01" content="90BB7A119C8E6C6FB528374E8B28DBB8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="Flutter,Dart">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
-
-
-
-
-  <meta property="fb:admins" content="fb267234890438499">
-  <meta property="fb:app_id" content="267234890438499">
-
-
-
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
 <meta name="description" content="前言Dart 一開始是由 Google 所推出的一種網頁程式語言，它改善了許多 JavaScript 的歷史包袱，但是很不幸的並沒有受到大眾的支持，反倒是 Microsoft 以 JavaScript 為基礎所發展的 TypeScript 因為原生支援 JavaScript，所以反而使用者日漸增長，不過 Dart 仍然持續默默的發展，在 Flutter 的加持下又重新受到大家的關注，如今 F">
-<meta name="keywords" content="Flutter,Dart">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dart 敗部復活賽：Flutter for Web">
 <meta property="og:url" content="https://jonny-huang.github.io/flutter/flutter_003/index.html">
 <meta property="og:site_name" content="Jonny Huang 的學習筆記">
 <meta property="og:description" content="前言Dart 一開始是由 Google 所推出的一種網頁程式語言，它改善了許多 JavaScript 的歷史包袱，但是很不幸的並沒有受到大眾的支持，反倒是 Microsoft 以 JavaScript 為基礎所發展的 TypeScript 因為原生支援 JavaScript，所以反而使用者日漸增長，不過 Dart 仍然持續默默的發展，在 Flutter 的加持下又重新受到大家的關注，如今 F">
-<meta property="og:locale" content="zh-tw">
+<meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/003/flutter_000.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/003/flutter_001.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/003/flutter_002.png">
@@ -116,960 +45,316 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/003/flutter_014.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/003/flutter_015.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/flutter/003/flutter_016.gif">
-<meta property="og:updated_time" content="2019-05-09T13:46:08.853Z">
+<meta property="article:published_time" content="2019-05-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-24T00:51:53.610Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="Flutter">
+<meta property="article:tag" content="Dart">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Dart 敗部復活賽：Flutter for Web">
-<meta name="twitter:description" content="前言Dart 一開始是由 Google 所推出的一種網頁程式語言，它改善了許多 JavaScript 的歷史包袱，但是很不幸的並沒有受到大眾的支持，反倒是 Microsoft 以 JavaScript 為基礎所發展的 TypeScript 因為原生支援 JavaScript，所以反而使用者日漸增長，不過 Dart 仍然持續默默的發展，在 Flutter 的加持下又重新受到大家的關注，如今 F">
 <meta name="twitter:image" content="https://jonny-huang.github.io/images/flutter/003/flutter_000.png">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Jonny'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<link rel="canonical" href="https://jonny-huang.github.io/flutter/flutter_003/">
 
 
 
-  <link rel="canonical" href="https://jonny-huang.github.io/flutter/flutter_003/">
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;flutter&#x2F;flutter_003&#x2F;&quot;,&quot;path&quot;:&quot;flutter&#x2F;flutter_003&#x2F;&quot;,&quot;title&quot;:&quot;Dart 敗部復活賽：Flutter for Web&quot;}</script>
 
-
-
-
-
-  <title>Dart 敗部復活賽：Flutter for Web | Jonny Huang 的學習筆記</title>
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>Dart 敗部復活賽：Flutter for Web | Jonny Huang 的學習筆記</title>
   
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '267234890438499',
-      xfbml      : true,
-      version    : 'v2.6'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/zh_tw/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-tw">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Jonny Huang 的學習筆記</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <h1 class="site-subtitle" itemprop="description">Angular、Flutter</h1>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首頁
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            目錄
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            歸檔
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-flutter">
-          <a href="/flutter/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Flutter
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-angular">
-          <a href="/angular/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Angular
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-quotes">
-          <a href="/quotes/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br>
-            
-            欣雨露
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa-commenting fa-fw"></i>欣雨露</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%B0%88%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text">建立專案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%B7%E8%A1%8C"><span class="nav-number">2.1.</span> <span class="nav-text">執行</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6%E4%B8%80"><span class="nav-number">3.</span> <span class="nav-text">測試一</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Material-Icons"><span class="nav-number">3.1.</span> <span class="nav-text">Material Icons</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6%E4%BA%8C"><span class="nav-number">4.</span> <span class="nav-text">測試二</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%8C%E8%A8%98"><span class="nav-number">5.</span> <span class="nav-text">後記</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
     
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/flutter/flutter_003/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Jonny Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Jonny Huang 的學習筆記">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Dart 敗部復活賽：Flutter for Web
+        </h1>
 
-        
-        
-          <h2 class="post-title" itemprop="name headline">Dart 敗部復活賽：Flutter for Web</h2>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/06/24 08:51:53" itemprop="dateModified" datetime="2021-06-24T08:51:53+08:00">2021/06/24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a>
+        </span>
+    </span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新於</span>
-              
-              <time title="更新於" itemprop="dateModified" datetime="2019-05-09T21:46:08+08:00">
-                2019/05/09
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Flutter/" itemprop="url" rel="index">
-                    <span itemprop="name">Flutter</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
+
     
-
+    
+    
     <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p><img src="/images/flutter/003/flutter_000.png" alt="">  </p>
+        <p><img src="/images/flutter/003/flutter_000.png" alt="img">  </p>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Dart 一開始是由 Google 所推出的一種網頁程式語言，它改善了許多 JavaScript 的歷史包袱，但是很不幸的並沒有受到大眾的支持，反倒是 Microsoft 以 JavaScript 為基礎所發展的 TypeScript 因為原生支援 JavaScript，所以反而使用者日漸增長，不過 Dart 仍然持續默默的發展，在 Flutter 的加持下又重新受到大家的關注，如今 Flutter 藉由 Dart 可轉譯為 JavaScript 的特性，開始計畫性的侵蝕 Web App。  </p>
+<span id="more"></span>  
+
 <h1 id="建立專案"><a href="#建立專案" class="headerlink" title="建立專案"></a>建立專案</h1><p>伴隨著 Google I/O 2019 發布，Visual Studio Code 上的 Dart 與 Flutter 擴充功能也更新到 3.0 版，最大的特色就是增加 <code>Flutter：New Web Project</code> 指令，讓我們可以建立 Flutter 的 web 專案。  </p>
 <blockquote>
-<p>參考資料:<a href="http://dartcode.org/releases/v3-0/" target="_blank" rel="noopener">http://dartcode.org/releases/v3-0/</a></p>
+<p>參考資料:<a target="_blank" rel="noopener" href="http://dartcode.org/releases/v3-0/">http://dartcode.org/releases/v3-0/</a></p>
 </blockquote>
-<p>我們在 VS Code 內開啟命令選擇區，並透過 <code>Flutter：New Web Project</code> 來建立專案。<br><img src="/images/flutter/003/flutter_001.png" alt=""><br>一開始會需要我們輸入專案名稱，這邊筆者使用 <strong>web</strong>。<br><img src="/images/flutter/003/flutter_002.png" alt=""><br>接著選擇專案儲存路徑，這邊筆者選擇在 <code>D:\Demo</code> 資料夾內。<br><img src="/images/flutter/003/flutter_003.png" alt=""><br>從 VS Code 的檔案總管可以看到專案結構跟開發 App 的專案雷同，會有一個 <code>lib</code> 資料夾讓我們存放所撰寫的 Dart 程式，以及一個 <code>web</code> 資料夾存放網頁，App 專案則是建立 <code>android</code> 與 <code>ios</code> 資料夾。<br><img src="/images/flutter/003/flutter_004.png" alt="">  </p>
-<p>開啟專案設定檔 <strong>pubspec.yaml</strong> 可以看到引用的 package 會有差異。<br>pubspec.yaml<br><pre><code>name: web
-description: An app built using Flutter for web
-
-environment:
-# You must be using Flutter &gt;=1.5.0 or Dart &gt;=2.3.0
-sdk: &#39;&gt;=2.3.0-dev.0.1 &lt;3.0.0&#39;
-
-dependencies:
-flutter_web: any
-flutter_web_ui: any
-
-dev_dependencies:
-build_runner: ^1.4.0
-build_web_compilers: ^2.0.0
-pedantic: ^1.0.0
-
-dependency_overrides:
-flutter_web:
-    git:
-    url: https:&#x2F;&#x2F;github.com&#x2F;flutter&#x2F;flutter_web
-    path: packages&#x2F;flutter_web
-flutter_web_ui:
-    git:
-    url: https:&#x2F;&#x2F;github.com&#x2F;flutter&#x2F;flutter_web
-    path: packages&#x2F;flutter_web_ui
-</code></pre></p>
-<p>因為我們還沒安裝過相關的 package，所以我們可以直接利用開發工具提供的快捷鈕執行安裝，當然也可以自己手動執行 <code>flutter package get</code> 指令。<br><img src="/images/flutter/003/flutter_008.png" alt="">  </p>
+<p>我們在 VS Code 內開啟命令選擇區，並透過 <code>Flutter：New Web Project</code> 來建立專案。<br><img src="/images/flutter/003/flutter_001.png" alt="img"><br>一開始會需要我們輸入專案名稱，這邊筆者使用 <strong>web</strong>。<br><img src="/images/flutter/003/flutter_002.png" alt="img"><br>接著選擇專案儲存路徑，這邊筆者選擇在 <code>D:\Demo</code> 資料夾內。<br><img src="/images/flutter/003/flutter_003.png" alt="img"><br>從 VS Code 的檔案總管可以看到專案結構跟開發 App 的專案雷同，會有一個 <code>lib</code> 資料夾讓我們存放所撰寫的 Dart 程式，以及一個 <code>web</code> 資料夾存放網頁，App 專案則是建立 <code>android</code> 與 <code>ios</code> 資料夾。<br><img src="/images/flutter/003/flutter_004.png" alt="img">  </p>
+<p>開啟專案設定檔 <strong>pubspec.yaml</strong> 可以看到引用的 package 會有差異。<br>pubspec.yaml</p>
+<figure class="highlight yaml"><figcaption><span>pubspec.yaml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">web</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">An</span> <span class="string">app</span> <span class="string">built</span> <span class="string">using</span> <span class="string">Flutter</span> <span class="string">for</span> <span class="string">web</span></span><br><span class="line"></span><br><span class="line"><span class="attr">environment:</span></span><br><span class="line"><span class="comment"># You must be using Flutter &gt;=1.5.0 or Dart &gt;=2.3.0</span></span><br><span class="line"><span class="attr">sdk:</span> <span class="string">&#x27;&gt;=2.3.0-dev.0.1 &lt;3.0.0&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">dependencies:</span></span><br><span class="line"><span class="attr">flutter_web:</span> <span class="string">any</span></span><br><span class="line"><span class="attr">flutter_web_ui:</span> <span class="string">any</span></span><br><span class="line"></span><br><span class="line"><span class="attr">dev_dependencies:</span></span><br><span class="line"><span class="attr">build_runner:</span> <span class="string">^1.4.0</span></span><br><span class="line"><span class="attr">build_web_compilers:</span> <span class="string">^2.0.0</span></span><br><span class="line"><span class="attr">pedantic:</span> <span class="string">^1.0.0</span></span><br><span class="line"></span><br><span class="line"><span class="attr">dependency_overrides:</span></span><br><span class="line"><span class="attr">flutter_web:</span></span><br><span class="line">    <span class="attr">git:</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">https://github.com/flutter/flutter_web</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">packages/flutter_web</span></span><br><span class="line"><span class="attr">flutter_web_ui:</span></span><br><span class="line">    <span class="attr">git:</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">https://github.com/flutter/flutter_web</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">packages/flutter_web_ui</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>因為我們還沒安裝過相關的 package，所以我們可以直接利用開發工具提供的快捷鈕執行安裝，當然也可以自己手動執行 <code>flutter package get</code> 指令。<br><img src="/images/flutter/003/flutter_008.png" alt="img">  </p>
 <h2 id="執行"><a href="#執行" class="headerlink" title="執行"></a>執行</h2><p>最後我們透過指令 <code>webdev serve</code> 來啟動專案。  </p>
 <blockquote>
-<p>如果沒安裝過 webdev 可以透過下列指令安裝：<br><code>flutter packages pub global activate webdev</code><br>如果無法正常執行 <strong>webdev</strong>，可以參考上一篇文章(<a href="/flutter/flutter_002/">本是同根生：Dart 開發環境</a>)修改設定試試，或是下載 <a href="https://flutter.dev/docs/get-started/install" target="_blank" rel="noopener">Dart SDK</a> 來安裝。  </p>
+<p>如果沒安裝過 webdev 可以透過下列指令安裝：<br><code>flutter packages pub global activate webdev</code><br>如果無法正常執行 <strong>webdev</strong>，可以參考上一篇文章(<a href="/flutter/flutter_002/">本是同根生：Dart 開發環境</a>)修改設定試試，或是下載 <a target="_blank" rel="noopener" href="https://flutter.dev/docs/get-started/install">Dart SDK</a> 來安裝。  </p>
 </blockquote>
-<p><img src="/images/flutter/003/flutter_005.png" alt=""><br>透過瀏覽器開啟 <strong><a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a></strong>，具有 Flutter App 風格的 <strong>Hello, World!</strong> 頁面就出現了。<br><img src="/images/flutter/003/flutter_006.png" alt="">  </p>
-<h1 id="測試一"><a href="#測試一" class="headerlink" title="測試一"></a>測試一</h1><p>開啟 <code>lib\main.dart</code>，可以看到程式結果幾乎完全與 Flutter App 相同，最大的差別就是 <strong>material.dart</strong> 匯入位置改變了，由原本的<br><code>import &#39;package:flutter/material.dart&#39;;</code><br>變更為<br><code>import &#39;package:flutter_web/material.dart&#39;;</code><br><img src="/images/flutter/003/flutter_007.png" alt=""><br>接下來我們直接將 Flutter App 預設的範例直接覆蓋上去，並修改 <code>material.dart</code> 的 import 路徑。<br><pre><code>&#x2F;&#x2F; import &#39;package:flutter&#x2F;material.dart&#39;;
-import &#39;package:flutter_web&#x2F;material.dart&#39;;
-
-void main() =&gt; runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: &#39;Flutter Demo&#39;,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: &#39;Flutter Demo Home Page&#39;),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() =&gt; _MyHomePageState();
-}
-
-class _MyHomePageState extends State&lt;MyHomePage&gt; {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: &lt;Widget&gt;[
-            Text(
-              &#39;You have pushed the button this many times:&#39;,
-            ),
-            Text(
-              &#39;$_counter&#39;,
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: &#39;Increment&#39;,
-        child: Icon(Icons.add),
-      ),
-    );
-  }
-}
-</code></pre></p>
-<p>儲存 <code>lib\main.dart</code> 就可以發現 <strong>webdev</strong> 服務會自動編譯。<br><img src="/images/flutter/003/flutter_009.png" alt=""><br>重新整理網頁可以發現跟 App 一樣，而且也可以正常操作。<br><img src="/images/flutter/003/flutter_010.gif" alt="">  </p>
-<h2 id="Material-Icons"><a href="#Material-Icons" class="headerlink" title="Material Icons"></a>Material Icons</h2><p>從瀏覽器看起來整體效果一樣，但是仔細看就可以發現 <strong>icon</strong> 並沒有顯示出來，目前<a href="https://flutter.dev/web" target="_blank" rel="noopener">官方網頁</a>也只有一頁說明，但是從 GitHub 官方範例卻可以找到說明。<br><a href="https://github.com/flutter/flutter_web/blob/master/examples/gallery/web/assets/README.md" target="_blank" rel="noopener">flutter_web/examples/gallery/web/assets/README.md</a><br><pre><code>Note: a reference to `MaterialIcons` is intentionally omitted because the
-corresponding font is not included in this source.
-If you add `MaterialIcons-Extended.ttf` to this directory, you can update
-`FontManifest.json` as follows:
-```json
-[
-    {
-        &quot;family&quot;: &quot;MaterialIcons&quot;,
-        &quot;fonts&quot;: [
-        {
-            &quot;asset&quot;: &quot;MaterialIcons-Extended.ttf&quot;
-        }
-        ]
-    },
-    {
-        &quot;family&quot;: &quot;GoogleSans&quot;,
-        &quot;fonts&quot;: [
-        {
-            &quot;asset&quot;: &quot;GoogleSans-Regular.ttf&quot;
-        }
-        ]
-    },
-    {
-        &quot;family&quot;: &quot;GalleryIcons&quot;,
-        &quot;fonts&quot;: [
-        {
-            &quot;asset&quot;: &quot;GalleryIcons.ttf&quot;
-        }
-        ]
-    }
-]
-```</code></pre></p>
-<p>我們依說明在 <strong>web 資料夾</strong>內建立一個 <code>assets</code> 資料夾。<br><img src="/images/flutter/003/flutter_011.png" alt=""><br>接著在其內建立一個 <code>FontManifest.json</code> 檔案，並加讓 <strong>MaterialIcons</strong>。<br><pre><code>[
-    {
-        &quot;family&quot;: &quot;MaterialIcons&quot;,
-        &quot;fonts&quot;: [
-            {
-                &quot;asset&quot;: &quot;https:&#x2F;&#x2F;fonts.gstatic.com&#x2F;s&#x2F;materialicons&#x2F;v42&#x2F;flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2&quot;
-            }
-        ]
-    }
-]</code></pre></p>
-<p>儲存檔案並重新整理網頁就可以發現右下角的按鈕已經可以顯示圖示了。<br><img src="/images/flutter/003/flutter_012.png" alt="">  </p>
-<h1 id="測試二"><a href="#測試二" class="headerlink" title="測試二"></a>測試二</h1><p>接下來筆者嘗試將之前在 Flutter App 上使用 <a href="https://pub.dev/packages/rxdart" target="_blank" rel="noopener">RxDart</a> 所做的範例移植到專案內，操作畫面如下：<br><img src="/images/flutter/003/flutter_017.gif" alt=""><br>首先直接將檔案 <code>rx.dart</code> 複製到專案內，並修改 import 路徑。<br><img src="/images/flutter/003/flutter_013.png" alt=""><br><code>rx.dart</code> 程式碼如下：<br><pre><code>import &#39;dart:async&#39;;
-&#x2F;&#x2F; import &#39;package:flutter&#x2F;material.dart&#39;;
-import &#39;package:flutter_web&#x2F;material.dart&#39;;
-import &#39;package:rxdart&#x2F;subjects.dart&#39;;
-
-class RxPage extends StatefulWidget {
-  @override
-  _RxPageState createState() =&gt; _RxPageState();
-}
-
-final subject = BehaviorSubject&lt;bool&gt;.seeded(false);
-
-class _RxPageState extends State&lt;RxPage&gt; {
-  StreamSubscription subscription;
-  bool isLogin = false;
-
-  @override
-  void initState() {
-    super.initState();
-    subscription = subject.listen((value) {
-      setState(() =&gt; isLogin = value);
-    });
-  }
-
-  @override
-  void dispose() {
-    subscription?.cancel();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    List&lt;Widget&gt; list = &lt;Widget&gt;[];
-    if (isLogin) {
-      list.add(UserAccountsDrawerHeader(
-        accountEmail: Text(&quot;jonnyhuang@outlooj.com&quot;),
-        accountName: Text(&quot;Jonny&quot;),
-        currentAccountPicture: CircleAvatar(
-          child: Text(&quot;J&quot;),
-        ),
-      ));
-    } else {
-      list.add(DrawerHeader(
-        decoration: BoxDecoration(
-          color: Colors.orange,
-        ),
-        child: Text(&quot;Guest&quot;),
-      ));
-    }
-    list.add(ListTile(
-      title: Text(isLogin ? &quot;登出&quot; : &quot;登入&quot;),
-      trailing: Icon(Icons.exit_to_app),
-      onTap: () {
-        subject.add(!isLogin);
-      },
-    ));
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(&#39;RxDart&#39;),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: list,
-        ),
-      ),
-      body: Page1Page(),
-    );
-  }
-}
-
-class Page1Page extends StatefulWidget {
-  @override
-  _Page1PageState createState() =&gt; _Page1PageState();
-}
-
-class _Page1PageState extends State&lt;Page1Page&gt; {
-  StreamSubscription subscription;
-  bool isLogin = false;
-  @override
-  void initState() {
-    super.initState();
-    subscription = subject.listen((value) {
-      setState(() =&gt; isLogin = value);
-    });
-  }
-
-  @override
-  void dispose() {
-    subscription?.cancel();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: isLogin ? Colors.green : Colors.grey,
-        alignment: Alignment.center,
-        child: MaterialButton(
-          child: Text(isLogin ? &quot;登出&quot; : &quot;登入&quot;),
-          onPressed: () =&gt; subject.add(!isLogin),
-        ),
-      ),
-    );
-  }
-}
-</code></pre></p>
-<p>接著因為需要用到 RxDart 這個 ，所以我們開啟 <code>pubspec.yaml</code> 並加入 rxdart package，在 VS Code 內只要儲存 pubspec.yaml 檔，它就會自動幫我們下載 package。<br><img src="/images/flutter/003/flutter_014.png" alt=""><br>最後修改 <code>lib\main.dart</code>，將 <strong>首頁(home)</strong> 換成 <strong>RxPage</strong>。<br><img src="/images/flutter/003/flutter_015.png" alt=""><br>因為有加入新的 package，所以需要重新執行 <code>webdev serve</code>，開啟網頁可以看到整體操作與 App 上的一樣。<br><img src="/images/flutter/003/flutter_016.gif" alt="">  </p>
+<p><img src="/images/flutter/003/flutter_005.png" alt="img"><br>透過瀏覽器開啟 <strong><a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a></strong>，具有 Flutter App 風格的 <strong>Hello, World!</strong> 頁面就出現了。<br><img src="/images/flutter/003/flutter_006.png" alt="img">  </p>
+<h1 id="測試一"><a href="#測試一" class="headerlink" title="測試一"></a>測試一</h1><p>開啟 <code>lib\main.dart</code>，可以看到程式結果幾乎完全與 Flutter App 相同，最大的差別就是 <strong>material.dart</strong> 匯入位置改變了，由原本的<br><code>import &#39;package:flutter/material.dart&#39;;</code><br>變更為<br><code>import &#39;package:flutter_web/material.dart&#39;;</code><br><img src="/images/flutter/003/flutter_007.png" alt="img"><br>接下來我們直接將 Flutter App 預設的範例直接覆蓋上去，並修改 <code>material.dart</code> 的 import 路徑。  </p>
+<figure class="highlight dart"><figcaption><span>main.dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// import &#x27;package:flutter/material.dart&#x27;;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() =&gt; runApp(MyApp());</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">&#x27;Flutter Demo&#x27;</span>,</span><br><span class="line">      theme: ThemeData(</span><br><span class="line">        primarySwatch: Colors.blue,</span><br><span class="line">      ),</span><br><span class="line">      home: MyHomePage(title: <span class="string">&#x27;Flutter Demo Home Page&#x27;</span>),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHomePage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  MyHomePage(&#123;Key key, <span class="keyword">this</span>.title&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> title;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _MyHomePageState createState() =&gt; _MyHomePageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_MyHomePageState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">MyHomePage</span>&gt; </span>&#123;</span><br><span class="line">  <span class="built_in">int</span> _counter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> _incrementCounter() &#123;</span><br><span class="line">    setState(() &#123;</span><br><span class="line">      _counter++;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(widget.title),</span><br><span class="line">      ),</span><br><span class="line">      body: Center(</span><br><span class="line">        child: Column(</span><br><span class="line">          mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            Text(</span><br><span class="line">              <span class="string">&#x27;You have pushed the button this many times:&#x27;</span>,</span><br><span class="line">            ),</span><br><span class="line">            Text(</span><br><span class="line">              <span class="string">&#x27;<span class="subst">$_counter</span>&#x27;</span>,</span><br><span class="line">              style: Theme.of(context).textTheme.display1,</span><br><span class="line">            ),</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      floatingActionButton: FloatingActionButton(</span><br><span class="line">        onPressed: _incrementCounter,</span><br><span class="line">        tooltip: <span class="string">&#x27;Increment&#x27;</span>,</span><br><span class="line">        child: Icon(Icons.add),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>儲存 <code>lib\main.dart</code> 就可以發現 <strong>webdev</strong> 服務會自動編譯。<br><img src="/images/flutter/003/flutter_009.png" alt="img"><br>重新整理網頁可以發現跟 App 一樣，而且也可以正常操作。<br><img src="/images/flutter/003/flutter_010.gif" alt="img">  </p>
+<h2 id="Material-Icons"><a href="#Material-Icons" class="headerlink" title="Material Icons"></a>Material Icons</h2><p>從瀏覽器看起來整體效果一樣，但是仔細看就可以發現 <strong>icon</strong> 並沒有顯示出來，目前<a target="_blank" rel="noopener" href="https://flutter.dev/web">官方網頁</a>也只有一頁說明，但是從 GitHub 官方範例卻可以找到說明。<br><a target="_blank" rel="noopener" href="https://github.com/flutter/flutter_web/blob/master/examples/gallery/web/assets/README.md">flutter_web/examples/gallery/web/assets/README.md</a>  </p>
+<figure class="highlight md"><figcaption><span>README.md</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Note: a reference to <span class="code">`MaterialIcons`</span> is intentionally omitted because the</span><br><span class="line">corresponding font is not included in this source.</span><br><span class="line">If you add <span class="code">`MaterialIcons-Extended.ttf`</span> to this directory, you can update</span><br><span class="line"><span class="code">`FontManifest.json`</span> as follows:</span><br><span class="line"><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;family&quot;</span>: <span class="string">&quot;MaterialIcons&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;fonts&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;asset&quot;</span>: <span class="string">&quot;MaterialIcons-Extended.ttf&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;family&quot;</span>: <span class="string">&quot;GoogleSans&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;fonts&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;asset&quot;</span>: <span class="string">&quot;GoogleSans-Regular.ttf&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;family&quot;</span>: <span class="string">&quot;GalleryIcons&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;fonts&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;asset&quot;</span>: <span class="string">&quot;GalleryIcons.ttf&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></span><br></pre></td></tr></table></figure>
+<p>我們依說明在 <strong>web 資料夾</strong>內建立一個 <code>assets</code> 資料夾。<br><img src="/images/flutter/003/flutter_011.png" alt="img"><br>接著在其內建立一個 <code>FontManifest.json</code> 檔案，並加讓 <strong>MaterialIcons</strong>。</p>
+<figure class="highlight json"><figcaption><span>FontManifest.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;family&quot;</span>: <span class="string">&quot;MaterialIcons&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;fonts&quot;</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;asset&quot;</span>: <span class="string">&quot;https://fonts.gstatic.com/s/materialicons/v42/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>儲存檔案並重新整理網頁就可以發現右下角的按鈕已經可以顯示圖示了。<br><img src="/images/flutter/003/flutter_012.png" alt="img">  </p>
+<h1 id="測試二"><a href="#測試二" class="headerlink" title="測試二"></a>測試二</h1><p>接下來筆者嘗試將之前在 Flutter App 上使用 <a target="_blank" rel="noopener" href="https://pub.dev/packages/rxdart">RxDart</a> 所做的範例移植到專案內，操作畫面如下：<br><img src="/images/flutter/003/flutter_017.gif" alt="img"><br>首先直接將檔案 <code>rx.dart</code> 複製到專案內，並修改 import 路徑。<br><img src="/images/flutter/003/flutter_013.png" alt="img"><br><code>rx.dart</code> 程式碼如下：  </p>
+<figure class="highlight dart"><figcaption><span>rx.dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:async&#x27;</span>;</span><br><span class="line"><span class="comment">// import &#x27;package:flutter/material.dart&#x27;;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:rxdart/subjects.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RxPage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _RxPageState createState() =&gt; _RxPageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> subject = BehaviorSubject&lt;<span class="built_in">bool</span>&gt;.seeded(<span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_RxPageState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">RxPage</span>&gt; </span>&#123;</span><br><span class="line">  StreamSubscription subscription;</span><br><span class="line">  <span class="built_in">bool</span> isLogin = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> initState() &#123;</span><br><span class="line">    <span class="keyword">super</span>.initState();</span><br><span class="line">    subscription = subject.listen((value) &#123;</span><br><span class="line">      setState(() =&gt; isLogin = value);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> dispose() &#123;</span><br><span class="line">    subscription?.cancel();</span><br><span class="line">    <span class="keyword">super</span>.dispose();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="built_in">List</span>&lt;Widget&gt; list = &lt;Widget&gt;[];</span><br><span class="line">    <span class="keyword">if</span> (isLogin) &#123;</span><br><span class="line">      list.add(UserAccountsDrawerHeader(</span><br><span class="line">        accountEmail: Text(<span class="string">&quot;jonnyhuang@outlooj.com&quot;</span>),</span><br><span class="line">        accountName: Text(<span class="string">&quot;Jonny&quot;</span>),</span><br><span class="line">        currentAccountPicture: CircleAvatar(</span><br><span class="line">          child: Text(<span class="string">&quot;J&quot;</span>),</span><br><span class="line">        ),</span><br><span class="line">      ));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      list.add(DrawerHeader(</span><br><span class="line">        decoration: BoxDecoration(</span><br><span class="line">          color: Colors.orange,</span><br><span class="line">        ),</span><br><span class="line">        child: Text(<span class="string">&quot;Guest&quot;</span>),</span><br><span class="line">      ));</span><br><span class="line">    &#125;</span><br><span class="line">    list.add(ListTile(</span><br><span class="line">      title: Text(isLogin ? <span class="string">&quot;登出&quot;</span> : <span class="string">&quot;登入&quot;</span>),</span><br><span class="line">      trailing: Icon(Icons.exit_to_app),</span><br><span class="line">      onTap: () &#123;</span><br><span class="line">        subject.add(!isLogin);</span><br><span class="line">      &#125;,</span><br><span class="line">    ));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">&#x27;RxDart&#x27;</span>),</span><br><span class="line">      ),</span><br><span class="line">      drawer: Drawer(</span><br><span class="line">        child: ListView(</span><br><span class="line">          children: list,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      body: Page1Page(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Page1Page</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _Page1PageState createState() =&gt; _Page1PageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_Page1PageState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">Page1Page</span>&gt; </span>&#123;</span><br><span class="line">  StreamSubscription subscription;</span><br><span class="line">  <span class="built_in">bool</span> isLogin = <span class="keyword">false</span>;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> initState() &#123;</span><br><span class="line">    <span class="keyword">super</span>.initState();</span><br><span class="line">    subscription = subject.listen((value) &#123;</span><br><span class="line">      setState(() =&gt; isLogin = value);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> dispose() &#123;</span><br><span class="line">    subscription?.cancel();</span><br><span class="line">    <span class="keyword">super</span>.dispose();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      body: Container(</span><br><span class="line">        color: isLogin ? Colors.green : Colors.grey,</span><br><span class="line">        alignment: Alignment.center,</span><br><span class="line">        child: MaterialButton(</span><br><span class="line">          child: Text(isLogin ? <span class="string">&quot;登出&quot;</span> : <span class="string">&quot;登入&quot;</span>),</span><br><span class="line">          onPressed: () =&gt; subject.add(!isLogin),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>接著因為需要用到 RxDart 這個 ，所以我們開啟 <code>pubspec.yaml</code> 並加入 rxdart package，在 VS Code 內只要儲存 pubspec.yaml 檔，它就會自動幫我們下載 package。<br><img src="/images/flutter/003/flutter_014.png" alt="img"><br>最後修改 <code>lib\main.dart</code>，將 <strong>首頁(home)</strong> 換成 <strong>RxPage</strong>。<br><img src="/images/flutter/003/flutter_015.png" alt="img"><br>因為有加入新的 package，所以需要重新執行 <code>webdev serve</code>，開啟網頁可以看到整體操作與 App 上的一樣。<br><img src="/images/flutter/003/flutter_016.gif" alt="img">  </p>
 <h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>目前 Flutter for Web 還在測試階段，所以仍有可能做大幅度的調整，不過就目前進度來看可以說是大大超出筆者預期，完成度相當高，只要我們 Flutter 專案所使用的 package 本身也支援 web 移植上應該不會有太大瓶頸，當然如果 package 會使用到 Android 或 iOS 的 API 就需要額外處理，相對個其實我們現在開發 App 時就應該要順便考量到 Web 部分。 </p>
 
-      
     </div>
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
+    
+    
+    
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Flutter/" rel="tag"># Flutter</a>
-          
-            <a href="/tags/Dart/" rel="tag"># Dart</a>
-          
-        </div>
-      
-
-      
-      
-        <div class="post-widgets">
-        
-
-        
-          <div class="social-like">
-            
-
-            
-              <div class="fb_like">
-                <div class="fb-like" data-layout="button_count" data-share="true"></div>
-              </div>
-            
-          </div>
-        
-        </div>
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/flutter/flutter_002/" rel="next" title="本是同根生：Dart 開發環境">
-                <i class="fa fa-chevron-left"></i> 本是同根生：Dart 開發環境
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/Flutter/" rel="tag"># Flutter</a>
+              <a href="/tags/Dart/" rel="tag"># Dart</a>
           </div>
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/flutter/flutter_004/" rel="prev" title="Flutter 當我們黏在一起：Provider">
-                Flutter 當我們黏在一起：Provider <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/flutter/flutter_002/" rel="prev" title="本是同根生：Dart 開發環境">
+                  <i class="fa fa-chevron-left"></i> 本是同根生：Dart 開發環境
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/flutter/flutter_004/" rel="next" title="Flutter 當我們黏在一起：Provider">
+                  Flutter 當我們黏在一起：Provider <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-        </div>
-      
-
-      
-      
     </footer>
   </article>
+</div>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
 
 
-          </div>
-          
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Jonny Huang">
-          <p class="site-author-name" itemprop="name">Jonny Huang</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-           
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">66</span>
-                <span class="site-state-item-name">文章</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">分類</span>
-              
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">28</span>
-                <span class="site-state-item-name">標籤</span>
-              
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/Jonny-Huang" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.facebook.com/JonnyTW" target="_blank" title="Facebook">
-                  
-                    <i class="fa fa-fw fa-facebook-official"></i>
-                  
-                  Facebook
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:jonnyhuang@outlook.com" target="_blank" title="Email">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>
-                  
-                  Email
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-block">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/flutter.tw/" title="Flutter Taiwan" target="_blank">Flutter Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://www.facebook.com/groups/augularjs.tw/" title="Angular User Group Taiwan" target="_blank">Angular User Group Taiwan</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://forum.angular.tw/" title="Angular User Group Taiwan 論壇" target="_blank">Angular User Group Taiwan 論壇</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://github.com/onlinereadbook/bookangularjs" title="Angular 線上讀書會" target="_blank">Angular 線上讀書會</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立專案"><span class="nav-number">2.</span> <span class="nav-text">建立專案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#執行"><span class="nav-number">2.1.</span> <span class="nav-text">執行</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#測試一"><span class="nav-number">3.</span> <span class="nav-text">測試一</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Material-Icons"><span class="nav-number">3.1.</span> <span class="nav-text">Material Icons</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#測試二"><span class="nav-number">4.</span> <span class="nav-text">測試二</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#後記"><span class="nav-number">5.</span> <span class="nav-text">後記</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
+<div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-Jonny Huang"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
 </div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
-</div>
-
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -1083,27 +368,6 @@ class _Page1PageState extends State&lt;Page1Page&gt; {
 
 
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  <link rel="stylesheet" href="/lib/prettify/skins/tomorrow-night-eighties.css" type="text/css">
-<script src="/lib/prettify/prettify.js" type="text/javascript"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-      prettyPrint();
-  });
-</script>
 
 </body>
 </html>

@@ -7,10 +7,10 @@
 <meta name="generator" content="Hexo 5.4.0">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;favicon-&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
 <meta name="description" content="前言在上一篇 化繁為簡：02 後端篇(一) 中，我們最後製作一個可以添加內容安全策略 (Content Security Policy) 的 Middleware，其實還有很多事情我們可以集中到 Middleware 處理，例如操作紀錄，我們在 Controllers 內僅能了解功能面的存取狀況，但是拉到 Middleware 來紀錄時，就可以了解至整個作業面的資料存取是否合理，如果發現異常">
 <meta property="og:type" content="article">
 <meta property="og:title" content="化繁為簡：03 後端篇(二)驗證">
@@ -135,6 +135,8 @@
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jonny Huang"
+      src="/images/avatar.png">
   <p class="site-author-name" itemprop="name">Jonny Huang</p>
   <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
 </div>
@@ -157,6 +159,11 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:jonnyhuang@outlook.com" title="E-Mail → mailto:jonnyhuang@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
 
 
   <div class="links-of-blogroll site-overview-item animated">
@@ -168,10 +175,10 @@
           <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan</a>
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular Taiwan</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular User Group Taiwan 論壇</a>
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular Taiwan 論壇</a>
         </li>
     </ul>
   </div>
@@ -210,7 +217,7 @@
     <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/projects/08_feasibility_03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="Jonny Huang">
       <meta itemprop="description" content="Jonny Huang 的學習筆記">
     </span>

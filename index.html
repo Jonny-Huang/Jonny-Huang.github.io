@@ -220,7 +220,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新於</span>
-        <time title="修改時間：2021/06/25 11:59:07" itemprop="dateModified" datetime="2021-06-25T11:59:07+08:00">2021/06/25</time>
+        <time title="修改時間：2021/06/25 18:07:16" itemprop="dateModified" datetime="2021-06-25T18:07:16+08:00">2021/06/25</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -242,8 +242,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><img src="../../images/projects/feasibility/02/feasibility_02_001.png" alt="img">  </p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一篇 <a href="/projects/06_feasibility_02/">化繁為簡：02 後端篇(一)</a> 中，我們制定一些資料庫的設計規範，雖然會違背了正規理念，但是就開發過程或是後續維護其實對於沒經驗或是寫 Code 不嚴謹的程式設計師(沒錯!說的就是筆者自己)來說會比較友善，接下來我們開始摧殘後端，因為筆者以自己比較常使用 ASP.NET Core 來當範例如何建構一個好 debug 的後端(Web API)，因為網路上已有豐富的資源，所以我們只做重點說明。  </p>
+          <p><img src="/images/projects/feasibility/03/feasibility_03_001.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一篇 <a href="/projects/06_feasibility_02/">化繁為簡：02 後端篇(一)</a> 中，我們最後製作一個可以添加<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">內容安全策略</a> (<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">Content Security Policy</a>) 的 Middleware，其實還有很多事情我們可以集中到 Middleware 處理，例如操作紀錄，我們在 Controllers 內僅能了解功能面的存取狀況，但是拉到 Middleware 來紀錄時，就可以了解至整個作業面的資料存取是否合理，如果發現異常就可以加入還名單並終止使用者權限(中斷他的請求)，而這些集中化的紀錄還可以拿來分析優化系統，說了這些，我們今天卻不是要實作它，重要的是要說明我們為了加速開發而在弱化整個系統架構時，其實後續事可以逐步強化回來，讓系統回覆該有的嚴謹度，在某種程度上與<strong>敏捷式開發</strong>有著同樣的目標。</p>
+<p>雖著智慧手機的興起，大量的程式設計師透入 App 開發，以往系統間的資料交換首選幾乎都是以嚴謹聞名的 XML 格式，如今雖著 App 的迅速發展，有著輕量化的 JSON 資料格式已經幾乎取代了 XML 的地位，而隨著 JSON 的流行 <strong>JWT</strong>(<strong>JSON Web Tokens</strong>) 也變成很普及的身分驗證方式，今天我們就來<strong>弱化</strong> JWT。  </p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/projects/08_feasibility_03/#more" rel="contents">

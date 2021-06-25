@@ -7,8 +7,124 @@
 <li>Projects</li>
 </ul>
 <hr>
-<p><img src="../../images/projects/feasibility/02/feasibility_02_001.png" alt="img">  </p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一篇 <a href="/projects/06_feasibility_02/">化繁為簡：02 後端篇(一)</a> 中，我們制定一些資料庫的設計規範，雖然會違背了正規理念，但是就開發過程或是後續維護其實對於沒經驗或是寫 Code 不嚴謹的程式設計師(沒錯!說的就是筆者自己)來說會比較友善，接下來我們開始摧殘後端，因為筆者以自己比較常使用 ASP.NET Core 來當範例如何建構一個好 debug 的後端(Web API)，因為網路上已有豐富的資源，所以我們只做重點說明。  </p>
+<p><img src="/images/projects/feasibility/03/feasibility_03_001.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一篇 <a href="/projects/06_feasibility_02/">化繁為簡：02 後端篇(一)</a> 中，我們最後製作一個可以添加<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">內容安全策略</a> (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">Content Security Policy</a>) 的 Middleware，其實還有很多事情我們可以集中到 Middleware 處理，例如操作紀錄，我們在 Controllers 內僅能了解功能面的存取狀況，但是拉到 Middleware 來紀錄時，就可以了解至整個作業面的資料存取是否合理，如果發現異常就可以加入還名單並終止使用者權限(中斷他的請求)，而這些集中化的紀錄還可以拿來分析優化系統，說了這些，我們今天卻不是要實作它，重要的是要說明我們為了加速開發而在弱化整個系統架構時，其實後續事可以逐步強化回來，讓系統回覆該有的嚴謹度，在某種程度上與<strong>敏捷式開發</strong>有著同樣的目標。</p>
+<p>雖著智慧手機的興起，大量的程式設計師透入 App 開發，以往系統間的資料交換首選幾乎都是以嚴謹聞名的 XML 格式，如今雖著 App 的迅速發展，有著輕量化的 JSON 資料格式已經幾乎取代了 XML 的地位，而隨著 JSON 的流行 <strong>JWT</strong>(<strong>JSON Web Tokens</strong>) 也變成很普及的身分驗證方式，今天我們就來<strong>弱化</strong> JWT。  </p>
 <!-- more -->  
 
-<h1 id="JSON-Web-Tokens"><a href="#JSON-Web-Tokens" class="headerlink" title="JSON Web Tokens"></a>JSON Web Tokens</h1>
+<h1 id="JSON-Web-Tokens"><a href="#JSON-Web-Tokens" class="headerlink" title="JSON Web Tokens"></a>JSON Web Tokens</h1><p><strong>JWT</strong> 主要的流程就是當我們登入(驗證)成功時，系統會產生一組可以代表我們身分的 <strong>Token</strong>，後續發出請求(Request)時只要夾帶這組 <strong>Token</strong>，後端系統就可以藉此來驗證他的身分，這樣可以避免發出請求時需要夾帶敏感的身分資料。<br><img src="/images/projects/feasibility/03/feasibility_03_002.png" alt="img">  </p>
+<p>下面程式碼是一個簡單產生 Token 的作法，我們可在 Token 內夾帶一些其他資訊，例如：有效期限、有效簽證，但是使用者的敏感資料就避免存放。<br>{% codeblock AuthController.cs lang:cs %}<br>using System;<br>using System.IdentityModel.Tokens.Jwt;<br>using System.Security.Claims;<br>using System.Text;<br>using Microsoft.AspNetCore.Mvc;<br>using Microsoft.Extensions.Configuration;<br>using Microsoft.IdentityModel.Tokens;</p>
+<p>namespace WebAPI.Controllers<br>{<br>    [Route(“api/[controller]”)]<br>    [ApiController]<br>    public class AuthController : ControllerBase<br>    {<br>        private readonly IConfiguration Config;<br>        public AuthController(IConfiguration config)<br>        {<br>            Config = config;<br>        }</p>
+<pre><code>    //&#39;&#39;&#39;
+
+    private string BuildToken(Models.SysUser user, string tokenUid, string companyName)
+    {
+        var claims = new[]
+        {
+            new Claim(JwtRegisteredClaimNames.Sid, tokenUid),
+            new Claim(JwtRegisteredClaimNames.UniqueName, user.Name),
+            new Claim(JwtRegisteredClaimNames.Email, user.Email),
+            new Claim(JwtRegisteredClaimNames.FamilyName, companyName)
+        };
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Config[&quot;Tokens:IssuerSigningKey&quot;]));
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+
+        var token = new JwtSecurityToken(
+            issuer: Config[&quot;Tokens:ValidIssuer&quot;],
+            audience: Config[&quot;Tokens:ValidAudience&quot;],
+            claims: claims,
+            expires: DateTime.Now.AddDays(1),
+            signingCredentials: creds
+        );
+        return new JwtSecurityTokenHandler().WriteToken(token);
+    }
+
+}
+</code></pre>
+<p>}<br>{% endcodeblock %}  </p>
+<p>這常情況下我們會在 Token 存放可以代表使用者的資訊，例如：<code>User Id</code>，不過筆者會建立一個資料表(<code>log_login</code>)，每次登入驗證成功之後系統會產生一組 <strong>臨時ID</strong> 來替代使用者真實的 ID，並存放到 Token 的 <code>Sid</code> 內，如下圖，同一個使用者(user_uid) 每次登入存儲在 Token 內的 Sid 都會不同，多一個資料表就可以讓安全性再提高一點。<br><img src="/images/projects/feasibility/03/feasibility_03_003.png" alt="img">  </p>
+<blockquote>
+<p>筆者此系統是讓一個<strong>帳號</strong>(<strong>使用者 User</strong>)可以使多家<strong>公司</strong>(<strong>Company</strong>)，所以中間會多一個<strong>員工</strong>(<strong>Employee</strong>)來關聯。  </p>
+</blockquote>
+<h1 id="AuthorizationMiddleware"><a href="#AuthorizationMiddleware" class="headerlink" title="AuthorizationMiddleware"></a>AuthorizationMiddleware</h1><p>接下來我們要建立一個 Authorization 的中介軟體，其主要的功能是解析 JWT 的 Token，並將 Token 轉換回使用者，這樣後續的 <strong>Controller</strong> 就可以直接抓取使用者資訊。<br><img src="/images/projects/feasibility/03/feasibility_03_004.png" alt="img">  </p>
+<p><code>AuthorizationMiddleware.cs</code> 的主要程式碼如下，這邊我們並沒有去驗證 Token 的授權是否有效，而是僅有解析 Token 資料，跟 資料表 <code>log_login</code> 比對，如果有資料就順便把該員工資料填入到 <code>context.Items[&quot;emp&quot;]</code> 內，後面的程式就從此參數取得目前的請求是由哪一位員工發出。<br>{% codeblock AuthorizationMiddleware.cs lang:cs %}<br>using System;<br>using System.IdentityModel.Tokens.Jwt;<br>using System.Linq;<br>using System.Threading.Tasks;<br>using Microsoft.AspNetCore.Builder;<br>using Microsoft.AspNetCore.Http;</p>
+<p>namespace WebAPI<br>{<br>    public class AuthorizationMiddleware<br>    {<br>        private readonly RequestDelegate _next;<br>        public AuthorizationMiddleware(RequestDelegate next)<br>        {<br>            _next = next;<br>        }</p>
+<pre><code>    public async Task Invoke(HttpContext context, Models.CloudContext db)
+    {
+        if (!CheckAuthorization(context, db, out string message))
+        {
+            if (string.IsNullOrEmpty(message))
+                message = &quot;Unauthorized&quot;;
+
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            await context.Response.WriteAsync(message);
+            return;
+        }
+        await _next(context);
+    }
+
+    static bool CheckAuthorization(HttpContext context, Models.CloudContext db, out string message)
+    {
+        message = string.Empty;
+        string path = context.Request.Path.Value.ToLower();
+
+        switch (path)
+        {
+            case &quot;/api/auth/login&quot;:
+                return true;
+            default:
+                break;
+        }
+        if (context.Request.Headers.Keys.Contains(&quot;Authorization&quot;))
+        {
+            if (context.Request.Headers.Keys.Contains(&quot;Authorization&quot;))
+            {
+                string accesToken = context.Request.Headers[&quot;Authorization&quot;].ToString();
+                accesToken = accesToken.Replace(&quot;Bearer &quot;, string.Empty);
+                var handler = new JwtSecurityTokenHandler().ReadJwtToken(accesToken);
+                if (handler != null)
+                {
+                    var sidClaim = handler.Claims.FirstOrDefault(x =&gt; x.Type == JwtRegisteredClaimNames.Sid);
+                    if (sidClaim != null)
+                    {
+                        if (Guid.TryParse(sidClaim.Value, out Guid tokenUid) &amp;&amp; SetUserInfo(context, db, tokenUid))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        message = &quot;驗證錯誤，請重新登入&quot;;
+        return false;
+    }
+
+    static bool SetUserInfo(HttpContext context, Models.CloudContext db, Guid tokenUid)
+    {
+        var queryLog = db.LogLogins.FirstOrDefault(x =&gt; x.Uid == tokenUid);
+        if (queryLog == null)
+            return false;
+
+        var userInfo = new Models.SysEmployee
+        {
+            UserUid = queryLog.UserUid,
+            CompanyUid = queryLog.CompanyUid,
+            Email = string.Empty,
+            Uid = queryLog.EmployeeUid
+        };
+        context.Items[&quot;emp&quot;] = userInfo;
+        return true;
+    }
+}
+
+partial class Ext
+{
+    internal static IApplicationBuilder UseAuthorizationMiddleware(this IApplicationBuilder builder)
+    {
+        return builder.UseMiddleware&lt;AuthorizationMiddleware&gt;();
+    }
+}
+</code></pre>
+<p>}<br>{% endcodeblock %}  </p>
+<p>最後一樣在 <code>Startup.cs</code> 的 <code>Configure</code> 內添加 <code>app.UseAuthorizationMiddleware();</code>，因為沒有使用到內建的驗證機制，所以可以先移除 <code>app.UseAuthorization();</code>。<br><img src="/images/projects/feasibility/03/feasibility_03_005.png" alt="img">  </p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>在 <code>AuthorizationMiddleware</code> 內我們沒有驗證 Token 的授權證書，這看起來是十分不安全的，所以最好補上去，此外筆者還有另一種做法，就是透過資料表 <code>log_login</code> 來稽核，還記得一開始我們說可以增加<strong>操作紀錄</strong>的 Middleware 嗎？當我們發現異常操作時可以在 <code>log_login</code> 內將該<strong>臨時 ID</strong>給註銷調(<code>disable = true</code>)，這樣既使該 Token 仍然有時效，但是也無法再隊後端做任何存取。  </p>

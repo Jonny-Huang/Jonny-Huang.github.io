@@ -127,4 +127,7 @@ partial class Ext
 </code></pre>
 <p>}<br>{% endcodeblock %}  </p>
 <p>最後一樣在 <code>Startup.cs</code> 的 <code>Configure</code> 內添加 <code>app.UseAuthorizationMiddleware();</code>，因為沒有使用到內建的驗證機制，所以可以先移除 <code>app.UseAuthorization();</code>。<br><img src="/images/projects/feasibility/03/feasibility_03_005.png" alt="img">  </p>
-<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>在 <code>AuthorizationMiddleware</code> 內我們沒有驗證 Token 的授權證書，這看起來是十分不安全的，所以最好補上去，此外筆者還有另一種做法，就是透過資料表 <code>log_login</code> 來稽核，還記得一開始我們說可以增加<strong>操作紀錄</strong>的 Middleware 嗎？當我們發現異常操作時可以在 <code>log_login</code> 內將該<strong>臨時 ID</strong>給註銷調(<code>disable = true</code>)，這樣既使該 Token 仍然有時效，但是也無法再隊後端做任何存取。  </p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>在 <code>AuthorizationMiddleware</code> 內我們沒有驗證 Token 的授權證書，這看起來已經是捨棄 JTW 的稽核機制，筆者有另一種偷吃步的做法，就是將燈登入驗證的 Token 的資料也存放到資料表 <code>log_login</code> 內直接做字串比對。<br>對筆者來說 JTW 拿來做身分驗證是很實用的，但是不應該過度信任 JWT 的安全性，我們應該在它之外也加入其他安全稽核功能，還記得一開始我們說可以增加<strong>操作紀錄</strong>的 Middleware 嗎？當我們發現異常操作時可以在 <code>log_login</code> 內將該<strong>臨時 ID</strong>給註銷2掉(<code>disable = true</code>)，這樣既使該 Token 仍然有時效，但是也無法再對後端做任何存取。</p>
+<blockquote>
+<p>如果網站沒有其他軟硬體的 DDoS 防護機制，我們也可以在 Middleware 內加入基本的阻擋機制，針對不當存取的 IP 給予<strong>適當</strong>的封鎖。  </p>
+</blockquote>

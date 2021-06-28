@@ -33,7 +33,7 @@
 </blockquote>
 <p><img src="/images/projects/feasibility/02/feasibility_02_011.png" alt="img">  </p>
 <p>筆者以 Angular 程式來看，前端靜態檔案大概都剩下 1/3 不到。<br><img src="/images/projects/feasibility/02/feasibility_02_012.png" alt="img"><br>壓縮後批次傳輸每次 2000 筆資料大約只佔 150kB(這也會跟每筆資料量的多寡有關)。<br><img src="/images/projects/feasibility/02/feasibility_02_013.gif" alt="img">  </p>
-<h2 id="MemoryCache"><a href="#MemoryCache" class="headerlink" title="MemoryCache"></a>MemoryCache</h2><p>快取也是一個很實用的功能，如果你仔細看上面批次傳輸就可以發現第一次傳2000筆資料時會停頓一下，這是因為我們第一次就將所有資料從資料庫抓取出來並並<strong>快取</strong>(<strong>Cache</strong>)起來，後須資料就直接從記憶體快取中抓取，不須經過資料庫，可以說是用空間換取時間，使用前一樣需要先註冊到服務容器內。<br><img src="/images/projects/feasibility/02/feasibility_02_014.png" alt="img">  </p>
+<h2 id="MemoryCache"><a href="#MemoryCache" class="headerlink" title="MemoryCache"></a>MemoryCache</h2><p>快取也是一個很實用的功能，如果你仔細看上面批次傳輸就可以發現第一次傳2000筆資料時會停頓一下，這是因為我們第一次就將所有資料從資料庫抓取出來並且<strong>快取</strong>(<strong>Cache</strong>)起來，後須資料就直接從記憶體快取中抓取，不須經過資料庫，可以說是用空間換取時間，使用前一樣需要先註冊到服務容器內。<br><img src="/images/projects/feasibility/02/feasibility_02_014.png" alt="img">  </p>
 <h2 id="UseStaticFiles、UseDefaultFiles"><a href="#UseStaticFiles、UseDefaultFiles" class="headerlink" title="UseStaticFiles、UseDefaultFiles"></a>UseStaticFiles、UseDefaultFiles</h2><p><a href="https://docs.microsoft.com/zh-tw/aspnet/core/fundamentals/static-files?view=aspnetcore-5.0">UseStaticFiles</a> 提供網站靜態檔案(例如 <code>html</code>、<code>js</code>、<code>css</code>、<code>image</code>)的存放位置，預設是在專案下的 <code>wwwroot</code> 資料夾，因為這些檔案一般都是可以直接存取，所以正常都會放在路由(UseRouting)之前。  </p>
 <p><img src="/images/projects/feasibility/02/feasibility_02_018.png" alt="img">  </p>
 <blockquote>

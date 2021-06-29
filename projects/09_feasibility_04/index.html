@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="前言在上一篇 化繁為簡：03 後端篇(二)驗證 我們最後實作了登入驗證，這一篇我們開始談到資料交換，在 MVC(Model–view–controller) 架構下就是 Controller 了，因為筆者前端是採用 Angular 來實作，所以後端就會剩下 Web API，以資料交換為主。   談到 Controller 就很容易想到 商業邏輯層(BLL：Business Logic Lay">
+<meta property="og:type" content="article">
+<meta property="og:title" content="化繁為簡：04 後端篇(三)REST">
+<meta property="og:url" content="https://jonny-huang.github.io/projects/09_feasibility_04/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言在上一篇 化繁為簡：03 後端篇(二)驗證 我們最後實作了登入驗證，這一篇我們開始談到資料交換，在 MVC(Model–view–controller) 架構下就是 Controller 了，因為筆者前端是採用 Angular 來實作，所以後端就會剩下 Web API，以資料交換為主。   談到 Controller 就很容易想到 商業邏輯層(BLL：Business Logic Lay">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_001.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_002.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_003.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_004.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_005.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_007.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_006.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_008.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_009.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_010.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_011.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_012.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_013.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_015.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_014.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_016.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_017.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_018.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_019.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_020.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_021.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_022.png">
+<meta property="article:published_time" content="2021-06-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-29T05:29:14.284Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="Projects">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/projects/feasibility/04/feasibility_04_001.png">
+
+
+<link rel="canonical" href="https://jonny-huang.github.io/projects/09_feasibility_04/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;projects&#x2F;09_feasibility_04&#x2F;&quot;,&quot;path&quot;:&quot;projects&#x2F;09_feasibility_04&#x2F;&quot;,&quot;title&quot;:&quot;化繁為簡：04 後端篇(三)REST&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>化繁為簡：04 後端篇(三)REST | Jonny Huang 的學習筆記</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa fa-tags fa-fw"></i>欣雨露</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#REST"><span class="nav-number">2.</span> <span class="nav-text">REST</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ViewModel"><span class="nav-number">2.1.</span> <span class="nav-text">ViewModel</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-to-ViewModel"><span class="nav-number">2.1.1.</span> <span class="nav-text">Model to ViewModel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ViewModel-to-Model"><span class="nav-number">2.1.2.</span> <span class="nav-text">ViewModel to Model</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Valid"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">Valid</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Controller"><span class="nav-number">3.</span> <span class="nav-text">Controller</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%8C%E7%B4%80"><span class="nav-number">3.1.</span> <span class="nav-text">後紀</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jonny Huang"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:jonnyhuang@outlook.com" title="E-Mail → mailto:jonnyhuang@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/projects/09_feasibility_04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          化繁為簡：04 後端篇(三)REST
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/06/29 13:29:14" itemprop="dateModified" datetime="2021-06-29T13:29:14+08:00">2021/06/29</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Projects/" itemprop="url" rel="index"><span itemprop="name">Projects</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img src="/images/projects/feasibility/04/feasibility_04_001.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一篇 <a href="/projects/07_feasibility_03/">化繁為簡：03 後端篇(二)驗證</a> 我們最後實作了登入驗證，這一篇我們開始談到資料交換，在 <strong>MVC</strong>(<strong>Model–view–controller</strong>) 架構下就是 <strong>Controller</strong> 了，因為筆者前端是採用 Angular 來實作，所以後端就會剩下 Web API，以資料交換為主。  </p>
+<p>談到 <strong>Controller</strong> 就很容易想到 <strong>商業邏輯層</strong>(<strong>BLL：Business Logic Layer</strong>)及<strong>資料存取層</strong>(<strong>DAL：Data Access Layer</strong>)，甚至有更多的<strong>切割</strong>方式，藉由責任區分來降低<strong>耦合度</strong>，這邊我們反其道而行，全部塞到 <strong>Controller</strong> 內處理，我們的重點就擺在如何讓 <strong>Controller</strong> 方便維護。  </p>
+<span id="more"></span>  
+
+<h1 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h1><p>談到 Web API 就不得不說到 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-tw/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2">REST(Representational State Transfer)</a>，而 <strong>HTTP method</strong> 也就跟資料的 <strong>CRUD</strong> 畫上等號，接下來我們就透過 <strong>Controller</strong> 來建立 <strong>REST</strong> 服務。</p>
+<blockquote>
+<p>這邊不說 <strong>RESTful</strong> 最大原因是實務上，我們有時候還是會透過 <strong>Post</strong> 方式來做資料查詢，所以很難完全遵循規則。  </p>
+</blockquote>
+<p>建立 <strong>Controller</strong> 之前，我們先來思考一下基本的概念，姑且不論 <strong>Controller</strong> 內的邏輯處理，<strong>Controller</strong> 主要是在資料來源端與操作使用端之間做資料交換，為了讓程式能夠方便處理資料，我們會透過建立資料模型(Model)來當作資料容器，部論是在資料檢驗或是資料處理對程式而言都會變成容易且直覺化，而在 .NET 上最常用的就是透過 Entity Framework Core 來建立資料模型。  </p>
+<p>如果直接將資料庫的 Model 輸出給前端，這應該是最快速的做法，尤其 Visual Studio 本身也內建可以透過 Model 來建立 <strong>Controller</strong>，幾乎可以不用寫 Code 就可以一步到位，不過，實務上會這樣使用大部分應該是像 <strong>微服務</strong>(<strong>Microservices</strong>) 這類的後端中間層才有機會用到，正常不會將全部的資料都拋給最終用戶，所以習慣上我們還是會針對用戶端所需要的資料建立對應的模型(ViewModel)。  </p>
+<blockquote>
+<p>這一系列命名<strong>化繁為簡</strong>，我們應該在可控制範圍內合理的簡化，保留後續優化空間，或是直接將 <strong>Model</strong> 輸出當作用戶的資料來源，後續要再隔離開來所花的成本會不少，因此筆者建議建立 ViewModel 是不可省略的步驟。  </p>
+</blockquote>
+<p><img src="/images/projects/feasibility/04/feasibility_04_002.png" alt="img">  </p>
+<blockquote>
+<p>既然都將 BLL、DAL 捨棄了，這邊就不再討論 <strong>DTO</strong>(<strong>Data Transfer Object，數據傳輸對象</strong>)。  </p>
+</blockquote>
+<h2 id="ViewModel"><a href="#ViewModel" class="headerlink" title="ViewModel"></a>ViewModel</h2><p>我們在 <a href="/projects/06_feasibility_01/">化繁為簡：01 資料庫篇</a> 透過 Entity Framework Core 來建立 Model，接著我們開始來建立 ViewModel，我們以產品(SysProduct)資料表當作範例。  </p>
+<ul>
+<li><p>首先建立 <code>ProductViewModel.cs</code>，筆者習慣在專案內建立一個 <code>ViewModel</code> 資料夾統一存放，原則上所有類別會以 <code>ViewModel</code> 結尾。  </p>
+</li>
+<li><p>接著開啟產品的模型 <code>Models\SysProduct.cs</code>，並將所有的屬性都複製到 <code>ProductViewModel</code> 內。<br>  <img src="/images/projects/feasibility/04/feasibility_04_003.png" alt="img">  </p>
+<blockquote>
+<p>這邊筆者會將 namespace <code>WebAPI.ViewModels</code> 拆開，因為後面會再增加程式碼。  </p>
+</blockquote>
+</li>
+<li><p>因為一般介面設計會先以列表方式呈現，先把顯示重要欄位資料，然後再點選進入明細頁面觀看或編輯完整資料，所以我們建立一個產品的明細類別 <code>ProductDetailViewModel</code> 並繼承自 <code>ProductViewModel</code>，接著讓 <code>ProductViewModel</code> 只保留清單要顯示的欄位資料，並把明細頁面要額外顯示麼欄位從 <code>ProductViewModel</code> 移置 <code>ProductDetailViewModel</code>，<code>StateType</code> 與 <code>TypeUid</code> 因為在資料庫是以代碼形式儲存，所以我們另外增設 <code>State</code> 與 <code>Type</code> 來存放代碼所對應的名稱，<code>CreatedBy</code> 表示更新人員，一律由後端維護，前端為唯讀資訊，所以我們由代碼(Guid)變更成實際名字(string)，<code>CreatedDate</code> 也是唯讀資訊，如果系統沒有跨時區的問題，也可以改成文字格式(string)，統一由後端格式化。<br>  <img src="/images/projects/feasibility/04/feasibility_04_004.png" alt="img">  </p>
+</li>
+</ul>
+<h3 id="Model-to-ViewModel"><a href="#Model-to-ViewModel" class="headerlink" title="Model to ViewModel"></a>Model to ViewModel</h3><ul>
+<li><p>接著我們透過<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/dotnet/csharp/programming-guide/classes-and-structs/extension-methods">擴充方法</a>模式來增加一個由 <code>SysProduct</code> 轉換成 <code>ProductViewModel</code> 的函式 <code>ToView</code>，並將所需的資料以參數方式添加。<br>  <img src="/images/projects/feasibility/04/feasibility_04_005.png" alt="img">  </p>
+<blockquote>
+<p>筆者擴充方法主要會集中放在 <code>Ext</code> 這個 class 裡面，但是我們 透過 partial class 方式將 <code>ToView</code> 放到 <code>ViewModel</code> 同一個檔案內，當資料結構有變更時可以同時維護。<br><code>GetName</code> 也是一個擴充方法。<br><img src="/images/projects/feasibility/04/feasibility_04_007.png" alt="img"><br>因為所有以 <strong>數值</strong>(<strong>int</strong>) 為代碼的參數會統一存放在 <code>sys_type</code> 資料表內，而起實際資料筆數並不多，所以筆者不直接透過資料庫的 <code>join</code> 語法來串接資料，而是另外獨立去抓取符合的代碼資料，並以 <code>Dictionary&lt;T, string&gt;</code> 結構儲存。<br><img src="/images/projects/feasibility/04/feasibility_04_006.png" alt="img">  </p>
+</blockquote>
+</li>
+<li><p>做完清單的 Model 轉 ViewModel 功能後，接著我們在做明細頁面的 ViewModel (<code>ProductDetailViewModel</code>) 轉換功能 <code>ToDetailView</code>，主要邏輯與 <code>ToView</code> 雷同，差別在於額外欄位可能需要另外提供其他資訊，例如，需要 <code>CreatedBy</code> 所對應的 <code>SysEmployee</code>，這樣孻能知道資料維護人員的姓名，實際程式碼如下：<br>  <img src="/images/projects/feasibility/04/feasibility_04_008.png" alt="img">  </p>
+<blockquote>
+<p>這邊我們透過 <code>ToDateTimeString</code> 這個擴充方法來將 <code>DateTime</code> 轉換成字串格式。<br><img src="/images/projects/feasibility/04/feasibility_04_009.png" alt="img">  </p>
+</blockquote>
+</li>
+</ul>
+<h3 id="ViewModel-to-Model"><a href="#ViewModel-to-Model" class="headerlink" title="ViewModel to Model"></a>ViewModel to Model</h3><ul>
+<li><p>接著我們做反向功能，當用戶端填寫完資料(ViewModel)回傳到後端時，我們需要將它轉換成資料庫的模型(Model)，才能寫入資料庫，首先我們建立一個 <code>ToModel</code> 的擴充方法來處理資料<strong>新增</strong>時的轉換功能，程式碼如下：<br>  <img src="/images/projects/feasibility/04/feasibility_04_010.png" alt="img">  </p>
+<blockquote>
+<p>新增時，資料庫不會有這一筆資料(Model)，所以我們會產生一個全新的 Model。  </p>
+</blockquote>
+</li>
+<li><p>做完<strong>新增</strong>接著做<strong>修改</strong>，再新增一個擴充方法 <code>UpdateModel</code>，<strong>修改</strong>表示資料庫已經有這一筆資料(Model)，所以這個功能是將 ViewModel 的資料寫入到目前的 Model 內，程式碼如下：<br>  <img src="/images/projects/feasibility/04/feasibility_04_011.png" alt="img">  </p>
+</li>
+</ul>
+<h4 id="Valid"><a href="#Valid" class="headerlink" title="Valid"></a>Valid</h4><ul>
+<li>觀看 <code>ToModel</code> 與 <code>UpdateModel</code>，可以發現裡面的程式碼非常乾淨(簡單)，但是，如果用戶端傳送過來的資料不完整或是格式不符時不就會造成寫入到資料庫的資料也是有問題的，所以我們還需要一個負責驗證的擴充方法 <code>IsValid</code>，不只是檢驗資料格式是否正確，順便處理一些可由系統修正的資料，例如：單號統一轉大寫、前後去空白(使用者不小心按到)，程式碼如下：<br>  <img src="/images/projects/feasibility/04/feasibility_04_012.png" alt="img">  <blockquote>
+<p>可以看到 <code>IsValid</code> 被筆者放置在 Ext 類別的最前面，這是因為資料檢驗是很重要的一件事，當上方 ViewModel 修改時，筆者會馬上確是否需要調整驗證規則，避免後續處理發生異常，理論上，程式邏輯不應該因為<strong>確定性</strong>的資料而造成例外錯誤。<br>這邊我們又增加一個擴充方法 <code>StringTrim</code>，除了去空白之外，還會將 null 變成空字串，如果你有看過 <a href="/projects/06_feasibility_01/">化繁為簡：01 資料庫篇</a> 這邊文章，就可知道筆者原則上不允許欄位 Null。<br><img src="/images/projects/feasibility/04/feasibility_04_013.png" alt="img">  </p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>以上應該可以看出筆者命名規則有點奇怪，其實筆者命名方式是以 <strong>IntelliSense</strong> 方便搜尋為主，因為專案做多了常常會發現很多功能重複的擴充方法，這是 <code>partial class</code> 的優點同時也是缺點，因為程式不集中，所以有時候就會重複開發功能。  </p>
+</blockquote>
+<p><code>ProductViewModel.cs</code> 的完整程式碼如下：　　</p>
+<figure class="highlight cs"><figcaption><span>ProductViewModel.cs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> WebAPI.Models;</span><br><span class="line"><span class="keyword">using</span> WebAPI.ViewModels;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">WebAPI</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">namespace</span> <span class="title">ViewModels</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">ProductViewModel</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//public long Id &#123; get; set; &#125;</span></span><br><span class="line">            <span class="keyword">public</span> Guid Uid &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">            <span class="comment">//public bool Disable &#123; get; set; &#125;</span></span><br><span class="line">            <span class="comment">//public Guid CreatedBy &#123; get; set; &#125;</span></span><br><span class="line">            <span class="comment">//public DateTime CreatedDate &#123; get; set; &#125;</span></span><br><span class="line">            <span class="comment">//public Guid RemovedBy &#123; get; set; &#125;</span></span><br><span class="line">            <span class="comment">//public DateTime? RemovedDate &#123; get; set; &#125;</span></span><br><span class="line">            <span class="keyword">public</span> <span class="built_in">string</span> Notes &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">            <span class="comment">//public Guid CompanyUid &#123; get; set; &#125;</span></span><br><span class="line">            <span class="keyword">public</span> <span class="built_in">string</span> Code &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">            <span class="keyword">public</span> <span class="built_in">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">            <span class="comment">//public int StateType &#123; get; set; &#125;</span></span><br><span class="line">            <span class="keyword">public</span> <span class="built_in">string</span> Model &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">            <span class="comment">//public string Specification &#123; get; set; &#125;</span></span><br><span class="line">            <span class="keyword">public</span> Guid ImageUid &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">            <span class="comment">//public Guid TypeUid &#123; get; set; &#125;</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">public</span> <span class="built_in">string</span> Type &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">            <span class="keyword">public</span> <span class="built_in">string</span> State &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ProductDetailViewModel</span> : <span class="title">ProductViewModel</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">public</span> <span class="built_in">string</span> CreatedBy &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">            <span class="keyword">public</span> <span class="built_in">string</span> CreatedDate &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">            <span class="keyword">public</span> <span class="built_in">int</span> StateType &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">            <span class="keyword">public</span> Guid TypeUid &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">            <span class="keyword">public</span> <span class="built_in">string</span> Specification &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">            <span class="keyword">public</span> <span class="built_in">string</span> Unit &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">            <span class="keyword">public</span> <span class="built_in">decimal</span> UnitPrice &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">Ext</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="built_in">bool</span> <span class="title">IsValid</span>(<span class="params"><span class="keyword">this</span> ProductDetailViewModel view, <span class="keyword">out</span> <span class="built_in">string</span> message</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            message = <span class="built_in">string</span>.Empty;</span><br><span class="line">            <span class="keyword">if</span> (view == <span class="literal">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                message = <span class="string">&quot;資料不為空值&quot;</span>;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            view.Name = view.Name.StringTrim();</span><br><span class="line">            view.Code = view.Code.StringTrim().ToUpper();</span><br><span class="line">            view.Model = view.Model.StringTrim().ToUpper();</span><br><span class="line">            view.Specification = view.Specification.StringTrim();</span><br><span class="line">            view.Notes = view.Notes.StringTrim();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrEmpty(view.Code))</span><br><span class="line">            &#123;</span><br><span class="line">                message = <span class="string">&quot;產品編號不為空白&quot;</span>;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrEmpty(view.Name))</span><br><span class="line">            &#123;</span><br><span class="line">                message = <span class="string">&quot;產品名稱不為空白&quot;</span>;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> ProductViewModel <span class="title">ToView</span>(<span class="params"><span class="keyword">this</span> SysProduct model, </span></span></span><br><span class="line"><span class="params"><span class="function">            SysProductType type, IDictionary&lt;<span class="built_in">int</span>, <span class="built_in">string</span>&gt; stateType</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (model == <span class="literal">null</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> view = <span class="keyword">new</span> ProductViewModel</span><br><span class="line">            &#123;</span><br><span class="line">                Uid = model.Uid,</span><br><span class="line">                Name = model.Name,</span><br><span class="line">                Code = model.Code,</span><br><span class="line">                Type = type?.Name ?? <span class="built_in">string</span>.Empty,</span><br><span class="line">                State = stateType.GetName(model.StateType),</span><br><span class="line">                Model = model.Model,</span><br><span class="line">                ImageUid = model.ImageUid,</span><br><span class="line">                Notes = model.Notes</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="keyword">return</span> view;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> ProductDetailViewModel <span class="title">ToDetailView</span>(<span class="params"><span class="keyword">this</span> SysProduct model, </span></span></span><br><span class="line"><span class="params"><span class="function">            SysEmployee creator, SysProductType type, SysProductPrice price, IDictionary&lt;<span class="built_in">int</span>, <span class="built_in">string</span>&gt; stateType</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (model == <span class="literal">null</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> view = <span class="keyword">new</span> ProductDetailViewModel</span><br><span class="line">            &#123;</span><br><span class="line">                CreatedDate = model.CreatedDate.ToDateTimeString(),</span><br><span class="line">                CreatedBy = creator?.Name ?? <span class="string">&quot;SYSTEM&quot;</span>,</span><br><span class="line">                Notes = model.Notes,</span><br><span class="line">                Uid = model.Uid,</span><br><span class="line">                Name = model.Name,</span><br><span class="line">                Code = model.Code,</span><br><span class="line">                TypeUid = model.TypeUid,</span><br><span class="line">                Type = <span class="built_in">string</span>.Empty,</span><br><span class="line">                StateType = model.StateType,</span><br><span class="line">                State = stateType.GetName(model.StateType),</span><br><span class="line">                Model = model.Model,</span><br><span class="line">                Specification = model.Specification,</span><br><span class="line">                Unit = <span class="built_in">string</span>.Empty,</span><br><span class="line">                ImageUid = model.ImageUid,</span><br><span class="line">                UnitPrice = price?.Price ?? <span class="number">0</span></span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="keyword">if</span> (type != <span class="literal">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                view.Type = type.Name;</span><br><span class="line">                view.Unit = type.Unit;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> view;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> SysProduct <span class="title">ToModel</span>(<span class="params"><span class="keyword">this</span> ProductDetailViewModel view</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (view == <span class="literal">null</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> model = <span class="keyword">new</span> SysProduct</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//Uid = view.Uid,</span></span><br><span class="line">                Name = view.Name,</span><br><span class="line">                Code = view.Code,</span><br><span class="line">                TypeUid = view.TypeUid,</span><br><span class="line">                StateType = view.StateType,</span><br><span class="line">                Model = view.Model,</span><br><span class="line">                Specification = view.Specification,</span><br><span class="line">                ImageUid = view.ImageUid,</span><br><span class="line">                Notes = view.Notes</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="keyword">return</span> model;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">UpdateModel</span>(<span class="params"><span class="keyword">this</span> SysProduct model, ProductDetailViewModel view</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (model == <span class="literal">null</span> || view == <span class="literal">null</span>)</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">            model.Name = view.Name;</span><br><span class="line">            model.Code = view.Code;</span><br><span class="line">            model.TypeUid = view.TypeUid;</span><br><span class="line">            model.StateType = view.StateType;</span><br><span class="line">            model.Model = view.Model;</span><br><span class="line">            model.Specification = view.Specification;</span><br><span class="line">            model.Notes = view.Notes;</span><br><span class="line">            model.ImageUid = view.ImageUid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>  
+
+<h1 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h1><p>接下來開始建立 <strong>Controller</strong>，首先我們先構思基本規則：  </p>
+<ul>
+<li><p>收到 Request 後，先驗證身分。  </p>
+</li>
+<li><p>當需要新增或是修改時，需要先驗證 VidwModel 資料。  </p>
+<blockquote>
+<p><strong>查詢</strong>或是<strong>刪除</strong>單筆資料時，只會傳遞 <code>uid</code> 所以不需要特別驗證，因為 <code>uid</code> 是採用 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/dotnet/api/system.guid?view=net-5.0">Guid 結構</a>，當參數格式錯誤時 ASP.NET Core 就會因為匹配不到路由規則而被阻擋下來。  </p>
+</blockquote>
+</li>
+<li><p>雖然 HTTP 本身就有非常豐富的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Status">狀態碼</a>，但是對於用戶來說，其實他們部會想要知道後端發生甚麼問題，他們期望的資訊是告訴他們接下來要怎麼處理，所以這邊我們建立一個 <code>ResultViewModel</code>，它主要的功能就是在原始的傳遞資料上加入額外的訊息，程式碼如下：<br>  <img src="/images/projects/feasibility/04/feasibility_04_015.png" alt="img">  </p>
+<blockquote>
+<p><code>Data</code>：表示原始的傳遞資料。<br><code>Success</code>：表示此次請求結果為<strong>成功</strong>或<strong>失敗</strong>。<br><code>Message</code>：表示要傳遞給使用者知道的訊息，大部分會在需要顯示錯誤訊息時(<code>Success</code> 為 <code>false</code>)使用，當然有時候既使成功我們還會希望通知用戶一些訊息。<br>筆者檔案名稱(<code>_ResultViewModel.cs</code>)前面加上底線(<code>_</code>)其目的是為了檔案排須能夠靠前，同時也表示這是架構設計上使用到的程式碼，修改時影響層面會比較大。  </p>
+</blockquote>
+</li>
+</ul>
+<p>主要流程如下：<br><img src="/images/projects/feasibility/04/feasibility_04_014.png" alt="img">  </p>
+<p>當然如果你像筆者一樣偷懶，也可以把一些常用的方式打包成靜態方法，後續使用時可以少幾行程式碼，程式碼如下：  </p>
+<figure class="highlight cs"><figcaption><span>_ResultViewModel.cs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Web</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">namespace</span> <span class="title">ViewModels</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ResultViewModel</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">public</span> <span class="built_in">bool</span> Success &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">            <span class="keyword">public</span> <span class="built_in">string</span> Message &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">            <span class="keyword">public</span> <span class="built_in">object</span> Data &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">Lib</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">internal</span> <span class="built_in">enum</span> UpdateType : <span class="built_in">int</span></span><br><span class="line">        &#123;</span><br><span class="line">            Query = <span class="number">0</span>,</span><br><span class="line">            Add = <span class="number">1</span>,</span><br><span class="line">            Edit = <span class="number">2</span>,</span><br><span class="line">            Delete = <span class="number">3</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">internal</span> <span class="keyword">static</span> ViewModels.<span class="function">ResultViewModel <span class="title">QueryResult</span>(<span class="params"><span class="built_in">object</span> data = <span class="literal">null</span></span>)</span> =&gt; UpdateResult(UpdateType.Query, data);</span><br><span class="line">        <span class="keyword">internal</span> <span class="keyword">static</span> ViewModels.<span class="function">ResultViewModel <span class="title">RemoveResult</span>(<span class="params"><span class="built_in">object</span> data = <span class="literal">null</span></span>)</span> =&gt; UpdateResult(UpdateType.Delete, data);</span><br><span class="line">        <span class="keyword">internal</span> <span class="keyword">static</span> ViewModels.<span class="function">ResultViewModel <span class="title">UpdateResult</span>(<span class="params"><span class="built_in">bool</span> isAdd, <span class="built_in">object</span> data = <span class="literal">null</span></span>)</span> =&gt; UpdateResult(isAdd ? UpdateType.Add : UpdateType.Edit, data);</span><br><span class="line">        <span class="keyword">internal</span> <span class="keyword">static</span> ViewModels.<span class="function">ResultViewModel <span class="title">UpdateResult</span>(<span class="params">UpdateType type = UpdateType.Query, <span class="built_in">object</span> data = <span class="literal">null</span></span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">string</span> message;</span><br><span class="line">            <span class="keyword">switch</span> (type)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">case</span> UpdateType.Query:</span><br><span class="line">                    message = <span class="string">&quot;查詢成功&quot;</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> UpdateType.Add:</span><br><span class="line">                    message = <span class="string">&quot;新增成功&quot;</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> UpdateType.Edit:</span><br><span class="line">                    message = <span class="string">&quot;修改成功&quot;</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> UpdateType.Delete:</span><br><span class="line">                    message = <span class="string">&quot;刪除成功&quot;</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="literal">default</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ViewModels.ResultViewModel</span><br><span class="line">            &#123;</span><br><span class="line">                Success = <span class="literal">true</span>,</span><br><span class="line">                Message = message,</span><br><span class="line">                Data = data</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">internal</span> <span class="keyword">static</span> ViewModels.<span class="function">ResultViewModel <span class="title">MessageResult</span>(<span class="params"><span class="built_in">string</span> message, <span class="built_in">object</span> data = <span class="literal">null</span></span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ViewModels.ResultViewModel</span><br><span class="line">            &#123;</span><br><span class="line">                Success = <span class="literal">true</span>,</span><br><span class="line">                Message = message,</span><br><span class="line">                Data = data</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">internal</span> <span class="keyword">static</span> ViewModels.<span class="function">ResultViewModel <span class="title">BadResult</span>(<span class="params"><span class="built_in">string</span> message</span>)</span> =&gt; <span class="keyword">new</span> ViewModels.ResultViewModel</span><br><span class="line">        &#123;</span><br><span class="line">            Success = <span class="literal">false</span>,</span><br><span class="line">            Message = message,</span><br><span class="line">            Data = <span class="literal">null</span></span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">readonly</span> ViewModels.ResultViewModel EmptyResult = <span class="keyword">new</span> ViewModels.ResultViewModel</span><br><span class="line">        &#123;</span><br><span class="line">            Success = <span class="literal">true</span>,</span><br><span class="line">            Message = <span class="string">&quot;查無資料&quot;</span></span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  
+
+<blockquote>
+<p>筆者習慣將<strong>擴充放法</strong>(<strong>Extension Method</strong>)放在 <code>Ext</code> 類別，將<strong>靜態方法</strong>放在 <code>Lib</code> (<code>Library</code>)類別。</p>
+</blockquote>
+<p>有了初略的架構我們就開始建立 <code>ProductsController</code>，<a href="/projects/07_feasibility_03/">上一篇文章</a>我們建立一個 <strong>AuthorizationMiddleware</strong>，它會將 JWT 的 <code>Token</code> 轉換回 <code>SysEmployee</code> 並存放到 <code>context.Items[&quot;emp&quot;]</code> 內，所以我們建立一個 <code>IsAuthenticated</code> 方法來抓取 <code>emp</code> 資訊，以確認是否已通過驗證，並得使發送<strong>請求</strong>(<strong>Request</strong>)的使用者身分，程式碼如下：<br><img src="/images/projects/feasibility/04/feasibility_04_016.png" alt="img">  </p>
+<blockquote>
+<p>正常情況下身分驗證失敗的請求會被阻擋在 <strong>AuthorizationMiddleware</strong>，不會傳送到 Controller。  </p>
+</blockquote>
+<p>接著我們建立一個抓取單的方法，程式碼如下：<br><img src="/images/projects/feasibility/04/feasibility_04_017.png" alt="img">  </p>
+<p>除了清單之外，我們還需要可以抓取單筆<strong>詳細資訊</strong>(<code>DetailViewModel</code>)的方法，程式碼如下：<br><img src="/images/projects/feasibility/04/feasibility_04_018.png" alt="img">  </p>
+<blockquote>
+<p>這邊比較特別的是當<strong>查無資料</strong>時，我們是透過 <code>BadRequest</code> 回傳，主要是因為正常情況下這不應該會發生(使用者無法透過系統傳送一個不存在的 <code>uid</code> 到後端查詢)，除了是程式本身的 bug 之外，可能是受到攻擊或是爬蟲，因此這些非預期的錯誤(例如：身分、資料驗證失敗)，筆者都僅會透過 <code>BadRequest</code> 回傳，並緊緊帶入少量資訊。  </p>
+</blockquote>
+<p>接著我們做刪除的方法，因為我們是透過 <code>disable</code> 欄位來判定此筆資料是否還有效，而不是真的從資料庫刪除資料，所以刪除動作就是將 <code>Disable</code> 修改為 <code>true</code>，並紀錄刪除人員(<code>RemovedBy</code>)與刪除時間(<code>RemovedDate</code>)，程式碼如下：<br><img src="/images/projects/feasibility/04/feasibility_04_019.png" alt="img">  </p>
+<blockquote>
+<p>這邊我們增加一個 <code>TrySave</code> 的擴充方法，這樣可以減少 <code>try catch</code> 占用的程式行數。<br><img src="/images/projects/feasibility/04/feasibility_04_020.png" alt="img">  </p>
+</blockquote>
+<p>最後就是<strong>新增</strong>以及<strong>修改</strong>功能，因為差別就是所傳遞的 <code>Uid</code> 是否為 <code>Guid.Empty</code>，所以筆者合併成一個方法處理，首先除了驗證身分(<code>IsAuthenticated</code>)之外還要驗證 DetailViewModel 的資料(<code>IsValid</code>)，接著依照 <code>Uid</code> 來判斷是<strong>新增</strong>還是<strong>修改</strong>，新增就透過 <code>ToModel</code> 來建立新的 Model，修改就利用 <code>UpdateModel</code> 來更新資料，最後再修改基本欄位的資料(新增時會透過 <code>Guid.NewGuid()</code> 產生一組新的 <code>Uid</code>)，程式碼如下：<br><img src="/images/projects/feasibility/04/feasibility_04_021.png" alt="img">  </p>
+<blockquote>
+<p>這邊因為筆者範例的<strong>產品編號</strong>是由前端使用者輸入，所以會增加驗證編號是否重複。  </p>
+</blockquote>
+<p>以上我們舊版基本的 REST 功能給實作出來，完整的 <code>ProductsController.cs</code> 程式碼如下：  </p>
+<figure class="highlight cs"><figcaption><span>ProductsController.cs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> Microsoft.AspNetCore.Http;</span><br><span class="line"><span class="keyword">using</span> Microsoft.AspNetCore.Mvc;</span><br><span class="line"><span class="keyword">using</span> Microsoft.EntityFrameworkCore;</span><br><span class="line"><span class="keyword">using</span> WebAPI.Models;</span><br><span class="line"><span class="keyword">using</span> DetailView = WebAPI.ViewModels.ProductDetailViewModel;</span><br><span class="line"><span class="keyword">using</span> Model = WebAPI.Models.SysProduct;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">WebAPI.Controllers</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ProductsController</span> : <span class="title">ControllerBase</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">protected</span> <span class="keyword">readonly</span> CloudContext DB;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> DbSet&lt;Model&gt; table;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">ProductsController</span>(<span class="params">CloudContext db</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            DB = db;</span><br><span class="line">            table = DB.SysProducts;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="built_in">bool</span> <span class="title">IsAuthenticated</span>(<span class="params"><span class="keyword">out</span> SysEmployee userInfo, <span class="keyword">out</span> <span class="built_in">string</span> message</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            message = <span class="built_in">string</span>.Empty;</span><br><span class="line">            <span class="keyword">if</span> (HttpContext?.Items != <span class="literal">null</span> &amp;&amp; HttpContext.Items.ContainsKey(<span class="string">&quot;emp&quot;</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                userInfo = HttpContext.Items[<span class="string">&quot;emp&quot;</span>] <span class="keyword">as</span> SysEmployee;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                userInfo = <span class="keyword">new</span> SysEmployee</span><br><span class="line">                &#123;</span><br><span class="line">                    CompanyUid = Guid.Empty,</span><br><span class="line">                    UserUid = Guid.Empty,</span><br><span class="line">                    Email = <span class="built_in">string</span>.Empty</span><br><span class="line">                &#125;;</span><br><span class="line">                message = <span class="string">&quot;查無使用者資訊&quot;</span>;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        [<span class="meta">HttpGet</span>]</span><br><span class="line">        <span class="function"><span class="keyword">public</span> IActionResult <span class="title">Get</span>(<span class="params"></span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!IsAuthenticated(<span class="keyword">out</span> SysEmployee userInfo, <span class="keyword">out</span> <span class="built_in">string</span> message))</span><br><span class="line">                <span class="keyword">return</span> BadRequest(message);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> stateType = (</span><br><span class="line">                    <span class="keyword">from</span> f <span class="keyword">in</span> DB.SysTypes</span><br><span class="line">                    <span class="keyword">where</span> f.GroupName == <span class="string">&quot;product_state_type&quot;</span></span><br><span class="line">                    <span class="keyword">orderby</span> f.<span class="function">Sort</span></span><br><span class="line"><span class="function">                    <span class="keyword">select</span> <span class="keyword">new</span> <span class="title">KeyValuePair</span>&lt;<span class="title">int</span>, <span class="title">string</span>&gt;(<span class="params">f.Value, f.Name</span>)</span></span><br><span class="line"><span class="function">                ).<span class="title">ToDictionary</span>(<span class="params">x =&gt; x.Key, x =&gt; x.Value</span>)</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> data = (</span><br><span class="line">                <span class="keyword">from</span> f <span class="keyword">in</span> table</span><br><span class="line">                <span class="keyword">join</span> type <span class="keyword">in</span> DB.SysProductTypes <span class="keyword">on</span> f.TypeUid <span class="keyword">equals</span> type.Uid <span class="keyword">into</span> ps1</span><br><span class="line">                <span class="keyword">from</span> type <span class="keyword">in</span> ps1.DefaultIfEmpty()</span><br><span class="line">                <span class="keyword">where</span> f.CompanyUid == userInfo.CompanyUid</span><br><span class="line">                <span class="keyword">orderby</span> f.Code, f.Name</span><br><span class="line">                <span class="keyword">select</span> f.ToView(type, stateType)</span><br><span class="line">            ).ToList();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (!data.Any())</span><br><span class="line">                <span class="keyword">return</span> Ok(Lib.EmptyResult);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> Ok(Lib.QueryResult(data));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        [<span class="meta">HttpGet(<span class="meta-string">&quot;&#123;uid&#125;&quot;</span>)</span>]</span><br><span class="line">        <span class="function"><span class="keyword">public</span> IActionResult <span class="title">Get</span>(<span class="params">Guid uid</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!IsAuthenticated(<span class="keyword">out</span> SysEmployee userInfo, <span class="keyword">out</span> <span class="built_in">string</span> message))</span><br><span class="line">                <span class="keyword">return</span> BadRequest(message);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> stateType = (</span><br><span class="line">                    <span class="keyword">from</span> f <span class="keyword">in</span> DB.SysTypes</span><br><span class="line">                    <span class="keyword">where</span> f.GroupName == <span class="string">&quot;product_state_type&quot;</span></span><br><span class="line">                    <span class="keyword">orderby</span> f.<span class="function">Sort</span></span><br><span class="line"><span class="function">                    <span class="keyword">select</span> <span class="keyword">new</span> <span class="title">KeyValuePair</span>&lt;<span class="title">int</span>, <span class="title">string</span>&gt;(<span class="params">f.Value, f.Name</span>)</span></span><br><span class="line"><span class="function">                ).<span class="title">ToDictionary</span>(<span class="params">x =&gt; x.Key, x =&gt; x.Value</span>)</span>;</span><br><span class="line"></span><br><span class="line">            DateTime dt = DateTime.Today;</span><br><span class="line">            <span class="keyword">var</span> price = (</span><br><span class="line">               <span class="keyword">from</span> f <span class="keyword">in</span> DB.SysProductPrices</span><br><span class="line">               <span class="keyword">where</span> f.ProductUid == uid &amp;&amp; f.CompanyUid == userInfo.CompanyUid</span><br><span class="line">                   &amp;&amp; f.BeginDate &lt;= dt &amp;&amp; (f.HasEnd == <span class="literal">false</span> || (f.HasEnd == <span class="literal">true</span> &amp;&amp; f.EndDate.Value &gt; dt))</span><br><span class="line">               <span class="keyword">orderby</span> f.Id <span class="keyword">descending</span></span><br><span class="line">               <span class="keyword">select</span> f</span><br><span class="line">           ).FirstOrDefault();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> detail = (</span><br><span class="line">               <span class="keyword">from</span> f <span class="keyword">in</span> table</span><br><span class="line">               <span class="keyword">join</span> type <span class="keyword">in</span> DB.SysProductTypes <span class="keyword">on</span> f.TypeUid <span class="keyword">equals</span> type.Uid <span class="keyword">into</span> ps1</span><br><span class="line">               <span class="keyword">from</span> type <span class="keyword">in</span> ps1.DefaultIfEmpty()</span><br><span class="line">               <span class="keyword">join</span> creator <span class="keyword">in</span> DB.SysEmployees <span class="keyword">on</span> f.CreatedBy <span class="keyword">equals</span> creator.Uid <span class="keyword">into</span> ps2</span><br><span class="line">               <span class="keyword">from</span> creator <span class="keyword">in</span> ps2.DefaultIfEmpty()</span><br><span class="line">               <span class="keyword">where</span> f.Uid == uid &amp;&amp; f.CompanyUid == userInfo.CompanyUid</span><br><span class="line">               <span class="keyword">select</span> f.ToDetailView(creator, type, price, stateType)</span><br><span class="line">           ).FirstOrDefault();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (detail == <span class="literal">null</span>)</span><br><span class="line">                <span class="keyword">return</span> BadRequest(<span class="string">&quot;查無資料&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> Ok(Lib.QueryResult(detail));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        [<span class="meta">HttpDelete(<span class="meta-string">&quot;&#123;uid&#125;&quot;</span>)</span>]</span><br><span class="line">        <span class="function"><span class="keyword">public</span> IActionResult <span class="title">Delete</span>(<span class="params">Guid uid</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!IsAuthenticated(<span class="keyword">out</span> SysEmployee userInfo, <span class="keyword">out</span> <span class="built_in">string</span> message))</span><br><span class="line">                <span class="keyword">return</span> BadRequest(message);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> model = table.FirstOrDefault(x =&gt; x.Uid == uid &amp;&amp; x.CompanyUid == userInfo.CompanyUid);</span><br><span class="line">            <span class="keyword">if</span> (model == <span class="literal">null</span>)</span><br><span class="line">                <span class="keyword">return</span> BadRequest(<span class="string">&quot;查無資料&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> order = DB.SysOrderItems.FirstOrDefault(x =&gt; x.ProductUid == model.Uid &amp;&amp; x.CompanyUid == userInfo.CompanyUid);</span><br><span class="line">            <span class="keyword">if</span> (order != <span class="literal">null</span>)</span><br><span class="line">                <span class="keyword">return</span> BadRequest(<span class="string">&quot;此產品有關聯的訂單，無法刪除&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> quotation = DB.SysQuotationItems.FirstOrDefault(x =&gt; x.ProductUid == model.Uid &amp;&amp; x.CompanyUid == userInfo.CompanyUid);</span><br><span class="line">            <span class="keyword">if</span> (quotation != <span class="literal">null</span>)</span><br><span class="line">                <span class="keyword">return</span> BadRequest(<span class="string">&quot;此產品有關聯的報價單，無法刪除&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Delete</span></span><br><span class="line">            model.RemovedBy = userInfo.Uid;</span><br><span class="line">            model.RemovedDate = DateTime.Now;</span><br><span class="line">            model.Disable = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (!DB.TrySave(<span class="keyword">out</span> message))</span><br><span class="line">                <span class="keyword">return</span> BadRequest(message);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> Ok(Lib.RemoveResult());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        [<span class="meta">HttpPost</span>]</span><br><span class="line">        <span class="function"><span class="keyword">public</span> IActionResult <span class="title">Post</span>(<span class="params">[FromBody] DetailView view</span>)</span> =&gt; Put(view);</span><br><span class="line">        [<span class="meta">HttpPut</span>]</span><br><span class="line">        <span class="function"><span class="keyword">public</span> IActionResult <span class="title">Put</span>(<span class="params">[FromBody] DetailView view</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!IsAuthenticated(<span class="keyword">out</span> SysEmployee userInfo, <span class="keyword">out</span> <span class="built_in">string</span> message) || !view.IsValid(<span class="keyword">out</span> message))</span><br><span class="line">                <span class="keyword">return</span> BadRequest(message);</span><br><span class="line"></span><br><span class="line">            Model model = <span class="literal">null</span>;</span><br><span class="line">            <span class="built_in">bool</span> isAdd = view.Uid == Guid.Empty;</span><br><span class="line">            <span class="keyword">if</span> (isAdd)</span><br><span class="line">            &#123;</span><br><span class="line">                model = view.ToModel();</span><br><span class="line">                <span class="keyword">if</span> (!<span class="built_in">string</span>.IsNullOrEmpty(model.Code))</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">var</span> queryOldProduct = table.FirstOrDefault(x =&gt; x.Code == model.Code &amp;&amp; x.CompanyUid == userInfo.CompanyUid);</span><br><span class="line">                    <span class="keyword">if</span> (queryOldProduct != <span class="literal">null</span>)</span><br><span class="line">                        <span class="keyword">return</span> BadRequest(<span class="string">&quot;產品編號重複&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// Add</span></span><br><span class="line">                model.Uid = Guid.NewGuid();</span><br><span class="line">                model.CompanyUid = userInfo.CompanyUid;</span><br><span class="line">                model.CreatedBy = userInfo.Uid;</span><br><span class="line">                model.CreatedDate = DateTime.Now;</span><br><span class="line">                model.Disable = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">if</span> (model.Notes == <span class="literal">null</span>)</span><br><span class="line">                    model.Notes = <span class="built_in">string</span>.Empty;</span><br><span class="line"></span><br><span class="line">                table.Add(model);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                model = table.FirstOrDefault(x =&gt; x.Uid == view.Uid &amp;&amp; x.CompanyUid == userInfo.CompanyUid);</span><br><span class="line">                <span class="keyword">if</span> (model == <span class="literal">null</span>)</span><br><span class="line">                    <span class="keyword">return</span> BadRequest(<span class="string">&quot;查無資料&quot;</span>);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (!<span class="built_in">string</span>.IsNullOrEmpty(view.Code) &amp;&amp; view.Code != model.Code)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">var</span> queryOldProduct = table.FirstOrDefault(x =&gt; x.Code == view.Code &amp;&amp; x.CompanyUid == userInfo.CompanyUid);</span><br><span class="line">                    <span class="keyword">if</span> (queryOldProduct != <span class="literal">null</span> &amp;&amp; model.Uid != queryOldProduct.Uid)</span><br><span class="line">                        <span class="keyword">return</span> BadRequest(<span class="string">&quot;產品編號重複&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                model.UpdateModel(view);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// Update</span></span><br><span class="line">                model.CreatedBy = userInfo.Uid;</span><br><span class="line">                model.CreatedDate = DateTime.Now;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (!DB.TrySave(<span class="keyword">out</span> message))</span><br><span class="line">                <span class="keyword">return</span> BadRequest(message);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> Ok(Lib.UpdateResult(isAdd, model.Uid));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  
+
+<blockquote>
+<p>下面是筆者範例的資料表基本欄位，因為會擁有多家公司資料，所以查詢條件會添加 <code>CompanyUid == userInfo.CompanyUid</code>。<br><img src="/images/projects/feasibility/04/feasibility_04_022.png" alt="img">  </p>
+</blockquote>
+<h2 id="後紀"><a href="#後紀" class="headerlink" title="後紀"></a>後紀</h2><p>在 <code>Model</code> 與 <code>ViewModel</code> 的轉換應該不少人認為可以透過 <a target="_blank" rel="noopener" href="https://automapper.org/">AutoMapper</a> 來處理會更加簡潔，筆者透過自行處理主要是為了避免欄位屬性變更時忘記修改，在開發過程或是編譯時我們就可以透過警告訊息來提醒我們。  </p>
+<p>如果再進一步思考，可以發現當我們 <code>Model</code> 或 <code>ViewModel</code> 是欄位變更時，原則上只要修改 <code>ViewModel</code> 檔案內的程式碼，除非是 <code>ViewModel</code> 所增加的欄位其資料來源在既有資料外，否則就不需要調整 <code>Controller</code> 程式碼，相對的，<code>Controller</code> 只要專注在理資料邏輯處理，不需要理會資料轉換方式。  </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Projects/" rel="tag"># Projects</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/projects/08_feasibility_03/" rel="prev" title="化繁為簡：03 後端篇(二)驗證">
+                  <i class="fa fa-chevron-left"></i> 化繁為簡：03 後端篇(二)驗證
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

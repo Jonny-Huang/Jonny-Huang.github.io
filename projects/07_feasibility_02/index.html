@@ -52,7 +52,7 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_023.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/02/feasibility_02_024.png">
 <meta property="article:published_time" content="2021-06-22T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-06-25T23:42:12.667Z">
+<meta property="article:modified_time" content="2021-06-28T04:04:41.346Z">
 <meta property="article:author" content="Jonny Huang">
 <meta property="article:tag" content="Projects">
 <meta name="twitter:card" content="summary">
@@ -164,7 +164,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -256,7 +256,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新於</span>
-        <time title="修改時間：2021/06/26 07:42:12" itemprop="dateModified" datetime="2021-06-26T07:42:12+08:00">2021/06/26</time>
+        <time title="修改時間：2021/06/28 12:04:41" itemprop="dateModified" datetime="2021-06-28T12:04:41+08:00">2021/06/28</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -290,9 +290,9 @@
 <p>接下來我們來加入一些常用的服務與中介軟體：  </p>
 <h2 id="AddDbContext"><a href="#AddDbContext" class="headerlink" title="AddDbContext"></a>AddDbContext</h2><p>大部分的專案都來不開始用資料庫來存放資料，在 .NET 環境下我們使用它內建的 ORM 技術 Entity Framework Core 來存取資料，我們依所使用的資料庫安裝對應的套件，像筆者資料庫習慣使用 PostgresQL，就必須安裝 <code>Npgsql.EntityFrameworkCore.PostgreSQL</code>以及 <code>Microsoft.EntityFrameworkCore.Design</code>。<br><img src="/images/projects/feasibility/02/feasibility_02_004.png" alt="img">  </p>
 <blockquote>
-<p>如果你使用 VS Code 開發，那你可以自己在 <code>WebAPI.csproj</code> 內添加套件。<br><img src="/images/projects/feasibility/02/feasibility_02_006.png" alt="img"><br>或者是透過 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=aliasadidev.nugetpackagemanagergui">Nuget Package Manager GUI</a> 這個視覺化延伸模組來安裝套件。<br><img src="/images/projects/feasibility/02/feasibility_02_007.png" alt="img">  </p>
+<p>如果你使用 VS Code 開發，那你可以自己在 <code>WebAPI.csproj</code> 內添加套件。<br><img src="/images/projects/feasibility/02/feasibility_02_006.png" alt="img"><br>或者是透過 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=aliasadidev.nugetpackagemanagergui">Nuget Package Manager GUI</a> 這個視覺化延伸模組來安裝套件。<br><img src="/images/projects/feasibility/02/feasibility_02_007.png" alt="img"><br>如果使用其他資料庫可參考：<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/ef/core/providers/?tabs=dotnet-core-cli">Database Providers</a> 了解可以安裝哪一個 <strong>Provider</strong> 來支援。  </p>
 </blockquote>
-<p>接著我們在 <code>appsettings.json</code> 內建立資料庫連線字串(這裡取名為 <code>CloudConnection</code>)。<br>再來透過 SDK 工具來建立資料模型，指令如下(<code>CloudContext</code> 指資料庫模型的名稱)：<br><code>dotnet ef dbcontext scaffold Name=CloudConnection Npgsql.EntityFrameworkCore.PostgreSQL -o Models -c CloudContext -f</code><br><img src="/images/projects/feasibility/02/feasibility_02_005.png" alt="img">  </p>
+<p>接著我們在 <code>appsettings.json</code> 內建立資料庫連線字串(這裡取名為 <code>CloudConnection</code>)。<br>再來透過 SDK 工具(安裝完 .NET SDK 後可透過指令 <code>dotnet tool install --global dotnet-ef</code> 安裝 EF 工具)來建立資料模型，指令如下(<code>CloudContext</code> 指資料庫模型的名稱)：<br><code>dotnet ef dbcontext scaffold Name=CloudConnection Npgsql.EntityFrameworkCore.PostgreSQL -o Models -c CloudContext -f</code><br><img src="/images/projects/feasibility/02/feasibility_02_005.png" alt="img">  </p>
 <blockquote>
 <p>我們也可以直接使用<strong>連線參數</strong>當作參數，但是系統會發出警告，並要求我們移除(在資料模型物件的 <code>OnConfiguring</code> 函式內)。<br><code>dotnet ef dbcontext scaffold &quot;Host=192.168.10.10;Database=cloud;Pooling=true;Username=postgres;Password=P@ssw0rd&quot; Npgsql.EntityFrameworkCore.PostgreSQL -o Models -c CloudContext -f</code><br><img src="/images/projects/feasibility/02/feasibility_02_008.png" alt="img"><br>後續資料庫欄位有異動時可以再透過指令更新，只是要注意的是更新前SDK會先行編譯專案，如果編譯失敗就會終止，因此要先確保程式碼的完整性，或是先將未完成的程式碼註解起來。<br>如果資料表從資料庫移除，SDK並不會同步移除對應的資料表模型，我們須自行手動除，這是為了避免還有存取此資料表的程式碼未調整，若直接移除資料表模型會導致整個專案出錯而無法編譯。  </p>
 </blockquote>

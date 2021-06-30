@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="前言在上一篇 化繁為簡：05 後端篇(四)Controller 我們建立一個 DataController，只要繼承自它的 Controller 就會具有基本的 REST API，接下來我們開始建立前端程式並利用後端 Controller 所提供的 API 來維護資料。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="化繁為簡：06 前端篇(一)">
+<meta property="og:url" content="https://jonny-huang.github.io/projects/11_feasibility_06/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言在上一篇 化繁為簡：05 後端篇(四)Controller 我們建立一個 DataController，只要繼承自它的 Controller 就會具有基本的 REST API，接下來我們開始建立前端程式並利用後端 Controller 所提供的 API 來維護資料。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/06/feasibility_06_001.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/06/feasibility_06_002.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/06/feasibility_06_003.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/06/feasibility_06_004.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/06/feasibility_06_005.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/06/feasibility_06_006.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/06/feasibility_06_008.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/06/feasibility_06_007.gif">
+<meta property="og:image" content="https://jonny-huang.github.io/images/projects/feasibility/06/feasibility_06_009.png">
+<meta property="article:published_time" content="2021-06-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-30T10:14:31.212Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="Projects">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/projects/feasibility/06/feasibility_06_001.png">
+
+
+<link rel="canonical" href="https://jonny-huang.github.io/projects/11_feasibility_06/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;projects&#x2F;11_feasibility_06&#x2F;&quot;,&quot;path&quot;:&quot;projects&#x2F;11_feasibility_06&#x2F;&quot;,&quot;title&quot;:&quot;化繁為簡：06 前端篇(一)&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>化繁為簡：06 前端篇(一) | Jonny Huang 的學習筆記</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa fa-tags fa-fw"></i>欣雨露</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Message"><span class="nav-number">2.</span> <span class="nav-text">Message</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Http"><span class="nav-number">3.</span> <span class="nav-text">Http</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">3.1.</span> <span class="nav-text">Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HttpService"><span class="nav-number">3.2.</span> <span class="nav-text">HttpService</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON-Web-Token"><span class="nav-number">3.3.</span> <span class="nav-text">JSON Web Token</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%8C%E8%A8%98"><span class="nav-number">4.</span> <span class="nav-text">後記</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jonny Huang"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:jonnyhuang@outlook.com" title="E-Mail → mailto:jonnyhuang@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/projects/11_feasibility_06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          化繁為簡：06 前端篇(一)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/06/30 18:14:31" itemprop="dateModified" datetime="2021-06-30T18:14:31+08:00">2021/06/30</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Projects/" itemprop="url" rel="index"><span itemprop="name">Projects</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img src="/images/projects/feasibility/06/feasibility_06_001.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一篇 <a href="/projects/10_feasibility_05/">化繁為簡：05 後端篇(四)Controller</a> 我們建立一個 <code>DataController</code>，只要繼承自它的 Controller 就會具有基本的 REST API，接下來我們開始建立前端程式並利用後端 Controller 所提供的 API 來維護資料。  </p>
+<p><img src="/images/projects/feasibility/06/feasibility_06_002.png" alt="img">  </p>
+<span id="more"></span>  
+
+<h1 id="Message"><a href="#Message" class="headerlink" title="Message"></a>Message</h1><p>前端部分筆者會以 <a target="_blank" rel="noopener" href="https://angular.tw/">Angular</a> 來當作範例，介面部分則是使用 <a target="_blank" rel="noopener" href="https://www.primefaces.org/primeng/showcase/#/">PrimeNG</a> 所提供的 Component 來實作，接下來就向後端一樣，要讓開發快速，我們就要將一些繁瑣的事情盡量先完成，後續開發所要做的事情就會越少。  </p>
+<p>如下圖，<strong>訊息方塊</strong>與<strong>確認對話方塊</strong>應該絕大部分系統都會使用到，更進一步的說法是在系統內絕大多數的作業都會用到，如果每個作業都要自己實作這個功能，就會發現一個專案內會重複做很多次。<br><img src="/images/projects/feasibility/06/feasibility_06_003.gif" alt="img"><br><img src="/images/projects/feasibility/06/feasibility_06_004.gif" alt="img">  </p>
+<p>所以我們可以將這類的 Component 建置在最外層(一般是 <code>AppComponent</code>內)，然後透過 <code>service</code> 來控制，這樣整個專案就能夠共用，我們這邊使用了 <a target="_blank" rel="noopener" href="https://www.primefaces.org/primeng/showcase/#/toast">Toast</a> 與 <a target="_blank" rel="noopener" href="https://www.primefaces.org/primeng/showcase/#/confirmdialog">ConfirmDialog</a>，將它們放置在<strong>路由插座</strong>(<code>router-outlet</code>)下方，比較特別的是這 2 個 Component 有提供 <code>key</code> 屬性，如果專案內有多組相同的 Component，使用時可以透過指定 <code>key</code> 來決定由哪一個 Component 處理。<br><img src="/images/projects/feasibility/06/feasibility_06_005.png" alt="img">  </p>
+<p>從官方文件上來看， PrimeNG 建立了 2 個服務(<code>MessageService</code> 與 <code>ConfirmationService</code>)可以控制它們，所以我們建立一個 <code>MessageService</code> 來負責訊息處理，程式碼如下：  </p>
+<figure class="highlight ts"><figcaption><span>message.service.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Confirmation, ConfirmationService, MessageService <span class="keyword">as</span> MsgService &#125; <span class="keyword">from</span> <span class="string">&#x27;primeng/api&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>(&#123; <span class="attr">providedIn</span>: <span class="string">&#x27;root&#x27;</span> &#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageService</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">private</span> msgService: MsgService,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">private</span> confirmation: ConfirmationService</span>)</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line">  showInfoToast(message: <span class="built_in">string</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.msgService.clear(<span class="string">&#x27;toast&#x27;</span>);</span><br><span class="line">    <span class="built_in">this</span>.msgService.add(&#123;</span><br><span class="line">      <span class="attr">key</span>: <span class="string">&#x27;toast&#x27;</span>,</span><br><span class="line">      <span class="attr">severity</span>: <span class="string">&#x27;info&#x27;</span>,</span><br><span class="line">      <span class="attr">summary</span>: <span class="string">&#x27;訊息&#x27;</span>,</span><br><span class="line">      <span class="attr">detail</span>: message,</span><br><span class="line">      <span class="attr">life</span>: <span class="number">1000</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  showWarnToast(message: <span class="built_in">string</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.msgService.clear(<span class="string">&#x27;toast&#x27;</span>);</span><br><span class="line">    <span class="built_in">this</span>.msgService.add(&#123;</span><br><span class="line">      <span class="attr">key</span>: <span class="string">&#x27;toast&#x27;</span>,</span><br><span class="line">      <span class="attr">severity</span>: <span class="string">&#x27;warn&#x27;</span>,</span><br><span class="line">      <span class="attr">summary</span>: <span class="string">&#x27;警告&#x27;</span>,</span><br><span class="line">      <span class="attr">detail</span>: message,</span><br><span class="line">      <span class="attr">life</span>: <span class="number">3000</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  showErrorToast(message: <span class="built_in">string</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.msgService.clear(<span class="string">&#x27;toast&#x27;</span>);</span><br><span class="line">    <span class="built_in">this</span>.msgService.add(&#123;</span><br><span class="line">      <span class="attr">key</span>: <span class="string">&#x27;toast&#x27;</span>,</span><br><span class="line">      <span class="attr">severity</span>: <span class="string">&#x27;error&#x27;</span>,</span><br><span class="line">      <span class="attr">summary</span>: <span class="string">&#x27;錯誤&#x27;</span>,</span><br><span class="line">      <span class="attr">detail</span>: message,</span><br><span class="line">      <span class="attr">life</span>: <span class="number">5000</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  showSuccessToast(message: <span class="built_in">string</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.msgService.clear(<span class="string">&#x27;toast&#x27;</span>);</span><br><span class="line">    <span class="built_in">this</span>.msgService.add(&#123;</span><br><span class="line">      <span class="attr">key</span>: <span class="string">&#x27;toast&#x27;</span>,</span><br><span class="line">      <span class="attr">severity</span>: <span class="string">&#x27;success&#x27;</span>,</span><br><span class="line">      <span class="attr">summary</span>: <span class="string">&#x27;成功&#x27;</span>,</span><br><span class="line">      <span class="attr">detail</span>: message,</span><br><span class="line">      <span class="attr">life</span>: <span class="number">1000</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  confirm(confirmation: Confirmation): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!confirmation) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    confirmation.key = <span class="string">&#x27;confirm&#x27;</span>;</span><br><span class="line">    <span class="built_in">this</span>.confirmation.confirm(confirmation);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  
+
+<blockquote>
+<p>因為撞衫了，所以將官方的 <code>MessageService</code> 另外取一個別名 <code>MsgService</code>。<br>Component 可以透過建構式宣告來取得 <code>MessageService</code> 使用，Component 就不需要特別處理訊息效果。<br><img src="/images/projects/feasibility/06/feasibility_06_006.png" alt="img">  </p>
+</blockquote>
+<h1 id="Http"><a href="#Http" class="headerlink" title="Http"></a>Http</h1><p>還記得我們在後端建立 Controller 時，有特別建立一個 <code>ResultViewModel</code>，它主要在原來傳遞的資料之外再加入訊息資訊，現在我們要做的就是透過 <code>MessageService</code> 來呈現這些訊息。<br><img src="/images/projects/feasibility/06/feasibility_06_008.png" alt="img">  </p>
+<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>首先我們需要依照後端 <code>ViewModel</code> 來建立對應的 <code>Model</code>，這樣才能透過 TypeSript 來檢核資料格式，如果使用 <a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VS Code</a> 來開發，我們可以透過一些延伸模組協助我們直接將 C# 程式碼轉換成 TypeSript，筆者是透過 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=rafaelsalguero.csharp2ts">CSharp2TS</a> 來做轉換，如下圖操作，我們先建立一個 <code>api-result.ts</code> 檔案，再將 <code>ResultViewModel</code> 程式碼複製過去並全選，接著開啟<strong>啟命令選擇</strong>(<code>ctrl</code>+<code>shift</code>+<code>p</code>)，選擇 <code>Convert C# To TypeScript</code> 就可以轉換，接著同樣步驟來建立 <code>QueryParameters</code> 的 Model。<br><img src="/images/projects/feasibility/06/feasibility_06_007.gif" alt="img">  </p>
+<blockquote>
+<p>筆者習慣會移除字尾的 <code>ViewModel</code>，因為 <code>Result</code> 比較不明確，所以改名為 <code>ApiResult</code>，表示由 REST API 回傳的結果。  </p>
+</blockquote>
+<h2 id="HttpService"><a href="#HttpService" class="headerlink" title="HttpService"></a>HttpService</h2><p>以先前概念一樣，如果每次請求都要自己處理 <code>ApiResult</code>，那就會顯得有點笨重，所以我們在建立一個 <code>HttpService</code>，將 <code>HttpClient</code> 打包起來，處理後端傳遞過來的訊息，並將資料轉換成原本的格式，程式碼如下：  </p>
+<figure class="highlight ts"><figcaption><span>http.service.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HttpClient &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/common/http&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; tap, map &#125; <span class="keyword">from</span> <span class="string">&#x27;rxjs/operators&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Observable, &#125; <span class="keyword">from</span> <span class="string">&#x27;rxjs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; MessageService &#125; <span class="keyword">from</span> <span class="string">&#x27;./message.service&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ApiResult, QueryParameters &#125; <span class="keyword">from</span> <span class="string">&#x27;../models/models&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>(&#123; <span class="attr">providedIn</span>: <span class="string">&#x27;root&#x27;</span> &#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">private</span> http: HttpClient,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">private</span> message: MessageService</span></span></span><br><span class="line"><span class="params"><span class="function">  </span>)</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> showMessage(result: ApiResult, title = <span class="string">&#x27;查詢&#x27;</span>, showMsg = <span class="literal">true</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!result || !showMsg) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (result.success) &#123;</span><br><span class="line">      <span class="keyword">if</span> (result.message) &#123;</span><br><span class="line">        <span class="built_in">this</span>.message.showInfoToast(result.message);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.message.showInfoToast(<span class="string">`<span class="subst">$&#123;title&#125;</span>成功`</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (result.message) &#123;</span><br><span class="line">        <span class="built_in">this</span>.message.showErrorToast(result.message);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.message.showErrorToast(<span class="string">`<span class="subst">$&#123;title&#125;</span>失敗`</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getData&lt;T&gt;(optName: <span class="built_in">string</span>, <span class="attr">uid</span>: <span class="built_in">string</span>, showMsg = <span class="literal">true</span>): Observable&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> url = <span class="string">`/api/<span class="subst">$&#123;optName&#125;</span>/<span class="subst">$&#123;uid&#125;</span>`</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.http.get&lt;ApiResult&gt;(url).pipe(</span><br><span class="line">      tap(<span class="function"><span class="params">value</span> =&gt;</span> <span class="built_in">this</span>.showMessage(value, <span class="string">&#x27;查詢&#x27;</span>, showMsg)),</span><br><span class="line">      map(<span class="function"><span class="params">value</span> =&gt;</span> value.data <span class="keyword">as</span> T)</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getAllData&lt;T&gt;(optName: <span class="built_in">string</span>, showMsg = <span class="literal">true</span>): Observable&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> url = <span class="string">`/api/<span class="subst">$&#123;optName&#125;</span>`</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.http.get&lt;ApiResult&gt;(url).pipe(</span><br><span class="line">      tap(<span class="function"><span class="params">value</span> =&gt;</span> <span class="built_in">this</span>.showMessage(value, <span class="string">&#x27;查詢&#x27;</span>, showMsg)),</span><br><span class="line">      map(<span class="function"><span class="params">value</span> =&gt;</span> value.data <span class="keyword">as</span> T)</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getCount(optName: <span class="built_in">string</span>): Observable&lt;<span class="built_in">number</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> url = <span class="string">`/api/<span class="subst">$&#123;optName&#125;</span>/count`</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.http.get&lt;ApiResult&gt;(url).pipe(</span><br><span class="line">      map(<span class="function"><span class="params">value</span> =&gt;</span> value.data <span class="keyword">as</span> <span class="built_in">number</span>)</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getBatchData&lt;T&gt;(optName: <span class="built_in">string</span>, <span class="attr">query</span>: QueryParameters): Observable&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> url = <span class="string">`/api/<span class="subst">$&#123;optName&#125;</span>/batch?pageNumber=<span class="subst">$&#123;query.pageNumber&#125;</span>&amp;pageSize=<span class="subst">$&#123;query.pageSize&#125;</span>&amp;filter=<span class="subst">$&#123;query.filter&#125;</span>`</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.http.get&lt;ApiResult&gt;(url).pipe(</span><br><span class="line">      map(<span class="function"><span class="params">value</span> =&gt;</span> value.data <span class="keyword">as</span> T)</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  postData(optName: <span class="built_in">string</span>, <span class="attr">model</span>: <span class="built_in">any</span>, showMsg = <span class="literal">true</span>): Observable&lt;ApiResult&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> url = <span class="string">`/api/<span class="subst">$&#123;optName&#125;</span>`</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.http.post&lt;ApiResult&gt;(url, model).pipe(</span><br><span class="line">      tap(<span class="function"><span class="params">value</span> =&gt;</span> <span class="built_in">this</span>.showMessage(value, <span class="string">&#x27;新增&#x27;</span>, showMsg))</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  putData(optName: <span class="built_in">string</span>, <span class="attr">model</span>: <span class="built_in">any</span>, showMsg = <span class="literal">true</span>): Observable&lt;ApiResult&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> url = <span class="string">`/api/<span class="subst">$&#123;optName&#125;</span>`</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.http.put&lt;ApiResult&gt;(url, model).pipe(</span><br><span class="line">      tap(<span class="function"><span class="params">value</span> =&gt;</span> <span class="built_in">this</span>.showMessage(value, <span class="string">&#x27;更新&#x27;</span>, showMsg))</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  deleteData(optName: <span class="built_in">string</span>, <span class="attr">model</span>: <span class="built_in">any</span>, showMsg = <span class="literal">true</span>): Observable&lt;ApiResult&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> url = <span class="string">`/api/<span class="subst">$&#123;optName&#125;</span>/<span class="subst">$&#123;model.uid&#125;</span>`</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.http.delete&lt;ApiResult&gt;(url).pipe(</span><br><span class="line">      tap(<span class="function"><span class="params">value</span> =&gt;</span> <span class="built_in">this</span>.showMessage(value, <span class="string">&#x27;刪除&#x27;</span>, showMsg))</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  
+
+<blockquote>
+<p>我們透過 <a target="_blank" rel="noopener" href="https://rxjs.dev/">RxJS</a> 的 <code>tap</code> 來處理訊息，透過 <code>map</code> 來將 <code>ApiResult</code> 轉換回原始的資料，並增加 <code>showMsg</code> 參數，讓我們可以自行決定使否要顯示訊息，<code>postData</code>、<code>putData</code>、<code>deleteData</code> 的回傳型別其實也可以改成 <code>boolean</code>，筆者保留 <code>ApiResult</code> 是因為其實後端可以透過 <code>data</code> 屬性再夾帶其他資料，例如：當資料新增成功時，筆者會讓後端回傳時，再 <code>data</code> 夾帶這筆資料的 <code>uid</code>，這樣我們可以立即透過 <code>uid</code> 來查詢資料，確認寫入資料是否正確。  </p>
+</blockquote>
+<h2 id="JSON-Web-Token"><a href="#JSON-Web-Token" class="headerlink" title="JSON Web Token"></a>JSON Web Token</h2><p>過去筆者其實會在 <code>HttpService</code> 的 HTTP 請求方法內加入 RxJS 的 <code>catchError</code> 來處理例外錯誤，Angular 本身提供了攔截器(<a target="_blank" rel="noopener" href="https://angular.tw/api/common/http/HttpInterceptor">HttpInterceptor</a>)功能，讓我們可以對所有的 Http 請求加工，因此我們將 JWT 的 <code>Token</code> 參數與後端回傳的錯誤處理都利用 HttpInterceptor 來處理。  </p>
+<p>JWT 主要是我們在身分驗證(登入)成功之後，後端會派發一個 <code>Token</code> 當作我們的身份令牌，後續我們可以在發出 HTTP 請求時，將 <code>Token</code> 夾帶在 <code>Authorization</code> 這個 Header 內，後就可以藉此來驗證請求者的身分。  </p>
+<p>接下來我們來建立一個 <code>api.interceptor.ts</code>，程式碼如下：  </p>
+<figure class="highlight ts"><figcaption><span>http.api.interceptor.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; SettingsService &#125; <span class="keyword">from</span> <span class="string">&#x27;./settings.service&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  HttpRequest,</span><br><span class="line">  HttpHandler,</span><br><span class="line">  HttpEvent,</span><br><span class="line">  HttpInterceptor,</span><br><span class="line">  HttpErrorResponse</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/common/http&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Observable &#125; <span class="keyword">from</span> <span class="string">&#x27;rxjs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; MessageService &#125; <span class="keyword">from</span> <span class="string">&#x27;./message.service&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; throwError &#125; <span class="keyword">from</span> <span class="string">&#x27;rxjs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; catchError &#125; <span class="keyword">from</span> <span class="string">&#x27;rxjs/operators&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">ApiInterceptor</span> <span class="title">implements</span> <span class="title">HttpInterceptor</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">private</span> settings: SettingsService,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">private</span> message: MessageService</span>)</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line">  intercept(request: HttpRequest&lt;unknown&gt;, next: HttpHandler): Observable&lt;HttpEvent&lt;unknown&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> token = <span class="built_in">this</span>.settings.getToken();</span><br><span class="line">    <span class="keyword">if</span> (token) &#123;</span><br><span class="line">      <span class="keyword">const</span> req = request.clone(&#123; <span class="attr">setHeaders</span>: &#123; <span class="attr">Authorization</span>: <span class="string">`Bearer <span class="subst">$&#123;token&#125;</span>`</span> &#125; &#125;);</span><br><span class="line">      <span class="keyword">return</span> next.handle(req).pipe(</span><br><span class="line">        catchError(</span><br><span class="line">          <span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">this</span>.handleError(error, <span class="string">&#x27;查詢失敗&#x27;</span>)</span><br><span class="line">        )</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> next.handle(request);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> handleError(error: HttpErrorResponse, message = <span class="string">&#x27;&#x27;</span>): Observable&lt;<span class="built_in">never</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (error.error <span class="keyword">instanceof</span> ErrorEvent) &#123;</span><br><span class="line">      message = error.error.message;</span><br><span class="line">      <span class="built_in">this</span>.message.showErrorToast(message);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> status = error.status;</span><br><span class="line">      <span class="keyword">if</span> (message) &#123;</span><br><span class="line">        message = <span class="string">`(<span class="subst">$&#123;status&#125;</span>) `</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">switch</span> (status) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">400</span>:</span><br><span class="line">          <span class="keyword">if</span> (error.error) &#123;</span><br><span class="line">            message = error.error;</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            message += <span class="string">&#x27;伺服器無法處理請求&#x27;</span>;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">401</span>:</span><br><span class="line">          message += <span class="string">&#x27;身分認證已失效，請先登出再重新登入&#x27;</span>;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">403</span>:</span><br><span class="line">          message += <span class="string">&#x27;未授權存取&#x27;</span>;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">404</span>:</span><br><span class="line">          message += <span class="string">&#x27;找不到資源&#x27;</span>;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">408</span>:</span><br><span class="line">          message += <span class="string">&#x27;伺服器連線逾時&#x27;</span>;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">500</span>:</span><br><span class="line">          message += <span class="string">&#x27;伺服器端錯誤&#x27;</span>;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">502</span>:</span><br><span class="line">          message += <span class="string">&#x27;無法連線到伺服器&#x27;</span>;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">503</span>:</span><br><span class="line">          message += <span class="string">&#x27;伺服器端暫時無法處理請求&#x27;</span>;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">504</span>:</span><br><span class="line">          message += <span class="string">&#x27;無法連線到伺服器&#x27;</span>;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">          <span class="keyword">if</span> (!error.error) &#123;</span><br><span class="line">            message += error.error;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">this</span>.message.showErrorToast(message);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(message);</span><br><span class="line">    <span class="keyword">return</span> throwError(message);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  
+
+<blockquote>
+<p><code>getToken</code> 只是存取 <code>SettingsService</code> 上的 <code>tokenValue</code>，它是儲存 JTW 回傳的 <code>Token</code>，筆者會將系統參數由 <code>SettingsService</code> 來處理。<br><img src="/images/projects/feasibility/06/feasibility_06_009.png" alt="img"><br>這邊發生錯誤時筆者會利用 <code>console.log(message);</code> 來讓瀏覽器記錄以方便開發過程測試，實際上線後是否仍允許紀錄，我們還是要考量後端回傳的錯誤訊息內容來評斷，例如包含 SQL 的錯誤資訊，那就應該變免(事實上應該在後端就要排除掉)。  </p>
+</blockquote>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>有開發過 Angular 的人可能就會發現到，透過 <code>HttpService</code> 包裝之後，我們對後端發送任何請求之後，只要專注在<strong>資料</strong>本身，不論是錯誤處理或是訊息顯示都已經被處理了，而且我們在 <code>HttpService</code> 內的 Get 處理都已經順便還原回原始資料了，這樣 Component 就可專注在介面的資料呈現與操作互動上。  </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Projects/" rel="tag"># Projects</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/projects/10_feasibility_05/" rel="prev" title="化繁為簡：05 後端篇(四)Controller">
+                  <i class="fa fa-chevron-left"></i> 化繁為簡：05 後端篇(四)Controller
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

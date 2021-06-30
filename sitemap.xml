@@ -536,13 +536,6 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/tags/ionic/</loc>
-    <lastmod>2021-06-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jonny-huang.github.io/tags/Docker/</loc>
     <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
@@ -550,7 +543,21 @@
   </url>
   
   <url>
+    <loc>https://jonny-huang.github.io/tags/Ionic/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jonny-huang.github.io/tags/Flutter/</loc>
+    <lastmod>2021-06-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/tags/ionic/</loc>
     <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -565,13 +572,6 @@
   
   <url>
     <loc>https://jonny-huang.github.io/tags/Quotes/</loc>
-    <lastmod>2021-06-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/tags/Ionic/</loc>
     <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -627,14 +627,14 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/tags/UI/</loc>
+    <loc>https://jonny-huang.github.io/tags/NgModule/</loc>
     <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/tags/NgModule/</loc>
+    <loc>https://jonny-huang.github.io/tags/UI/</loc>
     <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -655,14 +655,14 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/tags/Service/</loc>
+    <loc>https://jonny-huang.github.io/tags/Binding/</loc>
     <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/tags/Binding/</loc>
+    <loc>https://jonny-huang.github.io/tags/Service/</loc>
     <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -683,14 +683,14 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/tags/compodoc/</loc>
+    <loc>https://jonny-huang.github.io/tags/Nest/</loc>
     <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/tags/Nest/</loc>
+    <loc>https://jonny-huang.github.io/tags/compodoc/</loc>
     <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -720,14 +720,14 @@
 
   
   <url>
-    <loc>https://jonny-huang.github.io/categories/Training/</loc>
+    <loc>https://jonny-huang.github.io/categories/Flutter/</loc>
     <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/categories/Flutter/</loc>
+    <loc>https://jonny-huang.github.io/categories/Training/</loc>
     <lastmod>2021-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

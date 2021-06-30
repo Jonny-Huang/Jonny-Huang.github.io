@@ -44,7 +44,7 @@
 <p>{% endcodeblock %}</p>
 <p>在過去我們需要將 service 註冊到 NgModule 內的 providers 屬性才可使用，現在裝飾器 Injectable 增加了 providedIn 屬性，預設值為 <code>root</code> 表示該 service 會自動被註冊到根模組(AppModule)內，這應該算是單例模式的實作，讓整個專案共用同一個 service。  </p>
 <p>接著修改 GlobalesService，內容如下：<br>{% codeblock globales.service.ts lang:ts %}<br>import { Injectable } from ‘@angular/core’;<br>import { BehaviorSubject } from ‘rxjs’;<br>import { User } from ‘./models/user’;</p>
-<p>@Injectable({<br>  providedIn: ‘root’<br>})<br>export class GlobalesService {<br>  private guestUser: User = {<br>    email: ‘<a href="mailto:&#103;&#117;&#x65;&#x73;&#116;&#x40;&#x61;&#98;&#99;&#x2e;&#99;&#111;&#x6d;">&#103;&#117;&#x65;&#x73;&#116;&#x40;&#x61;&#98;&#99;&#x2e;&#99;&#111;&#x6d;</a>‘,<br>    name: ‘Guest’,<br>    isLogin: false<br>  };</p>
+<p>@Injectable({<br>  providedIn: ‘root’<br>})<br>export class GlobalesService {<br>  private guestUser: User = {<br>    email: ‘<a href="mailto:&#x67;&#x75;&#x65;&#x73;&#x74;&#64;&#97;&#x62;&#99;&#x2e;&#x63;&#x6f;&#x6d;">&#x67;&#x75;&#x65;&#x73;&#x74;&#64;&#97;&#x62;&#99;&#x2e;&#x63;&#x6f;&#x6d;</a>‘,<br>    name: ‘Guest’,<br>    isLogin: false<br>  };</p>
 <p>  subUser$ = new BehaviorSubject<User>(this.guestUser);</p>
 <p>  login(email: string, password: string): void {<br>    const newUser: User = {<br>      email: email,<br>      name: ‘Employee’,<br>      isLogin: true<br>    };<br>    this.subUser$.next(newUser);<br>  }</p>
 <p>  logout(): void {<br>    this.subUser$.next(this.guestUser);<br>  }<br>}</p>

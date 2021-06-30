@@ -1,0 +1,492 @@
+<hr>
+<p>title: 化繁為簡：04 後端篇(三)REST<br>date: 2021-06-28<br>categories: Projects<br>keywords:</p>
+<ul>
+<li>Projects</li>
+<li>Angular</li>
+<li>.Net<br>tags:</li>
+<li>Projects</li>
+</ul>
+<hr>
+<p><img src="/images/projects/feasibility/04/feasibility_04_001.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一篇 <a href="/projects/08_feasibility_03/">化繁為簡：03 後端篇(二)驗證</a> 我們最後實作了登入驗證，這一篇我們開始談到資料交換，在 <strong>MVC</strong>(<strong>Model–view–controller</strong>) 架構下就是 <strong>Controller</strong> 了，因為筆者前端是採用 Angular 來實作，所以後端就會剩下 Web API，以資料交換為主。  </p>
+<p>談到 <strong>Controller</strong> 就很容易想到 <strong>商業邏輯層</strong>(<strong>BLL：Business Logic Layer</strong>)及<strong>資料存取層</strong>(<strong>DAL：Data Access Layer</strong>)，甚至有更多的<strong>切割</strong>方式，藉由責任區分來降低<strong>耦合度</strong>，這邊我們反其道而行，全部塞到 <strong>Controller</strong> 內處理，我們的重點就擺在如何讓 <strong>Controller</strong> 方便維護。  </p>
+<!-- more -->  
+
+<h1 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h1><p>談到 Web API 就不得不說到 <a href="https://zh.wikipedia.org/zh-tw/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2">REST(Representational State Transfer)</a>，而 <strong>HTTP method</strong> 也就跟資料的 <strong>CRUD</strong> 畫上等號，接下來我們就透過 <strong>Controller</strong> 來建立 <strong>REST</strong> 服務。</p>
+<blockquote>
+<p>這邊不說 <strong>RESTful</strong> 最大原因是實務上，我們有時候還是會透過 <strong>Post</strong> 方式來做資料查詢，所以很難完全遵循規則。  </p>
+</blockquote>
+<p>建立 <strong>Controller</strong> 之前，我們先來思考一下基本的概念，姑且不論 <strong>Controller</strong> 內的邏輯處理，<strong>Controller</strong> 主要是在資料來源端與操作使用端之間做資料交換，為了讓程式能夠方便處理資料，我們會透過建立資料模型(Model)來當作資料容器，部論是在資料檢驗或是資料處理對程式而言都會變成容易且直覺化，而在 .NET 上最常用的就是透過 Entity Framework Core 來建立資料模型。  </p>
+<p>如果直接將資料庫的 Model 輸出給前端，這應該是最快速的做法，尤其 Visual Studio 本身也內建可以透過 Model 來建立 <strong>Controller</strong>，幾乎可以不用寫 Code 就可以一步到位，不過，實務上會這樣使用大部分應該是像 <strong>微服務</strong>(<strong>Microservices</strong>) 這類的後端中間層才有機會用到，正常不會將全部的資料都拋給最終用戶，所以習慣上我們還是會針對用戶端所需要的資料建立對應的模型(ViewModel)。  </p>
+<blockquote>
+<p>這一系列命名<strong>化繁為簡</strong>，我們應該在可控制範圍內合理的簡化，保留後續優化空間，或是直接將 <strong>Model</strong> 輸出當作用戶的資料來源，後續要再隔離開來所花的成本會不少，因此筆者建議建立 ViewModel 是不可省略的步驟。  </p>
+</blockquote>
+<p><img src="/images/projects/feasibility/04/feasibility_04_002.png" alt="img">  </p>
+<blockquote>
+<p>既然都將 BLL、DAL 捨棄了，這邊就不再討論 <strong>DTO</strong>(<strong>Data Transfer Object，數據傳輸對象</strong>)。  </p>
+</blockquote>
+<h2 id="ViewModel"><a href="#ViewModel" class="headerlink" title="ViewModel"></a>ViewModel</h2><p>我們在 <a href="/projects/06_feasibility_01/">化繁為簡：01 資料庫篇</a> 透過 Entity Framework Core 來建立 Model，接著我們開始來建立 ViewModel，我們以產品(SysProduct)資料表當作範例。  </p>
+<ul>
+<li><p>首先建立 <code>ProductViewModel.cs</code>，筆者習慣在專案內建立一個 <code>ViewModel</code> 資料夾統一存放，原則上所有類別會以 <code>ViewModel</code> 結尾。  </p>
+</li>
+<li><p>接著開啟產品的模型 <code>Models\SysProduct.cs</code>，並將所有的屬性都複製到 <code>ProductViewModel</code> 內。<br>  <img src="/images/projects/feasibility/04/feasibility_04_003.png" alt="img">  </p>
+<blockquote>
+<p>這邊筆者會將 namespace <code>WebAPI.ViewModels</code> 拆開，因為後面會再增加程式碼。  </p>
+</blockquote>
+</li>
+<li><p>因為一般介面設計會先以列表方式呈現，先把顯示重要欄位資料，然後再點選進入明細頁面觀看或編輯完整資料，所以我們建立一個產品的明細類別 <code>ProductDetailViewModel</code> 並繼承自 <code>ProductViewModel</code>，接著讓 <code>ProductViewModel</code> 只保留清單要顯示的欄位資料，並把明細頁面要額外顯示麼欄位從 <code>ProductViewModel</code> 移置 <code>ProductDetailViewModel</code>，<code>StateType</code> 與 <code>TypeUid</code> 因為在資料庫是以代碼形式儲存，所以我們另外增設 <code>State</code> 與 <code>Type</code> 來存放代碼所對應的名稱，<code>CreatedBy</code> 表示更新人員，一律由後端維護，前端為唯讀資訊，所以我們由代碼(Guid)變更成實際名字(string)，<code>CreatedDate</code> 也是唯讀資訊，如果系統沒有跨時區的問題，也可以改成文字格式(string)，統一由後端格式化。<br>  <img src="/images/projects/feasibility/04/feasibility_04_004.png" alt="img">  </p>
+</li>
+</ul>
+<h3 id="Model-to-ViewModel"><a href="#Model-to-ViewModel" class="headerlink" title="Model to ViewModel"></a>Model to ViewModel</h3><ul>
+<li><p>接著我們透過<a href="https://docs.microsoft.com/zh-tw/dotnet/csharp/programming-guide/classes-and-structs/extension-methods">擴充方法</a>模式來增加一個由 <code>SysProduct</code> 轉換成 <code>ProductViewModel</code> 的函式 <code>ToView</code>，並將所需的資料以參數方式添加。<br>  <img src="/images/projects/feasibility/04/feasibility_04_005.png" alt="img">  </p>
+<blockquote>
+<p>筆者擴充方法主要會集中放在 <code>Ext</code> 這個 class 裡面，但是我們 透過 partial class 方式將 <code>ToView</code> 放到 <code>ViewModel</code> 同一個檔案內，當資料結構有變更時可以同時維護。<br><code>GetName</code> 也是一個擴充方法。<br><img src="/images/projects/feasibility/04/feasibility_04_007.png" alt="img"><br>因為所有以 <strong>數值</strong>(<strong>int</strong>) 為代碼的參數會統一存放在 <code>sys_type</code> 資料表內，而起實際資料筆數並不多，所以筆者不直接透過資料庫的 <code>join</code> 語法來串接資料，而是另外獨立去抓取符合的代碼資料，並以 <code>Dictionary&lt;T, string&gt;</code> 結構儲存。<br><img src="/images/projects/feasibility/04/feasibility_04_006.png" alt="img">  </p>
+</blockquote>
+</li>
+<li><p>做完清單的 Model 轉 ViewModel 功能後，接著我們在做明細頁面的 ViewModel (<code>ProductDetailViewModel</code>) 轉換功能 <code>ToDetailView</code>，主要邏輯與 <code>ToView</code> 雷同，差別在於額外欄位可能需要另外提供其他資訊，例如，需要 <code>CreatedBy</code> 所對應的 <code>SysEmployee</code>，這樣孻能知道資料維護人員的姓名，實際程式碼如下：<br>  <img src="/images/projects/feasibility/04/feasibility_04_008.png" alt="img">  </p>
+<blockquote>
+<p>這邊我們透過 <code>ToDateTimeString</code> 這個擴充方法來將 <code>DateTime</code> 轉換成字串格式。<br><img src="/images/projects/feasibility/04/feasibility_04_009.png" alt="img">  </p>
+</blockquote>
+</li>
+</ul>
+<h3 id="ViewModel-to-Model"><a href="#ViewModel-to-Model" class="headerlink" title="ViewModel to Model"></a>ViewModel to Model</h3><ul>
+<li><p>接著我們做反向功能，當用戶端填寫完資料(ViewModel)回傳到後端時，我們需要將它轉換成資料庫的模型(Model)，才能寫入資料庫，首先我們建立一個 <code>ToModel</code> 的擴充方法來處理資料<strong>新增</strong>時的轉換功能，程式碼如下：<br>  <img src="/images/projects/feasibility/04/feasibility_04_010.png" alt="img">  </p>
+<blockquote>
+<p>新增時，資料庫不會有這一筆資料(Model)，所以我們會產生一個全新的 Model。  </p>
+</blockquote>
+</li>
+<li><p>做完<strong>新增</strong>接著做<strong>修改</strong>，再新增一個擴充方法 <code>UpdateModel</code>，<strong>修改</strong>表示資料庫已經有這一筆資料(Model)，所以這個功能是將 ViewModel 的資料寫入到目前的 Model 內，程式碼如下：<br>  <img src="/images/projects/feasibility/04/feasibility_04_011.png" alt="img">  </p>
+</li>
+</ul>
+<h4 id="Valid"><a href="#Valid" class="headerlink" title="Valid"></a>Valid</h4><ul>
+<li>觀看 <code>ToModel</code> 與 <code>UpdateModel</code>，可以發現裡面的程式碼非常乾淨(簡單)，但是，如果用戶端傳送過來的資料不完整或是格式不符時不就會造成寫入到資料庫的資料也是有問題的，所以我們還需要一個負責驗證的擴充方法 <code>IsValid</code>，不只是檢驗資料格式是否正確，順便處理一些可由系統修正的資料，例如：單號統一轉大寫、前後去空白(使用者不小心按到)，程式碼如下：<br>  <img src="/images/projects/feasibility/04/feasibility_04_012.png" alt="img">  <blockquote>
+<p>可以看到 <code>IsValid</code> 被筆者放置在 Ext 類別的最前面，這是因為資料檢驗是很重要的一件事，當上方 ViewModel 修改時，筆者會馬上確是否需要調整驗證規則，避免後續處理發生異常，理論上，程式邏輯不應該因為<strong>確定性</strong>的資料而造成例外錯誤。<br>這邊我們又增加一個擴充方法 <code>StringTrim</code>，除了去空白之外，還會將 null 變成空字串，如果你有看過 <a href="/projects/06_feasibility_01/">化繁為簡：01 資料庫篇</a> 這邊文章，就可知道筆者原則上不允許欄位 Null。<br><img src="/images/projects/feasibility/04/feasibility_04_013.png" alt="img">  </p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>以上應該可以看出筆者命名規則有點奇怪，其實筆者命名方式是以 <strong>IntelliSense</strong> 方便搜尋為主，因為專案做多了常常會發現很多功能重複的擴充方法，這是 <code>partial class</code> 的優點同時也是缺點，因為程式不集中，所以有時候就會重複開發功能。  </p>
+</blockquote>
+<p><code>ProductViewModel.cs</code> 的完整程式碼如下：　　<br>{% codeblock ProductViewModel.cs lang:cs %}<br>using System;<br>using System.Collections.Generic;<br>using WebAPI.Models;<br>using WebAPI.ViewModels;</p>
+<p>namespace WebAPI<br>{<br>    namespace ViewModels<br>    {<br>        public partial class ProductViewModel<br>        {<br>            //public long Id { get; set; }<br>            public Guid Uid { get; set; }<br>            //public bool Disable { get; set; }<br>            //public Guid CreatedBy { get; set; }<br>            //public DateTime CreatedDate { get; set; }<br>            //public Guid RemovedBy { get; set; }<br>            //public DateTime? RemovedDate { get; set; }<br>            public string Notes { get; set; }<br>            //public Guid CompanyUid { get; set; }<br>            public string Code { get; set; }<br>            public string Name { get; set; }<br>            //public int StateType { get; set; }<br>            public string Model { get; set; }<br>            //public string Specification { get; set; }<br>            public Guid ImageUid { get; set; }<br>            //public Guid TypeUid { get; set; }</p>
+<pre><code>        public string Type { get; set; }
+        public string State { get; set; }
+    }
+
+    public class ProductDetailViewModel : ProductViewModel
+    {
+        public string CreatedBy { get; set; }
+        public string CreatedDate { get; set; }
+        public int StateType { get; set; }
+        public Guid TypeUid { get; set; }
+        public string Specification { get; set; }
+        public string Unit { get; set; }
+        public decimal UnitPrice { get; set; }
+    }
+}
+
+partial class Ext
+{
+    internal static bool IsValid(this ProductDetailViewModel view, out string message)
+    {
+        message = string.Empty;
+        if (view == null)
+        {
+            message = &quot;資料不為空值&quot;;
+            return false;
+        }
+        view.Name = view.Name.StringTrim();
+        view.Code = view.Code.StringTrim().ToUpper();
+        view.Model = view.Model.StringTrim().ToUpper();
+        view.Specification = view.Specification.StringTrim();
+        view.Notes = view.Notes.StringTrim();
+
+        if (string.IsNullOrEmpty(view.Code))
+        {
+            message = &quot;產品編號不為空白&quot;;
+            return false;
+        }
+        if (string.IsNullOrEmpty(view.Name))
+        {
+            message = &quot;產品名稱不為空白&quot;;
+            return false;
+        }
+        return true;
+    }
+
+    internal static ProductViewModel ToView(this SysProduct model, 
+        SysProductType type, IDictionary&lt;int, string&gt; stateType)
+    {
+        if (model == null)
+            return null;
+
+        var view = new ProductViewModel
+        {
+            Uid = model.Uid,
+            Name = model.Name,
+            Code = model.Code,
+            Type = type?.Name ?? string.Empty,
+            State = stateType.GetName(model.StateType),
+            Model = model.Model,
+            ImageUid = model.ImageUid,
+            Notes = model.Notes
+        };
+        return view;
+    }
+
+    internal static ProductDetailViewModel ToDetailView(this SysProduct model, 
+        SysEmployee creator, SysProductType type, SysProductPrice price, IDictionary&lt;int, string&gt; stateType)
+    {
+        if (model == null)
+            return null;
+
+        var view = new ProductDetailViewModel
+        {
+            CreatedDate = model.CreatedDate.ToDateTimeString(),
+            CreatedBy = creator?.Name ?? &quot;SYSTEM&quot;,
+            Notes = model.Notes,
+            Uid = model.Uid,
+            Name = model.Name,
+            Code = model.Code,
+            TypeUid = model.TypeUid,
+            Type = string.Empty,
+            StateType = model.StateType,
+            State = stateType.GetName(model.StateType),
+            Model = model.Model,
+            Specification = model.Specification,
+            Unit = string.Empty,
+            ImageUid = model.ImageUid,
+            UnitPrice = price?.Price ?? 0
+        };
+        if (type != null)
+        {
+            view.Type = type.Name;
+            view.Unit = type.Unit;
+        }
+        return view;
+    }
+
+    internal static SysProduct ToModel(this ProductDetailViewModel view)
+    {
+        if (view == null)
+            return null;
+
+        var model = new SysProduct
+        {
+            //Uid = view.Uid,
+            Name = view.Name,
+            Code = view.Code,
+            TypeUid = view.TypeUid,
+            StateType = view.StateType,
+            Model = view.Model,
+            Specification = view.Specification,
+            ImageUid = view.ImageUid,
+            Notes = view.Notes
+        };
+        return model;
+    }
+
+    internal static void UpdateModel(this SysProduct model, ProductDetailViewModel view)
+    {
+        if (model == null || view == null)
+            return;
+
+        model.Name = view.Name;
+        model.Code = view.Code;
+        model.TypeUid = view.TypeUid;
+        model.StateType = view.StateType;
+        model.Model = view.Model;
+        model.Specification = view.Specification;
+        model.Notes = view.Notes;
+        model.ImageUid = view.ImageUid;
+    }
+}
+</code></pre>
+<p>}</p>
+<p>{% endcodeblock %}  </p>
+<h1 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h1><p>接下來開始建立 <strong>Controller</strong>，首先我們先構思基本規則：  </p>
+<ul>
+<li><p>收到 Request 後，先驗證身分。  </p>
+</li>
+<li><p>當需要新增或是修改時，需要先驗證 VidwModel 資料。  </p>
+<blockquote>
+<p><strong>查詢</strong>或是<strong>刪除</strong>單筆資料時，只會傳遞 <code>uid</code> 所以不需要特別驗證，因為 <code>uid</code> 是採用 <a href="https://docs.microsoft.com/zh-tw/dotnet/api/system.guid?view=net-5.0">Guid 結構</a>，當參數格式錯誤時 ASP.NET Core 就會因為匹配不到路由規則而被阻擋下來。  </p>
+</blockquote>
+</li>
+<li><p>雖然 HTTP 本身就有非常豐富的<a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Status">狀態碼</a>，但是對於用戶來說，其實他們部會想要知道後端發生甚麼問題，他們期望的資訊是告訴他們接下來要怎麼處理，所以這邊我們建立一個 <code>ResultViewModel</code>，它主要的功能就是在原始的傳遞資料上加入額外的訊息，程式碼如下：<br>  <img src="/images/projects/feasibility/04/feasibility_04_015.png" alt="img">  </p>
+<blockquote>
+<p><code>Data</code>：表示原始的傳遞資料。<br><code>Success</code>：表示此次請求結果為<strong>成功</strong>或<strong>失敗</strong>。<br><code>Message</code>：表示要傳遞給使用者知道的訊息，大部分會在需要顯示錯誤訊息時(<code>Success</code> 為 <code>false</code>)使用，當然有時候既使成功我們還會希望通知用戶一些訊息。<br>筆者檔案名稱(<code>_ResultViewModel.cs</code>)前面加上底線(<code>_</code>)其目的是為了檔案排須能夠靠前，同時也表示這是架構設計上使用到的程式碼，修改時影響層面會比較大。  </p>
+</blockquote>
+</li>
+</ul>
+<p>主要流程如下：<br><img src="/images/projects/feasibility/04/feasibility_04_014.png" alt="img">  </p>
+<p>當然如果你像筆者一樣偷懶，也可以把一些常用的方式打包成靜態方法，後續使用時可以少幾行程式碼，程式碼如下：<br>{% codeblock _ResultViewModel.cs lang:cs %}<br>namespace Web<br>{<br>    namespace ViewModels<br>    {<br>        public class ResultViewModel<br>        {<br>            public bool Success { get; set; }<br>            public string Message { get; set; }<br>            public object Data { get; set; }<br>        }<br>    }</p>
+<pre><code>partial class Lib
+{
+    internal enum UpdateType : int
+    {
+        Query = 0,
+        Add = 1,
+        Edit = 2,
+        Delete = 3
+    }
+
+    internal static ViewModels.ResultViewModel QueryResult(object data = null) =&gt; UpdateResult(UpdateType.Query, data);
+    internal static ViewModels.ResultViewModel RemoveResult(object data = null) =&gt; UpdateResult(UpdateType.Delete, data);
+    internal static ViewModels.ResultViewModel UpdateResult(bool isAdd, object data = null) =&gt; UpdateResult(isAdd ? UpdateType.Add : UpdateType.Edit, data);
+    internal static ViewModels.ResultViewModel UpdateResult(UpdateType type = UpdateType.Query, object data = null)
+    {
+        string message;
+        switch (type)
+        {
+            case UpdateType.Query:
+                message = &quot;查詢成功&quot;;
+                break;
+            case UpdateType.Add:
+                message = &quot;新增成功&quot;;
+                break;
+            case UpdateType.Edit:
+                message = &quot;修改成功&quot;;
+                break;
+            case UpdateType.Delete:
+                message = &quot;刪除成功&quot;;
+                break;
+            default:
+                return null;
+        }
+        return new ViewModels.ResultViewModel
+        {
+            Success = true,
+            Message = message,
+            Data = data
+        };
+    }
+
+    internal static ViewModels.ResultViewModel MessageResult(string message, object data = null)
+    {
+        return new ViewModels.ResultViewModel
+        {
+            Success = true,
+            Message = message,
+            Data = data
+        };
+    }
+
+    internal static ViewModels.ResultViewModel BadResult(string message) =&gt; new ViewModels.ResultViewModel
+    {
+        Success = false,
+        Message = message,
+        Data = null
+    };
+
+    internal static readonly ViewModels.ResultViewModel EmptyResult = new ViewModels.ResultViewModel
+    {
+        Success = true,
+        Message = &quot;查無資料&quot;
+    };
+}
+</code></pre>
+<p>}<br>{% endcodeblock %}  </p>
+<blockquote>
+<p>筆者習慣將<strong>擴充放法</strong>(<strong>Extension Method</strong>)放在 <code>Ext</code> 類別，將<strong>靜態方法</strong>放在 <code>Lib</code> (<code>Library</code>)類別。</p>
+</blockquote>
+<p>有了初略的架構我們就開始建立 <code>ProductsController</code>，<a href="/projects/07_feasibility_03/">上一篇文章</a>我們建立一個 <strong>AuthorizationMiddleware</strong>，它會將 JWT 的 <code>Token</code> 轉換回 <code>SysEmployee</code> 並存放到 <code>context.Items[&quot;emp&quot;]</code> 內，所以我們建立一個 <code>IsAuthenticated</code> 方法來抓取 <code>emp</code> 資訊，以確認是否已通過驗證，並得使發送<strong>請求</strong>(<strong>Request</strong>)的使用者身分，程式碼如下：<br><img src="/images/projects/feasibility/04/feasibility_04_016.png" alt="img">  </p>
+<blockquote>
+<p>正常情況下身分驗證失敗的請求會被阻擋在 <strong>AuthorizationMiddleware</strong>，不會傳送到 Controller。  </p>
+</blockquote>
+<p>接著我們建立一個抓取單的方法，程式碼如下：<br><img src="/images/projects/feasibility/04/feasibility_04_017.png" alt="img">  </p>
+<p>除了清單之外，我們還需要可以抓取單筆<strong>詳細資訊</strong>(<code>DetailViewModel</code>)的方法，程式碼如下：<br><img src="/images/projects/feasibility/04/feasibility_04_018.png" alt="img">  </p>
+<blockquote>
+<p>這邊比較特別的是當<strong>查無資料</strong>時，我們是透過 <code>BadRequest</code> 回傳，主要是因為正常情況下這不應該會發生(使用者無法透過系統傳送一個不存在的 <code>uid</code> 到後端查詢)，除了是程式本身的 bug 之外，可能是受到攻擊或是爬蟲，因此這些非預期的錯誤(例如：身分、資料驗證失敗)，筆者都僅會透過 <code>BadRequest</code> 回傳，並緊緊帶入少量資訊。  </p>
+</blockquote>
+<p>接著我們做刪除的方法，因為我們是透過 <code>disable</code> 欄位來判定此筆資料是否還有效，而不是真的從資料庫刪除資料，所以刪除動作就是將 <code>Disable</code> 修改為 <code>true</code>，並紀錄刪除人員(<code>RemovedBy</code>)與刪除時間(<code>RemovedDate</code>)，程式碼如下：<br><img src="/images/projects/feasibility/04/feasibility_04_019.png" alt="img">  </p>
+<blockquote>
+<p>這邊我們增加一個 <code>TrySave</code> 的擴充方法，這樣可以減少 <code>try catch</code> 占用的程式行數。<br><img src="/images/projects/feasibility/04/feasibility_04_020.png" alt="img">  </p>
+</blockquote>
+<p>最後就是<strong>新增</strong>以及<strong>修改</strong>功能，因為差別就是所傳遞的 <code>Uid</code> 是否為 <code>Guid.Empty</code>，所以筆者合併成一個方法處理，首先除了驗證身分(<code>IsAuthenticated</code>)之外還要驗證 DetailViewModel 的資料(<code>IsValid</code>)，接著依照 <code>Uid</code> 來判斷是<strong>新增</strong>還是<strong>修改</strong>，新增就透過 <code>ToModel</code> 來建立新的 Model，修改就利用 <code>UpdateModel</code> 來更新資料，最後再修改基本欄位的資料(新增時會透過 <code>Guid.NewGuid()</code> 產生一組新的 <code>Uid</code>)，程式碼如下：<br><img src="/images/projects/feasibility/04/feasibility_04_021.png" alt="img">  </p>
+<blockquote>
+<p>這邊因為筆者範例的<strong>產品編號</strong>是由前端使用者輸入，所以會增加驗證編號是否重複。  </p>
+</blockquote>
+<p>以上我們舊版基本的 REST 功能給實作出來，完整的 <code>ProductsController.cs</code> 程式碼如下：<br>{% codeblock ProductsController.cs lang:cs %}<br>using System;<br>using System.Collections.Generic;<br>using System.Linq;<br>using Microsoft.AspNetCore.Http;<br>using Microsoft.AspNetCore.Mvc;<br>using Microsoft.EntityFrameworkCore;<br>using WebAPI.Models;<br>using DetailView = WebAPI.ViewModels.ProductDetailViewModel;<br>using Model = WebAPI.Models.SysProduct;</p>
+<p>namespace WebAPI.Controllers<br>{<br>    public class ProductsController : ControllerBase<br>    {<br>        protected readonly CloudContext DB;<br>        private readonly DbSet<Model> table;<br>        public ProductsController(CloudContext db)<br>        {<br>            DB = db;<br>            table = DB.SysProducts;<br>        }</p>
+<pre><code>    private bool IsAuthenticated(out SysEmployee userInfo, out string message)
+    {
+        message = string.Empty;
+        if (HttpContext?.Items != null &amp;&amp; HttpContext.Items.ContainsKey(&quot;emp&quot;))
+        {
+            userInfo = HttpContext.Items[&quot;emp&quot;] as SysEmployee;
+            return true;
+        }
+        else
+        {
+            userInfo = new SysEmployee
+            {
+                CompanyUid = Guid.Empty,
+                UserUid = Guid.Empty,
+                Email = string.Empty
+            };
+            message = &quot;查無使用者資訊&quot;;
+            return false;
+        }
+    }
+
+    [HttpGet]
+    public IActionResult Get()
+    {
+        if (!IsAuthenticated(out SysEmployee userInfo, out string message))
+            return BadRequest(message);
+
+        var stateType = (
+                from f in DB.SysTypes
+                where f.GroupName == &quot;product_state_type&quot;
+                orderby f.Sort
+                select new KeyValuePair&lt;int, string&gt;(f.Value, f.Name)
+            ).ToDictionary(x =&gt; x.Key, x =&gt; x.Value);
+
+        var data = (
+            from f in table
+            join type in DB.SysProductTypes on f.TypeUid equals type.Uid into ps1
+            from type in ps1.DefaultIfEmpty()
+            where f.CompanyUid == userInfo.CompanyUid
+            orderby f.Code, f.Name
+            select f.ToView(type, stateType)
+        ).ToList();
+
+        if (!data.Any())
+            return Ok(Lib.EmptyResult);
+
+        return Ok(Lib.QueryResult(data));
+    }
+
+    [HttpGet(&quot;{uid}&quot;)]
+    public IActionResult Get(Guid uid)
+    {
+        if (!IsAuthenticated(out SysEmployee userInfo, out string message))
+            return BadRequest(message);
+
+        var stateType = (
+                from f in DB.SysTypes
+                where f.GroupName == &quot;product_state_type&quot;
+                orderby f.Sort
+                select new KeyValuePair&lt;int, string&gt;(f.Value, f.Name)
+            ).ToDictionary(x =&gt; x.Key, x =&gt; x.Value);
+
+        DateTime dt = DateTime.Today;
+        var price = (
+           from f in DB.SysProductPrices
+           where f.ProductUid == uid &amp;&amp; f.CompanyUid == userInfo.CompanyUid
+               &amp;&amp; f.BeginDate &lt;= dt &amp;&amp; (f.HasEnd == false || (f.HasEnd == true &amp;&amp; f.EndDate.Value &gt; dt))
+           orderby f.Id descending
+           select f
+       ).FirstOrDefault();
+
+        var detail = (
+           from f in table
+           join type in DB.SysProductTypes on f.TypeUid equals type.Uid into ps1
+           from type in ps1.DefaultIfEmpty()
+           join creator in DB.SysEmployees on f.CreatedBy equals creator.Uid into ps2
+           from creator in ps2.DefaultIfEmpty()
+           where f.Uid == uid &amp;&amp; f.CompanyUid == userInfo.CompanyUid
+           select f.ToDetailView(creator, type, price, stateType)
+       ).FirstOrDefault();
+
+        if (detail == null)
+            return BadRequest(&quot;查無資料&quot;);
+
+        return Ok(Lib.QueryResult(detail));
+    }
+
+    [HttpDelete(&quot;{uid}&quot;)]
+    public IActionResult Delete(Guid uid)
+    {
+        if (!IsAuthenticated(out SysEmployee userInfo, out string message))
+            return BadRequest(message);
+
+        var model = table.FirstOrDefault(x =&gt; x.Uid == uid &amp;&amp; x.CompanyUid == userInfo.CompanyUid);
+        if (model == null)
+            return BadRequest(&quot;查無資料&quot;);
+
+        var order = DB.SysOrderItems.FirstOrDefault(x =&gt; x.ProductUid == model.Uid &amp;&amp; x.CompanyUid == userInfo.CompanyUid);
+        if (order != null)
+            return BadRequest(&quot;此產品有關聯的訂單，無法刪除&quot;);
+
+        var quotation = DB.SysQuotationItems.FirstOrDefault(x =&gt; x.ProductUid == model.Uid &amp;&amp; x.CompanyUid == userInfo.CompanyUid);
+        if (quotation != null)
+            return BadRequest(&quot;此產品有關聯的報價單，無法刪除&quot;);
+
+        // Delete
+        model.RemovedBy = userInfo.Uid;
+        model.RemovedDate = DateTime.Now;
+        model.Disable = true;
+
+        if (!DB.TrySave(out message))
+            return BadRequest(message);
+
+        return Ok(Lib.RemoveResult());
+    }
+
+    [HttpPost]
+    public IActionResult Post([FromBody] DetailView view) =&gt; Put(view);
+    [HttpPut]
+    public IActionResult Put([FromBody] DetailView view)
+    {
+        if (!IsAuthenticated(out SysEmployee userInfo, out string message) || !view.IsValid(out message))
+            return BadRequest(message);
+
+        Model model = null;
+        bool isAdd = view.Uid == Guid.Empty;
+        if (isAdd)
+        {
+            model = view.ToModel();
+            if (!string.IsNullOrEmpty(model.Code))
+            {
+                var queryOldProduct = table.FirstOrDefault(x =&gt; x.Code == model.Code &amp;&amp; x.CompanyUid == userInfo.CompanyUid);
+                if (queryOldProduct != null)
+                    return BadRequest(&quot;產品編號重複&quot;);
+            }
+
+            // Add
+            model.Uid = Guid.NewGuid();
+            model.CompanyUid = userInfo.CompanyUid;
+            model.CreatedBy = userInfo.Uid;
+            model.CreatedDate = DateTime.Now;
+            model.Disable = false;
+            if (model.Notes == null)
+                model.Notes = string.Empty;
+
+            table.Add(model);
+        }
+        else
+        {
+            model = table.FirstOrDefault(x =&gt; x.Uid == view.Uid &amp;&amp; x.CompanyUid == userInfo.CompanyUid);
+            if (model == null)
+                return BadRequest(&quot;查無資料&quot;);
+
+            if (!string.IsNullOrEmpty(view.Code) &amp;&amp; view.Code != model.Code)
+            {
+                var queryOldProduct = table.FirstOrDefault(x =&gt; x.Code == view.Code &amp;&amp; x.CompanyUid == userInfo.CompanyUid);
+                if (queryOldProduct != null &amp;&amp; model.Uid != queryOldProduct.Uid)
+                    return BadRequest(&quot;產品編號重複&quot;);
+            }
+
+            model.UpdateModel(view);
+
+            // Update
+            model.CreatedBy = userInfo.Uid;
+            model.CreatedDate = DateTime.Now;
+        }
+
+        if (!DB.TrySave(out message))
+            return BadRequest(message);
+
+        return Ok(Lib.UpdateResult(isAdd, model.Uid));
+    }
+
+}
+</code></pre>
+<p>}<br>{% endcodeblock %}  </p>
+<blockquote>
+<p>下面是筆者範例的資料表基本欄位，因為會擁有多家公司資料，所以查詢條件會添加 <code>CompanyUid == userInfo.CompanyUid</code>。<br><img src="/images/projects/feasibility/04/feasibility_04_022.png" alt="img">  </p>
+</blockquote>
+<h1 id="後紀"><a href="#後紀" class="headerlink" title="後紀"></a>後紀</h1><p>在 <code>Model</code> 與 <code>ViewModel</code> 的轉換應該不少人認為可以透過 <a href="https://automapper.org/">AutoMapper</a> 來處理會更加簡潔，筆者透過自行處理主要是為了避免欄位屬性變更時忘記修改，在開發過程或是編譯時我們就可以透過警告訊息來提醒我們。  </p>
+<p>如果再進一步思考，可以發現當我們 <code>Model</code> 或 <code>ViewModel</code> 是欄位變更時，原則上只要修改 <code>ViewModel</code> 檔案內的程式碼，除非是 <code>ViewModel</code> 所增加的欄位其資料來源在既有資料外，否則就不需要調整 <code>Controller</code> 程式碼，相對的，<code>Controller</code> 只要專注在理資料邏輯處理，不需要理會資料轉換方式。  </p>

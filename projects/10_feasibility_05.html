@@ -1,0 +1,447 @@
+<hr>
+<p>title: 化繁為簡：05 後端篇(四)Controller<br>date: 2021-06-29<br>categories: Projects<br>keywords:</p>
+<ul>
+<li>Projects</li>
+<li>Angular</li>
+<li>.Net<br>tags:</li>
+<li>Projects</li>
+</ul>
+<hr>
+<p><img src="/images/projects/feasibility/05/feasibility_05_001.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一篇 <a href="/projects/09_feasibility_04/">化繁為簡：04 後端篇(三)REST</a> 我們最後建立一個 內含 REST 服務的 <code>ProductsController</code>，但是實務上，一般不會直接透過 GET 將清單資料一次全部下載，因為當資料筆數過大時有可能會被中斷，所以我們需要再提供分批下載的功能，此外對於基本資料的處理來說，一但扣除掉因資料特性而有所差異的商業邏輯，Controller 的程式碼幾乎雷同，所以這一篇我們就嘗試幫 Controller 減肥塑身。  </p>
+<!-- more -->  
+
+<h1 id="CloudContext-增肥"><a href="#CloudContext-增肥" class="headerlink" title="CloudContext 增肥"></a>CloudContext 增肥</h1><p>在處理 Controller 之前，我們先針對 <code>CloudContext</code> 加入更多功能，因為當它可以做的事情越多時，Controller 程式碼就會越少，首先在 <code>Models</code> 資料夾內建立 <code>_DataContext.cs</code>，我們針對基本資料建立相關<strong>介面</strong>(<strong>Interface</strong>)，程式碼如下：<br><img src="/images/projects/feasibility/05/feasibility_05_002.png" alt="img">  </p>
+<p>接著將對資料表做<strong>新增</strong>、<strong>修改</strong>、<strong>刪除</strong>時，基本資料所需要調整的方式製作成擴充方法，有看過<a href="/projects/09_feasibility_04/">上一篇文章</a>應該就會知道筆者會套用到 Controller 哪個地方，程式碼如下：<br><img src="/images/projects/feasibility/05/feasibility_05_003.png" alt="img">  </p>
+<blockquote>
+<p>因為擴充方法 <code>TrySave</code> 與資料庫有關，所以也移至此檔案內。  </p>
+</blockquote>
+<p>因為我們資料庫是以 <code>disable = true</code> 來表示該筆資料已經被<strong>刪除</strong>，所以正常情況下，我們在查詢時的條件式應該都需要增加  <code>disable = false</code> 來過濾已刪除的資料，但是我們其實可以在 <code>DbContext</code> 內的 <code>OnModelCreating</code> 內自動添加，這樣我們就不會不小心漏掉。<br>因為我們是採用 <strong>Database First</strong>，如果直接在 <code>CloudContext</code> 內添加，內每次透過 EF 工具做同步時額外添加的程式碼就會被洗掉，所以這邊採用在外包一層類別方式來處理，我們建立一個 <code>DataContext</code> 類別並繼承自 <code>CloudContext</code>，程式碼如下：<br><img src="/images/projects/feasibility/05/feasibility_05_004.png" alt="img">  </p>
+<blockquote>
+<p>我們在 <code>OnModelCreating</code> 內執行 <code>base.OnModelCreating(modelBuilder);</code>，這樣 <code>CloudContext</code> 的 <code>OnModelCreating</code> 就不會直接被覆蓋掉。  </p>
+</blockquote>
+<p>這邊我們順便增加 <code>GetTypeList</code> 方法，用來替我們去 <code>SysTypes</code> 抓取參數代碼資料，程式碼如下：<br><img src="/images/projects/feasibility/05/feasibility_05_007.png" alt="img">  </p>
+<blockquote>
+<p>預設共用代碼表為 <code>company_uid=00000000-0000-0000-0000-000000000000</code>，我們也可以針對公司個別做代碼定義。<br><img src="/images/projects/feasibility/05/feasibility_05_005.png" alt="img"><br>另外我們也可以透過<strong>常數</strong>(<code>const</code>)方式來呼叫方法，避免字串參數輸入錯誤。<br><img src="/images/projects/feasibility/05/feasibility_05_008.png" alt="img">  </p>
+</blockquote>
+<p><code>_DataContext.cs</code> 完整程式碼如下:<br>{% codeblock _DataContext.cs lang:cs %}<br>using System;<br>using System.Collections.Generic;<br>using System.Linq;<br>using System.Linq.Expressions;<br>using Microsoft.EntityFrameworkCore;</p>
+<p>namespace WebAPI<br>{<br>    namespace Models<br>    {<br>        public interface IDisable<br>        {<br>            bool Disable { get; set; }<br>        }</p>
+<pre><code>    public interface IDisableRow : IDisable
+    {
+        Guid RemovedBy { get; set; }
+        DateTime? RemovedDate { get; set; }
+    }
+
+    public interface IDataRow : IDisableRow
+    {
+        long Id { get; set; }
+        Guid Uid { get; set; }
+        Guid CreatedBy { get; set; }
+        DateTime CreatedDate { get; set; }
+        string Notes { get; set; }
+        Guid CompanyUid { get; set; }
+    }
+
+    partial class SysProduct : IDataRow { }
+
+    partial class CloudContext
+    {
+        public CloudContext(DbContextOptions&lt;DataContext&gt; options) : base(options) { }
+    }
+
+    public partial class DataContext : CloudContext
+    {
+        public DataContext() { }
+
+        public DataContext(DbContextOptions&lt;DataContext&gt; options) : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes()
+                    .Where(e =&gt; typeof(IDisable).IsAssignableFrom(e.ClrType)))
+            {
+                modelBuilder.Entity(entityType.ClrType).Property&lt;bool&gt;(&quot;Disable&quot;);
+                var parameter = Expression.Parameter(entityType.ClrType, &quot;e&quot;);
+                var body = Expression.Equal(
+                    Expression.Call(typeof(EF), nameof(EF.Property), new[] { typeof(bool) },
+                        parameter, Expression.Constant(&quot;Disable&quot;)), 
+                    Expression.Constant(false)
+                );
+
+                modelBuilder.Entity(entityType.ClrType).HasQueryFilter(Expression.Lambda(body, parameter));
+            }
+        }
+
+        internal IDictionary&lt;int, string&gt; GetTypeList(string groupName) =&gt; GetTypeList(groupName, Guid.Empty);
+        internal IDictionary&lt;int, string&gt; GetTypeList(string groupName, Guid companyUid)
+        {
+            var types = (
+                from f in SysTypes
+                where f.GroupName == groupName &amp;&amp; f.CompanyUid == companyUid
+                orderby f.Sort
+                select new KeyValuePair&lt;int, string&gt;(f.Value, f.Name)
+            ).ToDictionary(x =&gt; x.Key, x =&gt; x.Value);
+
+            if (!types.Any() &amp;&amp; companyUid != Guid.Empty)
+            {
+                types = (
+                   from f in SysTypes
+                   where f.GroupName == groupName &amp;&amp; f.CompanyUid == Guid.Empty
+                   orderby f.Sort
+                   select new KeyValuePair&lt;int, string&gt;(f.Value, f.Name)
+                ).ToDictionary(x =&gt; x.Key, x =&gt; x.Value);
+            }
+            return types;
+        }
+    }
+}
+
+static partial class Ext
+{
+    internal static void ToAddStaus(this Models.IDataRow data, Models.SysEmployee employee)
+    {
+        if (data == null || employee == null)
+            return;
+
+        data.Uid = Guid.NewGuid();
+        data.CompanyUid = employee.CompanyUid;
+        data.CreatedBy = employee.Uid;
+        data.CreatedDate = DateTime.Now;
+        data.Disable = false;
+        if (data.Notes == null)
+            data.Notes = string.Empty;
+    }
+    internal static void ToUpdateStaus(this Models.IDataRow data, Models.SysEmployee employee)
+    {
+        if (data == null || employee == null)
+            return;
+
+        data.CreatedBy = employee.Uid;
+        data.CreatedDate = DateTime.Now;
+        data.Disable = false;
+    }
+    internal static void ToDeleteStaus(this Models.IDisableRow data, Models.SysEmployee employee)
+    {
+        if (data == null || employee == null)
+            return;
+
+        data.RemovedBy = employee.Uid;
+        data.RemovedDate = DateTime.Now;
+        data.Disable = true;
+    }
+
+    internal static bool TrySave(this DbContext db, out string message)
+    {
+        try
+        {
+            db.SaveChanges();
+        }
+        catch (Exception ex)
+        {
+            message = ex.Message;
+            return false;
+        }
+        message = string.Empty;
+        return true;
+    }
+}
+</code></pre>
+<p>}<br>{% endcodeblock %}  </p>
+<p>最後要記得修改 <code>Startup.cs</code> 的 <code>ConfigureServices</code> 函式，將 <code>CloudContext</code> 改成 <code>DataContext</code>。<br><img src="/images/projects/feasibility/05/feasibility_05_006.png" alt="img">  </p>
+<h1 id="Controller-抽離"><a href="#Controller-抽離" class="headerlink" title="Controller 抽離"></a>Controller 抽離</h1><p>其實大部分的 Controller 只有資料抓取與篩選的邏輯有差異，其他的流程幾乎不會改變，所以如果我們可以將固定不變的程式碼抽來出來，那 Controller 就會只剩下來商業邏輯部分，這不僅會讓程式碼變乾淨，而且維護上也會更容易。<br><img src="/images/projects/feasibility/05/feasibility_05_009.png" alt="img">  </p>
+<p>我們在 <code>Controller</code> 資料夾下建立一個類別 <code>_DataController.cs</code>，因為 DataController 只有共通的程式碼，本身不是完整的程式，所以我們將它訂定為<strong>抽象類別</strong>(<code>abstract class</code>)，程式碼如下：<br>{% codeblock _DataController.cs lang:cs %}<br>using System;<br>using System.Collections.Generic;<br>using System.Linq;<br>using Microsoft.AspNetCore.Http;<br>using Microsoft.AspNetCore.Mvc;<br>using Microsoft.Extensions.Caching.Memory;<br>using WebAPI.Models;<br>using WebAPI.ViewModels;</p>
+<p>namespace WebAPI.Controllers<br>{<br>    public abstract class DataController&lt;View, DetailView&gt; : ControllerBase<br>        where View : class<br>        where DetailView : class<br>    {<br>        protected readonly DataContext DB;<br>        protected readonly IMemoryCache cache;<br>        protected readonly string cacheName;</p>
+<pre><code>    public DataController(DataContext db, IMemoryCache memoryCache, string cacheName)
+    {
+        DB = db;
+        cache = memoryCache;
+        this.cacheName = cacheName;
+    }
+
+    protected bool IsAuthenticated(out SysEmployee userInfo, out string message)
+    {
+        message = string.Empty;
+        if (HttpContext?.Items != null &amp;&amp; HttpContext.Items.ContainsKey(&quot;emp&quot;))
+        {
+            userInfo = HttpContext.Items[&quot;emp&quot;] as SysEmployee;
+            return true;
+        }
+        else
+        {
+            userInfo = new SysEmployee
+            {
+                CompanyUid = Guid.Empty,
+                UserUid = Guid.Empty,
+                Email = string.Empty
+            };
+            message = &quot;查無使用者資訊&quot;;
+            return false;
+        }
+    }
+
+    protected string CacheName(Guid companyUid) =&gt; $&quot;{cacheName}_{companyUid}&quot;;
+
+    protected virtual List&lt;View&gt; GetViewList(Guid companyUid) =&gt; new List&lt;View&gt;();
+
+    internal List&lt;View&gt; DataList(Guid companyUid)
+    {
+        string cacheName = CacheName(companyUid);
+        if (!cache.TryGetValue(cacheName, out List&lt;View&gt; data))
+        {
+            data = GetViewList(companyUid);
+            if (data.Any())
+            {
+                var cacheEntryOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(Lib.CACHE_TIME);
+                cache.Set(cacheName, data, cacheEntryOptions);
+            }
+        }
+        return data ?? new List&lt;View&gt;();
+    }
+
+    [HttpGet]
+    public IActionResult Get()
+    {
+        if (!IsAuthenticated(out SysEmployee userInfo, out string message))
+            return BadRequest(message);
+
+        var query = DataList(userInfo.CompanyUid);
+        if (!query.Any())
+            return Ok(Lib.EmptyResult);
+
+        return Ok(Lib.QueryResult(query));
+    }
+
+    protected virtual DetailView GetDetail(Guid companyUid, Guid uid) =&gt; null;
+
+    [HttpGet(&quot;{uid}&quot;)]
+    public IActionResult Get(Guid uid)
+    {
+        if (!IsAuthenticated(out SysEmployee userInfo, out string message))
+            return BadRequest(message);
+
+        var detail = GetDetail(userInfo.CompanyUid, uid);
+
+        if (detail == null)
+            return BadRequest(&quot;查無資料&quot;);
+
+        return Ok(Lib.QueryResult(detail));
+    }
+
+    protected virtual ResultViewModel UpdateData(DetailView view, SysEmployee userInfo) =&gt; null;
+
+    [HttpPost]
+    public IActionResult Post([FromBody] DetailView view) =&gt; Put(view);
+    [HttpPut]
+    public IActionResult Put([FromBody] DetailView view)
+    {
+        if (!IsAuthenticated(out SysEmployee userInfo, out string message))
+            return BadRequest(message);
+
+        var result = UpdateData(view, userInfo);
+        if (result == null)
+            return BadRequest(&quot;null&quot;);
+
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        string cacheName = CacheName(userInfo.CompanyUid);
+        cache.Remove(cacheName);
+        return Ok(result);
+    }
+
+    protected virtual ResultViewModel RemoveDate(Guid uid, SysEmployee userInfo) =&gt; null;
+
+    [HttpDelete(&quot;{uid}&quot;)]
+    public IActionResult Delete(Guid uid)
+    {
+        if (!IsAuthenticated(out SysEmployee userInfo, out string message))
+            return BadRequest(message);
+
+        var result = RemoveDate(uid, userInfo);
+        if (result == null)
+            return BadRequest(&quot;null&quot;);
+
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        string cacheName = CacheName(userInfo.CompanyUid);
+        cache.Remove(cacheName);
+        return Ok(Lib.RemoveResult());
+    }
+}
+</code></pre>
+<p>}<br>{% endcodeblock %}  </p>
+<blockquote>
+<p>在這邊我們還利用 <strong>MemoryCache</strong> 來暫存清單資料，如果在快取時間內發出請求，系統會直接抓取快取料，這樣就可以減輕資料庫負擔，為了確保資料一致性，我們在執行新增、修該、刪除作業時會順便清除快取資，快取時間一般需要考量許多因素(例如：資料更新頻率、可用記憶體容量)。<br><img src="/images/projects/feasibility/05/feasibility_05_010.png" alt="img"><br>因為我們資料表允許多家公司並存資料，所以我們快取名稱會增加 <code>companyUid</code> 來區隔。  </p>
+</blockquote>
+<h2 id="批次傳輸"><a href="#批次傳輸" class="headerlink" title="批次傳輸"></a>批次傳輸</h2><p>當你資料超過上萬筆時，如果你一次抓取全部的資料那使用者的等待時間可能會很久，用戶體驗上就會比較不好，甚至會以為程式當掉了，當然時間過長也會有系統逾時(Timeout)的風險，所以我們在 Controller 內在增加批次抓取清單功能。<br>首先我們建立一個 <code>QueryParameters</code> 來存放資料抓取區間資訊，程式碼如下：<br>{% codeblock _QueryParameters.cs lang:cs %}<br>namespace WebAPI.ViewModels<br>{<br>    public class QueryParameters<br>    {<br>        public int PageSize { get; set; } = 1000;<br>        public int PageNumber { get; set; } = 1;<br>        public string Filter { get; set; }<br>    }<br>}<br>{% endcodeblock %}  </p>
+<p>接著我們在 <code>DataController</code> 內增加可以讀取<strong>資料筆數</strong>的方法 <code>GetCount</code>，以及可以依照 <code>QueryParameters</code> 的資訊抓取所需的區間資料的方法 <code>GetBatch</code>，程式碼如下：<br>{% codeblock _DataController.cs lang:cs %}<br>namespace WebAPI.Controllers<br>{<br>    public abstract class DataController&lt;View, DetailView&gt; : ControllerBase<br>        where View : class<br>        where DetailView : class<br>    {<br>        //…</p>
+<pre><code>    protected virtual int GetRowCount(Guid companyUid) =&gt; 0;
+
+    [HttpGet(&quot;count&quot;)]
+    public IActionResult GetCount()
+    {
+        if (!IsAuthenticated(out SysEmployee userInfo, out string message))
+            return BadRequest(message);
+
+        var count = GetRowCount(userInfo.CompanyUid);
+        string cacheName = CacheName(userInfo.CompanyUid);
+        if (cache.TryGetValue(cacheName, out List&lt;View&gt; data))
+        {
+            if (count == data.Count)
+            {
+                var cacheEntryOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(Lib.CACHE_TIME);
+                cache.Set(cacheName, data, cacheEntryOptions);
+            }
+            else
+            {
+                cache.Remove(cacheName);
+            }
+        }
+        return Ok(Lib.QueryResult(count));
+    }
+
+    [HttpGet(&quot;batch&quot;)]
+    public IActionResult GetBatch([FromQuery] QueryParameters paramter)
+    {
+        if (!IsAuthenticated(out SysEmployee userInfo, out string message))
+            return BadRequest(message);
+
+        var data = DataList(userInfo.CompanyUid)
+            .Skip(paramter.PageNumber * paramter.PageSize)
+            .Take(paramter.PageSize)
+            .ToList();
+
+        if (!data.Any())
+            return Ok(Lib.EmptyResult);
+
+        return Ok(Lib.QueryResult(data));
+    }
+}
+</code></pre>
+<p>}<br>{% endcodeblock %}  </p>
+<blockquote>
+<p>除了 <code>QueryParameters</code>，其實我們也可以透過 HTTP Header：<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Range">Content-Range</a> 來當作傳入的參數，所以我們可以像 <code>AuthorizationMiddleware</code> 將 Token 轉換成 <code>SysEmployee</code> 方式，在 Middleware 讀取 Request 是否含有 Content-Range 的 Header，有的話就抓取出來在塞到 Query Parameter 內，這樣就可以同時支援2種方式。<br>批次傳輸這個功能主要是筆者為了解決使用者在無線網路不穩定的環境之下，使用者操作上會斷斷續續的問題，所以資料全部傳到前端，由前端做處理，但是使用時還是要注意資安問題，對於敏感性的資料應該僅傳送必要資料就好。  </p>
+</blockquote>
+<h1 id="修改-ProductsController"><a href="#修改-ProductsController" class="headerlink" title="修改 ProductsController"></a>修改 ProductsController</h1><p>最後我們來看看 ProductsController 可以簡化到什麼程度，首先我們增加一個 <code>CacheKey</code> 類別用來存放 Controller 的快取名稱，集中存放可以避免不小心命名重複，程式碼如下：<br><img src="/images/projects/feasibility/05/feasibility_05_011.png" alt="img">  </p>
+<p>再來我們修改 <code>ProductsController</code>，變成繼承自 <code>DataController</code>，接著複寫相關方法，程式碼如下：<br>{% codeblock ProductsController.cs lang:cs %}<br>using System;<br>using System.Collections.Generic;<br>using System.Linq;<br>using Microsoft.AspNetCore.Mvc;<br>using Microsoft.EntityFrameworkCore;<br>using Microsoft.Extensions.Caching.Memory;<br>using WebAPI.Models;<br>using WebAPI.ViewModels;<br>using DetailView = WebAPI.ViewModels.ProductDetailViewModel;<br>using Model = WebAPI.Models.SysProduct;<br>using View = WebAPI.ViewModels.ProductViewModel;</p>
+<p>namespace WebAPI.Controllers<br>{<br>    [Route(“api/[controller]”)]<br>    [ApiController]<br>    public partial class ProductsController : DataController&lt;View, DetailView&gt;<br>    {<br>        private readonly DbSet<Model> table;<br>        public ProductsController(DataContext db, IMemoryCache cache) : base(db, cache, CacheKey.Product)<br>        {<br>            table = DB.SysProducts;<br>        }</p>
+<pre><code>    protected override int GetRowCount(Guid companyUid) =&gt; table.Count(x =&gt; x.CompanyUid == companyUid);
+
+    protected override ResultViewModel RemoveDate(Guid uid, SysEmployee userInfo)
+    {
+        var model = table.FirstOrDefault(x =&gt; x.Uid == uid &amp;&amp; x.CompanyUid == userInfo.CompanyUid);
+        if (model == null)
+            return Lib.BadResult(&quot;查無資料&quot;);
+
+        var order = DB.SysOrderItems.FirstOrDefault(x =&gt; x.ProductUid == model.Uid &amp;&amp; x.CompanyUid == userInfo.CompanyUid);
+        if (order != null)
+            return Lib.BadResult(&quot;此產品有關聯的訂單，無法刪除&quot;);
+
+        var quotation = DB.SysQuotationItems.FirstOrDefault(x =&gt; x.ProductUid == model.Uid &amp;&amp; x.CompanyUid == userInfo.CompanyUid);
+        if (quotation != null)
+            return Lib.BadResult(&quot;此產品有關聯的報價單，無法刪除&quot;);
+
+        model.ToDeleteStaus(userInfo);
+        if (!DB.TrySave(out string message))
+            return Lib.BadResult(message);
+
+        return Lib.RemoveResult();
+    }
+
+    protected override List&lt;View&gt; GetViewList(Guid companyUid)
+    {
+        var stateType = DB.GetTypeList(SystemType.ProductStateType);
+        var data = (
+            from f in table
+            join type in DB.SysProductTypes on f.TypeUid equals type.Uid into ps1
+            from type in ps1.DefaultIfEmpty()
+            where f.CompanyUid == companyUid
+            orderby f.Code, f.Name
+            select f.ToView(type, stateType)
+        ).ToList();
+        return data;
+    }
+
+    protected override DetailView GetDetail(Guid companyUid, Guid uid)
+    {
+        DateTime dt = DateTime.Today;
+        var price = (
+            from f in DB.SysProductPrices
+            where f.ProductUid == uid &amp;&amp; f.CompanyUid == companyUid
+                &amp;&amp; f.BeginDate &lt;= dt &amp;&amp; (f.HasEnd == false || (f.HasEnd == true &amp;&amp; f.EndDate.Value &gt; dt))
+            orderby f.Id descending
+            select f
+        ).FirstOrDefault();
+
+        var stateType = DB.GetTypeList(SystemType.ProductStateType);
+        var detail = (
+            from f in table
+            join type in DB.SysProductTypes on f.TypeUid equals type.Uid into ps1
+            from type in ps1.DefaultIfEmpty()
+            join creator in DB.SysEmployees on f.CreatedBy equals creator.Uid into ps2
+            from creator in ps2.DefaultIfEmpty()
+            where f.Uid == uid &amp;&amp; f.CompanyUid == companyUid
+            select f.ToDetailView(creator, type, price, stateType)
+        ).FirstOrDefault();
+        return detail;
+    }
+
+    protected override ResultViewModel UpdateData(DetailView view, SysEmployee userInfo)
+    {
+        if (!view.IsValid(out string message))
+            return Lib.BadResult(message);
+
+        Model model = null;
+        bool isAdd = view.Uid == Guid.Empty;
+        if (isAdd)
+        {
+            model = view.ToModel();
+            if (!string.IsNullOrEmpty(model.Code))
+            {
+                var queryOldProduct = table.FirstOrDefault(x =&gt; x.Code == model.Code &amp;&amp; x.CompanyUid == userInfo.CompanyUid);
+                if (queryOldProduct != null)
+                    return Lib.BadResult(&quot;產品編號重複&quot;);
+            }
+            model.ToAddStaus(userInfo);
+            table.Add(model);
+        }
+        else
+        {
+            model = table.FirstOrDefault(x =&gt; x.Uid == view.Uid &amp;&amp; x.CompanyUid == userInfo.CompanyUid);
+            if (model == null)
+                return Lib.BadResult(&quot;查無資料&quot;);
+
+            if (!string.IsNullOrEmpty(view.Code) &amp;&amp; view.Code != model.Code)
+            {
+                var queryOldProduct = table.FirstOrDefault(x =&gt; x.Code == view.Code &amp;&amp; x.CompanyUid == userInfo.CompanyUid);
+                if (queryOldProduct != null &amp;&amp; model.Uid != queryOldProduct.Uid)
+                    return Lib.BadResult(&quot;產品編號重複&quot;);
+            }
+
+            model.UpdateModel(view);
+            model.ToUpdateStaus(userInfo);
+        }
+
+        if (!DB.TrySave(out message))
+            return Lib.BadResult(message);
+
+        return Lib.UpdateResult(isAdd, model.Uid);
+    }
+}
+</code></pre>
+<p>}<br>{% endcodeblock %}  </p>
+<p>我們可以看到 <code>ProductsController</code> 內就只剩下查詢、新增、修改、刪除的資料處理邏輯，當然也可以再增加其他 API 功能。  </p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>如果嘗試在建立一個新的 Controller 就會發現步驟很簡單：  </p>
+<ul>
+<li><p>建立 ViewModel 類別，再將對應的 Model 類別的屬性複製過來修改。  </p>
+</li>
+<li><p>ViewModel 內的擴充方法可以複製既有的 ViewModel 程式碼，大部分需要依照屬性(欄位)做調整。  </p>
+</li>
+<li><p>建立 Controller 類別，複製既有的 Controller 過來修改。  </p>
+</li>
+</ul>
+<p>利用複製貼上寫程式其實是很不嚴謹的，因為做得太快反而沒有仔細思考，但是編譯過程也可以幫我們排除重大錯誤，大部分剩下<strong>用戶端資料顯示不完全</strong>或是<strong>部分欄位資料沒寫入資料庫</strong>，這部分程式設計師在初期測試應就可以發現，既使沒注意，事後排除應該也不難。  </p>

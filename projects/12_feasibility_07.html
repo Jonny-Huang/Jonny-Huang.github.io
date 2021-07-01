@@ -1,0 +1,295 @@
+<hr>
+<p>title: 化繁為簡：07 前端篇(二)實作<br>date: 2021-06-30<br>categories: Projects<br>keywords:</p>
+<ul>
+<li>Projects</li>
+<li>Angular</li>
+<li>.Net<br>tags:</li>
+<li>Projects</li>
+</ul>
+<hr>
+<p><img src="/images/projects/feasibility/07/feasibility_07_001.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一篇 <a href="/projects/11_feasibility_06/">化繁為簡：06 前端篇(一)</a> 我們把前端的主要的前置作業準備好了，接下來就是直接時做一個<strong>產品的維護作業</strong>，大致規劃如下圖，這是一個很常見的維護功能，我們會有一個資訊清單列表負責呈現多筆資料，上面僅會顯示重要欄位資訊，另外還有一個維護頁面可以檢視與及編輯完整資訊。  </p>
+<p><img src="/images/projects/feasibility/07/feasibility_07_002.png" alt="img">  </p>
+<!-- more -->  
+
+<h1 id="CRM-Module"><a href="#CRM-Module" class="headerlink" title="CRM Module"></a>CRM Module</h1><p>為了避免 Angular 打包後程式過大，所以我們採用<a href="https://angular.tw/guide/lazy-loading-ngmodules">延遲載入</a>方式處理，步驟如下：  </p>
+<ul>
+<li><p>建立一個包含路由功能的 CRM(Customer Relationship Management) NgModule，指令如下：<br><code>ng g m crm --route crm -m app.module</code>  </p>
+<blockquote>
+<p>預設建立的 CrmComponent 如果沒有使用可以移除。  </p>
+</blockquote>
+</li>
+<li><p>在 crm 目錄下建立一個 <code>crm.service.ts</code> 服務(Service)，主要用來 CRM 下面的 Component 會使用到的服務，指令如下：<br><code>ng g s crm/crm</code>  </p>
+<blockquote>
+<p>因為僅限於 CRM，所以我們將 <code>crm.service.ts</code> 內的 <code>{ providedIn: &#39;root&#39; }</code> 移除，並手動將 CrmService 註冊到 CrmModule 的 <code>providers</code> 內。<br><img src="/images/projects/feasibility/07/feasibility_07_004.png" alt="img"><br><code>SharedPrimengModule</code> 主要是存放 PrimeNG 提供的 Component，這會因為大家使用的元件而有所不同。<br><img src="/images/projects/feasibility/07/feasibility_07_005.png" alt="img">  </p>
+</blockquote>
+</li>
+<li><p>一清單以及編輯功能分別建立對應的 Component (ProductListComponent、ProductInfoComponent)，指令如下：<br><code>ng g c crm/productList</code>、<code>ng g c crm/productInfo</code>  </p>
+<blockquote>
+<p>筆者習慣將 <code>selector</code> 的前置詞 <code>app</code> 換成 NgModule 的名稱。<br><img src="/images/projects/feasibility/07/feasibility_07_006.png" alt="img">  </p>
+</blockquote>
+</li>
+<li><p>最後再在 CrmRoutingModule 內補上 Component 的路由規則。<br><img src="/images/projects/feasibility/07/feasibility_07_007.png" alt="img">  </p>
+</li>
+</ul>
+<h1 id="REST-API"><a href="#REST-API" class="headerlink" title="REST API"></a>REST API</h1><p>接下來要依照後端 REST 服務所回傳的資料結構建立對應的 Model ，我們先建立一個 <code>product.ts</code> 檔，接著直接將後端 <code>ProductViewModel</code>、<code>ProductDetailViewModel</code> 複製過來，再透過轉換工具幫我們轉換成 TypeScript 語法。<br><img src="/images/projects/feasibility/07/feasibility_07_003.png" alt="img">  </p>
+<blockquote>
+<p>避免名稱過長，所以筆者會移除字尾的 <code>ViewModel</code>。  </p>
+</blockquote>
+<p>接著在 CrmService 加入 HttpService，並利用 HttpService 來建立 REST 相關方法，順建建立一個可以取得 DetailModel 實體的方法 <code>getDefaultProductDetail()</code>，程式碼如下：  </p>
+<p>{% codeblock crm.service.ts lang:ts %}<br>import { Injectable } from ‘@angular/core’;<br>import { Observable, of } from ‘rxjs’;<br>import { HttpService } from ‘../service/http.service’;<br>import { Controller } from ‘../models/enum’;<br>import { ApiResult, QueryParameters } from ‘../models/models’;<br>import { Product, ProductDetail } from ‘../models/product’;<br>import { UUID_EMPTY } from ‘../service/system’;</p>
+<p>@Injectable()<br>export class CrmService {<br>  constructor(<br>    private http: HttpService) { }</p>
+<p>  // …</p>
+<p>  // Product ===================================================================<br>  getDefaultProductDetail(): ProductDetail {<br>    const item: ProductDetail = {<br>      createdBy: ‘’,<br>      createdDate: ‘’,<br>      notes: ‘’,<br>      uid: UUID_EMPTY,<br>      name: ‘’,<br>      code: ‘’,<br>      typeUid: UUID_EMPTY,<br>      type: ‘’,<br>      stateType: 0,<br>      state: ‘’,<br>      model: ‘’,<br>      imageUid: UUID_EMPTY,<br>      specification: ‘’,<br>      unit: ‘’,<br>      unitPrice: 0<br>    };<br>    return item;<br>  }</p>
+<p>  getProducts$(): Observable&lt;Product[]&gt; {<br>    return this.http.getAllData&lt;Product[]&gt;(Controller.Product);<br>  }<br>  getProductsCount$(): Observable<number> {<br>    return this.http.getCount(Controller.Product);<br>  }<br>  getProductsByBatch$(query: QueryParameters): Observable&lt;Product[]&gt; {<br>    return this.http.getBatchData&lt;Product[]&gt;(Controller.Product, query);<br>  }<br>  getProductById$(uid: string): Observable<ProductDetail> {<br>    if (!uid || uid === UUID_EMPTY) {<br>      const item = this.getDefaultProductDetail();<br>      return of(item);<br>    }<br>    return this.http.getData<ProductDetail>(Controller.Product, uid);<br>  }<br>  setProduct$(model: ProductDetail): Observable<ApiResult> {<br>    if (model.uid &amp;&amp; model.uid !== UUID_EMPTY) {<br>      return this.http.putData(Controller.Product, model);<br>    } else {<br>      return this.http.postData(Controller.Product, model);<br>    }<br>  }<br>  removeProduct$(model: Product): Observable<ApiResult> {<br>    return this.http.deleteData(Controller.Product, model);<br>  }</p>
+<p>  // …<br>}</p>
+<p>{% endcodeblock %}  </p>
+<blockquote>
+<p><code>system.ts</code> 內會放置一些常用常數或方法。<br><img src="/images/projects/feasibility/07/feasibility_07_008.png" alt="img"><br><code>enum.ts</code> 內則是將 Controller 名稱以 <code>enum</code> 方式儲存，這樣就可以避免輸入錯誤，<code>Type</code> 其實就是資料庫用來存放代碼表資訊的資料表 <code>sys_type</code> 內的 <code>group_name</code>。<br><img src="/images/projects/feasibility/07/feasibility_07_009.png" alt="img"><br><img src="/images/projects/feasibility/07/feasibility_07_010.png" alt="img">  </p>
+</blockquote>
+<h1 id="清單列表"><a href="#清單列表" class="headerlink" title="清單列表"></a>清單列表</h1><p>CrmService 的 <code>getProducts$()</code> 方法提供的是一次抓取全部資料的功能，但是如果資料量過大時就不適合使用，所以改採用分批下載方式處理，我們先透過 <code>getProductsCount$()</code> 取得資料總筆數，接著利用 <code>getProductsByBatch$()</code> 逐批抓取，針對這種批次下載方式，我們建立一個介面(<code>Source&lt;T&gt;</code>)來表示要使用到的變數，並建立一個實作見面的方法 <code>Source&lt;T&gt;()</code>。<br><img src="/images/projects/feasibility/07/feasibility_07_011.png" alt="img">  </p>
+<p>{% codeblock product-list.component.ts lang:ts %}<br>import { Component, OnDestroy, OnInit } from ‘@angular/core’;<br>import { Router } from ‘@angular/router’;<br>import { Location } from ‘@angular/common’;<br>import { MenuItem } from ‘primeng/api’;<br>import { CrmService } from ‘../crm.service’;<br>import { SettingsService } from ‘../../service/settings.service’;<br>import { MessageService } from ‘../../service/message.service’;<br>import { QueryParameters } from ‘../../models/models’;<br>import { Product } from ‘../../models/product’;<br>import { PageSize, Source } from ‘../../service/system’;</p>
+<p>@Component({<br>  selector: ‘crm-product-list’,<br>  templateUrl: ‘./product-list.component.html’,<br>  styleUrls: [‘./product-list.component.scss’]<br>})<br>export class ProductListComponent implements OnInit, OnDestroy {<br>  operations: MenuItem[] = [];<br>  source = Source<Product>();<br>  filterFields: string[] = [<br>    ‘name’,<br>    ‘code’,<br>    ‘type’,<br>    ‘state’,<br>    ‘model’,<br>    ‘notes’<br>  ];</p>
+<p>  constructor(<br>    private location: Location,<br>    private router: Router,<br>    private api: CrmService,<br>    public settings: SettingsService,<br>    private message: MessageService) { }</p>
+<p>  ngOnDestroy(): void {<br>    this.source.isRefresh = false;<br>  }</p>
+<p>  ngOnInit(): void {<br>    this.operations = [<br>      {<br>        label: ‘上一頁’,<br>        icon: ‘fal fa-reply’,<br>        command: () =&gt; this.location.back()<br>      },<br>      {<br>        label: ‘重新整理’,<br>        icon: ‘fal fa-redo’,<br>        command: () =&gt; this.refresh()<br>      },<br>      {<br>        label: ‘新增’,<br>        icon: ‘fal fa-plus’,<br>        command: () =&gt; this.router.navigateByUrl(<code>/crm/product/info/${UUID_EMPTY}</code>)<br>      },<br>      {<br>        label: ‘說明’,<br>        icon: ‘fal fa-question-circle’<br>      }<br>    ];<br>    // …<br>    this.refresh();<br>  }</p>
+<p>  refresh(): void {<br>    this.api.getProductsCount$().subscribe(next =&gt; {<br>      this.source = Source<Product>();<br>      this.source.totalRecords = next;<br>      if (this.source.totalRecords &lt;= 0) {<br>        this.message.showInfoToast(‘查無資料’);<br>        return;<br>      }<br>      this.source.isRefresh = true;<br>      this.getList();<br>    });<br>  }</p>
+<p>  getList(): void {<br>    if (!this.source.isRefresh || this.source.totalRecords &lt;= 0) {<br>      return;<br>    }<br>    const dataCount = this.source.data.length;<br>    const pageSize = PageSize;<br>    const pageNumber = parseInt((dataCount / pageSize).toString(), 10);</p>
+<pre><code>const query: QueryParameters = {
+  pageNumber,
+  pageSize,
+  filter: &#39;&#39;
+};
+this.api.getProductsByBatch$(query).subscribe(next =&gt; {
+  this.source.data = this.source.data.concat(...next);
+  this.source.loadRecords = this.source.data.length;
+  if (!next || next.length &lt; pageSize) {
+    this.source.isRefresh = false;
+    this.source.totalRecords = this.source.loadRecords;
+    this.message.showInfoToast(&#39;查詢成功&#39;);
+    return;
+  }
+  this.getList();
+});
+</code></pre>
+<p>  }</p>
+<p>  // …<br>}<br>{% endcodeblock %}  </p>
+<blockquote>
+<p>比較特別的是我實作了 Angular Companent 生命週期中的 <code>OnDestroy</code>，我們在 <code>Source</code> 介面有一個變數 <code>isRefresh</code>，它是用來記錄目前狀態是否在更新(下載)中，當我們離開 Companent 時會自動觸發 <code>OnDestroy</code>，我們藉此將 <code>isRefresh</code> 改成 <code>false</code> 來中止未完成的下載動作。  </p>
+</blockquote>
+<p><code>product-list.component.html</code> 範本內，我們利用 PrimeNG 的 <a href="https://www.primefaces.org/primeng/showcase/#/table">Table</a> 來呈現，主要內容如下：  </p>
+<p>{% codeblock product-list.component.html lang:html %}</p>
+<div class="p-grid">
+    <div class="p-col-12">
+        <p-menubar [model]="operations"></p-menubar>
+        <div class="card" style="margin-top: 12px;">
+            <div class="p-grid">
+                <p-table #dt [value]="source.data" [globalFilterFields]="filterFields" dataKey="uid" [paginator]="true"
+                    [rows]="10" styleClass="p-datatable-gridlines">
+                    <ng-template pTemplate="caption">
+                        <div style="text-align: right">
+                            <span style="margin: 0px 24px;font-weight: bold;font-size: 14px;">讀取進度：{{source.loadRecords}} /
+                                {{source.totalRecords}}</span>
+                            <i class="fal fa-search" style="margin:4px 4px 0 0"></i>
+                            <input #search type="text" pInputText size="50" placeholder="篩選條件"
+                                (input)="dt.filterGlobal(search.value, 'contains')" style="width:auto">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="text-align:center; width: 4.2rem;">檢視</th>
+                            <th style="text-align:center; width: 100px;">照片</th>
+                            <th pSortableColumn="code" style="text-align:center; width: 140px;">
+                                產品編號<p-sortIcon field="code"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="name" style="text-align:center; width: 200px;">
+                                名稱<p-sortIcon field="name"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="type" style="text-align:center; width: 200px">
+                                產品類別<p-sortIcon field="type"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="model" style="text-align:center; width: 240px;">
+                                型號<p-sortIcon field="model"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="state" style="text-align:center; width: 140px;">
+                                狀態<p-sortIcon field="state"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="notes" style="text-align:center;">
+                                備註<p-sortIcon field="notes"></p-sortIcon>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData>
+                        <tr>
+                            <td style="text-align:center">
+                                <button pButton type="button" icon="fal fa-search" class="p-button-info"
+                                    [routerLink]="['/crm/product/info',rowData.uid]"></button>
+                            </td>
+                            <td style="text-align:center">
+                                <img [src]="'api/images/'+rowData.imageUid+'?w=68&h=68'" [alt]="rowData.name" />
+                            </td>
+                            <td style="text-align:center">{{rowData.code}}</td>
+                            <td>{{rowData.name}}</td>
+                            <td style="text-align:center">{{rowData.type}}</td>
+                            <td style="text-align:center">{{rowData.model}}</td>
+                            <td style="text-align:center">{{rowData.state}}</td>
+                            <td>{{rowData.notes}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endcodeblock %}  
+
+<blockquote>
+<p>PrimeNG 的 <a href="https://www.primefaces.org/primeng/showcase/#/table">Table</a> 內建了搜尋功能，我們可以透過屬性 <code>globalFilterFields</code> 來決定要搜尋的欄位，另外我們透過 <code>loadRecords</code> 與 <code>totalRecords</code> 來讓使用者知道目前下載進度。  </p>
+</blockquote>
+<p>我們可以透過功能選單的<strong>新增</strong>按鈕或是產品項目的<strong>檢視</strong>按鈕切換到編輯頁面(ProductInfoComponent)，呈現效果大概如下圖：<br><img src="/images/projects/feasibility/07/feasibility_07_012.png" alt="img">  </p>
+<blockquote>
+<p>筆者使利用 PrimeNG 的 <a href="https://www.primefaces.org/layouts/atlantis-ng">Atlantis</a> 版型來開發，實際效果會因為 CSS 而有所差異。<br>雖然 PrimeNG 也有提供圖示字型 <a href="https://www.primefaces.org/primeng/showcase/#/icons">PrimeIcons</a>，不過筆者是使用 <a href="https://fontawesome.com/">Font Awesome</a>。<br>因為測試環境資料筆數不多所以沒有差異，但是當比數多時，就會有下面的效果。<br><img src="/images/projects/feasibility/02/feasibility_02_013.gif" alt="img">  </p>
+</blockquote>
+<h1 id="資料編輯"><a href="#資料編輯" class="headerlink" title="資料編輯"></a>資料編輯</h1><p>編輯頁面內我們主要透過 CrmService 的 <code>getProductById$(uid: string)</code> 方法來抓取資料，因為有些欄位的資料是透過選單來選取決定，所以正常我們還需要額外抓取這些選單資料(例如：產品狀態 <code>stateTypes</code>)，這時候比較簡單的方式是透過 RxJS 的 <code>forkJoin</code> 將所有請求給包覆起來，它會等待所有請求(observables)都完成時才回應，主要程式碼如下：  </p>
+<p>{% codeblock product-info.component.ts lang:ts %}<br>import { Component, OnInit } from ‘@angular/core’;<br>import { ActivatedRoute } from ‘@angular/router’;<br>import { Location } from ‘@angular/common’;<br>import { forkJoin } from ‘rxjs’;<br>import { MenuItem } from ‘primeng/api’;<br>import { CrmService } from ‘../crm.service’;<br>import { SettingsService } from ‘../../service/settings.service’;<br>import { MessageService } from ‘../../service/message.service’;<br>import { Type } from ‘../../models/enum’;<br>import { ItemType } from ‘../../models/models’;<br>import { UUID_EMPTY } from ‘../../service/system’;</p>
+<p>@Component({<br>  selector: ‘crm-product-info’,<br>  templateUrl: ‘./product-info.component.html’,<br>  styleUrls: [‘./product-info.component.scss’]<br>})<br>export class ProductInfoComponent implements OnInit {<br>  operations: MenuItem[] = [];<br>  uid = ‘’;<br>  selectedItem = this.api.getDefaultProductDetail();<br>  stateTypes: ItemType[] = [];</p>
+<p>  constructor(<br>    private location: Location,<br>    private route: ActivatedRoute,<br>    private api: CrmService,<br>    public settings: SettingsService,<br>    private message: MessageService) { }</p>
+<p>  ngOnInit(): void {<br>    const uid = this.route.snapshot.paramMap.get(‘uid’);<br>    if (!uid) {<br>      return;<br>    }<br>    this.uid = uid;<br>    this.operations = [<br>      {<br>        label: ‘上一頁’,<br>        icon: ‘fal fa-reply’,<br>        command: () =&gt; this.location.back()<br>      },<br>      {<br>        label: ‘重新整理’,<br>        icon: ‘fal fa-redo’,<br>        command: () =&gt; this.refresh()<br>      },<br>      {<br>        label: ‘新增’,<br>        icon: ‘fal fa-plus’,<br>        items: [<br>          {<br>            label: ‘空白’,<br>            icon: ‘fal fa-file’,<br>            command: () =&gt; this.newData(true)<br>          },<br>          {<br>            label: ‘複製’,<br>            icon: ‘fal fa-copy’,<br>            command: () =&gt; this.newData(false)<br>          },<br>          {<br>            label: ‘從物料複製’,<br>            icon: ‘fal fa-copy’,<br>            command: () =&gt; this.newData(true, true)<br>          }<br>        ]<br>      },<br>      {<br>        label: ‘刪除’, icon: ‘fal fa-trash-alt’,<br>        command: () =&gt; this.remove()<br>      },<br>      {<br>        label: ‘說明’,<br>        icon: ‘fal fa-question-circle’<br>      }<br>    ];</p>
+<pre><code>this.refresh();
+</code></pre>
+<p>  }</p>
+<p>  refresh(): void {<br>    forkJoin([<br>      this.api.getProductById$(this.uid),<br>      this.api.getTypes$(Type.ProductStateType)<br>    ]).subscribe(next =&gt; {<br>      this.selectedItem = next[0];<br>      this.stateTypes = next[1];<br>    });<br>  }</p>
+<p>  newData(isEmpty: boolean, withMaterial = false): void {<br>    if (isEmpty) {<br>      this.selectedItem = this.api.getDefaultProductDetail();<br>    } else {<br>      const emptyObj = {<br>        uid: UUID_EMPTY,<br>        createdBy: ‘’,<br>        createdDate: ‘’,<br>        code: ‘’<br>      };<br>      const model = Object.assign({}, this.selectedItem, emptyObj);<br>      if (model.stateType &lt; 0) {<br>        model.stateType = 0;<br>      }<br>      this.selectedItem = model;<br>    }<br>    this.stateTypes = this.stateTypes.filter(x =&gt; x.value &gt;= 0);<br>    this.location.replaceState(<code>/crm/product/info/${this.uid}</code>);<br>  }</p>
+<p>  save(state = 0, type = ‘儲存’): void {<br>    const model = this.selectedItem;<br>    if (!model) {<br>      return;<br>    }<br>    if (!model.code) {<br>      this.message.showWarnToast(‘請輸入編號’);<br>      return;<br>    }<br>    if (!model.name) {<br>      this.message.showWarnToast(‘請輸入產品名稱’);<br>      return;<br>    }<br>    if (!model.stateType) {<br>      this.message.showWarnToast(‘請選擇產品狀態’);<br>      return;<br>    }<br>    if (state !== 0) {<br>      model.stateType = -1;<br>    }<br>    this.message.confirm({<br>      message: <code>您確定要${type}嗎？</code>,<br>      accept: () =&gt; {<br>        this.api.setProduct$(model).subscribe(next =&gt; {<br>          if (next.success) {<br>            this.location.replaceState(<code>/crm/product/info/${this.uid}</code>);<br>            this.refresh();<br>          }<br>        });<br>      }<br>    });<br>  }</p>
+<p>  remove(): void {<br>    const model = this.selectedItem;<br>    this.message.confirm({<br>      message: ‘您確定要刪除嗎？’,<br>      accept: () =&gt; {<br>        this.api.removeProduct$(model).subscribe(next =&gt; {<br>          if (next.success) {<br>            this.location.back();<br>          }<br>        });<br>      }<br>    });<br>  }<br>}<br>{% endcodeblock %}  </p>
+<blockquote>
+<p><code>api.getTypes$()</code> 主要是去後端抓取代碼表，後續有需要再作補充說明，時做上並不困難。<br>原則上類別變數都會給予值避免為 <code>undefined</code>，這在使用 Angular 的 Strict mode 時可以避免一些麻煩。<br>對於新增頻繁的作業，我們可以直接在維護頁面也提供<strong>新增</strong>按鈕，這樣使用者就可以快速新增資料，比較特別的是我們提供可以<strong>複製</strong>現有資料來新增，這樣可以減少輸入時間，在此利用 <code>Object.assign</code> 來複製既有資料，同時帶入 <code>emptyObj</code> 將一些重要欄位給還原成初始值。  </p>
+</blockquote>
+<p>{% codeblock product-info.component.html lang:html %}</p>
+<div class="p-grid">
+  <div class="p-col-12">
+    <p-menubar [model]="operations"></p-menubar>
+    <div class="card" style="margin-top: 12px;">
+      <div class="p-grid">
+        <div class="p-col-12 p-md-2 text-lable-required text-md-right">
+          <label>產品編號：</label>
+        </div>
+        <div class="p-col-12 p-md-4">
+          <div class="p-inputgroup">
+            <input pInputText [(ngModel)]="selectedItem.code" [readonly]="config.read">
+          </div>
+        </div>
+        <div class="p-col-12 p-md-2 text-lable-required text-md-right">
+          <label>產品名稱：</label>
+        </div>
+        <div class="p-col-12 p-md-4">
+          <div class="p-inputgroup">
+            <input pInputText [(ngModel)]="selectedItem.name" [readonly]="config.read">
+          </div>
+        </div>
+        <div class="p-col-12 p-md-2 text-lable-required text-md-right">
+          <label>類別：</label>
+        </div>
+        <div class="p-col-12 p-md-4">
+          <div class="p-inputgroup">
+            <input type="text" pInputText [value]="selectedItem.type" placeholder="請選擇產品類別" [readonly]="true"
+              pTooltip="唯讀欄位" tooltipPosition="top">
+            <button pButton type="button" icon="fal fa-list" class="p-button-warning"
+              (click)="viewProductType()"></button>
+          </div>
+        </div>
+        <div class="p-col-12 p-md-2 text-lable-read text-md-right">
+          <label>單位：</label>
+        </div>
+        <div class="p-col-12 p-md-4">
+          <div class="p-inputgroup">
+            <input pInputText [value]="selectedItem.unit " [readonly]="true" pTooltip="唯讀欄位，綁定產品類別" tooltipPosition="top">
+          </div>
+        </div>
+        <div class="p-col-12 p-md-2 text-lable-required text-md-right">
+          <label>狀態：</label>
+        </div>
+        <div class="p-col-12 p-md-4">
+          <p-dropdown [options]="stateTypes" [(ngModel)]="selectedItem.stateType" optionLabel="name" optionValue="value"
+            placeholder="請選擇產品狀態" [style]="{'width': '100%'}">
+          </p-dropdown>
+        </div>
+        <div class="p-col-12 p-md-2 text-lable text-md-right">
+          <label>型號：</label>
+        </div>
+        <div class="p-col-12 p-md-4">
+          <div class="p-inputgroup">
+            <input pInputText [(ngModel)]="selectedItem.model">
+          </div>
+        </div>
+        <div class="p-col-12 p-md-2 text-lable text-md-right">
+          <label>規格：</label>
+        </div>
+        <div class="p-col-12 p-md-10">
+          <textarea pInputTextarea [rows]="10" [cols]="100" [(ngModel)]="selectedItem.specification"></textarea>
+        </div>
+        <div class="p-col-12 p-md-2 text-lable text-md-right">
+          <label>備註：</label>
+        </div>
+        <div class="p-col-12 p-md-10">
+          <textarea pInputTextarea [rows]="3" [cols]="100" [(ngModel)]="selectedItem.notes"></textarea>
+        </div>
+        <div class="p-col-12 p-md-2 text-lable text-md-right">
+          <label>產品照片：</label>
+        </div>
+        <div class="p-col-12 p-md-10">
+          <img [src]="'api/images/'+selectedItem.imageUid+'?w=200&h=200'" [alt]="selectedItem.name" />
+        </div>
+        <div class="p-col-12 p-grid">
+          <div class="p-col-12 p-md-3 p-inputgroup">
+            <span class="p-inputgroup-addon"><i class="fal fa-user-edit"></i></span>
+            <input type="text" pInputText [value]="selectedItem.createdBy" [readonly]="true" pTooltip="更新人員"
+              tooltipPosition="top">
+          </div>
+          <div class="p-col-12 p-md-3 p-inputgroup">
+            <span class="p-inputgroup-addon"><i class="fal fa-clock"></i></span>
+            <input type="text" pInputText [value]="selectedItem.createdDate" [readonly]="true" pTooltip="更新時間"
+              tooltipPosition="top">
+          </div>
+          <div class="p-col-12 p-md-6" dir="rtl">
+            <button *ngIf="!config.read" type="button" pButton icon="fal fa-check" label="儲存" class="p-button-success"
+              style="width: 120px;margin-left: 12px;" (click)="save()"></button>
+            <button *ngIf="!config.read && !config.isNew" type="button" pButton icon="fal fa-file-times" label="停產" class="p-button-danger"
+              style="width: 120px;margin-left: 12px;" (click)="save(-1,'停產')"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p>{% endcodeblock %}  </p>
+<p>這邊移除了照片上傳功能，僅保留主要的邏輯處理，這樣比較容易理解，整體操作介面會如下圖：<br><img src="/images/projects/feasibility/07/feasibility_07_013.png" alt="img">  </p>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>在介面上我們透過 <a href="https://angular.tw/guide/forms">Template-Driven Forms</a> 方式處理資料與表單的互動，當然也可採用 <a href="https://angular.tw/guide/reactive-forms">Reactive Forms</a>(<a href="https://angular.tw/guide/reactive-forms">Model-Driven Forms</a>)。  </p>
+<p>如果你也有看過筆者後端的開發說明，那你可以嘗試思考當資料庫增加一個表單時，我們要如何建立一個維護功能？<br>後端：  </p>
+<ul>
+<li>利用 <code>dotnet ef dbcontext scaffold</code> 更新 Model 模型。  </li>
+<li>複製 Model 來建立 ViewModel 模型。  </li>
+<li>複製既有 ViewModel 的擴充方法來修改。  </li>
+<li>建立 Controller 讓它繼承自 DataController 並複寫相關方法。  <blockquote>
+<p>筆者會複製既有的 Controller 來修改更快。  </p>
+</blockquote>
+</li>
+</ul>
+<p>前端：  </p>
+<ul>
+<li>複製後端的 ViewModel 來產生對應的 Model。  </li>
+<li>在 Service 內建立 REST 對應的方法與 DetailMode 的預設實作方法。　　<blockquote>
+<p>這邊也可以複製既有的方法來修改比較快。　　</p>
+</blockquote>
+</li>
+<li>建立清單與維護的 Component。<blockquote>
+<p>複製既有 Component 的程式與範本來修改。  </p>
+</blockquote>
+</li>
+<li>曾家路由規則。  </li>
+</ul>
+<p>我們可以發現主要差異就是<strong>類別名稱</strong>與<strong>屬性</strong>，所以不用 Copy Paste 好像有點說不過去，唯一最大的變數就是後端 Controller 的邏輯處理，如果是 Master–detail 的資料，例如報價單會有多個品項，我們的資料處理與判斷邏輯可能會比較複雜，不然建立一個維護功能需要的時間其實…。  </p>
+<blockquote>
+<p>撇開正規的教育，如果要一個新手能夠有即戰力，其實我們要教的東西不多。<br>想想，如果連 Web 的基本概念都不懂的人都可以開發網站…這真的會嚴重破壞軟體品質，不過對於有人力、時程壓力的中小專案來說，至少是一個可行辦法。  </p>
+</blockquote>

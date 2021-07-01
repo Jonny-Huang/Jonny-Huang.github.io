@@ -550,13 +550,6 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/tags/Ionic/</loc>
-    <lastmod>2021-07-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jonny-huang.github.io/tags/Docker/</loc>
     <lastmod>2021-07-01</lastmod>
     <changefreq>daily</changefreq>
@@ -564,7 +557,21 @@
   </url>
   
   <url>
+    <loc>https://jonny-huang.github.io/tags/Ionic/</loc>
+    <lastmod>2021-07-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jonny-huang.github.io/tags/Projects/</loc>
+    <lastmod>2021-07-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jonny-huang.github.io/tags/Quotes/</loc>
     <lastmod>2021-07-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -579,13 +586,6 @@
   
   <url>
     <loc>https://jonny-huang.github.io/tags/slides/</loc>
-    <lastmod>2021-07-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jonny-huang.github.io/tags/Quotes/</loc>
     <lastmod>2021-07-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -648,14 +648,14 @@
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/tags/Output/</loc>
+    <loc>https://jonny-huang.github.io/tags/Lazy-loading/</loc>
     <lastmod>2021-07-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://jonny-huang.github.io/tags/Lazy-loading/</loc>
+    <loc>https://jonny-huang.github.io/tags/Output/</loc>
     <lastmod>2021-07-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

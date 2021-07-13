@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="前言看到最近 FB 上再討論 CORS(Cross-Origin Resource Sharing，跨來源資源共用) 安全性問題，這時突然意識到，其實自己對網路好像不熟，不論是家裡要申請網路還是手機要上網，現在建置網路環境對大部分的人來說都不時太困難的事情，但是資料怎麼傳送？為什麼不會送錯地址？好像似懂非懂，裝防毒軟體跟架設防火牆網路就安全了嗎？這幾天就拜託 Google 大神來蒐集資料。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="網路概論(一)">
+<meta property="og:url" content="https://jonny-huang.github.io/else/01_net_01/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言看到最近 FB 上再討論 CORS(Cross-Origin Resource Sharing，跨來源資源共用) 安全性問題，這時突然意識到，其實自己對網路好像不熟，不論是家裡要申請網路還是手機要上網，現在建置網路環境對大部分的人來說都不時太困難的事情，但是資料怎麼傳送？為什麼不會送錯地址？好像似懂非懂，裝防毒軟體跟架設防火牆網路就安全了嗎？這幾天就拜託 Google 大神來蒐集資料。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/01/net_01_001.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/01/net_01_006.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/01/net_01_003.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/01/net_01_005.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/01/net_01_007.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/01/net_01_008.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/01/net_01_002.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/01/net_01_012.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/01/net_01_011.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/01/net_01_009.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/01/net_01_010.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/01/net_01_014.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/01/net_01_015.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/01/net_01_013.png">
+<meta property="article:published_time" content="2021-07-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-13T11:03:09.884Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="Else">
+<meta property="article:tag" content="Network">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/else/net/01/net_01_001.png">
+
+
+<link rel="canonical" href="https://jonny-huang.github.io/else/01_net_01/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;else&#x2F;01_net_01&#x2F;&quot;,&quot;path&quot;:&quot;else&#x2F;01_net_01&#x2F;&quot;,&quot;title&quot;:&quot;網路概論(一)&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>網路概論(一) | Jonny Huang 的學習筆記</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa fa-tags fa-fw"></i>欣雨露</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RJ45-8P8C"><span class="nav-number">2.</span> <span class="nav-text">RJ45(8P8C)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B6%B2%E8%B7%AF%E9%9B%86%E7%B7%9A%E5%99%A8-Ethernet-hub"><span class="nav-number">3.</span> <span class="nav-text">網路集線器(Ethernet hub)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Uplink"><span class="nav-number">3.1.</span> <span class="nav-text">Uplink</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%A3%E6%92%AD%E5%BC%8F-Broadcast"><span class="nav-number">3.2.</span> <span class="nav-text">廣播式(Broadcast)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B6%B2%E8%B7%AF%E4%BA%A4%E6%8F%9B%E5%99%A8-Network-switch"><span class="nav-number">4.</span> <span class="nav-text">網路交換器(Network switch)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%8B%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">4.1.</span> <span class="nav-text">運作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%80%A7"><span class="nav-number">4.2.</span> <span class="nav-text">安全性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%8C%E8%A8%98"><span class="nav-number">5.</span> <span class="nav-text">後記</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Switching-Hub-%E9%99%B7%E9%98%B1"><span class="nav-number">5.1.</span> <span class="nav-text">Switching Hub 陷阱</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jonny Huang"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:jonnyhuang@outlook.com" title="E-Mail → mailto:jonnyhuang@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/else/01_net_01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          網路概論(一)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/07/13 19:03:09" itemprop="dateModified" datetime="2021-07-13T19:03:09+08:00">2021/07/13</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Projects/" itemprop="url" rel="index"><span itemprop="name">Projects</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img src="/images/else/net/01/net_01_001.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>看到最近 FB 上再討論 <strong>CORS</strong>(<strong>Cross-Origin Resource Sharing</strong>，<strong>跨來源資源共用</strong>) 安全性問題，這時突然意識到，其實自己對<strong>網路</strong>好像不熟，不論是家裡要申請網路還是手機要上網，現在建置網路環境對大部分的人來說都不時太困難的事情，但是資料怎麼傳送？為什麼不會送錯地址？好像似懂非懂，裝防毒軟體跟架設防火牆網路就安全了嗎？這幾天就拜託 Google 大神來蒐集資料。  </p>
+<span id="more"></span>  
+
+<h1 id="RJ45-8P8C"><a href="#RJ45-8P8C" class="headerlink" title="RJ45(8P8C)"></a>RJ45(8P8C)</h1><p>過去<strong>資訊時代</strong>，電腦可以說是企業營運的必需品，到了現在<strong>網路資訊時代</strong>，必需品已經提升到網路層面，大多數的企業沒有網路幾乎無法營運，就硬體層面來說網路主要的目的就是協助資訊設備之間的資料傳遞，也就是設備需要具有<strong>傳送</strong>(<strong>Transport</strong>)與<strong>接收</strong>(<strong>Receive</strong>)的功能，如下圖，我們的傳遞端(Tx)會接到對方的接收端(Rx)，對方的傳遞端(Tx)會接到我們的接收端(Rx)，這樣就可以處理傳遞與接收的方式就是所謂的雙工(Duplex)模式。  </p>
+<blockquote>
+<p>單工(Simplex)是指設備僅具有傳遞或是接收一種功能，相較之下它是一種資料單向傳遞(一邊僅能傳遞、一邊僅能接收)的模式。  </p>
+</blockquote>
+<p><img src="/images/else/net/01/net_01_006.png" alt="img"><br>所以我們可以看到目前實體網路線的連接頭有 <strong>T586A</strong> 與 <strong>T586B</strong> 2 種接線方式，其差異就是傳遞(Tx)與接收(Rx)線路相反，如下圖可以看到橘色系與綠色系對調，我們在 2 台電腦網路線直接對接時會使用所謂的<strong>跳線</strong>，其實就是指一邊為 T586A 另一邊為 T586B 的網路線。<br><img src="/images/else/net/01/net_01_003.png" alt="img">  </p>
+<blockquote>
+<p>早期<strong>百兆乙太網路</strong>(10/100M)只會使用到 4 條線(1、2、3、6)，所以有些人實體線路也只接 4 條線，後來在 ADSL 剛興起時，筆者也有看過接線的工程師在 ADSL數據機(Modem) 與網路交換器(Switch)之間也得網路線也只接 4 條線，雖然不是正規接法，但是因為距離短且當時頻寬還不大，理論上影響可以忽略。不過現在是<strong>千兆以太網</strong>(Gigabit、1000M)普及的時代，另外4條線也會拿來傳輸資料，所以不可以再偷工取巧。<br><img src="/images/else/net/01/net_01_005.png" alt="img">  </p>
+</blockquote>
+<h1 id="網路集線器-Ethernet-hub"><a href="#網路集線器-Ethernet-hub" class="headerlink" title="網路集線器(Ethernet hub)"></a>網路集線器(Ethernet hub)</h1><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-tw/%E9%9B%86%E7%B7%9A%E5%99%A8"><strong>集線器</strong></a>(簡稱：<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-tw/%E9%9B%86%E7%B7%9A%E5%99%A8"><strong>Hub</strong></a>)應該可以算是絕版品了吧！外觀雖然<strong>交換器</strong>(<strong>Switch</strong>)一樣，功能看起來也相似，可以將多台電腦(這邊泛指具有網路傳輸功能的資訊設備)串接在一起並提供資料交換功能，但是運作方式還是有差異，主要概念如下圖，任一台電腦傳遞(Tx)資料給集線器時，它會複製資料並分發到所有有效的接收端(Rx)，也因為它會幫我們做轉換(Tx 轉 Rx)，所以我們電腦與集線器需要使用<strong>直通的網路線</strong>(網路線兩端接發相同)來連接。<br><img src="/images/else/net/01/net_01_007.png" alt="img">  </p>
+<p>當集線器的連接埠(Port)的數量不足時，一般我們會串接多台集線器來做水平擴增，這時候在<strong>集線器之間</strong>則必須使用<strong>跳線</strong>，這是因為電腦由 Tx 傳入的的資料會由集線器的 Rx 送出，透過朓線才能夠讓另一台集線器由 Tx 接收，並由 Rx 傳遞給連接到它的設備。<br><img src="/images/else/net/01/net_01_008.png" alt="img">  </p>
+<blockquote>
+<p>沒記錯的話，早期資訊賣場販售跳線都採用紫色線材，這樣一般民眾就能夠快速識別直通線與跳線。  </p>
+</blockquote>
+<h2 id="Uplink"><a href="#Uplink" class="headerlink" title="Uplink"></a>Uplink</h2><p>大部分來說我們會使用跳線的機會真的很低，所以一般公司其實很少會跳線備品，因此有些資訊設備廠商就推出內建跳線的集線器(或交換器)，<strong>Uplink</strong> 也是一個網路連接埠，差別就是這個連接埠裡面的線路 Tx 與 Rx 對調，完全跟跳線一樣，因此透過這個連接埠我們可以直接使用直通線來串接集線器，當然我們也可以透過跳線(再次 Tx 與 Rx 對調)把它變成一般的連接埠來使用，下面常見具有 Uplink 的集線器，依序為獨立連接埠類型(左圖)，開關類型(中間)可透過開關來切換連接埠為直通還是跳接，共用類型(右圖)則是 Uplink 的連接埠會與既有連接埠其中之一(一般不會第一個就是最後一個)共用，使用上只能二選一。<br><img src="/images/else/net/01/net_01_002.png" alt="img">  </p>
+<h2 id="廣播式-Broadcast"><a href="#廣播式-Broadcast" class="headerlink" title="廣播式(Broadcast)"></a>廣播式(Broadcast)</h2><p>因為集線器它是使用<strong>廣播式</strong>來傳送資料，也就是只要任何一台電腦傳送資料到集線器上，那所有連接設備都可以收到相同的資料，因此這是一個充滿信任的純樸時代，由接收端會自己過濾掉不屬於自己的資料。  </p>
+<h1 id="網路交換器-Network-switch"><a href="#網路交換器-Network-switch" class="headerlink" title="網路交換器(Network switch)"></a>網路交換器(Network switch)</h1><p>廣播式的集線器可以說是沒有安全性可言，除此之外隨著電腦串接數量的增加，非必要(不是自己需要的資料)的網路封包會越來越多，佔用的時間也會越來越多，因此網路傳遞延遲的問題也會越來越明顯。  </p>
+<blockquote>
+<p>一般集線器屬於半雙工模式，也就是傳送與接收一次只能執行一個動作，就像是對講機一樣，所以比起佔用頻寬，佔用時間造成的”慢”更加明顯。  </p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-tw/%E7%B6%B2%E8%B7%AF%E4%BA%A4%E6%8F%9B%E5%99%A8"><strong>交換器</strong></a>(簡稱：<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-tw/%E7%B6%B2%E8%B7%AF%E4%BA%A4%E6%8F%9B%E5%99%A8"><strong>Switch</strong></a>)的出現解決了這類的問題，它添加了一個通訊錄(MAC Address Table)功能，負責記錄電腦的<strong>實體位置</strong>(<strong>Physical Address</strong>)與<strong>連接埠</strong>(<strong>Port</strong>)的對應關係。  </p>
+<blockquote>
+<p>這邊的 <strong>連接埠</strong>(<strong>Port</strong>) 與我們一般講的應用程式連接埠(例如：網頁的 HTTP 80 Port、HTTPS 443 Port，FTP 的 21 Port)不同，這裡指的是集線器或交換器上面的實體網路孔。  </p>
+</blockquote>
+<p><img src="/images/else/net/01/net_01_012.png" alt="img">  </p>
+<blockquote>
+<p>這邊實體位置指的是電腦內的網路連結設備(網路卡)的 MAC位址(Media Access Control Address)，理論上每一個網路卡會有一個全球唯一的 MAC 位址。<br><img src="/images/else/net/01/net_01_011.png" alt="img">  </p>
+</blockquote>
+<p>因此我們發送的資料就必須包含我們<strong>自己的 MAC 位置</strong>(Source MAC Address)與<strong>發送對象的 MAC 位置</strong>(Destination MAC Address)，這樣交換器就可以建立 MAC 位址與連接埠的關聯表，藉由這個表它也可以知道資料要派送到哪一個連接埠，因此就不需要像集線器那樣每個連接埠都發送資料。<br><img src="/images/else/net/01/net_01_009.png" alt="img">  </p>
+<blockquote>
+<p>我們透過 <a target="_blank" rel="noopener" href="https://www.wireshark.org/">Wireshark</a> 來查看網路封包就可看到 MAC 位址放在最前面，因為又是固定長度，對於交換器來說它只要抓取最前面的 MAC 位址資訊即可，不需要解析整個封包，因此需要花費的時間很短暫。<br><img src="/images/else/net/01/net_01_010.png" alt="img">  </p>
+</blockquote>
+<h2 id="運作原理"><a href="#運作原理" class="headerlink" title="運作原理"></a>運作原理</h2><p>MAC Address Table 的資料是怎麼產生的？如下圖，我們假設從 A 電腦發送訊息給 C 電腦，交換器收到資料(網路封包)時可以知道是來自哪一個連接埠(Port)，同時它會去抓取資料內的來源端 MAC 位址(Source MAC Address)也就是 <code>00:0A:02:0B:03:0C</code>，最後將連接埠與 MAC 位址寫入到 MAC Address Table，不採用目的端的 MAC 位址是因為這個台設備不一定在交換器所連結的網路內，甚至這個 MAC 位址是無效的。<br><img src="/images/else/net/01/net_01_014.png" alt="img">  </p>
+<p>接著交換器會拿目的端 MAC 位址(Destination MAC Address)比對 MAC Address Table 內有沒有符合的 MAC 位址，如果有就將資料由對應的連接埠輸出，如果沒有就採取廣播(Broadcast)方式，接資料傳送給所有連接埠。<br><img src="/images/else/net/01/net_01_015.png" alt="img">  </p>
+<p>所以要讓交換器廣播，只要網路封包的 Destination MAC Address 不存在 MAC Address Table 內即可，習慣上我們會使用 <code>FF:FF:FF:FF:FF:FF</code> 這組不存在現實中的 MAC 位址。  </p>
+<h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><p>既然知道交換器的運作原理，那我們開始思考交換器會遇到那些安全問題：  </p>
+<ul>
+<li><p><strong>MAC 欺騙功能</strong>(<strong>MAC Spoofing Attack</strong>)<br>  在網路封包內使用<strong>別人的 MAC 位址</strong>當作來源端 MAC 位址(Source MAC Address)來發送，這樣 MAC Address Table 就會有一筆這組 MAC 位址的紀錄，但是連接埠是指向我們，因此只要透過這台交換器發送給這組 MAC 位址的資料就會改發送給我們。  </p>
+</li>
+<li><p><strong>MAC 洪水攻擊</strong>(<strong>MAC Flooding Attack</strong>)<br>  MAC Address Table 上面的資料是有時效性的，失效的資料會被移除，這樣可以避免佔用空間容量，我們可以透過持續發送來源端不同的虛假 MAC 位址來填滿 MAC Address Table，這樣會造成後續網路封包傳送時因為 MAC 位址不存在 MAC Address Table 內而改採用廣播式(Broadcast) 來散佈資料，這樣我們也可以擷取到相同的資料。  </p>
+<blockquote>
+<p>購買交換器時可以仔細看一下規格，正常也會標示 MAC Address Table 的大小，1K 的容量已經足以應付一般正常使用，但是容量越大，它就可以抵禦越強的洪水攻擊。<br><img src="/images/else/net/01/net_01_013.png" alt="img">  </p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>正常來說電腦來傳送網路封包時會使用網路卡的 MAC 位址當作來源端的 MAC 位址，但是要串改 MAC 位址難度並不大，我們在作業系統內可以透過修改設定達到目的。  </p>
+</blockquote>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>今天其實都沒有提到 IP Address，這是多麼可怕的事情，因為我們正常都會利用不同的 IP 網段來對電腦做業務性質的隔離，但是對交換器來說它是不會幫我們阻擋的，最貼近我們的網路設備竟然如此的不安全，所以市面上出現了比較貴的 L3 交換器(Layer 3 Switch)，它具備路由表(Routing Table)功能，增加了 IP 的控管功能。  </p>
+<p>另外我們應該注意到另一件事-<strong>WiFi無線分享器</strong>，這也是很普遍的網路設備，要讓公司有無線網路，就是使用網路線將無線分享器與還有網路孔的交換器連接，然後大家共用同一組 SSID 與密碼，其實這安全性也很低，從網際網路透過路由器滲透攻擊，由無線分享器入侵似乎簡單多了，而且一但入侵成功，就會身處在交換器連接的網路環境內，所以建置上還是要思考一下。  </p>
+<h2 id="Switching-Hub-陷阱"><a href="#Switching-Hub-陷阱" class="headerlink" title="Switching Hub 陷阱"></a>Switching Hub 陷阱</h2><p>這是過去式，所以當個笑話，記得交換器剛在消費性市場出現時價格明顯比集線器高，因此市面上出現外盒標示 Switching Hub 的網路設備，價位十分親民，非常貼近一般集線器價格，它的強項就會依照你的電腦支援的網路頻寬(當時就分 10M 與 100M)自動切換，說白一點就是支援 10/100 的集線器，就功能面來它是沒有問題的，但是應該不少人以為是交換器而購買它，筆者當時在電腦賣場打工，就看到有販售的店家多少會有比較懂的人回來退貨，現在網路上提到的 Switching Hub 應該就是指交換器。  </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Else/" rel="tag"># Else</a>
+              <a href="/tags/Network/" rel="tag"># Network</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/projects/12_feasibility_07/" rel="prev" title="化繁為簡：07 前端篇(二)實作">
+                  <i class="fa fa-chevron-left"></i> 化繁為簡：07 前端篇(二)實作
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

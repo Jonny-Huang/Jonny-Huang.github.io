@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="前言在上一篇網路概論(一)我們討論如何透過 MAC 位址來傳遞資料，這對於小型網路來說沒有太大的問題，但是對於擁有大量使用者的大型網路而言它是不足的，撇開硬體可行性限制，我們假設有一台超級交換器可以把全球的電腦都串接起來，而且它的 MAC Address Table 容量也足以記錄所有的 MAC 位址，使用上會發生什麼問題？只要有一台電腦變更連接埠(例如你帶電腦出差)，相關的資料傳遞在 MA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="網路概論(二)">
+<meta property="og:url" content="https://jonny-huang.github.io/else/01_net_02/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言在上一篇網路概論(一)我們討論如何透過 MAC 位址來傳遞資料，這對於小型網路來說沒有太大的問題，但是對於擁有大量使用者的大型網路而言它是不足的，撇開硬體可行性限制，我們假設有一台超級交換器可以把全球的電腦都串接起來，而且它的 MAC Address Table 容量也足以記錄所有的 MAC 位址，使用上會發生什麼問題？只要有一台電腦變更連接埠(例如你帶電腦出差)，相關的資料傳遞在 MA">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_001.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_005.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_006.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_007.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_008.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_009.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_010.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_002.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_013.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_014.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_012.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_011.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_003.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_015.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_016.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_017.png">
+<meta property="article:published_time" content="2021-07-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-16T08:40:57.808Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="Else">
+<meta property="article:tag" content="Network">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_001.png">
+
+
+<link rel="canonical" href="https://jonny-huang.github.io/else/01_net_02/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;else&#x2F;01_net_02&#x2F;&quot;,&quot;path&quot;:&quot;else&#x2F;01_net_02&#x2F;&quot;,&quot;title&quot;:&quot;網路概論(二)&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>網路概論(二) | Jonny Huang 的學習筆記</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa fa-tags fa-fw"></i>欣雨露</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IP%E4%BD%8D%E5%9D%80-IP-Address"><span class="nav-number">2.</span> <span class="nav-text">IP位址 (IP Address)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%90%E7%B6%B2%E8%B7%AF%E9%81%AE%E7%BD%A9-Subnet-Mask"><span class="nav-number">3.</span> <span class="nav-text">子網路遮罩 (Subnet Mask)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%96%98%E9%81%93%E5%99%A8-Gateway"><span class="nav-number">3.1.</span> <span class="nav-text">閘道器 (Gateway)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8D%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%94%E5%AE%9A-Address-Resolution-Protocol"><span class="nav-number">3.1.1.</span> <span class="nav-text">位址解析協定 (Address Resolution Protocol)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E8%A1%A8-Routing-Table"><span class="nav-number">3.1.2.</span> <span class="nav-text">路由表 (Routing Table)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%8C%E8%A8%98"><span class="nav-number">3.2.</span> <span class="nav-text">後記</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jonny Huang"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:jonnyhuang@outlook.com" title="E-Mail → mailto:jonnyhuang@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/else/01_net_02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          網路概論(二)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/07/16 16:40:57" itemprop="dateModified" datetime="2021-07-16T16:40:57+08:00">2021/07/16</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Projects/" itemprop="url" rel="index"><span itemprop="name">Projects</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img src="/images/else/net/02/net_02_001.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一篇<a href="/else/01_net_01/">網路概論(一)</a>我們討論如何透過 MAC 位址來傳遞資料，這對於小型網路來說沒有太大的問題，但是對於擁有大量使用者的大型網路而言它是不足的，撇開硬體可行性限制，我們假設有一台超級交換器可以把全球的電腦都串接起來，而且它的 MAC Address Table 容量也足以記錄所有的 MAC 位址，使用上會發生什麼問題？只要有一台電腦變更連接埠(例如你帶電腦出差)，相關的資料傳遞在 MAC Address Table 更新前就會以廣播(Broadcast)的方式處理，全球每分鐘都多少裝置在移動，這台交換器絕大多數的時間是在做廣播，我想就算大家都是使用光纖串接也頻寬也不夠用，更不用說大家的電腦每分每秒都在收垃圾資料。  </p>
+<p>我們知道 MAC 位址是跟著電腦，如果位置(連接埠)不變情況下，交換器確實可以做到點對點的傳送，但是一旦變更，交換器就會不知道資料的派送方式，這種位址是依靠<strong>被動</strong>的方式來得知顯然有些弊端，因此我們需要一種位址讓網路傳遞設備可以<strong>主動</strong>知道它的實際地址(連接埠)，這樣就可以直接傳送，避免廣播佔用頻寬，所以我們今天來談論另一種位址-<strong>IP位址</strong>(<strong>Internet Protocol Address</strong>，簡稱：IP Address)。  </p>
+<span id="more"></span>  
+
+<h1 id="IP位址-IP-Address"><a href="#IP位址-IP-Address" class="headerlink" title="IP位址 (IP Address)"></a>IP位址 (IP Address)</h1><p>什麼 IP 位址？我們以最普及的 <strong>IPv4</strong> (IP 第4版本) 來說明，基本上它是由 32 位元組成的資料，為了方便人類識別，我們會分拆成 4 組數據(每組 8 個位元)，並以十進制來表示，如下圖，我們一般看到的 IP <code>192.168.0.11</code> 在電腦裡其實是以 <code>11000000 10101000 00000000 00001011</code> 方式儲存。  </p>
+<p><img src="/images/else/net/02/net_02_005.png" alt="img">  </p>
+<p>所以理論上我們可以使用的 IP 位址有 2 的 32 次方個，也救世會有超過 40 億組 IP 位址，但是它與 MAC 位址差別在於，MAC 位址在網路設備生產階段就就燒錄到韌體內，也就是事前就配置好了，而 IP 位址則是透過事後配置來對應，例如我們跟 ISP 業者(例如：中華電信)申請網路時，他們除了會拉一條實體線路之外同時還會配置一組以上的 IP 位址給我們，，而在 ISP 之上其實還有組織負責分配全球的 IP 位址，確保大家使用的 IP 位址不會重複。<br><img src="/images/else/net/02/net_02_006.png" alt="img">  </p>
+<h1 id="子網路遮罩-Subnet-Mask"><a href="#子網路遮罩-Subnet-Mask" class="headerlink" title="子網路遮罩 (Subnet Mask)"></a>子網路遮罩 (Subnet Mask)</h1><p>如果所有 IP 位址都必須一個一個分配會十分沒有效率，所以我們需要將 IP 位址分割成多組，這樣分配效率會比姣好，但是一組要多少 IP 位址？太少似乎沒有效益，太多又容易造成沒有使用的閒置 IP 位址，最終產生了可以動態決定群組 IP 數量的<strong>子網路遮罩</strong>(<strong>Subnet Mask</strong>)這種分割方式。  </p>
+<p>我們常常看到子網路遮罩都是以 255 開頭、以 0 結束，這到底是甚麼意思？想要快速了解，其實只要把子網路遮罩由十進制轉換回二進制就可以理解，如下圖，我們以子網路遮罩 <code>255.255.255.0</code> 來說明，其實他就是指<strong>比較長度</strong>，<code>1</code>表示要比較，<code>0</code>表示不需要比較，所以 <code>255.255.255.0</code> 表示比較 IP 位址的前 24 個位元(規格上比較位元需要連續，不可跳號)，如果相同表示為同一群組，因此我們會需要 IP 位址來代表這個群組，為了避免混淆，所以我們將 IP 位址不比較的位元標示為 <code>0</code>，下圖範例的這組 IP 位址就是 <code>192.168.0.0</code>，最後 8 位元也代表十進制的最後一組數據，所以這組 IP 位址理論上可以由 <code>192.168.0.0</code> 到 <code>192.168.0.255</code>，共 256 個 IP 位址，不過第一組 IP 位址(不比較的位元皆為 <code>0</code>)會拿來代表這個群組，而最後一組 IP 位址(不比較的位元皆為 <code>1</code>)會拿來代表這個 IP 位址群組的廣播(Broadcast)位址，因此會少掉 2組，最終可配置的設備的 IP 位址為 254 個。</p>
+<p><img src="/images/else/net/02/net_02_007.png" alt="img">  </p>
+<blockquote>
+<p>我們也可以用 <code>192.168.0.0/24</code> 來表示群組網段，前面的 IP 位址(<code>192.168.0.0</code>) 表示比較基準，後面的子網路遮罩(<code>24</code>)表示比較長度，等同於 <code>255.255.255.0</code>。  </p>
+</blockquote>
+<p>習慣上，子網路遮罩長度往往是使用 <code>8</code>、<code>16</code>、<code>24</code>，這是因為我們為了檢視方便，將 IP 位址每 8 位元轉成一組十進位數字，所以使用 8 倍數來切割網段會比較容易了解，但是不代表只能是這幾個數字，如下圖，我們以 <code>192.168.0.128/26</code> 為例，他的子網路遮罩為 <code>255.255.255.192</code>，代表 IP 位址為 <code>192.168.0.128</code>，廣播位址為 <code>192.168.0.191</code>，可配置 IP 位址由 <code>192.168.0.129</code> 到 <code>192.168.0.190</code>，整個就是無法很直觀的了解。<br><img src="/images/else/net/02/net_02_008.png" alt="img">  </p>
+<p>由此可以知道子網路遮罩比對長度越短，表示該網段群組內可以使用的 IP 位址越多，我們從維基百科：<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%B7%B2%E5%88%86%E9%85%8D%E7%9A%84/8_IPv4%E5%9C%B0%E5%9D%80%E5%9D%97%E5%88%97%E8%A1%A8">已分配的 /8 IPv4位址網段列表</a>可以看到，利用 /8 的子網路遮罩分配給區域網際網路註冊機構(RIR)，此外，從維基百科：<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-tw/%E4%BF%9D%E7%95%99IP%E5%9C%B0%E5%9D%80">保留IP位址</a>也可以看到有一些 IP 位址是不可以在網際網路上使用的，因為不是所有的網路需求都需要連線到整個網際網路，他們可以僅需要內部幾台電腦可以互相同訊即可，因此我們不需要像任何組織申請，就可以自行使用這些 IP 位址，我們只需要確保在自己的網路環境內每台電腦 IP 位址不會重複即可。  </p>
+<p><img src="/images/else/net/02/net_02_009.png" alt="img">  </p>
+<h2 id="閘道器-Gateway"><a href="#閘道器-Gateway" class="headerlink" title="閘道器 (Gateway)"></a>閘道器 (Gateway)</h2><p>說完 IP 位址與子網路遮罩，接下來就要談論到<strong>閘道器</strong>(<strong>Gateway</strong>)，這是一個有點可悲的裝置，筆者沒有機會實際見過這種裝置，因為它的功能跟路由器(Router)太相似了，甚至會被認為這是路由器上的一種功能，那閘道器到底是做什麼用的？我們連到<strong>維基百科</strong>：<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-tw/%E7%BD%91%E5%85%B3"><strong>閘道器</strong></a>去看，他是一個轉送網路資料的裝置，聽起來似懂非懂，交換器也是再轉送資料阿，為什麼要有它的存在？再來，我們在 Windows 系統上透過指令 <code>ipconfig</code> 來查看網路設定，如下圖，我們可以看到上面也有一個預設閘道，感覺起來似乎也是很重要。<br><img src="/images/else/net/02/net_02_010.png" alt="img">  </p>
+<p>我們現在知道在傳送網路資料時，除了會有目的端與來源端的 MAC 位址之外，還會有目的端與來源端的 IP 位址，但是我們電腦連接的網路線另一邊幾乎都是交換器，交換器只認 MAC 位址，IP 位址對它來說只是傳遞資料的一部分，這樣 IP 位址不就沒有意義了嗎？<br><img src="/images/else/net/02/net_02_002.png" alt="img">  </p>
+<h3 id="位址解析協定-Address-Resolution-Protocol"><a href="#位址解析協定-Address-Resolution-Protocol" class="headerlink" title="位址解析協定 (Address Resolution Protocol)"></a>位址解析協定 (Address Resolution Protocol)</h3><p>所以我們需要一個可以由 IP 位址解析 MAC 位址的功能-<strong>位址解析協定</strong>(<strong>Address Resolution Protocol</strong>，簡稱：<strong>ARP</strong>)，當然還需要一個可以儲存結果的表格(ARP Table，或者稱 ARP Cache)來儲存對應關係 IP 位址與 MAC 位址，我們可以透過指令 <code>arp /a</code> 來查看作業系統上目前已經儲存的資料。<br><img src="/images/else/net/02/net_02_013.png" alt="img">  </p>
+<blockquote>
+<p>從上面這張表應該也可以了解到子網路遮罩內最後一組 IP 位址(大部分是 <code>255</code> 結尾)是怎麼廣播(Broadcast)的，這組 IP 位址的 MAC 位址就是被設為 <code>FF:FF:FF:FF:FF:FF</code> 這組不存在的位址，交換器收到時就會採取廣播方式派送資料。  </p>
+</blockquote>
+<p>我們現在如果去 <code>ping</code> 一台不存在 ARP Table 內的主機(<code>192.168.10.20</code>)，然後再重新查詢就可以發現它會自動寫入到表格內。<br><img src="/images/else/net/02/net_02_014.png" alt="img"><br>所以比起交換器的 MAC Address Table 是被動式的蒐集資料，我們可以利用 IP 位址主動查詢 MAC 位址，但是，我們又是如何查詢的？<br>我們在 <code>ping</code> 的同時開啟 <a target="_blank" rel="noopener" href="https://www.wireshark.org/">Wireshark</a> 來監控網路封包，如下圖，可以看到我們本機電腦(<code>192.168.10.100</code>)會發出一個目的端的 IP 位址為 <code>192.168.10.20</code>、MAC 位址為 <code>FF:FF:FF:FF:FF:FF</code> 的 ARP 封包，也因為這個 MAC 位址所以交換器會以廣播方式發送，緊接著我們會收到來自 <code>192.168.10.20</code> 主機內含 MAC 位址的 ARP 封包，這樣我們就可以知道對方的 MAC 位址，簡單的說就是如果不知道 IP 位址所對應的 MAC 位址那就”到處問”。</p>
+<p><img src="/images/else/net/02/net_02_012.png" alt="img">  </p>
+<blockquote>
+<p>因為會透過廣播方式發送 ARP 封包來詢問，所以會友安全性顧慮，因為交換器網路內的電腦都可以收到這個訊息，當然也可以發送假 MAC 位址的 ARP 封包來誘騙。  </p>
+</blockquote>
+<h3 id="路由表-Routing-Table"><a href="#路由表-Routing-Table" class="headerlink" title="路由表 (Routing Table)"></a>路由表 (Routing Table)</h3><p>知道了如何建立 IP 位址與 MAC 位址的關聯，接下來就要說 IP 位址如何決定<strong>網路封包的傳送方式</strong>，如下圖，我們執行 <code>route print</code> 命令，可以看到畫面先輸出我們電腦的所有網路傳輸的介面卡，它們對應著 MAC 位址，接著會列出一張<strong>路由表</strong>(<strong>Routing Table</strong>)，這張表主要是用來決定網路傳輸方式。<br><strong>網路目的地</strong>與<strong>網路遮罩</strong>，主要用來篩選傳送的目的端的 IP 位址是否位於該子網路遮罩的範圍內，如果符合就以此條件傳送，傳送方式則是看<strong>介面</strong>欄位，雖然是以 IP 位址呈現，但是它其實代表著上方其中一張介面卡，也就是它除了決定網路封包要從哪一張介面卡輸出之外，同時也決定了來源端的 IP 位址與 MAC 位址。<br><img src="/images/else/net/02/net_02_011.png" alt="img">  </p>
+<p>從介面清單可以看到一個沒有 MAC 位址的介面卡 <code>Software Loopback Interface 1</code>，其實它是一張軟體虛擬的迴環網路卡(Loopback Adaptor)，對應的 IP 位址為 <code>127.0.0.1</code>，迴環的概念我們可想像成這張網路卡插上一個如下圖的網路頭，這個網路頭的傳遞端(Tx)線路會直接連結到自己的接收端(Rx)線路，所以由這張網路卡輸出什麼資料就同樣可以收到什麼資料。<br><img src="/images/else/net/02/net_02_003.png" alt="img"><br>再看看路油表內有一個目的端 IP 位址為 <code>127.0.0.1</code> 的規則，可以看到它同時也是透過 <code>127.0.0.1</code> 介面輸出，這也是為什麼我們可以使用 <code>ping 127.0.0.1</code> 來測試本機電腦的網路(TCP/IP)傳輸與接收是否正常。<br><img src="/images/else/net/02/net_02_015.png" alt="img">  </p>
+<blockquote>
+<p>如果有注意到 <code>120.0.0.0</code> 的規則就可以發現，只要是 <code>127</code> 開頭的 IP 位址都可以拿來測試。<br><img src="/images/else/net/02/net_02_016.png" alt="img">  </p>
+</blockquote>
+<p>接下來我們再看看路由表上的<strong>閘道</strong>欄位，可以發現大部份都是<strong>在連結上</strong>(<strong>On-link</strong>)，簡單的說就是這些網段(子網路遮罩的範圍內的 IP 位址)我們都有辦法取得 MAC 位址，也就是說他們都是在交換器範圍內可以連結到的電腦，這也是一般說的內部網路(Intranet，或稱區域網路)。<br>那如果要連結到內部網路之外呢？你可想像將2個獨立的內部網路串接起來有多少狀況要考慮嗎？為了避免互相干預(例如：IP 位址衝突)，所以我們中間就多了一個轉送裝置-<strong>閘道器</strong>(<strong>Getway</strong>)，說是轉送，其實對交換器來說它就是一台電腦，就跟一般資料傳輸一樣，閘道器收到資料後要如何處理，完全不必理會。<br>最後我們看看路由表上的第一筆資料，它的網路遮罩為 <code>0.0.0.0</code>，這表示 IP 位址比對長度為 0，也就是不比對，任何 IP 位址都會符合這個條件，因為不比對，所以網路目的地的 IP 位址也用 <code>0.0.0.0</code> 代表，再來這邊閘道欄位就有一組 IP 位址，這表示當符合這個條件時，將資料發送到這台閘道器主機，這組條件我們就稱為預設閘道，也就是當其他路由條件都不符合時就採用此條件處理(雖然它是放在第一筆，但是我們可以想像成它是最後一個篩選條件)，就交換器的角度而言，就是資料傳遞目的的電腦不再交換器內時就把資料丟給閘道器主機。  </p>
+<p>因為閘道器也是在交換器的環境內，所以我們會再資料發送前將目的端的 MAC 位址換成閘道器的 MAC 位址再傳送，這樣就可以將資料改送到閘道器。<br><img src="/images/else/net/02/net_02_017.png" alt="img">  </p>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>如果說一個 MAC 位址代表一個固定的資訊設備，那一個 IP 位址就代表一個網路上的固定的位置，同時也表示一種已知傳遞路徑，除了利用路油表來決定路徑之外，其實真正傳遞資料時依然<br>是以 MAC 位址為主要識別方式。  </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Else/" rel="tag"># Else</a>
+              <a href="/tags/Network/" rel="tag"># Network</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/else/01_net_01/" rel="prev" title="網路概論(一)">
+                  <i class="fa fa-chevron-left"></i> 網路概論(一)
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

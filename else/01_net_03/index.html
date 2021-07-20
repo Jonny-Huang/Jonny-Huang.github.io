@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="前言在上一篇網路概論(二)我們討論到 IP 位址，其實 IP 的廣播位址不是很重要，會有特定位址(子網路遮罩下的最後一組 IP 位址)是因為在子網路遮罩規則下特意保留的，因為這個 IP 位址不能指派給電腦，所以我們可以安心使用這組 IP 位址，但是廣播(Broadcast)功能最終還是靠交換器。而交換器地廣播方式就是將目的端 MAC 位址設為 FF:FF:FF:FF:FF:FF，但是其實只要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="網路概論(三)">
+<meta property="og:url" content="https://jonny-huang.github.io/else/01_net_03/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言在上一篇網路概論(二)我們討論到 IP 位址，其實 IP 的廣播位址不是很重要，會有特定位址(子網路遮罩下的最後一組 IP 位址)是因為在子網路遮罩規則下特意保留的，因為這個 IP 位址不能指派給電腦，所以我們可以安心使用這組 IP 位址，但是廣播(Broadcast)功能最終還是靠交換器。而交換器地廣播方式就是將目的端 MAC 位址設為 FF:FF:FF:FF:FF:FF，但是其實只要">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/03/net_03_001.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/03/net_03_009.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/03/net_03_002.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/03/net_03_003.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/03/net_03_010.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/03/net_03_004.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/03/net_03_005.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/03/net_03_007.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/03/net_03_006.png">
+<meta property="article:published_time" content="2021-07-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-20T09:19:32.043Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="Else">
+<meta property="article:tag" content="Network">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/else/net/03/net_03_001.png">
+
+
+<link rel="canonical" href="https://jonny-huang.github.io/else/01_net_03/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;else&#x2F;01_net_03&#x2F;&quot;,&quot;path&quot;:&quot;else&#x2F;01_net_03&#x2F;&quot;,&quot;title&quot;:&quot;網路概論(三)&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>網路概論(三) | Jonny Huang 的學習筆記</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa fa-tags fa-fw"></i>欣雨露</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8B%95%E6%85%8B%E4%B8%BB%E6%A9%9F%E8%A8%AD%E5%AE%9A%E5%8D%94%E5%AE%9A-Dynamic-Host-Configuration-Protocol"><span class="nav-number">2.</span> <span class="nav-text">動態主機設定協定 (Dynamic Host Configuration Protocol)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E6%A7%8C%E6%88%90%E4%BA%A4"><span class="nav-number">2.1.</span> <span class="nav-text">三槌成交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCP-Relay"><span class="nav-number">2.2.</span> <span class="nav-text">DHCP Relay</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%8C%E8%A8%98"><span class="nav-number">3.</span> <span class="nav-text">後記</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jonny Huang"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:jonnyhuang@outlook.com" title="E-Mail → mailto:jonnyhuang@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/else/01_net_03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          網路概論(三)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/07/20 17:19:32" itemprop="dateModified" datetime="2021-07-20T17:19:32+08:00">2021/07/20</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Projects/" itemprop="url" rel="index"><span itemprop="name">Projects</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img src="/images/else/net/03/net_03_001.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一篇<a href="/else/01_net_02/">網路概論(二)</a>我們討論到 IP 位址，其實 IP 的廣播位址不是很重要，會有特定位址(子網路遮罩下的最後一組 IP 位址)是因為在子網路遮罩規則下特意保留的，因為這個 IP 位址不能指派給電腦，所以我們可以安心使用這組 IP 位址，但是廣播(Broadcast)功能最終還是靠交換器。<br>而交換器地廣播方式就是將目的端 MAC 位址設為 <code>FF:FF:FF:FF:FF:FF</code>，但是其實只要目的端 MAC 位址不存在 MAC Address Table 內就可以觸發廣播，使用 <code>FF:FF:FF:FF:FF:FF</code> 也僅是因為這組 MAC 位址也是保留位址，不會網路設備被拿來使用，所以可以確保廣播功能可以正常觸發。  </p>
+<p>在網路開始興起的時代，MIS(Management Information System) 這個職務可以說是紅透半邊天(更不用說還有各種可以讓身價翻倍的證照)，因為利用網路來交換電子文件，所帶來的執行效率提升十分顯著，他不僅具備電話的即時性，同時也具備紙本文件的可記錄姓，在規模比較龐大的企業內，MIS 的權力說是隻手遮天也不為過，因為它的功能幾乎等同於公司的心臟。<br>接下來要說的東西筆者認為它們可以說是讓網路普及化的最大功臣，但是”成也風雲、敗也風雲”，它們也是讓不少公司的 MIS 淪落為廉價電腦維修工(有問題扛責任，沒問題沒價值)的主要原因。  </p>
+<span id="more"></span>  
+
+<h1 id="動態主機設定協定-Dynamic-Host-Configuration-Protocol"><a href="#動態主機設定協定-Dynamic-Host-Configuration-Protocol" class="headerlink" title="動態主機設定協定 (Dynamic Host Configuration Protocol)"></a>動態主機設定協定 (Dynamic Host Configuration Protocol)</h1><p>IP 位址比起 MAC 位址除任更容易識別之外(這邊指的是一般常見的十進位格式的 IP 位址)還多了可以調整變更的彈性，但是在早期要設定 IP 位址除了比需電腦一台一台逐一設定之外，還需要紙本或是使用電子檔案來記錄這些 IP 位址，以確保不會重複分配 IP 位址，如下圖，我們要設定 IP 位址、子網路遮罩、預設閘道、DNS 伺服器。<br><img src="/images/else/net/03/net_03_009.png" alt="img">  </p>
+<p><strong>動態主機設定協定</strong>(<strong>Dynamic Host Configuration Protocol</strong>，簡稱：<strong>DHCP</strong>)的出現就是要解決這類繁瑣的事情，讓電腦自動取得 IP 位址以及相關設定，整個流程如下：  </p>
+<ul>
+<li><p><strong>DHCP Discover</strong><br>  因為一開始用戶端電腦沒有配置 IP 位址，也不知道 DHCP 伺服器位置，所以透過廣播方式發送請求，會內含一組交易代碼(Transaction ID)以及網路相關參數的資訊請求清單(Parameter Request List)。<br>  <img src="/images/else/net/03/net_03_002.png" alt="img">  </p>
+</li>
+<li><p><strong>DHCP Offer</strong><br>  內部網路的 DHCP 伺服器收到請求後，會在找一組沒有使用的 IP 位址回傳給請求的電腦，同時夾帶相關的網路設定資訊。<br>  <img src="/images/else/net/03/net_03_003.png" alt="img">  </p>
+<blockquote>
+<p>如果內部網路有多台 DHCP 伺服器，那電腦就可能收到多組 DHCP Offer，所以有些病毒或木馬會讓自己成為”偽”DHCP 伺服器(他只要發出看似合法的封包即可)，為了避免這種狀況發生一般網管型交換器(L3 Switch)提供了 DHCP snooping 功能，可以指定信任(Trust)的 DHCP 伺服器，將其他非信任(Untrust)的 DHCP 封包都捨棄掉，藉此阻斷非法的 DHCP 伺服器。<br><img src="/images/else/net/03/net_03_010.png" alt="img">  </p>
+</blockquote>
+</li>
+<li><p><strong>DHCP Request</strong><br>  電腦收到 DHCP Offer 之後，會以廣播方式說明它想要使用來自哪一個 DHCP 伺服器所配發的 IP 位址，這樣當內部網路內有多台 DHCP 伺服器時，它們就可以自己配發的 IP 位址有沒有被採用。<br>  <img src="/images/else/net/03/net_03_004.png" alt="img">  </p>
+</li>
+<li><p><strong>DHCP ACK</strong><br>  DHCP 伺服器收到電腦確認之後會再發送一個成功確認通知，用戶端收到之後就會套用設定。<br>  <img src="/images/else/net/03/net_03_005.png" alt="img">  </p>
+</li>
+</ul>
+<blockquote>
+<p>我們可以透過 <code>ipconfig /release</code> 指令來釋放 IP 位址，這時候腦會同時傳送 DHCP Release 封包通知 DHCP 伺服器釋放這組 IP 位址。<br><img src="/images/else/net/03/net_03_007.png" alt="img">  </p>
+</blockquote>
+<h2 id="三槌成交"><a href="#三槌成交" class="headerlink" title="三槌成交"></a>三槌成交</h2><p>用戶端電腦透過 DHCP 伺服器取得 IP 位址之後，其實還會透過廣播方式發送 ARP Probe 封包，詢問內部網路是否有電腦已經使用這組 IP 位址，如下圖，我們可以看到在 Windows 上它詢問了 3 次，在沒人回復之後再發送一個  ARP Announcement 廣播來通知所有電腦它要使用這組 IP 位址。<br><img src="/images/else/net/03/net_03_006.png" alt="img"></p>
+<h2 id="DHCP-Relay"><a href="#DHCP-Relay" class="headerlink" title="DHCP Relay"></a>DHCP Relay</h2><p>DHCP 中繼代理(DHCP Relay) 有點像閘道器(Gateway)負責轉發網路封包，只是它主要是處理 DHCP 相關的封包，此外還有些差異，用戶端必須要知道閘道器的 IP 位址才能夠傳送，DHCP 中繼代理則不需要，因為電腦一開始發送的 DHCP Discover 是透過廣播方式，所以 DHCP 中繼代理可以直接收到，而他要知道的就是 DHCP 伺服器的 IP 位址。<br>因此使用情境應該是已經有一台 DHCP 伺服器(或是可以提供 DHCP 服務的主機)，但是此伺服器不再交換器連結的網段內，而 DHCP 中繼代理必須要能夠連接到交換器下的網路環境與 DHCP 伺服器，所以硬體架構上與閘道器十分相似，但是這一般會以功能形式存在路由器或是網管型交換器內。  </p>
+<blockquote>
+<p>因為要模擬此環境太麻煩，所以就不做測試，而且除了使用機會少之外(感覺需要使用 VLAN 的環境下比較有機會使用到)，一般這個功能就只要設定 DHCP 伺服器的 IP 位址就可以啟用。  </p>
+</blockquote>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>透過 DHCP 我們可以快速整合內部網路，所以說它是非常重要的東西，但是卻容易被忽略，不論是無線基地台或是我們用手機開 5G/4G 網路分享，其實都會使用到 DHCP，但是一般人只會知道這些設備可以隨插即用、隨連隨通。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Else/" rel="tag"># Else</a>
+              <a href="/tags/Network/" rel="tag"># Network</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/else/01_net_02/" rel="prev" title="網路概論(二)">
+                  <i class="fa fa-chevron-left"></i> 網路概論(二)
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

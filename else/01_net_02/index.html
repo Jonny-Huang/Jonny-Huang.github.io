@@ -42,9 +42,10 @@
 <meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_003.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_015.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_016.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_08.png">
 <meta property="og:image" content="https://jonny-huang.github.io/images/else/net/02/net_02_017.png">
 <meta property="article:published_time" content="2021-07-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-07-19T03:06:09.487Z">
+<meta property="article:modified_time" content="2021-07-20T05:45:08.262Z">
 <meta property="article:author" content="Jonny Huang">
 <meta property="article:tag" content="Else">
 <meta property="article:tag" content="Network">
@@ -157,7 +158,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-count">78</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -249,7 +250,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新於</span>
-        <time title="修改時間：2021/07/19 11:06:09" itemprop="dateModified" datetime="2021-07-19T11:06:09+08:00">2021/07/19</time>
+        <time title="修改時間：2021/07/20 13:45:08" itemprop="dateModified" datetime="2021-07-20T13:45:08+08:00">2021/07/20</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -305,11 +306,14 @@
 <p>如果有注意到 <code>120.0.0.0</code> 的規則就可以發現它的子網路遮罩為 <code>255.0.0.0</code>，這表示它只比對前 8 位元，也就是只要是 <code>127</code> 開頭的 IP 位址都可以拿來測試。<br><img src="/images/else/net/02/net_02_016.png" alt="img">  </p>
 </blockquote>
 <p>接下來我們再看看路由表上的<strong>閘道</strong>欄位，可以發現大部份都是<strong>在連結上</strong>(<strong>On-link</strong>)，簡單的說就是這些網段(子網路遮罩的範圍內的 IP 位址)我們都有辦法取得 MAC 位址，也就是說他們都是在交換器範圍內可以連結到的電腦，這也是一般說的內部網路(Intranet，或稱區域網路)。<br>那如果要連結到內部網路之外呢？你可想像將2個獨立的內部網路串接起來有多少狀況要考慮嗎？為了避免互相干預(例如：IP 位址衝突)，所以我們中間就多了一個轉送裝置-<strong>閘道器</strong>(<strong>Getway</strong>)，說是轉送，其實對交換器來說它就是一台電腦，就跟一般資料傳輸一樣，閘道器收到資料後要如何處理，完全不必理會。<br>最後我們看看路由表上的第一筆資料，它的網路遮罩為 <code>0.0.0.0</code>，這表示 IP 位址比對長度為 0，也就是不比對，任何 IP 位址都會符合這個條件，因為不比對，所以網路目的地的 IP 位址也用 <code>0.0.0.0</code> 代表，再來這邊閘道欄位就有一組 IP 位址，這表示當符合這個條件時，將資料發送到這台閘道器主機，這組條件我們就稱為預設閘道，也就是當其他路由條件都不符合時就採用此條件處理(雖然它是放在第一筆，但是我們可以想像成它是最後一個篩選條件)，就交換器的角度而言，就是資料傳遞目的的電腦不再交換器內時就把資料丟給閘道器主機。  </p>
+<blockquote>
+<p>所以有時候我們會關閉 VPN 連線的<strong>使用遠端網路的預設閘道</strong>來加速網路速度，這樣可以避免所有連線都要經過 VPN Server，但是網路的安全性就會降低，因為對外連線(VPN 內網之外)會無法控管。<br><img src="/images/else/net/02/net_02_08.png" alt="img">  </p>
+</blockquote>
 <p>因為閘道器也是在交換器的環境內，所以我們會再資料發送前將目的端的 MAC 位址換成閘道器的 MAC 位址再傳送，這樣就可以將資料改送到閘道器。<br><img src="/images/else/net/02/net_02_017.png" alt="img">  </p>
 <h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>如果說一個 MAC 位址代表一個固定的資訊設備，那一個 IP 位址就代表一個網路上的固定的位置，同時也表示一種已知傳遞路徑，除了利用路油表來決定路徑之外，其實真正傳遞資料時依然<br>是以 MAC 位址為主要識別方式。  </p>
 <p>過去閘道器設備沒有機會出現在一般市場，有些公司或是學校會拿一台伺服器配多張網路卡來處理網路封包轉送，沒錯，這確實就算是閘道器主機，但是，隨著物聯網的興起，又出現一種<strong>物聯網閘道器</strong>(<strong>IoT Gateway</strong>)，看起來就跟一台小電腦(Mini PC)一樣只它有很多輸入介面，網路孔、USB、COM Port、Wi-Fi、Bluetooth…等等，當你了解閘道是在做什麼的時候，你就會發現，它真的就是一台電腦，有些廠商是賣乾淨的空主機，有些廠商則是會開發一些軟體幫你處理資料轉送的工作，物聯網閘道器與以往的閘道器最大差別就是提供更多的傳輸協定的轉換。  </p>
 <blockquote>
-<p>我們可以說以前的閘道器是 IP Getway，因為它專注在網路，站在閘道的定義上，物聯網(Internet of Things，簡稱IoT)重點也是在”網”，但是不代表物聯網閘道器只能透過網路輸出，有些可以透過 USB 或是 COM Port 連接到其他電腦彙整資料。  </p>
+<p>我們可以說以前的閘道器是 IP Gateway，因為它專注在網路，站在閘道的定義上，物聯網(Internet of Things，簡稱IoT)重點也是在”網”，但是不代表物聯網閘道器只能透過網路輸出，有些可以透過 USB 或是 COM Port 連接到其他電腦彙整資料。  </p>
 </blockquote>
 
     </div>
@@ -333,6 +337,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/else/01_net_03/" rel="next" title="網路概論(三)">
+                  網路概論(三) <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>

@@ -136,7 +136,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-count">78</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -204,6 +204,87 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/else/01_net_03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/else/01_net_03/" class="post-title-link" itemprop="url">網路概論(三)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/07/20 17:19:32" itemprop="dateModified" datetime="2021-07-20T17:19:32+08:00">2021/07/20</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Projects/" itemprop="url" rel="index"><span itemprop="name">Projects</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><img src="/images/else/net/03/net_03_001.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一篇<a href="/else/01_net_02/">網路概論(二)</a>我們討論到 IP 位址，其實 IP 的廣播位址不是很重要，會有特定位址(子網路遮罩下的最後一組 IP 位址)是因為在子網路遮罩規則下特意保留的，因為這個 IP 位址不能指派給電腦，所以我們可以安心使用這組 IP 位址，但是廣播(Broadcast)功能最終還是靠交換器。<br>而交換器地廣播方式就是將目的端 MAC 位址設為 <code>FF:FF:FF:FF:FF:FF</code>，但是其實只要目的端 MAC 位址不存在 MAC Address Table 內就可以觸發廣播，使用 <code>FF:FF:FF:FF:FF:FF</code> 也僅是因為這組 MAC 位址也是保留位址，不會網路設備被拿來使用，所以可以確保廣播功能可以正常觸發。  </p>
+<p>在網路開始興起的時代，MIS(Management Information System) 這個職務可以說是紅透半邊天(更不用說還有各種可以讓身價翻倍的證照)，因為利用網路來交換電子文件，所帶來的執行效率提升十分顯著，他不僅具備電話的即時性，同時也具備紙本文件的可記錄姓，在規模比較龐大的企業內，MIS 的權力說是隻手遮天也不為過，因為它的功能幾乎等同於公司的心臟。<br>接下來要說的東西筆者認為它們可以說是讓網路普及化的最大功臣，但是”成也風雲、敗也風雲”，它們也是讓不少公司的 MIS 淪落為廉價電腦維修工(有問題扛責任，沒問題沒價值)的主要原因。  </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/else/01_net_03/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/else/01_net_02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -227,7 +308,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新於</span>
-        <time title="修改時間：2021/07/19 11:06:09" itemprop="dateModified" datetime="2021-07-19T11:06:09+08:00">2021/07/19</time>
+        <time title="修改時間：2021/07/20 13:45:08" itemprop="dateModified" datetime="2021-07-20T13:45:08+08:00">2021/07/20</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -899,90 +980,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/projects/06_feasibility_01/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/projects/05_postgresql_00/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Jonny Huang">
-      <meta itemprop="description" content="Jonny Huang 的學習筆記">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jonny Huang 的學習筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/projects/05_postgresql_00/" class="post-title-link" itemprop="url">PostgreSQL 安裝、備份、還原</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新於</span>
-        <time title="修改時間：2021/07/01 17:47:14" itemprop="dateModified" datetime="2021-07-01T17:47:14+08:00">2021/07/01</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分類於</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Projects/" itemprop="url" rel="index"><span itemprop="name">Projects</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="下載"><a href="#下載" class="headerlink" title="下載"></a>下載</h1><ul>
-<li><p>透過瀏覽器開啟官方網站 <a target="_blank" rel="noopener" href="https://www.postgresql.org/">https://www.postgresql.org/</a>，點選 Download 下載按鈕。<br><img src="/images/projects/postgresql/img_maintain_20210602_004.png" alt="img">  </p>
-</li>
-<li><p>選擇資料庫要安裝的平台，此處以 Microsoft Windows 作業系統為例，點選 Windows 按鈕。<br><img src="/images/projects/postgresql/img_maintain_20210602_005.png" alt="img">  </p>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/projects/05_postgresql_00/#more" rel="contents">
                 閱讀全文 &raquo;
               </a>
             </div>

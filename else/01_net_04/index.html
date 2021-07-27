@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;jonny-huang.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜尋...&quot;,&quot;empty&quot;:&quot;我們無法找到任何有關 ${query} 的搜索結果&quot;,&quot;hits_time&quot;:&quot;${hits} 找到 ${time} 個結果&quot;,&quot;hits&quot;:&quot;找到 ${hits} 個結果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="前言之前幾篇文章內提到 IP 位址之後機會就會順便提到 MAC 位址，看起來似乎兩個是綁在一起的，其實兩者並沒有絕對的關係，我們從開放式系統互聯模型(Open System Interconnection Model，簡稱：OSI 模型)可以看出他們分別歸屬在第 3 層-網路層與第 2 層-資料連結層，OSI 模型對筆者來說是一種容易看懂但是很難理解的東西，因為它含括實體的硬體到抽象的資料結">
+<meta property="og:type" content="article">
+<meta property="og:title" content="網路概論(四)">
+<meta property="og:url" content="https://jonny-huang.github.io/else/01_net_04/index.html">
+<meta property="og:site_name" content="Jonny Huang 的學習筆記">
+<meta property="og:description" content="前言之前幾篇文章內提到 IP 位址之後機會就會順便提到 MAC 位址，看起來似乎兩個是綁在一起的，其實兩者並沒有絕對的關係，我們從開放式系統互聯模型(Open System Interconnection Model，簡稱：OSI 模型)可以看出他們分別歸屬在第 3 層-網路層與第 2 層-資料連結層，OSI 模型對筆者來說是一種容易看懂但是很難理解的東西，因為它含括實體的硬體到抽象的資料結">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_001.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_003.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_002.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_009.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_006.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_007.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_008.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_010.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_011.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_012.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_013.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_016.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_014.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_024.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_026.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_018.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_020.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_021.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_017.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_027.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_022.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_004.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_023.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_028.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_030.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_031.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_032.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_029.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_033.png">
+<meta property="og:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_025.png">
+<meta property="article:published_time" content="2021-07-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-27T04:47:05.438Z">
+<meta property="article:author" content="Jonny Huang">
+<meta property="article:tag" content="Else">
+<meta property="article:tag" content="Network">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jonny-huang.github.io/images/else/net/04/net_04_001.png">
+
+
+<link rel="canonical" href="https://jonny-huang.github.io/else/01_net_04/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-TW&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;jonny-huang.github.io&#x2F;else&#x2F;01_net_04&#x2F;&quot;,&quot;path&quot;:&quot;else&#x2F;01_net_04&#x2F;&quot;,&quot;title&quot;:&quot;網路概論(四)&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>網路概論(四) | Jonny Huang 的學習筆記</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jonny Huang 的學習筆記</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Angular、Flutter</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目錄</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+        <li class="menu-item menu-item-flutter"><a href="/flutter/" rel="section"><i class="fa fa-tags fa-fw"></i>Flutter</a></li>
+        <li class="menu-item menu-item-angular"><a href="/angular/" rel="section"><i class="fa fa-tags fa-fw"></i>Angular</a></li>
+        <li class="menu-item menu-item-projects"><a href="/projects/" rel="section"><i class="fa fa-tags fa-fw"></i>projects</a></li>
+        <li class="menu-item menu-item-quotes"><a href="/quotes/" rel="section"><i class="fa fa fa-tags fa-fw"></i>欣雨露</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B9%99%E5%A4%AA%E7%B6%B2%E8%B7%AF-Ethernet"><span class="nav-number">2.</span> <span class="nav-text">乙太網路 (Ethernet)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%A6%E9%AB%94%E5%B1%A4-Physical-Layer"><span class="nav-number">2.1.</span> <span class="nav-text">實體層 (Physical Layer)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8-Router"><span class="nav-number">3.</span> <span class="nav-text">路由器 (Router)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Request"><span class="nav-number">3.1.</span> <span class="nav-text">Request</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E8%A1%A8-Routing-Table"><span class="nav-number">3.2.</span> <span class="nav-text">路由表 (Routing Table)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B6%B2%E8%B7%AF%E4%BD%8D%E5%9D%80%E8%BD%89%E6%8F%9B-Network-Address-Translation"><span class="nav-number">3.3.</span> <span class="nav-text">網路位址轉換 (Network Address Translation)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reaponse"><span class="nav-number">3.4.</span> <span class="nav-text">Reaponse</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NAT-%E6%87%89%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">NAT 應用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%8C%E8%A8%98"><span class="nav-number">5.</span> <span class="nav-text">後記</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jonny Huang"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Jonny Huang</p>
+  <div class="site-description" itemprop="description">Jonny Huang 的學習筆記</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:jonnyhuang@outlook.com" title="E-Mail → mailto:jonnyhuang@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/flutter.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;flutter.tw&#x2F;" rel="noopener" target="_blank">Flutter Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.facebook.com/groups/augularjs.tw/" title="https:&#x2F;&#x2F;www.facebook.com&#x2F;groups&#x2F;augularjs.tw&#x2F;" rel="noopener" target="_blank">Angular Taiwan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://forum.angular.tw/" title="https:&#x2F;&#x2F;forum.angular.tw&#x2F;" rel="noopener" target="_blank">Angular Taiwan 論壇</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://jonny-huang.github.io/else/01_net_04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jonny Huang">
+      <meta itemprop="description" content="Jonny Huang 的學習筆記">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jonny Huang 的學習筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          網路概論(四)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021/07/27 12:47:05" itemprop="dateModified" datetime="2021-07-27T12:47:05+08:00">2021/07/27</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Projects/" itemprop="url" rel="index"><span itemprop="name">Projects</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img src="/images/else/net/04/net_04_001.png" alt="img">  </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前幾篇文章內提到 IP 位址之後機會就會順便提到 MAC 位址，看起來似乎兩個是綁在一起的，其實兩者並沒有絕對的關係，我們從<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/OSI%E6%A8%A1%E5%9E%8B">開放式系統互聯模型</a>(Open System Interconnection Model，簡稱：OSI 模型)可以看出他們分別歸屬在第 3 層-網路層與第 2 層-資料連結層，OSI 模型對筆者來說是一種容易看懂但是很難理解的東西，因為它含括實體的硬體到抽象的資料結構，對筆者這種網路門外漢來說可能會越說越模糊，不過今天要提到路由器，就不得不跟交換器比較一下差異。  </p>
+<span id="more"></span>  
+
+<h1 id="乙太網路-Ethernet"><a href="#乙太網路-Ethernet" class="headerlink" title="乙太網路 (Ethernet)"></a>乙太網路 (Ethernet)</h1><p>我們一般人接觸網路幾乎都是採用<strong>乙太網路</strong>(<strong>Ethernet</strong>)技術，而乙太網路是以 MAC 位址當作端點識別，所以 MAC 位址也可以稱為乙太網路位址(Ethernet Address)，我們俗稱的交換器應該稱作乙太網路交換器(Ethernet Switch)，我們電腦使用的網路卡應該稱作乙太網路網路卡(Ethernet Adapter)，而接下來要說的路由器也應該稱作乙太網路路由器(Ethernet Router)，我們一般獎的網路封包(Package)算是 OSI 第 3 層的資料，而現在要說的乙太網路則屬於第 2 層-資料連結層，之前為了避免太多專有名詞，所以沒有特意區分，在封包加上第 2 層資料時會稱為<strong>資料框</strong>(<strong>Data Frame</strong>)，就乙太網路而言也可以稱做 Ethernet Frame，主要會加入 MAC 位址來指定傳遞路線(傳遞目的 MAC 位址不見得是實際終點，只要是目的 IP 位址不再我們所處的網段，都會以預設閘道的 MAC 位址，當作目的位址)。  </p>
+<p><img src="/images/else/net/04/net_04_003.png" alt="img">  </p>
+<blockquote>
+<p>完整 Frame 格式請參閱維基百科：<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Ethernet_frame">Ethernet Frame</a><br><img src="/images/else/net/04/net_04_002.png" alt="img">  </p>
+</blockquote>
+<p>所以我們只要知道當我們是透過乙太網路來傳輸資料，那 Frame 就會內含 MAC 位址，相反就不一定了，這也是為什麼一般討論路由器時很少談論到 MAC 位址，因為沒有絕對關係。  </p>
+<blockquote>
+<p>例如 ADSL 網路，他在數據機對外連線是透過電話線，而它的網路技術是採用<strong>非同步傳輸模式</strong>(<strong>Asynchronous Transfer Mode</strong>，簡稱：<strong>ATM</strong>)，從維基百科：<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%BC%82%E6%AD%A5%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F">非同步傳輸模式</a>可以看到它就使用 MAC 位址，而是採用識別碼，但是還是資料連結層的概念，它是一個可以被尋找到的位址，所以一樣可以知道傳輸的路徑。<br><img src="/images/else/net/04/net_04_009.png" alt="img">  </p>
+</blockquote>
+<h2 id="實體層-Physical-Layer"><a href="#實體層-Physical-Layer" class="headerlink" title="實體層 (Physical Layer)"></a>實體層 (Physical Layer)</h2><p>如果有使用過早期的手機應該就會體驗過那種充電傳輸線分雜的痛苦，在那個時代連自家廠牌的手機都有多種傳輸接頭，市面上也開始出現了如下圖這種可以通吃的傳輸線，後來歐盟要求手機廠商統一使用 Type-C。  </p>
+<p><img src="/images/else/net/04/net_04_006.png" alt="img">  </p>
+<p>而 OSI 第 1 層-實體層主要就是訂定硬體設備或是連接線的標準，但是要注意的是就如同我們說的第 3 層 IP 位址與第 2 層 MAC 位址沒有絕對關係一樣，第 1 層也與第 2 層不會有絕對的關係，例如我們一般可以在路由器或是網管型交換器上看到的序列埠(Serial port，一般設備會標示為 Console Port)，這是為了避免設定修改錯誤或是被別人惡意修改導致我們無法透過網路方式連結到管理介面，所以一般會提供 RS-232 標準序列埠讓我們可以使用終端機來連線設定，一般序列埠大多會如下圖左邊的路由器以 DE-9 當作連接埠，但是在中高階的網路設備上，會如下圖右邊路由器會以 RJ-45 當作連接埠。  </p>
+<p><img src="/images/else/net/04/net_04_007.png" alt="img">  </p>
+<p>所以不要以為有 RJ-45 就是提供乙太網路連線功能，它同樣是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%B8%B2%E8%A1%8C%E7%AB%AF%E5%8F%A3">序列埠</a>的標準連接埠，既然是標準你就可以買到下圖這種 RJ-45 轉 DE-9 (COM Port) 的連接線(一般購買設備會隨機附贈)，甚至你只要知道它的相對接點也可以自己製作。  </p>
+<p><img src="/images/else/net/04/net_04_008.png" alt="img">  </p>
+<h1 id="路由器-Router"><a href="#路由器-Router" class="headerlink" title="路由器 (Router)"></a>路由器 (Router)</h1><p>我們所謂的網際網路(Internet)主要是透過 ISP 網路(或跨國企業網路)互相串接組成的，而我們的電腦則串接到這些 ISP 業者的機房，再透過他們對外的網路幹線鏈結到世界各地，但是如下面示意圖，連線設備之間其實有很多傳輸路徑可以選擇，這樣不論是網路斷線或是線路頻寬滿載都可以調整傳輸路線。  </p>
+<p><img src="/images/else/net/04/net_04_010.png" alt="img">  </p>
+<p>很顯然這種需要可以決定路徑的傳輸方式是交換器無法做到的，所以我們需要一個可以處理這種狀況的設備-<strong>路由器</strong>(<strong>Router</strong>)，我們在<a href="/else/01_net_02/">網路概論(二)</a>內有提到作業系統內有一個路由表 (Routing Table)，路由器可以說是以此為基礎的網路設備，路由表可以設定傳輸的路徑(介面卡)，當然就 ISP 業者而言這應該說是具有路由功能的設備或是機房，因為這無法靠單一設備處理地區的所有網際網路請求，當然它還有一些一般路由器沒有的特殊功能例如更強大的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE">路由協定</a>。  </p>
+<p>但是我們今天要說的是最普及的乙太網路路由器(Ethernet Router)，我們以 MikroTik 的 <a target="_blank" rel="noopener" href="https://mikrotik.com/product/rb4011igs_rm#fndtn-downloads">RB4011iGS+RM</a>為例，從他們提供的硬體架構來看其實路由器內連接 2 個 5 Port 的乙太網路交換器。  </p>
+<p><img src="/images/else/net/04/net_04_011.png" alt="img"><br><img src="/images/else/net/04/net_04_012.png" alt="img">  </p>
+<blockquote>
+<p>它是採用 RJ-45 當作 Console Port。<br><img src="/images/else/net/04/net_04_013.png" alt="img">  </p>
+</blockquote>
+<p>因為是透過交換器傳輸，所以路由器輸出前會將封包打包成 Ethernet Frame(或稱 MAC Frame)，這邊再次強調路由器本身其實是不管 MAC 位址的，只因為它是透過乙太網路(交換器)來做，所以必須轉換乙太網路封包格式(加上 MAC 位址)交換器才有辦法傳輸資料。  </p>
+<h2 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h2><p>我們現在假設對網際網路上的主機(IP 位址：<code>216.58.200.226</code>)發送資料，首先因為這個 IP 位址不在內部網路，所以我們電腦的路由表只有預設閘道會符合規則，因此我們來源端的 IP 位址就會使用 <code>192.168.10.100</code>，MAC 位址則會此用這組 IP 位址所對應的網路卡 <code>D4:5D:64:5D:F3:8B</code>，當然這也表示資料會透過這張網路卡輸出。  </p>
+<p><img src="/images/else/net/04/net_04_016.png" alt="img">  </p>
+<p>接著因為是預設閘道所以我們目的端的 MAC 位址會替換成這組 IP 位址所對應的 MAC 位址，所以封包格式會如下圖。  </p>
+<p><img src="/images/else/net/04/net_04_014.png" alt="img">  </p>
+<blockquote>
+<p>也因為我們會連線到內部網路以外的主機幾乎都是在網際網路上，所以預設閘道幾乎都是指向路由器，因為我們要透過路由器與網際網路交換資料。  </p>
+</blockquote>
+<h2 id="路由表-Routing-Table"><a href="#路由表-Routing-Table" class="headerlink" title="路由表 (Routing Table)"></a>路由表 (Routing Table)</h2><p>在路由器內一樣有路由表，由於目的端的 IP 位址 <code>216.58.200.226</code> 不再我們的既有的網段內，所以會以預設路由輸出。  </p>
+<p><img src="/images/else/net/04/net_04_024.png" alt="img">  </p>
+<p>在這邊會透過第 5 連接埠傳送到我們俗稱小烏龜的數據機(IP 位址：<code>118.163.1.254</code>)，因為是透過乙太網路傳輸，所以會修改對應的 MAC 位址。  </p>
+<p><img src="/images/else/net/04/net_04_026.png" alt="img">  </p>
+<h2 id="網路位址轉換-Network-Address-Translation"><a href="#網路位址轉換-Network-Address-Translation" class="headerlink" title="網路位址轉換 (Network Address Translation)"></a>網路位址轉換 (Network Address Translation)</h2><p>因為我們電腦的 IP 位址是使用網際協定所保留的網段，所以這是一個不存在於網際網路的位址，如果直接將封包發送出去，目的端的主機回傳資料時，就會找不到我們的位址，當然我們也永遠收不到資料，因此路由器提供另一種功能-<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-tw/%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2">網路位址轉換</a>(Network Address Translation，簡稱：NAT)，它再幫我們轉送封包之前會先將封包內的來源端 IP 位址替換成我們從 ISP 業者所配發到的真實 IP 位址，這樣目的端主機就可以將資料回傳給我們的路由器。<br><img src="/images/else/net/04/net_04_018.png" alt="img">  </p>
+<h2 id="Reaponse"><a href="#Reaponse" class="headerlink" title="Reaponse"></a>Reaponse</h2><p>當遠端主機處理完之後會開始回傳資料，我們可以看到來源端與目的端的 IP 位址與我們傳出去的相反，因為我們最終是由路由器代為送出，所以目的端的 IP 位址是路由器 IP 位址 <code>118.163.123.123</code>。  </p>
+<p><img src="/images/else/net/04/net_04_020.png" alt="img">  </p>
+<p>接著路由器再回傳給電腦前會再做 NAT 轉換，將目的端的 IP 位址改成我們電腦的 IP 位置 <code>192.168.10.100</code>。  </p>
+<p><img src="/images/else/net/04/net_04_021.png" alt="img"><br><img src="/images/else/net/04/net_04_017.png" alt="img">  </p>
+<blockquote>
+<p>我們透過 TCP/IP 協定傳輸資料時會包含一組<strong>通訊埠</strong>(<strong>Port</strong>)，這與交換器上的實體連接埠不同，這種通訊埠編號(Port Number)主要可以與程序(Process)綁定，這樣電腦接收到網路資料之後就可以知道要交由哪一個程序處理，比較主流的程序會使用的通訊埠可以查閱：<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/TCP/UDP%E7%AB%AF%E5%8F%A3%E5%88%97%E8%A1%A8">TCP/UDP埠列表</a>。  </p>
+</blockquote>
+<p>最後由路由表可以知道我們須透過第 2 連接埠(ether2) 將資料回傳給電腦，所以依照乙太網路協定調整對應的 MAC 位址。<br><img src="/images/else/net/04/net_04_027.png" alt="img">  </p>
+<blockquote>
+<p>我們可以看到<strong>輸出時先做路由再做 NAT</strong>，<strong>輸入時先做 NAT 再做路由</strong>，步驟剛好相反。  </p>
+</blockquote>
+<p>雖然 IP 位址是遠端主機，但是從目的端的 MAC 位址就知道，其實我們電腦面對的始終都是路由器。<br><img src="/images/else/net/04/net_04_022.png" alt="img"><br>而路由器的功能就像是物流業者，我們在寄送包裹時其實並不是直接送達目的地址，中間會經過一些轉運中心或是地方營業所。<br><img src="/images/else/net/04/net_04_004.png" alt="img">  </p>
+<blockquote>
+<p>在電腦內我們也可以透過 <code>tracert</code> 指令來查閱中間的傳遞路徑。<br><img src="/images/else/net/04/net_04_023.png" alt="img">  </p>
+</blockquote>
+<h1 id="NAT-應用"><a href="#NAT-應用" class="headerlink" title="NAT 應用"></a>NAT 應用</h1><p>上面我們主要以內部電腦對外請求為例，但是反過來我們也可以利用 NAT 來轉換外部對我們的請求，最常見的用途就是架設網站，我們可以透過 NAT 設定將來自外部對 HTTPS 443 連接埠的請求都轉向網頁伺服器(Web Server)的 IP 位址 <code>192.168.10.10</code>。  </p>
+<p><img src="/images/else/net/04/net_04_028.png" alt="img">  </p>
+<p>雖然我們可以事先在路由器設定好 DNS 主機位址，但是每台電腦其實可以自行修改。  </p>
+<p><img src="/images/else/net/04/net_04_030.png" alt="img">  </p>
+<p>因為 DNS 查詢是透過 53 通訊埠來發出請求，所以筆者就利用 NAT 功能將來自內網 53 通訊埠的 TCP 與 UDP 請求都轉向自己架設的 DNS 伺服器-<a target="_blank" rel="noopener" href="https://adguard.com/en/adguard-home/overview.html">AdGuard Home</a>(IP 位址：<code>192.168.10.5</code>)。  </p>
+<p><img src="/images/else/net/04/net_04_031.png" alt="img">  </p>
+<blockquote>
+<p>筆者為將 DNS 伺服器上負責處理 DNS 請求的通訊埠設為 <code>8053</code> 通訊埠，所以設定 NAT 轉換時也一同修改通訊埠。  </p>
+</blockquote>
+<p>這樣的好處是不論用戶端的 DNS 為何，最終經過路由器時網路封包還是會轉向我們指定的 IP 位址所對應的主機，而用戶端電腦卻不會察覺到差異。  </p>
+<p><img src="/images/else/net/04/net_04_032.png" alt="img">  </p>
+<p>這樣我們既可以透過 AdGuard Home 來過濾一些為危險的網站來提升內部網路安全性，同時也不會影響用戶端的設定，從下圖可以看到封鎖了 2 個成人網站，但是其實這不是使用者主動去瀏覽，而是使用者所瀏覽的一般網站內嵌了成人網站的連結，現在因為 JavaScript 的技術成熟，所以很多網站都可以利用內嵌的 JavaScript 程式在使用者不知情狀況下主動執行一些”任務”。  </p>
+<p><img src="/images/else/net/04/net_04_029.png" alt="img">  </p>
+<blockquote>
+<p>除了 53 Port 之外其實還有其他通訊埠處理 DNS 請求，尤其是最近開始興起的 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-tw/DNS_over_TLS">DNS-over-TLS</a>(簡稱：<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-tw/DNS_over_TLS">DoT</a>)，主要連接埠如下：<br><img src="/images/else/net/04/net_04_033.png" alt="img"><br>資料來源：<a target="_blank" rel="noopener" href="https://hub.docker.com/r/adguard/adguardhome">AdGuard Home - Docker</a></p>
+</blockquote>
+<h1 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h1><p>現在的路由器其實還有很多常見的功能，例如 DHCP、防火牆、VPN …等等功能，說實在的筆者也不知道那些是路由器必備的功能。<br>另一個題外話，小烏龜到底算是路由器還是閘道器，其實筆者原本認為它比較偏向路由器，因為它具備 Wi-Fi 無線分享功能，也就是它一定內含有 DHCP 以及 NAT 功能，不過看到它的型號 <code>I-040GW</code>，感覺尾巴 GW 代表閘道器(Gateway)，上網查詢之後才發現它真的是閘道器，不過想想也是，因為它並沒有替換掉來自我們路由器的 IP 位址，遠端主機收到的來源端 IP 位址仍然是 <code>118.163.123.123</code>，轉發是它的主要功能，所以說是閘道器沒有錯，或者我們可以說它是具有路由功能的閘道器。<br><img src="/images/else/net/04/net_04_025.png" alt="img">  </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Else/" rel="tag"># Else</a>
+              <a href="/tags/Network/" rel="tag"># Network</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/else/01_net_03/" rel="prev" title="網路概論(三)">
+                  <i class="fa fa-chevron-left"></i> 網路概論(三)
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonny Huang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
